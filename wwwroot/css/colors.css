@@ -1,0 +1,75 @@
+/* colors.css */
+.font-orange {
+  color: #ff5400;
+}
+
+.font-red {
+  color: #d40000;
+}
+
+.font-darkgray {
+  color: #495057;
+}
+
+.color-ced4da {
+  color: #ced4da;
+}
+
+.color-878A99 {
+  color: #878a99;
+}
+
+.color-495057 {
+  color: #495057;
+}
+
+.color-D40000 {
+  color: #d40000;
+}
+.color-fff {
+  color: #fff;
+}
+
+.color-212529 {
+  color: #212529;
+}
+
+.color-000 {
+  color: #000;
+}
+
+.color-666 {
+  color: #666;
+}
+
+.bg-color-212529 {
+  background-color: #212529;
+}
+
+.bg-color-ff5400 {
+  background-color: #ff5400;
+}
+
+.bg-color-fff {
+  background-color: #fff;
+}
+
+.bg-color-878A99 {
+  background-color: #878a99;
+}
+
+.bg-color-E9EBEC80 {
+  background-color: #e9ebec80;
+}
+
+.divider-color {
+  background-color: #e9ebec;
+}
+
+.bg-color-FFF7EC {
+  background-color: #fff7ec;
+}
+
+.bg-color-ced4da {
+  background-color: #ced4da;
+}

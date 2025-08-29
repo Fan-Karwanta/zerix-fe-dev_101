@@ -1,0 +1,73 @@
+# ASP.NET Core project
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+Generated\_*/**
+
+# macOS Files
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# NPM Dependencies
+node_modules/
+
+# Gulp File
+gulpfile.js
+
+# Visual Studio specific
+*.vspscc
+*.vssscc
+.vscode/
+*.vs/
+.vscode/
+*.vscode/
+.resharper/
+ReSharper*/
+.vs/
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vscode/
+*.pidb
+*.suo
+*.sln.docstates
+*.swp
+*.directory
+.vscode/
+.vscode/
+.vscode/
+*.wsp
+
+# Windows Image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code files
+.vscode/

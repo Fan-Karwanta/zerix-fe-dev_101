@@ -1,0 +1,128 @@
+<nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Appointment dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownScheduler" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/dashboard/scheduler.svg" height="30" width="30" alt="Scheduler"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange">Appointment</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownScheduler">
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/calendar">
+                            Calendar View
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/events">
+                            Manage Events
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Mobile Appointment dropdown -->
+        <ul class="navbar-nav me-auto d-md-none mobile-appointment-dropdown">
+            <li class="nav-item dropdown">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-3"
+                    href="#" id="navbarDropDownSchedulerMobile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/dashboard/scheduler.svg" height="24" width="24" alt="Scheduler"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-16 fw-400 me-2 font-orange">Appointment</span>
+                    <img src="~/images/icons/arrow-down.svg" height="10" width="10" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownSchedulerMobile">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/calendar">
+                            Calendar View
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/events">
+                            Manage Events
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Mobile hamburger menu -->
+        <button class="navbar-toggler d-md-none mobile-hamburger" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="DashboardoffcanvasNavbar">
+            <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="20" height="2" fill="#ff5400"/>
+                <rect y="7" width="20" height="2" fill="#ff5400"/>
+                <rect y="14" width="20" height="2" fill="#ff5400"/>
+            </svg>
+        </button>
+
+        <!-- Desktop navigation -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary position-relative"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications" class="icon my-1" />
+                    <span style="position: absolute; top: -10px; right: -5px; background: #ff5400; color: #fff; border-radius: 53%; padding: 2px 0; font-size: 10px; font-weight: bold; min-width: 20px; min-height: 20px; max-width: 20px; max-height: 20px; width: 20px; height: 20px; text-align: center; border: 1px solid #fff; z-index: 2;">99+</span>
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Pollster</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary active-nav d-none"
+                    href="/scheduler">
+                    <img src="~/images/icons/dashboard/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="Settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="#">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

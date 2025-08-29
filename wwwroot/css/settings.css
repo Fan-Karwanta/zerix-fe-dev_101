@@ -1,0 +1,872 @@
+.user-settings-nav {
+  border-bottom: 1px solid #e9ebec;
+}
+
+.user-settings-nav .nav-item.active {
+  border-bottom: 1px solid #ff5400;
+}
+
+.user-settings-nav .nav-item .active {
+  color: #ff5400;
+}
+
+.min-h-title {
+  min-height: 42px;
+}
+
+form.users-settings-search {
+  width: 311px;
+}
+
+table tbody tr td input[type="checkbox"] {
+  margin-top: 5px;
+}
+
+.users-settings-users-menu {
+  border: 1px solid #e9ebec;
+  border-radius: 6px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.users-settings-users-menu.mobile div button,
+.users-settings-users-menu.mobile div a {
+  max-width: 150px;
+}
+
+.users-settings-search input {
+  border-left: none;
+}
+
+.input-group {
+  justify-content: flex-end;
+}
+
+.users-settings-search input:focus,
+.users-settings-search input:focus-visible,
+.users-settings-search input:hover,
+.users-settings-search input:active,
+.users-settings-search input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+.users-settings-search span {
+  border: 1px solid #ced4da;
+  border-right: none;
+}
+
+.dropdown-menu.more-btn {
+  box-shadow: -0.1rem 0.25rem 0.25rem rgba(0, 0, 0, 0.12) !important;
+  border: none;
+}
+
+.users-table-header {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+.users-table-header.users th:first-child,
+.users-table-body.users td:first-child {
+  width: 41px;
+}
+
+.users-table-header th {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  font-weight: 400;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.users-table-body td {
+  text-align: center !important;
+  vertical-align: middle !important;
+  height: 57px;
+  max-height: 57px;
+}
+
+.users-table-body tr:last-child {
+  border-bottom: 1px solid white;
+}
+
+.users-table-body tr td span.active {
+  background-color: #d9f5f0 !important;
+  color: #00bd9d !important;
+}
+
+.users-table-body tr td span.disabled {
+  background-color: #ffdddd !important;
+  color: #d40000 !important;
+}
+
+.users-table-header tr th input {
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  -moz-appearance: none; /* Remove default appearance in Firefox */
+  appearance: none; /* Remove default appearance */
+  border: none;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 3.5px;
+  width: 16px;
+  height: 16px;
+}
+.users-table-body tr td input {
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  -moz-appearance: none; /* Remove default appearance in Firefox */
+  appearance: none; /* Remove default appearance */
+  border: 1px solid #ced4da;
+  border-radius: 3.5px;
+  width: 16px;
+  height: 16px;
+}
+
+.more-icon-btn {
+  background-color: #e9ebec;
+}
+.more-icon-btn:focus .more-icon,
+.more-icon-btn:focus,
+.more-icon-btn:hover {
+  background-color: #fff7ec;
+  content: url("/images/icons/more-icon-hover.svg"); /* Change the image path to the hover image */
+}
+
+button.more-icon-btn:hover,
+button.more-icon-btn:focus,
+button.more-icon-btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.more-icon-btn:hover .more-icon {
+  content: url("/images/icons/more-icon-hover.svg"); /* Change the image path to the hover image */
+}
+
+.users-settings.results.form-select {
+  /* Custom styles for the select box */
+  appearance: none; /* Remove default arrow */
+  background: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  background-image: url("/images/icons/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+}
+
+.users-settings.results.form-select:focus {
+  outline: none !important; /* Remove outline when focused */
+  border-color: none !important; /* Change border color to orange */
+  box-shadow: none;
+}
+.users-settings.results.form-select.width {
+  width: auto;
+  font-size: 14px;
+  padding-left: 8px;
+  padding-right: 18px; /* Reduce right padding to move the number closer to the down arrow */
+  background-position: right 6px center; /* Adjust the position of the arrow */
+  background-size: 8px;
+  background-repeat: no-repeat;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.users-settings-delete {
+  border: 1px solid #ff5400;
+  max-width: 90px;
+  max-height: 40px;
+  height: 40px;
+}
+
+.reverse-icon {
+  transform: scaleX(-1) !important; /* Force apply the horizontal flip */
+}
+
+.page-item {
+  width: 24px;
+  height: 24px;
+}
+
+.page-item .page-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove default padding */
+}
+
+.page-item .page-link i {
+  font-size: 16px; /* Adjust icon size if needed */
+}
+
+/* Add a user modal */
+
+.modal-header {
+  background-color: #fff7ec;
+  border-bottom: none;
+}
+.modal-header .btn-close {
+  background-color: transparent;
+  border: none;
+}
+.modal-header h5 {
+  font-size: 1.5rem;
+  color: #ff5400;
+  margin: 0;
+}
+.modal-footer.users {
+  border-top: none;
+}
+.modal-footer {
+  justify-content: flex-end;
+}
+.btn.btn-cancel:hover {
+  color: #ff5400;
+}
+
+.btn.btn-cancel {
+  color: #ff5400;
+  background-color: white;
+  border: 1px solid #ff5400;
+  width: 90px;
+  height: 40px;
+  margin-right: 16px;
+}
+.btn.btn-save {
+  background-color: #ff5400;
+  color: white;
+  border: none;
+  width: 90px;
+  height: 40px;
+}
+.form-check-label {
+  margin-right: 1rem;
+}
+
+.custom-close {
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.custom-close::before,
+.custom-close::after {
+  content: "";
+  position: absolute;
+  width: 1.2em;
+  height: 2px;
+  background-color: #ff5400; /* Orange color */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.custom-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.custom-close:hover::before,
+.custom-close:hover::after {
+  background-color: #ff4500; /* Darker orange on hover */
+}
+
+/* delete a user */
+
+.delete-user.cancel-btn:hover {
+  color: #ff4500 !important;
+}
+
+.delete-user.btn-cancel,
+.delete-user.btn-save {
+  width: 90px;
+  height: 40px;
+}
+
+/* registration request */
+.registration-request.width {
+  max-width: 683px;
+}
+
+.back-arrow {
+  font-size: 1.5rem;
+  color: orange;
+  cursor: pointer;
+}
+.download-link {
+  font-size: 0.9rem;
+  color: orange;
+  text-decoration: none;
+}
+.upload-area {
+  height: 240px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 40px;
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.upload-area.dragover {
+  border-color: #ff5400;
+}
+
+.upload-btn {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+/* Users group */
+
+.users-table-header.group th:first-child,
+.users-table-body.group td:first-child {
+  width: 41px;
+}
+/* Set the width of all other columns to 160px */
+.users-table-header.group th:not(:first-child),
+.users-table-body.group td:not(:first-child) {
+  width: 345px;
+}
+
+.users-table-header.group.group-modal th:not(:first-child),
+.users-table-body.group.group-modal td:not(:first-child) {
+  width: 232px;
+  min-width: 232px;
+  max-width: 232px;
+}
+
+#detailsModal .scroll {
+  max-height: 515px;
+  min-height: 515px;
+}
+
+#detailsModal .scroll .thead-fixed {
+  background-color: white;
+}
+
+#detailsModal .scroll .thead-fixed {
+  border-bottom: 1px solid white !important;
+}
+.users-group.btn-details:hover,
+.users-group.btn-edit:hover {
+  color: #ff4500;
+}
+
+.users-group.btn-details {
+  background-color: #e9ebec;
+}
+
+/* users group details modal */
+
+.users-group.modal-header {
+  background-color: #fff7ec;
+}
+
+/*  */
+.users-group.modal-dialog {
+  width: 499px;
+  height: 566px;
+}
+
+.users-group.modal-content {
+  height: 585px;
+}
+
+/* Header custom background */
+.users-group.modal-header-custom {
+  background-color: #fff4e5;
+  padding: 10px 20px;
+  height: 60px;
+}
+
+.users-table-header.users th:first-child,
+.users-table-body.users td:first-child {
+  width: 41px;
+}
+
+/* Table Styling */
+.users-group table thead th {
+  height: 60px;
+  text-align: left !important;
+  font-weight: 400;
+  vertical-align: middle;
+  border-bottom: 1px solid white !important;
+}
+
+.users-group table tbody td:first-child {
+  padding-left: 2rem;
+}
+
+.users-group table thead th {
+  padding: 0;
+}
+.users-group table tbody td {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.users-group table thead th:first-child div {
+  justify-content: center;
+}
+.users-group table thead th div {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #ced4da;
+  display: flex;
+
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.users-group table tbody tr {
+  border-bottom: 1px solid white;
+}
+
+#detailsModal table th:first-child {
+  width: 70px !important;
+  max-width: 70px !important;
+}
+#detailsModal table td:first-child {
+  padding-left: 25px !important;
+}
+
+/* Vertical alignment */
+.users-group.modal-body {
+  padding: 0;
+}
+
+/* Add group modal */
+.add-group.modal-dialog {
+  width: 829px !important;
+  max-width: 829px !important;
+  height: 772px;
+}
+
+.add-group.modal-content {
+  width: 829px !important;
+}
+
+.add-group .modal-footer {
+  border-top: none;
+}
+
+.add-group .users-table-body td {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.add-group.table-responsive.users-settings-table {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.add-group.table-responsive.users-settings-table .scroll {
+  max-height: 350px;
+}
+
+.add-group .option {
+  border-bottom: 0 !important;
+}
+
+.add-group .table-responsive.users-settings-table {
+  border-top: 0 !important;
+}
+
+/* User roles */
+.user-roles .users-table-body td {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.users-table-body.user-roles td {
+  border-bottom: none;
+}
+
+.users-table-body.user-roles tr {
+  border-bottom: none;
+}
+
+.users-table-header.user-roles th:first-child,
+.users-table-body.user-roles td:first-child {
+  width: 259px !important;
+  max-width: 259px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.users-table-header.user-roles tr th:nth-child(2),
+.users-table-body.user-roles tr td:nth-child(2) {
+  width: 200px !important;
+  max-width: 200px !important;
+}
+
+.users-table-header.user-roles tr th,
+.users-table-body.user-roles tr td {
+  width: 175px !important;
+  max-width: 175px !important;
+}
+
+/* logs */
+
+.users-settings-select select {
+  width: 215px;
+  height: 39px;
+}
+
+.scroll {
+  max-height: 395px;
+}
+
+.thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.users-table-header.logs th,
+.users-table-body.logs td {
+  height: 46px;
+  min-height: 46px;
+  max-height: 46px;
+  width: 284px;
+  min-width: 284px;
+  max-width: 284px;
+}
+.users-table-body.logs td {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.users-table-body.logs td {
+  border: 1px solid #e9ebec;
+}
+
+.users-table-body.logs td:not(:last-child) {
+  border-right: 1px solid transparent;
+}
+
+.select-username {
+  height: 40px;
+  max-width: 40px;
+}
+
+.users-table-header.group th:first-child,
+.users-table-body.group td:first-child {
+  min-width: 41px;
+}
+
+.users-table-header th:not(:first-child),
+.users-table-body td:not(:first-child) {
+  min-width: 160px;
+}
+
+.users-table-body.group td:not(:first-child) {
+  max-width: 145px;
+}
+
+/* @media (max-width: 1400px) {
+  .wide.users .custom-select-trigger {
+    width: calc(100vw) !important;
+    max-width: calc(100vw) !important;
+  }
+} */
+@media (min-width: 1400px) {
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 1288px !important;
+    min-width: 1288px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 1108px !important;
+    min-width: 1108px !important;
+  }
+}
+@media (max-width: 1200px) {
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 928px !important;
+    min-width: 928px !important;
+  }
+}
+@media (max-width: 992px) {
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 688px !important;
+    min-width: 688px !important;
+  }
+
+  .add-group.modal-dialog,
+  .add-group.modal-content {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 688px !important;
+    min-width: 688px !important;
+  }
+  .wide.logs .custom-select-trigger {
+    width: calc(100vw - 82px) !important;
+    max-width: 457px !important;
+    min-width: 273px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #addGroupModal .modal-dialog,
+  .add-group.modal-content {
+    width: calc(100%) !important;
+  }
+
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: 100vw !important;
+    max-width: 508px !important;
+    min-width: 508px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-item {
+    width: 32px;
+    height: 32px;
+  }
+
+  .page-item .page-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove default padding */
+  }
+
+  .page-item .page-link i {
+    font-size: 16px; /* Adjust icon size if needed */
+  }
+
+  .table-responsive.users-settings-table {
+    border: 1px solid #dee2e6;
+  }
+
+  .users-table-header th,
+  .users-table-body td {
+    padding: 0.5rem;
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .users-table-header.users th:first-child,
+  .users-table-body.users td:first-child {
+    min-width: 45px;
+  }
+
+  #addUserModal .modal-body div label,
+  #addUserModal .modal-footer button {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  .users-table-body td .dropdown-menu {
+    font-size: 14px; /* Adjust dropdown menu font size */
+  }
+
+  /* Adjust the size of the checkbox for mobile */
+  .users-select-checkbox {
+    width: 18px;
+    height: 18px;
+  }
+  /* .users-table-header.group th:first-child,
+  .users-table-body.group td:first-child {
+    min-width: 41px;
+  }
+
+  .users-table-header th:not(:first-child),
+  .users-table-body td:not(:first-child) {
+    min-width: 160px;
+  }
+
+  .users-table-body.group td:not(:first-child) {
+    max-width: 145px;
+  } */
+
+  .registration-request.width {
+    width: 100%;
+  }
+
+  .upload-area {
+    max-width: 342px;
+    max-height: 284px;
+  }
+
+  .registration-request div {
+    max-width: 342px;
+  }
+
+  .modal-dialog {
+    width: 345px;
+    max-width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .custom-close.mobile {
+    display: none;
+  }
+
+  .delete-modal-text {
+    font-size: 16px;
+  }
+
+  .delete-user.btn-cancel,
+  .delete-user.btn-save {
+    width: 132px;
+    height: 40px;
+  }
+
+  .table-responsive.users-settings-table.add-group-section {
+    overflow-x: scroll; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices */
+  }
+
+  .users-table-header.user-roles th:first-child,
+  .users-table-body.user-roles td:first-child {
+    width: 176px !important;
+    max-width: 176px !important;
+    min-width: 176px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .users-table-header.user-roles tr th:nth-child(2),
+  .users-table-body.user-roles tr td:nth-child(2) {
+    width: 176px !important;
+    max-width: 176px !important;
+    min-width: 176px !important;
+  }
+
+  .users-table-header.user-roles tr th,
+  .users-table-body.user-roles tr td {
+    width: 176px !important;
+    max-width: 176px !important;
+    min-width: 176px !important;
+  }
+
+  .users-table-header.logs th,
+  .users-table-body.logs td {
+    width: 176px;
+    min-width: 176px;
+    max-width: 176px;
+  }
+
+  .users-settings-table.logs .scroll {
+    max-height: 380px;
+  }
+
+  .table-responsive.users-settings-table.group .scroll {
+    max-height: 412px;
+  }
+
+  .table-responsive.users-settings-table.user-roles .scroll {
+    max-height: 399px;
+  }
+
+  #detailsModal .users-group table {
+    font-size: 14px;
+  }
+
+  .users-group table tbody td:first-child {
+    padding-left: 1rem;
+  }
+
+  .users-group table tbody td {
+    padding-left: 1.5rem;
+    min-height: 45px !important;
+    max-height: 45px !important;
+  }
+
+  #detailsModal table td:first-child {
+    padding-left: 25px !important;
+  }
+
+  .pagination {
+    gap: 0.5rem !important;
+  }
+
+  #addUserContactSection .wide.users .custom-select-trigger {
+    width: calc(100vw - 30px) !important;
+    max-width: 508px !important;
+    min-width: calc(100vw - 30px) !important;
+  }
+
+  .wide.logs .custom-select-trigger {
+    width: calc(100vw - 82px) !important;
+    max-width: 457px !important;
+    min-width: 307px !important;
+  }
+}
+button.btn:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+  border-color: inherit !important;
+}
+
+/* For buttons with specific colors that need to maintain their color on hover */
+a.bg-color-ff5400.btn:hover,
+button.bg-color-ff5400.btn:hover,
+button.btn-save.btn:hover {
+  background-color: #ff5400 !important;
+  color: white !important;
+  border-color: #ff5400 !important;
+}
+
+a.bg-color-878A99.btn:hover {
+  background-color: #878a99 !important;
+  color: white !important;
+  border-color: #878a99 !important;
+}
+
+button.color-495057.users-settings-delete:hover {
+  background-color: transparent !important;
+  color: white !important;
+  border-color: #ff4500 !important;
+}
+
+/* For cancel buttons that need to maintain their style */
+.btn.btn-cancel:hover {
+  background-color: white !important;
+  color: #ff5400 !important;
+  border-color: #ff5400 !important;
+}
+
+@media (max-width: 390px) {
+  .users-settings-users-menu * {
+    font-size: 13px !important;
+  }
+  .pagination {
+    gap: 0.25rem !important;
+  }
+  .wide.logs .custom-select-trigger {
+    width: calc(100vw - 82px) !important;
+    max-width: 308px !important;
+    min-width: 273px !important;
+  }
+}

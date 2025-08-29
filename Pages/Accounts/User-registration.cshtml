@@ -1,0 +1,94 @@
+@page
+@model UserRegistrationModel
+@{
+    Layout = "_Account";
+    ViewData["Title"] = "User Registration";
+}
+
+<div class="container-fluid px-0">
+    <div class="min-vh-100 d-flex flex-row justify-content-center align-items-center">
+        <!-- Login Form Section -->
+        <div class="login-section d-flex flex-column justify-content-start align-items-center py-4">
+            <div class="d-flex justify-content-md-start justify-content-center login-contents width my-4 py-4">
+                <img src="/images/zerix-logo.png" alt="ZerixText" class="logo-img">
+            </div>
+            <div
+                class="d-flex flex-column justify-content-evenly justify-content-md-start align-items-start login-contents width h-100 gap-4">
+                <div class="d-flex flex-column align-items-start login-contents width mb-3 mb-md-0">
+                    <div class="text-center welcome-text mb-1 fs-24">User Registration</div>
+                    <div class="sub-text mb-md-3 color-878A99">Unlock access to exclusive features and
+                        seamless
+                        interaction.
+                    </div>
+                </div>
+                <div class="login-contents width form-containerflex-1">
+                    <form>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label fs-15">First Name</label>
+                                <input type="text" class="form-control fs-15" id="firstName">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label fs-15">Last Name</label>
+                                <input type="text" class="form-control fs-15" id="lastName">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <label for="mobileNumber" class="form-label fs-15">Mobile Number</label>
+                                <input type="tel" class="form-control fs-15" id="mobileNumber">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fs-15">Email</label>
+                                <input type="email" class="form-control fs-15" id="email">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label fs-15">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control fs-15" id="password">
+                                    <button class="btn btn-show-password" type="button" id="togglePassword"
+                                        onclick="togglePasswordVisibility('togglePassword', 'password')">
+                                        <i class="bi bi-eye color-878A99"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label fs-15">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control fs-15" id="confirmPassword">
+                                    <button class="btn btn-show-password" type="button" id="toggleConfirmPassword"
+                                        onclick="togglePasswordVisibility('toggleConfirmPassword', 'confirmPassword')">
+                                        <i class=" bi bi-eye color-878A99"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-100 bg-color-ff5400 log-in-btn py-2 fs-15">Submit</button>
+                    </form>
+                    <div class="mt-2 d-flex flex-column justify-content-center align-items-center">
+                        <div class="color-878A99 fs-15 text-center">By creating an account, you agree to the
+                            <br>
+                            <a href="#" class="color-878A99 text-decoration-underline fs-15">Terms of
+                                Services</a> and
+                            <a href="#" class="color-878A99 text-decoration-underline fs-15">Privacy
+                                Policy</a>
+                        </div>
+                        <div class="mt-4 pb-3 py-md-0 align-self-center">
+                            <div class="color-878A99 fs-15">Already have an account?
+                                <a href="/accounts/login"
+                                    class="sign-up font-orange text-decoration-none mx-2 fs-15">Sign
+                                    In
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Mockup Section -->
+        <div class="mobile-mockup-section d-none d-lg-flex justify-content-center align-items-center">
+        </div>
+    </div>
+</div>

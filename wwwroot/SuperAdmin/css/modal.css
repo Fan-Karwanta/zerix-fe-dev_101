@@ -1,0 +1,44 @@
+.modal-header {
+  /* background-color: #fff7ec; */
+  border-bottom: none;
+}
+
+.custom-close {
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.custom-close::before,
+.custom-close::after {
+  content: "";
+  position: absolute;
+  width: 1.2em;
+  height: 2px;
+  background-color: #d40000; /* Orange color */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.custom-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.custom-close:hover::before,
+.custom-close:hover::after {
+  background-color: #c50000; /* Darker orange on hover */
+  width: 1.25rem;
+  height: 2.5px;
+}
+
+@media (max-width: 576px) {
+  #UsersModal .modal-header-custom {
+    background-color: #fff4e5;
+    padding: 10px 20px;
+    height: 60px;
+  }
+  .modal-header {
+    background-color: white;
+  }
+}

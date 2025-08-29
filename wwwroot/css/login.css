@@ -1,0 +1,300 @@
+a:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: #ff5400;
+  border: none !important ;
+}
+.login-section,
+.mobile-mockup-section {
+  flex: 1;
+  width: 50vw;
+  max-width: 50vw;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* Specific styles for login section */
+.login-section {
+  padding: 1rem 2rem 2rem;
+  align-items: center; /* Align items in the center horizontally */
+  overflow-y: auto;
+}
+
+/* Set specific width for contents inside login section */
+.login-contents.width {
+  width: 446px;
+}
+
+/* Adjust margins for the form elements */
+.mb-3 {
+  margin-bottom: 1rem !important; /* Ensures consistent spacing between form elements */
+}
+
+.change-password input {
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+}
+
+.change-password input,
+.change-password input:focus {
+  border-right: none !important;
+}
+
+.btn-show-password {
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  border-left: none !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+
+.btn-show-password:focus,
+.btn-show-password:focus-visible,
+.btn-show-password:hover,
+.btn-show-password:active,
+.btn-show-password:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid;
+  border-left: none;
+}
+
+/* Styles for mobile mockup section */
+.mobile-mockup-section {
+  background-image: url("/images/login-landing.png");
+  background-size: cover;
+  background-color: #fff;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* Additional styling for links */
+.login-section .forgot-password {
+  text-decoration: none;
+}
+
+.login-section .forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Adjust spacing for the checkboxes and form */
+.form-check-label {
+  margin-left: 0.25rem;
+}
+
+.log-in-btn {
+  border-radius: 6px;
+  border: transparent;
+  color: white;
+}
+
+.change-password.width {
+  max-width: 320px;
+}
+
+.change-password.container {
+  width: 430px;
+  height: 544px;
+}
+
+.change-password.section {
+  width: 350px;
+}
+
+.change-password.ud-shadow {
+  box-shadow: 0px 5px 10px 0px #0000000d !important;
+}
+
+.change-org {
+  width: 642px;
+}
+
+.change-org.form-control {
+  height: 39px;
+}
+
+.change-org.form-control {
+  height: 39px;
+}
+
+.change-org.form-control:focus,
+.change-org.form-control:active {
+  border-right: none !important;
+  outline: none;
+  box-shadow: none;
+}
+
+.change-org .dropdown-search {
+  position: relative;
+}
+
+.change-org .dropdown-search input {
+  width: 100%;
+}
+
+.change-org .dropdown-search .list-group {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  display: block;
+  margin-bottom: 10px; /* Add margin to separate from button */
+}
+
+/* Remove border between list items and add hover effect */
+.change-org .dropdown-search .list-group {
+  border: 1px solid #ced4da; /* Removes border between list items */
+}
+.change-org .dropdown-search .list-group-item {
+  border: none;
+  padding: 10px 15px; /* Adjust padding as needed */
+  cursor: pointer; /* Changes cursor to pointer */
+}
+
+.change-org .dropdown-search .list-group-item:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+  color: #333; /* Optional: Change text color on hover */
+}
+
+.change-org .btn:hover {
+  color: white;
+}
+
+.change-org .btn-continue:hover,
+.change-org .btn-continue:focus,
+.change-org .btn-continue:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: #ff5400 !important;
+  color: white !important;
+}
+
+.bg-color-ff5400.log-in-btn,
+.change-password .log-in-btn:hover {
+  background-color: #ff5400 !important;
+  color: white !important;
+}
+
+/* chat */
+
+.logout-overlay-container {
+  position: fixed;
+  bottom: 8%;
+  right: 8%;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Circular button for the chat icon */
+.chat-button {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust chat icon inside the button */
+.chat-button img {
+  width: 32px;
+  height: 38px;
+}
+
+.form-control.password {
+  border-right: none !important;
+}
+
+.forgot-password.container {
+  width: 418px;
+  height: 360px;
+}
+
+.forgot-password .card,
+.forgot-password .card:hover {
+  text-decoration: none !important;
+}
+
+.password-reset-code.container {
+  width: 418px;
+  height: 398px;
+}
+
+.password-reset-code .section,
+.forgot-password .section {
+  width: 350px;
+  max-width: 350px;
+}
+
+.forgot-password input,
+.password-reset-code input {
+  border-radius: 12px !important;
+}
+
+button:hover {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+@media (max-width: 992px) {
+  .login-section {
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+
+/* Adjust spacing for smaller devices */
+@media (max-width: 576px) {
+  .login-section {
+    padding: 1rem; /* Smaller padding for extra small devices */
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .change-password.container {
+    width: 100%;
+    height: 544px;
+  }
+
+  .forgot-password.container {
+    width: 100%;
+  }
+
+  .password-reset-code.ud-shadow,
+  .forgot-password.ud-shadow,
+  .change-password.ud-shadow {
+    box-shadow: none !important;
+  }
+
+  .change-org {
+    width: 342px;
+  }
+
+  .login-contents.width {
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .fs-24 {
+    font-size: 1.5rem; /* Adjust font size for mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .login-section {
+    padding: 1rem; /* Smaller padding for extra small devices */
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .login-contents.width {
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .fs-24 {
+    font-size: 1.5rem; /* Adjust font size for mobile */
+  }
+}

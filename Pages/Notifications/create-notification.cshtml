@@ -1,0 +1,524 @@
+@page
+@model NotificationsIndexModel
+@{
+Layout = "_Notifications";
+ViewData["Title"] = "Create Notification";
+ViewData["User"] = "Admin";
+}
+
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Messages dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownNotifications" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/notification.svg" height="28" width="28" alt="Logo"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Create
+                        Notification</span>
+                    <span class="txt-color-primary fs-14 fw-400 me-3 font-orange d-block d-lg-none">Create
+                        Notification</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownNotifications">
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/notifications">
+                            Notification Wall
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/notifications/sent-notifications">
+                            Sent Notifications
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#createNotifsoffcanvasDropdown" aria-controls="offcanvasDropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/settings.svg" height="21" width="21" alt="Logo"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Create Notification</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+
+
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Pollster</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <!-- Corrected links without data-bs-toggle and unique ids -->
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#keywords">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80"
+                        href="#notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#reports">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/poll-black.svg" alt="Pollster" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Pollster</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Logout link at the bottom -->
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<!-- Notifications off-canvas -->
+<div class="offcanvas offcanvas-bottom d-block d-md-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="createNotifsoffcanvasDropdown" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <span class="fs-16 fw-light">Notification Wall</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center"
+                        href="/notifications/sent-notifications">
+                        <span class="fs-16 fw-light">Sent Notifications</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container my-4 px-4 pb-4">
+    <div class="d-none d-md-flex justify-content-between my-4 ">
+        <div class="fs-24 color-495057 min-h-title">CREATE NOTIFICATION</div>
+        <div class="d-flex gap-4">
+        </div>
+    </div>
+    <!-- Mobile View -->
+    <div class="d-flex d-md-none flex-column gap-3 my-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-start fs-16 color-495057 my-2">CREATE NOTIFICATION</div>
+        </div>
+    </div>
+
+    <div class="container border rounded">
+        <form class="create-notification d-flex flex-column mx-0 mt-3 p-3 mx-md-2 my-md-2 p-md-4">
+            <div class="row mb-3 justify-content-between">
+                <div class="col-lg-5">
+                    <label for="announcementDate" class="form-label">Announcement Date</label>
+                    <input type="date" class="form-control dates" id="announcementDate" required>
+
+                    <label for="expirationDate" class="form-label mt-4">Expiration Date</label>
+                    <input type="date" class="form-control dates" id="expirationDate" required>
+
+                    <label for="recipients" class="form-label mt-4">Recipients</label>
+                    <div class="recipients-container d-flex  gap-3 gap-md-4">
+                        <div class="tag-input scroll-x">
+                            <div class="d-flex flex-row align-items-center gap-2">
+                                <!-- Where tags will appear dynamically -->
+                                <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
+                                <span class="tag">IT <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <input type="text" class="recipients-input border-0">
+                            </div>
+                        </div>
+                        <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#groupsModal">
+                            Groups
+                        </button>
+                    </div>
+                    <div class="form-check mt-2 pt-1 d-md-block d-none">
+                        <input class="form-check-input" type="checkbox" id="urgent">
+                        <label class="form-check-label" for="urgent">Urgent</label>
+                    </div>
+                </div>
+                <div class="col-lg-7 align-self-end">
+                    <label for="subject" class="form-label mt-4 mt-md-0">Subject</label>
+                    <input type="text" class="form-control" id="subject" required>
+                    <div class="mb-3 mt-4">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control message-height rounded" id="message" rows="4"></textarea>
+                    </div>
+                    <div class="form-check my-2 d-md-none d-block">
+                        <input class="form-check-input" type="checkbox" id="urgent">
+                        <label class="form-check-label" for="urgent">Urgent</label>
+                    </div>
+                </div>
+            </div>
+            <div class="align-self-end my-2">
+                <button type="reset" class="btn btn-outline me-3">Cancel</button>
+                <button type="submit" class="btn btn-fill">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add group modal -->
+<div class="modal fade" id="groupsModal" tabindex="-1" aria-labelledby="groupsModalLabel" aria-hidden="true">
+    <div class="create-notifications-group modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="create-notifications-group modal-content">
+            <!-- Modal Header -->
+            <div class="d-none d-md-flex create-notifications-group modal-header">
+                <div class="modal-title fs-20 font-orange ms-2" id="groupsModalLabel">Add Groups</div>
+                <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div
+                class="d-flex d-md-none create-notifications-group modal-header justify-content-start mx-4 mt-4 pt-4 pb-0 ps-0">
+                @* <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                *@
+                <img class="me-2" src="/images/icons/go-back.svg" alt="back" height="24" width="24"
+                    data-bs-dismiss="modal" aria-label="Close">
+                <div class="modal-title fs-16 font-orange ms-2 fs-20" id="groupsModalLabel">Add Groups</div>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="create-notifications-group modal-body pb-0 mx-4 my-3">
+                <form>
+                    <!-- Dynamic Error Message Placeholder -->
+                    <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
+                        <div>
+                            @* @{error_placeholder} *@
+                        </div>
+                    </div>
+                    <!-- First and Last Name (Two Columns) -->
+                    <div class="row mb-4">
+                        <div class="col-md-12 px-0">
+                            <label for="name" class="form-label"> Recipients</label>
+                            <div class="input-group search rounded">
+                                <span class="input-group-text align-items-start" id="search-addon">
+                                    <i class="bi bi-search color-878A99 align-baseline"></i> <!-- Search icon -->
+                                </span>
+                                <input class="form-control" type="search" aria-label="Search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Table -->
+                        <div class="table-responsive group-members-table rounded p-0">
+                            <div class="scroll">
+                                <table class="table">
+                                    <thead class="table-header group group-modal thead-fixed">
+                                        <tr>
+                                            <th><input type="checkbox" class="users-select-checkbox"></th>
+                                            <th>Group Name</th>
+                                            <th>Members</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-body group group-modal">
+                                        <tr>
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AGOSTO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">ALTAMIRA</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AMAHAN</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                        <tr class="px-0 py-0">
+                                            <td><input type="checkbox" class="users-select-checkbox"></td>
+                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td>Gabriel, Roger, +10</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer (Buttons) -->
+            <div class="modal-footer d-flex flex-row justify-content-between mx-4 mb-4 px-0">
+                <div class="d-flex flex-row">
+                    <div class="text-muted fs-14">0 Selected</div>
+                </div>
+                <div class="d-flex flex-row gap-3">
+                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-fill">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/form-select.js"></script>
+
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+</script>
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll-x'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            x: "scroll", // Set x to scroll
+            y: "hidden" // Hide vertical scrolling
+        },
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all the checkboxes inside the table body
+        const checkboxes = document.querySelectorAll('.users-select-checkbox');
+        const selectedCounter = document.querySelector('.modal-footer .text-muted');
+
+        // Function to update the selected count
+        function updateSelectedCount() {
+            let selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+            if (selectedCount >= 2) selectedCount = selectedCount - 1;
+            selectedCounter.textContent = `${selectedCount} Selected`;
+        }
+
+        // Add event listeners to each checkbox
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSelectedCount);
+        });
+
+        // If there is a "Select All" checkbox, handle it
+        const selectAllCheckbox = document.querySelector('thead .users-select-checkbox');
+        if (selectAllCheckbox) {
+            selectAllCheckbox.addEventListener('change', function () {
+                const isChecked = selectAllCheckbox.checked;
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+                updateSelectedCount();
+            });
+        }
+    });
+</script>
+
+<script>
+    document.querySelector('.recipients-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+            addTag(this.value.trim());
+            this.value = ''; // clear input
+        }
+    });
+
+    function addTag(tagName) {
+        const tagInput = document.querySelector('.tag-input');
+        const newTag = document.createElement('span');
+        newTag.classList.add('tag');
+        newTag.innerHTML = `${tagName} <span class="remove-tag">&times;</span>`;
+        tagInput.insertBefore(newTag, document.querySelector('.recipients-input'));
+
+        // Add event listener to remove tag
+        newTag.querySelector('.remove-tag').addEventListener('click', function () {
+            newTag.remove();
+        });
+    }
+
+    // Add event listener to existing remove buttons
+    document.querySelectorAll('.remove-tag').forEach(function (removeBtn) {
+        removeBtn.addEventListener('click', function () {
+            removeBtn.parentElement.remove();
+        });
+    });
+
+</script>

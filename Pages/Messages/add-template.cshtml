@@ -1,0 +1,340 @@
+@page
+@model TemplatesPage
+@{
+    Layout = "_Messages";
+    ViewData["Title"] = "Templates";
+    ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Messages dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-sm-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownMessages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Logo"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange">Templates</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownMessages">
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/messages">
+                            Messages
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/messages/archive">
+                            Archive
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item d-block d-sm-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#messagesoffcanvasDropdown" aria-controls="offcanvasDropdown" aria-expanded="false">
+                    <img src="~/images/icons/messages.svg" height="21" width="21" alt="Logo"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Messages</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-sm-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+
+        <!-- Off-canvas sidebar for mobile view dashboard -->
+        <div class="offcanvas offcanvas-end d-block d-sm-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+            tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header py-2 mt-2">
+                <div class="mt-4 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">Dashboard</div>
+            </div>
+            <hr class="my-0 mx-3">
+            <div class="offcanvas-body mt-4">
+                <!-- Main navigation links -->
+                <div class="d-flex flex-column align-items-start">
+                    <ul class="navbar-nav me-3 w-100">
+                        <!-- Corrected links without data-bs-toggle and unique ids -->
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80"
+                                href="/messages">
+                                <img src="~/images/icons/messages.svg" alt="Messages" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light font-orange">Messages</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                                <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Contacts</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#keywords">
+                                <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Keywords</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                                <img src="~/images/icons/notification-black.svg" alt="Notifications" height="24"
+                                    width="24" class="icon me-2" />
+                                <span class="fs-16 fw-light">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#reports">
+                                <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                                <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Email</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                                <img src="~/images/icons/poll-black.svg" alt="Pollster" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Pollster</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#scheduler">
+                                <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Scheduler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                                <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Settings</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                                <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                                    class="icon me-2" />
+                                <span class="fs-16 fw-light">Others</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Logout link at the bottom -->
+            </div>
+            <div class="mt-auto my-4">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+                    <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+                    <span class="fs-16 fw-light">Logout</span>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Navbar content for larger screens -->
+        <div class="collapse navbar-collapse justify-content-end d-none d-sm-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Pollster</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container px-4 d-none" id="backToChat">
+        <div class="d-flex flex-row justify-content-start align-items-center align-middle">
+            <img src="~/images/icons/go-back.svg" height="24" width="24" alt="Logo"
+                class="align-middle align-self-center me-2 color-primary" />
+            <span class="font-orange fs-20">Use Template</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Messages off-canvas -->
+<div class="offcanvas offcanvas-bottom d-block d-sm-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="messagesoffcanvasDropdown" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages/archive">
+                        <span class="fs-16 fw-light">Archive</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container my-4 px-4 pb-4">
+    <div class="container">
+        <form class="d-flex flex-column">
+            <div class="row mb-3 justify-content-start add-template gap-4">
+                <div class="content col-md-6 px-0 border rounded me-4">
+                    <div class="header font-orange fs-20 px-3 py-2">
+                        Add Template
+                    </div>
+                    <div class="body my-2 px-3 py-4 d-flex flex-column">
+                        <label for="templateTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="templateTitle" required>
+
+                        <label for="templateMessage" class="form-label mt-4">Enter Message</label>
+                        <textarea class="form-control" id="templateMessage" required></textarea>
+
+                        <div class="align-self-end mt-4">
+                            <a href="/messages/templates" class="btn btn-outline me-3 orange">Back</a>
+                            <button type="submit" class="btn btn-fill">Save</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-template-table col-md-6 px-0">
+                    <div class="table-responsive templates-table group border">
+                        <div class="scroll">
+                            <table class="table">
+                                <thead class="add-templates-table-header group thead-fixed">
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="add-templates-table-body group">
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title 1</td>
+                                        <td>Lorem ipsum dolor sit amet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="/js/form-select.js"></script>
+
+
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+</script>

@@ -1,0 +1,10 @@
+.dashboard-navbar a:not(:last-child) {
+  margin-right: 16px;
+}
+.dashboard-items {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.dashboard-items:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}

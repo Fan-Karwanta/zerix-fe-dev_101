@@ -1,0 +1,758 @@
+<style>
+/* Scheduler page tweaks */
+.appointment-item { min-height: 100px; }
+.appointment-item .btn { min-width: 100px; }
+.appointment-list .appointment-item { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+.btn-history { background: #000; color: #fff; padding: 6px 14px; border-radius: 6px; transition: background-color .2s ease; }
+.btn-history:hover { background: #333; }
+
+.btn-history-mobile { 
+    background: #000; 
+    color: #fff; 
+    padding: 8px; 
+    border-radius: 6px; 
+    border: none;
+    transition: background-color .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-history-mobile:hover { background: #333; color: #fff; }
+
+/* Mobile dropdown positioning */
+.mobile-appointment-dropdown {
+    margin-left: -5px;
+    padding-left: -5px;
+}
+
+/* Mobile hamburger styling */
+.mobile-hamburger {
+    border: none;
+    background: transparent;
+    padding: 4px;
+}
+
+.mobile-hamburger:focus {
+    box-shadow: none;
+}
+
+/* Date & Time Unified Container */
+.datetime-unified-container {
+    display: flex;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Calendar Side */
+.calendar-side {
+    flex: 0 0 55%;
+    padding: 20px;
+    padding-left: 40px;
+    min-width: 0;
+    max-width: 55%;
+    padding-right: 22px;
+}
+
+/* Time Slots Side */
+.timeslots-side {
+    flex: 0 0 45%;
+    padding: 20px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 45%;
+    padding-left: 26px;
+    border-left: 1px solid #eee; /* lighter divider */
+}
+
+/* Vertical Divider */
+.vertical-divider {
+    width: 1px;
+    background-color: #eee; /* lighter divider for mobile */
+    align-self: stretch;
+    margin: 20px 0;
+    display: none; /* we draw the divider via timeslots-side border on desktop */
+}
+
+/* Navigation Button Styles */
+.calendar-nav-btn {
+    border: none;
+    color: #666;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-nav-btn:hover {
+    color: #ff5400;
+}
+
+.calendar-grid {
+    width: 80%;
+    margin-left: auto; /* center the calendar grid */
+    margin-right: auto;
+}
+
+.calendar-header {
+    width: 80%;
+    margin-left: auto; /* center header to align with grid */
+    margin-right: auto;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 5px;
+    box-sizing: border-box; /* match days padding */
+    padding: 0 12px; /* add equal left/right space for labels */
+}
+
+.weekday {
+    text-align: center;
+    font-weight: 500;
+    color: #666;
+    font-size: 12px;
+    padding: 5px 0;
+}
+
+/* Weekday header state colors after selecting a date */
+.calendar-weekdays .weekday.weekday-dim { color: #aaa !important; }
+.calendar-weekdays .weekday.weekday-active { color: #000 !important; }
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; /* include padding within width to avoid overflow */
+    padding: 0 12px; /* left/right space for days only */
+}
+
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 36px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    margin: 0; /* keep centered via grid, ensures straight columns */
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.today {
+    background-color: #ff5400;
+    color: white;
+    font-weight: 500;
+}
+
+.calendar-day.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.calendar-day.other-month {
+    color: #aaa;
+}
+
+/* Add light circle highlight for weekdays (Sun-Thu) */
+.calendar-day.weekday-highlight {
+    background-color: #feede4;
+}
+
+/* Make sure selected state overrides the weekday highlight */
+.calendar-day.selected {
+    background-color: #ff5400 !important;
+    color: white !important;
+    font-weight: 500;
+    z-index: 1;
+}
+
+/* Time Slots Styles */
+.time-slots {
+    max-height: 310px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align time slots */
+    padding-right: 5px;
+}
+
+.time-slots::-webkit-scrollbar {
+    width: 6px;
+}
+
+.time-slots::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+
+.time-slots::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 6px;
+}
+
+.time-slots::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.time-slot {
+    width: 55%; /* Narrower width to match reference */
+    padding: 0; /* Remove padding to allow internal structure */
+    margin-bottom: 8px; /* Standard margin between time slots */
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #ff5400;
+    font-weight: bold;
+    border: #ff5400 1px solid;
+    box-sizing: border-box;
+    font-size: 14px; /* Standard font size */
+    min-height: 36px; /* Reduced height to match reference */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.time-slot-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row; /* Changed to row for horizontal layout */
+    transition: all 0.3s ease;
+    gap: 8px; /* space between time and select button */
+}
+
+.time-text {
+    width: 100%; /* Full width by default when select button is hidden */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    transition: all 0.3s ease;
+}
+
+/* When time slot is selected, time text takes 50% width */
+.time-slot.time-selected .time-text {
+    width: calc(50% - 4px); /* account for 8px gap */
+}
+
+.select-button {
+    width: calc(50% - 4px); /* account for 8px gap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5400;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 6px; /* fully rounded since there's now a gap */
+    padding: 6px 12px;
+}
+
+.select-button:hover {
+    background-color: #e04800;
+}
+
+.time-slot:hover:not(.time-selected) {
+    background-color: #ff5400;
+    color: white;
+    font-weight: bold;
+    border-color: #ff5400;
+}
+
+.time-slot:hover:not(.time-selected) .time-text {
+    color: white;
+}
+
+.time-slot.time-selected {
+    background-color: #fff; /* keep container white to show the gap */
+    color: black; /* Black text */
+    border: none; /* No border */
+    font-weight: normal;
+}
+
+.time-slot.time-selected .time-text {
+    color: black;
+    font-weight: normal;
+    background-color: #eee; /* lighter gray per request */
+    border: 1px solid #e3e3e3; /* subtle border to define the box */
+    border-radius: 6px;
+}
+
+.time-slot.time-selected .select-button {
+    display: flex !important;
+    background-color: #ff5400;
+    color: white;
+}
+
+/* Medical History Form Styles */
+.medical-history-section {
+    max-width: 100%;
+    margin: 0 0 0 50px;
+    padding: 30px;
+    background-color:transparent;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.medical-history-section h5 {
+    color: grey;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.medical-history-section .text-muted {
+    color: #666 !important;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.medical-history-section .form-label {
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-align: left;
+    display: block;
+}
+
+.medical-history-section .form-control {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: white;
+}
+
+.medical-history-section .form-control:focus {
+    border-color: #ff5400;
+    box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.25);
+    outline: none;
+}
+
+.medical-history-section .form-control::placeholder {
+    color: #999;
+    font-size: 14px;
+}
+
+/* Compact input fields for medical history form */
+/* Current width: 400px - You can adjust this value to make fields longer or shorter */
+/* Common sizes: 300px (short), 400px (medium), 500px (long), 600px (extra long) */
+.compact-input {
+    max-width: 400px !important;
+    width: 400px !important;
+}
+
+.information-view .selected-appointment-info {
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 8px;
+    max-width: 100%;
+    margin: 0 0 30px 50px;
+    padding: 20px 30px;
+    text-align: left;
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    padding: 20px 20px 0 20px;
+}
+
+.modal-body {
+    padding: 20px 30px 40px 30px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.appointment-info-card {
+    border-radius: 8px;
+}
+
+.form-label {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    border-color: #ff5400;
+    box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.25);
+}
+
+#selected-date-display { margin-left: -8px; }
+
+/* Continue Button Styling */
+.btn-fill {
+    min-width: 120px;
+    font-weight: 500;
+}
+
+/* Mobile Responsive Styles */
+@@media (max-width: 768px) {
+    /* Container adjustments */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Header adjustments */
+    .d-flex.justify-content-between.align-items-center.mb-4 {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px;
+    }
+    
+    .fs-32.ff-default.mobile-font {
+        font-size: 24px !important;
+        margin-bottom: 0;
+    }
+    
+    .btn-history {
+        align-self: flex-end;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    
+    /* Appointment items mobile layout */
+    .appointment-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 20px 15px !important;
+        text-align: left;
+    }
+    
+    .appointment-item .text-start {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .appointment-item .btn {
+        width: 100%;
+        max-width: none;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    /* Date & Time Selection Mobile */
+    .datetime-unified-container {
+        flex-direction: column;
+        margin: 0;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: white;
+    }
+    
+    .vertical-divider {
+        display: none;
+    }
+    
+    .calendar-side {
+        flex: none;
+        max-width: 100%;
+        padding: 15px;
+        border-bottom: none;
+    }
+    
+    .timeslots-side {
+        flex: none;
+        max-width: 100%;
+        padding: 15px;
+        margin-top: 0;
+        border-left: 0;
+        border-top: none;
+        display: none; /* Hide by default on mobile */
+    }
+    
+    /* Show timeslots when mobile-show-timeslots class is added */
+    .timeslots-side.mobile-show-timeslots {
+        display: block !important;
+    }
+    
+    /* Hide calendar when showing timeslots on mobile */
+    .calendar-side.mobile-hide-calendar {
+        display: none !important;
+    }
+    
+    .mobile-calendar-instruction {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    
+    .mobile-timeslots-header {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    /* Calendar mobile adjustments */
+    .calendar-grid {
+        width: 100%;
+        margin: 0;
+        max-width: 100%;
+    }
+    
+    .calendar-header {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .calendar-header h5 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .calendar-weekdays {
+        padding: 0;
+        margin-bottom: 8px;
+    }
+    
+    .calendar-days {
+        padding: 0;
+        gap: 3px;
+    }
+    
+    .calendar-day {
+        height: 36px;
+        width: 36px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .weekday {
+        font-size: 11px;
+        font-weight: 600;
+        color: #666;
+    }
+    
+    /* Time slots mobile */
+    .selected-date-header {
+        margin-bottom: 15px;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .selected-date-header h6 {
+        margin-left: 0 !important;
+        text-align: left !important;
+        width: auto !important;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0;
+        flex: 1;
+    }
+    
+    .time-slots {
+        max-height: 300px;
+        align-items: stretch;
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+    
+    .time-slot {
+        width: 100%;
+        margin-bottom: 0;
+        min-height: 48px;
+        font-size: 16px;
+        border-radius: 8px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border: 2px solid #ff5400;
+        color: #ff5400;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        overflow: hidden;
+    }
+    
+    .time-slot:hover:not(.time-selected) {
+        background: #ff5400;
+        color: white;
+    }
+    
+    .time-slot.time-selected {
+        background: #fff;
+        color: black;
+        border: none;
+        font-weight: normal;
+    }
+    
+    .time-slot-content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .time-slot.time-selected .time-slot-content {
+        gap: 8px;
+        justify-content: space-between;
+    }
+    
+    .time-text {
+        width: 100%;
+        text-align: center;
+        padding: 12px 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .time-slot.time-selected .time-text {
+        width: calc(50% - 4px);
+        color: black;
+        font-weight: normal;
+        background-color: #eee;
+        border: 1px solid #e3e3e3;
+        border-radius: 6px;
+        text-align: center;
+    }
+    
+    .select-button {
+        width: calc(50% - 4px);
+        background: #ff5400;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .select-button:hover {
+        background-color: #e04800;
+    }
+    
+    /* Information view mobile */
+    .medical-history-section {
+        margin: 0;
+        padding: 20px 15px;
+        border: 1px solid #ddd;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .information-view .selected-appointment-info {
+        margin: 0 0 20px 0;
+        padding: 15px 20px;
+        border: 1px solid #ddd;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .compact-input {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    .information-view .btn {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 20px 0;
+    }
+    
+    /* Modal adjustments */
+    .modal-body {
+        padding: 15px 20px 35px 20px;
+    }
+    
+    .btn-fill {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Specific adjustments for very small screens */
+@@media (max-width: 400px) {
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .fs-32.ff-default.mobile-font {
+        font-size: 22px !important;
+    }
+    
+    .appointment-item {
+        padding: 15px 10px !important;
+    }
+    
+    .calendar-side,
+    .timeslots-side {
+        padding: 15px 10px;
+    }
+    
+    .medical-history-section {
+        padding: 15px 10px;
+    }
+    
+    .information-view .selected-appointment-info {
+        padding: 12px 15px;
+    }
+}
+</style>

@@ -1,0 +1,667 @@
+@page
+@model IndexModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewData["Title"] = "Index";
+    ViewData["User"] = "Admin";
+}
+
+<div class="container-fluid d-flex justify-content-center align-items-start" id="main">
+    <div class="position-relative dashboard text-center">
+        <div class="fs-32 ff-default mobile-font font-orange fw-400 py-4 mb-md-2 mb-1">Dashboard</div>
+        <div class="dashboard-grid">
+            <!-- Dashboard Items -->
+            <div class="dashboard-item">
+                <a href="/messages">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/messages.svg" alt="Messages">
+                        <div class="dashboard-text ff-default">Messages</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="/contacts">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/contacts.svg" alt="Contacts">
+                        <div class="dashboard-text ff-default">Contacts</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="#">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/keyword.svg" alt="Keywords">
+                        <div class="dashboard-text ff-default">Keywords</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item position-relative">
+                <a href="/notifications">
+                    <div class="dashboard-icon position-relative">
+                        <img src="~/images/icons/dashboard/notification.svg" alt="Notifications">
+                        <span style="
+                        position: absolute;
+                        top: -23px;
+                        right: -20px;
+                        background: #ff5400;
+                        color: #fff;
+                        border-radius: 53%;
+                        padding: 5px 0;
+                        font-size: 12px;
+                        font-weight: bold;
+                        min-width: 32px;
+                        min-height: 32px;
+                        max-width: 32px;
+                        max-height: 32px;
+                        width: 32px;
+                        height: 32px;
+                        text-align: center;
+                        border: 2px solid #fff;
+                        z-index: 2;
+                    ">99+</span>
+                        <div class="dashboard-text ff-default">Notifications</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="/email">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/at-mail.svg" alt="Email">
+                        <div class="dashboard-text ff-default">Email</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="#">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/reports.svg" alt="Reports">
+                        <div class="dashboard-text ff-default">Reports</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="#">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/poll.svg" alt="Pollster">
+                        <div class="dashboard-text ff-default">Pollster</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="/scheduler">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/scheduler.svg" alt="Scheduler">
+                        <div class="dashboard-text ff-default">Scheduler</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="/settings/users">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/settings.svg" alt="Settings">
+                        <div class="dashboard-text ff-default">Settings</div>
+                    </div>
+                </a>
+            </div>
+            <div class="dashboard-item">
+                <a href="#">
+                    <div class="dashboard-icon">
+                        <img src="~/images/icons/dashboard/others.svg" alt="Others">
+                        <div class="dashboard-text ff-default">Others</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chatbox-container d-flex flex-column gap-3">
+    <div class="support-container" id="chatBox">
+        <div id="support-header" class="d-flex flex-row justify-content-between align-items-center py-2 px-4">
+            <div class="d-flex flex-row">
+                <img src="~/images/icons/support.svg" alt="Support" class="me-2" width="28" height="28">
+                <div class="support-header-title fs-20 color-fff">Zerix Helpdesk</div>
+            </div>
+            <button class="btn px-0" id="dismiss-support" onclick="dismissSupport()">
+                <img src="~/images/icons/close.svg" alt="Support" width="24" height="24">
+            </button>
+        </div>
+        <div class="support-body">
+            <div class="scroll">
+                <div id="helpdesk-form" class="card p-4 border-0">
+
+                    <div class="text-start text-muted py-2 fs-14">
+                        Please fill up the form below so we can address your concern.
+                    </div>
+                    <form id="supportForm">
+                        <div class="mb-3 mt-2">
+                            <label for="title" class="form-label fs-14">Title <span class="text-danger">*</span></label>
+                            <input type="text" id="title" class="form-control" placeholder="Enter title" required />
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="description" class="form-label fs-14">Description <span
+                                    class="text-danger">*</span></label>
+                            <textarea id="description" class="form-control" rows="4"
+                                placeholder="Describe your inquiry or concern" required></textarea>
+                            <div class="attached-files align-self-end">
+                                @if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
+                                {
+                                    @foreach (var file in Model.UploadedFiles)
+                                    {
+                                        <span class="attached-file-badge d-flex align-items-center fs-14">
+                                            <i class="bi bi-file-earmark-text-fill me-2"></i> @file.FileName
+                                            <button type="button" class="btn-close ms-2" aria-label="Remove"></button>
+                                        </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span id="no-files-attached">
+                                        <label class="align-self-end bg-white border-0 cursor-pointer mt-2">
+                                            <input type="file" name="files" multiple hidden accept=".jpg, .jpeg, .png"
+                                                onchange="displayUploadedFiles(this)">
+                                            <span class="fs-14 me-0 mx-md-2 text-decoration-underline font-orange">Add
+                                                file
+                                                or
+                                                image</span>
+                                        </label>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label fs-14">Company Name <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" id="companyName" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactPerson" class="form-label fs-14">Name of Contact Person <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" id="contactPerson" class="form-control" placeholder="Juan Dela Cruz"
+                                required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactNumber" class="form-label fs-14">Contact Number <span
+                                    class="text-danger">*</span></label>
+                            <input type="tel" id="contactNumber" class="form-control" placeholder="+639967831947"
+                                pattern="^\+63\d{10}$"
+                                title="Contact number must start with +63 and be followed by 10 digits." required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fs-14">Email <span class="text-danger">*</span></label>
+                            <input type="email" id="email" class="form-control" placeholder="example@domain.com"
+                                title="Please enter a valid email address." required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary bg-color-ff5400 w-100 fs-15">Submit</button>
+                    </form>
+                </div>
+                <div id="success-message"
+                    class="d-none flex-column align-items-center justify-content-center text-center mx-auto mt-4 py-4">
+                    <div class="text-success">
+                        <img src="~/images/misc/success.svg" alt="Success" width="72" height="72">
+                    </div>
+                    <h5 class="my-3 text-muted fs-14">Your report has been successfully submitted to Tech
+                        Support.
+                    </h5>
+                    <button
+                        class="fs-14 btn btn-fill d-flex flex-row justify-content-center align-items-center align-middle"
+                        onclick="acknowledgeSuccessMessage()">
+                        <span class="d-none d-md-block">Okay</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-row align-self-end">
+        <div class="chat-bubble ff-default" id="chatBubble">
+            Hi! Need help?<br />
+            Click here to message us.
+        </div>
+        <div class=" chat-button">
+            <button id="chatButton" type="button" class="btn d-none d-md-block" onclick="showChatbox()">
+                <img src="~/images/zerix-logo.svg" alt="Chat Icon">
+            </button>
+            <button id="chatButton" type="button" class="btn d-block d-md-none" data-bs-toggle="modal"
+                data-bs-target="#chatSupportModal">
+                <img src="~/images/zerix-logo.svg" alt="Chat Icon">
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade " id="chatSupportModal" tabindex="-1" aria-labelledby="chatSupportModalLabel" aria-hidden="true">
+    <div class="compose-group modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
+        <div class="compose-group modal-content">
+            <div id="support-header" class="d-flex flex-row justify-content-between align-items-center py-2 px-4">
+                <div class="d-flex flex-row">
+                    <img src="~/images/icons/support.svg" alt="Support" class="me-2" width="28" height="28">
+                    <div class="support-header-title fs-20 color-fff">Zerix Helpdesk</div>
+                </div>
+                <button class="btn px-0" id="dismiss-support" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="~/images/icons/close.svg" alt="Support" width="24" height="24">
+                </button>
+
+            </div>
+            <div class="support-body">
+                <div class="scroll">
+                    <div id="helpdesk-form-mobile" class="card p-4 border-0">
+
+                        <div class="text-start text-muted pb-2 fs-14">
+                            Please fill up the form below so we can address your concern.
+                        </div>
+                        <form id="supportFormMobile">
+                            <div class="mb-4 mt-2">
+                                <label for="titleMobile" class="form-label fs-14">Title <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" id="titleMobile" class="form-control" placeholder="Enter title"
+                                    required />
+                            </div>
+                            <div class="mb-4 d-flex flex-column">
+                                <label for="descriptionMobile" class="form-label fs-14">Description <span
+                                        class="text-danger">*</span></label>
+                                <textarea id="descriptionMobile" class="form-control" rows="4"
+                                    placeholder="Describe your inquiry or concern" required></textarea>
+                                <div class="attached-files-mobile align-self-end">
+                                    @if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
+                                    {
+                                        @foreach (var file in Model.UploadedFiles)
+                                        {
+                                            <span class="attached-file-badge d-flex align-items-center fs-14">
+                                                <i class="bi bi-file-earmark-text-fill me-2"></i> @file.FileName
+                                                <button type="button" class="btn-close ms-2" aria-label="Remove"></button>
+                                            </span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span id="no-files-attached-mobile">
+                                            <label class="align-self-end bg-white border-0 cursor-pointer mt-2">
+                                                <input type="file" name="files" multiple hidden accept=".jpg, .jpeg, .png"
+                                                    onchange="displayUploadedFilesMobile(this)">
+                                                <span class="fs-14 me-0 mx-md-2 text-decoration-underline font-orange">Add
+                                                    file
+                                                    or
+                                                    image</span>
+                                            </label>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="companyNameMobile" class="form-label fs-14">Company Name <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" id="companyNameMobile" class="form-control" required />
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactPersonMobile" class="form-label fs-14">Name of Contact Person
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" id="contactPersonMobile" class="form-control"
+                                    placeholder="Juan Dela Cruz" required />
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactNumberMobile" class="form-label fs-14">Contact Number <span
+                                        class="text-danger">*</span></label>
+                                <input type="tel" id="contactNumberMobile" class="form-control"
+                                    placeholder="+639967831947" pattern="^\+63\d{10}$"
+                                    title="Contact number must start with +63 and be followed by 10 digits." required />
+                            </div>
+                            <div class="mb-4">
+                                <label for="emailMobile" class="form-label fs-14">Email <span
+                                        class="text-danger">*</span></label>
+                                <input type="email" id="emailMobile" class="form-control"
+                                    placeholder="example@domain.com" title="Please enter a valid email address."
+                                    required />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary bg-color-ff5400 w-100 fs-15">Submit</button>
+                        </form>
+                    </div>
+                    <div id="success-message-mobile"
+                        class="d-none flex-column align-items-center justify-content-center text-center mx-auto mt-4 py-4">
+                        <div class="text-success">
+                            <img src="~/images/misc/success.svg" alt="Success" width="72" height="72">
+                        </div>
+                        <h5 class="mt-3 text-muted fs-14">Your report has been successfully submitted to Tech
+                            Support.
+                        </h5>
+                        <button
+                            class="fs-14 btn btn-fill d-flex flex-row justify-content-center align-items-center align-middle"
+                            onclick="acknowledgeSuccessMessage()">
+                            Okay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+
+
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+    function showChatbox() {
+        const chatbox = document.getElementById('chatBox');
+        const chatBubble = document.getElementById('chatBubble');
+
+        chatbox.classList.add('show');
+        chatBubble.classList.remove('show');
+
+        document.addEventListener('click', handleOutsideClick);
+    }
+
+    function handleOutsideClick(event) {
+        const chatbox = document.getElementById('chatBox');
+        const chatButton = document.getElementById('chatButton');
+
+
+        if (!chatbox.contains(event.target) && !chatButton.contains(event.target)) {
+            chatbox.classList.remove('show');
+            document.removeEventListener('click', handleOutsideClick);
+        }
+    }
+
+    document.getElementById('chatButton').addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    document.getElementById('chatBox').addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    function dismissSupport() {
+        const chatbox = document.getElementById('chatBox');
+        chatbox.classList.remove('show');
+    }
+
+</script>
+
+<script>
+    const chatBubble = document.getElementById('chatBubble');
+
+    function showChatBubble() {
+        chatBubble.classList.add('show');
+
+        setTimeout(function () {
+            chatBubble.classList.remove('show');
+        }, 30000);
+    }
+    setTimeout(function () {
+        showChatBubble();
+    }, 3000);
+
+</script>
+
+
+<script>
+    function handleFormSubmission(formId, formContainerId, successMessageId, fields) {
+        document.getElementById(formId).addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = {};
+            fields.forEach(field => {
+                formData[field] = document.getElementById(field).value;
+            });
+            console.log(formData);
+
+            const formContainer = document.getElementById(formContainerId);
+            formContainer.classList.add('d-none');
+
+            const form = document.getElementById(formId);
+            form.reset();
+
+            const successMessage = document.getElementById(successMessageId);
+            successMessage.classList.remove('d-none');
+            successMessage.classList.add('fade-in', 'd-flex', 'flex-column');
+            setTimeout(() => {
+                successMessage.classList.add('show');
+            }, 10);
+        });
+    }
+
+    const desktopFields = ['title', 'description', 'companyName', 'contactPerson', 'contactNumber', 'email'];
+    const mobileFields = ['titleMobile', 'descriptionMobile', 'companyNameMobile', 'contactPersonMobile', 'contactNumberMobile', 'emailMobile'];
+    handleFormSubmission('supportForm', 'helpdesk-form', 'success-message', desktopFields);
+    handleFormSubmission('supportFormMobile', 'helpdesk-form-mobile', 'success-message-mobile', mobileFields);
+
+    function resetElementVisibility(elementIds, addClasses = [], removeClasses = []) {
+        elementIds.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.add(...addClasses);
+                element.classList.remove(...removeClasses);
+            }
+        });
+    }
+
+    function resetAttachedFiles(containerSelectors) {
+        containerSelectors.forEach(selector => {
+            const container = document.querySelector(selector);
+            if (container) {
+                container.innerHTML = `<span id="no-files-attached${selector.includes('mobile') ? '-mobile' : ''}"></span>`;
+            }
+        });
+    }
+
+    function acknowledgeSuccessMessage() {
+        resetElementVisibility(
+            ['helpdesk-form', 'helpdesk-form-mobile'],
+            [],
+            ['d-none']
+        );
+        resetElementVisibility(
+            ['success-message', 'success-message-mobile'],
+            ['d-none'],
+            ['fade-in', 'd-flex', 'show']
+        );
+        resetAttachedFiles(['.attached-files', '.attached-files-mobile']);
+    }
+
+</script>
+
+
+<script>
+    function displayUploadedFiles(input) {
+        const files = input.files;
+        const container = document.querySelector('.attached-files');
+        const noFilesMessage = document.getElementById('no-files-attached');
+
+        @* container.classList.add("mt-3", "mb-2", "pb-2") *@
+
+        if (files.length > 0 && noFilesMessage) {
+            noFilesMessage.classList.remove('d-md-flex')
+            noFilesMessage.classList.add("d-none");
+            console.log(noFilesMessage.style);
+        }
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const fileName = file.name;
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+
+            let fileIcon = getFileIcon(fileExtension);
+
+            const fileBadge = document.createElement('span');
+            fileBadge.classList.add('bg-color-ced4da', 'text-black', 'px-2', 'attached-file-badge', 'd-flex', 'justify-content-center', 'align-items-center', 'fs-14', 'mt-2');
+
+            fileBadge.innerHTML = `
+                <span class="flex-grow-1 fs-11">${fileName}</span>
+                <button type="button" class="btn-file-close" aria-label="Remove" onclick="removeFile(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            `;
+            container.appendChild(fileBadge);
+        }
+    }
+    function displayUploadedFilesMobile(input) {
+        const files = input.files;
+        const container = document.querySelector('.attached-files-mobile');
+        const noFilesMessage = document.getElementById('no-files-attached-mobile');
+
+        if (files.length > 0 && noFilesMessage) {
+            noFilesMessage.classList.remove('d-md-flex')
+            noFilesMessage.classList.add("d-none");
+            console.log(noFilesMessage.style);
+        }
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const fileName = file.name;
+            const fileExtension = fileName.split('.').pop().toLowerCase();
+            const baseName = fileName.substring(0, fileName.lastIndexOf('.'));
+
+            let truncatedFileName;
+            if (fileName.length > 33) {
+                const maxLength = 33;
+                const reservedLength = fileExtension.length + 4;
+                const startLength = maxLength - reservedLength - 3;
+                const endLength = 3;
+
+                const startPart = baseName.substring(0, startLength);
+                const endPart = baseName.substring(baseName.length - endLength);
+                truncatedFileName = `${startPart}...${endPart}.${fileExtension}`;
+            } else {
+                truncatedFileName = fileName;
+            }
+
+
+            const fileBadge = document.createElement('span');
+            fileBadge.classList.add('bg-color-ced4da', 'text-black', 'px-2', 'attached-file-badge', 'd-flex', 'justify-content-center', 'align-items-center', 'fs-14', 'mt-2');
+
+            fileBadge.innerHTML = `
+                <span class="flex-grow-1 fs-11">${fileName}</span>
+                <button type="button" class="btn-file-close" aria-label="Remove" onclick="removeFileMobile(this)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            `;
+            container.appendChild(fileBadge);
+        }
+    }
+
+
+    function getFileIcon(extension) {
+        switch (extension) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+                return 'bi bi-file-earmark-image'; // Icon for image files
+            default:
+                return 'bi bi-file-earmark'; // Default icon for unknown files
+        }
+    }
+
+    function removeFile(button) {
+        const fileBadge = button.closest('span.attached-file-badge');
+        fileBadge.remove();
+
+        const container = document.querySelector('.attached-files');
+        const noFilesMessage = document.getElementById('no-files-attached');
+
+        if (container.querySelectorAll('.attached-file-badge').length === 0 && noFilesMessage) {
+            noFilesMessage.classList.add('d-md-flex');
+        }
+    }
+
+    function removeFileMobile(button) {
+        const fileBadge = button.closest('span.attached-file-badge');
+        fileBadge.remove();
+
+        const container = document.querySelector('.attached-files-mobile');
+        const noFilesMessage = document.getElementById('no-files-attached-mobile');
+
+        if (container.querySelectorAll('.attached-file-badge').length === 0 && noFilesMessage) {
+            noFilesMessage.classList.add('d-md-flex');
+            noFilesMessage.classList.remove('d-none');
+        }
+    }
+</script>
+
+<script>
+    function displayTicket(ticket) {
+        const ticketDetailsContainer = document.getElementById("ticket-details");
+        const ticketListContainer = document.getElementById("ticket-list");
+        const ticketDetailsContainerMobile = document.getElementById("ticket-details-mobile");
+        const ticketListContainerMobile = document.getElementById("ticket-list-mobile");
+
+        const { ticketId: id, contactPerson, ticketStatus: status } = ticket.dataset;
+
+        const hideContainer = (container) => {
+            container.classList.add("d-none");
+            container.classList.remove("d-flex");
+        };
+
+        const showContainer = (container) => {
+            container.classList.remove("d-none");
+            container.classList.add("d-flex");
+        };
+
+        const getTicketDetailsHTML = ({ id, contactPerson, status }) => `
+<div class="row align-items-center my-2 w-100">
+  <div class="col-auto pe-0">
+    <img
+      src="/images/icons/go-back.svg"
+      height="24"
+      width="24"
+      alt="goback"
+      class="color-primary cursor-pointer"
+      onclick="goBackTicketHistory()"
+    />
+  </div>
+  <div class="col text-center ps-0">
+    <span class="fs-16">${id}</span>
+  </div>
+  <div class="col-auto">
+    <!-- Empty column for spacing purposes -->
+  </div>
+</div>
+<div class="mt-4 d-flex flex-column align-items-start gap-2 w-100">
+  <span>${contactPerson}</span>
+  <span class="status ${status}">${status}</span>
+  <textarea class="form-control mt-3" placeholder="Insert text here..."></textarea>
+</div>
+
+    `;
+
+        hideContainer(ticketListContainer);
+        hideContainer(ticketListContainerMobile);
+        showContainer(ticketDetailsContainer);
+        showContainer(ticketDetailsContainerMobile);
+
+        const ticketHTML = getTicketDetailsHTML({ id, contactPerson, status });
+        ticketDetailsContainer.innerHTML = ticketHTML;
+        ticketDetailsContainerMobile.innerHTML = ticketHTML;
+    }
+</script>
+
+<script>
+    function goBackTicketHistory() {
+        const ticketDetailsContainer = document.getElementById("ticket-details");
+        const ticketListContainer = document.getElementById("ticket-list");
+        const ticketDetailsContainerMobile = document.getElementById("ticket-details-mobile");
+        const ticketListContainerMobile = document.getElementById("ticket-list-mobile");
+
+        ticketDetailsContainer.classList.remove('d-flex');
+        ticketDetailsContainer.classList.add('d-none');
+        ticketListContainer.classList.remove("d-none");
+
+        ticketDetailsContainerMobile.classList.remove('d-flex');
+        ticketDetailsContainerMobile.classList.add('d-none');
+        ticketListContainerMobile.classList.remove("d-none");
+    }
+</script>

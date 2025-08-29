@@ -1,0 +1,61 @@
+.msc {
+  font-size: 16px;
+}
+
+.container .msc {
+  width: calc(100%) !important;
+  max-width: 1150px !important;
+  min-height: calc(100%) !important;
+}
+
+.btn.btn-fill {
+  width: 180px !important;
+  max-width: 180px !important;
+}
+
+.btn-show-password {
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  border-left: none !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
+}
+
+.btn-show-password:focus,
+.btn-show-password:focus-visible,
+.btn-show-password:hover,
+.btn-show-password:active,
+.btn-show-password:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid;
+  border-left: none;
+}
+
+.form-control.password {
+  border-right: none !important;
+}
+
+@media (max-width: 1080px) {
+  .msc {
+    font-size: 14px;
+  }
+
+  .container .msc {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .msc {
+    font-size: 14px;
+  }
+
+  .container .msc {
+    width: 358px !important;
+    max-width: 358px !important;
+  }
+}

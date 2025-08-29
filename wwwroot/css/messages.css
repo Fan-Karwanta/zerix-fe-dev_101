@@ -1,0 +1,2544 @@
+#navbarDropDownMessages + .dropdown-menu {
+  width: auto;
+  min-width: 100%;
+  left: 0;
+  right: 0;
+}
+
+#navbarDropDownDepartments + .dropdown-menu {
+  width: auto; /* Reset width */
+  min-width: 390px; /* Override default Bootstrap min-width */
+}
+
+ul[aria-labelledby="navbarDropDownDepartments"] {
+  max-height: 235px;
+}
+
+/* sidebar */
+
+.sidebar-container {
+  width: 390px;
+  max-width: 390px;
+}
+.sidebar {
+  width: 390px;
+  max-width: 390px;
+}
+
+.main-content {
+  width: 840px;
+  min-width: 840px;
+}
+
+.department-dropdown {
+  height: 56px;
+}
+
+.message-search {
+  height: 37px;
+}
+
+.message-search input {
+  border-left: none;
+}
+.message-search input:focus,
+.message-search input:focus-visible,
+.message-search input:hover,
+.message-search input:active,
+.message-search input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+.message-search span {
+  border: 1px solid #ced4da;
+  border-right: none;
+}
+
+.message-option {
+  text-decoration: none;
+  color: #878a99;
+  font-size: 14px;
+}
+
+.message-option-active {
+  color: #ff5400;
+  text-decoration: underline;
+}
+
+.compose {
+  height: 37px;
+  width: 35%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: inherit !important;
+}
+
+.conversation-list {
+  height: 370px;
+  max-height: 370px;
+}
+
+.conversation-list .scroll {
+  height: 370px;
+  max-height: 370px;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.list-group-item.active-message {
+  background: #e9ebec80 !important;
+}
+
+.list-group-item.unread {
+  background: #fff7ec;
+}
+
+.btn {
+  width: 107px !important;
+  max-width: 107px !important;
+}
+
+.message-option {
+  transition: opacity 0.3s ease;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+/* sidebar */
+
+/* Message Chatbox */
+.chat-header {
+  height: 56px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+.chat-header .dropdown-toggle::after {
+  display: none;
+}
+
+.chat-search {
+  height: 32px;
+  z-index: 1000;
+}
+
+.chat-search input {
+  border-left: none;
+  height: 32px;
+}
+.chat-search input:focus,
+.chat-search input:focus-visible,
+.chat-search input:hover,
+.chat-search input:active,
+.chat-search input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+  background: white;
+  color: black;
+}
+
+.chat-search span {
+  border: 1px solid #ced4da;
+  border-right: none;
+  height: 32px;
+}
+
+.chat-search span i {
+  height: 18px;
+  width: 18px;
+}
+
+.chat-settings a:focus,
+.chat-settings a:active {
+  background-color: #e9ecef;
+}
+
+.chat-settings.dropdown-menu {
+  box-shadow: -0.1rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+.chat-settings .dropdown-item {
+  padding: 0.3rem 1rem;
+}
+
+.received-message,
+.sent-message {
+  max-width: 50%;
+}
+
+.send-options .dropdown-item {
+  padding: 5px 10px;
+  width: 142.39px !important;
+  max-width: 142.39px !important;
+}
+
+.send-options .dropdown-menu {
+  border: none !important;
+}
+
+.sent-via {
+  position: absolute;
+  bottom: 16px;
+  right: 44px;
+  font-size: 12px;
+}
+
+.chat-content {
+  background: #f7f7f7;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-content .scroll {
+  height: 315px;
+  max-height: 315px;
+}
+
+.chat-footer {
+  background-color: #fff;
+  height: 92px !important;
+  max-height: 92px !important;
+}
+
+#chatBoxMobileSection .container-chatbox {
+  width: 100vw;
+  max-width: 1120px;
+}
+.container-chatbox {
+  width: 665px;
+  max-width: 665px;
+}
+
+.container-chatbox .scroll {
+  max-height: 75px;
+}
+
+.chatbox {
+  padding: 8px;
+  min-height: 40px;
+  max-height: 150px;
+  resize: none; /* Prevent manual resizing */
+}
+
+.chatbox:focus,
+.chatbox:focus-visible,
+.chatbox:hover,
+.chatbox:active,
+.chatbox:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+  background: white;
+  color: black;
+}
+
+.chatbox:empty:before {
+  content: attr(placeholder);
+  color: #6c757d; /* Bootstrap's text-muted color */
+  pointer-events: none;
+}
+
+.btn.send-button {
+  height: 50px !important;
+  width: 40px !important;
+}
+
+.attached-file-badge {
+  background-color: #fff5ec;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.attached-file-badge .bi {
+  padding-top: 2px;
+}
+
+.btn-file-close {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn-file-close svg {
+  width: 24px;
+  height: 24px;
+  fill: #ff5400; /* Custom color */
+}
+.btn-file-close:hover svg {
+  fill: #e04b00; /* Darker shade on hover */
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.btn-send {
+  background-color: #ff6e14;
+  border: none;
+  color: white;
+}
+
+/* Message Chatbox End*/
+
+/* Message Use Template Modal */
+
+.modal-dialog,
+.modal-content {
+  max-height: 660px;
+}
+
+#useTemplateModal .modal-content,
+#useTemplateModal .modal-dialog {
+  width: 827px;
+  max-width: 827px;
+}
+
+.use-template-search {
+  height: 32px;
+}
+
+.use-template-search input {
+  border-left: none;
+  height: 32px;
+}
+.use-template-search input:focus,
+.use-template-search input:focus-visible,
+.use-template-search input:hover,
+.use-template-search input:active,
+.use-template-search input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+  background: white;
+  color: black;
+}
+
+.use-template-search span {
+  border: 1px solid #ced4da;
+  border-right: none;
+  height: 32px;
+}
+
+.use-template-search span i {
+  height: 18px;
+  width: 18px;
+}
+
+.use-template .scroll {
+  max-height: 450px;
+}
+
+.use-template .thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.use-template table th {
+  background-color: #495057;
+  color: white;
+  height: 46px;
+  min-width: 46px;
+}
+.use-template table th,
+.use-template table td {
+  width: 250px;
+  max-width: 250px;
+  padding: 0.5rem 0.25rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th {
+  font-weight: normal;
+}
+
+.use-template table td {
+  font-size: 14px;
+}
+
+.use-template table td {
+  padding: 0.75rem 0;
+}
+
+.use-template table tr {
+  border-bottom: 1px solid #e9ebec;
+}
+
+/* End */
+
+.bold-chevron {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+}
+
+/* Message */
+
+.message-header {
+  color: white; /* Adjust text color if needed */
+}
+
+.message-header-bg-color {
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+}
+
+/* Message Body Styles */
+
+.input-group-text {
+  border: none; /* Remove border */
+  background-color: white; /* White background for icons */
+  color: #ff5400; /* Orange color for icons */
+}
+
+/* Textarea styles */
+textarea.form-control {
+  height: 35px; /* Fixed height for text area */
+  resize: none; /* Disable resizing */
+  border-radius: 0; /* Remove default border radius */
+  overflow-y: auto !important; /* Show vertical scrollbar only */
+  text-align: left; /* Center text horizontally */
+}
+
+/* Center placeholder text and remove outline */
+textarea.form-control::placeholder {
+  text-align: left; /* Center placeholder text */
+}
+
+/* Remove focus outline and shadow */
+textarea.form-control:focus,
+textarea.form-control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Custom Scrollbar for textarea */
+textarea.form-control::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea.form-control::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
+}
+
+textarea.form-control::-webkit-scrollbar-track {
+  background-color: white;
+  margin-right: 8px;
+}
+
+textarea.form-control::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.container-chatbox textarea.form-control:focus,
+.container-chatbox textarea.form-control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+.container-chatbox textarea.message {
+  max-height: 66px;
+  overflow-y: auto;
+  min-height: 38px;
+}
+
+/* Attached Files Styles */
+
+.attached-files {
+  display: flex; /* Align items in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 0.5rem; /* Space between each file badge */
+  white-space: nowrap; /* Prevent wrapping of flex items */
+}
+
+.attached-files::-webkit-scrollbar {
+  height: 4px;
+}
+
+.attached-files::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
+}
+
+.attached-files::-webkit-scrollbar-track {
+  background-color: #f7f7f7;
+  margin-right: 8px;
+}
+
+.attached-files::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.attached-file-badge {
+  background-color: #fff5ec;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 5px;
+}
+
+.btn-close {
+  padding: 0;
+  margin-left: 5px;
+  color: #ff5400;
+}
+
+.btn-close:hover {
+  color: #ff8e32;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* recipient badge */
+.badge-color {
+  background-color: #495057;
+}
+
+.form-control .recipients {
+  display: flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  flex-wrap: wrap;
+}
+
+button.recipients:hover,
+button.recipients:focus,
+button.recipients:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: transparent;
+  color: transparent;
+}
+
+textarea.compose-message {
+  height: 120px;
+}
+
+.compose.input-group-text {
+  padding: 0 0;
+}
+
+.form-control.message.mobile {
+  height: 260px;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+  background-color: #fff7ec; /* Custom orange color */
+  color: black; /* Text color on hover/focus/active */
+}
+
+.recipients-container {
+  height: 40px;
+}
+.recipients-input {
+  height: 28px;
+  font-size: 12px;
+  font-family: "Microsoft Sans Serif", sans-serif;
+  vertical-align: middle;
+}
+
+.recipients-container .scroll-x {
+  max-width: 505px;
+  min-width: 505px;
+}
+
+.sms.recipients-container .scroll-x {
+  max-width: 600px;
+  min-width: 600px;
+}
+
+#smsSection textarea.compose-message {
+  height: 150px !important;
+}
+
+.tag-input {
+  padding: 0.3rem 0.5rem 0.4rem 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #495057;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 12px;
+}
+
+.tag .remove-tag {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.recipients-input {
+  flex: 1;
+  min-width: 120px;
+  outline: none;
+}
+
+.recipients-input:focus {
+  outline: none;
+}
+
+.btn-group ul.dropdown-menu {
+  right: 0;
+  left: 0;
+  transform: translate(-46px, -140px) !important;
+  box-shadow: -0.05rem 0.35rem 0.3rem rgba(0, 0, 0, 0.15);
+  width: 142.39px !important;
+  max-width: 142.39px !important;
+  min-width: 142.39px !important;
+}
+
+.send-via {
+  width: 28px !important;
+  height: 37px !important;
+}
+
+.btn.send {
+  width: 62px !important;
+  height: 37px !important;
+}
+
+/* Schedule send compontent */
+
+.date-time-dropdown {
+  position: relative;
+  right: 23px;
+  top: 10px;
+  z-index: 1000;
+}
+
+.date-time-dropdown .dropdown-menu {
+  box-shadow: -0.1rem 0.25rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+.date-time-dropdown .input-group {
+  height: 40px !important;
+  max-height: 40px !important;
+  padding: 8px 8px !important;
+  justify-content: space-between;
+  width: 304px;
+  max-width: 304px;
+}
+
+.date-time-dropdown .input-group:focus,
+.date-time-dropdown .input-group:focus-visible,
+.date-time-dropdown .input-group:hover,
+.date-time-dropdown .input-group:active,
+.date-time-dropdown .input-group:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: white;
+  border-radius: 0.5rem;
+}
+
+.date-time-dropdown .input-group-text {
+  height: 22px !important;
+  max-height: 22px !important;
+  padding: 0 4px !important;
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: super;
+  text-align: start;
+}
+
+.date-time-dropdown .date-time-container {
+  height: 24px !important;
+  max-height: 24px !important;
+}
+
+.date-time-dropdown .form-control {
+  padding: 0 !important;
+}
+
+.date-time-dropdown input[type="number"]::-webkit-inner-spin-button,
+.date-time-dropdown input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.date-time-dropdown input[type="number"] {
+  -moz-appearance: textfield; /* For Firefox */
+}
+
+.date-time-dropdown .custom-select-trigger {
+  height: 24px !important;
+  min-height: 24px !important;
+  font-size: 14px;
+  padding: 1px 44px 3px 9px !important;
+}
+
+.date-time-dropdown .custom-select-trigger:after {
+  border-bottom: 1px solid #495057;
+  border-right: 1px solid #495057;
+}
+
+.date-time-dropdown .input-group .date {
+  width: 120px !important;
+  max-width: 120px !important;
+  height: 22px !important;
+  max-height: 22px !important;
+  border: 0;
+  text-align: left !important;
+}
+
+.date-time-dropdown .input-group .date:focus,
+.date-time-dropdown .input-group .date:focus-visible,
+.date-time-dropdown .input-group .date:hover,
+.date-time-dropdown .input-group .date:active,
+.date-time-dropdown .input-group .date:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Schedule send compontent end */
+/* Groups modal  */
+
+.compose-group.modal-content,
+.modal-dialog {
+  max-width: 499px;
+  max-height: 650px;
+}
+
+.compose-group .modal-content .input-group.search input {
+  border: none;
+  height: 64px;
+  max-height: 64px;
+  text-align: start;
+}
+
+.compose-group .search input:focus,
+.compose-group .search input:focus-visible,
+.compose-group .search input:hover,
+.compose-group .search input:active,
+.compose-group .search input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.compose-group .input-group.search {
+  border: 1px solid #ced4da;
+}
+
+/* Table */
+.compose-group .group-members-table {
+  border: 1px solid #ced4da;
+  font-size: 14px;
+}
+
+.compose-group .group-members-table .table-header {
+  height: 45px;
+  background: #f4f5f6;
+  color: #212529;
+}
+
+.compose-group .group-members-table .table-header th,
+.compose-group .group-members-table .table-header tr,
+.compose-group .group-members-table .table-header thead {
+  border-style: none;
+  border-width: 0;
+  box-shadow: 0 1px 0 #ced4da;
+}
+
+.compose-group .group-members-table .table-body tr,
+.compose-group .group-members-table .table-body td {
+  border-style: none !important;
+  border-width: 0 !important;
+  border-color: white !important;
+}
+
+.compose-group .group-members-table .table-header th,
+.compose-group .group-members-table .table-body td {
+  text-align: left !important;
+  vertical-align: middle !important;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.compose-group .group-members-table .table-header th:first-child,
+.compose-group .group-members-table .table-body td:first-child {
+  width: 64px;
+  min-width: 64px;
+  max-width: 64px;
+  text-align: center !important;
+}
+
+.compose-group .group-members-table .scroll {
+  max-height: 330px;
+}
+
+.compose-group .thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.compose-group .modal-footer {
+  border-top: none;
+}
+
+/* Groups modal end */
+
+.modal .btn.btn-outline,
+.modal .btn.btn-fill {
+  width: 90px !important;
+  height: 40px !important;
+}
+
+/* Templates */
+
+.templates .custom-select-wrapper {
+  height: 42px;
+  max-height: 42px;
+}
+
+.templates .custom-select-trigger {
+  width: 215px !important;
+  max-width: 215px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  font-size: 14px !important;
+}
+
+.templates .custom-options {
+  height: auto !important;
+  max-height: 115px !important;
+  min-height: 37px !important;
+}
+
+.templates .custom-option {
+  font-size: 14px !important;
+}
+
+a.add-template.btn.btn-fill {
+  width: 140px !important;
+  max-width: 140px !important;
+}
+
+a.add-template:hover {
+  color: white !important;
+}
+
+button.add-template.btn.btn-fill {
+  width: 150px !important;
+  max-width: 150px !important;
+  font-size: 16px !important;
+}
+
+button.add-template:hover {
+  color: white !important;
+}
+
+form.search-templates {
+  width: 311px;
+}
+
+.search-templates input {
+  border-left: none;
+}
+
+.input-group {
+  justify-content: flex-end;
+}
+
+.search-templates input:focus,
+.search-templates input:focus-visible,
+.search-templates input:hover,
+.search-templates input:active,
+.search-templates input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+.search-templates span {
+  border: 1px solid #ced4da;
+  border-right: none;
+}
+
+.templates .btn.btn-fill {
+  height: 40px !important;
+  width: 90px !important;
+}
+
+.pagination .custom-select-wrapper {
+  height: 31px;
+  max-height: 31px;
+}
+
+.pagination .custom-select-trigger {
+  width: 42px !important;
+  max-width: 42px !important;
+  height: 31px !important;
+  max-height: 31px !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  font-size: 14px !important;
+}
+
+.pagination .custom-options {
+  max-height: 115px !important;
+  min-height: 115px !important;
+}
+
+.pagination .custom-option {
+  font-size: 14px !important;
+}
+
+.reverse-icon {
+  transform: scaleX(-1) !important; /* Force apply the horizontal flip */
+}
+
+.page-item {
+  width: 24px;
+  height: 24px;
+}
+
+.page-item .page-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove default padding */
+}
+
+.page-item .page-link i {
+  font-size: 16px; /* Adjust icon size if needed */
+}
+
+#useTemplateModal .btn.btn-fill {
+  width: 90px !important;
+  height: 40px !important;
+}
+
+#recipientsModalLabel .group-members-table {
+  height: 550px;
+  max-height: 550px;
+}
+
+.templates-table .scroll {
+  max-height: 460px !important;
+}
+
+.thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.templates-table-header {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+.templates-table-header th,
+.templates-table-body td {
+  text-align: left !important;
+  vertical-align: middle !important;
+}
+
+.users-select-checkbox {
+  width: 15.5px;
+  height: 15.5px;
+}
+
+.templates-table-header th:first-child,
+.templates-table-body td:first-child {
+  width: 41px !important;
+  min-width: 41px !important;
+  max-width: 41px !important;
+  padding: 16px 8px !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  font-weight: 400;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.templates .templates-table table th:nth-child(2) {
+  padding-left: 18px !important;
+}
+.templates .templates-table table td:nth-child(2) {
+  padding-left: 12px !important;
+}
+.templates .templates-table table th:nth-child(2),
+.templates .templates-table table td:nth-child(2) {
+  width: 240px !important;
+  min-width: 240px !important;
+  max-width: 240px !important;
+}
+.templates .templates-table table th:nth-child(3),
+.templates .templates-table table td:nth-child(3) {
+  width: 330px !important;
+  min-width: 330px !important;
+}
+
+.templates .templates-table table th:nth-child(4),
+.templates .templates-table table td:nth-child(4) {
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+}
+
+.templates .templates-table table th:nth-child(5),
+.templates .templates-table table td:nth-child(5) {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+.templates .templates-table table th:nth-child(6),
+.templates .templates-table table td:nth-child(6) {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+
+.templates table th:last-child,
+.templates table td:last-child {
+  text-align: center !important;
+}
+.templates table td:last-child button:hover {
+  color: #ff5400;
+}
+
+.templates .delete.btn.btn-outline {
+  width: 90px !important;
+}
+
+.templates-table-header th:first-child input[type="checkbox"] {
+  background-color: white !important;
+}
+
+.templates-table-header th:first-child input[type="checkbox"]:checked {
+  background-color: #ff5400 !important;
+}
+
+#addTemplateSection .custom-select-trigger {
+  width: 210px !important;
+  font-size: 14px !important;
+  padding-top: 10px !important;
+}
+
+#addTemplateSection .custom-option {
+  font-size: 14px !important;
+}
+
+#addTemplateSection .custom-options.scroll {
+  height: auto !important;
+  max-height: 115px !important;
+  min-height: auto !important;
+}
+
+#addTemplateSection .custom-select-trigger:after {
+  right: 15px !important;
+}
+
+.pagination .custom-options {
+  max-height: 74px !important;
+  min-height: 74px !important;
+}
+
+/* Templates  End*/
+/* Archive  Starts*/
+
+.archive {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.archive .input-group {
+  height: 40px !important;
+}
+
+.archive .custom-select-wrapper {
+  width: 654px !important;
+  height: 40px !important;
+}
+.archive .custom-select-trigger {
+  width: 654px !important;
+}
+
+.wide .custom-select-trigger:after {
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  right: 25px;
+}
+
+.archive .custom-options {
+  height: auto !important;
+  max-height: 160px !important;
+  min-height: 40px !important;
+}
+
+.archive .custom-select-trigger,
+.archive input {
+  color: #495057;
+}
+
+.hr-line {
+  display: inline-flex;
+  height: 53px;
+  width: 32px;
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+.archive .date input {
+  width: 311px;
+}
+
+.archive a.btn.btn-outline {
+  width: 140px !important;
+  max-width: 140px !important;
+}
+
+.archive a:hover {
+  color: #ff5400 !important;
+}
+
+.archive button.btn.btn-fill {
+  width: 140px !important;
+  max-width: 140px !important;
+}
+
+.archive button:hover {
+  color: white !important;
+}
+
+/* Archive  End*/
+/* Add template  start*/
+
+.add-template .header {
+  background-color: #ff54000d;
+}
+
+.add-template .content {
+  max-width: 550px;
+}
+
+.add-template .add-template-table {
+  max-width: 605px;
+}
+
+.add-template-table thead th:first-child,
+.add-template-table tbody td:first-child {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.add-template textarea {
+  height: 280px !important;
+  max-height: 280px !important;
+}
+
+.add-template .btn {
+  width: 90px !important;
+}
+
+.add-template a.orange:hover {
+  color: #e04b00 !important;
+}
+
+.add-template .scroll {
+  min-height: 580px;
+  max-height: 580px;
+}
+
+.add-template .add-templates-table-header {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+.add-template .add-templates-table-header th,
+.add-template .add-templates-table-body td {
+  text-align: left !important;
+  vertical-align: middle !important;
+}
+
+.add-template .add-templates-table-header th,
+.add-template .add-templates-table-body td {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.add-template .add-templates-table-body td {
+  font-size: 14px;
+}
+
+.add-template .add-templates-table-header th:first-child,
+.add-template .add-templates-table-body td:first-child {
+  width: 200px;
+  width: 200px;
+}
+
+.add-template .add-templates-table-header th:nth-child(2),
+.add-template .add-templates-table-body td:nth-child(2) {
+  width: 346px;
+  width: 346px;
+}
+
+#addTemplateModal .modal-dialog {
+  max-height: 100%;
+}
+
+/* Add template  End*/
+
+#smsSection .message-compose-content {
+  width: 930px !important;
+  max-width: 930px !important;
+}
+
+#desktopSearchControls .search-controls {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+#desktopSearchControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+#desktopSearchControls #clearSearch,
+#desktopSearchControls #prevResult,
+#desktopSearchControls #nextResult {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+#desktopSearchControls #clearSearch {
+  vertical-align: middle;
+}
+
+#desktopSearchControls #clearSearch {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+input[type="search"]#desktopSearchInput::-webkit-search-cancel-button {
+  filter: invert(15%) sepia(6%) saturate(100%) hue-rotate(0deg) brightness(50%)
+    contrast(50%);
+}
+
+.highlight {
+  background-color: #ff660070;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.chat-search input,
+.chat-search input:focus,
+.chat-search input:active {
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.chat-search input {
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+}
+
+.search-controls {
+  margin-left: 0.5rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border: none;
+  border-left: none;
+  height: 32px;
+  max-height: 32px;
+}
+
+.search-controls button {
+  color: white;
+  transition: color 0.2s;
+}
+
+.search-controls button:hover {
+  color: white;
+}
+
+.chat-search span.search-count {
+  height: auto;
+  border: none;
+  padding-top: 4px;
+}
+
+.chat-search button#prevResult img {
+  margin-top: 2px;
+}
+
+.chat-search button#nextResult img {
+  margin-top: 1px;
+}
+
+.chat-search button#prevResult img {
+  margin-top: 2px;
+}
+
+.chat-search button#nextResult img {
+  margin-top: 1px;
+}
+
+.chat-content.mobile .chat-search .input-group.chat-search {
+  background-color: white !important;
+  border-radius: 8px !important;
+  border: 1px solid #ced4da !important;
+  height: 42px !important;
+  display: flex !important;
+  justify-content: start !important;
+  align-items: center !important;
+}
+
+.chat-content.mobile .chat-search .input-group.chat-search .form-control,
+.chat-content.mobile .chat-search .input-group.chat-search span {
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+.chat-content.mobile .chat-search .search-controls {
+  height: 40px !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+#mobileSearchInput {
+  width: calc(inherit - 105px) !important;
+  max-width: calc(inherit - 105px) !important;
+}
+
+input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
+  /* filter: invert(50%) sepia(50%) saturate(1000%) hue-rotate(200deg); */
+  /* filter: brightness(0) saturate(100%); */
+  filter: invert(15%) sepia(6%) saturate(100%) hue-rotate(0deg) brightness(50%)
+    contrast(50%);
+}
+
+#mobileSearchControls {
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.search-controls #prevResult,
+.search-controls #nextResult {
+  margin-bottom: 6px;
+  height: 24px !important;
+  max-height: 24px !important;
+  width: 24px !important;
+  max-width: 24px !important;
+}
+.search-controls #prevResultMobile,
+.search-controls #nextResultMobile {
+  margin-bottom: 6px;
+  height: 24px !important;
+  max-height: 24px !important;
+  width: 18px !important;
+  max-width: 18px !important;
+}
+
+.search-controls #nextResultMobile {
+  margin-bottom: 8px;
+}
+
+.chat-search button#nextResultMobile img,
+.chat-search button#prevResultMobile img {
+  margin-top: 4px;
+}
+
+#chatBoxMobileSection .main-content {
+  display: flex !important;
+  flex-direction: column;
+  width: calc(100%) !important;
+  min-width: 320px !important;
+}
+
+#recipientsModal .scroll {
+  max-height: 300px !important;
+}
+
+#useTemplateSection .main-content {
+  display: block !important;
+  width: calc(100%) !important;
+  min-width: 768px !important;
+}
+
+#recipientsModal .table-header {
+  background: #f4f5f6;
+  border: 1px solid #ced4da;
+}
+
+#recipientsModal table th {
+  border-bottom: 1px solid #ced4da !important;
+}
+
+#recipientsModal .input-group.search input {
+  border: none;
+}
+
+#recipientsModal .input-group.search {
+  border: 1px solid #ced4da !important;
+}
+
+@media (max-width: 1400px) {
+  .side-bar-options,
+  .sidebar-container,
+  .sidebar,
+  .conversation-list {
+    width: calc(100% - var(--main-content-width, 5%)) !important;
+  }
+
+  .main-content {
+    width: var(--main-content-width, 60%) !important;
+    min-width: 445px !important;
+  }
+  
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 371px; /* Match a#navbarDropDownDepartments width */
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+    flex-direction: column;
+    width: calc(100%) !important;
+    min-width: 320px !important;
+  }
+
+  .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+    max-width: calc(100vw - 280px)!important;
+  }
+  #chatBoxMobileSection .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+  }
+
+  #recipientsModal .scroll {
+    max-height: 300px !important;
+  }
+
+  .forward .recipients-container .scroll-x,
+  .message-compose.recipients-container .scroll-x {
+    width: calc(53%) !important;
+    max-width: calc(53%) !important;
+    min-width: calc(45%) !important;
+  }
+
+  /* #recipientsModal .modal-dialog {
+    margin: 10rem auto;
+  } */
+
+  .add-template .content,
+  .add-template .add-template-table {
+    width: calc(48%);
+    max-width: calc(48%);
+  }
+  .chat-search.desktop input {
+    max-width: 150px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .chat-name {
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+  .chat-number {
+    width: 120px !important;
+    max-width: 120px !important;
+  }
+}
+@media (max-width: 1200px) {
+  .chat-search.desktop input {
+    max-width: 120px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .chat-name {
+    width: 138px !important;
+    max-width: 138px !important;
+  }
+  .chat-number {
+    width: 120px !important;
+    max-width: 120px !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .side-bar-options,
+  .sidebar-container,
+  .sidebar,
+  .conversation-list {
+    width: 100% !important;
+    max-width: 370.5px !important;
+  }
+
+  .main-content {
+      width: 100% !important;
+      min-width: 445px !important;
+      max-width: 522px !important;
+  }
+
+  #chatBoxMobileSection .main-content {
+    max-width: 100% !important;
+  }
+
+  .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+    max-width: calc(100vw - 240px) !important;
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  #navbarDropDownMessages + .dropdown-menu {
+    width: auto;
+    min-width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 350px; /* Match a#navbarDropDownDepartments width */
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+    flex-direction: column;
+    width: calc(100%) !important;
+    min-width: 320px !important;
+  }
+
+  .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+  }
+
+  .chat-footer .input-group-text {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #smsSection .message-compose-content {
+    width: calc(100%) !important;
+  }
+
+  .sms.recipients-container .scroll-x {
+    width: calc(68%) !important;
+    max-width: calc(68%) !important;
+    min-width: calc(59%) !important;
+  }
+
+  #recipientsModal .scroll {
+    max-height: 300px !important;
+  }
+
+  /* #recipientsModal .modal-dialog {
+    margin: 10rem auto;
+  } */
+}
+
+@media (max-width: 992px) {
+  .main-content {
+    display: none !important;
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+    flex-direction: column;
+    width: calc(100%) !important;
+    min-width: 320px !important;
+  }
+
+  .main-content.message-compose {
+    display: flex !important;
+  }
+
+  .side-bar-options,
+  .sidebar-container,
+  .sidebar,
+  .conversation-list {
+    width: 100% !important;
+    min-width: calc(100%);
+  }
+
+  .main-content.message-compose {
+    display: flex !important;
+    flex-direction: column;
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+    min-width: calc(100%) !important;
+  }
+
+  .sidebar-container + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 492px; /* Match a#navbarDropDownDepartments width */
+  }
+
+  .chat-footer .input-group-text {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .recipients-container .scroll-x {
+    width: calc(53%) !important;
+    max-width: calc(53%) !important;
+    min-width: calc(45%) !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 8px !important;
+  }
+  /* .recipients-container .tag-input {
+    border: none !important;
+  } */
+
+  .forward .recipients-container .scroll-x,
+  .message-compose.recipients-container .scroll-x {
+    width: calc(67%) !important;
+    max-width: calc(67%) !important;
+    min-width: calc(45%) !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 8px;
+  }
+
+  #useTemplateModal .modal-content,
+  #useTemplateModal .modal-dialog {
+    width: calc(100%);
+    max-width: calc(100%);
+    height: calc(100%);
+    max-height: calc(100%);
+    margin: 0;
+  }
+
+  #useTemplateModal .use-template .scroll {
+    max-height: 80vh !important;
+  }
+
+  #useTemplateModal .modal-header {
+    background-color: white;
+  }
+  .search-templates input {
+    width: calc(100% - 42%) !important;
+    max-width: calc(100% - 42%) !important;
+  }
+  .add-template .content,
+  .add-template .add-template-table {
+    width: calc(46.5%) !important;
+    max-width: calc(46.5%) !important;
+  }
+
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 672px; /* Match a#navbarDropDownDepartments width */
+  }
+  #useTemplateSection .main-content {
+    display: block !important;
+    width: calc(100%) !important;
+    min-width: 420px !important;
+  }
+
+  .use-template table th:last-child,
+  .use-template table td:last-child,
+  #useTemplate table th:last-child,
+  #useTemplate table td:last-child {
+    width: 90px !important;
+    max-width: 90px !important;
+  }
+
+  #useTemplateSection .btn.btn-fill {
+    width: 60px !important;
+  }
+
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 10px) !important;
+    max-width: 278.47px !important;
+    min-width: 278.47px !important;
+  }
+}
+
+@media (width: 992px) {
+  .sidebar-container {
+    width: 100% !important;
+    min-width: 370.5px !important;
+    max-width: 370.5px !important;
+  }
+
+  .message-compose.main-content {
+    width: var(--main-content-width, 60%) !important;
+    min-width: 445px !important;
+  }
+
+  .message-compose.recipients-container .scroll-x {
+    width: calc(53%) !important;
+    max-width: calc(53%) !important;
+    min-width: calc(45%) !important;
+  }
+
+  .main-content {
+    display: block !important;
+  }
+
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 10px) !important;
+    max-width: 390.08px !important;
+    min-width: 390.08px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .chatBoxMobileSection {
+    display: flex !important;
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+    flex-direction: column;
+    width: calc(100%) !important;
+    min-width: 320px !important;
+  }
+
+  .sidebar-container + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 492px; /* Match a#navbarDropDownDepartments width */
+  }
+
+  .recipients-container {
+    height: 40px !important;
+  }
+
+  .sms.recipients-container .scroll-x {
+    width: calc(90%) !important;
+    max-width: calc(90%) !important;
+    min-width: calc(90%) !important;
+  }
+  .forward .recipients-container .scroll-x,
+  .recipients-container .scroll-x {
+    width: calc(90%) !important;
+    max-width: calc(90%) !important;
+    min-width: calc(90%) !important;
+    border: none !important;
+  }
+
+  .recipients-container {
+    justify-content: space-between !important;
+  }
+
+  .recipients-container .tag {
+    max-height: 26px !important;
+    width: max-content;
+  }
+
+  .recipients-container button.btn.btn-custom {
+    width: 40px !important;
+  }
+
+  .message-compose-content {
+    border: none !important;
+  }
+
+  form.search-templates {
+    width: 218px !important;
+    max-width: 218px !important;
+    min-width: 218px !important;
+  }
+  .search-templates input {
+    width: calc(218px - 40.8px) !important;
+    max-width: calc(218px - 40.8px) !important;
+  }
+
+  .add-template .add-template-table {
+    margin-bottom: 2rem;
+  }
+
+  .archive .custom-select-wrapper {
+    width: calc(100%) !important;
+    max-width: 600px !important;
+    min-width: 300px !important;
+    height: 40px !important;
+  }
+  .archive .custom-select-trigger {
+    width: 300px !important;
+  }
+
+  .chat-name {
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+  .chat-number {
+    width: 150px !important;
+    max-width: 150px !important;
+  }
+
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: auto; /* Reset width */
+    min-width: 492px; /* Match a#navbarDropDownDepartments width */
+  }
+  #useTemplateSection .main-content {
+    display: block !important;
+    width: calc(100%) !important;
+    min-width: 420px !important;
+  }
+
+  .use-template table th:last-child,
+  .use-template table td:last-child,
+  #useTemplate table th:last-child,
+  #useTemplate table td:last-child {
+    width: 90px !important;
+    max-width: 90px !important;
+  }
+
+  #useTemplateSection .btn.btn-fill {
+    width: 60px !important;
+  }
+  .add-template .content,
+  .add-template .add-template-table {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+  }
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 10px) !important;
+    max-width: 458px !important;
+    min-width: 458px !important;
+  }
+
+  #recipientsModal .scroll {
+    max-height: 313px !important;
+  }
+
+  .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+}
+}
+
+@media (width: 768px) {
+  .add-template .content,
+  .add-template .add-template-table {
+    width: calc(46.5%) !important;
+    max-width: calc(46.5%) !important;
+  }
+
+  .archive-department {
+    width: 658px !important;
+    max-width: 658px !important;
+  }
+
+  .archive .custom-select-trigger {
+    width: 654px !important;
+  }
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 10px) !important;
+    max-width: 279px !important;
+    min-width: 279px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .department-dropdown {
+    height: 56px;
+    width: 58px;
+  }
+
+  #chatBoxMobileSection .main-content {
+    display: flex !important;
+  }
+
+  #navbarDropDownDepartments + .dropdown-menu {
+    width: auto;
+    min-width: 340px;
+  }
+
+  .sidebar-container {
+    width: 340px;
+    max-width: 340px;
+  }
+  .sidebar {
+    width: 340px;
+    max-width: 340px;
+  }
+  .side-bar-options .btn.btn-outline,
+  .side-bar-options .btn.btn-fill {
+    width: 44px !important;
+    height: 40px !important;
+    padding: 0;
+  }
+  .side-bar-options img {
+    margin: 0 !important;
+  }
+  .side-bar-options button.btn.btn-outline {
+    background-color: white !important;
+  }
+
+  .side-bar-options button.btn.btn-fill {
+    background-color: #ff5400 !important;
+  }
+
+  .message-option {
+    font-size: 16px;
+  }
+
+  .compose span {
+    padding-bottom: 0.05rem !important;
+  }
+
+  .main-content {
+    width: 340px;
+    min-width: 340px;
+  }
+
+  .chat-header {
+    height: 76px;
+  }
+
+  .received-message,
+  .sent-message {
+    max-width: 75%;
+  }
+  .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+  }
+  #chatBoxMobileSection .container-chatbox {
+    width: calc(100% - 115px) !important;
+    min-width: 200px !important;
+    max-width: calc(100vw - 170px) !important;
+  }
+  .chat-settings {
+    margin-bottom: 0;
+  }
+
+  .chat-content .scroll {
+    height: 490px;
+    max-height: 490px;
+  }
+
+  #useTemplateSection .main-content {
+    display: block !important;
+    width: calc(100%) !important;
+    min-width: 360px !important;
+  }
+
+  .use-template table th:last-child,
+  .use-template table td:last-child,
+  #useTemplate table th:last-child,
+  #useTemplate table td:last-child {
+    width: 50px !important;
+    /* max-width: 50px !important; */
+  }
+
+  #chatBoxMobileSection .main-content {
+    width: calc(100%) !important;
+    min-width: 320px !important;
+  }
+
+  #useTemplateSection .use-template table th,
+  #useTemplateSection .use-template table td {
+    padding: 0.5rem 0.5rem;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  #useTemplateSection .use-template .scroll {
+    max-height: 540px;
+  }
+
+  /* Compose  */
+  .message-compose-content {
+    border: none !important;
+  }
+
+  .forward .recipients-container .scroll-x,
+  .recipients-container .scroll-x {
+    width: calc(87%) !important;
+    max-width: calc(87%) !important;
+    min-width: calc(87%) !important;
+  }
+
+  .tag {
+    min-width: fit-content;
+    max-height: 24px;
+  }
+
+  .tag-input {
+    /* padding: 0.3rem 0.5rem 0.4rem 0.5rem; */
+    border: none;
+    /* border-radius: 0.25rem; */
+  }
+
+  .recipients-container .btn.btn-custom {
+    max-height: 40px !important;
+    width: 32px !important;
+  }
+  .date-time-dropdown {
+    right: -80px;
+    top: 5px;
+  }
+  /* #no-files-attached-mobile {
+    margin-top: 26px;
+  } */
+  .attached-file-badge {
+    margin-bottom: 14px;
+    max-height: 32px !important;
+  }
+
+  .compose-group.modal-content,
+  #groupsModal .modal-dialog,
+  #contactsModal .modal-dialog,
+  #recipientsModal .modal-dialog,
+  .modal-content {
+    max-height: 100%;
+  }
+
+  #recipientsModal .group-members-table .scroll,
+  #groupsModal .group-members-table .scroll,
+  #contactsModal .group-members-table .scroll {
+    max-height: calc(100vh - 354px) !important;
+  }
+
+  #useTemplateSection table tbody td button {
+    width: 40px !important;
+    height: 37px !important;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  #useTemplateSection table tr th,
+  #useTemplateSection table tr td {
+    width: 100px;
+  }
+  #useTemplateSection table tr th:last-child,
+  #useTemplateSection table tr td:last-child {
+    width: 90px;
+    text-align: center;
+  }
+
+  #searchBar {
+    position: sticky;
+    top: 10px;
+    z-index: 1000;
+    background-color: transparent;
+    padding: 10px 0;
+    padding-top: 0px;
+  }
+
+  .chat-search span,
+  .chat-search input {
+    height: 40px;
+  }
+
+  #recipientsModal .search {
+    border: 1px solid #ced4da;
+  }
+  #recipientsModal input {
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  #recipientsModal table {
+    border: 1px solid #ced4da;
+  }
+  #recipientsModal .table-header {
+    background: #f4f5f6;
+    border: 1px solid #ced4da;
+  }
+  #recipientsModal table th {
+    border-bottom: 1px solid #ced4da !important;
+  }
+
+  #recipientsModal table td,
+  #recipientsModal table th {
+    border-bottom: 1px solid #e9ebec;
+    padding: 0.75rem 0.5rem;
+  }
+
+  #recipientsModal .scroll {
+    max-height: 555px;
+  }
+
+  #recipientsModal .thead-fixed {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  #recipientsModal table th,
+  #recipientsModal table td {
+    font-size: 14px;
+  }
+
+  /* templates */
+
+  .templates-table-header th,
+  .templates-table-body td {
+    width: 146px;
+    min-width: 146px;
+  }
+
+  .templates .templates-table table th:nth-child(2),
+  .templates .templates-table table td:nth-child(2) {
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+  }
+
+  .page-item {
+    width: 32px;
+    height: 32px;
+  }
+
+  .page-item .page-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove default padding */
+  }
+
+  .page-item .page-link i {
+    font-size: 16px; /* Adjust icon size if needed */
+  }
+
+  /* archive */
+
+  .archive .custom-select-wrapper {
+    width: 300px !important;
+    height: 40px !important;
+  }
+  .archive .custom-select-trigger {
+    width: 300px !important;
+  }
+
+  .archive a.btn.btn-outline {
+    width: 300px !important;
+    max-width: 300px !important;
+  }
+
+  .archive a:hover {
+    color: #ff5400 !important;
+  }
+
+  .archive button.btn.btn-fill {
+    width: 300px !important;
+    max-width: 300px !important;
+  }
+
+  .archive button:hover {
+    color: white !important;
+  }
+
+  .archive .date input {
+    width: 300px;
+  }
+
+  .add-template textarea {
+    height: 165px !important;
+    max-height: 165px !important;
+  }
+
+  .add-template .scroll {
+    min-height: 330px !important;
+    max-height: 330px !important;
+  }
+
+  .add-template .custom-select-trigger {
+    font-size: 14px !important;
+    padding-top: 10px !important;
+  }
+
+  .add-template .select-container {
+    height: 40px !important;
+  }
+  .add-template .custom-option {
+    font-size: 14px !important;
+  }
+
+  .add-template .custom-options.scroll {
+    min-height: 40px !important;
+    max-height: 115px !important;
+  }
+
+  button.add-template.btn.btn-fill {
+    font-size: 13px !important;
+  }
+
+  .templates .wide.logs .custom-select-trigger {
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+  .templates .wide.logs .custom-select-trigger::after {
+    right: 16px !important;
+  }
+
+  form.search-templates {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+  }
+
+  form.search-templates input {
+    padding-left: 0;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  .archive .wide.logs .custom-select-trigger,
+  .archive .custom-option {
+    font-size: 14px !important;
+  }
+
+  .archive input {
+    font-size: 14px;
+  }
+
+  .search-templates input::placeholder {
+    font-size: 14px;
+  }
+
+  #attached-files-mobile .scroll {
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  .attached-file-badge {
+    width: 330px;
+    max-width: 330px;
+    min-width: 330px;
+  }
+
+  .pagination .custom-select-trigger {
+    padding-top: 4px !important;
+  }
+
+  #smsSection .message-compose-content {
+    width: 340px !important;
+    max-width: 340px !important;
+  }
+
+  /* .chat-content.mobile .input-group.chat-search {
+    width: 320px !important;
+    max-width: 320px !important;
+  } */
+  #templateSection .pagination {
+    gap: 0.5rem !important;
+  }
+
+  .recipients-container {
+    height: 40px !important;
+  }
+
+  .compose-group.modal-content,
+  .modal-dialog {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+  }
+
+  .add-template .content,
+  .add-template .add-template-table {
+    width: 100%;
+    max-width: 100%;
+  }
+  form.search-templates {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+    min-width: calc(100%) !important;
+  }
+
+  .search-templates input {
+    width: calc(100%) !important;
+    max-width: calc(100% - 41px) !important;
+  }
+
+  .add-template .content,
+  .add-template .add-template-table {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+  }
+
+  .chat-name {
+    width: 130px !important;
+    max-width: 130px !important;
+  }
+  .chat-number {
+    width: 130px !important;
+    max-width: 130px !important;
+  }
+
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: calc(100vw - 42px) !important;
+    min-width: 320px !important;
+    max-width: 528px !important;
+  }
+
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 82px) !important;
+    max-width: 493px !important;
+    min-width: 298px !important;
+  }
+
+  #addTemplateModal .wide.logs .custom-select-trigger {
+    width: calc(100vw - 82px) !important;
+    max-width: 493px !important;
+    min-width: 298px !important;
+  }
+}
+
+@media (width: 576px) {
+  form.search-templates {
+    width: calc(100%) !important;
+    max-width: calc(50% - 41px) !important;
+    min-width: calc(218px - 40.8px) !important;
+  }
+
+  #addTemplateSection .custom-select-trigger {
+    width: calc(100vw - 10px) !important;
+    max-width: 458px !important;
+    min-width: 458px !important;
+  }
+  .compose-group.modal-content,
+  #groupsModal .modal-dialog,
+  #contactsModal .modal-dialog,
+  #recipientsModal .modal-dialog,
+  .modal-content {
+    max-height: 100vh;
+    height: 100vh;
+    margin: 0;
+  }
+
+  #groupsModal .group-members-table .scroll,
+  #contactsModal .group-members-table .scroll {
+    max-height: calc(100vh - 354px);
+  }
+}
+
+@media (max-width: 390px) {
+  #addTemplateModal .wide.logs .custom-select-trigger,
+  .add-template .custom-select-trigger {
+    width: calc(100vw - 80px) !important;
+    max-width: 310px !important;
+    min-width: 280px !important;
+  }
+}
+
+/* Support for 360px mobile screens */
+@media (max-width: 380px) {
+  .department-dropdown {
+    height: 48px;
+    width: 64px;
+  }
+
+  a#navbarDropDownDepartments + .dropdown-menu {
+    width: calc(100vw - 12vw); /* Reset width */
+    min-width: calc(100vw - 12vw); /* Match a#navbarDropDownDepartments width */
+  }
+
+  .sidebar-container,
+  .sidebar,
+  .main-content {
+    width: 320px !important;
+    max-width: 320px !important;
+    min-width: 320px !important;
+  }
+
+  .side-bar-options .btn.btn-outline,
+  .side-bar-options .btn.btn-fill {
+    width: 38px !important;
+    height: 36px !important;
+    padding: 0;
+  }
+
+  .message-option {
+    font-size: 15px;
+  }
+
+  .chat-header {
+    height: 64px;
+  }
+
+  .container-chatbox {
+    width: 170px !important;
+    max-width: 170px !important;
+  }
+
+  .chat-content .scroll {
+    height: 400px;
+    max-height: 400px;
+  }
+
+  #useTemplateSection .main-content {
+    display: block !important;
+    width: 330px !important;
+    min-width: 330px !important;
+  }
+
+  .recipients-container .scroll-x {
+    max-width: 280px;
+    min-width: 280px;
+  }
+
+  .recipients-container .btn.btn-custom {
+    max-height: 36px !important;
+    width: 28px !important;
+  }
+
+  .date-time-dropdown {
+    right: -60px;
+    top: 5px;
+  }
+
+  .attached-file-badge {
+    width: 270px;
+    max-width: 270px;
+    min-width: 270px;
+    margin-bottom: 10px;
+    max-height: 28px !important;
+  }
+
+  #useTemplateSection table tr th,
+  #useTemplateSection table tr td {
+    width: 80px;
+  }
+  #useTemplateSection table tr th:last-child,
+  #useTemplateSection table tr td:last-child {
+    width: 70px;
+    text-align: center;
+  }
+
+  .templates-table-header th,
+  .templates-table-body td {
+    width: 110px;
+    min-width: 110px;
+  }
+
+  .templates .templates-table table th:nth-child(2),
+  .templates .templates-table table td:nth-child(2) {
+    width: 120px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+  }
+
+  .archive .custom-select-wrapper,
+  .archive .custom-select-trigger,
+  .archive a.btn.btn-outline,
+  .archive button.btn.btn-fill {
+    width: 220px !important;
+    max-width: 220px !important;
+    min-width: 220px !important;
+  }
+
+  .archive .date input {
+    width: 220px;
+  }
+
+  .add-template textarea {
+    height: 120px !important;
+    max-height: 120px !important;
+  }
+
+  #addTemplateSection .add-template .scroll:not(),
+  .add-template .scroll {
+    min-height: 200px !important;
+    max-height: 200px !important;
+  }
+
+  .templates .wide.logs .custom-select-trigger {
+    width: 140px !important;
+    max-width: 140px !important;
+  }
+
+  form.search-templates {
+    /* width: 260px; */
+    width: 100%;
+  }
+
+  #smsSection .message-compose-content {
+    width: 320px !important;
+    max-width: 320px !important;
+  }
+
+  /* .chat-content.mobile .input-group.chat-search {
+    width: 260px !important;
+    max-width: 260px !important;
+  } */
+
+  #recipientsModal .scroll {
+    height: 450px !important;
+    max-height: 450px !important;
+  }
+
+  button.add-template.btn.btn-fill {
+    width: 140px !important;
+    max-width: 140px !important;
+    font-size: 14px !important;
+  }
+
+  .archive button.add-template.btn.btn-fill {
+    width: 220px !important;
+    max-width: 220px !important;
+  }
+
+  .templates .wide.logs .custom-select-trigger {
+    width: 160px !important;
+    max-width: 160px !important;
+  }
+
+  .templates .wide.logs .custom-select-trigger::after {
+    right: 12px !important;
+  }
+
+  .wide .custom-select-trigger {
+    padding: 9px 25px 9px 6px;
+    width: 280px !important;
+  }
+
+  #templateSection .pagination {
+    gap: 0.25rem !important;
+  }
+
+  .recipients-container {
+    height: 40px !important;
+  }
+  #addTemplateSection .custom-select-trigger {
+    min-width: 278px !important;
+  }
+}

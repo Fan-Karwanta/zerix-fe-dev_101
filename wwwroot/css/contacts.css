@@ -1,0 +1,1882 @@
+#navbarDropDownContacts + .dropdown-menu {
+  width: auto;
+  min-width: 100%;
+}
+
+.dropdown-menu {
+  left: 0;
+  right: 0;
+}
+[aria-labelledby="navbarDropDownContacts"] {
+  padding: 1rem 0 !important;
+}
+[aria-labelledby="navbarDropDownContacts"] a.dropdown-item {
+  padding: 0.25rem 1.25rem !important;
+}
+
+.thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+table th:first-child input[type="checkbox"] {
+  background-color: white !important;
+}
+table th:first-child input[type="checkbox"]:checked {
+  background-color: #ff5400 !important;
+}
+
+input[type="search"]::placeholder {
+  font-family: "Microsoft Sans Serif", sans-serif !important;
+}
+
+input[type="text"]::placeholder {
+  font-family: "Microsoft Sans Serif", sans-serif;
+}
+
+table {
+  font-size: 16px !important;
+}
+
+table td button:hover {
+  color: #ff5400 !important;
+}
+
+.page-item {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.page-item .page-link {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Index */
+
+#addContactModal .wide.users .custom-options {
+  height: 111px !important;
+  max-height: 111px !important;
+  min-height: 0 !important;
+}
+
+#addContactModal .custom-date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+#addContactModal .custom-date-input {
+  position: relative;
+  border-left: 0;
+}
+
+#addContactModal .form-control.custom-date-input:focus,
+#addContactModal .form-control.custom-date-input:focus-visible,
+#addContactModal .form-control.custom-date-input:hover,
+#addContactModal .form-control.custom-date-input:active,
+#addContactModal .form-control.custom-date-input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}
+
+#dateIcon {
+  cursor: pointer;
+  border: 1px #ced4da solid !important;
+  border-right: none !important;
+}
+
+.header {
+  border-bottom: 0 !important;
+}
+
+.search-contacts input {
+  padding-left: 4px !important;
+}
+
+.search-contacts .form-control {
+  border-left: 0;
+  width: 285px !important;
+}
+.mobile .search-contacts .form-control {
+  width: 155px !important;
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.search-contacts span {
+  border: 1px #ced4da solid !important;
+  border-right: 0 !important;
+}
+
+.search-contacts .form-control:focus,
+.search-contacts .form-control:focus-visible,
+.search-contacts .form-control:hover,
+.search-contacts .form-control:active,
+.search-contacts .form-control:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}
+
+.add-contact.btn.btn-fill {
+  width: 150px !important;
+  max-width: 150px !important;
+}
+
+#ContactPrivacy {
+  height: 78.5px !important;
+  max-height: 78.5px !important;
+  min-height: 78.5px !important;
+}
+
+.custom-select-wrapper {
+  height: 31px;
+  max-height: 31px;
+  min-height: 31px;
+}
+
+.custom-select .custom-options {
+  display: block;
+  position: absolute;
+}
+
+.scroll.user-groups {
+  min-height: 42px !important;
+  max-height: 126px !important;
+}
+
+.mobile .add-contact.btn.btn-fill {
+  width: 130px !important;
+  max-width: 130px !important;
+}
+
+.department .custom-select-trigger {
+  width: 215px !important;
+  padding-top: 10px !important;
+}
+
+.department .custom-options.scroll {
+  max-height: 115px !important;
+}
+
+.privacy .input-group {
+  width: 150px !important;
+  height: 40px !important;
+}
+
+.privacy .custom-select-trigger {
+  width: 150px !important;
+  height: 40px !important;
+  font-size: 16px !important;
+  padding: 6px 55px 9px 10px !important;
+  text-align: left !important;
+}
+
+.privacy .custom-options {
+  text-align: left;
+  z-index: 1 !important;
+}
+
+.privacy #sources.custom-options.scroll {
+  max-height: 60px !important;
+}
+
+.privacy .custom-option {
+  font-size: 16px !important;
+}
+
+.privacy .custom-options.scroll {
+  max-height: 125px !important;
+}
+
+.contacts .table-responsive .scroll {
+  max-height: 400px;
+}
+
+.contacts table {
+  font-size: 16px !important;
+}
+
+.contacts table thead {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  vertical-align: middle;
+}
+
+.contacts table th {
+  font-weight: 400 !important;
+}
+
+.contacts table td,
+.contacts table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.contacts table td {
+  vertical-align: middle;
+}
+
+.contacts table th:first-child,
+.contacts table td:first-child {
+  width: 40px !important;
+  max-width: 40px !important;
+  min-width: 40px !important;
+}
+.contacts table th:not(:first-child),
+.contacts table td:not(:first-child) {
+  width: 160px !important;
+  max-width: 160px !important;
+  min-width: 160px !important;
+}
+
+.contacts table th:nth-child(6),
+.contacts table td:nth-child(6) {
+  width: 180px !important;
+  max-width: 180px !important;
+  min-width: 180px !important;
+}
+
+.contacts table .form-floating {
+  width: 150px !important;
+}
+
+.contacts table .form-select {
+  width: 150px !important;
+}
+.contacts table .form-floating > .form-select {
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important;
+  height: auto !important;
+}
+
+.contacts table td button {
+  padding-left: 0 !important;
+}
+
+/* Index End */
+
+/* Groups */
+
+.contacts-group .header {
+  border-bottom: 0 !important;
+}
+
+.contacts-group .scroll {
+  max-height: 405px !important;
+}
+
+.contacts-group table thead {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  vertical-align: middle;
+}
+
+.contacts-group table th {
+  font-weight: 400 !important;
+}
+
+.contacts-group table td {
+  height: 57px !important;
+  max-height: 57px !important;
+}
+
+.contacts-group table th,
+.contacts-group table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.contacts-group table th:nth-child(1),
+.contacts-group table td:nth-child(1) {
+  width: 46px !important;
+  max-width: 46px !important;
+}
+
+.contacts-group table th:nth-child(2),
+.contacts-group table td:nth-child(2) {
+  width: 345px !important;
+  max-width: 345px !important;
+}
+
+.contacts-group table th:last-child,
+.contacts-group table td:last-child {
+  width: 364px !important;
+  max-width: 364px !important;
+}
+
+.contacts-group table td:last-child button.btn-edit:hover {
+  color: #ff5400 !important;
+}
+
+.contacts-group table td:last-child button.btn-details {
+  background-color: #e9ebec;
+}
+
+.contacts-group table td:last-child button.btn-details:hover {
+  color: #878a99;
+}
+
+.contacts-group table td:last-child {
+  width: 364px !important;
+  max-width: 364px !important;
+}
+
+.search-contacts-group .form-control {
+  border-left: 0;
+  width: 285px !important;
+}
+.mobile .search-contacts-group .form-control {
+  width: 158px !important;
+  padding-left: 8px;
+  padding-right: 4px;
+}
+
+.search-contacts-group span {
+  border: 1px #ced4da solid !important;
+  border-right: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 8px !important;
+}
+
+.search-contacts-group .form-control:focus,
+.search-contacts-group .form-control:focus-visible,
+.search-contacts-group .form-control:hover,
+.search-contacts-group .form-control:active,
+.search-contacts-group .form-control:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}
+
+#addContactGroupModal {
+  font-size: 16px !important;
+}
+
+#addContactGroupModal .modal-dialog {
+  width: 829px !important;
+  max-width: 829px !important;
+}
+
+#addContactGroupModal .modal-header {
+  padding: 1rem 1rem !important;
+}
+
+#addContactGroupModal .page-item {
+  width: 24px;
+  height: 24px;
+}
+
+#addContactGroupModal .page-item .page-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#addContactGroupModal .page-item .page-link i {
+  font-size: 16px;
+}
+
+#addContactGroupModal table thead {
+  height: 57px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  vertical-align: middle;
+}
+
+#addContactGroupModal .search-contacts .form-control {
+  width: 210px !important;
+}
+#addContactGroupModal .search-contacts span {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+#addContactGroupModal table th {
+  font-weight: 400 !important;
+}
+
+#addContactGroupModal table td,
+#addContactGroupModal table th {
+  text-align: center;
+  vertical-align: middle;
+}
+#addContactGroupModal table td:first-child,
+#addContactGroupModal table th:first-child {
+  width: 42px !important;
+  max-width: 42px !important;
+}
+
+#addContactGroupModal table td:not(:first-child),
+#addContactGroupModal table th:not(:first-child) {
+  width: 323px !important;
+  max-width: 323px !important;
+}
+
+#addContactGroupModal table th {
+  height: 46px !important;
+}
+#addContactGroupModal table td {
+  vertical-align: middle;
+  height: 57px !important;
+}
+
+#addContactGroupModal .scroll {
+  max-height: 350px !important;
+}
+
+#addContactGroupModal .custom-options.scroll {
+  max-height: 74px !important;
+}
+
+#detailsModal .modal-dialog,
+#detailsModal .modal-content {
+  max-height: 585px !important;
+  max-width: 499px !important;
+}
+#detailsModal .modal-content {
+  min-height: 585px !important;
+}
+
+#detailsModal .modal-header.modal-header-custom {
+  background-color: #fff4e5 !important;
+}
+
+#detailsModal .scroll {
+  max-height: 515px !important;
+  min-height: 515px !important;
+}
+
+#detailsModal table tr div {
+  font-size: 14px !important;
+}
+#detailsModal table th:first-child {
+  width: 70px !important;
+  max-width: 70px !important;
+}
+#detailsModal table td:first-child {
+  padding-left: 25px !important;
+}
+#detailsModal table tr:last-child {
+  border-color: transparent !important;
+  border-style: solid !important;
+  border-width: 0 !important;
+}
+
+#detailsModal table thead th {
+  height: 60px;
+  text-align: left !important;
+  font-weight: 400;
+  vertical-align: middle;
+  border-bottom: 1px solid white !important;
+  padding: 0 !important;
+  background-color: white !important;
+}
+
+#detailsModal table thead th:first-child div {
+  justify-content: center;
+}
+
+#detailsModal .modal-header.modal-header-custom {
+  padding: 10px 20px;
+  height: 60px;
+}
+
+#detailsModal table td {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 0 !important;
+  height: 50px !important;
+  min-height: 45px !important;
+}
+
+#detailsModal table td:first-child {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+#detailsModal table thead th div {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #ced4da;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination .custom-options {
+  max-height: 74px !important;
+}
+
+/* Groups End */
+/* blocklist  */
+
+.contact-list {
+  width: 400px;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.contact-list #addMobileNumberBtn {
+  width: 190px !important;
+  max-width: 190px !important;
+  border: 1px solid #495057 !important;
+  background-color: #495057 !important;
+}
+
+.contact-list .form-control {
+  width: 200px !important;
+}
+
+.contact-list .search-contacts-list .form-control {
+  border-left: 0;
+  width: 376px !important;
+}
+
+.contact-list .search-contacts-list span {
+  border: 1px #ced4da solid !important;
+  border-right: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 8px !important;
+}
+
+.contact-list .search-contacts-list .form-control:focus,
+.contact-list .search-contacts-list .form-control:focus-visible,
+.contact-list .search-contacts-list .form-control:hover,
+.contact-list .search-contacts-list .form-control:active,
+.contact-list .search-contacts-list .form-control:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}
+
+.contact-list table thead {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+.contact-list table thead th {
+  font-weight: 400;
+}
+
+.contact-list .scroll {
+  max-height: 387px !important;
+  min-height: 387px !important;
+}
+
+.contact-list table th,
+.contact-list table td {
+  vertical-align: middle;
+  font-size: 16px !important;
+}
+
+.contact-list table th:first-child,
+.contact-list table td:first-child {
+  width: 42px !important;
+  text-align: center;
+  padding-top: 12px !important;
+}
+
+.contact-list table td {
+  height: 57px !important;
+}
+
+/* blocklisted list */
+
+.blocklisted-list {
+  width: 400px;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.blocklisted-list .search-contacts-list .form-control {
+  border-left: 0;
+  width: 376px !important;
+}
+
+.blocklisted-list .search-contacts-list span {
+  border: 1px #ced4da solid !important;
+  border-right: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 8px !important;
+}
+
+.blocklisted-list .search-contacts-list .form-control:focus,
+.blocklisted-list .search-contacts-list .form-control:focus-visible,
+.blocklisted-list .search-contacts-list .form-control:hover,
+.blocklisted-list .search-contacts-list .form-control:active,
+.blocklisted-list .search-contacts-list .form-control:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}
+
+.blocklisted-list .scroll {
+  max-height: 387px !important;
+  min-height: 387px !important;
+}
+
+.blocklisted-list table thead {
+  height: 46px;
+  background: #495057;
+  color: white;
+}
+.blocklisted-list table thead th {
+  font-weight: 400;
+}
+
+.blocklisted-list table th:first-child,
+.blocklisted-list table td:first-child {
+  width: 42px !important;
+  text-align: center;
+  padding-top: 12px !important;
+}
+
+.blocklisted-list table th,
+.blocklisted-list table td {
+  vertical-align: middle;
+  font-size: 16px !important;
+}
+
+.blocklisted-list table td {
+  height: 57px !important;
+}
+
+/* divider */
+
+.divider {
+  max-width: 144px;
+  min-width: 144px;
+  height: 387px !important;
+  max-height: 387px !important;
+}
+
+#addContactModal .blocklist .modal-content {
+  max-width: 345px !important;
+  max-height: 355px !important;
+}
+
+#blocklistSection .main {
+  max-width: 944px !important;
+}
+
+/* blocklist End */
+
+/* Import Contacts */
+
+.import-contacts.container {
+  height: 450px !important;
+}
+
+.import-contacts .back-arrow {
+  font-size: 1.5rem;
+  color: orange;
+  cursor: pointer;
+}
+.import-contacts .download-link {
+  font-size: 0.9rem;
+  color: orange;
+  text-decoration: none;
+}
+.import-contacts .upload-area {
+  height: 240px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 40px;
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.import-contacts .upload-area.dragover {
+  border-color: #ff5400;
+}
+
+.import-contacts .upload-btn {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+
+/* Import Contacts End */
+
+/* Custom Field */
+
+#customFieldSection .custom-select .custom-select-trigger {
+  width: 215px !important;
+}
+#customFieldSection .custom-select .custom-options {
+  min-height: 37px !important;
+  max-height: 115px !important;
+}
+
+#customFieldSection button.add-field.btn.btn-fill {
+  width: 135px !important;
+  max-width: 135px !important;
+}
+
+.search-fields input {
+  border-left: none !important;
+  padding-left: 4px !important;
+  width: 270px !important;
+}
+
+.search-fields input:focus,
+.search-fields input:focus-visible,
+.search-fields input:hover,
+.search-fields input:active,
+.search-fields input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+.search-fields span {
+  border: 1px solid #ced4da;
+  border-right: none;
+}
+
+#customFieldSection table thead th {
+  font-weight: 400;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+}
+
+#customFieldSection th,
+#customFieldSection td {
+  vertical-align: middle;
+}
+
+#customFieldSection th:not(:first-child),
+#customFieldSection td:not(:first-child) {
+  width: 282px !important;
+  max-width: 282px !important;
+}
+
+#customFieldSection td {
+  height: 57px !important;
+  max-height: 57px !important;
+}
+
+#customFieldSection th:first-child,
+#customFieldSection td:first-child {
+  width: 52px !important;
+  max-width: 52px !important;
+  text-align: center;
+  padding-top: 8px !important;
+  padding-bottom: 4px !important;
+}
+#customFieldSection th:nth-child(2),
+#customFieldSection td:nth-child(2) {
+  padding-left: 1rem !important;
+}
+#customFieldSection th:first-child input[type="checkbox"],
+#customFieldSection td:first-child input[type="checkbox"] {
+  margin-top: 4px !important;
+}
+
+#customFieldSection th:last-child,
+#customFieldSection td:last-child {
+  text-align: center;
+}
+
+#customFieldSection .scroll {
+  min-height: 400px !important;
+  max-height: 400px !important;
+}
+
+#customFieldSection .pagination .custom-select-trigger {
+  width: 42px !important;
+  max-width: 42px !important;
+}
+#customFieldSection .pagination .custom-options {
+  max-height: 74px !important;
+  min-height: 74px !important;
+}
+
+#addFieldModal .btn {
+  font-size: 16px !important;
+}
+
+#addFieldModal .custom-select-trigger::after {
+  border-bottom: 1px solid #878a99;
+  border-right: 1px solid #878a99;
+  right: 18px;
+}
+
+.add-field-department .custom-select-trigger {
+  width: 466px;
+  height: 40px;
+  padding: 9px 55px 9px 10px;
+}
+
+/* Custom Field End */
+
+.reverse-icon {
+  transform: scaleX(-1) !important;
+}
+
+#contactsSection table thead th,
+#contactsGroupSection table thead th,
+#customFieldSection table thead th {
+  height: 57px !important;
+}
+#addcontactsGroupMobileSection table thead {
+  height: 46px;
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  vertical-align: middle;
+}
+
+@media (max-width: 992px) {
+  .search-contacts input.form-control {
+    width: 195px !important;
+  }
+  .department .custom-select-trigger {
+    width: 200px !important;
+  }
+  .mobile .search-contacts .form-control {
+    width: 195px !important;
+  }
+  #addContactGroupModal .modal-dialog,
+  #addContactGroupModal .modal-content {
+    width: calc(100%) !important;
+    max-width: 600px !important;
+    margin: auto;
+  }
+
+  .contacts-group table th:nth-child(2),
+  .contacts-group table td:nth-child(2),
+  .contacts-group table th:last-child,
+  .contacts-group table td:last-child {
+    width: 200px !important;
+    max-width: 200px !important;
+    min-width: 200px !important;
+  }
+
+  .search-contacts-group .form-control {
+    width: 210px !important;
+  }
+
+  .divider {
+    max-width: 60px;
+    min-width: 60px;
+    height: 387px !important;
+    max-height: 387px !important;
+  }
+
+  .contact-list,
+  .blocklisted-list {
+    width: calc(46%) !important;
+    max-width: calc(46%) !important;
+    min-width: calc(46%) !important;
+  }
+
+  .search-contacts-list {
+    width: calc(100%);
+    max-width: calc(100%);
+    min-width: calc(100%);
+  }
+
+  .contact-list .search-contacts-list .form-control,
+  .blocklisted-list .search-contacts-list .form-control {
+    width: calc(100% - 25px) !important;
+    max-width: calc(100% - 25px) !important;
+    min-width: calc(100% - 25px) !important;
+  }
+
+  .blocklist #addMobileNumberBtn,
+  .blocklist #phone-number {
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
+    min-width: calc(100%) !important;
+    height: 40px;
+    max-height: 40px;
+    min-height: 40px;
+  }
+
+  #addMobileNumberBtn {
+    background-color: #495057;
+    border: 1px solid #495057;
+  }
+
+  .search-fields input {
+    width: calc(100% - 45px) !important;
+  }
+}
+
+@media (width: 992px) {
+  .blocklist #phone-number {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+  }
+  .contact-list #addMobileNumberBtn {
+    width: 190px !important;
+    min-width: 190px !important;
+    max-width: 190px !important;
+  }
+  .divider {
+    max-width: 144px;
+    min-width: 144px;
+    height: 387px !important;
+    max-height: 387px !important;
+  }
+
+  .contact-list,
+  .blocklisted-list {
+    width: 400px !important;
+    max-width: 400px !important;
+    min-width: 400px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-contacts input.form-control {
+    width: 195px !important;
+  }
+  .department .custom-select-trigger {
+    width: 200px !important;
+  }
+  .mobile .search-contacts .form-control {
+    width: 195px !important;
+  }
+
+  #blocklistSectionMobile #table-contactlist table thead,
+  #addcontactsGroupMobileSection table thead {
+    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    height: 46px;
+    color: white;
+    vertical-align: middle;
+  }
+  #changeViewButton.toContactList {
+    background-color: #ff5400;
+    border: 1px #ff5400 solid;
+  }
+  #changeViewButton.toBlockList {
+    background-color: #495057;
+    border: 1px #495057 solid;
+  }
+  #blocklistSectionMobile #table-blocklist table thead {
+    background: #495057;
+    height: 46px;
+    color: white;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 576px) {
+  table {
+    font-size: 14px !important;
+  }
+
+  .search-contacts input::placeholder {
+    font-size: 13px;
+  }
+
+  .department .custom-select-trigger {
+    padding-top: 9px !important;
+  }
+
+  #addContactMobileSection .scroll-y {
+    max-height: 520px !important;
+  }
+
+  #addContactMobileSection .wide.users .custom-select-trigger,
+  #addContactMobileSection #mobileNumber,
+  #addContactMobileSection #firstName,
+  #addContactMobileSection #lastName,
+  #addContactMobileSection #emailAddress {
+    width: 88vw !important;
+  }
+
+  #dateIconMobile {
+    cursor: pointer;
+    border: 1px #ced4da solid !important;
+    border-right: none !important;
+  }
+
+  #birthdayDateContainer {
+    max-width: 88vw !important;
+  }
+
+  #addContactMobileSection .form-control.custom-date-input:focus,
+  #addContactMobileSection .form-control.custom-date-input:focus-visible,
+  #addContactMobileSection .form-control.custom-date-input:hover,
+  #addContactMobileSection .form-control.custom-date-input:active,
+  #addContactMobileSection .form-control.custom-date-input:focus:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit;
+    color: inherit;
+    border: 1px #ced4da solid !important;
+    border-left: none !important;
+  }
+
+  #addContactMobileSection
+    .custom-date-input::-webkit-calendar-picker-indicator {
+    display: none; /* Hides the icon in Chrome, Safari, Edge */
+  }
+
+  /* General input adjustments for consistent layout */
+  #addContactMobileSection .custom-date-input {
+    position: relative;
+    border-left: 0;
+  }
+
+  .contacts .mobile .option {
+    border-bottom: 0 !important;
+  }
+
+  .contacts table * {
+    font-size: 14px !important;
+  }
+
+  .contacts .custom-option,
+  .contacts .custom-select-trigger {
+    font-size: 14px !important;
+  }
+
+  .contacts .custom-select-trigger {
+    padding-top: 9px !important;
+  }
+
+  #floatingSelect {
+    font-size: 14px;
+  }
+
+  #floatingSelect option {
+    font-size: 14px;
+  }
+
+  .contacts-group .mobile .option {
+    border-bottom: 0 !important;
+  }
+
+  .contacts-group table th:not(:first-child),
+  .contacts-group table td:not(:first-child) {
+    width: 160px !important;
+    max-width: 160px !important;
+    min-width: 160px !important;
+  }
+
+  .contacts-group table th:nth-child(3),
+  .contacts-group table td:nth-child(3) {
+    width: 230px !important;
+    max-width: 230px !important;
+    min-width: 230px !important;
+  }
+
+  #detailsModal .modal-header.modal-header-custom {
+    background-color: #fff4e5 !important;
+  }
+  #detailsModal table td:first-child {
+    padding-left: 25px !important;
+  }
+
+  #detailsModal table td {
+    padding-left: 1.5rem !important;
+  }
+
+  #addcontactsGroupMobileSection {
+    font-size: 14px !important;
+  }
+
+  #addcontactsGroupMobileSection .list-header {
+    border-bottom: 0 !important;
+  }
+
+  #addcontactsGroupMobileSection .list-header {
+    border-bottom: 0 !important;
+  }
+  #addcontactsGroupMobileSection .scroll {
+    max-height: 400px !important;
+  }
+
+  #addcontactsGroupMobileSection table thead {
+    height: 46px;
+    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    color: white;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection table th:not(:first-child),
+  #addcontactsGroupMobileSection table td:not(:first-child) {
+    width: 160px !important;
+    min-width: 160px !important;
+  }
+
+  #addcontactsGroupMobileSection table th {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection table td {
+    height: 57px !important;
+    max-height: 57px !important;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection .search-contacts-group .form-control {
+    border-left: 0;
+    width: 285px !important;
+  }
+  #addcontactsGroupMobileSection .mobile .search-contacts-group .form-control {
+    width: 158px !important;
+    padding-left: 8px;
+    padding-right: 4px;
+  }
+
+  #addcontactsGroupMobileSection .search-contacts-group span {
+    border: 1px #ced4da solid !important;
+    border-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 8px !important;
+  }
+
+  #addcontactsGroupMobileSection
+    .search-contacts-group-group
+    .form-control:focus,
+  #addcontactsGroupMobileSection
+    .search-contacts-group
+    .form-control:focus-visible,
+  #addcontactsGroupMobileSection .search-contacts-group .form-control:hover,
+  #addcontactsGroupMobileSection .search-contacts-group .form-control:active,
+  #addcontactsGroupMobileSection
+    .search-contacts-group
+    .form-control:focus:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit;
+    color: inherit;
+    border: 1px #ced4da solid !important;
+    border-left: none !important;
+  }
+
+  #addcontactsGroupMobileSection .custom-options {
+    max-height: 74px !important;
+  }
+
+  #detailsModal .modal-dialog {
+    width: 345px !important;
+  }
+
+  #detailsModal table td:first-child {
+    padding-left: 1rem;
+  }
+
+  /* groups end */
+  /* blocklist */
+
+  #changeViewButton {
+    max-height: 84px !important;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  #changeViewButton.toBlockList {
+    background-color: #495057;
+    border: 1px #495057 solid;
+  }
+  #changeViewButton.toContactList {
+    background-color: #ff5400;
+    border: 1px #ff5400 solid;
+  }
+
+  #blocklistSectionMobile .scroll {
+    max-height: 430px !important;
+    min-height: 430px !important;
+  }
+  #blocklistSectionMobile input[type="search"]::placeholder {
+    font-size: 14px !important;
+  }
+
+  #blocklistSectionMobile .list-header {
+    border-bottom: 0 !important;
+  }
+
+  #blocklistSectionMobile table thead {
+    height: 46px;
+    vertical-align: middle;
+    color: white;
+  }
+
+  #blocklistSectionMobile #table-contactlist table thead {
+    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  }
+
+  #blocklistSectionMobile #table-blocklist table thead {
+    background: #495057;
+  }
+
+  #blocklistSectionMobile table th {
+    font-weight: 400;
+    vertical-align: middle !important;
+    padding-top: 10px !important;
+  }
+
+  #blocklistSectionMobile #table-blocklist table th:first-child,
+  #blocklistSectionMobile #table-blocklist table td:first-child,
+  #blocklistSectionMobile #table-contactlist table th:first-child,
+  #blocklistSectionMobile #table-contactlist table td:first-child {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #blocklistSectionMobile #table-contactlist table th,
+  #blocklistSectionMobile #table-contactlist table td,
+  #blocklistSectionMobile #table-blocklist table th,
+  #blocklistSectionMobile #table-blocklist table td {
+    height: 47px !important;
+    vertical-align: middle;
+  }
+
+  #blocklistSectionMobile table th input[type="checkbox"],
+  #blocklistSectionMobile table td input[type="checkbox"] {
+    margin-top: 6px;
+  }
+
+  #addContactModal .custom-close::before,
+  #addContactModal .custom-close::after {
+    background-color: #495057 !important;
+  }
+
+  #addContactModal .blocklist .btn.btn-outline {
+    border: 1px solid #495057 !important;
+    color: #495057 !important;
+  }
+  #addContactModal .blocklist .btn.btn-fill {
+    border: 1px solid #495057 !important;
+    background-color: #495057 !important;
+  }
+
+  /* blocklist end */
+  /* import contacts */
+
+  .import-contacts.container {
+    height: 400px !important;
+  }
+
+  .import-contacts a {
+    font-size: 14px !important;
+  }
+
+  .import-contacts .main {
+    max-width: 683px;
+  }
+
+  .import-contacts .upload-area {
+    height: 284px;
+  }
+
+  label[for="first-row-header-enabled"] {
+    font-size: 14px !important;
+  }
+
+  #uploadButton {
+    font-size: 14px !important;
+  }
+
+  /* import contacts end */
+  /* Custom Fields  */
+  #customFieldSection input[type="search"]::placeholder {
+    font-size: 14px;
+  }
+
+  #customFieldSection .custom-select .custom-select-trigger {
+    width: 170px !important;
+    padding: 9px 25px 9px 10px !important;
+    font-size: 14px !important;
+  }
+
+  #customFieldSection .custom-select .custom-option {
+    font-size: 14px !important;
+  }
+
+  .search-fields input {
+    width: 145px !important;
+  }
+
+  #customFieldSection .scroll {
+    max-height: 410px !important;
+    min-height: 410px !important;
+  }
+  #customFieldSection table * {
+    font-size: 14px !important;
+  }
+
+  #customFieldSection table th:first-child,
+  #customFieldSection table td:first-child {
+    min-width: 52px !important;
+    max-width: 52px !important;
+  }
+  #customFieldSection table th:not(:first-child),
+  #customFieldSection table td:not(:first-child) {
+    min-width: 160px !important;
+    max-width: 160px !important;
+  }
+
+  #customFieldSection .pagination .custom-select .custom-select-trigger {
+    width: 42px !important;
+    max-width: 42px !important;
+    height: 31px !important;
+    max-height: 31px !important;
+    font-size: 14px !important;
+    padding: 4px 50px 4px 5px !important;
+  }
+
+  #addFieldModal .modal-content {
+    max-width: 345px;
+  }
+
+  #addFieldModal .modal-header {
+    background-color: #fff7ec;
+  }
+
+  #addFieldModal .btn {
+    font-size: 14px !important;
+  }
+
+  .add-field-department .custom-select-trigger {
+    width: 311px;
+  }
+
+  input[aria-label="Search Fields"] {
+    padding-top: 7px;
+    font-size: 14px !important;
+  }
+
+  /* Custom Fields end */
+  .page-item {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .page-item .page-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove default padding */
+    font-size: 16px !important;
+  }
+
+  .page-item .page-link i {
+    font-size: 16px; /* Adjust icon size if needed */
+  }
+
+  .pagination .custom-select-trigger {
+    padding-top: 4px !important;
+  }
+
+  .mobile .add-contact.btn.btn-fill {
+    width: 130px !important;
+    max-width: 130px !important;
+  }
+  .search-contacts span {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  #customFieldSection button.add-field.btn.btn-fill {
+    width: 120px !important;
+    max-width: 120px !important;
+  }
+
+  .contacts-group .custom-select-wrapper {
+    height: 40px;
+    min-height: 31px !important;
+    max-height: 31px !important;
+  }
+
+  .custom-select-wrapper {
+    height: 30px !important;
+    max-height: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .mobile .search-contacts .form-control {
+    width: calc(100% - 30px) !important;
+    max-width: calc(100% - 30px) !important;
+    /* max-width: 195px !important; */
+    /* min-width: 140px !important; */
+  }
+}
+
+@media (max-width: 380px) {
+  table {
+    font-size: 13px !important;
+  }
+
+  .search-contacts input::placeholder {
+    font-size: 12px;
+  }
+
+  .department .custom-select-trigger {
+    padding-top: 7px !important;
+    max-width: 175px !important;
+  }
+
+  .wide .custom-select-trigger {
+    padding: 9px 32px 9px 10px;
+  }
+
+  #addContactMobileSection .scroll-y {
+    max-height: 500px !important;
+  }
+
+  #addContactMobileSection .wide.users .custom-select-trigger,
+  #addContactMobileSection #mobileNumber,
+  #addContactMobileSection #firstName,
+  #addContactMobileSection #lastName,
+  #addContactMobileSection #emailAddress {
+    width: 87vw !important;
+  }
+
+  #dateIconMobile {
+    cursor: pointer;
+    border: 1px #ced4da solid !important;
+    border-right: none !important;
+  }
+
+  #birthdayDateContainer {
+    max-width: 87vw !important;
+  }
+
+  #addContactMobileSection .form-control.custom-date-input:focus,
+  #addContactMobileSection .form-control.custom-date-input:focus-visible,
+  #addContactMobileSection .form-control.custom-date-input:hover,
+  #addContactMobileSection .form-control.custom-date-input:active,
+  #addContactMobileSection .form-control.custom-date-input:focus:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit;
+    color: inherit;
+    border: 1px #ced4da solid !important;
+    border-left: none !important;
+  }
+
+  #addContactMobileSection
+    .custom-date-input::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+
+  #addContactMobileSection .custom-date-input {
+    position: relative;
+    border-left: 0;
+  }
+
+  .contacts .mobile .option {
+    border-bottom: 0 !important;
+  }
+
+  .contacts table * {
+    font-size: 13px !important;
+  }
+
+  .contacts .custom-option,
+  .contacts .custom-select-trigger {
+    font-size: 14px !important;
+  }
+
+  .contacts .custom-select-trigger {
+    padding-top: 7px !important;
+  }
+
+  #floatingSelect {
+    font-size: 13px;
+  }
+
+  #floatingSelect option {
+    font-size: 13px;
+  }
+
+  .contacts-group .mobile .option {
+    border-bottom: 0 !important;
+  }
+
+  .contacts-group table th:not(:first-child),
+  .contacts-group table td:not(:first-child) {
+    width: 120px !important;
+    max-width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  .contacts-group table th:nth-child(3),
+  .contacts-group table td:nth-child(3) {
+    width: 180px !important;
+    max-width: 180px !important;
+    min-width: 180px !important;
+  }
+
+  #detailsModal .modal-header.modal-header-custom {
+    background-color: #fff4e5 !important;
+  }
+  #detailsModal table td:first-child {
+    padding-left: 12px !important;
+  }
+
+  #detailsModal table td {
+    padding-left: 1rem !important;
+  }
+
+  #addcontactsGroupMobileSection {
+    font-size: 13px !important;
+  }
+
+  #addcontactsGroupMobileSection .list-header {
+    border-bottom: 0 !important;
+  }
+
+  #addcontactsGroupMobileSection .scroll {
+    max-height: 300px !important;
+  }
+
+  #addcontactsGroupMobileSection table thead {
+    height: 36px;
+    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    color: white;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection table th:not(:first-child),
+  #addcontactsGroupMobileSection table td:not(:first-child) {
+    width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  #addcontactsGroupMobileSection table th {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection table td {
+    height: 40px !important;
+    max-height: 40px !important;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #addcontactsGroupMobileSection .search-contacts-group .form-control {
+    border-left: 0;
+    width: 140px !important;
+  }
+  #addcontactsGroupMobileSection .mobile .search-contacts-group .form-control {
+    width: 90px !important;
+    padding-left: 4px;
+    padding-right: 2px;
+  }
+
+  #addcontactsGroupMobileSection .search-contacts-group span {
+    border: 1px #ced4da solid !important;
+    border-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 4px !important;
+  }
+
+  #addcontactsGroupMobileSection
+    .search-contacts-group-group
+    .form-control:focus,
+  #addcontactsGroupMobileSection
+    .search-contacts-group
+    .form-control:focus-visible,
+  #addcontactsGroupMobileSection .search-contacts-group .form-control:hover,
+  #addcontactsGroupMobileSection .search-contacts-group .form-control:active,
+  #addcontactsGroupMobileSection
+    .search-contacts-group
+    .form-control:focus:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: inherit;
+    color: inherit;
+    border: 1px #ced4da solid !important;
+    border-left: none !important;
+  }
+
+  #addcontactsGroupMobileSection .custom-options {
+    max-height: 54px !important;
+  }
+
+  #detailsModal .modal-dialog {
+    width: 320px !important;
+  }
+
+  #detailsModal table td:first-child {
+    padding-left: 0.5rem;
+  }
+
+  #changeViewButton {
+    max-height: 60px !important;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  #changeViewButton.toBlockList {
+    background-color: #495057;
+    border: 1px #495057 solid;
+  }
+  #changeViewButton.toContactList {
+    background-color: #ff5400;
+    border: 1px #ff5400 solid;
+  }
+
+  #blocklistSectionMobile .scroll {
+    max-height: 300px !important;
+    min-height: 300px !important;
+  }
+  #blocklistSectionMobile input[type="search"]::placeholder {
+    font-size: 13px !important;
+  }
+
+  #blocklistSectionMobile .list-header {
+    border-bottom: 0 !important;
+  }
+
+  #blocklistSectionMobile table thead {
+    height: 36px;
+    vertical-align: middle;
+    color: white;
+  }
+
+  #blocklistSectionMobile #table-contactlist table thead {
+    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  }
+
+  #blocklistSectionMobile #table-blocklist table thead {
+    background: #495057;
+  }
+
+  #blocklistSectionMobile table th {
+    font-weight: 400;
+    vertical-align: middle !important;
+    padding-top: 6px !important;
+  }
+
+  #blocklistSectionMobile #table-blocklist table th:first-child,
+  #blocklistSectionMobile #table-blocklist table td:first-child,
+  #blocklistSectionMobile #table-contactlist table th:first-child,
+  #blocklistSectionMobile #table-contactlist table td:first-child {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #blocklistSectionMobile #table-contactlist table th,
+  #blocklistSectionMobile #table-contactlist table td,
+  #blocklistSectionMobile #table-blocklist table th,
+  #blocklistSectionMobile #table-blocklist table td {
+    height: 32px !important;
+    vertical-align: middle;
+  }
+
+  #blocklistSectionMobile table th input[type="checkbox"],
+  #blocklistSectionMobile table td input[type="checkbox"] {
+    margin-top: 4px;
+  }
+
+  #addContactModal .custom-close::before,
+  #addContactModal .custom-close::after {
+    background-color: #495057 !important;
+  }
+
+  #addContactModal .blocklist .btn.btn-outline {
+    border: 1px solid #495057 !important;
+    color: #495057 !important;
+  }
+  #addContactModal .blocklist .btn.btn-fill {
+    border: 1px solid #495057 !important;
+    background-color: #495057 !important;
+  }
+
+  .import-contacts.container {
+    height: 300px !important;
+  }
+
+  .import-contacts a {
+    font-size: 13px !important;
+  }
+
+  .import-contacts .main {
+    max-width: 320px;
+  }
+
+  .import-contacts .upload-area {
+    height: 180px;
+  }
+
+  label[for="first-row-header-enabled"] {
+    font-size: 13px !important;
+  }
+
+  #uploadButton {
+    font-size: 13px !important;
+  }
+
+  #customFieldSection input[type="search"]::placeholder {
+    font-size: 13px;
+  }
+
+  #customFieldSection .custom-select .custom-select-trigger {
+    width: 145px !important;
+    padding: 7px 15px 7px 7px !important;
+    font-size: 13px !important;
+  }
+
+  #customFieldSection .custom-select .custom-option {
+    font-size: 13px !important;
+  }
+
+  .search-fields input {
+    width: 120px !important;
+  }
+
+  #customFieldSection .scroll {
+    max-height: 250px !important;
+    min-height: 250px !important;
+  }
+  #customFieldSection table * {
+    font-size: 13px !important;
+  }
+
+  #customFieldSection table th:first-child,
+  #customFieldSection table td:first-child {
+    min-width: 36px !important;
+    max-width: 36px !important;
+  }
+  #customFieldSection table th:not(:first-child),
+  #customFieldSection table td:not(:first-child) {
+    min-width: 100px !important;
+    max-width: 100px !important;
+  }
+
+  #customFieldSection .pagination .custom-select .custom-select-trigger {
+    width: 42px !important;
+    max-width: 42px !important;
+    height: 31px !important;
+    max-height: 31px !important;
+    font-size: 14px !important;
+    padding: 4px 50px 4px 5px !important;
+  }
+
+  #addFieldModal .modal-content {
+    max-width: 320px;
+  }
+
+  #addFieldModal .modal-header {
+    background-color: #fff7ec;
+  }
+
+  #addFieldModal .btn {
+    font-size: 13px !important;
+  }
+
+  .add-field-department .custom-select-trigger {
+    width: 180px;
+  }
+
+  input[aria-label="Search Fields"] {
+    padding-top: 5px;
+    font-size: 13px !important;
+  }
+
+  .page-item {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .page-item .page-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 14px !important;
+  }
+
+  .page-item .page-link i {
+    font-size: 14px;
+  }
+
+  .pagination .custom-select-trigger {
+    padding-top: 2px !important;
+  }
+
+  .mobile .add-contact.btn.btn-fill {
+    width: 120px !important;
+    max-width: 120px !important;
+    font-size: 13px !important;
+  }
+
+  .search-contacts span {
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+  }
+
+  #customFieldSection button.add-field.btn.btn-fill {
+    width: 120px !important;
+    max-width: 120px !important;
+  }
+
+  .contacts-group .custom-select-wrapper {
+    height: 32px;
+    min-height: 24px !important;
+    max-height: 24px !important;
+  }
+
+  .mobile .search-contacts .form-control {
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    /* max-width: 155px !important;
+    min-width: 140px !important; */
+    padding-right: 0px;
+  }
+
+  .input-group .search-contacts {
+    font-size: 12px;
+  }
+
+  .custom-select-wrapper {
+    height: 30px !important;
+    max-height: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .add-field-department .custom-select-trigger {
+    height: 34px !important;
+  }
+  #addFieldModal .add-field-department .custom-select-trigger {
+    height: 40px !important;
+    width: 286px !important;
+  }
+}

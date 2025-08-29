@@ -1,0 +1,81 @@
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1" id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <div class="offcanvas-body mt-4">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/messages.svg" alt="Messages" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts.svg" alt="Contacts" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/keyword.svg" alt="Keywords" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center position-relative" href="/notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                        <span style="position: absolute; top: -5px; left: 15px; background: #ff5400; color: #fff; border-radius: 53%; padding: 2px 0; font-size: 10px; font-weight: bold; min-width: 18px; min-height: 18px; max-width: 18px; max-height: 18px; width: 18px; height: 18px; text-align: center; border: 1px solid #fff; z-index: 2;">99+</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/email">
+                        <img src="~/images/icons/at-mail.svg" alt="Email" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/reports.svg" alt="Reports" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/poll.svg" alt="Pollster" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Pollster</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/scheduler">
+                        <img src="~/images/icons/dashboard/scheduler.svg" alt="Scheduler" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings.svg" alt="Settings" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/others.svg" alt="Others" height="24" width="24" class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>

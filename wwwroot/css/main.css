@@ -1,0 +1,683 @@
+.ff-microsoft-sans-serif {
+  font-family: "Microsoft Sans Serif", sans-serif;
+}
+
+.ff-default {
+  font-family: "Microsoft Sans Serif", sans-serif;
+}
+
+.fs-11 {
+  font-size: 11px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
+.fw-200 {
+  font-weight: 200;
+}
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.ud-shadow {
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.dropdown-menu-lg {
+  width: 237px;
+}
+
+.txt-color-primary {
+  color: #ff5400;
+}
+
+.txt-color-primary-alt {
+  color: white;
+}
+
+.txt-color-secondary {
+  color: #495057;
+}
+
+.txt-color-tertiary {
+  color: #878a99;
+}
+
+.btn-orange-fill {
+  background-color: #ff6600;
+  color: white;
+  border-radius: 4px;
+  border: 1px;
+}
+
+.color-primary {
+  color: #ff5400;
+}
+
+.color-primary-alt {
+  color: white;
+}
+
+.btn-orange-fill:hover {
+  background-color: #e65c00;
+  color: white;
+}
+
+.bg-orange-light {
+  background-color: #fff7ec;
+}
+
+.max-width {
+  max-width: 1250px;
+}
+
+.btn:focus,
+.btn:focus-visible,
+.btn:hover,
+.btn:active,
+.btn:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.mobile-dropdown-menu {
+  width: 181px;
+}
+
+.box {
+  width: 75px;
+  height: 70px;
+  padding: 12px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.box-border {
+  border: 2px solid #ff6600;
+}
+
+.btn-orange {
+  background-color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.border-orange {
+  border: 1px solid #ff6600;
+}
+
+.btn-orange:hover {
+  border-color: #e65c00;
+  color: #ff5400;
+}
+
+.btn-orange .icon {
+  width: 30px; /* Icon width */
+  height: 30px; /* Icon height */
+  fill: #e65c00; /* Inherit the current text color */
+}
+
+.btn-orange:disabled {
+  border-color: #808080;
+  color: white;
+}
+
+.bold-chevron {
+  /* Increase the font size slightly */
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+  /* Add a shadow to create a bold effect */
+}
+
+/* Custom class to control the width of the off-canvas sidebar */
+.offcanvas-half-width {
+  width: 60% !important; /* Set the width to 50% */
+  max-width: 300px; /* Optionally, set a max-width */
+}
+
+.offcanvas.offcanvas-bottom {
+  height: auto; /* Set height to auto to fit content */
+  max-height: 50vh; /* Optionally, limit the max height to 50% of the viewport height */
+}
+
+.navbar-toggler.custom-toggler {
+  outline: none !important; /* Remove focus outline */
+  box-shadow: none !important; /* Remove any default box shadow */
+  border: none; /* Remove border */
+  background-color: transparent; /* Ensure background is transparent if needed */
+}
+
+.navbar-toggler.custom-toggler:focus,
+.navbar-toggler.custom-toggler:active {
+  outline: none !important; /* Remove focus outline */
+  box-shadow: none !important; /* Remove focus box shadow */
+  border: none; /* Remove border on focus */
+}
+
+.sidebar .options {
+  background-color: #ff54000d;
+  color: #ff5400;
+}
+.sidebar .options-border {
+  border-top: 1px solid #ff540040;
+}
+
+.custom-active {
+  background-color: #ff5400 !important; /* Background color for the active state */
+  color: white !important; /* Text color */
+}
+
+.custom-active:hover {
+  background-color: #e04900 !important; /* Slightly darker color on hover */
+  color: white !important; /* Ensure text remains white on hover */
+}
+
+.nav-link {
+  color: #333; /* Default color for non-active links */
+}
+
+.nav-link:hover {
+  color: #ff5400; /* Hover color for non-active links */
+}
+
+/* Mobile Sidebar Styles */
+.sidebar-mobile {
+  padding: 0.5rem 1rem; /* Padding for mobile sidebar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Mobile Icon Styles */
+.sidebar-mobile .box {
+  width: 56px;
+  height: 56px;
+  padding: 10px;
+  flex-direction: row;
+  border-radius: 4px;
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.sidebar-mobile .item {
+  background-color: #ff54000d;
+  border-bottom: 0.5px solid #ff540040;
+}
+
+.sidebar-mobile .box.active {
+  background-color: #ff5400; /* Background color for active state */
+  color: white; /* Text color for active state */
+}
+
+.sidebar-mobile .box:hover {
+  background-color: #ff54000d; /* Hover effect */
+  border-color: #e65c00;
+  color: white;
+}
+
+/* Icon Styles */
+.sidebar-mobile .box i {
+  color: #ff5400; /* Icon color */
+  font-size: 1.5rem; /* Icon size */
+}
+
+.sidebar-mobile .box.active i {
+  color: white; /* Icon color for active state */
+}
+
+.export-file-link-mobile {
+  text-decoration: underline; /* Underline text for mobile */
+  font-weight: normal; /* Adjust font weight */
+  margin-left: auto; /* Align to right */
+  display: block; /* Ensure it takes full width */
+  padding: 0.5rem; /* Add some padding for touch targets */
+  color: #ff5400; /* Orange color to match the design */
+}
+
+/* Message Container Styles */
+.card-body {
+  background-color: #f7f7f7; /* Light grey background to match the design */
+}
+
+.message-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+}
+
+/* Sender Info Styles */
+.sender-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sender-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.sender-number {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Search Bar Container */
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container .form-control:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: none; /* Remove the default Bootstrap blue shadow */
+  border-color: transparent; /* Ensure the border remains transparent on focus */
+  border: 2px solid white; /* Ensure there is no border */
+}
+
+.search-container .form-control {
+  background-color: white; /* Set background to white */
+  border: 2px solid white; /* Ensure there is no border */
+}
+
+/* Additional styling for mobile search bar */
+.search-bar-mobile {
+  position: absolute; /* Use absolute positioning */
+  top: 61.25px; /* Adjust based on where you want it to appear */
+  left: 0;
+  right: 0;
+  z-index: 1000; /* High z-index to ensure it floats above other content */
+  background-color: white; /* Background color to make it visible over content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for better visibility */
+  padding: 8px 16px; /* Padding for better aesthetics */
+}
+
+/* Search input for mobile */
+.search-bar-mobile .form-control {
+  border-radius: 0.25rem; /* Rounded corners */
+  border: 1px solid #ddd; /* Light border */
+}
+
+.search-mobile-button:hover,
+.search-mobile-button:focus,
+.search-mobile-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Adjust icon button sizes for mobile view */
+.btn-outline-transparent {
+  padding: 0.5rem;
+}
+
+/* Ensure the card-header is correctly aligned in mobile view */
+.card-header.message-header {
+  padding: 0;
+}
+
+.gear-button .bi-gear {
+  font-size: 1.5rem; /* Increase the font size to enlarge the icon */
+}
+
+.gear-button {
+  padding: 0.5rem;
+}
+
+.gear-button:hover,
+.gear-button:focus,
+.gear-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Message */
+
+.message-header {
+  color: white; /* Adjust text color if needed */
+}
+
+.message-header-bg-color {
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+}
+
+/* Message Body Styles */
+
+.message-body {
+  height: 512px; /* Adjust this value as needed to fit your layout */
+  overflow-y: auto; /* Makes the message area scrollable */
+  background-color: #f7f7f7; /* Light grey background to match the design */
+  border-radius: 0.25rem; /* Rounded corners for the container */
+}
+
+.message-received .message-box,
+.message-sent .message-box {
+  border-radius: 0.5rem; /* Rounded corners */
+  max-width: 60%; /* Limits width to ensure it doesn't span more than 45% of the message body */
+  padding: 10px; /* Adjust padding for better layout */
+}
+
+.message-received .message-box {
+  background-color: white; /* White background for received messages */
+}
+
+.message-sent .message-box {
+  background-color: #fff7ec; /* Light orange background for sent messages */
+}
+
+.message-text {
+  white-space: pre-wrap; /* Allows the text to wrap */
+  word-wrap: break-word; /* Breaks long words */
+  font-size: 0.875rem; /* Adjust font size for messages */
+  line-height: 1.5; /* Line height for better readability */
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  color: #495057;
+  font-family: inherit; /* Inherits font from the parent */
+  background-color: inherit; /* Ensures background color matches parent */
+  border: none; /* Removes border */
+}
+
+.text-muted {
+  font-size: 1rem; /* Smaller font size for timestamps and 'Via SMS' text */
+}
+
+.message {
+  position: relative; /* Allows positioning of other elements if needed */
+}
+
+.message .d-flex {
+  align-items: flex-start; /* Align message contents to the top */
+}
+
+.message-body::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+}
+
+.message-body::-webkit-scrollbar-thumb {
+  background-color: #cccccc; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded scrollbar thumb */
+}
+
+.message-body::-webkit-scrollbar-track {
+  background-color: white; /* Color of the scrollbar track */
+}
+
+.reply .bi-reply {
+  font-size: 1.5rem;
+}
+
+.reply:hover,
+.reply:focus,
+.reply:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+.input-group-text {
+  border: none; /* Remove border */
+  background-color: white; /* White background for icons */
+  color: #ff5400; /* Orange color for icons */
+}
+
+/* Textarea styles */
+textarea.form-control {
+  height: 35px; /* Fixed height for text area */
+  resize: none; /* Disable resizing */
+  border-radius: 0; /* Remove default border radius */
+  overflow-y: auto; /* Show vertical scrollbar only */
+  text-align: left; /* Center text horizontally */
+}
+
+/* Center placeholder text and remove outline */
+textarea.form-control::placeholder {
+  text-align: left; /* Center placeholder text */
+}
+
+/* Remove focus outline and shadow */
+textarea.form-control:focus,
+textarea.form-control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Custom Scrollbar for textarea */
+textarea.form-control::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea.form-control::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
+}
+
+textarea.form-control::-webkit-scrollbar-track {
+  background-color: white;
+  margin-right: 8px;
+}
+
+textarea.form-control::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* send button */
+.send-button:hover,
+.send-button:focus,
+.send-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: inherit;
+  color: inherit;
+}
+
+.btn-close {
+  padding: 0;
+  margin-left: 5px;
+  color: #ff5400;
+}
+
+.btn-close:hover {
+  color: #ff8e32;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* compose */
+.compose-body {
+  border: 1px solid #dee2e6 !important;
+}
+
+/* recipient badge */
+.badge-color {
+  background-color: #495057;
+}
+
+.form-control .recipients {
+  display: flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  flex-wrap: wrap;
+}
+
+button.recipients:hover,
+button.recipients:focus,
+button.recipients:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background-color: transparent;
+  color: transparent;
+}
+
+textarea.compose-message {
+  height: 148px;
+}
+
+.form-control.message {
+  overflow-y: hidden; /* Show vertical scrollbar only */
+}
+
+.compose.input-group-text {
+  padding: 0 0;
+}
+
+/* left: 0; Align the dropdown to the left */
+
+.custom-dropdown {
+  position: absolute;
+  padding: 0;
+  left: -200px;
+  bottom: -1px;
+  transform: translateX(
+    -100%
+  ); /* Shift it further left to match desired position */
+  z-index: 1000; /* Ensure it's on top */
+}
+.form-control.message.mobile {
+  height: 200px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ff5400;
+  border: 1px solid #ff5400;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #ffffff;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+  background-color: #fff7ec; /* Custom orange color */
+  color: black; /* Text color on hover/focus/active */
+}
+
+.dashboard-bg {
+  background-image: url();
+}
+
+@media (max-width: 1399px) {
+  .box {
+    width: 55px;
+    height: 50px;
+  }
+  .box span {
+    display: none;
+  }
+  .box span .notif-badge-container,
+  .box span .notif-badge {
+    display: block !important;
+  }
+
+  .box span .notif-badge {
+    top: -14px !important;
+    right: -24px !important;
+    font-size: 11px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-control {
+    height: 40px;
+  }
+  .mobile-navbar-height {
+    height: 71px;
+  }
+  .max-width {
+    max-width: 100%;
+  }
+
+  .ud-shadow {
+    box-shadow: -0.1rem 0.25rem 0.25rem rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .username-truncate {
+    max-width: 7ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .navbar-brand {
+    margin-right: 0px !important;
+  }
+}

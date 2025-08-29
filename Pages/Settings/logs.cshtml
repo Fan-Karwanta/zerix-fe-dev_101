@@ -1,0 +1,462 @@
+@page
+@model LogsPage
+@{
+Layout = "_Layout";
+ViewData["Title"] = "Logs";
+ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Messages dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-lg-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/settings.svg" height="28" width="28" alt="Logo"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400">Settings</span>
+                </a>
+            </li>
+            <li class="nav-item d-block d-lg-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#settingsoffcanvasDropdown" aria-controls="offcanvasDropdown" aria-expanded="false">
+                    <img src="~/images/icons/settings.svg" height="21" width="21" alt="Logo"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Settings</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+
+
+
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Pollster</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <!-- Corrected links without data-bs-toggle and unique ids -->
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#keywords">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification-black.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#reports">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/poll-black.svg" alt="Pollster" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Pollster</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="#settings">
+                        <img src="~/images/icons/settings.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Logout link at the bottom -->
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<!-- Settings off-canvas -->
+<div class="offcanvas offcanvas-bottom d-block d-lg-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="settingsoffcanvasDropdown" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <span class="fs-16 fw-light">Users</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/user-groups">
+                        <span class="fs-16 fw-light">User Groups</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/system-config">
+                        <span class="fs-16 fw-light">System Configuration</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/logs">
+                        <span class="fs-16 fw-light">Logs</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container my-2 pt-4 px-4 d-lg-block d-none">
+    <nav class="navbar navbar-expand-lg user-settings-nav mt-2 mb-4 py-0">
+        <div class="collapse navbar-collapse py-0">
+            <ul class="navbar-nav mr-auto py-0">
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/users">Users</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/user-groups">User Groups</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/user-roles">User Roles</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="#">System Configuration</a>
+                </li>
+                <li class="nav-item px-4 active">
+                    <a class="nav-link active" href="/settings/logs">Logs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container my-4 px-4">
+    <div class="d-none d-md-flex justify-content-between my-4 ">
+        <div class="fs-24 color-495057 min-h-title">LOGS</div>
+        <div class="d-flex gap-4">
+            <form class="d-flex justify-content-end">
+                <div class="input-group users-settings-select me-1">
+                    <select name="sources" id="sources" class="custom-select wide logs sources"
+                        placeholder="Select Username">
+                        <option value="1">username</option>
+                        <option value="2">username</option>
+                        <option value="3">username</option>
+                        <option value="4">username</option>
+                        <option value="5">username</option>
+                        <option value="6">username</option>
+                        <option value="7">username</option>
+                        <option value="8">username</option>
+                        <option value="9">username</option>
+                        <option value="x">username</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Mobile View -->
+    <div class="d-flex d-md-none flex-column gap-3 mt-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-start fs-16 color-495057 my-2">LOGS</div>
+        </div>
+        <div class="d-flex users-settings-users-menu px-3 py-3">
+            <form class="d-flex select-username">
+                <select name="sources" id="sources" class="custom-select wide logs sources"
+                    placeholder="Select Username">
+                    <option value="1">username</option>
+                    <option value="2">username</option>
+                    <option value="3">username</option>
+                    <option value="4">username</option>
+                    <option value="5">username</option>
+                    <option value="6">username</option>
+                    <option value="7">username</option>
+                    <option value="8">username</option>
+                    <option value="9">username</option>
+                    <option value="x">username</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive users-settings-table logs">
+        <div class="scroll">
+            <table class="table mt-0">
+                <thead class="users-table-header logs thead-fixed">
+                    <tr>
+                        <th>Name</th>
+                        <th>Audit Trail</th>
+                        <th>IP Address</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody class="users-table-body logs">
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle text-left">ANTHEALYN</td>
+                        <td>Lorem ipsum dolor amet</td>
+                        <td>192.168.255.255</td>
+                        <td>Jan 01, 2024</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-none d-md-block">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center my-3 fs-14">
+                <div class="me-2">
+                    Show
+                    <span id="items-range">1 to 10</span>
+                    of <span id="total-items">240</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <select name="sources" id="sources" class="custom-select sources" placeholder="10">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination m-0">
+                        <li class="page-item">
+                            <a class="page-link reverse-icon" href="#"><i
+                                    class="bi bi-skip-forward font-orange"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link reverse-icon" href="#"><i
+                                    class="bi bi-play font-orange"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link color-212529" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link color-ced4da" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link color-ced4da" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link color-ced4da" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link color-ced4da" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-play font-orange"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#"><i
+                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="d-block d-md-none container-fluid px-0">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 d-flex justify-content-center align-items-center my-3">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination m-0 gap-2">
+                        <li class="page-item">
+                            <a class="page-link border-0 reverse-icon border-0" href="#"><i
+                                    class="bi bi-skip-forward color-878A99"></i></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link border-0 reverse-icon" href="#"><i
+                                    class="bi bi-play color-878A99"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link border-0 color-212529" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link border-0" href="#"><i
+                                    class="bi bi-play font-orange"></i></a>
+                        </li>
+                        <li class="page-item"><a class="page-link border-0" href="#"><i
+                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="d-flex justify-content-start align-items-center flex-wrap">
+                    <div class="d-flex align-items-center fs-14">
+                        Show <span id="items-range" class="mx-1 fs-14">1 to 10 </span>of<span id="total-items"
+                            class="fs-14 mx-2">240</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <select name="sources" id="sources" class="custom-select sources" placeholder="10">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/form-select.js"></script>
+
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+</script>

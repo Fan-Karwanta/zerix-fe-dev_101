@@ -1,0 +1,116 @@
+@page
+@model ConfirmedModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Appointment Confirmed";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("_Navigation")
+
+@await Html.PartialAsync("_MobileSidebar")
+
+<div class="container px-4 my-3 pt-md-5 pt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <!-- Back Button -->
+            <div class="mb-4">
+                <a href="/Scheduler" class="text-decoration-none d-flex align-items-center" style="color: #FF6B35;">
+                    <i class="bi bi-chevron-left me-2"></i>
+                    <span>Schedule another appointment</span>
+                </a>
+            </div>
+
+            <!-- Confirmation Card -->
+            <div class="text-center">
+                <!-- Success Icon -->
+                <div class="mb-4">
+                    <div class="rounded-circle bg-dark d-inline-flex align-items-center justify-content-center" style="width: 96px; height: 96px;">
+                        <svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <h2 class="fw-bold mb-3" style="color: #333;">Appointment Confirmed!</h2>
+                
+                <!-- Subtitle -->
+                <p class="text-muted mb-5">Your appointment has been confirmed. See you soon!</p>
+
+                
+
+                <!-- Appointment Details and Action Buttons Row (Card) -->
+                <div class="confirm-card mx-auto">
+                    <!-- Appointment Details -->
+                    <div class="confirm-left">
+                        <h5 class="fw-bold mb-2">Consultation</h5>
+                        <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
+                        <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="confirm-actions">
+                        <button type="button" class="confirm-btn">Cancel</button>
+                        <button type="button" class="confirm-btn">Reschedule</button>
+                        <button type="button" class="confirm-btn">Edit Info</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Card container below the title */
+    .confirm-card {
+        max-width: 920px;
+        border: 1px solid #e6e6e6;
+        border-radius: 10px;
+        padding: 22px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        background: #fff;
+        margin-top: 6px;
+        
+    }
+
+    /* Left details: occupy available space and left-align text */
+    .confirm-left {
+        flex: 1;
+        text-align: left;
+    }
+    .confirm-left h5 { margin-bottom: 8px; }
+
+    /* Actions area */
+    .confirm-actions { margin-left: auto; display: flex; gap: 16px; align-items: center; }
+
+    /* Buttons: outline orange by default */
+    .confirm-btn {
+        border: 1.5px solid #FF6B35;
+        color: #FF6B35;
+        background: transparent;
+        border-radius: 8px;
+        padding: 10px 22px;
+        min-width: 148px;
+        font-weight: 500;
+    }
+    .confirm-btn:hover { background: rgba(255,107,53,0.08); }
+
+    /* Last button is filled (Edit Info) */
+
+    .confirm-actions .confirm-btn:last-child:hover {
+        background: #e55a2b;
+        border-color: #e55a2b;
+        color: #fff;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .confirm-card { flex-direction: column; align-items: stretch; }
+        .confirm-actions { justify-content: center; }
+        .confirm-btn { width: 100%; }
+    }
+</style>

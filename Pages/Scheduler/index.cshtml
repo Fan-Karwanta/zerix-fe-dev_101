@@ -1,0 +1,26 @@
+@page
+@model SchedulerIndexModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Scheduler";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("_Navigation")
+
+@await Html.PartialAsync("_MobileSidebar")
+
+<div class="container px-4 my-3 pt-md-5 pt-3"> 
+    @await Html.PartialAsync("_AppointmentSelection")
+
+    @await Html.PartialAsync("_DateTimeSelection")
+
+    @await Html.PartialAsync("_InformationView")
+</div>
+
+@await Html.PartialAsync("_InformationModal")
+
+@await Html.PartialAsync("_Styles")
+
+@await Html.PartialAsync("_Scripts")
+

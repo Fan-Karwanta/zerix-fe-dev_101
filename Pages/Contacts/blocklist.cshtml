@@ -1,0 +1,818 @@
+@page
+@model BlocklistContactModel
+@{
+Layout = "_Contacts";
+ViewData["Title"] = "Contacts Blocklist";
+ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Messages dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownContacts" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Logo"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange">Blocklist</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownContacts">
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/contacts">
+                            Contacts
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/contacts/groups">
+                            Groups
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/contacts/import">
+                            Import
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/contacts/custom-field">
+                            Custom Field
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#contactGroupsOffCanvas" aria-controls="offcanvasDropdown" aria-expanded="false">
+                    <img src="~/images/icons/contacts.svg" height="21" width="21" alt="Logo"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Blocklist</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Pollster" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Pollster</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container px-4 d-none" id="backToChat">
+        <div class="d-flex flex-row justify-content-start align-items-center align-middle">
+            <img src="~/images/icons/go-back.svg" height="24" width="24" alt="Logo"
+                class="align-middle align-self-center me-2 color-primary" />
+            <span class="font-orange fs-20">Use Template</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <!-- Corrected links without data-bs-toggle and unique ids -->
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center " href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light ">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/contacts">
+                        <img src="~/images/icons/contacts.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#keywords">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification-black.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#reports">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#pollster">
+                        <img src="~/images/icons/poll-black.svg" alt="Pollster" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Pollster</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Logout link at the bottom -->
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="blocklist container px-4 my-2 pt-md-4 pt-2 d-none d-md-block" id="blocklistSection">
+    <div class="d-none d-md-flex flex-column justify-content-between">
+        <div class="d-flex flex-row gap-4 align-items-start justify-content-start fs-24 color-495057 min-h-title mb-3">
+            <div class="align-middle text-center">BLOCKLIST</div>
+        </div>
+    </div>
+    <div class="main d-flex flex-column justify-content-center mx-auto">
+        <div class="d-flex flex-row justify-content-center">
+            <div class="contact-list d-flex flex-column gap-4">
+                <div class="d-flex flex-row justify-content-between mb-2">
+                    <input type="text" class="form-control fs-16" id="phone-number" placeholder="Enter Mobile Number">
+                    <button id="addMobileNumberBtn" data-bs-toggle="modal" data-bs-target="#addContactModal"
+                        class="d-lg-block d-none add-contact btn btn-fill d-flex flex-row justify-content-center align-items-center fs-16">
+                        <img src="/images/icons/add-plus.svg" height="16" width="16" alt="Add a Group"
+                            class="icon my-1 me-1" />
+                        <span>Add to Blocklist</span>
+                    </button>
+                </div>
+                <div class="d-flex flex-row mb-2">
+                    <form class="d-flex search-contacts-list">
+                        <div class="input-group search-contacts-list">
+                            <span class="input-group-text" id="search-addon">
+                                <i class="bi bi-search color-878A99"></i> <!-- Search icon -->
+                            </span>
+                            <input class="form-control" type="search" placeholder="Search Contact List">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive border">
+                    <div class="scroll">
+                        <table class="table">
+                            <thead class="thead-fixed">
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Contact List</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="divider d-flex flex-column justify-content-center align-items-center align-self-end gap-3">
+                <button id="toLeftButton" @* data-bs-toggle="modal" data-bs-target="#addContactGroupModal" *@
+                    class="btn">
+                    <img src="/images/icons/circle-arrow.svg" height="32" width="32" alt="left" class="icon" />
+                </button>
+                <button id="toRightButton" @* data-bs-toggle="modal" data-bs-target="#addContactGroupModal" *@
+                    class="btn">
+                    <img src="/images/icons/circle-arrow.svg" height="32" width="32" alt="left"
+                        class="icon reverse-icon" />
+                </button>
+            </div>
+            <div class="blocklisted-list d-flex flex-column gap-4 justify-content-lg-end justify-content-start">
+                <button id="addMobileNumberBtn" data-bs-toggle="modal" data-bs-target="#addContactModal"
+                    class="d-block d-lg-none add-contact btn btn-fill d-flex flex-row justify-content-center align-items-center fs-16">
+                    <img src="/images/icons/add-plus.svg" height="16" width="16" alt="Add a Group"
+                        class="icon my-1 me-1" />
+                    <span>Add to Blocklist</span>
+                </button>
+                <div class="d-flex flex-row mb-2">
+                    <form class="d-flex search-contacts-list">
+                        <div class="input-group search-contacts-list">
+                            <span class="input-group-text" id="search-addon">
+                                <i class="bi bi-search color-878A99"></i> <!-- Search icon -->
+                            </span>
+                            <input class="form-control" type="search" placeholder="Search Blocklisted Number">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive border">
+                    <div class="scroll">
+                        <table class="table">
+                            <thead class="thead-fixed">
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Blocklisted Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez <0000 000 0000>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row align-self-end mt-4">
+            <div class="d-flex flex-row align-self-end border-0 gap-3">
+                <button type="button" class="btn btn-outline">Cancel</button>
+                <button type="submit" class="btn btn-fill">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile View -->
+<div class="blocklist container px-4 my-2 pt-md-4 pt-2 d-block d-md-none" id="blocklistSectionMobile">
+    <div class="mobile d-flex d-md-none flex-column gap-2">
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-4">
+            <div class="fs-20 color-495057">
+                <span class="align-middle mt-1 fs-20" id="title">CONTACTS</span>
+                <button id="addContact" class="btn px-2 d-none" data-bs-toggle="modal"
+                    data-bs-target="#addContactModal">
+                    <img src="/images/icons/add-fill.svg" height="24" width="24" alt="left" class="icon reverse-icon" />
+                </button>
+            </div>
+            <button id="changeViewButton" class="btn btn-fill toBlockList px-2">
+                Blocklist
+            </button>
+        </div>
+        <div class="container mt-0 px-0">
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-column gap-3 list-header px-3 py-3 border">
+                    <form>
+                        <div class="input-group search-contacts">
+                            <span class="input-group-text " id="search-addon">
+                                <i class="bi bi-search color-878A99"></i>
+                            </span>
+                            <input id="sections-search" class="form-control rounded" type="search"
+                                placeholder="Search Contacts">
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive border" id="table-contactlist">
+                    <div class="scroll">
+                        <table class="table">
+                            <thead class="thead-fixed">
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="table-responsive border d-none" id="table-blocklist">
+                    <div class="scroll">
+                        <table class="table">
+                            <thead class="thead-fixed">
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Alyssa Valdez</td>
+                                    <td>
+                                        <000 000 0000>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row align-self-center mt-3" id="mobile-options">
+            <button id="toRightButtonMobile" class="btn">
+                <img src="/images/icons/circle-arrow.svg" height="44" width="44" alt="to right"
+                    class="icon reverse-icon" />
+            </button>
+            <button id="toLeftButtonMobile" class="btn d-none">
+                <img src="/images/icons/circle-arrow.svg" height="44" width="44" alt="to left" class="icon" />
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered blocklist">
+        <div class="modal-content mx-auto">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-title fs-20 color-495057" id="addContactModalLabel">Add to Blocklist</div>
+                <button type="button" class="custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="modal-body fs-14">
+                <form>
+                    <!-- Mobile Number -->
+                    <div class="mb-3">
+                        <label for="mobileNumber" class="form-label fs-15">Mobile Number</label>
+                        <input type="text" class="form-control" id="mobileNumber">
+                    </div>
+
+                    <div class="modal-footer users border-0 gap-3 px-0">
+                        <button type="button" class="btn btn-outline m-0 fs-14" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-fill m-0 fs-14">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<!-- Messages off-canvas -->
+<div class="offcanvas offcanvas-bottom d-block d-md-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="contactGroupsOffCanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts/groups">
+                        <span class="fs-16 fw-light">Groups</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts/import">
+                        <span class="fs-16 fw-light">Import</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts/custom-field">
+                        <span class="fs-16 fw-light">Custom Field</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/form-select.js"></script>
+
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+</script>
+
+
+<script>
+    let show_block_listed = false;
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.getElementById('changeViewButton').addEventListener('click', function (e) {
+            e.preventDefault();
+            const title = document.getElementById("title")
+            const button = document.getElementById("changeViewButton")
+            const add_button = document.getElementById("addContact")
+            const search = document.getElementById("sections-search")
+            const table_blocklist = document.getElementById("table-blocklist")
+            const table_contactlist = document.getElementById("table-contactlist")
+            const to_left_button = document.getElementById("toLeftButtonMobile")
+            const to_right_button = document.getElementById("toRightButtonMobile")
+
+            if (show_block_listed) {
+                title.textContent = 'CONTACTS'
+
+
+                search.placeholder = 'Search Contacts'
+
+                button.textContent = 'Blocklist'
+                button.classList.add('toBlockList')
+                button.classList.remove('toContactList')
+
+                table_blocklist.classList.add("d-none")
+                table_contactlist.classList.remove("d-none")
+
+                add_button.classList.add("d-none")
+
+                to_left_button.classList.add("d-none")
+                to_right_button.classList.remove("d-none")
+
+                show_block_listed = false;
+            } else {
+                title.textContent = 'BLOCKLIST'
+
+                search.placeholder = 'Search Blocklist'
+
+                button.textContent = 'Contacts'
+                button.classList.remove('toBlockList')
+                button.classList.add('toContactList')
+
+                table_blocklist.classList.remove("d-none")
+                table_contactlist.classList.add("d-none")
+
+                add_button.classList.remove("d-none")
+
+                to_right_button.classList.add("d-none")
+                to_left_button.classList.remove("d-none")
+
+                show_block_listed = true;
+            }
+        });
+    });
+
+</script>

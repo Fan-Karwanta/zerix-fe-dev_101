@@ -1,0 +1,220 @@
+a:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: #ff5400;
+  border: none !important ;
+}
+.login-section {
+  background: #f4f7f7;
+}
+
+.login-section,
+.mobile-mockup-section {
+  flex: 1;
+  width: 50vw;
+  max-width: 50vw;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* Specific styles for login section */
+.login-section {
+  padding: 1rem 2rem 2rem;
+  align-items: center; /* Align items in the center horizontally */
+}
+
+/* Adjust margins for the form elements */
+.mb-3 {
+  margin-bottom: 1rem !important; /* Ensures consistent spacing between form elements */
+}
+
+.btn-show-password {
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  border-left: none !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+
+.btn-show-password:focus,
+.btn-show-password:focus-visible,
+.btn-show-password:hover,
+.btn-show-password:active,
+.btn-show-password:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid;
+  border-left: none;
+}
+
+/* Styles for mobile mockup section */
+.mobile-mockup-section {
+  background-image: url("/SuperAdmin/images/super_admin_login_bg.png");
+  background-size: cover;
+  background-color: #fff;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+/* Additional styling for links */
+.forgot-password {
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Adjust spacing for the checkboxes and form */
+.form-check-label {
+  margin-left: 0.25rem;
+}
+
+.log-in-btn {
+  height: 48px;
+  color: white;
+  border-radius: 12px;
+}
+
+.login-component {
+  max-width: 457px !important;
+  width: 457px;
+  border-radius: 36px;
+  background-color: #fff;
+  padding: 2.5rem 2.25rem;
+  box-shadow: 0 8px 32px #0000000f;
+}
+
+.change-password.width {
+  max-width: 320px;
+}
+
+.change-password.container {
+  width: 430px;
+  height: 544px;
+}
+
+.change-password.section {
+  width: 350px;
+}
+
+.change-password.ud-shadow {
+  box-shadow: 0px 5px 10px 0px #0000000d !important;
+}
+
+/* CUSTOM FLOATING LABEL */
+
+.floating-label-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label-group label {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  color: #777;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  background-color: #fff;
+  padding: 0 0.25rem;
+}
+
+.floating-label-group .form-control {
+  padding: 0.75rem 0.75rem;
+}
+
+.floating-label-group input {
+  border-radius: 12px;
+}
+
+.floating-label-group input[type="password"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border-right: none !important;
+}
+
+.floating-label-group:has(.form-control:focus),
+.floating-label-group:has(.form-control:not(:placeholder-shown)) {
+  label {
+    top: -0.7rem;
+    left: 0.6rem;
+    font-size: 14px;
+    color: #555;
+    z-index: 5;
+  }
+  input[id="password"] {
+    outline: none !important;
+    box-shadow: none !important;
+    border-right: none !important;
+  }
+}
+
+/* Adjust spacing for smaller devices */
+@media (max-width: 576px) {
+  .login-section {
+    padding: 1rem; /* Smaller padding for extra small devices */
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .change-password.container {
+    width: 100%;
+    height: 544px;
+  }
+
+  .change-password.ud-shadow {
+    box-shadow: none !important;
+  }
+
+  .change-org {
+    width: 342px;
+  }
+
+  .login-contents.width {
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .fs-24 {
+    font-size: 1.5rem; /* Adjust font size for mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .login-section {
+    padding: 1rem; /* Smaller padding for extra small devices */
+    width: 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .login-section {
+    background-color: #fff;
+  }
+
+  .logo {
+    background-image: url("../images/super_admin_login_bg.png");
+  }
+
+  .login-component {
+    max-width: none !important;
+    max-height: none !important;
+    width: 100%;
+    height: auto;
+    border-radius: 0px;
+    background-color: #fff;
+    padding: 2.5rem 0.5rem;
+    box-shadow: none;
+  }
+
+  .header {
+    height: 200px;
+  }
+
+  .floating-label-group label {
+    top: 0.5rem;
+  }
+}

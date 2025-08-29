@@ -1,0 +1,24 @@
+@page
+@model PermissionDeniedModel
+@{
+    Layout = "_Messages";
+    ViewData["Title"] = "Permission Denied";
+    ViewData["User"] = "Admin";
+}
+
+<div class="container px-4 my-2 pt-md-4 pt-2 d-flex flex-column">
+    <div class="justify-content-center align-items-center text-center ">
+        <div class="d-flex flex-column mt-4 justify-content-center align-items-center vh-60">
+            <span class="fs-32 m-2">
+                Permission Denied
+            </span>
+            <span class="fs-16 mt-2 mb-3">
+                You do not have permission to access this page. Please contact your administrator.
+            </span>
+            <a id="toDashboard" href="/"
+                class="btn btn-outline d-flex flex-row justify-content-center align-items-center fs-14 mt-4 ">
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+    </div>
+</div>

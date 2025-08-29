@@ -1,0 +1,501 @@
+.bg {
+  /* margin-top: 0px; */
+  background-image: url("/images/BGdashboard-bg.png");
+  background-size: 100% 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(100vh - 95px); /* Adjust the height accordingly */
+  width: 100%;
+}
+
+.logo {
+  height: 40px;
+}
+
+.dashboard {
+  top: 112px;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px; /* Adjust the gap as needed */
+  justify-items: center;
+}
+
+/* Dashboard Item */
+.dashboard-item {
+  width: 106px; /* Fixed width */
+  height: 100px; /* Fixed height */
+  border: 1px solid #ff5500;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.dashboard-item a {
+  text-decoration: none;
+}
+
+.dashboard-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dashboard Icon */
+.dashboard-icon img {
+  height: 42px; /* Adjust as needed */
+  width: 42px; /* Maintain aspect ratio */
+  margin-bottom: 6px;
+}
+
+.dashboard-icon .dashboard-text {
+  color: #ff5500;
+}
+
+/* chat */
+
+#chatBox input {
+  font-size: 14px;
+}
+#chatBox textarea {
+  font-size: 14px;
+  border-radius: 4px;
+  height: 62px;
+  max-height: 62px;
+}
+
+.chatbox-container {
+  position: fixed;
+  bottom: 12%;
+  right: 8%;
+  z-index: 1000;
+}
+
+/* Chat bubble styling */
+.chat-bubble {
+  /* background-color: #ff7e28; Change to match the orange bubble */
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-right: 20px;
+
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0; /* Initially hidden */
+  transform: scale(0.9); /* Slightly smaller initially */
+  pointer-events: none; /* Prevent clicks when hidden */
+}
+
+.chat-bubble.show {
+  opacity: 1;
+  transform: scale(1); /* Restore to normal size */
+  pointer-events: auto; /* Allow interaction */
+}
+
+/* Arrow on the chat bubble */
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Adjust to the size of your image */
+  height: 20px;
+  background-image: url("/images/misc/chat-bubble-arrow.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Circular button for the chat icon */
+.chat-button {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Adjust chat icon inside the button */
+.chat-button img {
+  width: 32px;
+  height: 38px;
+}
+
+.nav-underline .nav-link {
+  border: none;
+  border-bottom: 2px solid transparent;
+  background-color: white;
+  padding: 0.75rem 1rem !important;
+}
+.nav-underline .nav-link.active {
+  border-color: #ff5400; /* Bootstrap primary color */
+  color: #ff5400 !important;
+}
+.nav-underline .nav-link:hover,
+.nav-underline .nav-link:focus {
+  border-color: #ff5400 !important;
+  color: #ff5400 !important;
+}
+
+.support-container {
+  width: 345px;
+  /* height: 400px; */
+  background-color: white;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  box-shadow: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.3rem !important;
+}
+
+.support-container.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+#support-header {
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  height: 56px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+#helpdesk-form .btn {
+  background-color: #ff5500;
+  border-color: #ff5500;
+}
+
+#helpdesk-form .btn:hover,
+#helpdesk-form .btn:focus {
+  background-color: #ff5500 !important;
+}
+
+.support-icon {
+  height: 28px;
+  width: 28px;
+}
+
+.tab-content .tab-pane:not(.active) {
+  display: none !important;
+}
+/* Attached Files Styles */
+
+.attached-files,
+.attached-files-mobile {
+  display: flex; /* Align items in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  gap: 0.5rem; /* Space between each file badge */
+  white-space: nowrap; /* Prevent wrapping of flex items */
+  max-width: 297px;
+}
+.attached-files-mobile {
+  max-width: 345px;
+}
+
+.attached-files::-webkit-scrollbar {
+  height: 4px;
+}
+
+.attached-files::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px;
+}
+
+.attached-files::-webkit-scrollbar-track {
+  background-color: #f7f7f7;
+  margin-right: 8px;
+}
+
+.attached-files::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+.attached-file-badge {
+  background-color: #fff5ec;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 5px;
+}
+
+.btn-file-close {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn-file-close svg {
+  width: 24px;
+  height: 24px;
+  fill: #ff5400; /* Custom color */
+}
+.btn-file-close:hover svg {
+  fill: #e04b00; /* Darker shade on hover */
+}
+
+.btn-close {
+  padding: 0;
+  margin-left: 5px;
+  color: #ff5400;
+}
+
+.btn-close:hover {
+  color: #ff8e32;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.attached-file-badge {
+  background-color: #fff5ec;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.attached-file-badge .bi {
+  padding-top: 2px;
+}
+#success-message {
+  position: relative;
+  top: 50px;
+  max-width: 298px !important;
+  border: 1px solid #e9ebec80;
+  border-radius: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+}
+
+/* ticket table */
+
+.thead-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.table-scroll {
+  min-height: 140px !important;
+  max-height: 295px !important;
+  width: auto !important;
+}
+.ticket-table table {
+  width: 560px !important;
+}
+
+.ticket-table table thead {
+  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  color: white;
+  font-weight: normal;
+}
+
+.ticket-table tbody tr {
+  cursor: pointer;
+}
+
+.ticket-table table th,
+.ticket-table table td input,
+.ticket-table table tr {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.ticket-table table th,
+.ticket-table table td {
+  padding-top: 0.8rem !important;
+  padding-bottom: 0.8rem !important;
+  max-height: 57px !important;
+  height: 57px !important;
+}
+
+.ticket-table table th {
+  font-weight: 400;
+}
+
+.ticket-table table th,
+.ticket-table table td {
+  font-size: 14px;
+}
+
+.ticket-table table th:first-child,
+.ticket-table table tr:first-child {
+  width: 43px !important;
+  max-width: 43px !important;
+}
+
+.ticket-table table th:not(:first-child),
+.ticket-table table tr:not(:first-child) {
+  width: 149px !important;
+  max-width: 149px !important;
+}
+
+input[type="checkbox"]:not(:checked) {
+  background-color: white !important;
+}
+
+.fade-in {
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll {
+  max-height: 400px;
+  height: 400px;
+  border-radius: 4px !important;
+  width: 345px;
+}
+
+/* status */
+
+.status {
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+.status.Pending {
+  background-color: #fffcdd;
+  color: #ffbc0a;
+}
+.status.Ongoing {
+  background-color: #e0f7ff;
+  color: #32ccf4;
+}
+.status.Solved {
+  background-color: #d9f5f0;
+  color: #00bd9d;
+}
+
+.version-text {
+  position: relative;
+  top: -10px;
+  height: 1px !important;
+  text-align: right !important;
+  margin-right: 5px !important;
+}
+
+#ticket-details textarea.form-control,
+#ticket-details-mobile textarea.form-control {
+  background-color: rgba(233, 235, 236, 0.24) !important;
+  color: #878a99 !important;
+  border: 1px solid #e9ebec !important;
+  height: 170px !important;
+  max-height: 170px !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  #main {
+    height: 900px;
+  }
+
+  .dashboard {
+    top: 60px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .dashboard-item {
+    width: 100px;
+    height: 100px;
+  }
+
+  .bg {
+    background-image: none;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: calc(100vh - 95px);
+    width: 100%;
+  }
+  .fs-32.mobile-font {
+    font-size: 24px;
+  }
+  .chatbox-container {
+    bottom: 3%;
+    right: 8%;
+  }
+
+  #chatBox {
+    display: none;
+  }
+
+  #support-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .support-body .scroll {
+    max-height: 90vh;
+    height: 800px;
+    width: auto;
+  }
+
+  #supportFormMobile .form-control {
+    font-size: 14px !important;
+  }
+
+  #success-message-mobile {
+    width: 345px !important;
+    max-width: 345px !important;
+    position: relative;
+    top: 190px;
+    border: 1px solid #e9ebec80;
+    border-radius: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .ticket-table table {
+    width: 650px !important;
+  }
+
+  .btn.btn-primary:active,
+  .btn.btn-primary:hover {
+    background-color: #ff5400;
+  }
+}

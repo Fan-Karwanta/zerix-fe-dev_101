@@ -1,0 +1,39 @@
+.btn.btn-outline {
+  color: #ff5400;
+  background-color: white;
+  border: 1px solid #ff5400;
+  width: 90px;
+  height: 40px;
+  max-width: 90px;
+  max-height: 40px;
+}
+
+.btn.btn-outline:hover {
+  color: #ff5400;
+  background-color: white;
+  border: 1px solid #ff5400;
+}
+
+.btn.btn-fill {
+  color: white;
+  background-color: #ff5400;
+  border: 1px solid #ff5400;
+  width: 90px;
+  height: 40px;
+  max-width: 90px;
+  max-height: 40px;
+}
+
+.btn.btn-fill:hover {
+  color: white;
+  background-color: #ff5400;
+  border: 1px solid #ff5400;
+}
+
+@media (max-width: 576px) {
+  .btn.btn-fill.mobile-icon-only,
+  .btn.btn-outline.mobile-icon-only {
+    width: 44px;
+    height: 40px;
+  }
+}

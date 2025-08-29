@@ -1,0 +1,422 @@
+<script>
+let currentDate = new Date();
+let selectedDate = null;
+let selectedTime = null;
+
+function showDateTimeSelection(button) {
+    document.getElementById('appointment-selection').style.display = 'none';
+    document.getElementById('datetime-selection').style.display = 'block';
+    
+    // Get appointment data from button attributes
+    const appointmentName = button.getAttribute('data-appointment');
+    const fee = button.getAttribute('data-fee');
+    const duration = button.getAttribute('data-duration');
+    
+    // Update appointment info
+    document.getElementById('companyName').textContent = 'Company Name';
+    document.getElementById('selected-appointment-name').textContent = appointmentName;
+    document.getElementById('selected-appointment-details').textContent = appointmentName;
+    document.getElementById('selected-appointment-fee').textContent = duration;
+    document.getElementById('selected-appointment-duration').textContent = fee;
+    
+    // Initialize calendar and time slots
+    generateCalendar();
+    generateTimeSlots();
+
+    // Reset time selection dropdown
+    selectedTime = null;
+    document.getElementById('time-selection-dropdown').style.display = 'none';
+    document.getElementById('selected-time-display').textContent = '';
+    
+    // Set default selected date to today + 1
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    selectDate(tomorrow);
+}
+
+function showAppointmentSelection() {
+    document.getElementById('datetime-selection').style.display = 'none';
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('appointment-selection').style.display = 'block';
+}
+
+function showDateTimeSelection() {
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('appointment-selection').style.display = 'none';
+    document.getElementById('datetime-selection').style.display = 'block';
+}
+
+function goBack() {
+    // Navigate back to the previous page or dashboard
+    window.history.back();
+}
+
+// Generate time slots with fixed times as shown in the image
+function generateTimeSlots() {
+    const timeSlotsContainer = document.getElementById('time-slots');
+    timeSlotsContainer.innerHTML = '';
+    
+    // Fixed time slots as shown in the image
+    const timeSlots = [
+        '9:00 am',
+        '9:50 am',
+        '10:40 am',
+        '11:30 am',
+        '12:20 pm',
+        '1:10 pm',
+        '2:00 pm',
+        '2:50 pm',
+        '3:40 pm',
+        '4:30 pm',
+        '5:20 pm',
+        '6:10 pm',
+        '7:00 pm',
+        '7:50 pm',
+        '8:40 pm',
+        '9:30 pm',
+    ];
+    
+    // Create time slot elements for each time
+    timeSlots.forEach(timeString => {
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'time-slot';
+        timeSlot.innerHTML = `
+            <div class="time-slot-content">
+                <div class="time-text">${timeString}</div>
+                <div class="select-button" style="display: none;">Select</div>
+            </div>
+        `;
+        timeSlot.onclick = () => selectTimeSlot(timeSlot, timeString);
+        
+        timeSlotsContainer.appendChild(timeSlot);
+    });
+}
+
+// Scroll time slots up (show earlier times)
+function scrollTimeUp() {
+    const timeSlotsContainer = document.getElementById('time-slots');
+    timeSlotsContainer.scrollTop -= 100;
+}
+
+// Scroll time slots down (show later times)
+function scrollTimeDown() {
+    const timeSlotsContainer = document.getElementById('time-slots');
+    timeSlotsContainer.scrollTop += 100;
+}
+
+function generateCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    // Update month/year display
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    document.getElementById('calendar-month-year').textContent = `${monthNames[month]} ${year}`;
+    
+    // Clear previous days
+    const daysContainer = document.getElementById('calendar-days');
+    daysContainer.innerHTML = '';
+    
+    // Get first day of month and number of days
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    
+    // Add previous month's trailing days
+    for (let i = firstDay - 1; i >= 0; i--) {
+        const dayElement = createDayElement(daysInPrevMonth - i, true);
+        daysContainer.appendChild(dayElement);
+    }
+    
+    // Add current month's days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = createDayElement(day, false);
+        daysContainer.appendChild(dayElement);
+    }
+    
+    // Add next month's leading days
+    const totalCells = daysContainer.children.length;
+    const remainingCells = 42 - totalCells; // 6 rows × 7 days
+    for (let day = 1; day <= remainingCells; day++) {
+        const dayElement = createDayElement(day, true);
+        daysContainer.appendChild(dayElement);
+    }
+}
+
+function createDayElement(day, isOtherMonth) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+    
+    if (isOtherMonth) {
+        dayElement.classList.add('other-month');
+        dayElement.textContent = day;
+    } else {
+        const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+        const today = new Date();
+        const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+        
+        // Add light circle highlight for Sun-Thu (0-4)
+        if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+            dayElement.classList.add('weekday-highlight');
+        }
+        
+        // Check if this is the selected date
+        if (selectedDate && date.getDate() === selectedDate.getDate() && 
+            date.getMonth() === selectedDate.getMonth() && 
+            date.getFullYear() === selectedDate.getFullYear()) {
+            dayElement.classList.add('selected');
+        }
+        
+        // Create day number element
+        dayElement.textContent = day;
+        
+        // Comment out the Today indicator
+        /*
+        if (date.toDateString() === today.toDateString()) {
+            dayElement.classList.add('today');
+            // Add 'Today' label below the day number
+            const todayLabel = document.createElement('span');
+            todayLabel.className = 'today-label';
+            todayLabel.textContent = 'Today';
+            dayElement.appendChild(todayLabel);
+        }
+        */
+        
+        dayElement.onclick = () => selectDate(date);
+    }
+    
+    return dayElement;
+}
+
+function selectDate(date) {
+    selectedDate = date;
+    
+    // Update all calendar days to remove selected class
+    const allDays = document.querySelectorAll('.calendar-day');
+    allDays.forEach(day => day.classList.remove('selected'));
+    
+    // Find and select the correct day
+    allDays.forEach(day => {
+        if (!day.classList.contains('other-month')) {
+            const dayNum = parseInt(day.textContent);
+            const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), dayNum);
+            
+            if (dayDate.getDate() === date.getDate() && 
+                dayDate.getMonth() === date.getMonth() && 
+                dayDate.getFullYear() === date.getFullYear()) {
+                day.classList.add('selected');
+            }
+        }
+    });
+    
+    // Update selected date display
+    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const dayName = days[date.getDay()];
+    const monthName = months[date.getMonth()];
+    const dayNumber = date.getDate();
+    
+    // Keep bold formatting when a date is selected
+    const dateDisplay = document.getElementById('selected-date-display');
+    dateDisplay.innerHTML = `<strong>${dayName}, ${monthName} ${dayNumber}</strong>`; // Keep strong tags
+    
+    // Keep bold on weekday headers
+    const weekdayHeaders = document.querySelectorAll('.weekday');
+    weekdayHeaders.forEach(header => {
+        if (!header.querySelector('strong')) {
+            header.innerHTML = `<strong>${header.textContent}</strong>`; // Ensure strong tags remain
+        }
+    });
+    
+    // Update weekday header colors based on selected weekday
+    const headerNodes = document.querySelectorAll('.calendar-weekdays .weekday');
+    headerNodes.forEach((header, idx) => {
+        header.classList.remove('weekday-dim', 'weekday-active');
+        if (idx === date.getDay()) {
+            header.classList.add('weekday-active');
+        } else {
+            header.classList.add('weekday-dim');
+        }
+    });
+    
+    // Mobile-specific behavior: Show time slots after date selection
+    if (window.innerWidth <= 768) {
+        showTimeSlotsOnMobile();
+    }
+}
+
+function selectTimeSlot(element, time) {
+    // Only allow selection if a date has been selected first
+    if (!selectedDate) {
+        alert('Please select a date first.');
+        return;
+    }
+    
+    selectedTime = time;
+    
+    // Remove previous selection
+    document.querySelectorAll('.time-slot').forEach(slot => {
+        slot.classList.remove('time-selected');
+        const submitBtn = slot.querySelector('.select-button');
+        if (submitBtn) {
+            submitBtn.style.display = 'none';
+        }
+    });
+    
+    // Add selection to clicked element
+    element.classList.add('time-selected');
+    const submitButton = element.querySelector('.select-button');
+    if (submitButton) {
+        submitButton.style.display = 'flex';
+        
+        // Add click handler to submit button
+        submitButton.onclick = function(e) {
+            e.stopPropagation(); // Prevent triggering the time slot click
+            submitAppointment();
+        };
+    }
+}
+
+function submitAppointment() {
+    if (!selectedDate || !selectedTime) {
+        alert('Please select both date and time.');
+        return;
+    }
+    
+    // Update information view with selected appointment info
+    const appointmentName = document.getElementById('selected-appointment-name').textContent;
+    const appointmentDetails = document.getElementById('selected-appointment-details').textContent;
+    const appointmentFee = document.getElementById('selected-appointment-fee').textContent;
+    
+    document.getElementById('info-appointment-name').textContent = appointmentName;
+    document.getElementById('info-appointment-details').textContent = appointmentDetails;
+    document.getElementById('info-appointment-fee').textContent = appointmentFee;
+    
+    // Hide date/time selection and show information view
+    document.getElementById('datetime-selection').style.display = 'none';
+    document.getElementById('information-view').style.display = 'block';
+}
+
+function confirmTime() {
+    if (!selectedDate || !selectedTime) {
+        alert('Please select both date and time.');
+        return;
+    }
+    
+    // Update modal with selected appointment info
+    const appointmentName = document.getElementById('selected-appointment-name').textContent;
+    const appointmentDuration = document.getElementById('selected-appointment-fee').textContent;
+    const appointmentFee = document.getElementById('selected-appointment-duration').textContent;
+    
+    document.getElementById('modal-appointment-name').textContent = appointmentName;
+    document.getElementById('modal-appointment-duration').textContent = appointmentDuration;
+    document.getElementById('modal-appointment-fee').textContent = appointmentFee;
+    
+    // Show the information modal
+    const modal = new bootstrap.Modal(document.getElementById('informationModal'));
+    modal.show();
+}
+
+function validateAge(input) {
+    // Remove any non-numeric characters
+    let value = input.value.replace(/[^0-9]/g, '');
+    
+    // Limit to 2 digits maximum
+    if (value.length > 2) {
+        value = value.slice(0, 2);
+    }
+    
+    // Convert to number and validate range (1-99)
+    let numValue = parseInt(value);
+    if (numValue > 99) {
+        value = '99';
+    } else if (numValue < 1 && value.length > 0) {
+        value = '1';
+    }
+    
+    // Update the input value
+    input.value = value;
+}
+
+function submitInformation() {
+    // Validate age field before submission
+    const ageInput = document.getElementById('age');
+    const ageValue = ageInput.value;
+    
+    if (!ageValue || ageValue < 1 || ageValue > 99) {
+        alert('Please enter a valid age between 1 and 99.');
+        ageInput.focus();
+        return;
+    }
+    
+    // Handle form submission - navigate to confirmed appointment page
+    window.location.href = '/Scheduler/Confirmed';
+    // Close modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('informationModal'));
+    modal.hide();
+}
+
+function previousMonth() {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    generateCalendar();
+}
+
+function nextMonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    generateCalendar();
+}
+
+// Navigation functions
+function showAppointmentSelection() {
+    document.getElementById('datetime-selection').style.display = 'none';
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('appointment-selection').style.display = 'block';
+}
+
+function showDateTimeView() {
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('appointment-selection').style.display = 'none';
+    document.getElementById('datetime-selection').style.display = 'block';
+}
+
+// Mobile calendar-first flow functions
+function showTimeSlotsOnMobile() {
+    if (window.innerWidth <= 768) {
+        const calendarSection = document.getElementById('calendar-section');
+        const timeslotsSection = document.getElementById('timeslots-section');
+        
+        calendarSection.classList.add('mobile-hide-calendar');
+        timeslotsSection.classList.add('mobile-show-timeslots');
+    }
+}
+
+function showCalendarOnMobile() {
+    if (window.innerWidth <= 768) {
+        const calendarSection = document.getElementById('calendar-section');
+        const timeslotsSection = document.getElementById('timeslots-section');
+        
+        calendarSection.classList.remove('mobile-hide-calendar');
+        timeslotsSection.classList.remove('mobile-show-timeslots');
+    }
+}
+
+// Initialize calendar when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    generateCalendar();
+    
+    // Initialize mobile view state
+    if (window.innerWidth <= 768) {
+        const timeslotsSection = document.getElementById('timeslots-section');
+        if (timeslotsSection) {
+            timeslotsSection.classList.remove('mobile-show-timeslots');
+        }
+    }
+    
+    // Initialize Bootstrap modal
+    if (typeof bootstrap !== 'undefined') {
+        // Bootstrap is loaded
+    } else {
+        console.warn('Bootstrap is required for modal functionality');
+    }
+});
+</script>

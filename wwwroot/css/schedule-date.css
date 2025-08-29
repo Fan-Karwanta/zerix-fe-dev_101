@@ -1,0 +1,93 @@
+#scheduleDropdown input {
+  height: 24px !important;
+}
+
+#scheduleDropdown input[type="number"] {
+  width: 32px !important;
+  text-align: center;
+  font-family: "Microsoft Sans Serif", sans-serif !important;
+  font-size: 14px !important;
+}
+
+#scheduleDropdown input[type="number"]:placeholder-shown,
+#scheduleDropdown input[type="number"]::placeholder {
+  width: 32px !important;
+  text-align: center;
+  font-family: "Microsoft Sans Serif", sans-serif !important;
+  font-size: 14px !important;
+  text-align: center !important;
+}
+
+#scheduleDropdown .custom-select-trigger {
+  width: 56px !important;
+  top: -1px !important;
+  display: inline-block !important;
+  color: #495057 !important;
+}
+
+#scheduleDropdown .custom-select-wrapper {
+  height: 24px !important;
+  max-height: 24px !important;
+  min-height: 24px !important;
+  margin-bottom: 1px !important;
+}
+
+#scheduleDropdown .custom-option {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#scheduleDropdown .custom-options.scroll {
+  max-height: 56px !important;
+}
+
+#scheduleSendDate {
+  height: 24px !important;
+  width: 144px !important;
+  padding: 0 !important;
+}
+
+#scheduleSendDate span {
+  border: 1px solid #ced4da;
+  border-right: none !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  width: 24px !important;
+}
+
+#scheduleSendDate i {
+  height: 12px !important;
+  width: 12px !important;
+  margin-bottom: 4px !important;
+}
+
+#scheduleSendDate input {
+  font-size: 14px !important;
+  color: #495057;
+}
+
+#scheduleSendDate .custom-date-input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+#scheduleSendDate .custom-date-input {
+  position: relative;
+  border-left: 0;
+  width: 120px !important;
+  max-width: 120px !important;
+  height: 24px !important;
+}
+
+#scheduleSendDate .form-control.custom-date-input:focus,
+#scheduleSendDate .form-control.custom-date-input:focus-visible,
+#scheduleSendDate .form-control.custom-date-input:hover,
+#scheduleSendDate .form-control.custom-date-input:active,
+#scheduleSendDate .form-control.custom-date-input:focus:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+  border-left: none !important;
+}

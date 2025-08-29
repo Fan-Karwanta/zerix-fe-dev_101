@@ -1,0 +1,1541 @@
+@page
+@model TextClientPage
+@{
+    Layout = "SuperAdmin/_Dashboard";
+    ViewData["Title"] = "Zerix Text Clients";
+    ViewData["User"] = "Jose Manalo";
+    ViewData["Role"] = "Super Admin";
+    ViewData["page"] = "text_client";
+}
+
+<div class="container-fluid content text-client" id="viewParent">
+    <div class="view d-flex flex-column gap-2" id="mainViewSection">
+        <div class="title fs-20 fw-700">
+            @ViewData["Title"]
+        </div>
+        <div class="options d-flex flex-row justify-content-between mb-3">
+            <form class="d-flex search mb-2 mb-md-0">
+                <div class="input-group search">
+                    <span class="input-group-text pe-1">
+                        <img src="/superadmin/images/icons/search.svg" alt="" width="20" height="19">
+                    </span>
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </form>
+            <button id="new-client"
+                class="btn bg-color-ff5400 color-fff py-2 px-3 fs-14 d-flex align-items-center align-vertical text-center">
+                <img src="~/superadmin/images/icons/add-plus-white.svg" alt="" width="20">
+                <span class="d-none d-md-block ms-md-2 ms-0">Add New Client</span>
+            </button>
+        </div>
+        <div class="table-responsive">
+            <table id="account-subs-table">
+                <thead class="users-table-header thead-fixed">
+                    <tr>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Company</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Contact</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Email</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Subscription</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Activation</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Expiration</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" data-sort="default">
+                                <span>Status</span>
+                                <img src="/SuperAdmin/images/icons/sort-default.svg" alt="sort-default" width="8"
+                                    height="13">
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="users-table-body users">
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>OSI</td>
+                        <td>Jose Manalo</td>
+                        <td>jose@zerixtext.com</td>
+                        <td>Perpetual</td>
+                        <td>01/01/25</td>
+                        <td>01/01/26</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckDefault">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+
+                                <button class="btn more-icon-btn d-flex justify-content-start d-block d-md-none"
+                                    type="button" role="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#accountOffCanvasDropDown" aria-controls="offcanvasDropdown"
+                                    aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <button class="btn more-icon-btn d-flex justify-content-start d-none d-md-block"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="/SuperAdmin/images/icons/more.svg" class="more-icon" alt="edit"
+                                        height="24" width="8">
+                                </button>
+                                <ul class="dropdown-menu more-btn">
+                                    <li>
+                                        <a class="dropdown-item" href="#" id="edit">
+                                            <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Edit</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#deleteUserModal">
+                                            <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                                            <span class="fs-14 fw-500 font-poppins-500">Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination d-none d-md-block">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center my-3 fs-14">
+                    <div class="me-2 ff-default">
+                        Show
+                        <span id="items-range" class="ff-default">1 to 10</span>
+                        of <span id="total-items" class="ff-default">240</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <select name="sources" id="sources" class="custom-select sources" placeholder="10">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center me-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination m-0 gap-2">
+                            <li class="page-item">
+                                <a class="page-link reverse-icon" href="#">
+                                    <i class="bi bi-skip-forward color-878A99"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link reverse-icon" href="#">
+                                    <i class="bi bi-play color-878A99"></i>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link color-212529" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link color-ced4da" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link color-ced4da" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link color-ced4da" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link color-ced4da" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">
+                                    <i class="bi bi-play font-orange"></i>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">
+                                    <i class="bi bi-skip-forward font-orange"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="pagination d-block d-md-none container-fluid px-0">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 d-flex justify-content-center align-items-center my-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination m-0 gap-md-4 gap-2">
+                            <li class="page-item">
+                                <a class="page-link border-0 reverse-icon border-0" href="#"><i
+                                        class="bi bi-skip-forward color-878A99"></i></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link border-0 reverse-icon" href="#"><i
+                                        class="bi bi-play color-878A99"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link border-0 color-212529" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link border-0" href="#"><i
+                                        class="bi bi-play font-orange"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link border-0" href="#"><i
+                                        class="bi bi-skip-forward font-orange"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center my-3 flex-wrap">
+                    <div class="d-flex justify-content-start align-items-center flex-wrap">
+                        <div class="d-flex align-items-center my-2 fs-14 ff-default">
+                            Show
+                            <span id="items-range" class="mx-1 fs-14 ff-default">1 to 10 </span>
+                            of
+                            <span id="total-items" class="fs-14 mx-2 ff-default">240</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <select name="sources" id="sources" class="custom-select sources" placeholder="10">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- edit mobile offcanvas -->
+<div class="offcanvas offcanvas-bottom d-block d-sm-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="accountOffCanvasDropDown" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#" id="editViewMobile">
+                        <img src="/SuperAdmin/images/icons/edit.svg" alt="edit" class="me-2">
+                        <span class="fs-16 fw-500 font-poppins-500">Edit</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-nter" href="#">
+                        <img src="/SuperAdmin/images/icons/delete.svg" alt="delete" class="me-2">
+                        <span class="fs-16 fw-500 font-poppins-500">Delete</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- activate modal: desktop -->
+<div class="modal fade" id="activateModal" tabindex="-1" aria-labelledby="activateModalLabel" aria-hidden="true">
+    <div class="activate-modal modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
+        <div class="activate-modal modal-content">
+            <!-- Modal Header -->
+            <div class="d-none d-md-flex activate-modal modal-header justify-content-end pt-4 px-4 pb-2">
+                <button type="button" class="custom-close me-2 mt-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="activate-modal modal-body py-0 mx-3 mx-md-4 my-2 px-2">
+                <div class="modal-desktop-header d-none d-md-flex flex-column fs-28" id="activateModalLabel">
+                    <span class="fs-28 fw-700 color-000">Activate Account</span>
+                    <span class="fs-14 fw-400 color-666">Select the applicable subscription plan.</span>
+                </div>
+                <form class="my-4 d-flex flex-column gap-4">
+                    <div class="input-group d-flex flex-column gap-2">
+                        <span class="color-000 fw-700 fs-14">Demo Trial</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="sevenDays">
+                            <label class="form-check-label fs-14 color-666" for="sevenDays">
+                                7 days Extension
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="fiveDays">
+                            <label class="form-check-label fs-14 color-666" for="fiveDays">
+                                5 days Extension
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="customDateDemo">
+                            <label class="form-check-label fs-14 color-666" for="customDateDemo">
+                                Custom Date
+                            </label>
+                            <div
+                                class="date-container d-flex flex-row justify-content-md-between justify-content-start mt-2">
+                                <div
+                                    class="d-flex flex-column justify-content-start align-items-start gap-2 me-md-0 me-2">
+                                    <span class="fs-14 color-666">From</span>
+                                    <div class="input-group">
+                                        <input type="date" name="" id="" class="form-control px-3 color-666">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column justify-content-start align-items-start gap-2">
+                                    <span class="fs-14 color-666">To</span>
+                                    <div class="input-group">
+                                        <input type="date" name="" id="" class="form-control px-3 color-666">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group d-flex flex-column gap-2">
+                        <span class="color-000 fw-700 fs-14">Subscription</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="sixMonths">
+                            <label class="form-check-label fs-14 color-666" for="sixMonths">
+                                6 Months (Half Year)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="oneYear">
+                            <label class="form-check-label fs-14 color-666" for="oneYear">
+                                1 Year (Annual)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="customDateSubscription">
+                            <label class="form-check-label fs-14 color-666" for="customDateSubscription">
+                                Custom Date
+                            </label>
+                            <div
+                                class="date-container d-flex flex-row justify-content-md-between justify-content-start mt-2">
+                                <div
+                                    class="d-flex flex-column justify-content-start align-items-start gap-2 me-md-0 me-2">
+                                    <span class="fs-14 color-666">From</span>
+                                    <div class="input-group">
+                                        <input type="date" name="" id="" class="form-control px-3 color-666">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column justify-content-start align-items-start gap-2">
+                                    <span class="fs-14 color-666">To</span>
+                                    <div class="input-group">
+                                        <input type="date" name="" id="" class="form-control px-3 color-666">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group d-flex flex-column gap-2">
+                        <span class="color-000 fw-700 fs-14">Perpetual</span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="perpetual">
+                            <label class="form-check-label fs-14 color-666" for="perpetual">
+                                Lifetime
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" id="activateConfirm"
+                        class="border align-self-end w-100 bg-color-ff5400 log-in-btn py-2 fs-14 align-vertical text-center">Activate
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* edit desktop *@
+<div class="view edit d-none d-flex flex-column gap-2" id="editSection">
+    <div class="title fs-20 fw-700 mb-3">
+        <a href="#" id="go-back" class="fs-16 d-flex flex-row justify-content-start align-items-center align-vertical">
+            <img src="~/superadmin/images/icons/go-back.svg" alt="go back" width="24" height="24">
+            <span class="ms-3 fw-400">Go Back</span>
+        </a>
+    </div>
+    <div class="edit scroll">
+        <div class="d-flex flex-column justify-content-between px-2">
+            <span class="my-2 color-666 fs-400 fs-14">
+                Please enter the client details for a more comprehensive dataset.
+            </span>
+            <form action="">
+                <div class="client-details d-flex flex-column justify-content-between mb-2 gap-2">
+                    <span class="fs-28 fw-700 color-000 mt-3">Client Details</span>
+                    <div class="d-flex flex-row gap-2 client-name">
+                        <div class="d-flex flex-column justify-content-start align-items-start gap-2 me-md-0 me-2">
+                            <span class="fs-14 color-000 fw-700">Business Name</span>
+                            <div class="input-group">
+                                <input type="text" name="" id="" placeholder="Enter Business Name"
+                                    class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column justify-content-start align-items-start gap-2">
+                            <span class="fs-14 color-000 fw-700">Contact Person</span>
+                            <div class="input-group">
+                                <input type="text" name="" id="" placeholder="Enter Contact Person"
+                                    class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="email d-flex flex-column justify-content-start align-items-start gap-2">
+                        <span class="fs-14 color-000 fw-700">Email</span>
+                        <input type="email" name="" id="" placeholder="Enter Email" class="form-control px-3 color-666">
+                    </div>
+                    <div class="tel d-flex flex-column justify-content-start align-items-start gap-2">
+                        <span class="fs-14 color-000 fw-700">Phone Number</span>
+                        <div class="input-group d-flex flex-row">
+                            <select class="form-select" id="countryCode" style="max-width: 70px;">
+                                <option value="+64">+63</option>
+                                <option value="+1">+1</option>
+                            </select>
+                            <input type="tel" class="form-control px-3 color-666" id="phone"
+                                placeholder="Enter phone number">
+                        </div>
+                    </div>
+                    <div class="job-title d-flex flex-column justify-content-start align-items-start gap-2">
+                        <span class="fs-14 color-000 fw-700">Job Title</span>
+                        <input type="text" name="" id="" placeholder="Enter Job Title"
+                            class="form-control px-3 color-666">
+                    </div>
+                    <div class="company-address d-flex flex-column justify-content-start align-items-start gap-2">
+                        <span class="fs-14 color-000 fw-700">Company Address</span>
+                        <div class="input-group address">
+                            <span class="input-group-text pe-1 icon-input-left">
+                                <img src="/superadmin/images/icons/location-pin.svg" alt="" width="20" height="19">
+                            </span>
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        </div>
+                    </div>
+                </div>
+                <div class="subscription d-flex flex-column justify-content-between mb-3 gap-2">
+                    <span class="fs-28 fw-700 color-000 mt-3">Subscription Plan</span>
+                    <div class="status d-flex flex-row">
+                        <div class="d-flex flex-column me-4 gap-2">
+                            <span class="fs-14 color-000 fw-700">Status</span>
+                            <div class="form-check form-switch ">
+                                <input class="form-check-input" type="checkbox" role="switch" id="statusActivated">
+                            </div>
+                        </div>
+                        <div class="d-none flex-column flex-grow-1" id="activatedBy">
+                            <span class="fs-14 color-000 fw-700">Activated By</span>
+                            <div class="input-group">
+                                <input type="text" name="" id="" value="Jose Manalo" disabled
+                                    class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-type d-flex flex-column gap-1">
+                        <span class="fs-14 color-000 fw-700">Subscription Type</span>
+                        <div class="input-group d-flex flex-row">
+                            <select class="form-select" id="countryCode" style="max-width: 600px;">
+                                <option value="" disabled selected>Select a Subscription Type</option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="client-reg-date d-flex flex-column gap-1">
+                        <span class="fs-14 color-000 fw-700">Client Registration Date</span>
+                        <div class="input-group">
+                            <input type="date" name="" id="" class="form-control px-3 color-666">
+                        </div>
+                    </div>
+                    <div class="active-expire-date d-flex flex-row gap-2">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <span class="fs-14 color-000 fw-700">Activation Date</span>
+                            <div class="input-group">
+                                <input type="date" name="" id="" class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column flex-grow-1">
+                            <span class="fs-14 color-000 fw-700">Expiration Date</span>
+                            <div class="input-group">
+                                <input type="date" name="" id="" class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="serial-key d-flex flex-column gap-1">
+                        <span class="fs-14 color-000 fw-700 ">Serial No. Key</span>
+                        <div id="serial-key-container" class="serial-key-container d-flex flex-column gap-2">
+                            <div class="input-group">
+                                <input type="text" name="" id="" class="form-control px-3 color-666"
+                                    value="000-00000-00000-0000-0000" disabled>
+                            </div>
+                        </div>
+                        <a class="add-serial d-flex flex-row align-items-center font-orange fs-14 gap-2 mt-1"
+                            type="button" data-bs-toggle="modal" data-bs-target="#addSerialKeyModal">
+                            <img src="~/superadmin/images/icons/add-plus.svg" alt="" width="20">
+                            <span>Add another serial key</span>
+                        </a>
+                    </div>
+                    <div class="remarks d-flex flex-column gap-1">
+                        <span class="fs-14 color-000 fw-700">Remarks</span>
+                        <textarea class="form-control" id=""></textarea>
+                    </div>
+                    <div class="update mt-4">
+                        <button type="submit" id="activateConfirm"
+                            class="border align-self-end w-100 bg-color-ff5400 color-000 log-in-btn py-2 fs-14 align-vertical text-center">
+
+                            <span class="me-2">Update</span>
+                            <img src="~/superadmin/images/icons/go-forward.svg" alt="" width="16">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@* end *@
+
+@* edit mobile *@
+<div class="modal fade" id="editViewMobileModal" tabindex="-1" aria-labelledby="editViewMobileModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-content">
+            <div class="d-flex d-md-none modal-header justify-content-start mx-4 py-4 pb-0 ps-0">
+                <img class="me-2" src="/SuperAdmin/images/icons/go-back.svg" alt="back" height="24" width="24"
+                    data-bs-dismiss="modal" aria-label="Close">
+                <div class="modal-title fs-24 ms-3 fw-700" id="editViewMobileModalLabel">Client Details
+                </div>
+            </div>
+            <!-- Modal Body (Form) -->
+            <div class="modal-body px-3">
+                <form action="">
+                    <div class="client-details d-flex flex-column justify-content-between mb-3 gap-2">
+                        <div class="d-flex flex-column gap-2 client-name">
+                            <div class="d-flex flex-column justify-content-start align-items-start gap-2 ">
+                                <span class="fs-14 color-000 fw-700">Business Name</span>
+                                <div class="input-group">
+                                    <input type="text" name="" id="" placeholder="Enter Business Name"
+                                        class="form-control px-3 color-666">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-start align-items-start gap-2">
+                                <span class="fs-14 color-000 fw-700">Contact Person</span>
+                                <div class="input-group">
+                                    <input type="text" name="" id="" placeholder="Enter Contact Person"
+                                        class="form-control px-3 color-666">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="email d-flex flex-column justify-content-start align-items-start gap-2">
+                            <span class="fs-14 color-000 fw-700">Email</span>
+                            <input type="email" name="" id="" placeholder="Enter Email"
+                                class="form-control px-3 color-666">
+                        </div>
+                        <div class="tel d-flex flex-column justify-content-start align-items-start gap-2">
+                            <span class="fs-14 color-000 fw-700">Phone Number</span>
+                            <div class="input-group d-flex flex-row">
+                                <select class="form-select" id="countryCode" style="max-width: 70px;">
+                                    <option value="+64">+63</option>
+                                    <option value="+1">+1</option>
+                                </select>
+                                <input type="tel" class="form-control px-3 color-666" id="phone"
+                                    placeholder="Enter phone number">
+                            </div>
+                        </div>
+                        <div class="job-title d-flex flex-column justify-content-start align-items-start gap-2">
+                            <span class="fs-14 color-000 fw-700">Job Title</span>
+                            <input type="text" name="" id="" placeholder="Enter Job Title"
+                                class="form-control px-3 color-666">
+                        </div>
+                        <div class="company-address d-flex flex-column justify-content-start align-items-start gap-2">
+                            <span class="fs-14 color-000 fw-700">Company Address</span>
+                            <div class="input-group address">
+                                <span class="input-group-text pe-1 icon-input-left">
+                                    <img src="/superadmin/images/icons/location-pin.svg" alt="" width="20" height="19">
+                                </span>
+                                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subscription d-flex flex-column justify-content-between mb-3 gap-3">
+                        <span class="fs-20 fw-700 color-000 mt-3">Subscription Plan</span>
+                        <div class="status d-flex flex-row">
+                            <div class="d-flex flex-column me-4 gap-2">
+                                <span class="fs-14 color-000 fw-700">Status</span>
+                                <div class="form-check form-switch ">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="statusActivatedMobile">
+                                </div>
+                            </div>
+                            <div class="d-none flex-column flex-grow-1" id="activatedByMobile">
+                                <span class="fs-14 color-000 fw-700">Activated By</span>
+                                <div class="input-group">
+                                    <input type="text" name="" id="" value="Jose Manalo" disabled
+                                        class="form-control px-3 color-666">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-type d-flex flex-column gap-1">
+                            <span class="fs-14 color-000 fw-700">Subscription Type</span>
+                            <div class="input-group d-flex flex-row">
+                                <select class="form-select" id="countryCode" style="max-width: 600px;">
+                                    <option value="" disabled selected>Select a Subscription Type</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="client-reg-date d-flex flex-column gap-1">
+                            <span class="fs-14 color-000 fw-700">Client Registration Date</span>
+                            <div class="input-group">
+                                <input type="date" name="" id="" class="form-control px-3 color-666">
+                            </div>
+                        </div>
+                        <div class="active-expire-date d-flex flex-row gap-2">
+                            <div class="d-flex flex-column flex-grow-1 gap-2">
+                                <span class="fs-14 color-000 fw-700">Activation Date</span>
+                                <div class="input-group">
+                                    <input type="date" name="" id="" class="form-control px-3 color-666">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column flex-grow-1 gap-2">
+                                <span class="fs-14 color-000 fw-700">Expiration Date</span>
+                                <div class="input-group">
+                                    <input type="date" name="" id="" class="form-control px-3 color-666">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="serial-key d-flex flex-column gap-1">
+                            <span class="fs-14 color-000 fw-700 ">Serial No. Key</span>
+                            <div id="serial-key-container-mobile" class="serial-key-container d-flex flex-column gap-2">
+                                <div class="input-group">
+                                    <input type="text" name="" id="" class="form-control px-3 color-666"
+                                        value="000-00000-00000-0000-0000" disabled>
+                                </div>
+                            </div>
+                            <a class="add-serial d-flex flex-row align-items-center font-orange fs-14 gap-2 mt-1"
+                                type="button" data-bs-toggle="modal" data-bs-target="#addSerialKeyModal">
+                                <img src="~/superadmin/images/icons/add-plus.svg" alt="" width="20">
+                                <span>Add another serial key</span>
+                            </a>
+                        </div>
+                        <div class="remarks d-flex flex-column gap-1">
+                            <span class="fs-14 color-000 fw-700">Remarks</span>
+                            <textarea class="form-control" id=""></textarea>
+                        </div>
+                        <div class="update mt-4">
+                            <button type="submit" id="activateConfirm"
+                                class="border align-self-end w-100 bg-color-ff5400 color-000 log-in-btn py-2 fs-14 align-vertical text-center">
+                                Activate
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addSerialKeyModal" tabindex="-1" aria-labelledby="addSerialKeyLabel" aria-hidden="true">
+    <div class="activate-modal modal-dialog modal-dialog-centered">
+        <div class="activate-modal modal-content">
+            <!-- Modal Header -->
+            <div class="d-flex activate-modal modal-header justify-content-end pt-4 px-4 pb-2">
+                <button type="button" class="custom-close me-2 mt-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body (Form) -->
+            <div class="activate-modal modal-body py-0 mx-3 mx-md-4 mt-2 px-2">
+                <div class="modal-desktop-header d-flex flex-column fs-28" id="addSerialKeyLabel">
+                    <span class="fs-28 fw-700 color-000">Serial Number List</span>
+                    <span class="fs-14 fw-400 color-666">Here is a complete serial number list.</span>
+                </div>
+                <nav class="mt-4">
+                    <div class="nav nav-tabs justify-content-evenly" id="nav-tab" role="tablist">
+                        <button class="nav-link flex-grow-1 active" id="nav-all-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all"
+                            aria-selected="true">All</button>
+                        <button class="nav-link flex-grow-1" id="nav-available-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-available" type="button" role="tab" aria-controls="nav-available"
+                            aria-selected="false">Available</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab"
+                        tabindex="0">
+                        <div class="container-fluid px-0">
+                            <div class="item-container scroll d-flex flex-column pt-2">
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id="" disabled
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Used
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab"
+                        tabindex="0">
+                        <div class="container-fluid px-0">
+                            <div class="item-container scroll d-flex flex-column pt-2">
+                                <div class="item d-flex flex-row justify-content-between align-items-center">
+                                    <span class="fw-700 fs-12">STD-LTQM1-2U7U4-RWAT-E54F</span>
+                                    <button id=""
+                                        class="border bg-color-ff5400 color-fff fs-14 align-vertical text-center">
+                                        Use
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/form-select.js"></script>
+<script>
+    OverlayScrollbars(document.querySelectorAll('.scroll'), {
+        scrollbars: {
+            visibility: 'visible',
+        },
+        overflowBehavior: {
+            y: "scroll",
+            x: "scroll"
+        },
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sortLinks = document.querySelectorAll("th a");
+
+        sortLinks.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const currentSort = link.getAttribute("data-sort");
+
+                let nextSort;
+                switch (currentSort) {
+                    case "default":
+                        nextSort = "ascending";
+                        break;
+                    case "ascending":
+                        nextSort = "descending";
+                        break;
+                    case "descending":
+                    default:
+                        nextSort = "default";
+                }
+
+                link.setAttribute("data-sort", nextSort);
+
+                const sortImg = link.querySelector("img");
+                if (sortImg) {
+                    if (nextSort === "ascending") {
+                        sortImg.src = "/SuperAdmin/images/icons/sort-up.svg";
+                        sortImg.alt = "sort-up";
+                    } else if (nextSort === "descending") {
+                        sortImg.src = "/SuperAdmin/images/icons/sort-down.svg";
+                        sortImg.alt = "sort-down";
+                    } else {
+                        sortImg.src = "/SuperAdmin/images/icons/sort-default.svg";
+                        sortImg.alt = "sort-default";
+                    }
+                }
+            });
+        });
+    }); 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mainView = document.getElementById("mainViewSection");
+        const editView = document.getElementById("editSection");
+        const offCanvas = document.getElementById("accountOffCanvasDropDown");
+        const editViewMobileModal = new bootstrap.Modal(document.getElementById("editViewMobileModal"));
+        let selectedRow = null;
+
+        // Event delegation for desktop edit buttons
+        document.addEventListener("click", function (event) {
+            if (event.target.closest(".dropdown-item")?.id === "edit") {
+                event.preventDefault();
+                selectedRow = event.target.closest("tr");
+                if (selectedRow) {
+                    const userData = extractRowData(selectedRow);
+                    // populateEditSection(userData);
+                    swapView(editView);
+                }
+            }
+
+            // Handle "Go Back" button
+            if (event.target.closest("#go-back")) {
+                event.preventDefault();
+                swapView(mainView);
+            }
+
+            // Open offcanvas and store row reference for mobile
+            if (event.target.closest(".more-icon-btn")) {
+                selectedRow = event.target.closest("tr"); // Store row reference
+            }
+
+            // Mobile Edit Button inside the offcanvas
+            if (event.target.closest("#editViewMobile")) {
+                event.preventDefault();
+                if (selectedRow) {
+                    const userData = extractRowData(selectedRow);
+                    // populateEditSection(userData);
+                    editViewMobileModal.show(); // Show modal for mobile instead of swapping view
+
+                    // Hide offcanvas manually
+                    let offcanvasInstance = bootstrap.Offcanvas.getInstance(offCanvas);
+                    if (offcanvasInstance) {
+                        offcanvasInstance.hide();
+                    }
+                }
+            }
+            // Close mobile modal and go back to main view
+            if (event.target.closest("[data-bs-dismiss='modal']")) {
+                swapView(mainView);
+            }
+        });
+
+        function extractRowData(row) {
+            return {
+                name: row.cells[1].textContent.trim(),
+                email: row.cells[2].textContent.trim(),
+                subscription: row.cells[3].textContent.trim(),
+                startDate: row.cells[4].textContent.trim(),
+                endDate: row.cells[5].textContent.trim(),
+            };
+        }
+
+        function populateEditSection(data) {
+            document.getElementById("editName").value = data.name;
+            document.getElementById("editEmail").value = data.email;
+            document.getElementById("editSubscription").value = data.subscription;
+            document.getElementById("editStartDate").value = data.startDate;
+            document.getElementById("editEndDate").value = data.endDate;
+        }
+
+        function swapView(view) {
+            mainView.classList.toggle("d-none", view === editView);
+            editView.classList.toggle("d-none", view === mainView);
+
+            viewParent.innerHTML = "";
+            viewParent.appendChild(view);
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function toggleActivationStatus(checkbox, targetElement) {
+            if (checkbox.checked) {
+                targetElement.classList.remove("d-none");
+                targetElement.classList.add("d-flex");
+            } else {
+                targetElement.classList.remove("d-flex");
+                targetElement.classList.add("d-none");
+            }
+        }
+
+        // Desktop Elements
+        const statusCheckbox = document.getElementById("statusActivated");
+        const activatedBySection = document.getElementById("activatedBy");
+
+        if (statusCheckbox && activatedBySection) {
+            statusCheckbox.addEventListener("change", function () {
+                toggleActivationStatus(this, activatedBySection);
+            });
+        }
+
+        // Mobile Elements
+        const statusCheckboxMobile = document.getElementById("statusActivatedMobile");
+        const activatedBySectionMobile = document.getElementById("activatedByMobile");
+
+        if (statusCheckboxMobile && activatedBySectionMobile) {
+            statusCheckboxMobile.addEventListener("change", function () {
+                toggleActivationStatus(this, activatedBySectionMobile);
+            });
+        }
+    });
+
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addSerialKeyModalEl = document.getElementById("addSerialKeyModal");
+
+        addSerialKeyModalEl.addEventListener("show.bs.modal", function () {
+            addSerialKeyModalEl.style.zIndex = 1060;
+
+            setTimeout(function () {
+                const backdrops = document.getElementsByClassName("modal-backdrop");
+                if (backdrops.length > 0) {
+                    backdrops[backdrops.length - 1].style.zIndex = 1055;
+                }
+            }, 0);
+        });
+    });
+
+</script>
+
+<!-- # new -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const useButtons = document.querySelectorAll('.item button:not([disabled])');
+
+        useButtons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const item = btn.closest('.item');
+                const serialValue = item.querySelector('span').textContent.trim();
+
+                const serialKeyTemplate = `
+          <div class="serial-key d-flex flex-column gap-1">
+              <span class="fs-14 color-000 fw-700">Serial No. Key</span>
+              <div class="input-group">
+                  <input type="text" name="serial-key[]" class="form-control px-3 color-666" value="${serialValue}" disabled>
+              </div>
+          </div>
+        `;
+
+                // Determine which container to use based on the viewport width
+                const isMobile = window.matchMedia("(max-width: 576px)").matches;
+                const container = isMobile
+                    ? document.getElementById('serial-key-container-mobile')
+                    : document.getElementById('serial-key-container');
+
+                container.insertAdjacentHTML('beforeend', serialKeyTemplate);
+
+                btn.disabled = true;
+                btn.textContent = 'Used';
+            });
+        });
+    });
+</script>

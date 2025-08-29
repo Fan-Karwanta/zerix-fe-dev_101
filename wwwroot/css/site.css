@@ -1,0 +1,111 @@
+/* Disable text selection for the entire document */
+* {
+  font-family: "Microsoft Sans Serif", sans-serif;
+  font-optical-sizing: auto;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.logo-responsive {
+  width: 201px;
+  height: 61px;
+}
+
+.logo-responsive-dashboard {
+  width: 201px;
+  height: 61px;
+}
+
+.form-check-input:focus,
+.form-check-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px #ff5400 solid !important;
+}
+
+.form-control:focus,
+.form-control:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: inherit;
+  color: inherit;
+  border: 1px #ced4da solid !important;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.mobile-dropdown {
+  position: absolute;
+  top: calc(
+    100% + 5px
+  ); /* Position it below the trigger element with some spacing */
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  min-width: 200px;
+  width: auto;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 10px;
+}
+
+/* Additional styling to ensure consistent dropdown behavior */
+.dropdown-menu-end {
+  position: absolute;
+  top: calc(
+    100% + 5px
+  ); /* Ensures dropdown doesn't interfere with header height */
+  right: 0;
+  left: auto;
+  z-index: 1050;
+  background-color: white;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+}
+
+.main-scroll {
+  max-height: calc(100vh - 285px);
+}
+
+.form-check-input:checked[type="checkbox"] {
+  background-image: none !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .logo-responsive,
+  .logo-responsive-dashboard {
+    width: 120px;
+    height: 36px;
+  }
+  .main-scroll {
+    max-height: calc(100vh - 140px);
+  }
+}

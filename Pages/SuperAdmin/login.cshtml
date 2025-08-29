@@ -1,0 +1,55 @@
+@page
+@model SuperAdminLoginModel
+@{
+Layout = "_SuperAdmin";
+ViewData["Title"] = "Login";
+ViewData["User"] = "Admin";
+}
+
+<div class="container-fluid px-0">
+    <div class="min-vh-100 d-flex flex-row justify-content-between align-items-center">
+        <!-- Login Form Section -->
+        <div class="mobile-mockup-section d-none d-lg-flex justify-content-center align-items-center"></div>
+        <div
+            class="login-section d-flex flex-column justify-content-md-center justify-content-start align-items-center">
+            <div class="login-component d-flex flex-column login-contents gap-4">
+                <div class="d-flex flex-column justify-content-center align-items-center login-contents width header">
+                    <img src="~/superadmin/images/new-zerix-logo.svg" alt="logo" class="d-block d-md-none mb-3">
+                    <div class="fs-36 fw-700">Zerix Admin Portal</div>
+                </div>
+                <form class="login-contents width d-flex flex-column justify-content-start">
+                    <div class="floating-label-group">
+                        <input type="email" class="form-control" id="email" placeholder=" " />
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="floating-label-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder=" " />
+                            <button class="btn btn-show-password" type="button" id="togglePassword"
+                                onclick="togglePasswordVisibilityFilled('togglePassword', 'password')">
+                                <i class="bi bi-eye-fill color-878A99"></i>
+                            </button>
+                        </div>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                <label class="form-check-label color-495057" for="rememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="/superadmin/forgot-password"
+                                class="color-84818A fw-400 fs-14 text-decoration-none">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="border align-self-end w-100 bg-color-ff5400 log-in-btn py-2 fs-14 align-vertical text-center">Sign
+                        In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

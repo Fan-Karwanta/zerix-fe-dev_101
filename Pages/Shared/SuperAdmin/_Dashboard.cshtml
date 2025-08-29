@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/font.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form-select.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/colors.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SuperAdmincss/colors.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SuperAdmin/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SuperAdmin/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SuperAdmin/css/modal.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SuperAdmin/css/dashboard.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/19.2.9/css/intlTelInput.min.css">
+
+    <script src="~/js/forms.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/overlayscrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars/js/OverlayScrollbars.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/19.2.9/js/intlTelInput.min.js"></script>
+</head>
+
+<body>
+    <main role="main">
+        @* header *@
+        <div class="header-container container-fluid px-3 p-md-0 d-flex flex-row">
+            <div class="brand navbar-brand navbar d-flex flex-row justify-content-start">
+                <button class="navbar-toggler custom-toggler d-block d-sm-none ps-0 pe-2" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#DashboardoffcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.66699 22.6668H25.3337M6.66699 16.0002H25.3337M6.66699 9.3335H25.3337" stroke="black"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <a asp-area="" asp-page="/">
+                    <img src="/images/zerix-logo-small.png" alt="Logo" class="d-inline-block align-middle" width="131px"
+                        height="40px" />
+                </a>
+                <div class="offcanvas offcanvas-start d-block d-sm-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+                    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header py-2 mt-2 align-items-center justify-content-center">
+                        <div class="mt-3 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">
+                            <img src="/images/zerix-logo-small.png" alt="Logo" class="d-inline-block align-middle"
+                                width="131px" height="40px" />
+                        </div>
+                    </div>
+                    <div class="offcanvas-body p-0">
+                        <div class="d-flex flex-column align-items-start">
+                            <div class="side-navbar d-flex flex-column p-0"
+                                data-currentpage="@(ViewData["page"]?.ToString())">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="header container-fluid p-0 px-md-4 py-md-0 justify-content-md-between justify-content-end align-items-center d-flex">
+                <p class="fs-28 fw-700 mb-0 d-none d-md-block">Client Management</p>
+                <ul class="navbar-nav me-2 me-md-3">
+                    <!-- Dropdown for desktop view User-->
+                    <li class="nav-item dropdown d-none d-sm-block">
+                        <a class="fs-5 nav-link text-dark d-flex align-items-center gap-4" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="d-flex flex-column">
+                                <span class="user fs-20 fw-700 txt-color-primary me-2">@ViewData["User"]</span>
+                                <span class="role me-2 fs-16 fw-400 color-809FB8">@ViewData["Role"]</span>
+                            </div>
+                            <img src="/SuperAdmin/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                                class="d-inline-block" />
+                        </a>
+                        <ul class="desktop options dropdown-menu dropdown-menu-end dropdown-menu-lg bg-body-tertiary rounded border-0 py-0"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item fs-14 color-17181A d-flex align-items-center py-3"
+                                    href="/superadmin/users">
+                                    <img src="/SuperAdmin/images/icons/users.svg" alt="Users" class="me-2" width="20"
+                                        height="20" />
+                                    Users
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fs-14 color-17181A d-flex align-items-center py-3"
+                                    href="/superadmin/login">
+                                    <img src="/SuperAdmin/images/icons/logout.svg" alt="Logout Icon" class="me-2"
+                                        width="16" height="16" />
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Offcanvas trigger for mobile view User-->
+                    <li class="nav-item dropdown d-flex d-sm-none position-relative">
+                        <a class="d-flex justify-content-end fs-5 nav-link text-dark align-middle align-items-center px-md-4"
+                            id="navbarDropdownMobileLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="d-flex flex-column">
+                                <span
+                                    class="user fs-16 fw-700 txt-color-primary me-0 me-md-2 text-truncate d-inline-block d-md-flex">@ViewData["User"]</span>
+                            </div>
+                            <img src="/SuperAdmin/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                                class="d-inline-block ms-2" />
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute bg-body-tertiary rounded border-0"
+                            aria-labelledby="navbarDropdownMobileLink">
+                            <li>
+                                <a class="dropdown-item fs-14 color-17181A d-flex align-items-center py-3"
+                                    href="/superadmin/users">
+                                    <img src="/SuperAdmin/images/icons/users.svg" alt="Users" class="me-2" width="16"
+                                        height="16" />
+                                    Users
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fs-14 color-17181A d-flex align-items-center py-2"
+                                    href="/superadmin/login">
+                                    <img src="/SuperAdmin/images/icons/logout.svg" alt="Logout Icon" class="me-2"
+                                        width="16" height="16" />
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid p-0 d-flex flex-row">
+            <div class="side-navbar d-none d-md-flex flex-column p-0"
+                data-currentpage="@(ViewData["page"]?.ToString())">
+            </div>
+            @RenderBody()
+        </div>
+    </main>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var sideNavbars = document.querySelectorAll('.side-navbar');
+
+            var navItems = [
+                {
+                    href: "/SuperAdmin/WebClients",
+                    page: "web_client",
+                    inactiveImg: "/SuperAdmin/images/icons/web-client-logo-inactive.svg",
+                    activeImg: "/SuperAdmin/images/icons/web-client-logo-active.svg",
+                    text: "Zerix Web Clients"
+                },
+                {
+                    href: "/SuperAdmin/TextClients",
+                    page: "text_client",
+                    inactiveImg: "/SuperAdmin/images/icons/text-client-logo-inactive.svg",
+                    activeImg: "/SuperAdmin/images/icons/text-client-logo-active.svg",
+                    text: "ZerixText Clients"
+                }
+            ];
+
+            // 
+            sideNavbars.forEach(function (container) {
+                var currentPage = container.getAttribute('data-currentpage');
+
+                // 
+                container.innerHTML = "";
+
+                navItems.forEach(function (item) {
+                    var componentDiv = document.createElement("div");
+                    componentDiv.classList.add("component");
+
+                    var anchor = document.createElement("a");
+                    anchor.href = item.href;
+                    anchor.className = "card inactive d-flex flex-row justify-content-start align-items-center ps-4";
+                    anchor.setAttribute("data-page", item.page);
+
+                    var img = document.createElement("img");
+                    img.src = (item.page === currentPage) ? item.activeImg : item.inactiveImg;
+                    img.setAttribute("data-active", item.activeImg);
+                    img.setAttribute("data-inactive", item.inactiveImg);
+                    img.alt = item.text + " Icon";
+                    img.classList.add("me-2");
+                    img.width = 28;
+                    img.height = 28;
+
+                    anchor.addEventListener("mouseenter", function () {
+                        img.src = img.getAttribute("data-active");
+                    });
+                    anchor.addEventListener("mouseleave", function () {
+                        if (anchor.classList.contains("active")) {
+                            img.src = img.getAttribute("data-active");
+                        } else {
+                            img.src = img.getAttribute("data-inactive");
+                        }
+                    });
+
+                    var span = document.createElement("span");
+                    span.className = "fw-700 ms-2";
+                    span.textContent = item.text;
+
+                    anchor.appendChild(img);
+                    anchor.appendChild(span);
+                    componentDiv.appendChild(anchor);
+
+                    container.appendChild(componentDiv);
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var sideNavbars = document.querySelectorAll('.side-navbar');
+
+            sideNavbars.forEach(function (sideNavbar) {
+                var currentPage = sideNavbar.getAttribute('data-currentpage');
+                var navLinks = sideNavbar.querySelectorAll('a.card');
+
+                navLinks.forEach(function (link) {
+                    var pageValue = link.getAttribute('data-page');
+                    var img = link.querySelector("img");
+
+                    if (pageValue === currentPage) {
+                        link.classList.add('active');
+                        link.classList.remove('inactive');
+                        if (img) {
+                            img.src = img.getAttribute('data-active');
+                        }
+                    } else {
+                        link.classList.add('inactive');
+                        link.classList.remove('active');
+                        if (img) {
+                            img.src = img.getAttribute('data-inactive');
+                        }
+                    }
+
+                    link.addEventListener("mouseenter", function () {
+                        if (img) {
+                            img.src = img.getAttribute('data-active');
+                        }
+                    });
+
+                    link.addEventListener("mouseleave", function () {
+                        if (link.classList.contains('active')) {
+                            img.src = img.getAttribute('data-active');
+                        } else {
+                            img.src = img.getAttribute('data-inactive');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
