@@ -3,6 +3,9 @@
 .appointment-item { min-height: 100px; }
 .appointment-item .btn { min-width: 100px; }
 .appointment-list .appointment-item { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+
+.appointment-selection-view { margin-top: -30px; }
+
 .btn-history { background: #000; color: #fff; padding: 6px 14px; border-radius: 6px; transition: background-color .2s ease; }
 .btn-history:hover { background: #333; }
 
@@ -85,7 +88,7 @@
 /* Navigation Button Styles */
 .calendar-nav-btn {
     border: none;
-    color: #666;
+
     background: transparent;
     width: 24px;
     height: 24px;
@@ -196,7 +199,8 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Center align time slots */
-    padding-right: 5px;
+    padding-right: 8px;
+    margin-right: 30px;
 }
 
 .time-slots::-webkit-scrollbar {
@@ -382,7 +386,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     max-width: 100%;
-    margin: 0 0 30px 50px;
+    margin: 0 0 15px 50px;
     padding: 20px 30px;
     text-align: left;
 }
@@ -425,7 +429,22 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.25);
 }
 
-#selected-date-display { margin-left: -8px; }
+#selected-date-display { margin-left: 6.8rem; }
+
+/* Fix chevron button positioning in time slots */
+.selected-date-header .d-none.d-md-block,
+.selected-date-header .d-md-none {
+    position: relative;
+    right: 0;
+    margin-right: 9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.selected-date-header {
+    padding-right: -10px; /* Add padding to align chevrons properly */
+}
 
 /* Continue Button Styling */
 .btn-fill {
@@ -439,6 +458,34 @@
     .container {
         padding-left: 15px !important;
         padding-right: 15px !important;
+    }
+    
+    /* Add top spacing for appointment selection on mobile */
+    .appointment-selection-view {
+        margin-top: -5px !important;
+    }
+    
+    /* Date & Time selection mobile spacing */
+    .datetime-selection-view {
+        margin-top: 20px !important;
+    }
+    
+    /* Mobile appointment info card adjustments */
+    .selected-appointment-info {
+        margin: 0 0 20px 0 !important;
+        padding: 15px 20px !important;
+    }
+    
+    .selected-appointment-info div[style*="margin-left"] {
+        margin-left: 0 !important;
+    }
+    
+    /* Mobile calendar instruction positioning */
+    .mobile-calendar-instruction {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 15px;
     }
     
     /* Header adjustments */
@@ -545,6 +592,15 @@
         margin-bottom: 15px;
     }
     
+    /* Mobile calendar navigation chevrons */
+    .calendar-nav-btn i[style*="margin-left"] {
+        margin-left: 0 !important;
+    }
+    
+    .calendar-nav-btn i[style*="margin-right"] {
+        margin-right: 0 !important;
+    }
+    
     .calendar-header h5 {
         font-size: 18px;
         font-weight: 600;
@@ -579,44 +635,70 @@
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        padding: 0 15px;
     }
     
     .selected-date-header h6 {
         margin-left: 0 !important;
         text-align: left !important;
         width: auto !important;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px !important;
+        font-weight: 400 !important;
         color: #333;
         margin-bottom: 0;
         flex: 1;
+        text-transform: capitalize !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Mobile chevron buttons styling */
+    .selected-date-header .d-md-none {
+        display: flex !important;
+        gap: 1px;
+        margin-left: 6.8rem;
+    }
+    
+    .selected-date-header .btn {
+        padding: 4px 6px !important;
+        min-width: auto !important;
+        border: none !important;
+        background: transparent !important;
+    }
+    
+    .selected-date-header .btn i {
+        font-size: 14px !important;
+        color: #333 !important;
     }
     
     .time-slots {
         max-height: 300px;
         align-items: stretch;
-        padding-right: 0;
+        padding: 0 15px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
         overflow-y: auto;
-        padding-right: 5px;
+        max-width: 105%;
+    }
+    
+    .time-slots::-webkit-scrollbar {
+        display: none;
     }
     
     .time-slot {
-        width: 100%;
+        width: 105%;
         margin-bottom: 0;
-        min-height: 48px;
-        font-size: 16px;
-        border-radius: 8px;
-        padding: 0;
+        min-height: 40px;
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 10px 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: white;
-        border: 2px solid #ff5400;
+        border: 1px solid #ff5400;
         color: #ff5400;
-        font-weight: 500;
+        font-weight: 400;
         transition: all 0.2s ease;
         overflow: hidden;
     }
@@ -631,6 +713,8 @@
         color: black;
         border: none;
         font-weight: normal;
+        min-height: 40px;
+        padding: 0;
     }
     
     .time-slot-content {
@@ -639,47 +723,59 @@
         align-items: center;
         justify-content: center;
         padding: 0;
-        gap: 8px;
+        gap: 6px;
         transition: all 0.3s ease;
+        height: 40px;
     }
     
     .time-slot.time-selected .time-slot-content {
-        gap: 8px;
+        gap: 6px;
         justify-content: space-between;
+        height: 40px;
+        padding: 0 4px;
     }
     
     .time-text {
         width: 100%;
         text-align: center;
-        padding: 12px 16px;
-        font-weight: 500;
+        padding: 10px 15px;
+        font-weight: 400;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        font-size: 14px;
     }
     
     .time-slot.time-selected .time-text {
-        width: calc(50% - 4px);
+        width: calc(50% - 3px);
         color: black;
-        font-weight: normal;
+        font-weight: 400;
         background-color: #eee;
         border: 1px solid #e3e3e3;
-        border-radius: 6px;
+        border-radius: 4px;
         text-align: center;
+        padding: 8px 12px;
+        height: 32px;
+        font-size: 14px;
     }
     
     .select-button {
-        width: calc(50% - 4px);
+        width: calc(50% - 3px);
         background: #ff5400;
         color: white;
-        padding: 12px 16px;
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 16px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-weight: 400;
+        font-size: 14px;
         border: none;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+        height: 32px;
     }
     
     .select-button:hover {
@@ -726,6 +822,24 @@
         max-width: 200px;
     }
 }
+
+@@media (max-width: 360px) {
+    .selected-date-header .d-md-none {
+        display: flex !important;
+        gap: 1px;
+        margin-left: 6rem;
+    }
+    
+    .time-slots {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .time-slot {
+        width: 100%;
+    }
+}
+
 
 /* Specific adjustments for very small screens */
 @@media (max-width: 400px) {
