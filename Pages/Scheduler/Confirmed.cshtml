@@ -11,11 +11,11 @@
 @await Html.PartialAsync("_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-5 pt-3">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-top: -1.5rem;">
         <div class="col-lg-8 col-md-10">
             <!-- Back Button -->
             <div class="mb-4">
-                <a href="/Scheduler" class="text-decoration-none d-flex align-items-center" style="color: #FF6B35;">
+                <a href="/Scheduler" class="text-decoration-none d-flex align-items-center" style="color: #FF6B35; margin-left: -14rem;">
                     <i class="bi bi-chevron-left me-2"></i>
                     <span class="d-none d-md-inline">Schedule another appointment</span>
                 </a>
@@ -25,7 +25,7 @@
             <div class="text-center">
                 <!-- Success Icon -->
                 <div class="mb-4">
-                    <div class="rounded-circle bg-dark d-inline-flex align-items-center justify-content-center" style="width: 96px; height: 96px;">
+                    <div class="rounded-circle bg-dark d-inline-flex align-items-center justify-content-center" style="width: 96px; height: 96px; margin-top: 5.5rem;">
                         <svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 12L11 14L15 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -40,52 +40,63 @@
 
                 
 
-                <!-- Appointment Details and Action Buttons Row (Card) -->
-                <div class="confirm-card mx-auto">
-                    <!-- Appointment Details -->
-                    <div class="confirm-left">
-                        <h5 class="fw-bold mb-2">Consultation</h5>
-                        <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
-                        <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="confirm-actions">
-                        <button type="button" class="confirm-btn">Cancel</button>
-                        <button type="button" class="confirm-btn">Reschedule</button>
-                        <button type="button" class="confirm-btn">Edit Info</button>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Appointment Details and Action Buttons Row (Card) - Full width -->
+    <div class="wide-card-container">
+        <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+            <!-- Appointment Details -->
+            <div class="confirm-left">
+                <h5 class="fw-bold mb-2">Consultation</h5>
+                <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
+                <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn">Cancel</button>
+                <button type="button" class="confirm-btn">Reschedule</button>
+                <button type="button" class="confirm-btn">Edit Info</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container px-4 my-3 pt-md-5 pt-3">
+        <div class="row justify-content-center" style="margin-top: -1.5rem;">
+            <div class="col-lg-8 col-md-10">
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    /* Card container below the title */
-    .confirm-card {
-        max-width: 920px;
-        border: 1px solid #e6e6e6;
-        border-radius: 10px;
-        padding: 22px 28px;
+    /* Wide card container */
+    .wide-card-container {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 0 2rem;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 32px;
+        justify-content: center;
+    }
+    
+    .appointment-item {
+        max-width: 1250px;
+        width: 100%;
         background: #fff;
-        margin-top: 300px;
-        
     }
 
     /* Left details: occupy available space and left-align text */
     .confirm-left {
         flex: 1;
         text-align: left;
+        margin-left: 2rem;
     }
     .confirm-left h5 { margin-bottom: 8px; }
 
     /* Actions area */
-    .confirm-actions { margin-left: auto; display: flex; gap: 16px; align-items: center; }
+    .confirm-actions { margin-right: 2rem; display: flex; gap: 16px; align-items: center; }
 
     /* Buttons: outline orange by default */
     .confirm-btn {
@@ -94,7 +105,7 @@
         background: transparent;
         border-radius: 8px;
         padding: 10px 22px;
-        min-width: 148px;
+        min-width: 190px;
         font-weight: 500;
     }
     .confirm-btn:hover { background: rgba(255,107,53,0.08); }

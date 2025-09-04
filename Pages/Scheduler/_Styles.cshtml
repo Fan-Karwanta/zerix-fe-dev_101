@@ -22,10 +22,54 @@
 }
 .btn-history-mobile:hover { background: #333; color: #fff; }
 
-/* Mobile dropdown positioning */
+/* Mobile dropdown positioning and fixes */
 .mobile-appointment-dropdown {
     margin-left: -5px;
     padding-left: -5px;
+}
+
+/* Dropdown menu fixes for all screen sizes */
+.dropdown-menu {
+    z-index: 1050 !important;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 4px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Fix dropdown toggle button */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Ensure dropdown works on mobile */
+@@media (max-width: 767px) {
+    .dropdown-menu {
+        position: absolute !important;
+        transform: none !important;
+        left: 0 !important;
+        right: auto !important;
+        top: 100% !important;
+        min-width: 200px;
+    }
+    
+    .dropdown {
+        position: relative;
+    }
 }
 
 /* Mobile hamburger styling */
@@ -52,6 +96,9 @@
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    /* Align with appointment info container */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* Calendar Side */
@@ -103,15 +150,15 @@
 }
 
 .calendar-grid {
-    width: 80%;
-    margin-left: auto; /* center the calendar grid */
-    margin-right: auto;
+    width: 102%;
+    margin-left: -0.6rem; /* center the calendar grid */
+    margin-right: 11rem;
 }
 
 .calendar-header {
-    width: 80%;
-    margin-left: auto; /* center header to align with grid */
-    margin-right: auto;
+    width: 100%;
+    margin-left: -0.3rem; /* center header to align with grid */
+    margin-right: 11rem;
 }
 
 .calendar-weekdays {
@@ -318,7 +365,7 @@
 /* Medical History Form Styles */
 .medical-history-section {
     max-width: 100%;
-    margin: 0 0 0 50px;
+    margin: 0 auto;
     padding: 30px;
     background-color:transparent;
     border: 1px solid #e9ecef;
@@ -429,7 +476,7 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.25);
 }
 
-#selected-date-display { margin-left: 6.8rem; }
+#selected-date-display { margin-left: 6.2rem; }
 
 /* Fix chevron button positioning in time slots */
 .selected-date-header .d-none.d-md-block,
@@ -452,6 +499,240 @@
     font-weight: 500;
 }
 
+/* Notification Badge Styles */
+.notification-badge-desktop {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #ff5400;
+    color: #fff;
+    border-radius: 53%;
+    padding: 2px 0;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #fff;
+    z-index: 2;
+}
+
+.notification-badge-mobile {
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    background: #ff5400;
+    color: #fff;
+    border-radius: 53%;
+    padding: 2px 0;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border: 1px solid #fff;
+    z-index: 2;
+}
+
+/* Information View Styles */
+.information-view {
+    display: none;
+    margin-top: -30px;
+}
+
+.information-view .back-link {
+    color: #ff5400;
+    cursor: pointer;
+    
+}
+
+.information-view .selected-appointment-info {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 2rem;
+}
+
+.information-view .selected-appointment-info .info-item {
+    margin-left: 1rem;
+}
+
+.information-view .medical-history-section {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.information-view .medical-history-title {
+    color: black;
+}
+
+.information-view .medical-history-description {
+    color: black;
+}
+
+.information-view .continue-button-container {
+    display: flex;
+    justify-content: left;
+}
+
+.information-view .continue-button {
+    background-color: #ff5400;
+    border-color: #ff5400;
+    font-size: 16px;
+    font-weight: 500;
+    width: 500px;
+}
+
+/* Date Time Selection Styles */
+.datetime-selection-view {
+    display: none;
+    margin-top: -30px;
+}
+
+.datetime-selection-view .back-link {
+    color: #ff5400;
+    cursor: pointer;
+}
+
+.datetime-selection-view .appointment-info-item {
+    margin-left: 3.1rem;
+}
+
+/* Responsive chevron and date display fixes */
+.selected-date-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+
+.selected-date-header h6 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.selected-date-header .chevron-controls {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    margin-right: 8.2rem;
+}
+
+.selected-date-header .btn {
+    padding: 4px 6px;
+    min-width: auto;
+    border: none;
+    background: transparent;
+    color: #666;
+    transition: color 0.2s ease;
+    border-radius: 4px;
+}
+
+.selected-date-header .btn:hover {
+    color: #ff5400;
+    background-color: rgba(255, 84, 0, 0.1);
+}
+
+.selected-date-header .btn i {
+    font-size: 14px;
+}
+
+/* Modal Specific Styles */
+.modal .appointment-info-card {
+    border-color: #ff5400 !important;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+.modal .form-control {
+    border-radius: 6px;
+}
+
+.modal .continue-button {
+    background-color: #ff5400;
+    color: white;
+    border-radius: 6px;
+    font-weight: 500;
+    min-width: 150px;
+}
+
+/* Tablet/Medium Device Styles (768px - 991px) */
+@@media (min-width: 768px) and (max-width: 991px) {
+    /* Show hamburger menu for tablet sizes */
+    .navbar-toggler {
+        display: block !important;
+    }
+    
+    /* Hide desktop navigation on tablets */
+    .d-none.d-lg-flex {
+        display: none !important;
+    }
+    
+    /* Adjust container padding */
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Appointment selection adjustments */
+    .appointment-selection-view {
+        margin-top: -10px !important;
+    }
+    
+    .fs-32.ff-default.mobile-font {
+        font-size: 28px !important;
+    }
+    
+    /* Date & Time selection tablet adjustments */
+    .datetime-unified-container {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    
+    /* Ensure appointment info and datetime containers are aligned */
+    .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .calendar-side {
+        padding: 20px 15px;
+    }
+    
+    .timeslots-side {
+        padding: 20px 15px;
+    }
+    
+    /* Medical history section */
+    .medical-history-section {
+        margin: 0 10px;
+        padding: 25px 20px;
+    }
+    
+    .compact-input {
+        max-width: 450px !important;
+        width: 450px !important;
+    }
+    
+    /* Selected appointment info */
+    .selected-appointment-info {
+        margin: 0 10px 20px 10px !important;
+        padding: 18px 25px !important;
+    }
+}
+
 /* Mobile Responsive Styles */
 @@media (max-width: 768px) {
     /* Container adjustments */
@@ -468,6 +749,12 @@
     /* Date & Time selection mobile spacing */
     .datetime-selection-view {
         margin-top: 20px !important;
+    }
+    
+    /* Fix datetime container alignment on mobile */
+    .datetime-unified-container {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     
     /* Mobile appointment info card adjustments */
@@ -594,12 +881,17 @@
     
     /* Mobile calendar navigation chevrons */
     .calendar-nav-btn i[style*="margin-left"] {
-        margin-left: 0 !important;
+        margin-left: 1rem !important;
     }
     
     .calendar-nav-btn i[style*="margin-right"] {
-        margin-right: 0 !important;
+        margin-right: 1rem !important;
     }
+
+    .information-view {
+        margin-top: 0px;
+    }
+        
     
     .calendar-header h5 {
         font-size: 18px;
@@ -652,14 +944,26 @@
     }
     
     /* Mobile chevron buttons styling */
-    .selected-date-header .d-md-none {
-        display: flex !important;
+    .selected-date-header {
+        padding: 0 15px;
+        margin-bottom: 15px;
+        gap: 6px;
+    }
+    
+    .selected-date-header h6 {
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        margin: 0 !important;
+        text-align: left;
+    }
+    
+    .selected-date-header .chevron-controls {
         gap: 1px;
-        margin-left: 6.8rem;
+        margin-right: -0.5rem;
     }
     
     .selected-date-header .btn {
-        padding: 4px 6px !important;
+        padding: 6px 8px !important;
         min-width: auto !important;
         border: none !important;
         background: transparent !important;
@@ -667,7 +971,15 @@
     
     .selected-date-header .btn i {
         font-size: 14px !important;
-        color: #333 !important;
+        color: #666 !important;
+    }
+    
+    .selected-date-header .btn:hover {
+        background-color: rgba(255, 84, 0, 0.1) !important;
+    }
+    
+    .selected-date-header .btn:hover i {
+        color: #ff5400 !important;
     }
     
     .time-slots {
@@ -678,7 +990,8 @@
         flex-direction: column;
         gap: 6px;
         overflow-y: auto;
-        max-width: 105%;
+        max-width: 1000px;
+        width: 95%;
     }
     
     .time-slots::-webkit-scrollbar {
@@ -812,6 +1125,27 @@
         margin: 20px 0;
     }
     
+    .information-view .continue-button {
+        width: 100% !important;
+    }
+    
+    .information-view .back-link {
+        margin-left: 0 !important;
+    }
+    
+    .information-view .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .information-view .selected-appointment-info .info-item {
+        margin-left: 0 !important;
+    }
+    
+    .datetime-selection-view .appointment-info-item {
+        margin-left: 0 !important;
+    }
+    
     /* Modal adjustments */
     .modal-body {
         padding: 15px 20px 35px 20px;
@@ -823,20 +1157,121 @@
     }
 }
 
+/* Small Mobile Devices (360px and below) */
 @@media (max-width: 360px) {
     .selected-date-header .d-md-none {
         display: flex !important;
         gap: 1px;
-        margin-left: 6rem;
+        margin-left: 5rem;
     }
     
     .time-slots {
-        max-width: 100%;
+        max-width: 1000px;
+        width: 100%;
         padding: 0 10px;
     }
     
     .time-slot {
         width: 100%;
+    }
+    
+    .container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+    
+    .fs-32.ff-default.mobile-font {
+        font-size: 20px !important;
+    }
+
+    .selected-date-header .chevron-controls {
+        gap: 1px;
+        margin-right: -0.8rem;
+    }
+    
+}
+
+/* Large Mobile Devices (361px - 480px) */
+@@media (min-width: 361px) and (max-width: 480px) {
+    .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    
+    .selected-date-header .d-md-none {
+        margin-left: 6.5rem;
+    }
+}
+
+/* Small Tablets (481px - 767px) */
+@@media (min-width: 481px) and (max-width: 767px) {
+    .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+    
+    .datetime-unified-container {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    
+    .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .fs-32.ff-default.mobile-font {
+        font-size: 26px !important;
+    }
+    
+    .appointment-item {
+        padding: 18px 15px !important;
+    }
+}
+
+/* Large Tablets and Small Desktops (992px - 1199px) */
+@@media (min-width: 992px) and (max-width: 1199px) {
+    .datetime-unified-container {
+        max-width: 100%;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    
+    .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .calendar-side {
+        padding: 20px 25px;
+    }
+    
+    .timeslots-side {
+        padding: 20px 20px;
+    }
+    
+    .compact-input {
+        max-width: 450px !important;
+        width: 450px !important;
+    }
+}
+
+/* Extra Large Screens (1200px and above) */
+@@media (min-width: 1200px) {
+    .datetime-unified-container {
+        max-width: 100%;
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    
+    .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .compact-input {
+        max-width: 500px !important;
+        width: 500px !important;
     }
 }
 

@@ -1,27 +1,26 @@
 <!-- Date & Time Selection View -->
-<div id="datetime-selection" class="datetime-selection-view" style="display: none; margin-top: -30px;">
-    <div class="d-flex justify-content-center align-items-center mb-2 position-relative">
-        <a class="position-absolute start-0 d-flex align-items-center text-decoration-none" onclick="showAppointmentSelection()" style="color: #ff5400; cursor: pointer;">
+<div id="datetime-selection" class="datetime-selection-view">
+    <div class="d-flex justify-content-center align-items-center mb-4 position-relative">
+        <a class="position-absolute start-0 d-flex align-items-center text-decoration-none back-link" onclick="showAppointmentSelection()">
             <i class="bi bi-chevron-left me-1"></i>
             <span class="d-none d-md-inline">Select Appointment</span>
         </a>
-        <h4 class="mb-0 fw-bold">Date & Time</h4>
+        <h4 class="mb-0 fw-500">Date & Time</h4>
     </div>
-    <br>
 
     <!-- Selected Appointment Info -->
     <div class="selected-appointment-info mb-4 p-3 bg-white border rounded">
-        <div class="text-muted" style="margin-left: 7.9rem;" id="companyName">Company Name</div>
-        <div class="fs-18 font-darkgray fw-500" style="margin-left: 7.9rem;" id="selected-appointment-name">Consultation</div>
-        <div class="text-muted" style="margin-left: 7.9rem;" id="selected-appointment-details">50 minutes &#64; ₱45.00</div>
-        <div class="text-muted" style="margin-left: 7.9rem;" id="selected-appointment-fee">Reservation Fee: ₱90.00</div>
+        <div class="text-muted appointment-info-item" id="companyName">Company Name</div>
+        <div class="fs-18 font-darkgray fw-500 appointment-info-item" id="selected-appointment-name">Consultation</div>
+        <div class="text-muted appointment-info-item" id="selected-appointment-details">50 minutes &#64; ₱45.00</div>
+        <div class="text-muted appointment-info-item" id="selected-appointment-fee">Reservation Fee: ₱90.00</div>
     </div>
 
     <!-- Date & Time Selection Layout -->
     <div class="datetime-unified-container">
         <!-- Calendar Section -->
         <div class="calendar-side" id="calendar-section">
-            <div class="text-muted mt-3 d-none d-md-block" style="margin-left: 6rem;">Choose date & time.
+            <div class="text-muted mt-3 d-none d-md-block" style="margin-left: 1.8rem;">Choose date & time.
             </div>
             <div class="text-muted mt-3 d-md-none mobile-calendar-instruction">Choose a date to continue.</div>
             <br>
@@ -63,22 +62,14 @@
                 </a>
             </div>
             
-            <div class="selected-date-header mb-3 d-flex justify-content-between align-items-center">
-                <h6 class="mb-0" id="selected-date-display"><strong>FRIDAY, MAY 2</strong></h6>
-                <div class="d-md-none">
-                    <button class="btn btn-sm btn-link p-0 text-dark" id="date-dropdown-toggle" onclick="scrollTimeUp()">
-                        <i class="bi bi-chevron-up fw-bold fs-5"></i>
+            <div class="selected-date-header">
+                <h6 id="selected-date-display"><strong>FRIDAY, MAY 2</strong></h6>
+                <div class="chevron-controls">
+                    <button class="btn" onclick="scrollTimeUp()">
+                        <i class="bi bi-chevron-up"></i>
                     </button>
-                    <button class="btn btn-sm btn-link p-0 text-dark ms-2" id="date-dropdown-up" onclick="scrollTimeDown()">
-                        <i class="bi bi-chevron-down fw-bold fs-5"></i> 
-                    </button>
-                </div>
-                <div class="d-none d-md-block">
-                    <button class="btn btn-sm btn-link p-0 text-dark" id="date-dropdown-toggle-desktop" onclick="scrollTimeUp()">
-                        <i class="bi bi-chevron-up fw-bold fs-5"></i>
-                    </button>
-                    <button class="btn btn-sm btn-link p-0 text-dark ms-2" id="date-dropdown-up-desktop" onclick="scrollTimeDown()">
-                        <i class="bi bi-chevron-down fw-bold fs-5"></i> 
+                    <button class="btn" onclick="scrollTimeDown()">
+                        <i class="bi bi-chevron-down"></i>
                     </button>
                 </div>
             </div>
