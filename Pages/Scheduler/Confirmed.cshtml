@@ -118,8 +118,102 @@
         color: #fff;
     }
 
-    /* Responsive */
-    @@media (max-width: 768px) {
+    /* Mobile Responsive - Small screens (360px, 390px) */
+    @@media (max-width: 480px) {
+        /* Container adjustments */
+        .container {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+        
+        /* Back button adjustments */
+        .mb-4 a {
+            margin-left: 0 !important;
+            font-size: 14px;
+        }
+        
+        /* Success icon adjustments */
+        .rounded-circle {
+            width: 80px !important;
+            height: 80px !important;
+            margin-top: 2rem !important;
+        }
+        
+        .rounded-circle svg {
+            width: 80px !important;
+            height: 80px !important;
+        }
+        
+        /* Title and subtitle adjustments */
+        h2 {
+            font-size: 1.5rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .text-muted {
+            font-size: 14px !important;
+            margin-bottom: 2rem !important;
+        }
+        
+        /* Wide card container mobile adjustments */
+        .wide-card-container {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 0 1rem;
+        }
+        
+        /* Appointment item mobile layout */
+        .appointment-item {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            padding: 1.5rem 1rem !important;
+            text-align: center;
+        }
+        
+        /* Left details mobile */
+        .confirm-left {
+            flex: none !important;
+            text-align: center !important;
+            margin-left: 0 !important;
+            margin-bottom: 1.5rem;
+        }
+        
+        .confirm-left h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem !important;
+        }
+        
+        .confirm-left p {
+            font-size: 14px;
+            margin-bottom: 0.25rem !important;
+        }
+        
+        /* Actions mobile layout - stacked buttons */
+        .confirm-actions {
+            margin-right: 0 !important;
+            flex-direction: column !important;
+            gap: 0.75rem !important;
+            align-items: stretch !important;
+        }
+        
+        /* Mobile buttons - full width and stacked */
+        .confirm-btn {
+            width: 100% !important;
+            min-width: auto !important;
+            padding: 12px 16px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            border-radius: 6px !important;
+        }
+        
+        /* Ensure proper spacing between sections */
+        .row.justify-content-center {
+            margin-top: 0 !important;
+        }
+    }
+    
+    /* Tablet responsive */
+    @@media (max-width: 768px) and (min-width: 481px) {
         .confirm-card { flex-direction: column; align-items: stretch; }
         .confirm-actions { justify-content: center; }
         .confirm-btn { width: 100%; }
