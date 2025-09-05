@@ -38,7 +38,7 @@ public class NotificationsIndexModel : PageModel
                 Date = new DateTime(2023, 10, 25),
                 Author = "Admin",
                 Priority = "urgent",
-                IconPath = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/icons/exclamation-triangle-fill.svg"
+                IconPath = "/images/icons/urgent.png"
             },
             new Notification
             {
