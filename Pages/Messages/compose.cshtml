@@ -1138,15 +1138,7 @@ ViewData["User"] = "Admin";
                 <div class="modal-title fs-16 font-orange ms-2 fs-20" id="contactsModalLabel">Add Recipient</div>
             </div>
 
-            <!-- Modal Body (Form) -->
-            <div class="compose-group modal-body pb-0 mx-4 my-3">
-                <form>
-                    <!-- Dynamic Error Message Placeholder -->
-                    <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
-                        <div>
-                            @* @{error_placeholder} *@
-                        </div>
-                    </div>
+           
                     <!-- First and Last Name (Two Columns) -->
                     <div class="row mb-4">
                         <div class="col-md-12 px-0">
@@ -1337,7 +1329,7 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>   
             </div>
             <!-- Modal Footer (Buttons) -->
             <div class="modal-footer d-flex flex-row justify-content-between mx-4 mb-4 px-0">
@@ -1599,7 +1591,7 @@ ViewData["User"] = "Admin";
                             on
                             your
                             specific needs and preferences.</label>
-                        <form class="d-flex use-template-search ">
+                        <div class="d-flex use-template-search ">
                             <div class="input-group use-template-search">
                                 <span class="input-group-text pe-0" id="search-addon">
                                     <i class="bi bi-search color-878A99 fs-12"></i> <!-- Search icon -->
@@ -1607,7 +1599,7 @@ ViewData["User"] = "Admin";
                                 <input class="form-control fs-14" type="search" placeholder="Search Templates"
                                     aria-label="Search">
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
