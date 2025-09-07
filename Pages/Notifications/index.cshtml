@@ -300,12 +300,13 @@ ViewData["User"] = "Admin";
                     <!-- Collapsed view (title only) -->
                     <div class="notification-collapsed">
                         <div class="row justify-content-between align-items-start">
-                            <div class="col-12 col-lg-8">
+                            <!-- Desktop view -->
+                            <div class="col-12 col-lg-8 d-none d-lg-block">
                                 <div class="card-titles fs-16 font-orange notification-title-clickable" style="cursor: pointer;">
                                     @notification.Title
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 d-flex flex-column align-items-end">
+                            <div class="col-12 col-lg-4 d-none d-lg-flex flex-column align-items-end">
                                 <div class="d-flex flex-row align-items-center mb-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
                                         class="color-495057 me-1">
@@ -338,6 +339,52 @@ ViewData["User"] = "Admin";
                                     </svg>
                                     <span>Delete</span>
                                 </button>
+                            </div>
+                            
+                            <!-- Mobile view - title with meta below and delete button on right -->
+                            <div class="col-12 d-lg-none mobile-notification-row">
+                                <div class="mobile-left-section">
+                                    <div class="card-titles fs-16 font-orange notification-title-clickable" style="cursor: pointer;">
+                                        @notification.Title
+                                    </div>
+                                    <div class="mobile-meta-row d-flex justify-content-between align-items-start mt-2">
+                                        <div class="mobile-meta-info">
+                                            <div class="d-flex flex-row align-items-center mb-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512"
+                                                    class="color-495057 me-1">
+                                                    <rect width="416" height="384" x="48" y="80" fill="none" stroke="currentColor"
+                                                        stroke-linejoin="round" stroke-width="32" rx="48" />
+                                                    <circle cx="296" cy="232" r="24" fill="currentColor" />
+                                                    <circle cx="376" cy="232" r="24" fill="currentColor" />
+                                                    <circle cx="296" cy="312" r="24" fill="currentColor" />
+                                                    <circle cx="376" cy="312" r="24" fill="currentColor" />
+                                                    <circle cx="136" cy="312" r="24" fill="currentColor" />
+                                                    <circle cx="216" cy="312" r="24" fill="currentColor" />
+                                                    <circle cx="136" cy="392" r="24" fill="currentColor" />
+                                                    <circle cx="216" cy="392" r="24" fill="currentColor" />
+                                                    <circle cx="296" cy="392" r="24" fill="currentColor" />
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="32" d="M128 48v32m256-32v32" />
+                                                    <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
+                                                        d="M464 160H48" />
+                                                </svg>
+                                                <span class="text-muted fs-12">@notification.Date.ToString("MMMM dd, yyyy")</span>
+                                            </div>
+                                            <div class="text-muted mb-2">
+                                                <span class="text-muted fs-12">Author: </span>
+                                                <strong class="font-orange fs-12">@notification.Author</strong>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-delete-section">
+                                            <button class="btn btn-outline-warning border-orange text-orange fs-12 d-flex align-items-center justify-content-center mobile-delete-btn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -353,7 +400,8 @@ ViewData["User"] = "Admin";
                                     @notification.Content
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 d-flex flex-column align-items-end px-4 py-3">
+                            <!-- Desktop expanded view -->
+                            <div class="col-12 col-lg-4 d-none d-lg-flex flex-column align-items-end px-4 py-3">
                                 <div class="d-flex flex-row align-items-center mb-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"
                                         class="color-495057 me-1">
@@ -386,6 +434,44 @@ ViewData["User"] = "Admin";
                                     </svg>
                                     <span>Delete</span>
                                 </button>
+                            </div>
+                            <!-- Mobile expanded view -->
+                            <div class="col-12 d-flex d-lg-none justify-content-between align-items-start mobile-expanded-row px-4 py-3">
+                                <div class="mobile-expanded-meta">
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512"
+                                            class="color-495057 me-1">
+                                            <rect width="416" height="384" x="48" y="80" fill="none" stroke="currentColor"
+                                                stroke-linejoin="round" stroke-width="32" rx="48" />
+                                            <circle cx="296" cy="232" r="24" fill="currentColor" />
+                                            <circle cx="376" cy="232" r="24" fill="currentColor" />
+                                            <circle cx="296" cy="312" r="24" fill="currentColor" />
+                                            <circle cx="376" cy="312" r="24" fill="currentColor" />
+                                            <circle cx="136" cy="312" r="24" fill="currentColor" />
+                                            <circle cx="216" cy="312" r="24" fill="currentColor" />
+                                            <circle cx="136" cy="392" r="24" fill="currentColor" />
+                                            <circle cx="216" cy="392" r="24" fill="currentColor" />
+                                            <circle cx="296" cy="392" r="24" fill="currentColor" />
+                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="32" d="M128 48v32m256-32v32" />
+                                            <path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"
+                                                d="M464 160H48" />
+                                        </svg>
+                                        <span class="text-muted fs-12">@notification.Date.ToString("MMMM dd, yyyy")</span>
+                                    </div>
+                                    <div class="text-muted mb-2">
+                                        <span class="text-muted fs-12">Author: </span>
+                                        <strong class="font-orange fs-12">@notification.Author</strong>
+                                    </div>
+                                </div>
+                                <div class="mobile-expanded-delete">
+                                    <button class="btn btn-outline-warning border-orange text-orange fs-12 d-flex align-items-center justify-content-center mobile-delete-btn-expanded">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -462,6 +548,89 @@ ViewData["User"] = "Admin";
         background-color: #FF5400;
         border-color: #FF5400;
         color: white;
+    }
+
+    /* Mobile-specific styles */
+    .mobile-notification-row {
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+
+    .mobile-left-section {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .mobile-meta-info {
+        margin-left: 0;
+    }
+
+    .mobile-meta-row {
+        width: 100%;
+    }
+
+    .mobile-delete-section {
+        flex-shrink: 0;
+        align-self: flex-end;
+        margin-top: 1.25rem;
+    }
+
+    .mobile-delete-btn {
+        width: 36px !important;
+        height: 32px !important;
+        min-width: 28px !important;
+        padding: 0 !important;
+        border-radius: 4px !important;
+    }
+
+    .mobile-delete-btn svg {
+        margin: 0 !important;
+    }
+
+    .mobile-delete-btn-expanded {
+        width: 36px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        padding: 0 !important;
+        border-radius: 6px !important;
+    }
+
+    .mobile-delete-btn-expanded svg {
+        margin: 0 !important;
+    }
+
+    .mobile-expanded-row {
+        align-items: flex-start !important;
+    }
+
+    .mobile-expanded-meta {
+        flex: 1;
+        text-align: left;
+    }
+
+    .mobile-expanded-delete {
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+
+    /* Responsive adjustments for mobile */
+    @@media (max-width: 991.98px) {
+        .mobile-left-section .card-titles {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .mobile-meta-info {
+            margin-top: 0.5rem !important;
+        }
+
+        .fs-12 {
+            font-size: 0.75rem !important;
+        }
+
+        .mobile-notification-row {
+            padding: 0.5rem;
+        }
     }
 </style>
 
