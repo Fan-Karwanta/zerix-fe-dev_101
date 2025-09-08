@@ -277,16 +277,14 @@ ViewData["User"] = "Admin";
                                 <div class="d-flex flex-row align-items-center gap-2">
                                     <!-- Where tags will appear dynamically -->
                                     <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
-                                    <span class="tag">IT <span class="remove-tag">&times;</span></span>
-                                    <span class="tag">Admin <span class="remove-tag">&times;</span></span>
                                     <input type="text" class="recipients-input border-0">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end gap-3 mt-3">
-                                <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#groupsModal">
+                                <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('groups')">
                                     Groups
                                 </button>
-                                <button class="btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#usersModal">
+                                <button class="btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
                                     Users
                                 </button>
                             </div>
@@ -316,50 +314,31 @@ ViewData["User"] = "Admin";
     </div>
 </div>
 
-<!-- Add group modal -->
-<div class="modal fade" id="groupsModal" tabindex="-1" aria-labelledby="groupsModalLabel" aria-hidden="true">
-    <div class="create-notifications-group modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-        <div class="create-notifications-group modal-content">
+<!-- Recipients modal (Groups and Users combined) -->
+<div class="modal fade" id="recipientsModal" tabindex="-1" aria-labelledby="recipientsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
             <!-- Modal Header -->
-            <div class="d-none d-md-flex create-notifications-group modal-header">
-                <div class="modal-title fs-20 font-orange ms-2" id="groupsModalLabel">Add Groups</div>
+            <div class="d-none d-sm-flex modal-header">
+                <div class="modal-title fs-16 font-orange ms-2" id="recipientsModalLabel">Add Recipient</div>
                 <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div
-                class="d-flex d-md-none create-notifications-group modal-header justify-content-start mx-4 mt-4 pt-4 pb-0 ps-0">
-                @* <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-                *@
+            <div class="d-flex d-sm-none modal-header justify-content-start mx-4 mt-4 pb-0 pt-2 ps-0">
                 <img class="me-2" src="/images/icons/go-back.svg" alt="back" height="24" width="24"
                     data-bs-dismiss="modal" aria-label="Close">
-                <div class="modal-title fs-16 font-orange ms-2 fs-20" id="groupsModalLabel">Add Groups</div>
-            </div>
-            
-            <!-- Mobile Tab Interface (only visible on mobile) -->
-            <div class="d-block d-md-none mx-4 mt-3">
-                <div class="mobile-modal-tabs-container">
-                    <div class="mobile-modal-tabs d-flex">
-                        <button class="mobile-modal-tab-btn" type="button" data-modal-tab="users">
-                            Users
-                        </button>
-                        <button class="mobile-modal-tab-btn active" type="button" data-modal-tab="groups">
-                            Groups
-                        </button>
-                    </div>
-                </div>
+                <div class="modal-title fs-20 font-orange ms-2" id="recipientsModalLabel">Add Recipient</div>
             </div>
 
             <!-- Modal Body (Form) -->
-            <div class="create-notifications-group modal-body pb-0 mx-4 my-3">
+            <div class="modal-body pb-0 mx-4 my-3">
                 <form>
                     <!-- Dynamic Error Message Placeholder -->
                     <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
-                        <div>
-                            @* @{error_placeholder} *@
-                        </div>
+                        <div></div>
                     </div>
                     <!-- First and Last Name (Two Columns) -->
-                    <div class="row mb-4">
+                    <div class="row mb-2">
                         <div class="col-md-12 px-0">
                             <label for="name" class="form-label"> Recipients</label>
                             <div class="input-group search rounded">
@@ -370,270 +349,69 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Users Content -->
-                    <div class="row modal-tab-content d-none" id="groups-users-content">
+                    <div class="row">
                         <!-- Table -->
-                        <div class="table-responsive group-members-table rounded p-0">
+                        <div class="d-flex gap-4 my-3 px-0">
+                            <span id="contactsMobile" class="text-muted cursor-pointer"
+                                onclick="showContacts()">Users</span>
+                            <span id="groupsMobile" class="text-decoration-underline font-orange cursor-pointer"
+                                onclick="showGroups()">Groups</span>
+                        </div>
+                        <div class="table-responsive group-members-table border rounded mt-2 p-0">
                             <div class="scroll">
-                                <table class="table">
-                                    <thead class="table-header group group-modal thead-fixed">
+                                <table class="table d-none" id="contactsTable">
+                                    <thead class="table-header thead-fixed">
                                         <tr>
-                                            <th><input type="checkbox" class="contacts-select-checkbox"></th>
+                                            <th><input type="checkbox" class="recipients-checkbox"></th>
                                             <th>Name</th>
                                             <th>Contact Number</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-body group group-modal">
+                                    <tbody class="table-body">
                                         <tr>
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Ethan Patel</td>
                                             <td>+63 912 345 5678</td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Maria Santos</td>
                                             <td>+63 912 345 5679</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                        <tr>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">John Doe</td>
                                             <td>+63 912 345 5680</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                        <tr>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Jane Smith</td>
                                             <td>+63 912 345 5681</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                        <tr>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Robert Johnson</td>
                                             <td>+63 912 345 5682</td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Groups Content -->
-                    <div class="row modal-tab-content" id="groups-groups-content">
-                        <!-- Table -->
-                        <div class="table-responsive group-members-table rounded p-0">
-                            <div class="scroll">
-                                <table class="table">
-                                    <thead class="table-header group group-modal thead-fixed">
                                         <tr>
-                                            <th><input type="checkbox" class="users-select-checkbox"></th>
-                                            <th>Group Name</th>
-                                            <th>Members</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-body group group-modal">
-                                        <tr>
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AGOSTO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">ALTAMIRA</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AMAHAN</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- Modal Footer (Buttons) -->
-            <div class="modal-footer d-flex flex-row justify-content-between mx-4 mb-4 px-0">
-                <div class="d-flex flex-row">
-                    <div class="text-muted fs-14">0 Selected</div>
-                </div>
-                <div class="d-flex flex-row gap-3">
-                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-fill">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Add Users modal -->
-<div class="modal fade" id="usersModal" tabindex="-1" aria-labelledby="usersModalLabel" aria-hidden="true">
-    <div class="create-notifications-group modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-        <div class="create-notifications-group modal-content">
-            <!-- Modal Header -->
-            <div class="d-none d-sm-flex create-notifications-group modal-header">
-                <div class="modal-title fs-20 font-orange ms-2" id="usersModalLabel">Add Recipient</div>
-                <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="d-flex d-sm-none create-notifications-group modal-header justify-content-start mx-4 mt-4 pt-4 pb-0 ps-0">
-                <img class="me-2" src="/images/icons/go-back.svg" alt="back" height="24" width="24"
-                    data-bs-dismiss="modal" aria-label="Close">
-                <div class="modal-title fs-16 font-orange ms-2 fs-20" id="usersModalLabel">Add Recipient</div>
-            </div>
-            
-            <!-- Mobile Tab Interface (only visible on mobile) -->
-            <div class="d-block d-sm-none mx-4 mt-3">
-                <div class="mobile-modal-tabs-container">
-                    <div class="mobile-modal-tabs d-flex">
-                        <button class="mobile-modal-tab-btn active" type="button" data-modal-tab="users">
-                            Users
-                        </button>
-                        <button class="mobile-modal-tab-btn" type="button" data-modal-tab="groups">
-                            Groups
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Body (Form) -->
-            <div class="create-notifications-group modal-body pb-0 mx-4 my-3">
-                <form>
-                    <!-- Dynamic Error Message Placeholder -->
-                    <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
-                        <div>
-                            @* @{error_placeholder} *@
-                        </div>
-                    </div>
-                    <!-- First and Last Name (Two Columns) -->
-                    <div class="row mb-4">
-                        <div class="col-md-12 px-0">
-                            <label for="name" class="form-label">Recipients</label>
-                            <div class="input-group search rounded">
-                                <span class="input-group-text align-items-start" id="search-addon">
-                                    <i class="bi bi-search color-878A99 align-baseline"></i> <!-- Search icon -->
-                                </span>
-                                <input class="form-control" type="search" aria-label="Search">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Users Content -->
-                    <div class="row modal-tab-content" id="users-content">
-                        <!-- Table -->
-                        <div class="table-responsive group-members-table rounded p-0">
-                            <div class="scroll">
-                                <table class="table">
-                                    <thead class="table-header group group-modal thead-fixed">
-                                        <tr>
-                                            <th><input type="checkbox" class="contacts-select-checkbox"></th>
-                                            <th>Name</th>
-                                            <th>Contact Number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-body group group-modal">
-                                        <tr>
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">Ethan Patel</td>
-                                            <td>+63 912 345 5678</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">Maria Santos</td>
-                                            <td>+63 912 345 5679</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">John Doe</td>
-                                            <td>+63 912 345 5680</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">Jane Smith</td>
-                                            <td>+63 912 345 5681</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">Robert Johnson</td>
-                                            <td>+63 912 345 5682</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Emily Davis</td>
                                             <td>+63 912 345 5683</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                        <tr>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Michael Wilson</td>
                                             <td>+63 912 345 5684</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
+                                        <tr>
+                                            <td><input type="checkbox" class="recipients-checkbox"></td>
                                             <td class="align-middle text-left">Sarah Brown</td>
                                             <td>+63 912 345 5685</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">David Miller</td>
-                                            <td>+63 912 345 5686</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="contacts-select-checkbox"></td>
-                                            <td class="align-middle text-left">Lisa Anderson</td>
-                                            <td>+63 912 345 5687</td>
-                                        </tr>
+                                        <!-- Additional table rows as needed -->
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Groups Content -->
-                    <div class="row modal-tab-content d-none" id="groups-content">
-                        <!-- Table -->
-                        <div class="table-responsive group-members-table rounded p-0">
-                            <div class="scroll">
-                                <table class="table">
+                                <table class="table" id="groupsTable">
                                     <thead class="table-header group group-modal thead-fixed">
                                         <tr>
                                             <th><input type="checkbox" class="users-select-checkbox"></th>
@@ -652,49 +430,34 @@ ViewData["User"] = "Admin";
                                             <td class="align-middle text-left">ALTAMIRA</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
                                             <td class="align-middle text-left">AMAHAN</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
                                             <td class="align-middle text-left">AQUINO</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td class="align-middle text-left">MARKETING</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td class="align-middle text-left">IT</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td class="align-middle text-left">ADMIN</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
-                                        <tr class="px-0 py-0">
+                                        <tr>
                                             <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
-                                            <td>Gabriel, Roger, +10</td>
-                                        </tr>
-                                        <tr class="px-0 py-0">
-                                            <td><input type="checkbox" class="users-select-checkbox"></td>
-                                            <td class="align-middle text-left">AQUINO</td>
+                                            <td class="align-middle text-left">SALES</td>
                                             <td>Gabriel, Roger, +10</td>
                                         </tr>
                                     </tbody>
@@ -705,9 +468,9 @@ ViewData["User"] = "Admin";
                 </form>
             </div>
             <!-- Modal Footer (Buttons) -->
-            <div class="modal-footer d-flex flex-row justify-content-between mx-4 mb-4 px-0">
+            <div class="modal-footer d-flex flex-row justify-content-between mx-4 mb-2 px-0">
                 <div class="d-flex flex-row">
-                    <div class="text-muted fs-14" id="contactsNumSelected">0 Selected</div>
+                    <div class="text-muted fs-14" id="recipientsNumSelected">0 Selected</div>
                 </div>
                 <div class="d-flex flex-row gap-3">
                     <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Cancel</button>
@@ -717,6 +480,7 @@ ViewData["User"] = "Admin";
         </div>
     </div>
 </div>
+
 
 <script src="/js/form-select.js"></script>
 
@@ -945,5 +709,79 @@ ViewData["User"] = "Admin";
             document.getElementById('groups-groups-content').classList.remove('d-none');
             document.getElementById('groups-users-content').classList.add('d-none');
         });
+    });
+</script>
+
+<script>
+    // Tab switching functionality for recipients modal
+    function showContacts() {
+        document.getElementById('contactsTable').classList.remove('d-none');
+        document.getElementById('groupsTable').classList.add('d-none');
+        document.getElementById('contactsMobile').classList.remove('text-muted');
+        document.getElementById('contactsMobile').classList.add('text-decoration-underline', 'font-orange');
+        document.getElementById('groupsMobile').classList.remove('text-decoration-underline', 'font-orange');
+        document.getElementById('groupsMobile').classList.add('text-muted');
+    }
+
+    function showGroups() {
+        document.getElementById('contactsTable').classList.add('d-none');
+        document.getElementById('groupsTable').classList.remove('d-none');
+        document.getElementById('groupsMobile').classList.remove('text-muted');
+        document.getElementById('groupsMobile').classList.add('text-decoration-underline', 'font-orange');
+        document.getElementById('contactsMobile').classList.remove('text-decoration-underline', 'font-orange');
+        document.getElementById('contactsMobile').classList.add('text-muted');
+    }
+
+    // Function to open modal with specific tab
+    function openModalWithTab(tabType) {
+        // Set a timeout to ensure modal is fully opened before switching tabs
+        setTimeout(() => {
+            if (tabType === 'users') {
+                showContacts();
+            } else if (tabType === 'groups') {
+                showGroups();
+            }
+        }, 100);
+    }
+
+    // Checkbox handling for recipients modal
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to handle checkbox logic for a given class
+        function handleCheckboxLogic(checkboxClass, selectAllSelector, counterSelector) {
+            // Select all the checkboxes with the specified class inside the table body
+            const checkboxes = document.querySelectorAll(`.${checkboxClass}`);
+            const selectedCounter = document.getElementById(counterSelector);
+
+            // Function to update the selected count
+            function updateSelectedCount() {
+                let selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+                if (selectedCount >= 2) selectedCount -= 1;
+                selectedCounter.textContent = `${selectedCount} Selected`;
+            }
+
+            // Add event listeners to each checkbox in the table body
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+
+            // Select the "Select All" checkbox in the table header
+            const selectAllCheckbox = document.querySelector(selectAllSelector);
+            if (selectAllCheckbox) {
+                selectAllCheckbox.addEventListener('change', function () {
+                    const isChecked = selectAllCheckbox.checked;
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = isChecked;
+                    });
+                    updateSelectedCount();
+                });
+            }
+
+            // Initialize the selected count on page load
+            updateSelectedCount();
+        }
+
+        // Handle checkboxes for both "users" and "groups"
+        handleCheckboxLogic('users-select-checkbox', 'thead .users-select-checkbox', 'recipientsNumSelected');
+        handleCheckboxLogic('recipients-checkbox', 'thead .recipients-checkbox', 'recipientsNumSelected');
     });
 </script>
