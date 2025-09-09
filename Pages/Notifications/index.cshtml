@@ -489,6 +489,16 @@ ViewData["User"] = "Admin";
     .card-titles {
         margin-top: 1.6rem;
     }
+    /* Align title with date in collapsed desktop view (desktop only) */
+    .notification-collapsed .d-lg-block .card-titles {
+        margin-top: 0.75rem;
+    }
+    /* Align title with date in expanded desktop view */
+    @@media (min-width: 992px) {
+        .notification-expanded .card-titles {
+            margin-top: 0.75rem;
+        }
+    }
     
     .notification-collapsed {
         padding: 1rem;
@@ -519,16 +529,21 @@ ViewData["User"] = "Admin";
     
     .notification-item:hover {
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
     }
     
-    .notification-collapsed .text-muted {
+    /* Desktop-only meta sizing so mobile (fs-12) stays untouched */
+    .notification-collapsed .d-lg-flex .text-muted {
+        font-size: 0.875rem;
+    }
+    .notification-expanded .d-lg-flex .text-muted {
         font-size: 0.875rem;
     }
     
-    .notification-collapsed .btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.75rem;
+    /* Desktop-only delete button sizing in both states */
+    .notification-collapsed .d-lg-flex .btn,
+    .notification-expanded .d-lg-flex .btn {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.875rem !important; /* 14px */
     }
     
     .border-orange {
