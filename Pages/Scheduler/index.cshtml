@@ -11,6 +11,12 @@
 @await Html.PartialAsync("_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-5 pt-3"> 
+    @await Html.PartialAsync("_ServiceCategory")
+    
+    @await Html.PartialAsync("_ServiceCategorySelection")
+    
+    @await Html.PartialAsync("_AppointmentList")
+
     @await Html.PartialAsync("_AppointmentSelection")
 
     @await Html.PartialAsync("_DateTimeSelection")

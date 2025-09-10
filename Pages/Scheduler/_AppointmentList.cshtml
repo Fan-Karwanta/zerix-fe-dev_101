@@ -1,0 +1,99 @@
+<!-- Appointment List View -->
+<div id="appointment-list" class="appointment-list-view" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center">
+            <button class="btn btn-link p-0 me-3 back-link" onclick="showServiceCategorySelection()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="fs-32 ff-default mobile-font font-darkgray fw-400">APPOINTMENT LIST</div>
+        </div>
+        <button class="btn btn-history d-none d-md-inline-block">Appointment History</button>
+        <button class="btn btn-history-mobile d-md-none" title="Appointment History">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8V12L15 15M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    <br>
+    <div class="selected-category-info mb-3">
+        <p class="text-muted">Category: <span id="selected-category-name" class="font-darkgray fw-500"></span></p>
+    </div>
+    
+    <div class="appointments-container">
+        <!-- Medical Appointments -->
+        <div class="medical-appointments" style="display: none;">
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Consultation</h5>
+                    <p class="mb-1 text-muted">Reservation Fee: ₱90.00</p>
+                    <p class="mb-0 text-muted">50 minutes &#64; ₱45.00</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Consultation" data-fee="₱90.00" data-duration="50 minutes &#64; ₱45.00" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+            
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Medical Appointment</h5>
+                    <p class="mb-0 text-muted">30 minutes</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Medical Appointment" data-fee="" data-duration="30 minutes" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+        </div>
+
+        <!-- Dental Appointments -->
+        <div class="dental-appointments" style="display: none;">
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Dental Cleaning</h5>
+                    <p class="mb-1 text-muted">Fee: ₱150.00</p>
+                    <p class="mb-0 text-muted">45 minutes</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Dental Cleaning" data-fee="₱150.00" data-duration="45 minutes" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+            
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Dental Checkup</h5>
+                    <p class="mb-1 text-muted">Fee: ₱100.00</p>
+                    <p class="mb-0 text-muted">30 minutes</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Dental Checkup" data-fee="₱100.00" data-duration="30 minutes" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+        </div>
+
+        <!-- Wellness Appointments -->
+        <div class="wellness-appointments" style="display: none;">
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Health Screening</h5>
+                    <p class="mb-1 text-muted">Fee: ₱200.00</p>
+                    <p class="mb-0 text-muted">60 minutes</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Health Screening" data-fee="₱200.00" data-duration="60 minutes" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+            
+            <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
+                <div class="text-start">
+                    <h5 class="mb-2 font-darkgray">Wellness Consultation</h5>
+                    <p class="mb-1 text-muted">Fee: ₱120.00</p>
+                    <p class="mb-0 text-muted">40 minutes</p>
+                </div>
+                <button class="btn btn-fill px-4 py-2" data-appointment="Wellness Consultation" data-fee="₱120.00" data-duration="40 minutes" onclick="selectAppointment(this)">
+                    Select
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
