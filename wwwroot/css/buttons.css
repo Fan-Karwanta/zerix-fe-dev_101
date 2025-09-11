@@ -8,6 +8,16 @@
   max-height: 40px;
 }
 
+.btn.btn-outline-add-button {
+  color: #ff5400;
+  background-color: white;
+  border: 1px solid #ff5400;
+  width: 90px;
+  height: 45px;
+  max-width: 90px;
+  max-height: 45px;
+}
+
 .btn.btn-outline:hover {
   color: #ff5400;
   background-color: white;
