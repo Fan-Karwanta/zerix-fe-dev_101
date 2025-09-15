@@ -359,10 +359,10 @@
 }
 
 .create-notification .tag {
-    background-color: #FF5400;
+    background-color: #495057;
     color: white;
     padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    border-radius: 1rem;
     font-size: 0.875rem;
     display: inline-flex;
     align-items: center;
