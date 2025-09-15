@@ -346,7 +346,7 @@ ViewData["User"] = "Admin";
                     <div class="notification-content" style="display: none;">
                         <div class="row">
                             <div class="col-12 px-4 py-3">
-                                <div class="card-text text-muted" style="line-height: 1.6; margin-bottom: 1rem;">
+                                <div class="card-text text-muted" style="line-height: 1.6; margin-bottom: 1rem; white-space: pre-line; max-width: calc(100% - 200px); word-wrap: break-word; overflow-wrap: break-word;">
                                     @notification.Content
                                 </div>
                             </div>
@@ -500,6 +500,11 @@ ViewData["User"] = "Admin";
     
     .notification-content.show {
         display: block !important;
+        margin-top: -5rem;
+        margin-left: 4px;
+        max-width: calc(100% - 200px);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .notification-collapsed {
@@ -512,6 +517,18 @@ ViewData["User"] = "Admin";
     
     .notification-title-clickable {
         transition: color 0.2s ease;
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .notification-title-clickable::before {
+        content: '';
+        position: absolute;
+        top: -0.5rem;
+        left: -0.5rem;
+        right: -0.5rem;
+        bottom: -0.5rem;
+        z-index: 1;
     }
     
     .notification-title-clickable:hover {
@@ -665,11 +682,10 @@ ViewData["User"] = "Admin";
 
     // Notification expand/collapse functionality - different behavior for desktop vs mobile
     document.addEventListener('DOMContentLoaded', function() {
-        const notificationTitles = document.querySelectorAll('.notification-title-clickable');
-        
-        notificationTitles.forEach(function(title) {
-            title.addEventListener('click', function() {
-                const notificationItem = this.closest('.notification-item');
+        // Use event delegation to handle dynamically added elements
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('notification-title-clickable')) {
+                const notificationItem = e.target.closest('.notification-item');
                 
                 // Check if we're on desktop or mobile
                 if (window.innerWidth >= 992) {
@@ -679,10 +695,13 @@ ViewData["User"] = "Admin";
                     // Only proceed if contentArea exists and is for desktop
                     if (!contentArea) return;
                     
+                    console.log('Toggling notification content');
                     if (contentArea.classList.contains('show')) {
                         contentArea.classList.remove('show');
+                        console.log('Removed show class');
                     } else {
                         contentArea.classList.add('show');
+                        console.log('Added show class');
                     }
                 } else {
                     // Mobile: Use original collapsed/expanded views
@@ -697,7 +716,7 @@ ViewData["User"] = "Admin";
                         expandedView.style.display = 'none';
                     }
                 }
-            });
+            }
         });
     });
 </script>

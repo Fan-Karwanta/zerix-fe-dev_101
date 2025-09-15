@@ -33,9 +33,9 @@ public class NotificationsIndexModel : PageModel
             new Notification
             {
                 Id = 1,
-                Title = "Holiday - Bug: Election",
-                Content = "Please be informed that there will be a holiday on election day. All offices will be closed and operations will resume the following business day.",
-                Date = new DateTime(2023, 10, 25),
+                Title = "Holiday - Brgy. Election",
+                Content = "Good day!\n\nThis is a reminder to please check your DTR and submit any relevant forms by visiting https://ess.optimum-source.com/#/login\n\nPlease make sure to remind your approvers of any pending applications, and check the status of any submitted forms.\n\nApprovers must check and approve all filings of your team daily.\n\nFor those who worked last May 12, 2025 (National Election) kindly file it as OVERTIME\n\nPayroll Coverage: May 6, 2025 to May 20, 2025\n\nCutoff for Morning shift and Mid Shift: May 20, 2025 (until 11 PM)\n\nCutoff for Graveyard shift/Night Shift: May 21, 2025 (until 12 PM ONLY)\n\nTo those who had a salary dispute last May 10th payroll, kindly submit any missing clock-in or clock-out records, overtime requests, OB requests, and change shift requests. Please advise your manager or immediate supervisor to approve them.",
+                Date = new DateTime(2023, 10, 29),
                 Author = "Admin",
                 Priority = "urgent",
                 IconPath = "/images/icons/urgent.png"
