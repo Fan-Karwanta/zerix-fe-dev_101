@@ -1,0 +1,428 @@
+/* =============================================================================
+   NOTIFICATIONS PAGES CSS
+   Dedicated CSS file for all Pages/Notifications styles
+   ============================================================================= */
+
+/* =============================================================================
+   INDEX.CSHTML STYLES
+   ============================================================================= */
+
+/* Page title styling - dynamic for all modules */
+.page-title-centered {
+    font-size: 1.7rem !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+.notification-item {
+    transition: none;
+}
+
+.card-titles {
+    margin-top: 2rem;
+}
+
+/* Align title with date in collapsed desktop view (desktop only) */
+.notification-collapsed .d-lg-block .card-titles {
+    margin-top: 0.75rem;
+}
+
+/* Align title with date in expanded desktop view */
+@media (min-width: 992px) {
+    .notification-expanded .card-titles {
+        margin-top: 0.75rem;
+    }
+}
+
+.notification-header {
+    padding: 1rem;
+}
+
+.notification-content {
+    display: none !important;
+}
+
+.notification-content.show {
+    display: block !important;
+    margin-top: -5rem;
+    margin-left: 4px;
+    max-width: calc(100% - 200px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.notification-collapsed {
+    padding: 1rem;
+}
+
+.notification-expanded {
+    display: none;
+}
+
+.notification-title-clickable {
+    transition: color 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-title-clickable::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    z-index: 1;
+}
+
+.notification-title-clickable:hover {
+    color: #FF5400 !important;
+    text-decoration: underline;
+}
+
+.notification-collapsed .row {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.notification-collapsed .col-12 {
+    padding: 0 0.5rem;
+}
+
+.notification-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Desktop-only meta sizing so mobile (fs-12) stays untouched */
+.notification-collapsed .d-lg-flex .text-muted {
+    font-size: 0.875rem;
+}
+
+.notification-expanded .d-lg-flex .text-muted {
+    font-size: 0.875rem;
+}
+
+/* Desktop-only delete button sizing in both states */
+.notification-collapsed .d-lg-flex .btn,
+.notification-expanded .d-lg-flex .btn {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem !important; /* 14px */
+}
+
+.border-orange {
+    border-color: #FF5400 !important;
+}
+
+.text-orange {
+    color: #FF5400 !important;
+}
+
+.btn-outline-warning.border-orange {
+    border-color: #FF5400;
+    color: #FF5400;
+}
+
+.btn-outline-warning.border-orange:hover {
+    background-color: #FF5400;
+    border-color: #FF5400;
+    color: white;
+}
+
+/* Mobile-specific styles */
+.mobile-notification-row {
+    align-items: flex-start !important;
+    gap: 1rem;
+}
+
+.mobile-left-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.mobile-meta-info {
+    margin-left: 0;
+}
+
+.mobile-meta-row {
+    width: 100%;
+}
+
+.mobile-delete-section {
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-top: 1.25rem;
+}
+
+.mobile-delete-btn {
+    width: 36px !important;
+    height: 32px !important;
+    min-width: 28px !important;
+    padding: 0 !important;
+    border-radius: 4px !important;
+}
+
+.mobile-delete-btn svg {
+    margin: 0 !important;
+}
+
+.mobile-delete-btn-expanded {
+    width: 36px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    padding: 0 !important;
+    border-radius: 6px !important;
+}
+
+.mobile-delete-btn-expanded svg {
+    margin: 0 !important;
+}
+
+.mobile-expanded-row {
+    align-items: flex-start !important;
+}
+
+.mobile-expanded-meta {
+    flex: 1;
+    text-align: left;
+}
+
+.mobile-expanded-delete {
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 991.98px) {
+    .mobile-left-section .card-titles {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .mobile-meta-info {
+        margin-top: 0.5rem !important;
+    }
+
+    .fs-12 {
+        font-size: 0.75rem !important;
+    }
+
+    .mobile-notification-row {
+        padding: 0.5rem;
+    }
+}
+
+/* =============================================================================
+   CREATE-NOTIFICATION.CSHTML STYLES
+   ============================================================================= */
+
+/* Mobile Modal Tab Interface Styles */
+.mobile-modal-tabs-container {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.mobile-modal-tabs {
+    background-color: #f8f9fa;
+}
+
+.mobile-modal-tab-btn {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    background-color: transparent;
+    color: #6c757d;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mobile-modal-tab-btn:first-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+.mobile-modal-tab-btn.active {
+    background-color: #FF5400;
+    color: white;
+}
+
+.mobile-modal-tab-btn:hover:not(.active) {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.mobile-modal-tab-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 84, 0, 0.2);
+}
+
+/* Modal tab content */
+.modal-tab-content {
+    transition: opacity 0.3s ease;
+}
+
+.modal-tab-content.d-none {
+    display: none !important;
+}
+
+/* =============================================================================
+   SENT-NOTIFICATIONS.CSHTML STYLES
+   ============================================================================= */
+
+/* Sent notifications specific styles are handled by existing global styles */
+/* Additional specific styles can be added here if needed */
+
+/* =============================================================================
+   SHARED NOTIFICATION STYLES
+   ============================================================================= */
+
+/* Card with urgent indicator */
+.card-with-indicator {
+    position: relative;
+}
+
+.triangle-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-right: 60px solid transparent;
+    border-top: 60px solid #d40000;
+    z-index: 1;
+    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.icon-indicator {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+    transform: rotate(-45deg);
+}
+
+/* Notification wall specific styles */
+.notification-wall .select-username {
+    width: 100%;
+}
+
+.notification-wall.scroll {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Sent notifications specific modal styles */
+.sent-notifications-recipients.modal-dialog {
+    max-width: 500px;
+}
+
+.sent-notifications-recipients.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.sent-notifications-recipients.modal-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem;
+}
+
+.sent-notifications-recipients.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Form styling for create notification */
+.create-notification .dates {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.create-notification .message-height {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.create-notification .recipients-container .tag-input {
+    min-height: 45px;
+    max-height: 120px;
+    overflow-y: auto;
+    background-color: white;
+}
+
+.create-notification .tag {
+    background-color: #FF5400;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.create-notification .tag .remove-tag {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.create-notification .tag .remove-tag:hover {
+    color: #ffcccc;
+}
+
+.create-notification .recipients-input {
+    outline: none;
+    min-width: 100px;
+    flex: 1;
+}
+
+.create-notification .recipients-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.create-notification .mobile-add-button {
+    height: 50px;
+    max-height: 50px;
+}
+
+/* Table styling for sent notifications */
+.users-settings-table.sent-notifications {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.users-settings-table.sent-notifications .table-header {
+    background-color: #f8f9fa;
+}
+
+.users-settings-table.sent-notifications .table-body.sent-notifications td {
+    vertical-align: middle;
+    padding: 1rem 0.75rem;
+}
+
+.users-settings-users-menu.sent-notifications {
+    margin-bottom: 1rem;
+}
+
+/* Responsive adjustments for sent notifications */
+@media (max-width: 767.98px) {
+    .users-settings-users-menu.sent-notifications {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .users-settings-users-menu.sent-notifications .input-group {
+        margin-right: 0 !important;
+    }
+}

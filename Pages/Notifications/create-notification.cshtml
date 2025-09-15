@@ -6,6 +6,8 @@ ViewData["Title"] = "Create Notification";
 ViewData["User"] = "Admin";
 }
 
+<link rel="stylesheet" href="~/css/notifications-pages.css" />
+
 
 <nav
     class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
@@ -275,17 +277,17 @@ ViewData["User"] = "Admin";
                         <div class="recipients-container">
                             <!-- Desktop layout: input and button side by side -->
                             <div class="d-none d-md-flex align-items-start gap-3">
-                                <div class="tag-input scroll-x border rounded p-2 flex-grow-1" style="background-color: white;">
+                                <div class="tag-input scroll-x border rounded p-2 flex-grow-1">
                                     <div class="d-flex flex-row align-items-center gap-2">
                                         <!-- Where tags will appear dynamically -->
                                         <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
-                                        <input type="text" class="recipients-input border-0" style="flex: 1;">
+                                        <input type="text" class="recipients-input border-0">
                                     </div>
                                 </div>
-                                <button class="btn btn-fill d-none d-md-inline-block" style="height: 45px; max-height: 45px;" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
+                                <button class="btn btn-fill-add-button-recipients d-none d-md-inline-block" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
                                      Add
                                 </button>
-                                <button class="btn btn-fill d-block d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
+                                <button class="btn btn-fill-add-button-recipients d-block d-md-none" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
                                      Add
                                 </button>
                             </div>
@@ -293,14 +295,14 @@ ViewData["User"] = "Admin";
                             <!-- Mobile layout: inline layout similar to desktop -->
                             <div class="d-block d-md-none">
                                 <div class="d-flex align-items-start gap-3">
-                                    <div class="tag-input scroll-x border rounded p-2 flex-grow-1" style="background-color: white;">
+                                    <div class="tag-input scroll-x border rounded p-2 flex-grow-1">
                                         <div class="d-flex flex-row align-items-center gap-2">
                                             <!-- Where tags will appear dynamically -->
                                             <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
-                                            <input type="text" class="recipients-input border-0" style="flex: 1;">
+                                            <input type="text" class="recipients-input border-0">
                                         </div>
                                     </div>
-                                    <button class="btn btn-fill" style="height: 45px; max-height: 45px;" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
+                                    <button class="btn btn-fill mobile-add-button" type="button" data-bs-toggle="modal" data-bs-target="#recipientsModal" onclick="openModalWithTab('users')">
                                          Add
                                     </button>
                                 </div>
@@ -501,59 +503,6 @@ ViewData["User"] = "Admin";
 
 <script src="/js/form-select.js"></script>
 
-<style>
-/* Mobile Modal Tab Interface Styles */
-.mobile-modal-tabs-container {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-}
-
-.mobile-modal-tabs {
-    background-color: #f8f9fa;
-}
-
-.mobile-modal-tab-btn {
-    flex: 1;
-    padding: 12px 16px;
-    border: none;
-    background-color: transparent;
-    color: #6c757d;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.mobile-modal-tab-btn:first-child {
-    border-right: 1px solid #e0e0e0;
-}
-
-.mobile-modal-tab-btn.active {
-    background-color: #FF5400;
-    color: white;
-}
-
-.mobile-modal-tab-btn:hover:not(.active) {
-    background-color: #e9ecef;
-    color: #495057;
-}
-
-.mobile-modal-tab-btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 84, 0, 0.2);
-}
-
-/* Modal tab content */
-.modal-tab-content {
-    transition: opacity 0.3s ease;
-}
-
-.modal-tab-content.d-none {
-    display: none !important;
-}
-</style>
 
 <script>
     OverlayScrollbars(document.querySelectorAll('.scroll'), {
