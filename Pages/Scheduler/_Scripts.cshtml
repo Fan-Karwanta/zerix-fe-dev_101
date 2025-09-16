@@ -420,30 +420,30 @@ function showBranchSelection() {
     document.getElementById('service-category').style.display = 'block';
 }
 
-function showAppointmentList(button) {
+function showAppointmentDetails(button) {
     const service = button.getAttribute('data-service');
     
-    // Hide service category selection and show appointment list
-    document.getElementById('service-category-selection').style.display = 'none';
-    document.getElementById('appointment-list').style.display = 'block';
+    // Hide all other sections explicitly
+    const sectionsToHide = [
+        'service-category',
+        'appointment-list',
+        'appointment-selection',
+        'date-time-selection',
+        'information-view',
+        'service-category-selection'
+    ];
+    sectionsToHide.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
+    // Show appointment details
+    const apptDet = document.getElementById('appointment-details');
+    if (apptDet) apptDet.style.display = 'block';
     
-    // Update selected category display
-    document.getElementById('selected-category-name').textContent = service;
-    
-    // Show appropriate appointments based on service
-    const medicalAppts = document.querySelector('.medical-appointments');
-    const dentalAppts = document.querySelector('.dental-appointments');
-    const wellnessAppts = document.querySelector('.wellness-appointments');
-    
-    // Hide all appointment categories first
-    if (medicalAppts) medicalAppts.style.display = 'none';
-    if (dentalAppts) dentalAppts.style.display = 'none';
-    if (wellnessAppts) wellnessAppts.style.display = 'none';
-    
-    // Show the selected service appointments (for now, show medical for all services)
-    if (medicalAppts) {
-        medicalAppts.style.display = 'block';
-    }
+    // Optionally store or display selected service
+    const selCat = document.getElementById('selected-category-name');
+    if (selCat && service) selCat.textContent = service;
 }
 
 function selectAppointment(button) {
@@ -465,16 +465,27 @@ function selectAppointment(button) {
     document.getElementById('final-appointment-duration').textContent = duration;
 }
 
-function showAppointmentList() {
-    // Hide appointment selection and show appointment list
-    document.getElementById('appointment-selection').style.display = 'none';
-    document.getElementById('appointment-list').style.display = 'block';
+function showAppointmentList(arg) {
+    // Compatibility: if called with a button (old markup), treat as Details navigation.
+    if (arg) {
+        return showAppointmentDetails(arg);
+    }
+    // Updated: In the new flow, going "back" from appointment selection should
+    // return to the Appointment Details view, not the deprecated appointment list.
+    const apptSel = document.getElementById('appointment-selection');
+    if (apptSel) apptSel.style.display = 'none';
+    const apptList = document.getElementById('appointment-list');
+    if (apptList) apptList.style.display = 'none';
+    const apptDet = document.getElementById('appointment-details');
+    if (apptDet) apptDet.style.display = 'block';
 }
 
 function showServiceCategorySelection() {
     // Hide appointment list and show service category selection
     document.getElementById('appointment-list').style.display = 'none';
     document.getElementById('appointment-selection').style.display = 'none';
+    const apptDet = document.getElementById('appointment-details');
+    if (apptDet) apptDet.style.display = 'none';
     document.getElementById('service-category-selection').style.display = 'block';
 }
 
@@ -511,6 +522,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('service-category-selection').style.display = 'none';
     document.getElementById('appointment-list').style.display = 'none';
     document.getElementById('appointment-selection').style.display = 'none';
+    const apptDet = document.getElementById('appointment-details');
+    if (apptDet) apptDet.style.display = 'none';
     
     // Hide other scheduler sections initially
     const dateTimeSection = document.getElementById('date-time-selection');

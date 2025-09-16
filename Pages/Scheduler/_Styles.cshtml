@@ -13,11 +13,14 @@
 .category-list .category-item { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
 .appointments-container .appointment-item { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
 
+
+
 .back-link {
     color: #ff5400;
     text-decoration: none;
     border: none;
     background: transparent;
+    margin-bottom: 32px;
 }
 
 .back-link:hover {
@@ -82,6 +85,19 @@
 /* Fix dropdown toggle button */
 .dropdown-toggle::after {
     display: none;
+}
+
+/* Mobile-specific button styling */
+@@media (max-width: 767px) {
+    .btn.btn-fill {
+        color: white;
+        background-color: #ff5400;
+        border: 1px solid #ff5400;
+        width: 30rem;
+        height: 40px;
+        max-width: 30rem;
+        max-height: 40px;
+    }
 }
 
 /* Ensure dropdown works on mobile */
