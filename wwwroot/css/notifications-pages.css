@@ -45,13 +45,24 @@
     display: none !important;
 }
 
-.notification-content.show {
-    display: block !important;
-    margin-top: -5rem;
-    margin-left: 4px;
-    max-width: calc(100% - 200px);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+/* Desktop only - hide on mobile screens */
+@media (min-width: 992px) {
+    .notification-content.show {
+        display: block !important;
+        margin-top: -5rem;
+        margin-left: 4px;
+        max-width: calc(100% - 200px);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Mobile screens - force hide desktop expanded content */
+@media (max-width: 991.98px) {
+    .notification-content,
+    .notification-content.show {
+        display: none !important;
+    }
 }
 
 .notification-collapsed {
