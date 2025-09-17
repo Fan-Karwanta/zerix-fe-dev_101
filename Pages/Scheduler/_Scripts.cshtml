@@ -3,6 +3,35 @@ let currentDate = new Date();
 let selectedDate = null;
 let selectedTime = null;
 
+function selectAppointmentDetails(button) {
+    // Hide appointment details and show datetime selection
+    document.getElementById('appointment-details').style.display = 'none';
+    document.getElementById('datetime-selection').style.display = 'block';
+    
+    // Get appointment data from button attributes
+    const appointmentName = button.getAttribute('data-appointment');
+    const fee = button.getAttribute('data-fee');
+    const duration = button.getAttribute('data-duration');
+    
+    // Update appointment info in the datetime selection view
+    document.getElementById('companyName').textContent = 'Hot Oil Massage Face';
+    document.getElementById('selected-appointment-name').textContent = appointmentName;
+    document.getElementById('selected-appointment-details').textContent = duration;
+    document.getElementById('selected-appointment-fee').textContent = fee ? `Reservation Fee: ${fee}` : '';
+    
+    // Initialize calendar and time slots
+    generateCalendar();
+    generateTimeSlots();
+
+    // Reset time selection
+    selectedTime = null;
+    
+    // Set default selected date to today + 1
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    selectDate(tomorrow);
+}
+
 function showDateTimeSelection(button) {
     document.getElementById('appointment-selection').style.display = 'none';
     document.getElementById('datetime-selection').style.display = 'block';
@@ -421,7 +450,7 @@ function showBranchSelection() {
 }
 
 function showAppointmentDetails(button) {
-    const service = button.getAttribute('data-service');
+    const service = button ? button.getAttribute('data-service') : null;
     
     // Hide all other sections explicitly
     const sectionsToHide = [
@@ -429,6 +458,7 @@ function showAppointmentDetails(button) {
         'appointment-list',
         'appointment-selection',
         'date-time-selection',
+        'datetime-selection',
         'information-view',
         'service-category-selection'
     ];
