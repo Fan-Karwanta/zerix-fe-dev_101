@@ -136,10 +136,22 @@
     color: #FF5400;
 }
 
-.btn-outline-warning.border-orange:hover {
-    background-color: #FF5400;
-    border-color: #FF5400;
-    color: white;
+.btn-outline-warning.border-orange:hover,
+.btn-outline-warning.border-orange:focus,
+.btn-outline-warning.border-orange:active {
+    background-color: #FF5400 !important;
+    border-color: #FF5400 !important;
+    color: #fff !important; /* override .text-orange !important */
+}
+
+/* Ensure child elements also inherit white color on interactive states */
+.btn-outline-warning.border-orange:hover svg,
+.btn-outline-warning.border-orange:focus svg,
+.btn-outline-warning.border-orange:active svg,
+.btn-outline-warning.border-orange:hover span,
+.btn-outline-warning.border-orange:focus span,
+.btn-outline-warning.border-orange:active span {
+    color: #fff !important;
 }
 
 /* Mobile-specific styles */
