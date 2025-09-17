@@ -1,0 +1,370 @@
+@page
+@model TermsOfServicesStandaloneModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Terms of Services - ZERiX";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/colors.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/zerix_fe_dev.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: #ffffff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 32px;
+        }
+        
+        .sign-in-btn {
+            color: #ff5400;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .sign-in-btn:hover {
+            color: #e04800;
+            text-decoration: none;
+        }
+        
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 60px;
+        }
+        
+        .back-arrow {
+            color: #ff5400;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .back-arrow:hover {
+            color: #e04800;
+            text-decoration: none;
+        }
+        
+        .back-arrow i {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+        
+        .page-title {
+            color: #ff5400;
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            line-height: 1.2;
+        }
+        
+        .terms-text {
+            color: #495057;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            color: #495057;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+        
+        .terms-list {
+            color: #495057;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .terms-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .terms-list li:before {
+            content: "•";
+            color: #495057;
+            position: absolute;
+            left: 0;
+        }
+        
+        @@media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .content-container {
+                padding: 30px 20px;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .back-arrow {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .back-arrow i {
+                font-size: 18px;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="/images/zerix-logo.png" alt="ZERiX" class="logo">
+        <a href="/accounts/login" class="sign-in-btn">Sign In</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content-container">
+        <a href="/accounts/sign-up" class="back-arrow">
+            <i class="bi bi-arrow-left"></i>
+            Terms & Conditions
+        </a>
+        
+        <div class="terms-text">
+            This ZERiX Terms of Service ("Agreement") is a legal agreement between Optimum Innovatus Corp. ("Innovatus", "ZERIX Text", "ZERiX", "us", or "we") and the entity or person ("you", "your", "your company" or "user") who purchased a subscription to use the ZERiX Software and App, to receive certain notification, data, technology that may be offered by ZERiX, and other related applications, communications and services ("Services"). This Agreement describes the terms and conditions that apply to your use of ZERiX.
+        </div>
+        
+        <div class="terms-text">
+            You may not use ZERiX unless you agree to abide by all of the terms and conditions in this Agreement. Please <a href="#" style="color: #007bff; text-decoration: underline;">click to send a message</a> if you do not understand any of the terms of this Agreement.
+        </div>
+
+        <div class="section-title">1. Account Registration</div>
+        <ul class="terms-list">
+            <li>If you create a user under the ZERiX software or App, on behalf of an entity, such as your business or employer, you represent that you have the legal authority to bind that entity to this Agreement.</li>
+            <li>You are responsible for maintaining the security of your account and password. ZERiX cannot and will not be liable for any loss or damage from your failure to comply with this security obligation.</li>
+            <li>You are responsible for all content posted and activity that occurs under your account, even when content is posted by others, with or without your consent, who have their own logins under your account.</li>
+            <li>You may not use the Services for any illegal and immoral purposes or to violate any laws in your jurisdiction (including copyright laws).</li>
+            <li>You must provide your true and correct full name, a valid email address, and any other information requested in order to complete the signup process.</li>
+            <li>Your login may only be used by one person. A single login shared by multiple people is not permitted. You may create separate logins for as many users, permitted by the package you have subscribed to, as you'd like.</li>
+            <li>Any accounts registered by computers, machines, mechanical device, or other automated methods are not permitted.</li>
+        </ul>
+
+        <div class="section-title">2. User's Content</div>
+        <div class="terms-text">
+            When we import data from your company's database, your data or content may be uploaded to ZERiX, either directly or indirectly. This content may include data, images, source code, feature descriptions, and other content created, stored or transmitted by you on ZERiX. You represent that you have all the rights, power, and authority necessary to use and transmit the contents via ZERiX and you expose yourself to liability for contents without all the necessary rights.
+        </div>
+        
+        <div class="terms-text">
+            You are solely responsible for the content of, and for any harm resulting from any User Content that you or your users make available via ZERiX. All content provided to ZERiX must comply with the copyright laws of your jurisdiction and the generally accepted international intellectual laws. We claim no intellectual property rights over the User Content you provide. We do not pre-screen User Content, but reserve the right, without obligation, in our sole discretion to refuse or remove User Content that is available via ZERiX. We take no responsibility for and we do not expressly or implicitly endorse any of your content.
+        </div>
+        
+        <div class="terms-text">
+            Although we do not have obligation to screen, edit or monitor User Content, we may, in our sole discretion, delete or remove your content, or discontinue our Services at any time for violation of these Terms, or if you otherwise create liability for us.
+        </div>
+        
+        <div class="terms-text">
+            You hereby grant to Innovatus/ZERiX a fully paid, worldwide, non-exclusive, irrevocable, perpetual (or for the term of the protection), royalty-free, sub-licensable and transferable license to access, use, store, distribute, display, reproduce, publish, modify, transmit, broadcast, and otherwise exploit in any manner the User Content for purposes of providing you ZERiX and for Innovatus' other legitimate business reasons.
+        </div>
+        
+        <div class="terms-text">
+            Innovatus considers User Content confidential to you. We will protect User Content from unauthorized use, access, or disclosure in the same manner that we would use to protect our own confidential information of a similar nature and in no event with less than a reasonable degree of care. For more information on how we use and treat your User Content and other data, please see the section titled "Data Privacy".
+        </div>
+
+        <div class="section-title">3. License</div>
+        <div class="terms-text">
+            Except for User Content, the Services, information, trademarks, and materials contained herein are the property of Innovatus and its licensors, and are protected from unauthorized copying and dissemination by copyright law, trademark law, and other intellectual property laws. Subject to this Agreement, Innovatus grants you a limited, non-transferable, non-exclusive, revocable license to use the Services (the "License"). Your rights under this Agreement do not include any right to use or appropriate for yourself the trademarks, service marks, and trade names of ZERiX for any reason, willfully or negligently. You are strictly prohibited to: (i) copy, modify, create a derivative work of, reverse engineer, or otherwise attempt to extract the source code or design elements of ZERiX; (ii) reproduce the features or functionality of ZERiX in a similar or competing product, including any new or existing, publicly listed product on the ZERiX Website; (iii) use the Services in a manner that violates this Agreement; or (iv) attempt to do any of the foregoing.
+        </div>
+        
+        <div class="terms-text">
+            We reserve the right to discontinue our Services for any act that constitutes a reasonable belief that an infringement of our intellectual property rights, including the ZERiX License Agreement, or its licensors has been committed.
+        </div>
+
+        <div class="section-title">4. Fees & Payment</div>
+        <div class="terms-text">
+            Usage of ZERiX requires your purchase of a timely paid subscription. If you fail to pay for usage, your account will be frozen and inaccessible until payment is updated.
+        </div>
+        
+        <div class="terms-text">
+            Any upgrade or downgrade in plan level will result in the new rate being charged at the next billing cycle. There will be no prorating for downgrades in between billing cycles.
+        </div>
+        
+        <div class="terms-text">
+            Payments are non-refundable. There will be no refunds or credits for partial months of service or for months unused with an open account.
+        </div>
+        
+        <div class="terms-text">
+            ZERiX reserves the right to change its fees and payment policies for the Services at any time, and will provide you adequate notice before the beginning of the billing cycle in which such change will take effect.
+        </div>
+        
+        <div class="terms-text">
+            All fees are exclusive of Value Added Tax or all taxes imposed by taxing authorities, and you are responsible for payment of all such taxes.
+        </div>
+        
+        <div class="terms-text">
+            Payments and purchases made through the ZERiX website are governed by this Terms of Service. We expressly disclaim all responsibility and liability for your use of ZERiX website.
+        </div>
+
+        <div class="section-title">5. Data Usage, Privacy Policy, and Security</div>
+        <div class="terms-text">
+            Protecting, securing, and maintaining the information processed and handled through the Services is one of our top priorities, and it should be yours too. Please read the ZERiX Privacy Policy, which describes the types of information we collect from you, how we use your information, and the legal bases we have to process your information.
+        </div>
+
+        <div class="section-title">6. Publicity</div>
+        <div class="terms-text">
+            You agree to allow us to use and publish your company's or organization's name and logo to identify you as a ZERiX user or customer on our website and in promotional materials. You may revoke this permission by notifying us in writing to stop using your organization's name in our promotional materials. However, ZERiX will have no obligation to remove or recall any prior use or distribution of the promotional materials. All publicity made prior to your revocation shall be considered as done in good faith.
+        </div>
+
+        <div class="section-title">7. Suspension, Cancellation and Termination</div>
+        <div class="terms-text">
+            You must cancel your account via support request at our website using your account email. Any other emails or phone requests to cancel your account will not be considered a cancellation.
+        </div>
+        
+        <div class="terms-text">
+            If you cancel the Services before the end of your current paid up month, your cancellation will take effect immediately, and you will not be charged again. But there will not be a refund or any prorating of unused time in the last billing cycle.
+        </div>
+        
+        <div class="terms-text">
+            You are solely responsible for canceling subscriptions purchased through the ZERiX website. Cancellations made through the ZERiX website are governed by this Terms of Service.
+        </div>
+        
+        <div class="terms-text">
+            ZERiX, in its sole discretion, has the right to suspend or terminate your account and refuse any and all current or future use of the Services for any reason at any time by giving you a thirty (30) days' notice through this website using your account email.
+        </div>
+        
+        <div class="terms-text">
+            ZERiX may immediately, without notice, suspend or terminate this Agreement if (i) you have material breached your obligations under these Terms of Service, our Data Privacy policy or License Agreement, (ii) you have violated applicable laws, regulations or third party rights, (iii) ZERiX believes in good faith that you have infringe our intellectual property rights. Such termination of the Services will result in the deactivation or deletion of your account. ZERiX has the right to delete all User Content following termination or expiration of this Agreement.
+        </div>
+
+        <div class="section-title">8. Limitation of Liability</div>
+        <div class="terms-text">
+            Your sole and exclusive remedy for any dispute with us is the cancellation of your subscription. You acknowledge and agree that, to the maximum extent permitted by law, the entire risk arising out of your access and use of ZERiX and the content, whoever owns it, remains in you. In no event shall our total cumulative liability to you for any and all claims relating to or arising out of your use of the Services, regardless of the form of action, exceed the greater of the total amount of fees, if any, that you paid to utilize our Services for the past twelve (12) months prior to the event giving rise to the liability. In no event shall we be liable to you (or to any third party claiming under or through you) for any direct, indirect, special, incidental, consequential, punitive or exemplary damages or any bodily injury, emotional distress, death or any other damages arising from your use of or inability to use the Services, whether on-line or off-line, or otherwise in connection with the Services.
+        </div>
+        
+        <div class="terms-text">
+            These exclusions apply to any claims for lost profits, lost data, loss of goodwill or business reputation, cost of procurement of substitute goods or services, work stoppage, computer failure or malfunction, any other commercial damages or losses, or any personal injury or property damages, even if we knew or should have known of the possibility of such damages. These limitations on our liability to you will apply regardless of the legal theory on which your claim is based, including contract, tort (including negligence), strict liability, or any other theory or basis.
+        </div>
+        
+        <div class="terms-text">
+            Because some countries, states or jurisdictions do not allow the exclusion or the limitation of liability for consequential or incidental damages, in such states or jurisdictions, our liability shall be limited to the extent permitted by law.
+        </div>
+
+        <div class="section-title">9. Indemnification</div>
+        <div class="terms-text">
+            To the maximum extent permitted by applicable law, you agree to hold harmless and indemnify Optimum Innovatus Corp., the owner of ZERiX, and its subsidiaries, affiliates, officers, agents, employees, advertisers, licensors, suppliers or partners from and against any third party claim arising from or in any way related to (a) your breach of this Terms of Service, Privacy Policy, License Agreement, (b) your improper use of the Services and Licenses, or (c) your violation of applicable laws, rules or regulations in connection with the Services, including any liability or expense arising from all claims, losses, damages (actual and consequential), suits, judgments, litigation costs and attorneys' fees, of every kind and nature. In such a case, ZERiX will provide you with written notice of such claim, suit or action.
+        </div>
+
+        <div class="section-title">10. Disclaimers</div>
+        <div class="terms-text">
+            IF YOU ACCESS THE SERVICES, YOU DO SO VOLUNTARILY AND AT YOUR OWN SOLE RISK. WE PROVIDE THE SERVICES "AS IS", "WITH ALL FAULTS" AND "AS AVAILABLE." WE MAKE NO EXPRESS OR IMPLIED WARRANTIES OR GUARANTEES ABOUT THE SERVICES.
+        </div>
+        
+        <div class="terms-text">
+            YOU AGREE THAT YOU HAD WHATEVER OPPORTUNITY YOU DEEM NECESSARY TO INVESTIGATE THE SERVICES, LAWS, RULES OR REGULATIONS THAT MAY BE APPLICABLE TO ITS USE AND THAT YOU ARE NOT RELYING UPON ANY STATEMENT OF LAW OR FACT MADE BY ZERiX RELATING TO THE SERVICES.
+        </div>
+        
+        <div class="terms-text">
+            TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE HEREBY DISCLAIM ALL SUCH WARRANTIES, INCLUDING ALL STATUTORY WARRANTIES, WITH RESPECT TO THE SERVICES, INCLUDING WITHOUT LIMITATION ANY WARRANTIES THAT THE SERVICES ARE MERCHANTABLE, OF SATISFACTORY QUALITY, ACCURATE, FIT FOR A PARTICULAR PURPOSE OR NEED, OR NON-INFRINGING. WE DO NOT GUARANTEE THAT THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE SERVICES WILL BE EFFECTIVE, RELIABLE OR ACCURATE OR WILL MEET YOUR REQUIREMENTS. WE DO NOT GUARANTEE THAT YOU WILL BE ABLE TO ACCESS OR USE THE SERVICES (EITHER DIRECTLY OR THROUGH THIRD-PARTY NETWORKS) AT TIMES OR LOCATIONS OF YOUR CHOOSING. WE ARE NOT RESPONSIBLE FOR THE ACCURACY, RELIABILITY, TIMELINESS OR COMPLETENESS OF INFORMATION PROVIDED BY ANY OTHER USERS OF THE SERVICES OR ANY OTHER DATA OR INFORMATION PROVIDED OR RECEIVED THROUGH THE SERVICES. EXCEPT AS EXPRESSLY SET FORTH HEREIN, ZERiX TEXT MAKES NO WARRANTIES ABOUT THE INFORMATION SYSTEMS, SOFTWARE AND FUNCTIONS MADE ACCESSIBLE BY OR THROUGH THE SERVICES OR ANY SECURITY ASSOCIATED WITH THE TRANSMISSION OF SENSITIVE INFORMATION. ZERiX DOES NOT WARRANT THAT THE SERVICES WILL OPERATE ERROR-FREE, THAT ERRORS IN THE SERVICES WILL BE FIXED, THAT LOSS OF DATA WILL NOT OCCUR, OR THAT THE SERVICES OR SOFTWARE ARE FREE OF COMPUTER VIRUSES, CONTAMINANTS OR OTHER HARMFUL ITEMS. UNDER NO CIRCUMSTANCES WILL ZERiX, ANY OF OUR AFFILIATES, DISTRIBUTORS, PARTNERS, LICENSORS, AND/OR ANY OF OUR OR THEIR DIRECTORS, OFFICERS, EMPLOYEES, CONSULTANTS, AGENTS, OR OTHER REPRESENTATIVES BE LIABLE FOR ANY LOSS OR DAMAGE CAUSED BY YOUR RELIANCE ON INFORMATION OBTAINED THROUGH THE SERVICES.
+        </div>
+        
+        <div class="terms-text">
+            THE FOREGOING DISCLAIMERS APPLY TO THE MAXIMUM EXTENT PERMITTED BY LAW. YOU MAY HAVE OTHER STATUTORY RIGHTS. HOWEVER, THE DURATION OF STATUTORILY REQUIRED WARRANTIES, IF ANY, SHALL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.
+        </div>
+
+        <div class="section-title">11. Feedback</div>
+        <div class="terms-text">
+            We welcome and encourage you to provide suggestions for improvements, comments, ideas, or other feedback ("Feedback") about our Services. You may submit Feedback by emailing us, through the Contact Us section of ZERiX Website. Any Feedback you submit to us will be considered non-confidential and non-proprietary to you, even if you designated it as such. We may use and publish your Feedback for any purpose, without obligation to you of any kind, and without your consent.
+        </div>
+
+        <div class="section-title">12. General Provisions</div>
+        
+        <div class="section-title">12.1 Right to Amend</div>
+        <div class="terms-text">
+            We reserve the right, at our sole discretion, to amend this Agreement at any time. We will notify you of material changes to this Agreement, by posting a notice on our website or sending you an email. For non-material modifications, your continued use of our Services constitutes agreement to our revisions to the Agreement. You can access a copy of the current terms of this Agreement on our website at any time. You can find out when this Agreement was last changed by checking the "Last Updated" date at the top of the Agreement.
+        </div>
+        
+        <div class="section-title">12.2 Assignment</div>
+        <div class="terms-text">
+            ZERiX may without restriction assign or delegate this Agreement and/or our Privacy Policy, in whole or in part, to any person or entity at any time with or without your consent. You may not assign or delegate any rights or obligations under the Agreement or Privacy Policy without our prior written consent, and any unauthorized assignment and delegation by you is void.
+        </div>
+        
+        <div class="section-title">12.3 Third-Party Services</div>
+        <div class="terms-text">
+            The relationship of the parties under this Agreement is that of independent contractors. Neither party will be deemed to be an employer, employee, agent, partner or legal representative of the other for any purpose and neither will have any right, power or authority to create any obligation or responsibility on the behalf of the other.
+        </div>
+        
+        <div class="terms-text">
+            In order for us to communicate with such Third-Party Services, you may be required to input credentials in order for us to access and receive relevant information from the Third-Party Service. By enabling use of the Services with any Third-Party Service, you authorize ZERiX to access your accounts with the Third-Party Service for the purposes described in this Agreement.
+        </div>
+        
+        <div class="terms-text">
+            You access and use any Third-Party Service based on your own evaluation and at your own risk. You understand that your use of any Third-Party Service is not governed by this Agreement. If you decide to use a Third-Party Service, you will be responsible for reviewing, understanding and accepting the terms and conditions associated with its use. We expressly disclaim all responsibility and liability for your use of any Third-Party Service. Please also remember that when you use a Third-Party Service, our Privacy Policy is no longer in effect. Your use of a Third Party Service, including those that have a link on our website, is subject to that Third-Party Service's own terms of use and privacy policies.
+        </div>
+        
+        <div class="section-title">12.4 Excessive Use</div>
+        <div class="terms-text">
+            We reserve the right to temporarily disable your account if your usage significantly exceeds the average usage of other users. We will reach out to you before taking any action except in rare cases where the level of use may negatively impact the performance of the Services for other users.
+        </div>
+        
+        <div class="section-title">12.5 Force Majeure</div>
+        <div class="terms-text">
+            Neither party will be liable for any delays in processing or other nonperformance caused by telecommunications, utility, failures, or equipment failures; labor strife, riots, war, or terrorist attacks; nonperformance of our vendors or suppliers, fires or acts of nature; or any other event over which the respective party has no reasonable control.
+        </div>
+        
+        <div class="section-title">12.6 Governing Law</div>
+        <div class="terms-text">
+            The Agreement shall be deemed to have been entered into and shall be construed and enforced in accordance with the laws of the Philippines as applied to contracts made and performed entirely within the Philippines, without giving effect to any conflicts of law statutes. You and Innovatus, the owner of ZERiX, agree to submit to the exclusive jurisdiction and venue of the courts located in Pasig City, Metro Manila, Philippines.
+        </div>
+        
+        <div class="section-title">12.7 Severability, No Waiver, and Survival</div>
+        <div class="terms-text">
+            If any part of this Agreement is held invalid or unenforceable, that portion of the Agreement will be construed to reflect the parties' original intent. The remaining portions will remain in full force and effect. Any failure on the part of Innovatus to enforce any provision of this Agreement will not be considered a waiver of our right to enforce such provision. Our rights under this Agreement will survive any termination of this Agreement.
+        </div>
+        
+        <div class="section-title">12.8 Notices</div>
+        <div class="terms-text">
+            We may provide notices and other communications under this Agreement to you by email to the email address you provide with your account or by posting such notice to your account. All notices, requests, consent and other communications under this Agreement sent to Innovatus will be in writing. <a href="#" style="color: #007bff; text-decoration: underline;">Click to write to us.</a>
+        </div>
+        
+        <div class="section-title">12.9 Entire Agreement</div>
+        <div class="terms-text">
+            This Agreement and all policies and procedures that are incorporated by reference constitute the entire agreement between you and Innovatus for provision and use of the Services. Except where expressly stated otherwise in a writing executed between you and Innovatus, this Agreement will prevail over any conflicting policy or agreement for the provision or use of the Services. This Agreement sets forth your exclusive remedies with respect to the Services. If any provision or portion of this Agreement is held to be invalid or unenforceable under Law, then it will be reformed and interpreted to accomplish the objectives of such provision to the greatest extent possible, and all remaining provisions will continue in full force and effect.
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
