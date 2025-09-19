@@ -217,6 +217,25 @@
     align-self: flex-start;
 }
 
+/* Desktop notification content styling */
+.desktop-notification-content {
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+    white-space: pre-line !important;
+    max-width: calc(100% - 200px) !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Mobile notification content styling - proper spacing and line breaks */
+.mobile-notification-content {
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+    white-space: pre-line !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
 /* Responsive adjustments for mobile */
 @media (max-width: 991.98px) {
     .mobile-left-section .card-titles {
@@ -234,6 +253,15 @@
 
     .mobile-notification-row {
         padding: 0.5rem;
+    }
+
+    /* Ensure proper spacing in mobile expanded view */
+    .notification-expanded .card-text {
+        line-height: 1.6 !important;
+        margin-bottom: 2rem !important;
+        white-space: pre-line !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
 }
 

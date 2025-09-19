@@ -345,10 +345,10 @@ ViewData["User"] = "Admin";
                     </div>
 
                     <!-- Desktop: Expandable content area -->
-                    <div class="notification-content" style="display: none;">
+                    <div class="notification-content">
                         <div class="row">
                             <div class="col-12 px-4 py-3">
-                                <div class="card-text text-muted" style="line-height: 1.6; margin-bottom: 1rem; white-space: pre-line; max-width: calc(100% - 200px); word-wrap: break-word; overflow-wrap: break-word;">
+                                <div class="card-text text-muted desktop-notification-content">
                                     @notification.Content
                                 </div>
                             </div>
@@ -409,10 +409,10 @@ ViewData["User"] = "Admin";
                     <div class="notification-expanded d-lg-none" style="display: none;">
                         <div class="row justify-content-between align-items-start">
                             <div class="col-12 px-4 py-3">
-                                <div class="card-titles fs-16 font-orange notification-title-clickable mb-3" style="cursor: pointer;">
+                                <div class="card-titles fs-16 font-orange notification-title-clickable mb-3">
                                     @notification.Title
                                 </div>
-                                <div class="card-text text-muted" style="line-height: 1.6; margin-bottom: 2rem;">
+                                <div class="card-text text-muted mobile-notification-content">
                                     @notification.Content
                                 </div>
                             </div>
