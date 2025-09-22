@@ -4,7 +4,7 @@
     <div class="d-none d-md-flex align-items-center mb-4 position-relative">
         <button class="btn btn-link p-0 back-link text-decoration-none" onclick="showServiceCategorySelection()">
            <i class="bi bi-chevron-left"></i>
-            <span class="text-orange fs-14">Service Category</span>
+            <span class="text-orange fs-14">Back</span>
         </button>
         <h2 class="fs-32 ff-default font-darkgray fw-400 position-absolute start-50 translate-middle-x" style="margin-bottom: 2.9rem;">Select Appointment</h2>
     </div>
@@ -27,7 +27,7 @@
         <!-- Desktop Layout -->
         <div class="appointment-item d-none d-md-flex justify-content-between align-items-center p-4 mb-4 border rounded">
             <div class="text-start">
-                <h5 class="mb-1 font-darkgray fs-18">Hot Oil</h5>
+               <div class="fs-18 text-black fw-bold appointment-info-item" id="selected-appointment-name">Hot Oil</div>
                 <p class="mb-1 text-muted fs-14">Reservation Fee: ₱30.00</p>
                 <p class="mb-0 text-muted fs-14">50 minutes &#64; ₱45.00</p>
             </div>
@@ -38,7 +38,7 @@
         <!-- Mobile Layout -->
         <div class="appointment-item d-md-none p-4 mb-4 border rounded">
             <div class="text-start mb-3">
-                <h5 class="mb-1 font-darkgray fs-18">Hot Oil</h5>
+                <div class="fs-24 text-black fw-bold appointment-info-item" id="selected-appointment-name">Hot Oil</div>
                 <p class="mb-1 text-muted fs-14">Reservation Fee: ₱30.00</p>
                 <p class="mb-0 text-muted fs-14">50 minutes &#64; ₱45.00</p>
             </div> 
@@ -53,7 +53,7 @@
         <!-- Desktop Layout -->
         <div class="appointment-item d-none d-md-flex justify-content-between align-items-center p-4 mb-4 border rounded">
             <div class="text-start">
-                <h5 class="mb-1 font-darkgray fs-18">Hair Rebond</h5>
+                <div class="fs-18 text-black fw-bold appointment-info-item" id="selected-appointment-name2">Hair Rebond</div>
                 <p class="mb-0 text-muted fs-14">1 hour/s</p>
             </div>
             <button class="btn btn-fill px-4 py-2" data-appointment="Hair Rebond" data-fee="" data-duration="1 hour/s" onclick="selectAppointmentDetails(this)">
