@@ -20,7 +20,14 @@
     text-decoration: none;
     border: none;
     background: transparent;
-    margin-bottom: 32px;
+    
+}
+
+/* Desktop back-link margin */
+@@media (min-width: 768px) {
+    .back-link {
+        margin-bottom: 32px;
+    }
 }
 
 .back-link:hover {
@@ -67,6 +74,8 @@
     border-radius: 8px;
     padding: 8px 0;
     margin-top: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .dropdown-item {
@@ -74,12 +83,17 @@
     transition: background-color 0.2s ease;
     border: none;
     background: transparent;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
     background-color: #f8f9fa;
     color: #333;
+    width: 100%;
 }
 
 /* Fix dropdown toggle button */
