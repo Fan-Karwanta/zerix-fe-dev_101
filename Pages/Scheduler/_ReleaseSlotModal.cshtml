@@ -1,0 +1,20 @@
+<!-- Release Slot Confirmation Modal -->
+<div class="modal fade" id="releaseSlotModal" tabindex="-1" aria-labelledby="releaseSlotModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 8px; width: 100%; margin: 0 auto;">
+            <div style="position: relative;">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 15px; top: 15px; z-index: 1050; background: none; border: none; outline: none;">
+                    <span aria-hidden="true" style="color: #ff5400; font-size: 24px;">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 25px 25px 25px 25px;">
+                <h3 class="modal-title" id="releaseSlotModalLabel" style="color: #ff5400; font-size: 24px; margin-bottom: 15px; font-weight: 500;">Release Slot(s)?</h3>
+                <p style="color: #666; font-size: 16px; margin-bottom: 25px; line-height: 1.5; text-align: left;">Your reserved slots will be released. Do you want to continue?</p>
+                <div class="d-flex justify-content-between gap-3">
+                    <button type="button" class="btn" data-bs-dismiss="modal" style="border: 1px solid #ff5400; color: #ff5400; background-color: white; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400; flex: 1;">Close</button>
+                    <button type="button" class="btn" id="confirmReleaseBtn" style="background-color: #ff5400; color: white; border: none; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400; flex: 1;">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

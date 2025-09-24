@@ -2,6 +2,9 @@
 let currentDate = new Date();
 let selectedDate = null;
 let selectedTime = null;
+let cart = [];
+let cartTotal = 0;
+let hasCompletedInformation = false;
 
 function selectAppointmentDetails(button) {
     // Hide appointment details and show datetime selection
@@ -378,11 +381,15 @@ function submitInformation() {
         return;
     }
     
-    // Handle form submission - navigate to confirmed appointment page
-    window.location.href = '/Scheduler/Confirmed';
-    // Close modal
-    const modal = bootstrap.Modal.getInstance(document.getElementById('informationModal'));
-    modal.hide();
+    // Mark that user has completed information flow
+    hasCompletedInformation = true;
+    
+    // Handle form submission - navigate back to service category page with cart
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('service-category-selection').style.display = 'block';
+    
+    // Add selected service to cart
+    addToCart();
 }
 
 function previousMonth() {
@@ -442,15 +449,47 @@ function showServiceCategory(button) {
 }
 
 function showBranchSelection() {
-    // Hide service category selection and show branch selection
-    document.getElementById('service-category-selection').style.display = 'none';
-    document.getElementById('appointment-list').style.display = 'none';
-    document.getElementById('appointment-selection').style.display = 'none';
-    document.getElementById('service-category').style.display = 'block';
+    // Check if cart has items before resetting
+    if (cart.length > 0) {
+        // Show confirmation modal
+        const releaseModal = new bootstrap.Modal(document.getElementById('releaseSlotModal'));
+        releaseModal.show();
+        
+        // Set up the continue button action
+        document.getElementById('confirmReleaseBtn').onclick = function() {
+            // Reset cart state when confirmed
+            hasCompletedInformation = false;
+            cart = [];
+            updateCartDisplay();
+            
+            // Hide service category selection and show branch selection
+            document.getElementById('service-category-selection').style.display = 'none';
+            document.getElementById('appointment-list').style.display = 'none';
+            document.getElementById('appointment-selection').style.display = 'none';
+            document.getElementById('service-category').style.display = 'block';
+            
+            // Hide the modal
+            releaseModal.hide();
+        };
+    } else {
+        // No items in cart, proceed without confirmation
+        hasCompletedInformation = false;
+        
+        // Hide service category selection and show branch selection
+        document.getElementById('service-category-selection').style.display = 'none';
+        document.getElementById('appointment-list').style.display = 'none';
+        document.getElementById('appointment-selection').style.display = 'none';
+        document.getElementById('service-category').style.display = 'block';
+    }
 }
 
 function showAppointmentDetails(button) {
     const service = button ? button.getAttribute('data-service') : null;
+    
+    // Store the selected service for cart functionality
+    if (service) {
+        currentSelectedService = service;
+    }
     
     // Hide all other sections explicitly
     const sectionsToHide = [
@@ -511,6 +550,38 @@ function showAppointmentList(arg) {
 }
 
 function showServiceCategorySelection() {
+    // Check if cart has items before going back
+    if (cart.length > 0) {
+        // Show confirmation modal
+        const releaseModal = new bootstrap.Modal(document.getElementById('releaseSlotModal'));
+        releaseModal.show();
+        
+        // Set up the continue button action
+        document.getElementById('confirmReleaseBtn').onclick = function() {
+            // Hide appointment list and show service category selection
+            document.getElementById('appointment-list').style.display = 'none';
+            document.getElementById('appointment-selection').style.display = 'none';
+            const apptDet = document.getElementById('appointment-details');
+            if (apptDet) apptDet.style.display = 'none';
+            document.getElementById('service-category-selection').style.display = 'block';
+            
+            // Hide the modal
+            releaseModal.hide();
+        };
+    } else {
+        // No items in cart, proceed without confirmation
+        // Hide appointment list and show service category selection
+        document.getElementById('appointment-list').style.display = 'none';
+        document.getElementById('appointment-selection').style.display = 'none';
+        const apptDet = document.getElementById('appointment-details');
+        if (apptDet) apptDet.style.display = 'none';
+        document.getElementById('service-category-selection').style.display = 'block';
+    }
+}
+
+// Direct navigation to service category selection without confirmation modal
+// Used by the back button in AppointmentDetails
+function showServiceCategorySelectionDirect() {
     // Hide appointment list and show service category selection
     document.getElementById('appointment-list').style.display = 'none';
     document.getElementById('appointment-selection').style.display = 'none';
@@ -565,5 +636,165 @@ document.addEventListener('DOMContentLoaded', function() {
     if (informationView) {
         informationView.style.display = 'none';
     }
+    
+    // Initialize cart (empty by default)
+    updateCartDisplay();
+    
+    // Move the cart section to the body element to ensure it's visible across all pages
+    const cartSection = document.getElementById('cart-section');
+    if (cartSection) {
+        document.body.appendChild(cartSection);
+    }
 });
+
+// Cart functionality
+let currentSelectedService = '';
+
+function addToCart() {
+    // Use the stored selected service or try to get it from various sources
+    let selectedService = currentSelectedService;
+    
+    if (!selectedService) {
+        // Try to get from appointment info elements
+        const infoElement = document.getElementById('info-appointment-name');
+        if (infoElement && infoElement.textContent) {
+            // Extract service from appointment name if it contains service info
+            const appointmentText = infoElement.textContent;
+            if (appointmentText.includes('Hair')) selectedService = 'Hair';
+            else if (appointmentText.includes('Feet')) selectedService = 'Feet';
+            else if (appointmentText.includes('Face')) selectedService = 'Face';
+        }
+    }
+    
+    // Fallback to Face if no service detected (for testing)
+    if (!selectedService) {
+        selectedService = 'Face';
+    }
+    
+    // Sample prices for services matching the image
+    const servicePrices = {
+        'Hair': 560.00,
+        'Feet': 450.00,
+        'Face': 380.00
+    };
+    
+    const price = servicePrices[selectedService] || 380.00;
+    
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.service === selectedService);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+        existingItem.total = existingItem.quantity * existingItem.price;
+    } else {
+        cart.push({
+            service: selectedService,
+            appointment: selectedService + ' Service',
+            details: 'Selected appointment',
+            price: price,
+            quantity: 1,
+            total: price
+        });
+    }
+    
+    updateCartDisplay();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+}
+
+function updateQuantity(index, change) {
+    if (cart[index]) {
+        cart[index].quantity += change;
+        if (cart[index].quantity <= 0) {
+            removeFromCart(index);
+        } else {
+            cart[index].total = cart[index].quantity * cart[index].price;
+            updateCartDisplay();
+        }
+    }
+}
+
+function updateCartDisplay() {
+    const cartContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotalElement = document.getElementById('cart-total');
+    const cartSection = document.getElementById('cart-section');
+    
+    // Calculate total
+    cartTotal = cart.reduce((sum, item) => sum + item.total, 0);
+    
+    // Update cart count
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (cartCount) {
+        cartCount.textContent = totalItems;
+    }
+    
+    // Update total price
+    if (cartTotalElement) {
+        cartTotalElement.textContent = `Php${cartTotal.toFixed(2)}`;
+    }
+    
+    // Show/hide cart section based on cart contents only (not completion status)
+    // This ensures cart persists across pages once it appears
+    if (cartSection) {
+        cartSection.style.display = (cart.length > 0) ? 'block' : 'none';
+    }
+    
+    // Update cart items display (if needed for expanded view)
+    if (cartContainer) {
+        cartContainer.innerHTML = '';
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item d-flex justify-content-between align-items-center mb-2';
+            cartItem.innerHTML = `
+                <div>
+                    <div class="fw-500">${item.service}</div>
+                    <div class="text-muted small">${item.appointment}</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                    <span class="mx-2">${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                    <span class="ms-3">Php${item.total.toFixed(2)}</span>
+                </div>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+    }
+}
+
+function getCurrentSelectedService() {
+    // This function should return the currently selected service
+    // For now, we'll try to get it from various possible sources
+    const selectedCategoryElement = document.getElementById('selected-category-name');
+    if (selectedCategoryElement && selectedCategoryElement.textContent) {
+        return selectedCategoryElement.textContent;
+    }
+    
+    // Fallback: check which service button was last clicked
+    const selectedService = document.querySelector('.service-item .btn[data-service]');
+    if (selectedService) {
+        return selectedService.getAttribute('data-service');
+    }
+    
+    return 'Service'; // Default fallback
+}
+
+function proceedToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add services first.');
+        return;
+    }
+    
+    // Reset cart state when proceeding to checkout
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
+    
+    // Navigate to confirmed page or checkout process
+    window.location.href = '/Scheduler/Confirmed';
+}
 </script>
