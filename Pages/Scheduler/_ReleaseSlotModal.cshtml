@@ -10,9 +10,17 @@
             <div class="modal-body" style="padding: 25px 25px 25px 25px;">
                 <h3 class="modal-title" id="releaseSlotModalLabel" style="color: #ff5400; font-size: 24px; margin-bottom: 15px; font-weight: 500;">Release Slot(s)?</h3>
                 <p style="color: #666; font-size: 16px; margin-bottom: 25px; line-height: 1.5; text-align: left;">Your reserved slots will be released. Do you want to continue?</p>
-                <div class="d-flex justify-content-between gap-3">
+                
+                <!-- Desktop buttons (side by side) -->
+                <div class="d-none d-md-flex justify-content-between gap-3">
                     <button type="button" class="btn" data-bs-dismiss="modal" style="border: 1px solid #ff5400; color: #ff5400; background-color: white; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400; flex: 1;">Close</button>
                     <button type="button" class="btn" id="confirmReleaseBtn" style="background-color: #ff5400; color: white; border: none; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400; flex: 1;">Continue</button>
+                </div>
+                
+                <!-- Mobile buttons (stacked) -->
+                <div class="d-md-none">
+                    <button type="button" class="btn w-100 mb-3" data-bs-dismiss="modal" style="border: 1px solid #ff5400; color: #ff5400; background-color: white; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400;">Close</button>
+                    <button type="button" class="btn w-100" id="confirmReleaseBtnMobile" style="background-color: #ff5400; color: white; border: none; border-radius: 4px; padding: 12px 0; font-size: 16px; font-weight: 400;">Continue</button>
                 </div>
             </div>
         </div>

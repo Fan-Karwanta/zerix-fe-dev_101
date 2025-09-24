@@ -455,8 +455,25 @@ function showBranchSelection() {
         const releaseModal = new bootstrap.Modal(document.getElementById('releaseSlotModal'));
         releaseModal.show();
         
-        // Set up the continue button action
+        // Set up the continue button action for desktop
         document.getElementById('confirmReleaseBtn').onclick = function() {
+            // Reset cart state when confirmed
+            hasCompletedInformation = false;
+            cart = [];
+            updateCartDisplay();
+            
+            // Hide service category selection and show branch selection
+            document.getElementById('service-category-selection').style.display = 'none';
+            document.getElementById('appointment-list').style.display = 'none';
+            document.getElementById('appointment-selection').style.display = 'none';
+            document.getElementById('service-category').style.display = 'block';
+            
+            // Hide the modal
+            releaseModal.hide();
+        };
+        
+        // Set up the continue button action for mobile
+        document.getElementById('confirmReleaseBtnMobile').onclick = function() {
             // Reset cart state when confirmed
             hasCompletedInformation = false;
             cart = [];
@@ -556,8 +573,21 @@ function showServiceCategorySelection() {
         const releaseModal = new bootstrap.Modal(document.getElementById('releaseSlotModal'));
         releaseModal.show();
         
-        // Set up the continue button action
+        // Set up the continue button action for desktop
         document.getElementById('confirmReleaseBtn').onclick = function() {
+            // Hide appointment list and show service category selection
+            document.getElementById('appointment-list').style.display = 'none';
+            document.getElementById('appointment-selection').style.display = 'none';
+            const apptDet = document.getElementById('appointment-details');
+            if (apptDet) apptDet.style.display = 'none';
+            document.getElementById('service-category-selection').style.display = 'block';
+            
+            // Hide the modal
+            releaseModal.hide();
+        };
+        
+        // Set up the continue button action for mobile
+        document.getElementById('confirmReleaseBtnMobile').onclick = function() {
             // Hide appointment list and show service category selection
             document.getElementById('appointment-list').style.display = 'none';
             document.getElementById('appointment-selection').style.display = 'none';

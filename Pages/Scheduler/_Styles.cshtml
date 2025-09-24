@@ -1401,49 +1401,52 @@
     right: 0 !important;
     background: #ffffff !important;
     border-top: 1px solid #e0e0e0 !important;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1) !important;
     z-index: 9999 !important;
-    padding: 16px 20px !important;
+    padding: 10px 15px !important;
     width: 100% !important;
 }
 
 .cart-content {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.cart-info {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .cart-text {
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
-    font-weight: 500;
+    font-weight: 400;
     margin: 0;
+    text-align: right;
 }
 
 .cart-total-text {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
-    font-weight: 600;
+    font-weight: 500;
     margin: 0;
+    text-align: right;
 }
 
 .btn-proceed {
     background-color: #ff5400;
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
     display: flex;
     align-items: center;
     transition: background-color 0.2s ease;
+    margin-left: 15px;
+}
+
+.btn-proceed i {
+    margin-left: 5px;
 }
 
 .btn-proceed:hover {
@@ -1453,25 +1456,60 @@
 
 /* Mobile responsive adjustments */
 @@media (max-width: 768px) {
+    /* Cart section mobile styling */
     .cart-section {
-        padding: 12px 16px;
+        padding: 0;
+        background-color: #ff5400 !important;
+        border-top: none !important;
+        box-shadow: none !important;
     }
     
-    .cart-info {
-        gap: 2px;
+    .cart-content {
+        padding: 0;
     }
     
     .cart-text {
-        font-size: 13px;
+        font-size: 12px;
+        color: white;
     }
     
     .cart-total-text {
-        font-size: 15px;
+        font-size: 13px;
+        color: white;
+        font-weight: 400;
     }
     
     .btn-proceed {
-        padding: 10px 20px;
-        font-size: 15px;
+        background-color: #ff5400;
+        color: white;
+        border: none;
+        padding: 12px 0;
+        border-radius: 0;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin: 0;
+        height: 45px;
+    }
+    
+    /* Modal mobile styling */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    .modal-content {
+        border-radius: 8px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    /* Make buttons stack in mobile view */
+    .modal-body .btn {
+        margin-bottom: 10px;
+        padding: 12px 0;
+        font-size: 16px;
     }
 }
 
