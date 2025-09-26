@@ -337,18 +337,16 @@ function confirmTime() {
         return;
     }
     
-    // Update modal with selected appointment info
+    // Since we no longer use the information modal, directly proceed to the next step
+    // For now, we'll just show an alert with the appointment details
     const appointmentName = document.getElementById('selected-appointment-name').textContent;
     const appointmentDuration = document.getElementById('selected-appointment-fee').textContent;
     const appointmentFee = document.getElementById('selected-appointment-duration').textContent;
     
-    document.getElementById('modal-appointment-name').textContent = appointmentName;
-    document.getElementById('modal-appointment-duration').textContent = appointmentDuration;
-    document.getElementById('modal-appointment-fee').textContent = appointmentFee;
+    alert(`Appointment confirmed: ${appointmentName}, ${appointmentDuration}, ${appointmentFee}`);
     
-    // Show the information modal
-    const modal = new bootstrap.Modal(document.getElementById('informationModal'));
-    modal.show();
+    // You can add code here to proceed to the next step in your workflow
+    // For example, redirect to another page or update the UI
 }
 
 function validateAge(input) {
