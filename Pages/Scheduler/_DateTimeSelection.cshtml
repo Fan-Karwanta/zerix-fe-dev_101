@@ -1,18 +1,18 @@
 <!-- Date & Time Selection View -->
-<div id="datetime-selection" class="datetime-selection-view" style="display: none;">
+<div id="datetime-selection" class="datetime-selection-view display-none">
     <!-- Desktop Header -->
-    <div class="d-none d-md-flex align-items-center mb-4 position-relative" style="margin-top: 2rem;">
+    <div class="d-none d-md-flex align-items-center mb-4 position-relative datetime-desktop-header">
         <button class="btn btn-link p-0 back-link text-decoration-none" onclick="showAppointmentDetails()">
            <i class="bi bi-chevron-left"></i>
             <span class="text-orange fs-14">Back</span>
         </button>
-        <h2 class="fs-32 ff-default font-darkgray fw-400 position-absolute start-50 translate-middle-x" style="margin-bottom: 2.9rem;">Date & Time</h2>
+        <h2 class="fs-32 ff-default font-darkgray fw-400 position-absolute start-50 translate-middle-x scheduler-title-desktop">Date & Time</h2>
     </div>
 
     <!-- Mobile Header -->
     <div class="d-md-none">
-        <div class="d-flex align-items-center justify-content-center mb-3 position-relative" style="margin-top: 0.8rem;">
-            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="showAppointmentDetails()" style="margin-bottom: 0;">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0 back-link-no-margin" onclick="showAppointmentDetails()">
                 <i class="bi bi-chevron-left"></i>
             </button>
             <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Date & Time</h2>
@@ -26,7 +26,7 @@
 
     <!-- Selected Appointment Info -->
     <div class="selected-appointment-info mb-4 p-3 bg-white border rounded">
-        <div class="fs-24 text-black fw-bold appointment-info-item" id="selected-appointment-name">Hot Oil</div>
+        <div class="fs-18 text-black fw-bold appointment-info-item" id="selected-appointment-name">Hot Oil</div>
         <div class="text-muted appointment-info-item" id="companyName">SM Megamall- Face</div>
         <div class="text-muted appointment-info-item" id="selected-appointment-details">50 minutes &#64; ₱45.00</div>
         <div class="text-muted appointment-info-item" id="selected-appointment-fee">Reservation Fee: ₱30.00</div>
@@ -36,17 +36,17 @@
     <div class="datetime-unified-container">
         <!-- Calendar Section -->
         <div class="calendar-side" id="calendar-section">
-            <div class="text-muted mt-3 d-none d-md-block" style="margin-left: 1.8rem;">Choose date & time.
+            <div class="text-muted mt-3 d-none d-md-block calendar-instruction">Choose date & time.
             </div>
             <div class="text-muted mt-3 d-md-none mobile-calendar-instruction">Choose a date to continue.</div>
             <br>
             <div class="calendar-header d-flex justify-content-between align-items-center mb-3">
                 <button class="btn btn-sm calendar-nav-btn" onclick="previousMonth()">
-                    <i class="bi bi-chevron-left fw-bold fs-5" style="margin-left: 3.5rem;"></i>
+                    <i class="bi bi-chevron-left fw-bold fs-5 calendar-left-chevron"></i>
                 </button>
                 <h5 class="mb-0" id="calendar-month-year">May 2023</h5>
                 <button class="btn btn-sm calendar-nav-btn" onclick="nextMonth()">
-                    <i class="bi bi-chevron-right fw-bold fs-5" style=" margin-right: 3.5rem;"></i>
+                    <i class="bi bi-chevron-right fw-bold fs-5 calendar-right-chevron"></i>
                 </button>
             </div>
             
@@ -72,7 +72,7 @@
         <!-- Time Slots Section -->
         <div class="timeslots-side" id="timeslots-section">
             <div class="mobile-timeslots-header d-md-none mb-3">
-                <a class="d-flex align-items-center text-decoration-none" onclick="showCalendarOnMobile()" style="color: #ff5400; cursor: pointer;">
+                <a class="d-flex align-items-center text-decoration-none mobile-back-link" onclick="showCalendarOnMobile()">
                     <i class="bi bi-chevron-left me-1"></i>
                     <span>Back to Calendar</span>
                 </a>
@@ -95,73 +95,73 @@
                 <div class="time-slot" onclick="selectTimeSlot(this, '9:00 am')">
                     <div class="time-slot-content">
                         <div class="time-text">9:00 am</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '9:50 am')">
                     <div class="time-slot-content">
                         <div class="time-text">9:50 am</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '10:40 am')">
                     <div class="time-slot-content">
                         <div class="time-text">10:40 am</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '11:30 am')">
                     <div class="time-slot-content">
                         <div class="time-text">11:30 am</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '12:20 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">12:20 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '1:10 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">1:10 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '2:00 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">2:00 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '2:50 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">2:50 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '3:40 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">3:40 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '4:30 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">4:30 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '5:20 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">5:20 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
                 <div class="time-slot" onclick="selectTimeSlot(this, '6:10 pm')">
                     <div class="time-slot-content">
                         <div class="time-text">6:10 pm</div>
-                        <div class="select-button" style="display: none;">Select</div>
+                        <div class="select-button select-button-hidden">Select</div>
                     </div>
                 </div>
             </div>

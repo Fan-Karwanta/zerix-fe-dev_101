@@ -1528,4 +1528,385 @@
     border-bottom: none;
 }
 
+/* Service Category Page Styles */
+.service-category-title {
+    margin-top: 1rem;
+}
+
+.branch-item-desktop {
+    margin-top: 3.5rem;
+}
+
+.branch-item-btn {
+    min-width: 200px;
+}
+
+/* Service Category Selection Page Styles */
+.scheduler-title-desktop {
+    margin-bottom: 2.9rem;
+}
+
+.mobile-header-container {
+    margin-top: 0.8rem;
+}
+
+.mobile-back-chevron {
+    margin-right: 22rem;
+}
+
+.service-item-btn {
+    min-width: 200px;
+}
+
+/* Date Time Selection Page Styles */
+.datetime-desktop-header {
+    margin-top: 2rem;
+}
+
+.calendar-instruction {
+    margin-left: 1.8rem;
+}
+
+.calendar-left-chevron {
+    margin-left: 3.5rem;
+}
+
+.calendar-right-chevron {
+    margin-right: 3.5rem;
+}
+
+/* Appointment Details Page Styles */
+.appointment-btn {
+    min-width: 200px;
+}
+
+/* Information View Page Styles */
+.information-desktop-header {
+    margin-top: 2rem;
+}
+
+/* Release Slot Modal Styles */
+.release-slot-modal-content {
+    border-radius: 8px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.release-slot-close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 1050;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.release-slot-close-icon {
+    color: #ff5400;
+    font-size: 24px;
+}
+
+.release-slot-modal-body {
+    padding: 25px;
+}
+
+.release-slot-title {
+    color: #ff5400;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.release-slot-text {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.release-slot-btn {
+    border: 1px solid #ff5400;
+    color: #ff5400;
+    background-color: white;
+    border-radius: 4px;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 400;
+    flex: 1;
+}
+
+.release-slot-confirm-btn {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 400;
+    flex: 1;
+}
+
+/* Confirmed Page Styles */
+.confirmed-container {
+    margin-top: -1.5rem;
+}
+
+.confirmed-back-link {
+    color: #FF6B35;
+}
+
+.confirmed-success-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #212529;
+    margin: 0 auto;
+}
+
+.confirmed-title {
+    color: #333;
+    font-size: 24px;
+}
+
+.appointment-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.cancel-btn, .reschedule-btn, .edit-btn {
+    border: 1px solid #FF6B35;
+    color: #FF6B35;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover, .reschedule-btn:hover, .edit-btn:hover {
+    background-color: rgba(255,107,53,0.1);
+    color: #FF6B35;
+    border-color: #FF6B35;
+}
+
+/* Wide card container */
+.wide-card-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.appointment-item {
+    max-width: 1250px;
+    width: 100%;
+    background: #fff;
+}
+
+/* Left details: occupy available space and left-align text */
+.confirm-left {
+    flex: 1;
+    text-align: left;
+    margin-left: 2rem;
+}
+
+.confirm-left h5 {
+    margin-bottom: 8px;
+}
+
+/* Actions area */
+.confirm-actions {
+    margin-right: 2rem;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Buttons: outline orange by default */
+.confirm-btn {
+    border: 1.5px solid #FF6B35;
+    color: #FF6B35;
+    background: transparent;
+    border-radius: 8px;
+    padding: 10px 22px;
+    min-width: 190px;
+    font-weight: 500;
+}
+
+.confirm-btn:hover {
+    background: rgba(255,107,53,0.08);
+}
+
+.confirm-actions .confirm-btn:last-child:hover {
+    background: #e55a2b;
+    border-color: #e55a2b;
+    color: #fff;
+}
+
+/* Mobile Responsive - Small screens (360px, 390px) */
+@@media (max-width: 480px) {
+    /* Container adjustments */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Back button adjustments */
+    .confirmed-back-link {
+        font-size: 14px;
+    }
+    
+    /* Success icon adjustments */
+    .confirmed-success-icon {
+        width: 56px !important;
+        height: 56px !important;
+    }
+    
+    .confirmed-success-icon svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    /* Title and subtitle adjustments */
+    .confirmed-title {
+        font-size: 20px !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .text-muted {
+        font-size: 14px !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Appointment card adjustments */
+    .appointment-card {
+        margin-bottom: 15px;
+    }
+    
+    .appointment-card .card-body {
+        padding: 15px !important;
+    }
+    
+    /* Button adjustments */
+    .cancel-btn, .reschedule-btn, .edit-btn {
+        width: 100%;
+        margin-bottom: 8px;
+        padding: 8px 0;
+        font-size: 13px;
+    }
+    
+    .col-md-4 {
+        padding: 0 15px;
+    }
+    
+    /* Wide card container mobile adjustments */
+    .wide-card-container {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 0 1rem;
+    }
+    
+    /* Appointment item mobile layout */
+    .appointment-item {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 1.5rem 1rem !important;
+        text-align: center;
+    }
+    
+    /* Left details mobile */
+    .confirm-left {
+        flex: none !important;
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .confirm-left h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .confirm-left p {
+        font-size: 14px;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    /* Actions mobile layout - stacked buttons */
+    .confirm-actions {
+        margin-right: 0 !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        align-items: stretch !important;
+    }
+    
+    /* Mobile buttons - full width and stacked */
+    .confirm-btn {
+        width: 100% !important;
+        min-width: auto !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        border-radius: 6px !important;
+    }
+    
+    /* Ensure proper spacing between sections */
+    .confirmed-container {
+        margin-top: 0 !important;
+    }
+}
+
+/* Tablet responsive */
+@@media (max-width: 768px) and (min-width: 481px) {
+    .confirm-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .confirm-actions {
+        justify-content: center;
+    }
+    
+    .confirm-btn {
+        width: 100%;
+    }
+    
+    /* Appointment card tablet adjustments */
+    .appointment-card .col-md-4 {
+        margin-top: 15px;
+    }
+    
+    .cancel-btn, .reschedule-btn, .edit-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin-right: 8px;
+    }
+}
+
+/* Additional utility classes */
+.display-none {
+    display: none;
+}
+
+.position-relative-wrapper {
+    position: relative;
+}
+
+.back-link-no-margin {
+    margin-bottom: 0;
+}
+
+.mobile-back-link {
+    color: #ff5400;
+    cursor: pointer;
+}
+
+.select-button-hidden {
+    display: none;
+}
+
 </style>

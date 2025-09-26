@@ -11,211 +11,77 @@
 @await Html.PartialAsync("_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-5 pt-3">
-    <div class="row justify-content-center" style="margin-top: -1.5rem;">
-        <div class="col-lg-8 col-md-10">
+    <div class="row">
+        <div class="col-12">
             <!-- Back Button -->
-            <div class="mb-4">
-                <a href="/Scheduler" class="text-decoration-none d-flex align-items-center" style="color: #FF6B35; margin-left: -14rem;">
-                    <i class="bi bi-chevron-left me-2"></i>
-                    <span class="d-none d-md-inline">Schedule another appointment</span>
-                </a>
-            </div>
+        <button class="btn btn-link p-0 back-link text-decoration-none" onclick="window.location.href='/Scheduler'">
+           <i class="bi bi-chevron-left"></i>
+            <span class="text-orange fs-14">Back</span>
+        </button>
 
             <!-- Confirmation Card -->
-            <div class="text-center">
+            <div class="text-center mb-5">
                 <!-- Success Icon -->
                 <div class="mb-4">
-                    <div class="rounded-circle bg-dark d-inline-flex align-items-center justify-content-center" style="width: 96px; height: 96px; margin-top: 5.5rem;">
-                        <svg width="96" height="96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="rounded-circle bg-dark d-inline-flex align-items-center justify-content-center confirmed-success-icon">
+                        <svg width="88" height="88" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 12L11 14L15 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </div>
 
                 <!-- Title -->
-                <h2 class="fw-bold mb-3" style="color: #333;">Appointment Confirmed!</h2>
+                <h2 class="fw-bold mb-2 confirmed-title">Appointment Confirmed!</h2>
                 
                 <!-- Subtitle -->
-                <p class="text-muted mb-5">Your appointment has been confirmed. See you soon!</p>
-
-                
-
+                <p class="text-muted">Your appointment has been confirmed. See you soon!</p>
             </div>
         </div>
     </div>
     
-    <!-- Appointment Details and Action Buttons Row (Card) - Full width -->
-    <div class="wide-card-container">
-        <div class="appointment-item d-flex justify-content-between align-items-center p-4 mb-3 border rounded">
-            <!-- Appointment Details -->
-            <div class="confirm-left">
-                <h5 class="fw-bold mb-2">Consultation</h5>
-                <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
-                <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="confirm-actions">
-                <button type="button" class="confirm-btn">Cancel</button>
-                <button type="button" class="confirm-btn">Reschedule</button>
-                <button type="button" class="confirm-btn">Edit Info</button>
+    <!-- First Appointment Card -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border appointment-card">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-8 mb-3 mb-md-0">
+                            <h5 class="fw-bold mb-2">Eyebrow Thread</h5>
+                            <p class="mb-1 text-muted">SM Megamall- Face</p>
+                            <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
+                            <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column flex-md-row justify-content-md-end gap-2">
+                            <button type="button" class="btn btn-outline-primary cancel-btn">Cancel</button>
+                            <button type="button" class="btn btn-outline-primary reschedule-btn">Reschedule</button>
+                            <button type="button" class="btn btn-outline-primary edit-btn">Edit Info</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <div class="container px-4 my-3 pt-md-5 pt-3">
-        <div class="row justify-content-center" style="margin-top: -1.5rem;">
-            <div class="col-lg-8 col-md-10">
+    <!-- Second Appointment Card -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border appointment-card">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-8 mb-3 mb-md-0">
+                            <h5 class="fw-bold mb-2">Eyelash Lift</h5>
+                            <p class="mb-1 text-muted">SM Megamall- Face</p>
+                            <p class="mb-1 text-muted">March 4, 2025 (Tuesday)</p>
+                            <p class="mb-0 text-muted">9:00 - 9:50 AM GMT+8</p>
+                        </div>
+                        <div class="col-md-4 d-flex flex-column flex-md-row justify-content-md-end gap-2">
+                            <button type="button" class="btn btn-outline-primary cancel-btn">Cancel</button>
+                            <button type="button" class="btn btn-outline-primary reschedule-btn">Reschedule</button>
+                            <button type="button" class="btn btn-outline-primary edit-btn">Edit Info</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    /* Wide card container */
-    .wide-card-container {
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
-        padding: 0 2rem;
-        display: flex;
-        justify-content: center;
-    }
-    
-    .appointment-item {
-        max-width: 1250px;
-        width: 100%;
-        background: #fff;
-    }
-
-    /* Left details: occupy available space and left-align text */
-    .confirm-left {
-        flex: 1;
-        text-align: left;
-        margin-left: 2rem;
-    }
-    .confirm-left h5 { margin-bottom: 8px; }
-
-    /* Actions area */
-    .confirm-actions { margin-right: 2rem; display: flex; gap: 16px; align-items: center; }
-
-    /* Buttons: outline orange by default */
-    .confirm-btn {
-        border: 1.5px solid #FF6B35;
-        color: #FF6B35;
-        background: transparent;
-        border-radius: 8px;
-        padding: 10px 22px;
-        min-width: 190px;
-        font-weight: 500;
-    }
-    .confirm-btn:hover { background: rgba(255,107,53,0.08); }
-
-    
-
-    .confirm-actions .confirm-btn:last-child:hover {
-        background: #e55a2b;
-        border-color: #e55a2b;
-        color: #fff;
-    }
-
-    /* Mobile Responsive - Small screens (360px, 390px) */
-    @@media (max-width: 480px) {
-        /* Container adjustments */
-        .container {
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-        }
-        
-        /* Back button adjustments */
-        .mb-4 a {
-            margin-left: 0 !important;
-            font-size: 14px;
-        }
-        
-        /* Success icon adjustments */
-        .rounded-circle {
-            width: 80px !important;
-            height: 80px !important;
-            margin-top: 2rem !important;
-        }
-        
-        .rounded-circle svg {
-            width: 80px !important;
-            height: 80px !important;
-        }
-        
-        /* Title and subtitle adjustments */
-        h2 {
-            font-size: 1.5rem !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .text-muted {
-            font-size: 14px !important;
-            margin-bottom: 2rem !important;
-        }
-        
-        /* Wide card container mobile adjustments */
-        .wide-card-container {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            padding: 0 1rem;
-        }
-        
-        /* Appointment item mobile layout */
-        .appointment-item {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            padding: 1.5rem 1rem !important;
-            text-align: center;
-        }
-        
-        /* Left details mobile */
-        .confirm-left {
-            flex: none !important;
-            text-align: left !important;
-            margin-left: 0 !important;
-            margin-bottom: 1.5rem;
-        }
-        
-        .confirm-left h5 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem !important;
-        }
-        
-        .confirm-left p {
-            font-size: 14px;
-            margin-bottom: 0.25rem !important;
-        }
-        
-        /* Actions mobile layout - stacked buttons */
-        .confirm-actions {
-            margin-right: 0 !important;
-            flex-direction: column !important;
-            gap: 0.75rem !important;
-            align-items: stretch !important;
-        }
-        
-        /* Mobile buttons - full width and stacked */
-        .confirm-btn {
-            width: 100% !important;
-            min-width: auto !important;
-            padding: 12px 16px !important;
-            font-size: 14px !important;
-            font-weight: 500 !important;
-            border-radius: 6px !important;
-        }
-        
-        /* Ensure proper spacing between sections */
-        .row.justify-content-center {
-            margin-top: 0 !important;
-        }
-    }
-    
-    /* Tablet responsive */
-    @@media (max-width: 768px) and (min-width: 481px) {
-        .confirm-card { flex-direction: column; align-items: stretch; }
-        .confirm-actions { justify-content: center; }
-        .confirm-btn { width: 100%; }
-    }
-</style>

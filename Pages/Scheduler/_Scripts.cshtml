@@ -115,7 +115,7 @@ function generateTimeSlots() {
         timeSlot.innerHTML = `
             <div class="time-slot-content">
                 <div class="time-text">${timeString}</div>
-                <div class="select-button" style="display: none;">Select</div>
+                <div class="select-button select-button-hidden">Select</div>
             </div>
         `;
         timeSlot.onclick = () => selectTimeSlot(timeSlot, timeString);
@@ -291,7 +291,8 @@ function selectTimeSlot(element, time) {
         slot.classList.remove('time-selected');
         const submitBtn = slot.querySelector('.select-button');
         if (submitBtn) {
-            submitBtn.style.display = 'none';
+            submitBtn.classList.add('select-button-hidden');
+            submitBtn.classList.remove('d-flex');
         }
     });
     
@@ -299,7 +300,8 @@ function selectTimeSlot(element, time) {
     element.classList.add('time-selected');
     const submitButton = element.querySelector('.select-button');
     if (submitButton) {
-        submitButton.style.display = 'flex';
+        submitButton.classList.remove('select-button-hidden');
+        submitButton.classList.add('d-flex');
         
         // Add click handler to submit button
         submitButton.onclick = function(e) {
