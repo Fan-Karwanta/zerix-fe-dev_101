@@ -772,6 +772,40 @@
     
     .timeslots-side {
         padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Fix selected date header for tablet */
+    .selected-date-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    /* Fix date display alignment for tablet */
+    .selected-date-header h6 {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+    
+    /* Fix chevron controls alignment for tablet */
+    .selected-date-header .chevron-controls {
+        margin-right: 0;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    /* Remove the excessive margin on the date display */
+    #selected-date-display {
+        margin-left: 0;
     }
     
     /* Medical history section */
@@ -789,6 +823,48 @@
     .selected-appointment-info {
         margin: 0 10px 20px 10px !important;
         padding: 18px 25px !important;
+    }
+    
+    /* Fix time slots for tablet view */
+    .time-slots {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+        margin-right: 0;
+        align-items: center;
+    }
+    
+    .time-slot {
+        width: 85%;
+        min-height: 40px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        font-size: 15px;
+    }
+    
+    .time-slot-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .time-text {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+    
+    .time-slot.time-selected .time-text {
+        width: calc(50% - 4px);
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+    
+    .select-button {
+        width: calc(50% - 4px);
+        font-size: 15px;
+        padding: 8px 12px;
     }
 }
 
