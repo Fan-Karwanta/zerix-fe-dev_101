@@ -122,7 +122,7 @@
         left: 0 !important;
         right: auto !important;
         top: 100% !important;
-        min-width: 200px;
+       
     }
     
     .dropdown {
@@ -223,7 +223,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 4px;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     box-sizing: border-box; /* match days padding */
     padding: 0 12px; /* add equal left/right space for labels */
 }
@@ -617,6 +617,7 @@
     margin-left: 3rem;
     margin-right: 3rem;
     margin-top: 2rem;
+    margin-bottom: 4rem;
 }
 
 .information-view .selected-appointment-info .info-item {
@@ -796,7 +797,7 @@
     
     /* Fix chevron controls alignment for tablet */
     .selected-date-header .chevron-controls {
-        margin-right: 0;
+        margin-right: 1rem;
         display: flex;
         gap: 5px;
         align-items: center;
@@ -805,7 +806,7 @@
     
     /* Remove the excessive margin on the date display */
     #selected-date-display {
-        margin-left: 0;
+        margin-left: 1.5rem;
     }
     
     /* Medical history section */
@@ -874,6 +875,19 @@
     .container {
         padding-left: 15px !important;
         padding-right: 15px !important;
+    }
+    
+    /* Mobile dropdown alignment */
+    .mobile-appointment-dropdown {
+        margin-left: 0;
+        padding-left: 0;
+    }
+    
+    /* Align list box with dropdown in mobile view */
+    .appointment-history-list {
+        margin-left: 0;
+        padding-left: 0;
+        align-items: flex-start;
     }
     
     /* Add top spacing for appointment selection on mobile */
@@ -1623,7 +1637,7 @@
 }
 
 .mobile-header-container {
-    margin-top: 0.8rem;
+    margin-top: -0.2rem;
 }
 
 .mobile-back-chevron {
@@ -1636,7 +1650,7 @@
 
 /* Date Time Selection Page Styles */
 .datetime-desktop-header {
-    margin-top: 2rem;
+    margin-top: 0.2rem;
 }
 
 .calendar-instruction {
@@ -1644,11 +1658,11 @@
 }
 
 .calendar-left-chevron {
-    margin-left: 3.5rem;
+    margin-left: 1.5rem;
 }
 
 .calendar-right-chevron {
-    margin-right: 3.5rem;
+    margin-right: 1.5rem;
 }
 
 /* Appointment Details Page Styles */
@@ -1658,7 +1672,7 @@
 
 /* Information View Page Styles */
 .information-desktop-header {
-    margin-top: 2rem;
+    margin-top: 3.5rem;
 }
 
 /* Release Slot Modal Styles */
