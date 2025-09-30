@@ -90,26 +90,30 @@
     
     <!-- Bottom Cart Section -->
     <div id="cart-section" class="cart-section display-none">
-        <div class="cart-content d-flex justify-content-between align-items-center">
-            <div class="d-none d-md-block me-3 text-end">
-                <div class="cart-text">Items: <span id="cart-count">1</span></div>
-                <div class="cart-total-text">Total: <span id="cart-total">560.00</span></div>
-            </div>
+        <div class="cart-content d-flex justify-content-end align-items-center">
             <!-- Desktop version -->
             <div class="d-none d-md-flex justify-content-end align-items-center">
+                <div class="me-3 text-end">
+                    <div class="cart-text">Items: <span id="cart-count">2</span></div>
+                    <div class="cart-total-text">Total:<span id="cart-total">560.00</span></div>
+                </div>
                 <button class="btn btn-proceed" onclick="proceedToCheckout()">
                     Proceed <i class="bi bi-chevron-right"></i>
                 </button>
             </div>
             <!-- Mobile version (full width) -->
             <div class="d-md-none w-100">
-                <div class="d-flex justify-content-between mb-2">
-                    <div class="cart-text">Items: <span id="cart-count-mobile">1</span></div>
-                    <div class="cart-total-text">Total: Php<span id="cart-total-mobile">560.00</span></div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="mobile-proceed-btn">
+                        <button class="btn btn-proceed" onclick="proceedToCheckout()">
+                            Proceed
+                        </button>
+                    </div>
+                    <div class="text-end mobile-cart-info">
+                        <div class="cart-text">Items: <span id="cart-count-mobile">2</span></div>
+                        <div class="cart-total-text">Total: Php<span id="cart-total-mobile">560.00</span></div>
+                    </div>
                 </div>
-                <button class="btn btn-proceed w-100" onclick="proceedToCheckout()">
-                    Proceed
-                </button>
             </div>
         </div>
     </div>
