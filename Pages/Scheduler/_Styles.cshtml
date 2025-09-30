@@ -768,6 +768,12 @@
     .datetime-unified-container {
         margin: 0;
         margin-bottom: 20px;
+        flex-direction: column !important; /* Stack calendar and timeslots vertically on tablet */
+    }
+    
+    /* Hide vertical divider on tablet */
+    .vertical-divider {
+        display: none !important;
     }
     
     /* Ensure appointment info and datetime containers are aligned */
@@ -778,13 +784,42 @@
     
     .calendar-side {
         padding: 20px 15px;
+        flex: none !important;
+        max-width: 100% !important;
     }
     
     .timeslots-side {
         padding: 20px 15px;
-        display: flex;
+        display: none !important; /* Hide by default on tablet, show after date selection */
         flex-direction: column;
         align-items: center;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+    
+    /* Show mobile calendar instruction on tablet */
+    .mobile-calendar-instruction {
+        display: block !important;
+    }
+    
+    .calendar-instruction {
+        display: none !important;
+    }
+    
+    /* Show mobile timeslots header on tablet */
+    .mobile-timeslots-header {
+        display: block !important;
+    }
+    
+    /* Show timeslots when mobile-show-timeslots class is added on tablet */
+    .timeslots-side.mobile-show-timeslots {
+        display: flex !important;
+        max-height: none;
+    }
+    
+    /* Hide calendar when showing timeslots on tablet */
+    .calendar-side.mobile-hide-calendar {
+        display: none !important;
     }
     
     /* Fix selected date header for tablet */
@@ -1325,6 +1360,10 @@
         max-width: none !important;
         margin: 20px 0;
     }
+
+    .datetime-desktop-header {
+        margin-top: 0rem !important;
+    }
     
     .information-view .continue-button {
         width: 100% !important;
@@ -1577,6 +1616,9 @@
         box-shadow: none !important;
     }
     
+    .scheduler-title-desktop {
+        margin-bottom: 2.9rem;
+    }
     .cart-content {
         padding: 0;
     }
