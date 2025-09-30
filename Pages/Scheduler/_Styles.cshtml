@@ -34,6 +34,11 @@
     color: #e04800;
 }
 
+.date-time-subtitle1 {
+    margin-bottom: -1rem;
+    font-size: 14px;
+}
+
 .selected-category-info {
     margin-left: 0;
     padding-left: 0;
@@ -127,6 +132,7 @@
     
     .dropdown {
         position: relative;
+        margin-left: -0.7rem;
     }
 }
 
@@ -178,6 +184,7 @@
     flex-direction: column;
     max-width: 45%;
     padding-left: 26px;
+    height: 30rem;
     border-left: 1px solid #eee; /* lighter divider */
 }
 
@@ -299,7 +306,7 @@
 
 /* Time Slots Styles */
 .time-slots {
-    max-height: 310px;
+    max-height: 400px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -535,7 +542,7 @@
     box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.25);
 }
 
-#selected-date-display { margin-left: 6.2rem; }
+#selected-date-display { margin-left: 5.8rem; }
 
 /* Fix chevron button positioning in time slots */
 .selected-date-header .d-none.d-md-block,
@@ -876,6 +883,10 @@
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
+
+    .service-category-title {
+        margin-bottom: 0rem !important;
+    }
     
     /* Mobile dropdown alignment */
     .mobile-appointment-dropdown {
@@ -1014,8 +1025,11 @@
     .timeslots-side {
         flex: none;
         max-width: 100%;
-        padding: 15px;
+        padding: 15px 15px 50px 15px;
         margin-top: 0;
+        margin-bottom: 30px;
+        min-height: auto;
+        height: auto;
         border-left: 0;
         border-top: none;
         display: none; /* Hide by default on mobile */
@@ -1024,6 +1038,7 @@
     /* Show timeslots when mobile-show-timeslots class is added */
     .timeslots-side.mobile-show-timeslots {
         display: block !important;
+        max-height: 450px;
     }
     
     /* Hide calendar when showing timeslots on mobile */
@@ -1161,15 +1176,16 @@
     }
     
     .time-slots {
-        max-height: 300px;
+        max-height: 500px;
         align-items: stretch;
-        padding: 0 15px;
+        padding: 0 15px 60px 15px;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
         overflow-y: auto;
         max-width: 1000px;
-        width: 95%;
+        width: 100%;
+        margin-bottom: 30px;
     }
     
     .time-slots::-webkit-scrollbar {
@@ -1177,7 +1193,7 @@
     }
     
     .time-slot {
-        width: 105%;
+        width: 102%;
         margin-bottom: 0;
         min-height: 40px;
         font-size: 14px;
@@ -1650,7 +1666,7 @@
 
 /* Date Time Selection Page Styles */
 .datetime-desktop-header {
-    margin-top: 0.2rem;
+    margin-top: 2rem;
 }
 
 .calendar-instruction {
@@ -1672,7 +1688,7 @@
 
 /* Information View Page Styles */
 .information-desktop-header {
-    margin-top: 3.5rem;
+    margin-top: 2rem;
 }
 
 /* Release Slot Modal Styles */
