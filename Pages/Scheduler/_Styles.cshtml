@@ -859,6 +859,16 @@
         padding: 25px 20px;
     }
     
+    /* Information View header alignment for tablet */
+    .information-desktop-header {
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .information-desktop-header .scheduler-title-desktop {
+        margin-bottom: 0 !important;
+    }
+    
     .compact-input {
         max-width: 450px !important;
         width: 450px !important;
@@ -1469,12 +1479,18 @@
     }
 }
 
-/* Large Tablets and Small Desktops (992px - 1199px) */
+/* Large Tablets and Small Desktops (992px - 1199px) - iPad Pro */
 @@media (min-width: 992px) and (max-width: 1199px) {
     .datetime-unified-container {
         max-width: 100%;
         margin: 0;
         margin-bottom: 20px;
+        flex-direction: column !important; /* Stack calendar and timeslots vertically */
+    }
+    
+    /* Hide vertical divider on large tablets */
+    .vertical-divider {
+        display: none !important;
     }
     
     .selected-appointment-info {
@@ -1484,15 +1500,57 @@
     
     .calendar-side {
         padding: 20px 25px;
+        flex: none !important;
+        max-width: 100% !important;
     }
     
     .timeslots-side {
         padding: 20px 20px;
+        display: none !important; /* Hide by default, show after date selection */
+        flex-direction: column;
+        align-items: center;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+    
+    /* Show mobile calendar instruction on large tablets */
+    .mobile-calendar-instruction {
+        display: block !important;
+    }
+    
+    .calendar-instruction {
+        display: none !important;
+    }
+    
+    /* Show mobile timeslots header on large tablets */
+    .mobile-timeslots-header {
+        display: block !important;
+    }
+    
+    /* Show timeslots when mobile-show-timeslots class is added */
+    .timeslots-side.mobile-show-timeslots {
+        display: flex !important;
+        max-height: none;
+    }
+    
+    /* Hide calendar when showing timeslots */
+    .calendar-side.mobile-hide-calendar {
+        display: none !important;
     }
     
     .compact-input {
         max-width: 450px !important;
         width: 450px !important;
+    }
+    
+    /* Information View header alignment for large tablets */
+    .information-desktop-header {
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .information-desktop-header .scheduler-title-desktop {
+        margin-bottom: 0 !important;
     }
 }
 
