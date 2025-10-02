@@ -391,8 +391,53 @@ function submitInformation() {
     // Mark that user has completed information flow
     hasCompletedInformation = true;
     
-    // Navigate to payment method page
-    showPaymentMethodView();
+    // Add the current service to cart
+    const appointmentName = document.getElementById('info-appointment-name').textContent;
+    const appointmentDetails = document.getElementById('info-appointment-details').textContent;
+    const appointmentFee = document.getElementById('info-appointment-fee').textContent;
+    
+    // Extract price from fee text (e.g., "Reservation Fee: ₱90.00" -> 90.00)
+    let price = 380.00; // Default price
+    const feeMatch = appointmentFee.match(/₱([\d,]+\.?\d*)/);
+    if (feeMatch) {
+        price = parseFloat(feeMatch[1].replace(/,/g, ''));
+    }
+    
+    // Format date and time for display
+    const dateDisplay = selectedDate ? selectedDate.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        weekday: 'long'
+    }) : 'Date not selected';
+    
+    const timeDisplay = selectedTime || 'Time not selected';
+    
+    // Add to cart
+    cart.push({
+        service: appointmentName,
+        appointment: appointmentName,
+        details: appointmentDetails,
+        date: dateDisplay,
+        time: timeDisplay,
+        price: price,
+        quantity: 1,
+        total: price
+    });
+    
+    // Update cart display
+    updateCartDisplay();
+    
+    // Navigate back to service category selection to add more services
+    document.getElementById('information-view').style.display = 'none';
+    document.getElementById('service-category-selection').style.display = 'block';
+    
+    // Show cart section since user has completed information
+    const cartSection = document.getElementById('cart-section');
+    if (cartSection) {
+        cartSection.classList.remove('display-none');
+        cartSection.style.display = 'block';
+    }
 }
 
 function previousMonth() {
@@ -825,13 +870,18 @@ function proceedToCheckout() {
         return;
     }
     
-    // Reset cart state when proceeding to checkout
-    hasCompletedInformation = false;
-    cart = [];
-    updateCartDisplay();
+    // Hide service category selection and show payment method view
+    document.getElementById('service-category-selection').style.display = 'none';
     
-    // Navigate to confirmed page or checkout process
-    window.location.href = '/Scheduler/Confirmed';
+    // Hide cart section when going to payment
+    const cartSection = document.getElementById('cart-section');
+    if (cartSection) {
+        cartSection.style.display = 'none';
+        cartSection.classList.add('display-none');
+    }
+    
+    // Navigate to payment method page
+    showPaymentMethodView();
 }
 
 // Payment Method Functions
@@ -859,6 +909,24 @@ function showInformationView() {
     
     // Show information view
     document.getElementById('information-view').style.display = 'block';
+}
+
+function backToServiceCategoryFromPayment() {
+    // Hide payment method view
+    document.getElementById('payment-method-view').style.display = 'none';
+    document.getElementById('payment-method-view').classList.add('display-none');
+    
+    // Show service category selection
+    document.getElementById('service-category-selection').style.display = 'block';
+    
+    // Show cart section if user has completed information
+    if (hasCompletedInformation) {
+        const cartSection = document.getElementById('cart-section');
+        if (cartSection) {
+            cartSection.classList.remove('display-none');
+            cartSection.style.display = 'block';
+        }
+    }
 }
 
 function initializePaymentEventListeners() {
@@ -1027,6 +1095,11 @@ function proceedToConfirmation() {
         alert('Please select an e-wallet to continue.');
         return;
     }
+    
+    // Reset cart and information state after successful payment
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
     
     window.location.href = '/Scheduler/Confirmed';
 }
