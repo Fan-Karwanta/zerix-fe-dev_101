@@ -27,18 +27,14 @@
                     </li>
                 </ul>
             </li>
-        </ul>
-
-        <!-- Mobile Appointment dropdown -->
-        <ul class="navbar-nav me-auto d-md-none mobile-appointment-dropdown">
-            <li class="nav-item dropdown">
-                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-3"
+            <li class="nav-item dropdown d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
                     href="#" id="navbarDropDownSchedulerMobile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="~/images/icons/dashboard/scheduler.svg" height="24" width="24" alt="Scheduler"
-                        class="d-inline-block align-top me-2 color-primary" />
-                    <span class="txt-color-primary fs-16 fw-400 me-2 font-orange">Appointment</span>
-                    <img src="~/images/icons/arrow-down.svg" height="10" width="10" alt="arrow-down"
-                        class="d-inline-block" />
+                    <img src="~/images/icons/dashboard/scheduler.svg" height="21" width="21" alt="Scheduler"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Appointment</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
                     aria-labelledby="navbarDropDownSchedulerMobile">
@@ -58,13 +54,15 @@
             </li>
         </ul>
 
-        <!-- Mobile hamburger menu -->
-        <button class="navbar-toggler d-md-none mobile-hamburger" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="DashboardoffcanvasNavbar">
-            <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="20" height="2" fill="#ff5400"/>
-                <rect y="7" width="20" height="2" fill="#ff5400"/>
-                <rect y="14" width="20" height="2" fill="#ff5400"/>
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
             </svg>
         </button>
 

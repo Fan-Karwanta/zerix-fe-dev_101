@@ -1,0 +1,437 @@
+<!-- Payment Method View -->
+<div id="payment-method-view" class="payment-method-view display-none">
+    <!-- Desktop Header with Back Button -->
+    <div class="d-none d-md-flex align-items-center mb-4">
+        <button class="btn btn-link p-0 back-link text-decoration-none" onclick="showInformationView()">
+           <i class="bi bi-chevron-left"></i>
+            <span class="text-orange fs-14">Back</span>
+        </button>
+    </div>
+
+    <!-- Mobile Items Page (First Page) -->
+    <div id="mobile-items-page" class="d-md-none">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="showInformationView()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Items</h2>
+        </div>
+
+        <div class="payment-items-section">
+            <!-- Item 1 -->
+            <div class="payment-item mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyebrow Threading</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">9:00 - 9:50 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱190.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="payment-item mb-4">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyelash Lift</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">10:00 - 10:30 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱500.00</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mobile Continue Button (Fixed at bottom) -->
+        <div class="mobile-items-continue-container">
+            <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="showMobilePaymentPage()">
+                <span>Continue</span>
+                <span class="fw-bold">₱690.00</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Payment Method Page (Second Page) -->
+    <div id="mobile-payment-page" class="d-md-none" style="display: none;">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="showMobileItemsPage()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Payment Method</h2>
+        </div>
+
+        <div class="payment-methods-section">
+            <!-- Credit or Debit Card -->
+            <div class="payment-option mb-3" onclick="selectPaymentMethod('card')">
+                <input type="radio" name="payment-method-mobile" id="payment-card-mobile" value="card" class="payment-radio">
+                <label for="payment-card-mobile" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-credit-card payment-icon"></i>
+                            <span class="payment-method-name">Credit or Debit Card</span>
+                        </div>
+                        <span class="payment-providers">Mastercard, Visa</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallets -->
+            <div class="payment-option mb-3" data-payment-type="ewallet">
+                <input type="radio" name="payment-method-mobile" id="payment-ewallet-mobile" value="ewallet" class="payment-radio">
+                <label for="payment-ewallet-mobile" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-wallet2 payment-icon"></i>
+                            <span class="payment-method-name">E-Wallets</span>
+                        </div>
+                        <span class="payment-providers">GCash, GrabPay, Maya</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallet Options (Hidden by default) -->
+            <div id="ewallet-options-mobile" class="ewallet-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-mobile" id="ewallet-gcash-mobile" value="gcash" class="bank-radio-visible">
+                    <label for="ewallet-gcash-mobile" class="bank-option-label">
+                        <span class="bank-name">GCash</span>
+                        <img src="/images/bank_logos/GCash.png" alt="GCash" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-mobile" id="ewallet-grabpay-mobile" value="grabpay" class="bank-radio-visible">
+                    <label for="ewallet-grabpay-mobile" class="bank-option-label">
+                        <span class="bank-name">GrabPay</span>
+                        <img src="/images/bank_logos/GrabPay.png" alt="GrabPay" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-mobile" id="ewallet-maya-mobile" value="maya" class="bank-radio-visible">
+                    <label for="ewallet-maya-mobile" class="bank-option-label">
+                        <span class="bank-name">Maya</span>
+                        <img src="/images/bank_logos/Maya.png" alt="Maya" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="ewallet-option-mobile" id="ewallet-coins-mobile" value="coins" class="bank-radio-visible">
+                    <label for="ewallet-coins-mobile" class="bank-option-label">
+                        <span class="bank-name">Coins.ph</span>
+                        <img src="/images/bank_logos/Coins.ph.png" alt="Coins.ph" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Online Banking -->
+            <div class="payment-option mb-3" data-payment-type="banking">
+                <input type="radio" name="payment-method-mobile" id="payment-banking-mobile" value="banking" class="payment-radio">
+                <label for="payment-banking-mobile" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-bank payment-icon"></i>
+                            <span class="payment-method-name">Online Banking</span>
+                        </div>
+                        <span class="payment-providers">BPI, UnionBank</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Banking Options (Hidden by default) -->
+            <div id="banking-options-mobile" class="banking-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-mobile" id="bank-bpi-mobile" value="bpi" class="bank-radio-visible">
+                    <label for="bank-bpi-mobile" class="bank-option-label">
+                        <span class="bank-name">BPI Online</span>
+                        <img src="/images/bank_logos/BPI.png" alt="BPI" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-mobile" id="bank-unionbank-mobile" value="unionbank" class="bank-radio-visible">
+                    <label for="bank-unionbank-mobile" class="bank-option-label">
+                        <span class="bank-name">UnionBank Online</span>
+                        <img src="/images/bank_logos/UnionBank.png" alt="UnionBank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-mobile" id="bank-metrobank-mobile" value="metrobank" class="bank-radio-visible">
+                    <label for="bank-metrobank-mobile" class="bank-option-label">
+                        <span class="bank-name">Metrobank</span>
+                        <img src="/images/bank_logos/MetroBank.png" alt="Metrobank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-mobile" id="bank-bdo-mobile" value="bdo" class="bank-radio-visible">
+                    <label for="bank-bdo-mobile" class="bank-option-label">
+                        <span class="bank-name">BDO Online Banking</span>
+                        <img src="/images/bank_logos/BDO.png" alt="BDO" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="bank-option-mobile" id="bank-landbank-mobile" value="landbank" class="bank-radio-visible">
+                    <label for="bank-landbank-mobile" class="bank-option-label">
+                        <span class="bank-name">Landbank</span>
+                        <img src="/images/bank_logos/LandBank.png" alt="Landbank" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Buy Now, Pay Later -->
+            <div class="payment-option mb-4" onclick="selectPaymentMethod('bnpl')">
+                <input type="radio" name="payment-method-mobile" id="payment-bnpl-mobile" value="bnpl" class="payment-radio">
+                <label for="payment-bnpl-mobile" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-history payment-icon"></i>
+                            <span class="payment-method-name">Buy Now, Pay Later</span>
+                        </div>
+                        <span class="payment-providers">Billease, Pay in Installments</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- QR Ph Section -->
+            <div class="qrph-section text-center mb-4">
+                <span class="qrph-text">Scan</span>
+                <img src="/images/bank_logos/QR PH.png" alt="QR Ph" class="qrph-logo mx-2">
+                <span class="qrph-text">code to pay</span>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="mobile-payment-continue-container">
+                <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="proceedToConfirmation()">
+                    <span>Continue</span>
+                    <span class="fw-bold">₱690.00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop View (Original Layout) -->
+    <div class="payment-content-container d-none d-md-block">
+        <!-- Items Section -->
+        <div class="payment-items-section">
+            <h5 class="payment-section-title mb-4">Items</h5>
+            
+            <!-- Item 1 -->
+            <div class="payment-item mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyebrow Threading</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">9:00 - 9:50 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱190.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="payment-item mb-4">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyelash Lift</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">10:00 - 10:30 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱500.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="payment-total-section">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="payment-total-label">Total</span>
+                    <span class="payment-total-amount">₱690.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="payment-vertical-divider"></div>
+
+        <!-- Payment Method Section -->
+        <div class="payment-methods-section">
+            <h5 class="payment-section-title mb-4">Payment Method</h5>
+
+            <!-- Credit or Debit Card -->
+            <div class="payment-option mb-3" onclick="selectPaymentMethod('card')">
+                <input type="radio" name="payment-method" id="payment-card" value="card" class="payment-radio">
+                <label for="payment-card" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-credit-card payment-icon"></i>
+                            <span class="payment-method-name">Credit or Debit Card</span>
+                        </div>
+                        <span class="payment-providers">Mastercard, Visa</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallets -->
+            <div class="payment-option mb-3" data-payment-type="ewallet">
+                <input type="radio" name="payment-method" id="payment-ewallet" value="ewallet" class="payment-radio">
+                <label for="payment-ewallet" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-wallet2 payment-icon"></i>
+                            <span class="payment-method-name">E-Wallets</span>
+                        </div>
+                        <span class="payment-providers">GCash, GrabPay, Maya</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallet Options (Hidden by default) -->
+            <div id="ewallet-options" class="ewallet-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option" id="ewallet-gcash" value="gcash" class="bank-radio-visible">
+                    <label for="ewallet-gcash" class="bank-option-label">
+                        <span class="bank-name">GCash</span>
+                        <img src="/images/bank_logos/GCash.png" alt="GCash" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option" id="ewallet-maya" value="maya" class="bank-radio-visible">
+                    <label for="ewallet-maya" class="bank-option-label">
+                        <span class="bank-name">Maya</span>
+                        <img src="/images/bank_logos/Maya.png" alt="Maya" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option" id="ewallet-grabpay" value="grabpay" class="bank-radio-visible">
+                    <label for="ewallet-grabpay" class="bank-option-label">
+                        <span class="bank-name">GrabPay</span>
+                        <img src="/images/bank_logos/GrabPay.png" alt="GrabPay" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="ewallet-option" id="ewallet-coins" value="coins" class="bank-radio-visible">
+                    <label for="ewallet-coins" class="bank-option-label">
+                        <span class="bank-name">Coins.ph</span>
+                        <img src="/images/bank_logos/Coins.ph.png" alt="Coins.ph" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Online Banking -->
+            <div class="payment-option mb-3" data-payment-type="banking">
+                <input type="radio" name="payment-method" id="payment-banking" value="banking" class="payment-radio">
+                <label for="payment-banking" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-bank payment-icon"></i>
+                            <span class="payment-method-name">Online Banking</span>
+                        </div>
+                        <span class="payment-providers">BPI, UnionBank</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Banking Options (Hidden by default) -->
+            <div id="banking-options" class="banking-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option" id="bank-bpi" value="bpi" class="bank-radio-visible">
+                    <label for="bank-bpi" class="bank-option-label">
+                        <span class="bank-name">BPI Online</span>
+                        <img src="/images/bank_logos/BPI.png" alt="BPI" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option" id="bank-unionbank" value="unionbank" class="bank-radio-visible">
+                    <label for="bank-unionbank" class="bank-option-label">
+                        <span class="bank-name">UnionBank Online</span>
+                        <img src="/images/bank_logos/UnionBank.png" alt="UnionBank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option" id="bank-metrobank" value="metrobank" class="bank-radio-visible">
+                    <label for="bank-metrobank" class="bank-option-label">
+                        <span class="bank-name">Metrobank</span>
+                        <img src="/images/bank_logos/MetroBank.png" alt="Metrobank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option" id="bank-bdo" value="bdo" class="bank-radio-visible">
+                    <label for="bank-bdo" class="bank-option-label">
+                        <span class="bank-name">BDO Online Banking</span>
+                        <img src="/images/bank_logos/BDO.png" alt="BDO" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="bank-option" id="bank-landbank" value="landbank" class="bank-radio-visible">
+                    <label for="bank-landbank" class="bank-option-label">
+                        <span class="bank-name">Landbank</span>
+                        <img src="/images/bank_logos/LandBank.png" alt="Landbank" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Buy Now, Pay Later -->
+            <div class="payment-option mb-4" onclick="selectPaymentMethod('bnpl')">
+                <input type="radio" name="payment-method" id="payment-bnpl" value="bnpl" class="payment-radio">
+                <label for="payment-bnpl" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-history payment-icon"></i>
+                            <span class="payment-method-name">Buy Now, Pay Later</span>
+                        </div>
+                        <span class="payment-providers">Billease, Pay in Installments</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- QR Ph Section -->
+            <div class="qrph-section text-center mb-4">
+                <span class="qrph-text">Scan</span>
+                <img src="/images/bank_logos/QR PH.png" alt="QR Ph" class="qrph-logo mx-2">
+                <span class="qrph-text">code to pay</span>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="payment-continue-container">
+                <button type="button" class="btn btn-primary py-3 payment-continue-button" onclick="proceedToConfirmation()">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Mobile navigation functions
+function showMobilePaymentPage() {
+    document.getElementById('mobile-items-page').style.display = 'none';
+    document.getElementById('mobile-payment-page').style.display = 'block';
+}
+
+function showMobileItemsPage() {
+    document.getElementById('mobile-payment-page').style.display = 'none';
+    document.getElementById('mobile-items-page').style.display = 'block';
+}
+</script>

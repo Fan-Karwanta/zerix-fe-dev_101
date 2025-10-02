@@ -73,11 +73,7 @@
 }
 .btn-history-mobile:hover { background: #333; color: #fff; }
 
-/* Mobile dropdown positioning and fixes */
-.mobile-appointment-dropdown {
-    margin-left: -5px;
-    padding-left: -5px;
-}
+/* Mobile dropdown positioning and fixes - removed, now using standard navbar-nav */
 
 /* Dropdown menu fixes for all screen sizes */
 .dropdown-menu {
@@ -140,7 +136,7 @@
     
     .dropdown {
         position: relative;
-        margin-left: -0.7rem;
+        margin-right: 1.1rem;
     }
 }
 
@@ -360,6 +356,17 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.card-body-confirmed {
+    color: transparent;
+}
+
+/* Responsive button styles for confirmed page */
+@@media (min-width: 768px) {
+    .card-body-confirmed .btn {
+        max-width: 130px !important;
+    }
 }
 
 .time-slot-content {
@@ -641,7 +648,7 @@
 }
 
 .information-view .medical-history-section {
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: auto;
 }
 
@@ -1089,6 +1096,26 @@
         margin-top: 0 !important;
         margin-bottom: 1.5rem !important;
     }
+
+    /* Payment Method page alignment for iPad Pro */
+    .payment-content-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .payment-vertical-divider {
+        display: none;
+    }
+
+    .payment-items-section {
+        padding-right: 0;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .payment-methods-section {
+        padding-left: 0;
+    }
 }
 
 /* Mobile Responsive Styles */
@@ -1103,10 +1130,14 @@
         margin-top: 0rem !important;
     }
     
-    /* Mobile dropdown alignment */
-    .mobile-appointment-dropdown {
-        margin-left: 0;
-        padding-left: 0;
+    /* Mobile dropdown alignment - ensure left alignment */
+    #desktop-navbar {
+        justify-content: flex-start !important;
+    }
+    
+    .navbar-nav.me-3 {
+        margin-right: auto !important;
+        margin-left: 0 !important;
     }
     
     /* Align list box with dropdown in mobile view */
@@ -1257,7 +1288,7 @@
     /* Show timeslots when mobile-show-timeslots class is added */
     .timeslots-side.mobile-show-timeslots {
         display: block !important;
-        max-height: 450px;
+        max-height: 550px;
     }
     
     /* Hide calendar when showing timeslots on mobile */
@@ -2349,6 +2380,392 @@
 
 .select-button-hidden {
     display: none;
+}
+
+/* Payment Method Page Styles */
+.payment-method-view {
+    padding-bottom: 120px;
+}
+
+.payment-desktop-header {
+    margin-top: 2rem;
+}
+
+.payment-content-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin-top: 20px;
+}
+
+/* Ensure grid layout on desktop */
+@@media (min-width: 769px) {
+    .payment-content-container.d-none.d-md-block {
+        display: grid !important;
+        grid-template-columns: 1fr auto 1fr;
+    }
+}
+
+.payment-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+/* Vertical Divider */
+.payment-vertical-divider {
+    width: 1px;
+    background-color: #dee2e6;
+    margin: 0 40px;
+    min-height: 400px;
+}
+
+/* Items Section */
+.payment-items-section {
+    padding-right: 0;
+}
+
+.payment-item {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.payment-item:last-of-type {
+    margin-bottom: 20px;
+}
+
+.payment-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.payment-item-info {
+    font-size: 14px;
+    color: #878a99;
+    margin-bottom: 4px;
+}
+
+.payment-item-price {
+    font-size: 16px;
+    color: #212529;
+}
+
+.payment-total-section {
+    padding-top: 20px;
+    border-top: 2px solid #212529;
+}
+
+.payment-total-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.payment-total-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212529;
+}
+
+/* Payment Methods Section */
+.payment-methods-section {
+    padding-left: 0;
+    max-width: 450px;
+}
+
+.payment-option {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+.payment-option:hover {
+    border-color: #ff5400;
+    background-color: #fff5f0;
+}
+
+.payment-option.selected {
+    border-color: #ff5400;
+    background-color: #fff5f0;
+}
+
+.payment-radio {
+    display: none;
+}
+
+.payment-option-label {
+    cursor: pointer;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.payment-icon {
+    font-size: 20px;
+    color: #ff5400;
+    margin-right: 12px;
+}
+
+.payment-method-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.payment-providers {
+    font-size: 13px;
+    color: #878a99;
+}
+
+/* Banking Options */
+.banking-options-container,
+.ewallet-options-container {
+    margin-left: 0;
+    margin-bottom: 15px;
+    max-width: 450px;
+}
+
+.bank-option {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bank-option:hover {
+    border-color: #ff5400;
+    background-color: #fff5f0;
+}
+
+.bank-option.selected {
+    border-color: #ff5400;
+    background-color: #fff5f0;
+}
+
+.bank-radio {
+    display: none;
+}
+
+.bank-radio-visible {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #ff5400;
+    flex-shrink: 0;
+}
+
+.bank-option-label {
+    cursor: pointer;
+    margin-bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bank-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: #212529;
+}
+
+.bank-logo {
+    height: 24px;
+    width: auto;
+    max-width: 80px;
+    object-fit: contain;
+}
+
+/* QR Ph Section */
+.qrph-section {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    max-width: 450px;
+}
+
+.qrph-text {
+    font-size: 15px;
+    color: #666;
+    font-weight: 400;
+}
+
+.qrph-logo {
+    height: 68px;
+    width: auto;
+    vertical-align: middle;
+}
+
+/* Continue Button */
+.payment-continue-container {
+    margin-top: 20px;
+    max-width: 450px;
+}
+
+.payment-continue-button {
+    width: 100%;
+    background-color: #ff5400;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 0;
+    transition: background-color 0.2s ease;
+}
+
+.payment-continue-button:hover {
+    background-color: #e04800;
+}
+
+.payment-continue-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Mobile Items Continue Button */
+.mobile-items-continue-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.mobile-items-continue-container .btn {
+    background-color: #ff5400;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mobile-items-continue-container .btn:hover {
+    background-color: #e04800;
+}
+
+/* Mobile Payment Continue Button */
+.mobile-payment-continue-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.mobile-payment-continue-container .btn {
+    background-color: #ff5400;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.mobile-payment-continue-container .btn:hover {
+    background-color: #e04800;
+}
+
+/* Add padding to mobile pages to account for fixed button */
+#mobile-items-page {
+    padding-bottom: 80px;
+}
+
+#mobile-payment-page {
+    padding-bottom: 80px;
+}
+
+/* Tablet Responsive */
+@@media (min-width: 768px) and (max-width: 1024px) {
+    .payment-content-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .payment-vertical-divider {
+        display: none;
+    }
+
+    .payment-items-section {
+        padding-right: 0;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .payment-methods-section {
+        padding-left: 0;
+    }
+}
+
+/* Mobile Responsive */
+@@media (max-width: 768px) {
+    .payment-content-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 10px;
+    }
+
+    .payment-vertical-divider {
+        display: none;
+    }
+
+    .payment-items-section {
+        padding-right: 0;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .payment-methods-section {
+        padding-left: 0;
+    }
+
+    .payment-section-title {
+        font-size: 16px;
+    }
+
+    .payment-item-name {
+        font-size: 15px;
+    }
+
+    .payment-item-info {
+        font-size: 13px;
+    }
+
+    .payment-option {
+        padding: 14px 16px;
+    }
+
+    .payment-method-name {
+        font-size: 14px;
+    }
+
+    .payment-providers {
+        font-size: 12px;
+        display: block;
+        margin-top: 4px;
+    }
+
+    .payment-option-label .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
 }
 
 </style>

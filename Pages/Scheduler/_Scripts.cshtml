@@ -29,10 +29,13 @@ function selectAppointmentDetails(button) {
     // Reset time selection
     selectedTime = null;
     
-    // Set default selected date to today + 1
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    selectDate(tomorrow);
+    // Set default selected date to today + 1 (only on desktop)
+    // On mobile/tablet, user must select date first before time slots appear
+    if (window.innerWidth >= 1200) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        selectDate(tomorrow);
+    }
 }
 
 function showDateTimeSelection(button) {
@@ -60,10 +63,13 @@ function showDateTimeSelection(button) {
     document.getElementById('time-selection-dropdown').style.display = 'none';
     document.getElementById('selected-time-display').textContent = '';
     
-    // Set default selected date to today + 1
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    selectDate(tomorrow);
+    // Set default selected date to today + 1 (only on desktop)
+    // On mobile/tablet, user must select date first before time slots appear
+    if (window.innerWidth >= 1200) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        selectDate(tomorrow);
+    }
 }
 
 function showAppointmentSelection() {
@@ -385,12 +391,8 @@ function submitInformation() {
     // Mark that user has completed information flow
     hasCompletedInformation = true;
     
-    // Handle form submission - navigate back to service category page with cart
-    document.getElementById('information-view').style.display = 'none';
-    document.getElementById('service-category-selection').style.display = 'block';
-    
-    // Add selected service to cart
-    addToCart();
+    // Navigate to payment method page
+    showPaymentMethodView();
 }
 
 function previousMonth() {
@@ -829,6 +831,203 @@ function proceedToCheckout() {
     updateCartDisplay();
     
     // Navigate to confirmed page or checkout process
+    window.location.href = '/Scheduler/Confirmed';
+}
+
+// Payment Method Functions
+let selectedPaymentMethod = null;
+let selectedBankOption = null;
+let selectedEwalletOption = null;
+
+function showPaymentMethodView() {
+    // Hide information view
+    document.getElementById('information-view').style.display = 'none';
+    
+    // Show payment method view
+    const paymentView = document.getElementById('payment-method-view');
+    paymentView.classList.remove('display-none');
+    paymentView.style.display = 'block';
+    
+    // Initialize event listeners after view is shown
+    initializePaymentEventListeners();
+}
+
+function showInformationView() {
+    // Hide payment method view
+    document.getElementById('payment-method-view').style.display = 'none';
+    document.getElementById('payment-method-view').classList.add('display-none');
+    
+    // Show information view
+    document.getElementById('information-view').style.display = 'block';
+}
+
+function initializePaymentEventListeners() {
+    // Payment method clicks
+    document.querySelectorAll('.payment-option[data-payment-type]').forEach(option => {
+        const paymentType = option.getAttribute('data-payment-type');
+        option.onclick = function(e) {
+            if (e.target.tagName !== 'INPUT') {
+                // Check if we're in mobile or desktop view
+                const isMobile = this.closest('#mobile-payment-page') !== null;
+                if (paymentType === 'ewallet') {
+                    toggleEwalletOptions(isMobile);
+                } else if (paymentType === 'banking') {
+                    toggleBankingOptions(isMobile);
+                }
+            }
+        };
+    });
+    
+    // Bank option radio changes (Desktop)
+    document.querySelectorAll('input[name="bank-option"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedBankOption = this.value;
+            updateBankSelection(this, false);
+        };
+    });
+    
+    // Bank option radio changes (Mobile)
+    document.querySelectorAll('input[name="bank-option-mobile"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedBankOption = this.value;
+            updateBankSelection(this, true);
+        };
+    });
+    
+    // E-wallet option radio changes (Desktop)
+    document.querySelectorAll('input[name="ewallet-option"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedEwalletOption = this.value;
+            updateEwalletSelection(this, false);
+        };
+    });
+    
+    // E-wallet option radio changes (Mobile)
+    document.querySelectorAll('input[name="ewallet-option-mobile"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedEwalletOption = this.value;
+            updateEwalletSelection(this, true);
+        };
+    });
+}
+
+function updateBankSelection(radio, isMobile) {
+    const containerId = isMobile ? '#banking-options-mobile' : '#banking-options';
+    document.querySelectorAll(containerId + ' .bank-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    radio.closest('.bank-option').classList.add('selected');
+}
+
+function updateEwalletSelection(radio, isMobile) {
+    const containerId = isMobile ? '#ewallet-options-mobile' : '#ewallet-options';
+    document.querySelectorAll(containerId + ' .bank-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    radio.closest('.bank-option').classList.add('selected');
+}
+
+function selectPaymentMethod(method) {
+    selectedPaymentMethod = method;
+    
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    
+    const selectedOption = document.getElementById('payment-' + method).closest('.payment-option');
+    selectedOption.classList.add('selected');
+    document.getElementById('payment-' + method).checked = true;
+    
+    if (method !== 'banking') {
+        const bankingOptions = document.getElementById('banking-options');
+        if (bankingOptions) bankingOptions.style.display = 'none';
+    }
+    if (method !== 'ewallet') {
+        const ewalletOptions = document.getElementById('ewallet-options');
+        if (ewalletOptions) ewalletOptions.style.display = 'none';
+    }
+}
+
+function toggleEwalletOptions(isMobile = false) {
+    selectedPaymentMethod = 'ewallet';
+    
+    const suffix = isMobile ? '-mobile' : '';
+    const ewalletRadioId = 'payment-ewallet' + suffix;
+    const ewalletOptionsId = 'ewallet-options' + suffix;
+    const bankingOptionsId = 'banking-options' + suffix;
+    
+    // Only update options within the same context (mobile or desktop)
+    const context = isMobile ? document.getElementById('mobile-payment-page') : document.querySelector('.payment-content-container');
+    if (context) {
+        context.querySelectorAll('.payment-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+    }
+    
+    const ewalletRadio = document.getElementById(ewalletRadioId);
+    if (ewalletRadio) {
+        const ewalletOption = ewalletRadio.closest('.payment-option');
+        if (ewalletOption) ewalletOption.classList.add('selected');
+        ewalletRadio.checked = true;
+    }
+    
+    const bankingOptions = document.getElementById(bankingOptionsId);
+    if (bankingOptions) bankingOptions.style.display = 'none';
+    
+    const ewalletOptions = document.getElementById(ewalletOptionsId);
+    if (ewalletOptions) {
+        ewalletOptions.style.display = (ewalletOptions.style.display === 'none' || ewalletOptions.style.display === '') ? 'block' : 'none';
+    }
+}
+
+function toggleBankingOptions(isMobile = false) {
+    selectedPaymentMethod = 'banking';
+    
+    const suffix = isMobile ? '-mobile' : '';
+    const bankingRadioId = 'payment-banking' + suffix;
+    const bankingOptionsId = 'banking-options' + suffix;
+    const ewalletOptionsId = 'ewallet-options' + suffix;
+    
+    // Only update options within the same context (mobile or desktop)
+    const context = isMobile ? document.getElementById('mobile-payment-page') : document.querySelector('.payment-content-container');
+    if (context) {
+        context.querySelectorAll('.payment-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+    }
+    
+    const bankingRadio = document.getElementById(bankingRadioId);
+    if (bankingRadio) {
+        const bankingOption = bankingRadio.closest('.payment-option');
+        if (bankingOption) bankingOption.classList.add('selected');
+        bankingRadio.checked = true;
+    }
+    
+    const ewalletOptions = document.getElementById(ewalletOptionsId);
+    if (ewalletOptions) ewalletOptions.style.display = 'none';
+    
+    const bankingOptions = document.getElementById(bankingOptionsId);
+    if (bankingOptions) {
+        bankingOptions.style.display = (bankingOptions.style.display === 'none' || bankingOptions.style.display === '') ? 'block' : 'none';
+    }
+}
+
+function proceedToConfirmation() {
+    if (!selectedPaymentMethod) {
+        alert('Please select a payment method to continue.');
+        return;
+    }
+    
+    if (selectedPaymentMethod === 'banking' && !selectedBankOption) {
+        alert('Please select a bank to continue.');
+        return;
+    }
+    
+    if (selectedPaymentMethod === 'ewallet' && !selectedEwalletOption) {
+        alert('Please select an e-wallet to continue.');
+        return;
+    }
+    
     window.location.href = '/Scheduler/Confirmed';
 }
 </script>
