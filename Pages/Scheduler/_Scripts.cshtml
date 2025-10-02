@@ -271,8 +271,9 @@ function selectDate(date) {
         }
     });
     
-    // Mobile-specific behavior: Show time slots after date selection
-    if (window.innerWidth <= 768) {
+    // Mobile and tablet-specific behavior: Show time slots after date selection
+    // Includes mobile (<= 768px), iPad Air (768px - 991px), and iPad Pro (992px - 1199px)
+    if (window.innerWidth < 1200) {
         showTimeSlotsOnMobile();
     }
 }
@@ -415,9 +416,10 @@ function showDateTimeView() {
     document.getElementById('datetime-selection').style.display = 'block';
 }
 
-// Mobile calendar-first flow functions
+// Mobile and tablet calendar-first flow functions
 function showTimeSlotsOnMobile() {
-    if (window.innerWidth <= 768) {
+    // Support mobile (<= 768px), iPad Air (768px - 991px), and iPad Pro (992px - 1199px)
+    if (window.innerWidth < 1200) {
         const calendarSection = document.getElementById('calendar-section');
         const timeslotsSection = document.getElementById('timeslots-section');
         
@@ -427,7 +429,8 @@ function showTimeSlotsOnMobile() {
 }
 
 function showCalendarOnMobile() {
-    if (window.innerWidth <= 768) {
+    // Support mobile (<= 768px), iPad Air (768px - 991px), and iPad Pro (992px - 1199px)
+    if (window.innerWidth < 1200) {
         const calendarSection = document.getElementById('calendar-section');
         const timeslotsSection = document.getElementById('timeslots-section');
         
@@ -633,8 +636,9 @@ function showDateTimeSelection() {
 document.addEventListener('DOMContentLoaded', function() {
     generateCalendar();
     
-    // Initialize mobile view state
-    if (window.innerWidth <= 768) {
+    // Initialize mobile and tablet view state
+    // Support mobile (<= 768px), iPad Air (768px - 991px), and iPad Pro (992px - 1199px)
+    if (window.innerWidth < 1200) {
         const timeslotsSection = document.getElementById('timeslots-section');
         if (timeslotsSection) {
             timeslotsSection.classList.remove('mobile-show-timeslots');

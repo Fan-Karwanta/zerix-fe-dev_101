@@ -746,7 +746,7 @@
 }
 
 /* Tablet/Medium Device Styles (768px - 991px) */
-@@media (min-width: 768px) and (max-width: 991px) {
+@@media (min-width: 768px) and (max-width: 1024px) {
     /* Show hamburger menu for tablet sizes */
     .navbar-toggler {
         display: block !important;
@@ -794,6 +794,36 @@
         padding: 20px 15px;
         flex: none !important;
         max-width: 100% !important;
+    }
+    
+    /* Fix calendar grid and days to be clickable on iPad Air */
+    .calendar-grid {
+        width: 100%;
+        margin: 0;
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-header {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .calendar-days {
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-day {
+        pointer-events: auto;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        touch-action: manipulation;
     }
     
     .timeslots-side {
@@ -849,7 +879,7 @@
     
     /* Fix chevron controls alignment for tablet */
     .selected-date-header .chevron-controls {
-        margin-right: 1rem;
+        margin-right: 3rem;
         display: flex;
         gap: 5px;
         align-items: center;
@@ -858,7 +888,7 @@
     
     /* Remove the excessive margin on the date display */
     #selected-date-display {
-        margin-left: 1.5rem;
+        margin-left: 3rem;
     }
     
     /* Medical history section */
@@ -877,6 +907,29 @@
         margin-bottom: 0 !important;
     }
     
+    /* Back link alignment for all scheduler pages on tablet */
+    .back-link {
+        margin-bottom: 0 !important;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .d-none.d-md-flex .back-link {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Ensure desktop headers are properly aligned */
+    .datetime-desktop-header,
+    .information-desktop-header,
+    .d-none.d-md-flex {
+        align-items: center !important;
+    }
+    
+    .datetime-desktop-header .scheduler-title-desktop,
+    .information-desktop-header .scheduler-title-desktop {
+        margin-bottom: 0 !important;
+    }
+    
     .compact-input {
         max-width: 450px !important;
         width: 450px !important;
@@ -884,25 +937,32 @@
     
     /* Selected appointment info */
     .selected-appointment-info {
-        margin: 0 10px 20px 10px !important;
+        margin: 0 0px 20px 0px !important;
         padding: 18px 25px !important;
     }
     
+    .mobile-back-link {
+        margin-right: 26rem !important;
+    }
     /* Fix time slots for tablet view */
     .time-slots {
-        max-width: 100%;
+        max-width: 600px;
         width: 100%;
-        padding: 0;
-        margin-right: 0;
-        align-items: center;
+        padding: 0 20px;
+        margin: 0 auto;
+        align-items: stretch;
     }
     
     .time-slot {
-        width: 85%;
-        min-height: 40px;
+        width: 100%;
+        min-height: 45px;
         margin-bottom: 10px;
         border-radius: 6px;
-        font-size: 15px;
+        font-size: 16px;
+    }
+
+    .scheduler-title-desktop {
+        margin-bottom: 0rem !important;
     }
     
     .time-slot-content {
@@ -914,20 +974,120 @@
     }
     
     .time-text {
-        font-size: 15px;
-        padding: 10px 15px;
+        font-size: 16px;
+        padding: 12px 20px;
     }
     
     .time-slot.time-selected .time-text {
         width: calc(50% - 4px);
-        font-size: 15px;
-        padding: 8px 12px;
+        font-size: 16px;
+        padding: 10px 15px;
     }
     
     .select-button {
         width: calc(50% - 4px);
-        font-size: 15px;
-        padding: 8px 12px;
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
+
+/* Large Tablet/Small Desktop Styles (1024px - 1199px) */
+@@media (min-width: 1024px) and (max-width: 1199px) {
+    /* Timeslots container alignment */
+    .timeslots-side {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Time slots styling for this range */
+    .time-slots {
+        max-width: 500px;
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        align-items: stretch;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .time-slot {
+        width: 100%;
+        min-height: 45px;
+        margin-bottom: 10px;
+    }
+    
+    .time-slot-content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .time-text {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .time-slot.time-selected .time-text {
+        width: calc(50% - 4px);
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    
+    .select-button {
+        width: calc(50% - 4px);
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    
+    /* Selected date header alignment */
+    .selected-date-header {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    #selected-date-display {
+        margin-left: 0;
+    }
+    
+    .selected-date-header .chevron-controls {
+        margin-right: 0;
+    }
+    
+    /* Back link alignment for all scheduler pages on iPad Pro */
+    .back-link {
+        margin-bottom: 0 !important;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .d-none.d-md-flex .back-link {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Ensure desktop headers are properly aligned */
+    .datetime-desktop-header,
+    .information-desktop-header,
+    .d-none.d-md-flex {
+        align-items: center !important;
+    }
+    
+    .datetime-desktop-header .scheduler-title-desktop,
+    .information-desktop-header .scheduler-title-desktop {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Information View header alignment for iPad Pro */
+    .information-desktop-header {
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem !important;
     }
 }
 
@@ -1512,6 +1672,36 @@
         max-width: 100% !important;
     }
     
+    /* Fix calendar grid and days to be clickable on iPad Pro */
+    .calendar-grid {
+        width: 100%;
+        margin: 0;
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-header {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .calendar-days {
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-day {
+        pointer-events: auto;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        touch-action: manipulation;
+    }
+    
     .timeslots-side {
         padding: 20px 20px;
         display: none !important; /* Hide by default, show after date selection */
@@ -1557,6 +1747,29 @@
         margin-bottom: 1.5rem !important;
     }
     
+    .information-desktop-header .scheduler-title-desktop {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Back link alignment for all scheduler pages on large tablets */
+    .back-link {
+        margin-bottom: 0 !important;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .d-none.d-md-flex .back-link {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Ensure desktop headers are properly aligned */
+    .datetime-desktop-header,
+    .information-desktop-header,
+    .d-none.d-md-flex {
+        align-items: center !important;
+    }
+    
+    .datetime-desktop-header .scheduler-title-desktop,
     .information-desktop-header .scheduler-title-desktop {
         margin-bottom: 0 !important;
     }
