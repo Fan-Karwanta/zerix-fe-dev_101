@@ -1,3 +1,10 @@
+@{
+    var isEventsPage = Context.Request.Path.ToString().Contains("/admin_view/events");
+    var dropdownLabel = isEventsPage ? "History" : "Appointment";
+    var menuItemLabel = isEventsPage ? "Appointment" : "Appointment History";
+    var menuItemUrl = isEventsPage ? "/scheduler" : "/scheduler/admin_view/events";
+}
+
 <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
     <div class="container px-4" id="desktop-navbar">
         <!-- Appointment dropdown button -->
@@ -7,22 +14,25 @@
                     href="#" id="navbarDropDownScheduler" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/dashboard/scheduler.svg" height="30" width="30" alt="Scheduler"
                         class="d-inline-block align-top me-2 color-primary" />
-                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange">Appointment</span>
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange">@dropdownLabel</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
                     aria-labelledby="navbarDropDownScheduler">
+                    @if (!isEventsPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="/scheduler">
+                                Scheduler
+                            </a>
+                        </li>
+                    }
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler">
-                            Scheduler
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler/events">
-                            Appointment History 
+                            href="@menuItemUrl">
+                            @menuItemLabel
                         </a>
                     </li>
                 </ul>
@@ -32,22 +42,25 @@
                     href="#" id="navbarDropDownSchedulerMobile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/dashboard/scheduler.svg" height="21" width="21" alt="Scheduler"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
-                    <span class="txt-color-primary me-3 fs-16 fw-400">Appointment</span>
+                    <span class="txt-color-primary me-3 fs-16 fw-400">@dropdownLabel</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
                     aria-labelledby="navbarDropDownSchedulerMobile">
+                    @if (!isEventsPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="/scheduler">
+                                Scheduler
+                            </a>
+                        </li>
+                    }
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler">
-                            Scheduler
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler/events">
-                            Appointment History
+                            href="@menuItemUrl">
+                            @menuItemLabel
                         </a>
                     </li>
                 </ul>

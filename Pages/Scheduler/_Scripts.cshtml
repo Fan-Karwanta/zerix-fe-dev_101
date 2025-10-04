@@ -912,19 +912,78 @@ function showInformationView() {
 }
 
 function backToServiceCategoryFromPayment() {
-    // Hide payment method view
-    document.getElementById('payment-method-view').style.display = 'none';
-    document.getElementById('payment-method-view').classList.add('display-none');
-    
-    // Show service category selection
-    document.getElementById('service-category-selection').style.display = 'block';
-    
-    // Show cart section if user has completed information
-    if (hasCompletedInformation) {
-        const cartSection = document.getElementById('cart-section');
-        if (cartSection) {
-            cartSection.classList.remove('display-none');
-            cartSection.style.display = 'block';
+    // Check if cart has items before going back
+    if (cart.length > 0) {
+        // Show confirmation modal
+        const releaseModal = new bootstrap.Modal(document.getElementById('releaseSlotModal'));
+        releaseModal.show();
+        
+        // Set up the continue button action for desktop
+        document.getElementById('confirmReleaseBtn').onclick = function() {
+            // Clear cart and reset
+            cart = [];
+            cartTotal = 0;
+            hasCompletedInformation = false;
+            updateCartDisplay();
+            
+            // Hide payment method view
+            document.getElementById('payment-method-view').style.display = 'none';
+            document.getElementById('payment-method-view').classList.add('display-none');
+            
+            // Show service category selection
+            document.getElementById('service-category-selection').style.display = 'block';
+            
+            // Hide cart section
+            const cartSection = document.getElementById('cart-section');
+            if (cartSection) {
+                cartSection.classList.add('display-none');
+                cartSection.style.display = 'none';
+            }
+            
+            // Close modal
+            releaseModal.hide();
+        };
+        
+        // Set up the continue button action for mobile
+        document.getElementById('confirmReleaseBtnMobile').onclick = function() {
+            // Clear cart and reset
+            cart = [];
+            cartTotal = 0;
+            hasCompletedInformation = false;
+            updateCartDisplay();
+            
+            // Hide payment method view
+            document.getElementById('payment-method-view').style.display = 'none';
+            document.getElementById('payment-method-view').classList.add('display-none');
+            
+            // Show service category selection
+            document.getElementById('service-category-selection').style.display = 'block';
+            
+            // Hide cart section
+            const cartSection = document.getElementById('cart-section');
+            if (cartSection) {
+                cartSection.classList.add('display-none');
+                cartSection.style.display = 'none';
+            }
+            
+            // Close modal
+            releaseModal.hide();
+        };
+    } else {
+        // No items in cart, just go back
+        document.getElementById('payment-method-view').style.display = 'none';
+        document.getElementById('payment-method-view').classList.add('display-none');
+        
+        // Show service category selection
+        document.getElementById('service-category-selection').style.display = 'block';
+        
+        // Show cart section if user has completed information
+        if (hasCompletedInformation) {
+            const cartSection = document.getElementById('cart-section');
+            if (cartSection) {
+                cartSection.classList.remove('display-none');
+                cartSection.style.display = 'block';
+            }
         }
     }
 }
@@ -1101,6 +1160,6 @@ function proceedToConfirmation() {
     cart = [];
     updateCartDisplay();
     
-    window.location.href = '/Scheduler/Confirmed';
+    window.location.href = '/Scheduler/admin_view/Confirmed';
 }
 </script>

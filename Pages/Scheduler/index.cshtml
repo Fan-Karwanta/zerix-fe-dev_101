@@ -1,34 +1,34 @@
 @page
-@model SchedulerIndexModel
+@model zerix_fe_dev.Pages.Scheduler.SchedulerIndexModel
 @{
     Layout = "_Scheduler";
     ViewData["Title"] = "Scheduler";
     ViewData["User"] = "Admin";
 }
 
-@await Html.PartialAsync("_Navigation")
+@await Html.PartialAsync("user_view/_Navigation")
 
-@await Html.PartialAsync("_MobileSidebar")
+@await Html.PartialAsync("user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-5 pt-3"> 
-    @await Html.PartialAsync("_ServiceCategory")
+    @await Html.PartialAsync("user_view/_ServiceCategory")
     
-    @await Html.PartialAsync("_ServiceCategorySelection")
+    @await Html.PartialAsync("user_view/_ServiceCategorySelection")
     
-    @await Html.PartialAsync("_AppointmentDetails")
+    @await Html.PartialAsync("user_view/_AppointmentDetails")
 
-    @await Html.PartialAsync("_AppointmentList")
+    @await Html.PartialAsync("user_view/_AppointmentList")
 
-    @await Html.PartialAsync("_AppointmentSelection")
+    @await Html.PartialAsync("user_view/_AppointmentSelection")
 
-    @await Html.PartialAsync("_DateTimeSelection")
+    @await Html.PartialAsync("user_view/_DateTimeSelection")
 
-    @await Html.PartialAsync("_InformationView")
+    @await Html.PartialAsync("user_view/_InformationView")
 
-    @await Html.PartialAsync("_PaymentMethod")
+    @await Html.PartialAsync("user_view/_PaymentMethod")
 </div>
 
-@await Html.PartialAsync("_ReleaseSlotModal")
+@await Html.PartialAsync("user_view/_ReleaseSlotModal")
 
 @await Html.PartialAsync("_Styles")
 
