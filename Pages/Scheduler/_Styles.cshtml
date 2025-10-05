@@ -2782,13 +2782,68 @@
 
     .payment-providers {
         font-size: 12px;
-        display: block;
-        margin-top: 4px;
     }
 
-    .payment-option-label .d-flex {
-        flex-direction: column;
-        align-items: flex-start !important;
+    /* Keep payment method and providers on same line in mobile payment page */
+    #mobile-payment-page .payment-option-label > .d-flex {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    #mobile-payment-page .payment-option-label > .d-flex > .d-flex {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+
+    #mobile-payment-page .payment-providers {
+        display: block !important;
+        margin-top: 0 !important;
+        text-align: right;
+        font-size: 11px;
+        line-height: 1.4;
+        max-width: 140px;
+        word-wrap: break-word;
+        flex-shrink: 0;
+    }
+
+    #mobile-payment-page .payment-method-name {
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    #mobile-payment-page .payment-icon {
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    /* Stacked payment providers for Buy Now Pay Later */
+    #mobile-payment-page .payment-providers-stacked {
+        text-align: right;
+        font-size: 11px;
+        color: #878a99;
+        line-height: 1.3;
+    }
+
+    #mobile-payment-page .payment-providers-stacked div {
+        white-space: nowrap;
+    }
+
+    /* Mobile-specific payment item styles */
+    #mobile-items-page .payment-item {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Add spacing between header and first item in mobile */
+    #mobile-items-page .mobile-header-container {
+        margin-bottom: 2.5rem !important;
+    }
+
+    #mobile-items-page .payment-items-section {
+        margin-top: 1rem !important;
+        padding-bottom: 0 !important;
+        border-bottom: none !important;
     }
 }
 

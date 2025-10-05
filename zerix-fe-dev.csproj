@@ -9,4 +9,8 @@
     <RazorLangVersion>8.0</RazorLangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Scheduler\admin_view\" />
+  </ItemGroup>
+
 </Project>
