@@ -216,7 +216,7 @@
     </div>
 
     <!-- Tablet Items Page (First Page) -->
-    <div id="tablet-items-page" class="d-none d-md-block d-lg-none">
+    <div id="tablet-items-page" class="tablet-view">
         <div class="d-flex align-items-center justify-content-center mb-4 position-relative tablet-header-container">
             <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="backToServiceCategoryFromPayment()">
                 <i class="bi bi-chevron-left"></i>
@@ -268,7 +268,7 @@
     </div>
 
     <!-- Tablet Payment Method Page (Second Page) -->
-    <div id="tablet-payment-page" class="d-none d-md-block d-lg-none" style="display: none;">
+    <div id="tablet-payment-page" class="tablet-view" style="display: none;">
         <div class="d-flex align-items-center justify-content-center mb-3 position-relative tablet-header-container">
             <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="showTabletItemsPage()">
                 <i class="bi bi-chevron-left"></i>
@@ -430,7 +430,7 @@
     </div>
 
     <!-- Desktop View (Original Layout) -->
-    <div class="d-none d-lg-block">
+    <div class="desktop-view">
         <!-- Desktop Header with Back Button and Titles -->
         <div class="d-flex align-items-center mb-4">
             <button class="btn btn-link p-0 back-link text-decoration-none" onclick="backToServiceCategoryFromPayment()">
@@ -662,12 +662,26 @@ function showMobileItemsPage() {
 
 // Tablet navigation functions
 function showTabletPaymentPage() {
-    document.getElementById('tablet-items-page').style.display = 'none';
-    document.getElementById('tablet-payment-page').style.display = 'block';
+    const itemsPage = document.getElementById('tablet-items-page');
+    const paymentPage = document.getElementById('tablet-payment-page');
+    
+    if (itemsPage) {
+        itemsPage.classList.add('hide-tablet-items');
+    }
+    if (paymentPage) {
+        paymentPage.classList.add('show-tablet-payment');
+    }
 }
 
 function showTabletItemsPage() {
-    document.getElementById('tablet-payment-page').style.display = 'none';
-    document.getElementById('tablet-items-page').style.display = 'block';
+    const itemsPage = document.getElementById('tablet-items-page');
+    const paymentPage = document.getElementById('tablet-payment-page');
+    
+    if (paymentPage) {
+        paymentPage.classList.remove('show-tablet-payment');
+    }
+    if (itemsPage) {
+        itemsPage.classList.remove('hide-tablet-items');
+    }
 }
 </script>

@@ -994,12 +994,13 @@ function initializePaymentEventListeners() {
         const paymentType = option.getAttribute('data-payment-type');
         option.onclick = function(e) {
             if (e.target.tagName !== 'INPUT') {
-                // Check if we're in mobile or desktop view
+                // Check if we're in mobile, tablet, or desktop view
                 const isMobile = this.closest('#mobile-payment-page') !== null;
+                const isTablet = this.closest('#tablet-payment-page') !== null;
                 if (paymentType === 'ewallet') {
-                    toggleEwalletOptions(isMobile);
+                    toggleEwalletOptions(isMobile, isTablet);
                 } else if (paymentType === 'banking') {
-                    toggleBankingOptions(isMobile);
+                    toggleBankingOptions(isMobile, isTablet);
                 }
             }
         };
@@ -1009,7 +1010,7 @@ function initializePaymentEventListeners() {
     document.querySelectorAll('input[name="bank-option"]').forEach(radio => {
         radio.onchange = function() {
             selectedBankOption = this.value;
-            updateBankSelection(this, false);
+            updateBankSelection(this, false, false);
         };
     });
     
@@ -1017,7 +1018,15 @@ function initializePaymentEventListeners() {
     document.querySelectorAll('input[name="bank-option-mobile"]').forEach(radio => {
         radio.onchange = function() {
             selectedBankOption = this.value;
-            updateBankSelection(this, true);
+            updateBankSelection(this, true, false);
+        };
+    });
+    
+    // Bank option radio changes (Tablet)
+    document.querySelectorAll('input[name="bank-option-tablet"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedBankOption = this.value;
+            updateBankSelection(this, false, true);
         };
     });
     
@@ -1025,7 +1034,7 @@ function initializePaymentEventListeners() {
     document.querySelectorAll('input[name="ewallet-option"]').forEach(radio => {
         radio.onchange = function() {
             selectedEwalletOption = this.value;
-            updateEwalletSelection(this, false);
+            updateEwalletSelection(this, false, false);
         };
     });
     
@@ -1033,21 +1042,35 @@ function initializePaymentEventListeners() {
     document.querySelectorAll('input[name="ewallet-option-mobile"]').forEach(radio => {
         radio.onchange = function() {
             selectedEwalletOption = this.value;
-            updateEwalletSelection(this, true);
+            updateEwalletSelection(this, true, false);
+        };
+    });
+    
+    // E-wallet option radio changes (Tablet)
+    document.querySelectorAll('input[name="ewallet-option-tablet"]').forEach(radio => {
+        radio.onchange = function() {
+            selectedEwalletOption = this.value;
+            updateEwalletSelection(this, false, true);
         };
     });
 }
 
-function updateBankSelection(radio, isMobile) {
-    const containerId = isMobile ? '#banking-options-mobile' : '#banking-options';
+function updateBankSelection(radio, isMobile, isTablet) {
+    let containerId = '#banking-options';
+    if (isMobile) containerId = '#banking-options-mobile';
+    if (isTablet) containerId = '#banking-options-tablet';
+    
     document.querySelectorAll(containerId + ' .bank-option').forEach(opt => {
         opt.classList.remove('selected');
     });
     radio.closest('.bank-option').classList.add('selected');
 }
 
-function updateEwalletSelection(radio, isMobile) {
-    const containerId = isMobile ? '#ewallet-options-mobile' : '#ewallet-options';
+function updateEwalletSelection(radio, isMobile, isTablet) {
+    let containerId = '#ewallet-options';
+    if (isMobile) containerId = '#ewallet-options-mobile';
+    if (isTablet) containerId = '#ewallet-options-tablet';
+    
     document.querySelectorAll(containerId + ' .bank-option').forEach(opt => {
         opt.classList.remove('selected');
     });
@@ -1075,16 +1098,22 @@ function selectPaymentMethod(method) {
     }
 }
 
-function toggleEwalletOptions(isMobile = false) {
+function toggleEwalletOptions(isMobile = false, isTablet = false) {
     selectedPaymentMethod = 'ewallet';
     
-    const suffix = isMobile ? '-mobile' : '';
+    let suffix = '';
+    if (isMobile) suffix = '-mobile';
+    if (isTablet) suffix = '-tablet';
+    
     const ewalletRadioId = 'payment-ewallet' + suffix;
     const ewalletOptionsId = 'ewallet-options' + suffix;
     const bankingOptionsId = 'banking-options' + suffix;
     
-    // Only update options within the same context (mobile or desktop)
-    const context = isMobile ? document.getElementById('mobile-payment-page') : document.querySelector('.payment-content-container');
+    // Only update options within the same context (mobile, tablet, or desktop)
+    let context = document.querySelector('.payment-content-container');
+    if (isMobile) context = document.getElementById('mobile-payment-page');
+    if (isTablet) context = document.getElementById('tablet-payment-page');
+    
     if (context) {
         context.querySelectorAll('.payment-option').forEach(option => {
             option.classList.remove('selected');
@@ -1107,16 +1136,22 @@ function toggleEwalletOptions(isMobile = false) {
     }
 }
 
-function toggleBankingOptions(isMobile = false) {
+function toggleBankingOptions(isMobile = false, isTablet = false) {
     selectedPaymentMethod = 'banking';
     
-    const suffix = isMobile ? '-mobile' : '';
+    let suffix = '';
+    if (isMobile) suffix = '-mobile';
+    if (isTablet) suffix = '-tablet';
+    
     const bankingRadioId = 'payment-banking' + suffix;
     const bankingOptionsId = 'banking-options' + suffix;
     const ewalletOptionsId = 'ewallet-options' + suffix;
     
-    // Only update options within the same context (mobile or desktop)
-    const context = isMobile ? document.getElementById('mobile-payment-page') : document.querySelector('.payment-content-container');
+    // Only update options within the same context (mobile, tablet, or desktop)
+    let context = document.querySelector('.payment-content-container');
+    if (isMobile) context = document.getElementById('mobile-payment-page');
+    if (isTablet) context = document.getElementById('tablet-payment-page');
+    
     if (context) {
         context.querySelectorAll('.payment-option').forEach(option => {
             option.classList.remove('selected');
