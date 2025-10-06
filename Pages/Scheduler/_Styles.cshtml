@@ -2415,11 +2415,35 @@
     margin-top: 2rem;
 }
 
+/* Payment Titles Row */
+.payment-titles-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin-bottom: 0;
+    margin-left: 14rem;
+}
+
+.payment-title-left {
+    display: flex;
+    align-items: center;
+}
+
+.payment-title-spacer {
+    width: 82px; /* Match the divider spacing (40px + 1px + 40px + 1px) */
+}
+
+.payment-title-right {
+    display: flex;
+    align-items: center;
+    margin-left: -8.5rem;
+}
+
 .payment-content-container {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: 0;
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 /* Ensure grid layout on desktop */
@@ -2434,8 +2458,10 @@
     font-size: 18px;
     font-weight: 600;
     color: #212529;
-    margin-bottom: 20px;
+    margin-bottom: 0 !important;
+    margin-top: -2rem !important;
 }
+
 
 /* Vertical Divider */
 .payment-vertical-divider {

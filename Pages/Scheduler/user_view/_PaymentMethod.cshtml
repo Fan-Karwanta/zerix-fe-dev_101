@@ -1,13 +1,5 @@
 <!-- Payment Method View -->
 <div id="payment-method-view" class="payment-method-view display-none">
-    <!-- Desktop Header with Back Button -->
-    <div class="d-none d-md-flex align-items-center mb-4">
-        <button class="btn btn-link p-0 back-link text-decoration-none" onclick="backToServiceCategoryFromPayment()">
-           <i class="bi bi-chevron-left"></i>
-            <span class="text-orange fs-14">Back</span>
-        </button>
-    </div>
-
     <!-- Mobile Items Page (First Page) -->
     <div id="mobile-items-page" class="d-md-none">
         <div class="d-flex align-items-center justify-content-center mb-4 position-relative mobile-header-container">
@@ -224,10 +216,27 @@
     </div>
 
     <!-- Desktop View (Original Layout) -->
-    <div class="payment-content-container d-none d-md-block">
-        <!-- Items Section -->
-        <div class="payment-items-section">
-            <h5 class="payment-section-title mb-4">Items</h5>
+    <div class="d-none d-md-block">
+        <!-- Desktop Header with Back Button and Titles -->
+        <div class="d-flex align-items-center mb-4">
+            <button class="btn btn-link p-0 back-link text-decoration-none" onclick="backToServiceCategoryFromPayment()">
+                <i class="bi bi-chevron-left"></i>
+                <span class="text-orange fs-14">Back</span>
+            </button>
+            <div class="payment-titles-row flex-grow-1">
+                <div class="payment-title-left">
+                    <h5 class="payment-section-title mb-0">Items</h5>
+                </div>
+                <div class="payment-title-spacer"></div>
+                <div class="payment-title-right">
+                    <h5 class="payment-section-title mb-0">Payment Method</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-content-container">
+            <!-- Items Section -->
+            <div class="payment-items-section">
             
             <!-- Item 1 -->
             <div class="payment-item mb-3">
@@ -273,8 +282,6 @@
 
         <!-- Payment Method Section -->
         <div class="payment-methods-section">
-            <h5 class="payment-section-title mb-4">Payment Method</h5>
-
             <!-- Credit or Debit Card -->
             <div class="payment-option mb-3" onclick="selectPaymentMethod('card')">
                 <input type="radio" name="payment-method" id="payment-card" value="card" class="payment-radio">
@@ -422,6 +429,7 @@
                     Continue
                 </button>
             </div>
+        </div>
         </div>
     </div>
 </div>
