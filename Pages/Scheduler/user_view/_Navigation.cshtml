@@ -18,21 +18,18 @@
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block" />
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scheduler-dropdown"
                     aria-labelledby="navbarDropDownScheduler">
-                    @if (!isEventsPage)
-                    {
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                href="/scheduler">
-                                Scheduler
-                            </a>
-                        </li>
-                    }
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="@menuItemUrl">
-                            @menuItemLabel
+                            href="/scheduler">
+                            Scheduler
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/user_view/events">
+                            @(isEventsPage ? "Appointment" : "Appointment History")
                         </a>
                     </li>
                 </ul>
@@ -46,21 +43,18 @@
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scheduler-dropdown"
                     aria-labelledby="navbarDropDownSchedulerMobile">
-                    @if (!isEventsPage)
-                    {
-                        <li>
-                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                                href="/scheduler">
-                                Scheduler
-                            </a>
-                        </li>
-                    }
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="@menuItemUrl">
-                            @menuItemLabel
+                            href="/scheduler">
+                            Scheduler
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                            href="/scheduler/user_view/events">
+                            @(isEventsPage ? "Appointment" : "Appointment History")
                         </a>
                     </li>
                 </ul>
@@ -137,3 +131,21 @@
         </div>
     </div>
 </nav>
+
+<style>
+/* Fix dropdown width to match button width */
+.scheduler-dropdown {
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+/* Ensure dropdown doesn't exceed button width */
+.dropdown {
+    position: relative;
+}
+
+.dropdown .scheduler-dropdown {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+</style>

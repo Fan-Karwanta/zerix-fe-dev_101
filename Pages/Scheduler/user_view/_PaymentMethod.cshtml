@@ -215,8 +215,222 @@
         </div>
     </div>
 
+    <!-- Tablet Items Page (First Page) -->
+    <div id="tablet-items-page" class="d-none d-md-block d-lg-none">
+        <div class="d-flex align-items-center justify-content-center mb-4 position-relative tablet-header-container">
+            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="backToServiceCategoryFromPayment()">
+                <i class="bi bi-chevron-left"></i>
+                <span class="text-orange fs-14">Back</span>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Items</h2>
+        </div>
+
+        <div class="payment-items-section mt-3">
+            <!-- Item 1 -->
+            <div class="payment-item mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyebrow Threading</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">9:00 - 9:50 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱190.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="payment-item mb-3">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="payment-item-details">
+                        <h6 class="payment-item-name mb-1">Eyelash Lift</h6>
+                        <p class="payment-item-info mb-1">SM Megamall- Face</p>
+                        <p class="payment-item-info mb-1">March 4, 2025 (Tuesday)</p>
+                        <p class="payment-item-info mb-0">10:00 - 10:30 AM GMT+8</p>
+                    </div>
+                    <div class="payment-item-price">
+                        <span class="fw-bold">₱500.00</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tablet Continue Button (Fixed at bottom) -->
+        <div class="tablet-items-continue-container">
+            <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="showTabletPaymentPage()">
+                <span>Continue</span>
+                <span class="fw-bold">₱690.00</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Tablet Payment Method Page (Second Page) -->
+    <div id="tablet-payment-page" class="d-none d-md-block d-lg-none" style="display: none;">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative tablet-header-container">
+            <button class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0" onclick="showTabletItemsPage()">
+                <i class="bi bi-chevron-left"></i>
+                <span class="text-orange fs-14">Back</span>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Payment Method</h2>
+        </div>
+
+        <div class="payment-methods-section">
+            <!-- Credit or Debit Card -->
+            <div class="payment-option mb-3" onclick="selectPaymentMethod('card')">
+                <input type="radio" name="payment-method-tablet" id="payment-card-tablet" value="card" class="payment-radio">
+                <label for="payment-card-tablet" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-credit-card payment-icon"></i>
+                            <span class="payment-method-name">Credit or Debit Card</span>
+                        </div>
+                        <span class="payment-providers">Mastercard, Visa</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallets -->
+            <div class="payment-option mb-3" data-payment-type="ewallet">
+                <input type="radio" name="payment-method-tablet" id="payment-ewallet-tablet" value="ewallet" class="payment-radio">
+                <label for="payment-ewallet-tablet" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-wallet2 payment-icon"></i>
+                            <span class="payment-method-name">E-Wallets</span>
+                        </div>
+                        <span class="payment-providers">GCash, GrabPay, Maya</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- E-Wallet Options (Hidden by default) -->
+            <div id="ewallet-options-tablet" class="ewallet-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-tablet" id="ewallet-gcash-tablet" value="gcash" class="bank-radio-visible">
+                    <label for="ewallet-gcash-tablet" class="bank-option-label">
+                        <span class="bank-name">GCash</span>
+                        <img src="/images/bank_logos/GCash.png" alt="GCash" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-tablet" id="ewallet-grabpay-tablet" value="grabpay" class="bank-radio-visible">
+                    <label for="ewallet-grabpay-tablet" class="bank-option-label">
+                        <span class="bank-name">GrabPay</span>
+                        <img src="/images/bank_logos/GrabPay.png" alt="GrabPay" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="ewallet-option-tablet" id="ewallet-maya-tablet" value="maya" class="bank-radio-visible">
+                    <label for="ewallet-maya-tablet" class="bank-option-label">
+                        <span class="bank-name">Maya</span>
+                        <img src="/images/bank_logos/Maya.png" alt="Maya" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="ewallet-option-tablet" id="ewallet-coins-tablet" value="coins" class="bank-radio-visible">
+                    <label for="ewallet-coins-tablet" class="bank-option-label">
+                        <span class="bank-name">Coins.ph</span>
+                        <img src="/images/bank_logos/Coins.ph.png" alt="Coins.ph" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Online Banking -->
+            <div class="payment-option mb-3" data-payment-type="banking">
+                <input type="radio" name="payment-method-tablet" id="payment-banking-tablet" value="banking" class="payment-radio">
+                <label for="payment-banking-tablet" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-bank payment-icon"></i>
+                            <span class="payment-method-name">Online Banking</span>
+                        </div>
+                        <span class="payment-providers">BPI, UnionBank</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Banking Options (Hidden by default) -->
+            <div id="banking-options-tablet" class="banking-options-container" style="display: none;">
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-tablet" id="bank-bpi-tablet" value="bpi" class="bank-radio-visible">
+                    <label for="bank-bpi-tablet" class="bank-option-label">
+                        <span class="bank-name">BPI Online</span>
+                        <img src="/images/bank_logos/BPI.png" alt="BPI" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-tablet" id="bank-unionbank-tablet" value="unionbank" class="bank-radio-visible">
+                    <label for="bank-unionbank-tablet" class="bank-option-label">
+                        <span class="bank-name">UnionBank Online</span>
+                        <img src="/images/bank_logos/UnionBank.png" alt="UnionBank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-tablet" id="bank-metrobank-tablet" value="metrobank" class="bank-radio-visible">
+                    <label for="bank-metrobank-tablet" class="bank-option-label">
+                        <span class="bank-name">Metrobank</span>
+                        <img src="/images/bank_logos/MetroBank.png" alt="Metrobank" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-2">
+                    <input type="radio" name="bank-option-tablet" id="bank-bdo-tablet" value="bdo" class="bank-radio-visible">
+                    <label for="bank-bdo-tablet" class="bank-option-label">
+                        <span class="bank-name">BDO Online Banking</span>
+                        <img src="/images/bank_logos/BDO.png" alt="BDO" class="bank-logo">
+                    </label>
+                </div>
+
+                <div class="bank-option mb-3">
+                    <input type="radio" name="bank-option-tablet" id="bank-landbank-tablet" value="landbank" class="bank-radio-visible">
+                    <label for="bank-landbank-tablet" class="bank-option-label">
+                        <span class="bank-name">Landbank</span>
+                        <img src="/images/bank_logos/LandBank.png" alt="Landbank" class="bank-logo">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Buy Now, Pay Later -->
+            <div class="payment-option mb-4" onclick="selectPaymentMethod('bnpl')">
+                <input type="radio" name="payment-method-tablet" id="payment-bnpl-tablet" value="bnpl" class="payment-radio">
+                <label for="payment-bnpl-tablet" class="payment-option-label">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock-history payment-icon"></i>
+                            <span class="payment-method-name">Buy Now, Pay Later</span>
+                        </div>
+                        <span class="payment-providers">Billease, Pay in Installments</span>
+                    </div>
+                </label>
+            </div>
+
+            <!-- QR Ph Section -->
+            <div class="qrph-section text-center mb-4">
+                <span class="qrph-text">Scan</span>
+                <img src="/images/bank_logos/QR PH.png" alt="QR Ph" class="qrph-logo mx-2">
+                <span class="qrph-text">code to pay</span>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="tablet-payment-continue-container">
+                <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="proceedToConfirmation()">
+                    <span>Continue</span>
+                    <span class="fw-bold">₱690.00</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Desktop View (Original Layout) -->
-    <div class="d-none d-md-block">
+    <div class="d-none d-lg-block">
         <!-- Desktop Header with Back Button and Titles -->
         <div class="d-flex align-items-center mb-4">
             <button class="btn btn-link p-0 back-link text-decoration-none" onclick="backToServiceCategoryFromPayment()">
@@ -444,5 +658,16 @@ function showMobilePaymentPage() {
 function showMobileItemsPage() {
     document.getElementById('mobile-payment-page').style.display = 'none';
     document.getElementById('mobile-items-page').style.display = 'block';
+}
+
+// Tablet navigation functions
+function showTabletPaymentPage() {
+    document.getElementById('tablet-items-page').style.display = 'none';
+    document.getElementById('tablet-payment-page').style.display = 'block';
+}
+
+function showTabletItemsPage() {
+    document.getElementById('tablet-payment-page').style.display = 'none';
+    document.getElementById('tablet-items-page').style.display = 'block';
 }
 </script>
