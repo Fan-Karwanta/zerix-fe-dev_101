@@ -231,6 +231,221 @@
     </div>
 </div>
 
+<!-- Appointment Details Modal -->
+<div class="modal fade" id="appointmentDetailsModal" tabindex="-1" aria-labelledby="appointmentDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content appointment-details-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-details-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-details-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-details-modal-body">
+                <!-- Status Section -->
+                <div class="appointment-status-section mb-3">
+                    <div class="status-label-text">Status</div>
+                    <div class="appointment-status-badge" id="appointmentStatus">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Completed</span>
+                    </div>
+                </div>
+
+                <!-- Customer Name -->
+                <div class="appointment-customer-name mb-2" id="appointmentCustomerName">
+                    Laybare
+                </div>
+
+                <!-- Contact Info -->
+                <div class="appointment-contact-info mb-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.147 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.5953 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="appointmentPhone">(+123) 555-0101</span>
+                    <span class="contact-separator">•</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="appointmentEmail" class="email-underlined">zerixuser@example.com</span>
+                </div>
+
+                <!-- Service Title -->
+                <div class="appointment-service-title mb-2" id="appointmentServiceTitle">
+                    Eyebrow Thread
+                </div>
+
+                <!-- Service Subtitle -->
+                <div class="appointment-service-subtitle mb-2" id="appointmentServiceSubtitle">
+                    SM Megamall - Face
+                </div>
+
+                <!-- Date and Time -->
+                <div class="appointment-datetime-info mb-2">
+                    <div class="datetime-item">
+                        <span id="appointmentDateOriginal" class="date-strikethrough" style="display: none;"></span>
+                        <span id="appointmentDate">February 15, 2025 (Sun)</span>
+                    </div>
+                    <div class="datetime-item">
+                        <span id="appointmentTimeOriginal" class="time-strikethrough" style="display: none;"></span>
+                        <span id="appointmentTime">10:45-11:30 AM</span>
+                    </div>
+                    <div class="datetime-item" id="appointmentDuration">50 minutes</div>
+                    <div class="datetime-item" id="appointmentPrice">₱450.00</div>
+                </div>
+
+                <!-- Scheduled Info -->
+                <div class="appointment-scheduled-info mb-3" id="appointmentScheduledInfo">
+                    Scheduled on February 14, 2025 (Wed) at 10:00 AM
+                </div>
+
+                <!-- Form Answers Section -->
+                <div class="appointment-form-answers mb-4">
+                    <div class="form-answers-header">
+                        <span>Form Answers</span>
+                        <a href="#" class="edit-info-link" id="editInfoLink" onclick="editAppointmentInfo(event)">Edit Info</a>
+                    </div>
+                    <div class="form-answers-scrollable">
+                        <div class="form-answers-list" id="formAnswersList">
+                            <div class="form-answer-item">
+                                <div class="form-question">How old are you?</div>
+                                <div class="form-answer">24 years old</div>
+                            </div>
+                            <div class="form-answer-item">
+                                <div class="form-question">Do you have any allergies to medications?</div>
+                                <div class="form-answer">No</div>
+                            </div>
+                            <div class="form-answer-item">
+                                <div class="form-question">Do you have any family history of any conditions</div>
+                                <div class="form-answer">No</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="appointment-modal-actions" id="appointmentActions">
+                    <!-- Default buttons (Reschedule & Cancel) -->
+                    <div class="default-actions">
+                        <!-- Desktop buttons (side by side) -->
+                        <div class="d-none d-md-flex justify-content-between gap-3">
+                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                        
+                        <!-- Mobile buttons (stacked) -->
+                        <div class="d-md-none">
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Rescheduled by Admin buttons (Approve, Reschedule & Cancel) -->
+                    <div class="rescheduled-actions" style="display: none;">
+                        <!-- Desktop buttons (three buttons) -->
+                        <div class="d-none d-md-flex gap-3">
+                            <button type="button" class="btn appointment-approve-btn flex-fill" id="approveBtn">Approve</button>
+                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                        
+                        <!-- Mobile buttons (stacked) -->
+                        <div class="d-md-none">
+                            <button type="button" class="btn w-100 mb-3 appointment-approve-btn" id="approveBtnMobile">Approve</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment Rescheduled Confirmation Modal -->
+<div class="modal fade" id="appointmentRescheduledModal" tabindex="-1" aria-labelledby="appointmentRescheduledModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content appointment-rescheduled-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-rescheduled-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-rescheduled-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-rescheduled-modal-body">
+                <h3 class="appointment-rescheduled-title">Appointment Rescheduled</h3>
+                
+                <p class="appointment-rescheduled-text">
+                    Your appointment on <span class="reschedule-datetime" id="rescheduleOriginalDateTime">June 24, 2025 (Thurs) at 9:00 AM</span> 
+                    has been rescheduled to <span class="reschedule-datetime" id="rescheduleNewDateTime">June 25, 2025 (Fri) at 9:00 AM</span>.
+                </p>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn appointment-rescheduled-okay-btn" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Appointment Confirmation Modal -->
+<div class="modal fade" id="cancelAppointmentModal" tabindex="-1" aria-labelledby="cancelAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content cancel-appointment-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close cancel-appointment-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="cancel-appointment-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body cancel-appointment-modal-body">
+                <h3 class="cancel-appointment-title">Cancel Appointment</h3>
+                
+                <p class="cancel-appointment-question">
+                    Are you sure you want to cancel this appointment?
+                </p>
+
+                <p class="cancel-appointment-note">
+                    Note: Reservation fee is not refundable.
+                </p>
+
+                <div class="cancel-appointment-actions">
+                    <!-- Desktop buttons (side by side) -->
+                    <div class="d-none d-md-flex gap-3">
+                        <button type="button" class="btn cancel-keep-btn flex-fill" data-bs-dismiss="modal">Keep Appointment</button>
+                        <button type="button" class="btn cancel-confirm-btn flex-fill" id="confirmCancelBtn">Yes, Cancel Appointment</button>
+                    </div>
+                    
+                    <!-- Mobile buttons (stacked) -->
+                    <div class="d-md-none">
+                        <button type="button" class="btn w-100 mb-3 cancel-keep-btn" data-bs-dismiss="modal">Keep Appointment</button>
+                        <button type="button" class="btn w-100 cancel-confirm-btn" id="confirmCancelBtnMobile">Yes, Cancel Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment Cancelled Success Modal -->
+<div class="modal fade" id="appointmentCancelledModal" tabindex="-1" aria-labelledby="appointmentCancelledModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content appointment-cancelled-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-cancelled-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-cancelled-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-cancelled-modal-body">
+                <h3 class="appointment-cancelled-title">Appointment Canceled</h3>
+                
+                <p class="appointment-cancelled-text">
+                    Your appointment on <span class="cancelled-datetime" id="cancelledDateTime">June 24, 2025 (Thurs) at 9:00 AM</span> has been canceled.
+                </p>
+
+                <button type="button" class="btn appointment-cancelled-okay-btn w-100" data-bs-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
 /* Events Page Specific Styles */
 .events-container {
@@ -492,6 +707,38 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Event colors based on status */
+.event-completed {
+    background: #d4f4dd;
+    border-left: 3px solid #4caf50;
+}
+
+.event-cancelled {
+    background: #ffe5e5;
+    border-left: 3px solid #f44336;
+}
+
+.event-refund-requested {
+    background: #e3f2fd;
+    border-left: 3px solid #2196f3;
+}
+
+.event-refunded {
+    background: #f3e5f5;
+    border-left: 3px solid #e91e63;
+}
+
+.event-booked {
+    background: #f5f5f5;
+    border-left: 3px solid #9e9e9e;
+}
+
+.event-rescheduled-by-admin {
+    background: #ffe5e5;
+    border-left: 3px solid #f44336;
+}
+
+/* Legacy colors for backward compatibility */
 .event-green {
     background: #d4f4dd;
     border-left: 3px solid #4caf50;
@@ -500,6 +747,16 @@
 .event-blue {
     background: #d4e4f7;
     border-left: 3px solid #2196f3;
+}
+
+.event-red {
+    background: #ffe5e5;
+    border-left: 3px solid #f44336;
+}
+
+.event-purple {
+    background: #f3e5f5;
+    border-left: 3px solid #9c27b0;
 }
 
 .event-title {
@@ -642,6 +899,37 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+.daily-appointment-event.event-completed {
+    background: #e8f5e9;
+    border-left: 3px solid #4caf50;
+}
+
+.daily-appointment-event.event-cancelled {
+    background: #ffe5e5;
+    border-left: 3px solid #f44336;
+}
+
+.daily-appointment-event.event-refund-requested {
+    background: #e3f2fd;
+    border-left: 3px solid #2196f3;
+}
+
+.daily-appointment-event.event-refunded {
+    background: #f3e5f5;
+    border-left: 3px solid #e91e63;
+}
+
+.daily-appointment-event.event-booked {
+    background: #f5f5f5;
+    border-left: 3px solid #9e9e9e;
+}
+
+.daily-appointment-event.event-rescheduled-by-admin {
+    background: #ffe5e5;
+    border-left: 3px solid #f44336;
+}
+
+/* Legacy colors */
 .daily-appointment-event.event-red {
     background: #ffe5e5;
     border-left: 3px solid #f44336;
@@ -802,8 +1090,46 @@
     border-radius: 6px;
     font-size: 12px;
     border-left: 3px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
+.mobile-appointment-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mobile-appointment-card.event-completed {
+    background: #e8f5e9;
+    border-left-color: #4caf50;
+}
+
+.mobile-appointment-card.event-cancelled {
+    background: #ffe5e5;
+    border-left-color: #f44336;
+}
+
+.mobile-appointment-card.event-refund-requested {
+    background: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+.mobile-appointment-card.event-refunded {
+    background: #f3e5f5;
+    border-left-color: #e91e63;
+}
+
+.mobile-appointment-card.event-booked {
+    background: #f5f5f5;
+    border-left-color: #9e9e9e;
+}
+
+.mobile-appointment-card.event-rescheduled-by-admin {
+    background: #ffe5e5;
+    border-left-color: #f44336;
+}
+
+/* Legacy colors */
 .mobile-appointment-card.event-green {
     background: #e8f5e9;
     border-left-color: #4caf50;
@@ -877,6 +1203,634 @@
         display: none;
     }
 }
+
+/* Appointment Details Modal Styles */
+.appointment-details-modal-content {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: none;
+}
+
+.appointment-details-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    color: #ff5400;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-details-close-btn:hover {
+    color: #e04800;
+}
+
+.appointment-details-close-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.appointment-details-modal-body {
+    padding: 25px;
+}
+
+/* Status Section */
+.appointment-status-section {
+    margin-bottom: 20px;
+}
+
+.status-label-text {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.appointment-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4caf50;
+}
+
+.status-dot.completed {
+    background: #4caf50;
+}
+
+.status-dot.cancelled {
+    background: #f44336;
+}
+
+.status-dot.refund-requested {
+    background: #2196f3;
+}
+
+.status-dot.refunded {
+    background: #e91e63;
+}
+
+.status-dot.booked {
+    background: #9e9e9e;
+}
+
+.status-dot.rescheduled-by-admin {
+    background: #f44336;
+}
+
+.status-text {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Customer Name */
+.appointment-customer-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Contact Info */
+.appointment-contact-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+.appointment-contact-info svg {
+    color: #999;
+    flex-shrink: 0;
+}
+
+.contact-separator {
+    color: #999;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.email-underlined {
+    text-decoration: underline;
+    color: #666;
+}
+
+/* Service Title */
+.appointment-service-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+/* Service Subtitle */
+.appointment-service-subtitle {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+/* Date and Time Info */
+.appointment-datetime-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.datetime-item {
+    font-size: 13px;
+    color: #666;
+}
+
+.date-strikethrough,
+.time-strikethrough {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+}
+
+/* Scheduled Info */
+.appointment-scheduled-info {
+    font-size: 12px;
+    color: #999;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+}
+
+/* Form Answers */
+.appointment-form-answers {
+    margin-bottom: 20px;
+}
+
+.form-answers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.edit-info-link {
+    color: #ff5400;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.edit-info-link:hover {
+    color: #e04800;
+    text-decoration: underline;
+}
+
+.form-answers-scrollable {
+    max-height: 180px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.form-answers-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+
+.form-answers-scrollable::-webkit-scrollbar-track {
+    background: #e9ecef;
+    border-radius: 3px;
+}
+
+.form-answers-scrollable::-webkit-scrollbar-thumb {
+    background: #ced4da;
+    border-radius: 3px;
+}
+
+.form-answers-scrollable::-webkit-scrollbar-thumb:hover {
+    background: #adb5bd;
+}
+
+.form-answers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-answer-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-question {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.form-answer {
+    font-size: 13px;
+    color: #333;
+    font-weight: 400;
+}
+
+/* Modal Action Buttons */
+.appointment-modal-actions {
+    margin-top: 20px;
+}
+
+.appointment-reschedule-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.appointment-reschedule-btn:hover {
+    background: #e04800;
+    color: white;
+}
+
+.appointment-cancel-btn {
+    background: white;
+    color: #ff5400;
+    border: 2px solid #ff5400;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.appointment-cancel-btn:hover {
+    background: #fff5f0;
+    color: #ff5400;
+    border-color: #ff5400;
+}
+
+.appointment-approve-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.appointment-approve-btn:hover {
+    background: #e04800;
+    color: white;
+}
+
+.appointment-cancel-btn-outline {
+    background: white;
+    color: #ff5400;
+    border: 2px solid #ff5400;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.appointment-cancel-btn-outline:hover {
+    background: #fff5f0;
+    color: #ff5400;
+    border-color: #ff5400;
+}
+
+@@media (max-width: 768px) {
+    .appointment-details-modal-body {
+        padding: 20px;
+    }
+    
+    .appointment-contact-info {
+        flex-wrap: wrap;
+    }
+    
+    .form-answers-scrollable {
+        max-height: 150px;
+    }
+}
+
+/* Appointment Rescheduled Confirmation Modal Styles */
+.appointment-rescheduled-modal-content {
+    border-radius: 12px;
+    border: none;
+    max-width: 360px;
+}
+
+.appointment-rescheduled-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #ff5400;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-rescheduled-close-btn:hover {
+    color: #e04800;
+}
+
+.appointment-rescheduled-close-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.appointment-rescheduled-modal-body {
+    padding: 30px;
+}
+
+.appointment-rescheduled-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff5400;
+    margin-bottom: 20px;
+}
+
+.appointment-rescheduled-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.reschedule-datetime {
+    color: #333;
+    font-weight: 600;
+}
+
+.appointment-rescheduled-okay-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.appointment-rescheduled-okay-btn:hover {
+    background: #e04800;
+    color: white;
+}
+
+@@media (max-width: 576px) {
+    .appointment-rescheduled-modal-content {
+        max-width: 100%;
+        margin: 0 15px;
+    }
+    
+    .appointment-rescheduled-modal-body {
+        padding: 25px 20px;
+    }
+    
+    .appointment-rescheduled-title {
+        font-size: 18px;
+    }
+}
+
+/* Cancel Appointment Confirmation Modal Styles */
+.cancel-appointment-modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+.cancel-appointment-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #ff5400;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-appointment-close-btn:hover {
+    color: #e04800;
+}
+
+.cancel-appointment-close-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.cancel-appointment-modal-body {
+    padding: 30px;
+}
+
+.cancel-appointment-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff5400;
+    margin-bottom: 20px;
+}
+
+.cancel-appointment-question {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.cancel-appointment-note {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.cancel-appointment-actions {
+    margin-top: 20px;
+}
+
+.cancel-keep-btn {
+    background: white;
+    color: #ff5400;
+    border: 2px solid #ff5400;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cancel-keep-btn:hover {
+    background: #fff5f0;
+    color: #ff5400;
+    border-color: #ff5400;
+}
+
+.cancel-confirm-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cancel-confirm-btn:hover {
+    background: #e04800;
+    color: white;
+}
+
+@@media (max-width: 576px) {
+    .cancel-appointment-modal-content {
+        max-width: 100%;
+        margin: 0 15px;
+    }
+    
+    .cancel-appointment-modal-body {
+        padding: 25px 20px;
+    }
+    
+    .cancel-appointment-title {
+        font-size: 18px;
+    }
+}
+
+/* Appointment Cancelled Success Modal Styles */
+.appointment-cancelled-modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+.appointment-cancelled-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #ff5400;
+    cursor: pointer;
+    z-index: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointment-cancelled-close-btn:hover {
+    color: #e04800;
+}
+
+.appointment-cancelled-close-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.appointment-cancelled-modal-body {
+    padding: 30px;
+}
+
+.appointment-cancelled-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ff5400;
+    margin-bottom: 20px;
+}
+
+.appointment-cancelled-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.cancelled-datetime {
+    color: #333;
+    font-weight: 600;
+}
+
+.appointment-cancelled-okay-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.appointment-cancelled-okay-btn:hover {
+    background: #e04800;
+    color: white;
+}
+
+@@media (max-width: 576px) {
+    .appointment-cancelled-modal-content {
+        max-width: 100%;
+        margin: 0 15px;
+    }
+    
+    .appointment-cancelled-modal-body {
+        padding: 25px 20px;
+    }
+    
+    .appointment-cancelled-title {
+        font-size: 18px;
+    }
+}
 </style>
 
 <script>
@@ -885,100 +1839,200 @@ let miniCurrentDate = new Date();
 let fullCurrentDate = new Date();
 let selectedWeekStart = null;
 let currentView = 'monthly'; // 'monthly' or 'daily'
+let currentAppointment = null; // Store current appointment for cancellation
 
 // Sample appointments data - expanded for daily view
 const appointments = [
     {
         id: 1,
-        title: 'Optimum Repair',
-        subtitle: 'Repair Shop',
+        title: 'Eyebrow Thread',
+        subtitle: 'SM Megamall - Face',
+        customerName: 'Laybare',
+        phone: '(+123) 555-0101',
+        email: 'zerixuser@example.com',
         date: new Date(2023, 4, 16), // May 16, 2023 (Tuesday)
         startTime: '08:00',
         endTime: '08:30',
-        displayTime: '8:30 - 9:30',
-        color: 'green'
+        displayTime: '10:45-11:30 AM',
+        duration: '50 minutes',
+        price: '₱450.00',
+        status: 'completed',
+        scheduledDate: 'February 14, 2025 (Wed) at 10:00 AM',
+        formAnswers: [
+            { question: 'How old are you?', answer: '24 years old' },
+            { question: 'Do you have any allergies to medications?', answer: 'No' },
+            { question: 'Do you have any family history of any conditions', answer: 'No' }
+        ],
+        color: 'completed'
     },
     {
         id: 2,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Consultation',
+        subtitle: 'SM Megamall - Face',
+        customerName: 'Laybare',
+        phone: '(+123) 555-0101',
+        email: 'zerixuser@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '09:00',
         endTime: '10:00',
-        displayTime: '09:00 - 9:00 AM',
-        color: 'blue'
+        displayTime: '10:45-11:30 AM',
+        duration: '50 minutes',
+        price: '₱450.00',
+        status: 'rescheduled-by-admin',
+        scheduledDate: 'February 14, 2025 (Wed) at 10:00 AM',
+        originalDate: 'February 15, 2025 (Sun)',
+        newDate: 'February 15, 2025 (Sun)',
+        originalTime: '10:45-11:30 AM',
+        newTime: '10:45-11:30 AM',
+        formAnswers: [
+            { question: 'How old are you?', answer: '24 years old' },
+            { question: 'Do you have any allergies to medications?', answer: 'No' },
+            { question: 'Do you have any family history of any conditions', answer: 'No' }
+        ],
+        color: 'rescheduled-by-admin'
     },
     // Additional appointments for daily view at 11 AM
     {
         id: 3,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Dental Checkup',
+        subtitle: 'Dental Clinic',
+        customerName: 'Jane Smith',
+        phone: '(+123) 555-0103',
+        email: 'janesmith@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '09:00 - 9:00 AM',
-        color: 'red'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱800.00',
+        status: 'refund-requested',
+        scheduledDate: 'February 12, 2025 (Mon) at 08:00 AM',
+        formAnswers: [
+            { question: 'Any dental issues?', answer: 'Toothache' }
+        ],
+        color: 'refund-requested'
     },
     {
         id: 4,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Hair Styling',
+        subtitle: 'Beauty Salon',
+        customerName: 'Mary Johnson',
+        phone: '(+123) 555-0104',
+        email: 'mary@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '09:00 - 9:00 AM',
-        color: 'blue'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱600.00',
+        status: 'refunded',
+        scheduledDate: 'February 11, 2025 (Sun) at 10:00 AM',
+        formAnswers: [
+            { question: 'Hair type?', answer: 'Curly' }
+        ],
+        color: 'refunded'
     },
     {
         id: 5,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Massage Therapy',
+        subtitle: 'Spa Center',
+        customerName: 'Robert Brown',
+        phone: '(+123) 555-0105',
+        email: 'robert@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '09:00 - 9:00 AM',
-        color: 'blue'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱1200.00',
+        status: 'booked',
+        scheduledDate: 'February 10, 2025 (Sat) at 11:00 AM',
+        formAnswers: [
+            { question: 'Any injuries?', answer: 'No' }
+        ],
+        color: 'booked'
     },
     {
         id: 6,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Fitness Training',
+        subtitle: 'Gym',
+        customerName: 'Sarah Davis',
+        phone: '(+123) 555-0106',
+        email: 'sarah@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '08:00 - 9:00 AM',
-        color: 'blue'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱700.00',
+        status: 'completed',
+        scheduledDate: 'February 9, 2025 (Fri) at 09:00 AM',
+        formAnswers: [
+            { question: 'Fitness goals?', answer: 'Weight loss' }
+        ],
+        color: 'completed'
     },
     {
         id: 7,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Yoga Class',
+        subtitle: 'Wellness Center',
+        customerName: 'Michael Wilson',
+        phone: '(+123) 555-0107',
+        email: 'michael@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '08:00 - 9:00 AM',
-        color: 'blue'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱500.00',
+        status: 'cancelled',
+        scheduledDate: 'February 8, 2025 (Thu) at 08:00 AM',
+        formAnswers: [
+            { question: 'Experience level?', answer: 'Beginner' }
+        ],
+        color: 'cancelled'
     },
     {
         id: 8,
-        title: 'Amor Vet Cli...',
-        subtitle: 'Consultation',
+        title: 'Nutrition Consult',
+        subtitle: 'Health Clinic',
+        customerName: 'Emily Taylor',
+        phone: '(+123) 555-0108',
+        email: 'emily@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '11:00',
         endTime: '12:00',
-        displayTime: '08:00 - 9:00 AM',
-        color: 'purple'
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱900.00',
+        status: 'refund-requested',
+        scheduledDate: 'February 7, 2025 (Wed) at 10:00 AM',
+        formAnswers: [
+            { question: 'Dietary restrictions?', answer: 'Vegetarian' }
+        ],
+        color: 'refund-requested'
     },
     // Optimum Repair at 12 PM
     {
         id: 9,
         title: 'Optimum Repair',
         subtitle: 'Repair Shop',
+        customerName: 'David Martinez',
+        phone: '(+123) 555-0109',
+        email: 'david@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
         startTime: '12:00',
         endTime: '13:00',
-        displayTime: '12:00 - 08:30',
-        color: 'green'
+        displayTime: '12:00 - 01:00 PM',
+        duration: '60 minutes',
+        price: '₱1000.00',
+        status: 'completed',
+        scheduledDate: 'February 6, 2025 (Tue) at 09:00 AM',
+        formAnswers: [
+            { question: 'Device type?', answer: 'Laptop' },
+            { question: 'Issue description?', answer: 'Screen not working' }
+        ],
+        color: 'completed'
     }
 ];
 
@@ -1199,6 +2253,7 @@ function generateTimeSlots() {
             if (appointment) {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `appointment-event event-${appointment.color}`;
+                eventDiv.onclick = () => showAppointmentDetails(appointment.id);
                 
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'event-title';
@@ -1257,6 +2312,234 @@ function findDailyAppointments(date, hour) {
     });
 }
 
+function showAppointmentDetails(appointmentId) {
+    const appointment = appointments.find(apt => apt.id === appointmentId);
+    if (!appointment) return;
+    
+    // Store current appointment for later use
+    currentAppointment = appointment;
+    
+    // Update modal content
+    document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
+    document.getElementById('appointmentPhone').textContent = appointment.phone;
+    document.getElementById('appointmentEmail').textContent = appointment.email;
+    document.getElementById('appointmentServiceTitle').textContent = appointment.title;
+    document.getElementById('appointmentServiceSubtitle').textContent = appointment.subtitle;
+    
+    // Format date
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dateStr = `${monthNames[appointment.date.getMonth()]} ${appointment.date.getDate()}, ${appointment.date.getFullYear()} (${dayNames[appointment.date.getDay()]})`;
+    
+    // Handle rescheduled appointments with strikethrough
+    const dateOriginalEl = document.getElementById('appointmentDateOriginal');
+    const dateEl = document.getElementById('appointmentDate');
+    const timeOriginalEl = document.getElementById('appointmentTimeOriginal');
+    const timeEl = document.getElementById('appointmentTime');
+    
+    if (appointment.status === 'rescheduled-by-admin' && appointment.originalDate && appointment.newDate) {
+        // Show original date with strikethrough
+        dateOriginalEl.textContent = appointment.originalDate;
+        dateOriginalEl.style.display = 'inline';
+        dateEl.textContent = appointment.newDate;
+        
+        // Show original time with strikethrough
+        timeOriginalEl.textContent = appointment.originalTime;
+        timeOriginalEl.style.display = 'inline';
+        timeEl.textContent = appointment.newTime;
+    } else {
+        // Normal display without strikethrough
+        dateOriginalEl.style.display = 'none';
+        dateEl.textContent = dateStr;
+        
+        timeOriginalEl.style.display = 'none';
+        timeEl.textContent = appointment.displayTime;
+    }
+    
+    document.getElementById('appointmentDuration').textContent = appointment.duration;
+    document.getElementById('appointmentPrice').textContent = appointment.price;
+    document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledDate}`;
+    
+    // Update status badge
+    const statusBadge = document.getElementById('appointmentStatus');
+    const statusDot = statusBadge.querySelector('.status-dot');
+    const statusText = statusBadge.querySelector('.status-text');
+    
+    // Remove all status classes
+    statusDot.classList.remove('completed', 'cancelled', 'refund-requested', 'refunded', 'booked', 'rescheduled-by-admin');
+    
+    // Add appropriate status class and text
+    statusDot.classList.add(appointment.status);
+    
+    const statusLabels = {
+        'completed': 'Completed',
+        'cancelled': 'Cancelled',
+        'refund-requested': 'Refund Requested',
+        'refunded': 'Refunded',
+        'booked': 'Booked',
+        'rescheduled-by-admin': 'Rescheduled by the Admin'
+    };
+    statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    
+    // Update form answers
+    const formAnswersList = document.getElementById('formAnswersList');
+    formAnswersList.innerHTML = '';
+    
+    if (appointment.formAnswers && appointment.formAnswers.length > 0) {
+        appointment.formAnswers.forEach(qa => {
+            const answerItem = document.createElement('div');
+            answerItem.className = 'form-answer-item';
+            
+            const question = document.createElement('div');
+            question.className = 'form-question';
+            question.textContent = qa.question;
+            
+            const answer = document.createElement('div');
+            answer.className = 'form-answer';
+            answer.textContent = qa.answer;
+            
+            answerItem.appendChild(question);
+            answerItem.appendChild(answer);
+            formAnswersList.appendChild(answerItem);
+        });
+    }
+    
+    // Show/hide appropriate action buttons based on status
+    const defaultActions = document.querySelector('.default-actions');
+    const rescheduledActions = document.querySelector('.rescheduled-actions');
+    
+    if (appointment.status === 'rescheduled-by-admin') {
+        defaultActions.style.display = 'none';
+        rescheduledActions.style.display = 'block';
+    } else {
+        defaultActions.style.display = 'block';
+        rescheduledActions.style.display = 'none';
+    }
+    
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('appointmentDetailsModal'));
+    modal.show();
+    
+    // Wire up approve button click handlers
+    const approveBtns = [document.getElementById('approveBtn'), document.getElementById('approveBtnMobile')];
+    approveBtns.forEach(btn => {
+        if (btn) {
+            btn.onclick = () => showRescheduledConfirmation(appointment);
+        }
+    });
+    
+    // Wire up cancel button click handlers - prevent default modal close and show confirmation
+    const cancelBtns = document.querySelectorAll('.appointment-cancel-btn, .appointment-cancel-btn-outline');
+    cancelBtns.forEach(btn => {
+        if (btn) {
+            // Remove data-bs-dismiss to prevent automatic close
+            btn.removeAttribute('data-bs-dismiss');
+            btn.onclick = () => showCancelConfirmation();
+        }
+    });
+}
+
+function showRescheduledConfirmation(appointment) {
+    // Close the details modal first
+    const detailsModal = bootstrap.Modal.getInstance(document.getElementById('appointmentDetailsModal'));
+    if (detailsModal) {
+        detailsModal.hide();
+    }
+    
+    // Format the dates for display - use the actual date/time values
+    // If originalDate and newDate are provided, use them; otherwise format from appointment.date
+    let originalDateTime, newDateTime;
+    
+    if (appointment.originalDate && appointment.originalTime) {
+        originalDateTime = `${appointment.originalDate} at ${appointment.originalTime}`;
+    } else {
+        // Fallback formatting
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const date = appointment.date;
+        originalDateTime = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} (${dayNames[date.getDay()]}) at ${appointment.displayTime}`;
+    }
+    
+    if (appointment.newDate && appointment.newTime) {
+        newDateTime = `${appointment.newDate} at ${appointment.newTime}`;
+    } else {
+        newDateTime = originalDateTime; // Fallback
+    }
+    
+    // Update the confirmation modal content
+    document.getElementById('rescheduleOriginalDateTime').textContent = originalDateTime;
+    document.getElementById('rescheduleNewDateTime').textContent = newDateTime;
+    
+    // Show the rescheduled confirmation modal
+    setTimeout(() => {
+        const rescheduledModal = new bootstrap.Modal(document.getElementById('appointmentRescheduledModal'));
+        rescheduledModal.show();
+    }, 300);
+}
+
+function showCancelConfirmation() {
+    // Close the details modal first
+    const detailsModal = bootstrap.Modal.getInstance(document.getElementById('appointmentDetailsModal'));
+    if (detailsModal) {
+        detailsModal.hide();
+    }
+    
+    // Show the cancel confirmation modal
+    setTimeout(() => {
+        const cancelModal = new bootstrap.Modal(document.getElementById('cancelAppointmentModal'));
+        cancelModal.show();
+        
+        // Wire up the "Yes, Cancel Appointment" button
+        const confirmCancelBtns = [document.getElementById('confirmCancelBtn'), document.getElementById('confirmCancelBtnMobile')];
+        confirmCancelBtns.forEach(btn => {
+            if (btn) {
+                btn.onclick = () => showAppointmentCancelled();
+            }
+        });
+    }, 300);
+}
+
+function showAppointmentCancelled() {
+    // Close the cancel confirmation modal
+    const cancelModal = bootstrap.Modal.getInstance(document.getElementById('cancelAppointmentModal'));
+    if (cancelModal) {
+        cancelModal.hide();
+    }
+    
+    // Format the appointment date/time for display
+    let cancelledDateTime;
+    
+    if (currentAppointment) {
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const date = currentAppointment.date;
+        cancelledDateTime = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()} (${dayNames[date.getDay()]}) at ${currentAppointment.displayTime}`;
+    } else {
+        cancelledDateTime = 'your appointment';
+    }
+    
+    // Update the cancelled modal content
+    document.getElementById('cancelledDateTime').textContent = cancelledDateTime;
+    
+    // Show the appointment cancelled modal
+    setTimeout(() => {
+        const cancelledModal = new bootstrap.Modal(document.getElementById('appointmentCancelledModal'));
+        cancelledModal.show();
+    }, 300);
+}
+
+function editAppointmentInfo(event) {
+    event.preventDefault();
+    
+    if (currentAppointment) {
+        // Navigate to the edit information page with the appointment ID
+        window.location.href = `/Scheduler/user_view/EditInformation?id=${currentAppointment.id}`;
+    }
+}
+
 function generateDailyView() {
     const dailyHeader = document.getElementById('daily-header');
     const timeColumn = dailyHeader.querySelector('.time-column-daily');
@@ -1310,6 +2593,7 @@ function generateDailyView() {
             dayAppointments.forEach(appointment => {
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `daily-appointment-event event-${appointment.color}`;
+                eventDiv.onclick = () => showAppointmentDetails(appointment.id);
                 
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'daily-event-title';
@@ -1491,6 +2775,7 @@ function generateMobileTimeSlots() {
             dayAppointments.forEach(apt => {
                 const card = document.createElement('div');
                 card.className = `mobile-appointment-card event-${apt.color}`;
+                card.onclick = () => showAppointmentDetails(apt.id);
                 
                 const title = document.createElement('div');
                 title.className = 'event-title';
