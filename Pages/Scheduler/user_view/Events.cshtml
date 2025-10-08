@@ -154,7 +154,7 @@
                     <div class="calendar-view-header">
                         <div class="d-flex align-items-center gap-3">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-light-gray dropdown-toggle view-dropdown-btn" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span id="current-view-label">Monthly</span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="viewDropdown">
@@ -162,23 +162,23 @@
                                     <li><a class="dropdown-item" href="#" onclick="switchView('daily'); return false;">Daily</a></li>
                                 </ul>
                             </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <button class="btn btn-sm calendar-nav-btn" onclick="previousPeriod()">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <h6 id="full-calendar-date" class="mb-0 calendar-date-text">July 15, 2025</h6>
+                            <div class="d-flex align-items-center gap-1">
+                                <button class="btn calendar-chevron-btn" onclick="previousPeriod()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
-                                <h6 id="full-calendar-date" class="mb-0 fs-16 fw-500">July 15, 2025</h6>
-                                <button class="btn btn-sm calendar-nav-btn" onclick="nextPeriod()">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn calendar-chevron-btn" onclick="nextPeriod()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center gap-2">
+                        <div class="d-flex align-items-center gap-3">
                             <div class="dropdown">
-                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-outline-light-gray dropdown-toggle sort-dropdown-btn" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     Sort
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="sortDropdown">
@@ -589,6 +589,78 @@
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* Light gray dropdown button styling */
+.btn-outline-light-gray {
+    border: 1px solid #e0e0e0;
+    color: #333;
+    background: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-light-gray:hover {
+    background: #f8f9fa;
+    border-color: #e0e0e0;
+    color: #333;
+}
+
+.btn-outline-light-gray:focus {
+    box-shadow: none;
+    border-color: #e0e0e0;
+}
+
+/* View dropdown (Monthly) styling */
+.view-dropdown-btn {
+    min-width: 100px;
+}
+
+/* Sort dropdown styling */
+.sort-dropdown-btn {
+    min-width: 140px;
+    text-align: left;
+}
+
+/* Calendar date text */
+.calendar-date-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 8px;
+}
+
+/* Circular chevron buttons */
+.calendar-chevron-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.calendar-chevron-btn:hover {
+    background: #f8f9fa;
+    border-color: #d0d0d0;
+    color: #333;
+}
+
+.calendar-chevron-btn:focus {
+    box-shadow: none;
+    border-color: #e0e0e0;
+}
+
+.calendar-chevron-btn svg {
+    stroke: currentColor;
+}
+
 .search-box {
     position: relative;
     display: flex;
@@ -603,9 +675,17 @@
 
 .search-box input {
     padding-left: 35px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    width: 200px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 220px;
+    height: 38px;
+    font-size: 14px;
+}
+
+.search-box input:focus {
+    border-color: #e0e0e0;
+    box-shadow: none;
+    outline: none;
 }
 
 /* Calendar Week View */
@@ -617,8 +697,8 @@
     display: grid;
     grid-template-columns: 80px repeat(5, 1fr);
     gap: 1px;
-    background: #e0e0e0;
-    border: 1px solid #e0e0e0;
+    background: #f0f0f0;
+    border: 1px solid #f0f0f0;
     margin-bottom: 1px;
 }
 
@@ -643,13 +723,14 @@
 .day-number.orange-circle {
     background: #ff5400;
     color: white;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .day-name {
@@ -663,15 +744,15 @@
     display: grid;
     grid-template-rows: repeat(8, 80px);
     gap: 1px;
-    background: #e0e0e0;
-    border: 1px solid #e0e0e0;
+    background: #f0f0f0;
+    border: 1px solid #f0f0f0;
 }
 
 .time-row {
     display: grid;
     grid-template-columns: 80px repeat(5, 1fr);
     gap: 1px;
-    background: #e0e0e0;
+    background: #f0f0f0;
 }
 
 .time-label {
@@ -689,17 +770,31 @@
     min-height: 80px;
 }
 
+/* Add half-hour divider line */
+.time-cell::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #f0f0f0;
+    border-top: 1px dashed #e0e0e0;
+    z-index: 0;
+}
+
 /* Appointment Events */
 .appointment-event {
     position: absolute;
     top: 5px;
     left: 5px;
     right: 5px;
-    padding: 8px;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 8px;
     font-size: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
+    border: none;
 }
 
 .appointment-event:hover {
@@ -709,54 +804,64 @@
 
 /* Event colors based on status */
 .event-completed {
-    background: #d4f4dd;
-    border-left: 3px solid #4caf50;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-left: 4px solid #4caf50;
 }
 
 .event-cancelled {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-left: 4px solid #f44336;
 }
 
 .event-refund-requested {
     background: #e3f2fd;
-    border-left: 3px solid #2196f3;
+    border: 1px solid #bbdefb;
+    border-left: 4px solid #2196f3;
 }
 
 .event-refunded {
     background: #f3e5f5;
-    border-left: 3px solid #e91e63;
+    border: 1px solid #e1bee7;
+    border-left: 4px solid #e91e63;
 }
 
 .event-booked {
     background: #f5f5f5;
-    border-left: 3px solid #9e9e9e;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid #9e9e9e;
 }
 
 .event-rescheduled-by-admin {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #fff3e0;
+    border: 1px solid #ffe0b2;
+    border-left: 4px solid #ff9800;
 }
 
 /* Legacy colors for backward compatibility */
 .event-green {
-    background: #d4f4dd;
-    border-left: 3px solid #4caf50;
+    background: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-left: 4px solid #4caf50;
 }
 
 .event-blue {
-    background: #d4e4f7;
-    border-left: 3px solid #2196f3;
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-left: 4px solid #2196f3;
 }
 
 .event-red {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-left: 4px solid #f44336;
 }
 
 .event-purple {
     background: #f3e5f5;
-    border-left: 3px solid #9c27b0;
+    border: 1px solid #e1bee7;
+    border-left: 4px solid #9c27b0;
 }
 
 .event-title {
@@ -1207,7 +1312,7 @@
 /* Appointment Details Modal Styles */
 .appointment-details-modal-content {
     border-radius: 8px;
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     margin: 0 auto;
     border: none;

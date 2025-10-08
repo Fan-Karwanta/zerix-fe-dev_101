@@ -1,8 +1,9 @@
 @{
     var isEventsPage = Context.Request.Path.ToString().Contains("/user_view/events");
     var dropdownLabel = isEventsPage ? "History" : "Appointment";
-    var menuItemLabel = isEventsPage ? "Appointment" : "Appointment History";
-    var menuItemUrl = isEventsPage ? "/scheduler" : "/scheduler/user_view/events";
+    var schedulerUrl = isEventsPage ? "/scheduler/admin_view" : "/scheduler";
+    var appointmentLabel = isEventsPage ? "Appointment" : "Appointment History";
+    var appointmentUrl = isEventsPage ? "/scheduler" : "/scheduler/user_view/events";
 }
 
 <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
@@ -22,14 +23,14 @@
                     aria-labelledby="navbarDropDownScheduler">
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler">
+                            href="@schedulerUrl">
                             Scheduler
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler/user_view/events">
-                            @(isEventsPage ? "Appointment" : "Appointment History")
+                            href="@appointmentUrl">
+                            @appointmentLabel
                         </a>
                     </li>
                 </ul>
@@ -47,14 +48,14 @@
                     aria-labelledby="navbarDropDownSchedulerMobile">
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler">
+                            href="@schedulerUrl">
                             Scheduler
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="/scheduler/user_view/events">
-                            @(isEventsPage ? "Appointment" : "Appointment History")
+                            href="@appointmentUrl">
+                            @appointmentLabel
                         </a>
                     </li>
                 </ul>
