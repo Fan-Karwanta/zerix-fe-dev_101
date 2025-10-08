@@ -179,7 +179,7 @@
                         <div class="d-flex align-items-center gap-3">
                             <div class="dropdown">
                                 <button class="btn btn-outline-light-gray dropdown-toggle sort-dropdown-btn" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Sort
+                                    Sort     
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="sortDropdown">
                                     <li><a class="dropdown-item" href="#">Booked</a></li>
@@ -742,10 +742,29 @@
 /* Time Slots Grid */
 .time-slots-grid {
     display: grid;
-    grid-template-rows: repeat(8, 80px);
+    grid-template-rows: repeat(13, 80px);
     gap: 1px;
     background: #f0f0f0;
     border: 1px solid #f0f0f0;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.time-slots-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.time-slots-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.time-slots-grid::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.time-slots-grid::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
 
 .time-row {
@@ -802,66 +821,66 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Event colors based on status */
+/* Event colors based on status - matching the design */
 .event-completed {
-    background: #e8f5e9;
-    border: 1px solid #c8e6c9;
+    background: #d4f4dd;
+    border: 1px solid #a8e6b8;
     border-left: 4px solid #4caf50;
 }
 
 .event-cancelled {
-    background: #ffebee;
-    border: 1px solid #ffcdd2;
+    background: #ffd6d6;
+    border: 1px solid #ffb3b3;
     border-left: 4px solid #f44336;
 }
 
 .event-refund-requested {
-    background: #e3f2fd;
-    border: 1px solid #bbdefb;
+    background: #cce5ff;
+    border: 1px solid #99ccff;
     border-left: 4px solid #2196f3;
 }
 
 .event-refunded {
-    background: #f3e5f5;
-    border: 1px solid #e1bee7;
+    background: #f5d6f5;
+    border: 1px solid #e6b3e6;
     border-left: 4px solid #e91e63;
 }
 
 .event-booked {
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    background: #e8e8e8;
+    border: 1px solid #d0d0d0;
     border-left: 4px solid #9e9e9e;
 }
 
 .event-rescheduled-by-admin {
-    background: #fff3e0;
-    border: 1px solid #ffe0b2;
-    border-left: 4px solid #ff9800;
+    background: #ffd6d6;
+    border: 1px solid #ffb3b3;
+    border-left: 4px solid #f44336;
 }
 
 /* Legacy colors for backward compatibility */
 .event-green {
-    background: #e8f5e9;
-    border: 1px solid #c8e6c9;
+    background: #d4f4dd;
+    border: 1px solid #a8e6b8;
     border-left: 4px solid #4caf50;
 }
 
 .event-blue {
-    background: #e3f2fd;
-    border: 1px solid #bbdefb;
+    background: #cce5ff;
+    border: 1px solid #99ccff;
     border-left: 4px solid #2196f3;
 }
 
 .event-red {
-    background: #ffebee;
-    border: 1px solid #ffcdd2;
+    background: #ffd6d6;
+    border: 1px solid #ffb3b3;
     border-left: 4px solid #f44336;
 }
 
 .event-purple {
-    background: #f3e5f5;
-    border: 1px solid #e1bee7;
-    border-left: 4px solid #9c27b0;
+    background: #f5d6f5;
+    border: 1px solid #e6b3e6;
+    border-left: 4px solid #e91e63;
 }
 
 .event-title {
@@ -890,54 +909,52 @@
 }
 
 .daily-header {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 1px;
-    background: #e0e0e0;
-    border: 1px solid #e0e0e0;
-    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0;
 }
 
 .time-column-daily {
-    background: white;
-    padding: 10px;
+    display: none;
 }
 
 .daily-day-column {
-    background: white;
-    padding: 15px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .daily-day-number {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     color: white;
     background: #ff5400;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5px;
 }
 
 .daily-day-name {
-    font-size: 13px;
-    color: #666;
+    font-size: 14px;
+    color: #333;
     text-transform: capitalize;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .daily-time-slots-grid {
-    display: grid;
-    grid-template-rows: repeat(13, 100px);
-    gap: 1px;
-    background: #e0e0e0;
-    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    background: white;
     max-height: 600px;
     overflow-y: auto;
+    padding: 0;
 }
 
 .daily-time-slots-grid::-webkit-scrollbar {
@@ -958,45 +975,40 @@
 }
 
 .daily-time-row {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 1px;
-    background: #e0e0e0;
+    display: flex;
+    min-height: 80px;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 20px;
 }
 
 .daily-time-label {
-    background: white;
-    padding: 10px;
-    font-size: 12px;
+    flex: 0 0 80px;
+    font-size: 13px;
     color: #999;
-    text-align: right;
-    padding-right: 15px;
+    font-weight: 500;
+    padding-top: 5px;
 }
 
 .daily-time-cell {
-    background: white;
+    flex: 1;
     position: relative;
-    min-height: 100px;
-    padding: 5px;
+    padding-left: 20px;
 }
 
-/* Daily view appointments - horizontal layout */
+/* Daily view appointments - vertical layout */
 .daily-appointments-row {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 5px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .daily-appointment-event {
-    flex: 0 0 auto;
-    min-width: 120px;
-    max-width: 150px;
-    padding: 8px 10px;
+    padding: 12px 15px;
     border-radius: 6px;
-    font-size: 11px;
+    font-size: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
+    border-left: 4px solid;
 }
 
 .daily-appointment-event:hover {
@@ -1005,75 +1017,72 @@
 }
 
 .daily-appointment-event.event-completed {
-    background: #e8f5e9;
-    border-left: 3px solid #4caf50;
+    background: #d4f4dd;
+    border-left-color: #4caf50;
 }
 
 .daily-appointment-event.event-cancelled {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #ffd6d6;
+    border-left-color: #f44336;
 }
 
 .daily-appointment-event.event-refund-requested {
-    background: #e3f2fd;
-    border-left: 3px solid #2196f3;
+    background: #cce5ff;
+    border-left-color: #2196f3;
 }
 
 .daily-appointment-event.event-refunded {
-    background: #f3e5f5;
-    border-left: 3px solid #e91e63;
+    background: #f5d6f5;
+    border-left-color: #e91e63;
 }
 
 .daily-appointment-event.event-booked {
-    background: #f5f5f5;
-    border-left: 3px solid #9e9e9e;
+    background: #e8e8e8;
+    border-left-color: #9e9e9e;
 }
 
 .daily-appointment-event.event-rescheduled-by-admin {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #ffd6d6;
+    border-left-color: #f44336;
 }
 
 /* Legacy colors */
 .daily-appointment-event.event-red {
-    background: #ffe5e5;
-    border-left: 3px solid #f44336;
+    background: #ffd6d6;
+    border-left-color: #f44336;
 }
 
 .daily-appointment-event.event-blue {
-    background: #e3f2fd;
-    border-left: 3px solid #2196f3;
+    background: #cce5ff;
+    border-left-color: #2196f3;
 }
 
 .daily-appointment-event.event-green {
-    background: #e8f5e9;
-    border-left: 3px solid #4caf50;
+    background: #d4f4dd;
+    border-left-color: #4caf50;
 }
 
 .daily-appointment-event.event-purple {
-    background: #f3e5f5;
-    border-left: 3px solid #9c27b0;
+    background: #f5d6f5;
+    border-left-color: #e91e63;
 }
 
 .daily-event-title {
     font-weight: 600;
     color: #333;
-    margin-bottom: 3px;
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    font-size: 13px;
 }
 
 .daily-event-subtitle {
     color: #666;
-    font-size: 10px;
-    margin-bottom: 3px;
+    font-size: 11px;
+    margin-bottom: 4px;
 }
 
 .daily-event-time {
     color: #999;
-    font-size: 9px;
+    font-size: 11px;
 }
 
 /* Mobile Calendar Selection View */
@@ -1948,8 +1957,133 @@ let currentAppointment = null; // Store current appointment for cancellation
 
 // Sample appointments data - expanded for daily view
 const appointments = [
+    // Sunday appointments
     {
         id: 1,
+        title: 'Morning Yoga',
+        subtitle: 'Wellness Center',
+        customerName: 'Sarah Johnson',
+        phone: '(+123) 555-0201',
+        email: 'sarah@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '06:00',
+        endTime: '07:00',
+        displayTime: '06:00 - 07:00 AM',
+        duration: '60 minutes',
+        price: '₱500.00',
+        status: 'completed',
+        scheduledDate: 'May 10, 2023 (Wed) at 09:00 AM',
+        formAnswers: [
+            { question: 'Experience level?', answer: 'Intermediate' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 2,
+        title: 'Spa Treatment',
+        subtitle: 'Luxury Spa',
+        customerName: 'Emma Davis',
+        phone: '(+123) 555-0202',
+        email: 'emma@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '08:00',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
+        duration: '60 minutes',
+        price: '₱1500.00',
+        status: 'cancelled',
+        scheduledDate: 'May 11, 2023 (Thu) at 10:00 AM',
+        formAnswers: [
+            { question: 'Any allergies?', answer: 'None' }
+        ],
+        color: 'cancelled'
+    },
+    {
+        id: 3,
+        title: 'Hair Coloring',
+        subtitle: 'Beauty Salon',
+        customerName: 'Olivia Martinez',
+        phone: '(+123) 555-0203',
+        email: 'olivia@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '10:00',
+        endTime: '11:00',
+        displayTime: '10:00 - 11:00 AM',
+        duration: '60 minutes',
+        price: '₱2000.00',
+        status: 'refund-requested',
+        scheduledDate: 'May 12, 2023 (Fri) at 11:00 AM',
+        formAnswers: [
+            { question: 'Preferred color?', answer: 'Ash blonde' }
+        ],
+        color: 'refund-requested'
+    },
+    
+    // Monday appointments
+    {
+        id: 4,
+        title: 'Dental Cleaning',
+        subtitle: 'Smile Dental Clinic',
+        customerName: 'Michael Brown',
+        phone: '(+123) 555-0204',
+        email: 'michael@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱800.00',
+        status: 'refunded',
+        scheduledDate: 'May 10, 2023 (Wed) at 02:00 PM',
+        formAnswers: [
+            { question: 'Last dental visit?', answer: '6 months ago' }
+        ],
+        color: 'refunded'
+    },
+    {
+        id: 5,
+        title: 'Personal Training',
+        subtitle: 'Fitness First Gym',
+        customerName: 'James Wilson',
+        phone: '(+123) 555-0205',
+        email: 'james@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '09:00',
+        endTime: '10:00',
+        displayTime: '09:00 - 10:00 AM',
+        duration: '60 minutes',
+        price: '₱1200.00',
+        status: 'booked',
+        scheduledDate: 'May 13, 2023 (Sat) at 03:00 PM',
+        formAnswers: [
+            { question: 'Fitness goals?', answer: 'Build muscle' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 6,
+        title: 'Massage Therapy',
+        subtitle: 'Relaxation Spa',
+        customerName: 'Sophia Anderson',
+        phone: '(+123) 555-0206',
+        email: 'sophia@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '11:00',
+        endTime: '12:00',
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱1000.00',
+        status: 'completed',
+        scheduledDate: 'May 12, 2023 (Fri) at 09:00 AM',
+        formAnswers: [
+            { question: 'Pressure preference?', answer: 'Medium' }
+        ],
+        color: 'completed'
+    },
+    
+    // Tuesday appointments
+    {
+        id: 7,
         title: 'Eyebrow Thread',
         subtitle: 'SM Megamall - Face',
         customerName: 'Laybare',
@@ -1957,187 +2091,256 @@ const appointments = [
         email: 'zerixuser@example.com',
         date: new Date(2023, 4, 16), // May 16, 2023 (Tuesday)
         startTime: '08:00',
-        endTime: '08:30',
-        displayTime: '10:45-11:30 AM',
-        duration: '50 minutes',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
+        duration: '60 minutes',
         price: '₱450.00',
-        status: 'completed',
-        scheduledDate: 'February 14, 2025 (Wed) at 10:00 AM',
-        formAnswers: [
-            { question: 'How old are you?', answer: '24 years old' },
-            { question: 'Do you have any allergies to medications?', answer: 'No' },
-            { question: 'Do you have any family history of any conditions', answer: 'No' }
-        ],
-        color: 'completed'
-    },
-    {
-        id: 2,
-        title: 'Consultation',
-        subtitle: 'SM Megamall - Face',
-        customerName: 'Laybare',
-        phone: '(+123) 555-0101',
-        email: 'zerixuser@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '09:00',
-        endTime: '10:00',
-        displayTime: '10:45-11:30 AM',
-        duration: '50 minutes',
-        price: '₱450.00',
-        status: 'rescheduled-by-admin',
-        scheduledDate: 'February 14, 2025 (Wed) at 10:00 AM',
-        originalDate: 'February 15, 2025 (Sun)',
-        newDate: 'February 15, 2025 (Sun)',
-        originalTime: '10:45-11:30 AM',
-        newTime: '10:45-11:30 AM',
-        formAnswers: [
-            { question: 'How old are you?', answer: '24 years old' },
-            { question: 'Do you have any allergies to medications?', answer: 'No' },
-            { question: 'Do you have any family history of any conditions', answer: 'No' }
-        ],
-        color: 'rescheduled-by-admin'
-    },
-    // Additional appointments for daily view at 11 AM
-    {
-        id: 3,
-        title: 'Dental Checkup',
-        subtitle: 'Dental Clinic',
-        customerName: 'Jane Smith',
-        phone: '(+123) 555-0103',
-        email: 'janesmith@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
-        duration: '60 minutes',
-        price: '₱800.00',
-        status: 'refund-requested',
-        scheduledDate: 'February 12, 2025 (Mon) at 08:00 AM',
-        formAnswers: [
-            { question: 'Any dental issues?', answer: 'Toothache' }
-        ],
-        color: 'refund-requested'
-    },
-    {
-        id: 4,
-        title: 'Hair Styling',
-        subtitle: 'Beauty Salon',
-        customerName: 'Mary Johnson',
-        phone: '(+123) 555-0104',
-        email: 'mary@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
-        duration: '60 minutes',
-        price: '₱600.00',
-        status: 'refunded',
-        scheduledDate: 'February 11, 2025 (Sun) at 10:00 AM',
-        formAnswers: [
-            { question: 'Hair type?', answer: 'Curly' }
-        ],
-        color: 'refunded'
-    },
-    {
-        id: 5,
-        title: 'Massage Therapy',
-        subtitle: 'Spa Center',
-        customerName: 'Robert Brown',
-        phone: '(+123) 555-0105',
-        email: 'robert@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
-        duration: '60 minutes',
-        price: '₱1200.00',
-        status: 'booked',
-        scheduledDate: 'February 10, 2025 (Sat) at 11:00 AM',
-        formAnswers: [
-            { question: 'Any injuries?', answer: 'No' }
-        ],
-        color: 'booked'
-    },
-    {
-        id: 6,
-        title: 'Fitness Training',
-        subtitle: 'Gym',
-        customerName: 'Sarah Davis',
-        phone: '(+123) 555-0106',
-        email: 'sarah@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
-        duration: '60 minutes',
-        price: '₱700.00',
-        status: 'completed',
-        scheduledDate: 'February 9, 2025 (Fri) at 09:00 AM',
-        formAnswers: [
-            { question: 'Fitness goals?', answer: 'Weight loss' }
-        ],
-        color: 'completed'
-    },
-    {
-        id: 7,
-        title: 'Yoga Class',
-        subtitle: 'Wellness Center',
-        customerName: 'Michael Wilson',
-        phone: '(+123) 555-0107',
-        email: 'michael@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
-        duration: '60 minutes',
-        price: '₱500.00',
         status: 'cancelled',
-        scheduledDate: 'February 8, 2025 (Thu) at 08:00 AM',
+        scheduledDate: 'May 14, 2023 (Sun) at 10:00 AM',
         formAnswers: [
-            { question: 'Experience level?', answer: 'Beginner' }
+            { question: 'How old are you?', answer: '24 years old' },
+            { question: 'Do you have any allergies to medications?', answer: 'No' }
         ],
         color: 'cancelled'
     },
     {
         id: 8,
-        title: 'Nutrition Consult',
-        subtitle: 'Health Clinic',
-        customerName: 'Emily Taylor',
-        phone: '(+123) 555-0108',
-        email: 'emily@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
-        startTime: '11:00',
-        endTime: '12:00',
-        displayTime: '11:00 AM - 12:00 PM',
+        title: 'Manicure & Pedicure',
+        subtitle: 'Nail Salon',
+        customerName: 'Isabella Garcia',
+        phone: '(+123) 555-0207',
+        email: 'isabella@example.com',
+        date: new Date(2023, 4, 16), // May 16, 2023 (Tuesday)
+        startTime: '10:00',
+        endTime: '11:00',
+        displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
-        price: '₱900.00',
+        price: '₱800.00',
         status: 'refund-requested',
-        scheduledDate: 'February 7, 2025 (Wed) at 10:00 AM',
+        scheduledDate: 'May 13, 2023 (Sat) at 11:00 AM',
         formAnswers: [
-            { question: 'Dietary restrictions?', answer: 'Vegetarian' }
+            { question: 'Nail design preference?', answer: 'French tips' }
         ],
         color: 'refund-requested'
     },
-    // Optimum Repair at 12 PM
     {
         id: 9,
-        title: 'Optimum Repair',
-        subtitle: 'Repair Shop',
-        customerName: 'David Martinez',
-        phone: '(+123) 555-0109',
-        email: 'david@example.com',
-        date: new Date(2023, 4, 15), // May 15, 2023 (Sunday)
+        title: 'Facial Treatment',
+        subtitle: 'Skin Care Center',
+        customerName: 'Ava Thompson',
+        phone: '(+123) 555-0208',
+        email: 'ava@example.com',
+        date: new Date(2023, 4, 16), // May 16, 2023 (Tuesday)
         startTime: '12:00',
         endTime: '13:00',
         displayTime: '12:00 - 01:00 PM',
         duration: '60 minutes',
-        price: '₱1000.00',
-        status: 'completed',
-        scheduledDate: 'February 6, 2025 (Tue) at 09:00 AM',
+        price: '₱1800.00',
+        status: 'refunded',
+        scheduledDate: 'May 11, 2023 (Thu) at 02:00 PM',
         formAnswers: [
-            { question: 'Device type?', answer: 'Laptop' },
-            { question: 'Issue description?', answer: 'Screen not working' }
+            { question: 'Skin type?', answer: 'Combination' }
+        ],
+        color: 'refunded'
+    },
+    
+    // Wednesday appointments
+    {
+        id: 10,
+        title: 'Consultation',
+        subtitle: 'Medical Clinic',
+        customerName: 'Liam Martinez',
+        phone: '(+123) 555-0209',
+        email: 'liam@example.com',
+        date: new Date(2023, 4, 17), // May 17, 2023 (Wednesday)
+        startTime: '06:00',
+        endTime: '07:00',
+        displayTime: '06:00 - 07:00 AM',
+        duration: '60 minutes',
+        price: '₱600.00',
+        status: 'booked',
+        scheduledDate: 'May 15, 2023 (Mon) at 08:00 AM',
+        formAnswers: [
+            { question: 'Reason for visit?', answer: 'Annual checkup' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 11,
+        title: 'Laser Hair Removal',
+        subtitle: 'Derma Clinic',
+        customerName: 'Mia Robinson',
+        phone: '(+123) 555-0210',
+        email: 'mia@example.com',
+        date: new Date(2023, 4, 17), // May 17, 2023 (Wednesday)
+        startTime: '09:00',
+        endTime: '10:00',
+        displayTime: '09:00 - 10:00 AM',
+        duration: '60 minutes',
+        price: '₱3000.00',
+        status: 'completed',
+        scheduledDate: 'May 14, 2023 (Sun) at 03:00 PM',
+        formAnswers: [
+            { question: 'Treatment area?', answer: 'Underarms' }
         ],
         color: 'completed'
+    },
+    {
+        id: 12,
+        title: 'Acupuncture Session',
+        subtitle: 'Holistic Health Center',
+        customerName: 'Noah Lee',
+        phone: '(+123) 555-0211',
+        email: 'noah@example.com',
+        date: new Date(2023, 4, 17), // May 17, 2023 (Wednesday)
+        startTime: '11:00',
+        endTime: '12:00',
+        displayTime: '11:00 AM - 12:00 PM',
+        duration: '60 minutes',
+        price: '₱1500.00',
+        status: 'cancelled',
+        scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
+        formAnswers: [
+            { question: 'Previous experience?', answer: 'Yes, 3 sessions' }
+        ],
+        color: 'cancelled'
+    },
+    
+    // Thursday appointments
+    {
+        id: 13,
+        title: 'Pilates Class',
+        subtitle: 'Studio Fitness',
+        customerName: 'Charlotte Walker',
+        phone: '(+123) 555-0212',
+        email: 'charlotte@example.com',
+        date: new Date(2023, 4, 18), // May 18, 2023 (Thursday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱700.00',
+        status: 'refund-requested',
+        scheduledDate: 'May 15, 2023 (Mon) at 11:00 AM',
+        formAnswers: [
+            { question: 'Experience level?', answer: 'Beginner' }
+        ],
+        color: 'refund-requested'
+    },
+    {
+        id: 14,
+        title: 'Nutrition Counseling',
+        subtitle: 'Health & Wellness',
+        customerName: 'Elijah Hall',
+        phone: '(+123) 555-0213',
+        email: 'elijah@example.com',
+        date: new Date(2023, 4, 18), // May 18, 2023 (Thursday)
+        startTime: '10:00',
+        endTime: '11:00',
+        displayTime: '10:00 - 11:00 AM',
+        duration: '60 minutes',
+        price: '₱900.00',
+        status: 'refunded',
+        scheduledDate: 'May 13, 2023 (Sat) at 01:00 PM',
+        formAnswers: [
+            { question: 'Dietary goals?', answer: 'Weight management' }
+        ],
+        color: 'refunded'
+    },
+    {
+        id: 15,
+        title: 'Chiropractic Adjustment',
+        subtitle: 'Spine Care Clinic',
+        customerName: 'Amelia Young',
+        phone: '(+123) 555-0214',
+        email: 'amelia@example.com',
+        date: new Date(2023, 4, 18), // May 18, 2023 (Thursday)
+        startTime: '12:00',
+        endTime: '13:00',
+        displayTime: '12:00 - 01:00 PM',
+        duration: '60 minutes',
+        price: '₱1100.00',
+        status: 'booked',
+        scheduledDate: 'May 16, 2023 (Tue) at 09:00 AM',
+        formAnswers: [
+            { question: 'Pain location?', answer: 'Lower back' }
+        ],
+        color: 'booked'
+    },
+    
+    // Rescheduled by Admin appointments
+    {
+        id: 16,
+        title: 'Hair Styling',
+        subtitle: 'Beauty Lounge',
+        customerName: 'Victoria Chen',
+        phone: '(+123) 555-0215',
+        email: 'victoria@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '09:00',
+        endTime: '10:00',
+        displayTime: '09:00 - 10:00 AM',
+        duration: '60 minutes',
+        price: '₱1500.00',
+        status: 'rescheduled-by-admin',
+        scheduledDate: 'May 10, 2023 (Wed) at 11:00 AM',
+        originalDate: 'May 13, 2023 (Sat)',
+        newDate: 'May 14, 2023 (Sun)',
+        originalTime: '02:00 - 03:00 PM',
+        newTime: '09:00 - 10:00 AM',
+        formAnswers: [
+            { question: 'Hair type?', answer: 'Straight' },
+            { question: 'Preferred style?', answer: 'Curls' }
+        ],
+        color: 'rescheduled-by-admin'
+    },
+    {
+        id: 17,
+        title: 'Skin Treatment',
+        subtitle: 'Dermatology Center',
+        customerName: 'Daniel Park',
+        phone: '(+123) 555-0216',
+        email: 'daniel@example.com',
+        date: new Date(2023, 4, 16), // May 16, 2023 (Tuesday)
+        startTime: '09:00',
+        endTime: '10:00',
+        displayTime: '09:00 - 10:00 AM',
+        duration: '60 minutes',
+        price: '₱2500.00',
+        status: 'rescheduled-by-admin',
+        scheduledDate: 'May 12, 2023 (Fri) at 03:00 PM',
+        originalDate: 'May 15, 2023 (Mon)',
+        newDate: 'May 16, 2023 (Tue)',
+        originalTime: '03:00 - 04:00 PM',
+        newTime: '09:00 - 10:00 AM',
+        formAnswers: [
+            { question: 'Skin concerns?', answer: 'Acne treatment' }
+        ],
+        color: 'rescheduled-by-admin'
+    },
+    {
+        id: 18,
+        title: 'Physical Therapy',
+        subtitle: 'Rehab Center',
+        customerName: 'Grace Kim',
+        phone: '(+123) 555-0217',
+        email: 'grace@example.com',
+        date: new Date(2023, 4, 17), // May 17, 2023 (Wednesday)
+        startTime: '08:00',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
+        duration: '60 minutes',
+        price: '₱1800.00',
+        status: 'rescheduled-by-admin',
+        scheduledDate: 'May 14, 2023 (Sun) at 01:00 PM',
+        originalDate: 'May 16, 2023 (Tue)',
+        newDate: 'May 17, 2023 (Wed)',
+        originalTime: '11:00 AM - 12:00 PM',
+        newTime: '08:00 - 09:00 AM',
+        formAnswers: [
+            { question: 'Injury type?', answer: 'Knee injury' }
+        ],
+        color: 'rescheduled-by-admin'
     }
 ];
 
@@ -2310,10 +2513,16 @@ function generateWeekHeader() {
         const dayNumber = document.createElement('div');
         dayNumber.className = 'day-number';
         
-        // Check if this is today
-        const today = new Date();
-        if (currentDay.toDateString() === today.toDateString()) {
+        // Check if this is the selected date from mini calendar
+        if (fullCurrentDate && currentDay.toDateString() === fullCurrentDate.toDateString()) {
             dayNumber.classList.add('orange-circle');
+        }
+        // Otherwise check if this is today
+        else {
+            const today = new Date();
+            if (currentDay.toDateString() === today.toDateString()) {
+                dayNumber.classList.add('orange-circle');
+            }
         }
         
         dayNumber.textContent = currentDay.getDate();
@@ -2332,7 +2541,7 @@ function generateTimeSlots() {
     const timeSlotsGrid = document.getElementById('time-slots-grid');
     timeSlotsGrid.innerHTML = '';
     
-    const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM'];
+    const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
     hours.forEach((hour, hourIndex) => {
