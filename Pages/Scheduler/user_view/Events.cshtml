@@ -11,11 +11,6 @@
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-3 pt-3">
-    <!-- Page Title - Desktop Only -->
-    <div class="text-center mb-4 d-none d-md-block">
-        <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Appointment Calendar</h2>
-    </div>
-
     <!-- Mobile: Calendar Selection View -->
     <div id="mobile-calendar-view" class="d-md-none mobile-calendar-selection">
         <div class="d-flex align-items-center mb-3">
@@ -120,6 +115,9 @@
         <div class="row g-4">
             <!-- Left Side: Mini Calendar -->
             <div class="col-12 col-lg-3">
+                <!-- Appointment History Title 
+                <h2 class="fs-32 ff-default font-darkgray fw-400 mb-3">Appointment History</h2> -->
+                
                 <div class="mini-calendar-container">
                     <div class="mini-calendar-header">
                         <button class="btn btn-sm calendar-nav-btn" onclick="previousMonthMini()">
@@ -149,6 +147,9 @@
 
             <!-- Right Side: Full Calendar View -->
             <div class="col-12 col-lg-9">
+                <!-- Appointment Calendar Title -->
+                <h2 class="fs-32 ff-default font-darkgray fw-400 mb-3">Appointment Calendar</h2>
+                
                 <div class="full-calendar-container">
                     <!-- Calendar Header -->
                     <div class="calendar-view-header">
@@ -241,12 +242,28 @@
                 </button>
             </div>
             <div class="modal-body appointment-details-modal-body">
-                <!-- Status Section -->
-                <div class="appointment-status-section mb-3">
-                    <div class="status-label-text">Status</div>
-                    <div class="appointment-status-badge" id="appointmentStatus">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Completed</span>
+                <!-- Header with Appointments Dropdown and Status -->
+                <div class="appointment-header-section mb-3">
+                    <!-- Appointments Dropdown (only visible when overlapping) -->
+                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper" style="display: none;">
+                        <div class="dropdown-label-text">Appointments</div>
+                        <div class="dropdown">
+                            <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="appointmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="appointmentCount">10 Appointments</span>
+                            </button>
+                            <ul class="dropdown-menu appointment-dropdown-menu" aria-labelledby="appointmentDropdown" id="appointmentDropdownList">
+                                <!-- Dropdown items will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Section -->
+                    <div class="appointment-status-wrapper">
+                        <div class="status-label-text">Status</div>
+                        <div class="appointment-status-badge" id="appointmentStatus">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Completed</span>
+                        </div>
                     </div>
                 </div>
 
@@ -450,6 +467,132 @@
 /* Events Page Specific Styles */
 .events-container {
     margin-top: 20px;
+}
+
+/* Overlap Badge */
+.overlap-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #ff5400;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* Appointment Header Section (Dropdown + Status) */
+.appointment-header-section {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.appointment-dropdown-wrapper {
+    flex: 1;
+}
+
+.appointment-status-wrapper {
+    flex: 1;
+}
+
+.dropdown-label-text {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.appointment-dropdown-btn {
+    width: 100%;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.appointment-dropdown-btn:hover {
+    background: #f8f9fa;
+    border-color: #d0d0d0;
+}
+
+.appointment-dropdown-btn:focus {
+    box-shadow: none;
+    border-color: #ff5400;
+}
+
+.appointment-dropdown-btn::after {
+    margin-left: auto;
+}
+
+.appointment-dropdown-menu {
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+}
+
+.appointment-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.appointment-dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.appointment-dropdown-menu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.appointment-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.appointment-dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 13px;
+    color: #333;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.appointment-dropdown-item:hover {
+    background: #f8f9fa;
+}
+
+.appointment-dropdown-item.active {
+    background: #fff5f0;
+    color: #ff5400;
+    font-weight: 500;
+}
+
+@@media (max-width: 576px) {
+    .appointment-header-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .appointment-dropdown-wrapper,
+    .appointment-status-wrapper {
+        width: 100%;
+    }
 }
 
 /* History Dropdown Button */
@@ -909,36 +1052,40 @@
 }
 
 .daily-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
     background: white;
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 0;
+    padding: 0;
 }
 
 .time-column-daily {
-    display: none;
+    display: block;
+    padding: 20px 10px;
+    border-right: 1px solid #e0e0e0;
 }
 
 .daily-day-column {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 20px;
 }
 
 .daily-day-number {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
     background: #ff5400;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .daily-day-name {
@@ -955,6 +1102,7 @@
     max-height: 600px;
     overflow-y: auto;
     padding: 0;
+    border-top: 1px solid #f0f0f0;
 }
 
 .daily-time-slots-grid::-webkit-scrollbar {
@@ -975,27 +1123,29 @@
 }
 
 .daily-time-row {
-    display: flex;
-    min-height: 80px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    height: 80px;
     border-bottom: 1px solid #f0f0f0;
-    padding: 15px 20px;
+    position: relative;
 }
 
 .daily-time-label {
-    flex: 0 0 80px;
-    font-size: 13px;
+    font-size: 12px;
     color: #999;
-    font-weight: 500;
-    padding-top: 5px;
+    font-weight: 400;
+    padding: 15px 10px;
+    text-align: left;
+    border-right: 1px solid #f0f0f0;
 }
 
 .daily-time-cell {
-    flex: 1;
     position: relative;
-    padding-left: 20px;
+    padding: 0;
+    overflow: visible;
 }
 
-/* Daily view appointments - vertical layout */
+/* Daily view appointments - vertical stacking */
 .daily-appointments-row {
     display: flex;
     flex-direction: column;
@@ -1003,67 +1153,82 @@
 }
 
 .daily-appointment-event {
-    padding: 12px 15px;
+    padding: 10px 14px;
     border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-left: 4px solid;
+    border: 1px solid;
+    border-left: 3px solid;
+    background: white;
+    margin: 2px 15px 2px 2px;
+    box-sizing: border-box;
 }
 
 .daily-appointment-event:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
 }
 
 .daily-appointment-event.event-completed {
-    background: #d4f4dd;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #4caf50;
 }
 
 .daily-appointment-event.event-cancelled {
-    background: #ffd6d6;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #f44336;
 }
 
 .daily-appointment-event.event-refund-requested {
-    background: #cce5ff;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #2196f3;
 }
 
 .daily-appointment-event.event-refunded {
-    background: #f5d6f5;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #e91e63;
 }
 
 .daily-appointment-event.event-booked {
-    background: #e8e8e8;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #9e9e9e;
 }
 
 .daily-appointment-event.event-rescheduled-by-admin {
-    background: #ffd6d6;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #f44336;
 }
 
 /* Legacy colors */
 .daily-appointment-event.event-red {
-    background: #ffd6d6;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #f44336;
 }
 
 .daily-appointment-event.event-blue {
-    background: #cce5ff;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #2196f3;
 }
 
 .daily-appointment-event.event-green {
-    background: #d4f4dd;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #4caf50;
 }
 
 .daily-appointment-event.event-purple {
-    background: #f5d6f5;
+    background: white;
+    border-color: #e0e0e0;
     border-left-color: #e91e63;
 }
 
@@ -1072,17 +1237,34 @@
     color: #333;
     margin-bottom: 4px;
     font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .daily-event-subtitle {
-    color: #666;
+    color: #999;
     font-size: 11px;
     margin-bottom: 4px;
 }
 
 .daily-event-time {
-    color: #999;
+    color: #666;
     font-size: 11px;
+}
+
+/* Overlap badge for daily view */
+.daily-overlap-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5400;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
 }
 
 /* Mobile Calendar Selection View */
@@ -2341,6 +2523,290 @@ const appointments = [
             { question: 'Injury type?', answer: 'Knee injury' }
         ],
         color: 'rescheduled-by-admin'
+    },
+    
+    // Overlapping appointments with non-hourly time slots (Monday, May 15)
+    {
+        id: 19,
+        title: 'Yoga Session',
+        subtitle: 'Wellness Studio',
+        customerName: 'Emily Roberts',
+        phone: '(+123) 555-0218',
+        email: 'emily@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '08:00',
+        endTime: '09:30',
+        displayTime: '08:00 - 09:30 AM',
+        duration: '90 minutes',
+        price: '₱750.00',
+        status: 'completed',
+        scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
+        formAnswers: [
+            { question: 'Experience level?', answer: 'Advanced' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 20,
+        title: 'Meditation Class',
+        subtitle: 'Mindfulness Center',
+        customerName: 'David Chen',
+        phone: '(+123) 555-0219',
+        email: 'david@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '08:30',
+        endTime: '09:15',
+        displayTime: '08:30 - 09:15 AM',
+        duration: '45 minutes',
+        price: '₱500.00',
+        status: 'booked',
+        scheduledDate: 'May 13, 2023 (Sat) at 02:00 PM',
+        formAnswers: [
+            { question: 'Previous meditation experience?', answer: 'Beginner' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 21,
+        title: 'Stretching Session',
+        subtitle: 'Fitness Hub',
+        customerName: 'Rachel Green',
+        phone: '(+123) 555-0220',
+        email: 'rachel@example.com',
+        date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
+        startTime: '08:30',
+        endTime: '09:30',
+        displayTime: '08:30 - 09:30 AM',
+        duration: '60 minutes',
+        price: '₱600.00',
+        status: 'cancelled',
+        scheduledDate: 'May 11, 2023 (Thu) at 04:00 PM',
+        formAnswers: [
+            { question: 'Flexibility level?', answer: 'Moderate' }
+        ],
+        color: 'cancelled'
+    },
+    
+    // Overlapping appointments at exactly the same time (Sunday, May 14 at 7:00 AM)
+    {
+        id: 22,
+        title: 'Optimum Repair',
+        subtitle: 'Repair Shop',
+        customerName: 'John Smith',
+        phone: '(+123) 555-0221',
+        email: 'john@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱850.00',
+        status: 'booked',
+        scheduledDate: 'May 10, 2023 (Wed) at 10:00 AM',
+        formAnswers: [
+            { question: 'Device type?', answer: 'Laptop' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 23,
+        title: 'Amer Vet Cli...',
+        subtitle: 'Consultation',
+        customerName: 'Jane Doe',
+        phone: '(+123) 555-0222',
+        email: 'jane@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:30',
+        displayTime: '07:00 - 08:30 AM',
+        duration: '90 minutes',
+        price: '₱1200.00',
+        status: 'completed',
+        scheduledDate: 'May 11, 2023 (Thu) at 11:00 AM',
+        formAnswers: [
+            { question: 'Pet type?', answer: 'Dog' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 24,
+        title: 'Pet Grooming',
+        subtitle: 'Pet Care Center',
+        customerName: 'Alice Brown',
+        phone: '(+123) 555-0223',
+        email: 'alice@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱900.00',
+        status: 'booked',
+        scheduledDate: 'May 12, 2023 (Fri) at 02:00 PM',
+        formAnswers: [
+            { question: 'Pet breed?', answer: 'Golden Retriever' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 25,
+        title: 'Veterinary Checkup',
+        subtitle: 'Animal Hospital',
+        customerName: 'Bob Wilson',
+        phone: '(+123) 555-0224',
+        email: 'bob@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱800.00',
+        status: 'completed',
+        scheduledDate: 'May 10, 2023 (Wed) at 03:00 PM',
+        formAnswers: [
+            { question: 'Vaccination needed?', answer: 'Yes' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 26,
+        title: 'Dog Training',
+        subtitle: 'Obedience School',
+        customerName: 'Carol Davis',
+        phone: '(+123) 555-0225',
+        email: 'carol@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:30',
+        displayTime: '07:00 - 08:30 AM',
+        duration: '90 minutes',
+        price: '₱1100.00',
+        status: 'booked',
+        scheduledDate: 'May 11, 2023 (Thu) at 01:00 PM',
+        formAnswers: [
+            { question: 'Training focus?', answer: 'Basic commands' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 27,
+        title: 'Cat Vaccination',
+        subtitle: 'Vet Clinic',
+        customerName: 'David Lee',
+        phone: '(+123) 555-0226',
+        email: 'davidl@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '07:30',
+        displayTime: '07:00 - 07:30 AM',
+        duration: '30 minutes',
+        price: '₱650.00',
+        status: 'completed',
+        scheduledDate: 'May 09, 2023 (Tue) at 04:00 PM',
+        formAnswers: [
+            { question: 'Cat age?', answer: '2 years' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 28,
+        title: 'Bird Checkup',
+        subtitle: 'Exotic Pet Clinic',
+        customerName: 'Eva Martinez',
+        phone: '(+123) 555-0227',
+        email: 'eva@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱950.00',
+        status: 'booked',
+        scheduledDate: 'May 10, 2023 (Wed) at 05:00 PM',
+        formAnswers: [
+            { question: 'Bird species?', answer: 'Parrot' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 29,
+        title: 'Aquarium Setup',
+        subtitle: 'Fish Care Service',
+        customerName: 'Frank Garcia',
+        phone: '(+123) 555-0228',
+        email: 'frank@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '09:00',
+        displayTime: '07:00 - 09:00 AM',
+        duration: '120 minutes',
+        price: '₱1500.00',
+        status: 'completed',
+        scheduledDate: 'May 11, 2023 (Thu) at 09:00 AM',
+        formAnswers: [
+            { question: 'Tank size?', answer: '50 gallons' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 30,
+        title: 'Reptile Care',
+        subtitle: 'Exotic Vet',
+        customerName: 'Grace Anderson',
+        phone: '(+123) 555-0229',
+        email: 'gracea@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱1050.00',
+        status: 'booked',
+        scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
+        formAnswers: [
+            { question: 'Reptile type?', answer: 'Bearded Dragon' }
+        ],
+        color: 'booked'
+    },
+    {
+        id: 31,
+        title: 'Hamster Checkup',
+        subtitle: 'Small Animal Clinic',
+        customerName: 'Henry Thompson',
+        phone: '(+123) 555-0230',
+        email: 'henry@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '07:45',
+        displayTime: '07:00 - 07:45 AM',
+        duration: '45 minutes',
+        price: '₱550.00',
+        status: 'completed',
+        scheduledDate: 'May 10, 2023 (Wed) at 12:00 PM',
+        formAnswers: [
+            { question: 'Hamster age?', answer: '1 year' }
+        ],
+        color: 'completed'
+    },
+    {
+        id: 32,
+        title: 'Rabbit Grooming',
+        subtitle: 'Pet Spa',
+        customerName: 'Iris Walker',
+        phone: '(+123) 555-0231',
+        email: 'iris@example.com',
+        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
+        startTime: '07:00',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
+        price: '₱750.00',
+        status: 'booked',
+        scheduledDate: 'May 11, 2023 (Thu) at 03:00 PM',
+        formAnswers: [
+            { question: 'Rabbit breed?', answer: 'Holland Lop' }
+        ],
+        color: 'booked'
     }
 ];
 
@@ -2558,13 +3024,15 @@ function generateTimeSlots() {
             const timeCell = document.createElement('div');
             timeCell.className = 'time-cell';
             
-            // Check if there's an appointment for this time slot
+            // Check if there are appointments for this time slot
             const currentDay = new Date(weekStart);
             currentDay.setDate(weekStart.getDate() + dayIndex);
             
-            const appointment = findAppointment(currentDay, hourIndex + 6);
+            const appointmentsAtTime = findAllAppointmentsAtTime(currentDay, hourIndex + 6);
             
-            if (appointment) {
+            if (appointmentsAtTime.length > 0) {
+                // Show the first appointment
+                const appointment = appointmentsAtTime[0];
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `appointment-event event-${appointment.color}`;
                 eventDiv.onclick = () => showAppointmentDetails(appointment.id);
@@ -2572,6 +3040,14 @@ function generateTimeSlots() {
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'event-title';
                 eventTitle.textContent = appointment.title;
+                
+                // Show overlap indicator if there are more appointments
+                if (appointmentsAtTime.length > 1) {
+                    const overlapBadge = document.createElement('span');
+                    overlapBadge.className = 'overlap-badge';
+                    overlapBadge.textContent = `+${appointmentsAtTime.length - 1}`;
+                    eventTitle.appendChild(overlapBadge);
+                }
                 
                 const eventSubtitle = document.createElement('div');
                 eventSubtitle.className = 'event-subtitle';
@@ -2614,7 +3090,7 @@ function findAppointment(date, hour) {
     });
 }
 
-function findDailyAppointments(date, hour) {
+function findAllAppointmentsAtTime(date, hour) {
     return appointments.filter(apt => {
         const aptDate = apt.date;
         const aptHour = parseInt(apt.startTime.split(':')[0]);
@@ -2626,12 +3102,75 @@ function findDailyAppointments(date, hour) {
     });
 }
 
+function findDailyAppointments(date, hour) {
+    return appointments.filter(apt => {
+        const aptDate = apt.date;
+        const aptStartHour = parseInt(apt.startTime.split(':')[0]);
+        const aptStartMinute = parseInt(apt.startTime.split(':')[1]);
+        const aptEndHour = parseInt(apt.endTime.split(':')[0]);
+        const aptEndMinute = parseInt(apt.endTime.split(':')[1]);
+        
+        // Check if appointment overlaps with this hour slot
+        const slotStart = hour * 60; // Convert hour to minutes
+        const slotEnd = (hour + 1) * 60;
+        const aptStart = aptStartHour * 60 + aptStartMinute;
+        const aptEnd = aptEndHour * 60 + aptEndMinute;
+        
+        return aptDate.getFullYear() === date.getFullYear() &&
+               aptDate.getMonth() === date.getMonth() &&
+               aptDate.getDate() === date.getDate() &&
+               aptStart < slotEnd && aptEnd > slotStart; // Overlapping check
+    });
+}
+
 function showAppointmentDetails(appointmentId) {
     const appointment = appointments.find(apt => apt.id === appointmentId);
     if (!appointment) return;
     
     // Store current appointment for later use
     currentAppointment = appointment;
+    
+    // Find all overlapping appointments at the same time
+    const aptHour = parseInt(appointment.startTime.split(':')[0]);
+    const overlappingAppointments = findAllAppointmentsAtTime(appointment.date, aptHour);
+    
+    // Check if modal is already open
+    const modalElement = document.getElementById('appointmentDetailsModal');
+    const isModalOpen = modalElement.classList.contains('show');
+    
+    // Show/hide appointments dropdown based on overlapping count
+    const dropdownWrapper = document.getElementById('appointmentDropdownWrapper');
+    if (overlappingAppointments.length > 1) {
+        dropdownWrapper.style.display = 'block';
+        
+        // Update dropdown count
+        document.getElementById('appointmentCount').textContent = `${overlappingAppointments.length} Appointments`;
+        
+        // Populate dropdown list
+        const dropdownList = document.getElementById('appointmentDropdownList');
+        dropdownList.innerHTML = '';
+        
+        overlappingAppointments.forEach(apt => {
+            const listItem = document.createElement('li');
+            const button = document.createElement('button');
+            button.className = 'dropdown-item appointment-dropdown-item';
+            button.textContent = apt.title;
+            button.onclick = () => {
+                // Update content without re-showing modal
+                updateAppointmentModalContent(apt.id);
+            };
+            
+            // Mark current appointment as active
+            if (apt.id === appointmentId) {
+                button.classList.add('active');
+            }
+            
+            listItem.appendChild(button);
+            dropdownList.appendChild(listItem);
+        });
+    } else {
+        dropdownWrapper.style.display = 'none';
+    }
     
     // Update modal content
     document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
@@ -2731,9 +3270,11 @@ function showAppointmentDetails(appointmentId) {
         rescheduledActions.style.display = 'none';
     }
     
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('appointmentDetailsModal'));
-    modal.show();
+    // Only show modal if it's not already open
+    if (!isModalOpen) {
+        const modal = new bootstrap.Modal(document.getElementById('appointmentDetailsModal'));
+        modal.show();
+    }
     
     // Wire up approve button click handlers
     const approveBtns = [document.getElementById('approveBtn'), document.getElementById('approveBtnMobile')];
@@ -2748,6 +3289,156 @@ function showAppointmentDetails(appointmentId) {
     cancelBtns.forEach(btn => {
         if (btn) {
             // Remove data-bs-dismiss to prevent automatic close
+            btn.removeAttribute('data-bs-dismiss');
+            btn.onclick = () => showCancelConfirmation();
+        }
+    });
+}
+
+// New function to update modal content without re-showing it
+function updateAppointmentModalContent(appointmentId) {
+    const appointment = appointments.find(apt => apt.id === appointmentId);
+    if (!appointment) return;
+    
+    // Store current appointment for later use
+    currentAppointment = appointment;
+    
+    // Find all overlapping appointments at the same time
+    const aptHour = parseInt(appointment.startTime.split(':')[0]);
+    const overlappingAppointments = findAllAppointmentsAtTime(appointment.date, aptHour);
+    
+    // Update dropdown list to reflect new active item
+    const dropdownList = document.getElementById('appointmentDropdownList');
+    dropdownList.innerHTML = '';
+    
+    overlappingAppointments.forEach(apt => {
+        const listItem = document.createElement('li');
+        const button = document.createElement('button');
+        button.className = 'dropdown-item appointment-dropdown-item';
+        button.textContent = apt.title;
+        button.onclick = () => {
+            updateAppointmentModalContent(apt.id);
+        };
+        
+        // Mark current appointment as active
+        if (apt.id === appointmentId) {
+            button.classList.add('active');
+        }
+        
+        listItem.appendChild(button);
+        dropdownList.appendChild(listItem);
+    });
+    
+    // Update modal content
+    document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
+    document.getElementById('appointmentPhone').textContent = appointment.phone;
+    document.getElementById('appointmentEmail').textContent = appointment.email;
+    document.getElementById('appointmentServiceTitle').textContent = appointment.title;
+    document.getElementById('appointmentServiceSubtitle').textContent = appointment.subtitle;
+    
+    // Format date
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const dateStr = `${monthNames[appointment.date.getMonth()]} ${appointment.date.getDate()}, ${appointment.date.getFullYear()} (${dayNames[appointment.date.getDay()]})`;
+    
+    // Handle rescheduled appointments with strikethrough
+    const dateOriginalEl = document.getElementById('appointmentDateOriginal');
+    const dateEl = document.getElementById('appointmentDate');
+    const timeOriginalEl = document.getElementById('appointmentTimeOriginal');
+    const timeEl = document.getElementById('appointmentTime');
+    
+    if (appointment.status === 'rescheduled-by-admin' && appointment.originalDate && appointment.newDate) {
+        // Show original date with strikethrough
+        dateOriginalEl.textContent = appointment.originalDate;
+        dateOriginalEl.style.display = 'inline';
+        dateEl.textContent = appointment.newDate;
+        
+        // Show original time with strikethrough
+        timeOriginalEl.textContent = appointment.originalTime;
+        timeOriginalEl.style.display = 'inline';
+        timeEl.textContent = appointment.newTime;
+    } else {
+        // Normal display without strikethrough
+        dateOriginalEl.style.display = 'none';
+        dateEl.textContent = dateStr;
+        
+        timeOriginalEl.style.display = 'none';
+        timeEl.textContent = appointment.displayTime;
+    }
+    
+    document.getElementById('appointmentDuration').textContent = appointment.duration;
+    document.getElementById('appointmentPrice').textContent = appointment.price;
+    document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledDate}`;
+    
+    // Update status badge
+    const statusBadge = document.getElementById('appointmentStatus');
+    const statusDot = statusBadge.querySelector('.status-dot');
+    const statusText = statusBadge.querySelector('.status-text');
+    
+    // Remove all status classes
+    statusDot.classList.remove('completed', 'cancelled', 'refund-requested', 'refunded', 'booked', 'rescheduled-by-admin');
+    
+    // Add appropriate status class and text
+    statusDot.classList.add(appointment.status);
+    
+    const statusLabels = {
+        'completed': 'Completed',
+        'cancelled': 'Cancelled',
+        'refund-requested': 'Refund Requested',
+        'refunded': 'Refunded',
+        'booked': 'Booked',
+        'rescheduled-by-admin': 'Rescheduled by the Admin'
+    };
+    statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    
+    // Update form answers
+    const formAnswersList = document.getElementById('formAnswersList');
+    formAnswersList.innerHTML = '';
+    
+    if (appointment.formAnswers && appointment.formAnswers.length > 0) {
+        appointment.formAnswers.forEach(qa => {
+            const answerItem = document.createElement('div');
+            answerItem.className = 'form-answer-item';
+            
+            const question = document.createElement('div');
+            question.className = 'form-question';
+            question.textContent = qa.question;
+            
+            const answer = document.createElement('div');
+            answer.className = 'form-answer';
+            answer.textContent = qa.answer;
+            
+            answerItem.appendChild(question);
+            answerItem.appendChild(answer);
+            formAnswersList.appendChild(answerItem);
+        });
+    }
+    
+    // Show/hide appropriate action buttons based on status
+    const defaultActions = document.querySelector('.default-actions');
+    const rescheduledActions = document.querySelector('.rescheduled-actions');
+    
+    if (appointment.status === 'rescheduled-by-admin') {
+        defaultActions.style.display = 'none';
+        rescheduledActions.style.display = 'block';
+    } else {
+        defaultActions.style.display = 'block';
+        rescheduledActions.style.display = 'none';
+    }
+    
+    // Wire up approve button click handlers
+    const approveBtns = [document.getElementById('approveBtn'), document.getElementById('approveBtnMobile')];
+    approveBtns.forEach(btn => {
+        if (btn) {
+            btn.onclick = () => showRescheduledConfirmation(appointment);
+        }
+    });
+    
+    // Wire up cancel button click handlers
+    const cancelBtns = document.querySelectorAll('.appointment-cancel-btn, .appointment-cancel-btn-outline');
+    cancelBtns.forEach(btn => {
+        if (btn) {
             btn.removeAttribute('data-bs-dismiss');
             btn.onclick = () => showCancelConfirmation();
         }
@@ -2856,10 +3547,13 @@ function editAppointmentInfo(event) {
 
 function generateDailyView() {
     const dailyHeader = document.getElementById('daily-header');
-    const timeColumn = dailyHeader.querySelector('.time-column-daily');
     
-    // Clear existing day column
+    // Clear and rebuild header
     dailyHeader.innerHTML = '';
+    
+    // Create time column (empty for header)
+    const timeColumn = document.createElement('div');
+    timeColumn.className = 'time-column-daily';
     dailyHeader.appendChild(timeColumn);
     
     // Create single day column
@@ -2885,6 +3579,17 @@ function generateDailyView() {
     
     const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'];
     
+    // Get all appointments for the day
+    const dayAppointments = appointments.filter(apt => {
+        const aptDate = apt.date;
+        return aptDate.getFullYear() === fullCurrentDate.getFullYear() &&
+               aptDate.getMonth() === fullCurrentDate.getMonth() &&
+               aptDate.getDate() === fullCurrentDate.getDate();
+    });
+    
+    // Track which appointments have been rendered
+    const renderedAppointments = new Set();
+    
     hours.forEach((hour, hourIndex) => {
         const timeRow = document.createElement('div');
         timeRow.className = 'daily-time-row';
@@ -2896,22 +3601,76 @@ function generateDailyView() {
         
         const timeCell = document.createElement('div');
         timeCell.className = 'daily-time-cell';
+        timeCell.style.position = 'relative';
         
-        // Check if there are appointments for this time slot
-        const dayAppointments = findDailyAppointments(fullCurrentDate, hourIndex + 6);
-        
-        if (dayAppointments.length > 0) {
-            const appointmentsRow = document.createElement('div');
-            appointmentsRow.className = 'daily-appointments-row';
+        // Find appointments that START in this hour slot
+        const appointmentsStartingHere = dayAppointments.filter(apt => {
+            if (renderedAppointments.has(apt.id)) return false;
             
-            dayAppointments.forEach(appointment => {
+            const aptStartHour = parseInt(apt.startTime.split(':')[0]);
+            return aptStartHour === (hourIndex + 6);
+        });
+        
+        if (appointmentsStartingHere.length > 0) {
+            // Sort by start time
+            appointmentsStartingHere.sort((a, b) => {
+                const aTime = parseInt(a.startTime.split(':')[0]) * 60 + parseInt(a.startTime.split(':')[1]);
+                const bTime = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1]);
+                return aTime - bTime;
+            });
+            
+            appointmentsStartingHere.forEach(appointment => {
+                renderedAppointments.add(appointment.id);
+                
+                // Calculate appointment duration and height
+                const startHour = parseInt(appointment.startTime.split(':')[0]);
+                const startMinute = parseInt(appointment.startTime.split(':')[1]);
+                const endHour = parseInt(appointment.endTime.split(':')[0]);
+                const endMinute = parseInt(appointment.endTime.split(':')[1]);
+                
+                const startMinutes = startHour * 60 + startMinute;
+                const endMinutes = endHour * 60 + endMinute;
+                const durationMinutes = endMinutes - startMinutes;
+                
+                // Calculate position within the hour (0-60 minutes)
+                const minuteOffset = startMinute;
+                const topOffset = (minuteOffset / 60) * 80; // 80px per hour
+                
+                // Calculate height based on duration (80px per hour)
+                const height = (durationMinutes / 60) * 80;
+                
+                // Find overlapping appointments at the same time
+                const overlappingAppointments = dayAppointments.filter(apt => {
+                    const aptStartHour = parseInt(apt.startTime.split(':')[0]);
+                    const aptStartMinute = parseInt(apt.startTime.split(':')[1]);
+                    const aptStartMinutes = aptStartHour * 60 + aptStartMinute;
+                    
+                    return aptStartMinutes === startMinutes;
+                });
+                
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `daily-appointment-event event-${appointment.color}`;
+                eventDiv.style.position = 'absolute';
+                eventDiv.style.top = `${topOffset}px`;
+                eventDiv.style.minHeight = `${Math.max(height - 2, 60)}px`; // Minimum 60px height
+                eventDiv.style.left = '0';
+                eventDiv.style.right = '0';
                 eventDiv.onclick = () => showAppointmentDetails(appointment.id);
                 
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'daily-event-title';
-                eventTitle.textContent = appointment.title;
+                
+                // Create title text node
+                const titleText = document.createTextNode(appointment.title);
+                eventTitle.appendChild(titleText);
+                
+                // Add overlap badge if there are more appointments at the same time
+                if (overlappingAppointments.length > 1) {
+                    const overlapBadge = document.createElement('span');
+                    overlapBadge.className = 'daily-overlap-badge';
+                    overlapBadge.textContent = `+${overlappingAppointments.length - 1}`;
+                    eventTitle.appendChild(overlapBadge);
+                }
                 
                 const eventSubtitle = document.createElement('div');
                 eventSubtitle.className = 'daily-event-subtitle';
@@ -2925,10 +3684,8 @@ function generateDailyView() {
                 eventDiv.appendChild(eventSubtitle);
                 eventDiv.appendChild(eventTime);
                 
-                appointmentsRow.appendChild(eventDiv);
+                timeCell.appendChild(eventDiv);
             });
-            
-            timeCell.appendChild(appointmentsRow);
         }
         
         timeRow.appendChild(timeCell);
