@@ -1,0 +1,98 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.AppointmentTypesModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Appointment Types";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../admin_view/_Navigation")
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row g-4">
+        <!-- Left Sidebar: Mini Calendar and Navigation -->
+        <div class="col-12 col-lg-3">
+            <!-- Mini Calendar -->
+            <div class="mini-calendar-container">
+                <div class="mini-calendar-header">
+                    <button class="btn btn-sm calendar-nav-btn" onclick="previousMonthMini()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h6 id="mini-calendar-month-year" class="mb-0 fs-16 fw-500">May 2023</h6>
+                    <button class="btn btn-sm calendar-nav-btn" onclick="nextMonthMini()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mini-calendar-weekdays">
+                    <div class="mini-weekday">SUN</div>
+                    <div class="mini-weekday">MON</div>
+                    <div class="mini-weekday">TUE</div>
+                    <div class="mini-weekday">WED</div>
+                    <div class="mini-weekday">THUR</div>
+                    <div class="mini-weekday">FRI</div>
+                    <div class="mini-weekday">SAT</div>
+                </div>
+                <div id="mini-calendar-days" class="mini-calendar-days"></div>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <div class="overview-section">
+                <div class="overview-title">Overview</div>
+                <div class="sidebar-nav">
+                    <div class="sidebar-nav-item">Calendar</div>
+                    <div class="sidebar-nav-item active">Appointment Types</div>
+                    <div class="sidebar-nav-item">Availability</div>
+                    <div class="sidebar-nav-item">Form Questions</div>
+                    <div class="sidebar-nav-item">Payment Integrations</div>
+                    <div class="sidebar-nav-item">Reports</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content: Appointment Types -->
+        <div class="col-12 col-lg-9">
+            <div class="appointment-types-container">
+                <!-- Header -->
+                <div class="appointment-types-header">
+                    <h2>Appointment Types</h2>
+                    <button class="btn btn-new-service">New Type of Service</button>
+                </div>
+
+                <!-- Appointment Type Items -->
+                <div class="appointment-types-list">
+                    <!-- Consultation -->
+                    <div class="appointment-type-item">
+                        <div class="appointment-type-info">
+                            <div class="appointment-type-name">Consultation</div>
+                            <div class="appointment-type-details">
+                                <span>Reservation Fee: ₱30.00</span>
+                                <span>50 minutes @@ ₱45.00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-edit">Edit</button>
+                    </div>
+
+                    <!-- Medical Appointment -->
+                    <div class="appointment-type-item">
+                        <div class="appointment-type-info">
+                            <div class="appointment-type-name">Medical Appointment</div>
+                            <div class="appointment-type-details">
+                                <span>Reservation Fee: ₱30.00</span>
+                                <span>30 minutes @@ ₱45.00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-edit">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("../admin_view/_Scripts")

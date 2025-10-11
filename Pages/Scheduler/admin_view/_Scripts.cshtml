@@ -1,0 +1,126 @@
+<script>
+// Mini Calendar functionality
+let miniCurrentDate = new Date();
+let miniSelectedDate = null;
+
+function generateMiniCalendar() {
+    const year = miniCurrentDate.getFullYear();
+    const month = miniCurrentDate.getMonth();
+    
+    // Update month/year display
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthYearElement = document.getElementById('mini-calendar-month-year');
+    if (monthYearElement) {
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+    }
+    
+    // Clear previous days
+    const daysContainer = document.getElementById('mini-calendar-days');
+    if (!daysContainer) return;
+    
+    daysContainer.innerHTML = '';
+    
+    // Get first day of month and number of days
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    
+    // Add previous month's trailing days
+    for (let i = firstDay - 1; i >= 0; i--) {
+        const dayElement = createMiniDayElement(daysInPrevMonth - i, true);
+        daysContainer.appendChild(dayElement);
+    }
+    
+    // Add current month's days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = createMiniDayElement(day, false);
+        daysContainer.appendChild(dayElement);
+    }
+    
+    // Add next month's leading days
+    const totalCells = daysContainer.children.length;
+    const remainingCells = 42 - totalCells; // 6 rows × 7 days
+    for (let day = 1; day <= remainingCells; day++) {
+        const dayElement = createMiniDayElement(day, true);
+        daysContainer.appendChild(dayElement);
+    }
+}
+
+function createMiniDayElement(day, isOtherMonth) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'mini-calendar-day';
+    
+    if (isOtherMonth) {
+        dayElement.classList.add('other-month');
+        dayElement.textContent = day;
+    } else {
+        const date = new Date(miniCurrentDate.getFullYear(), miniCurrentDate.getMonth(), day);
+        const today = new Date();
+        
+        // Check if this is today
+        if (date.toDateString() === today.toDateString()) {
+            dayElement.classList.add('today');
+        }
+        
+        // Check if this is the selected date
+        if (miniSelectedDate && date.getDate() === miniSelectedDate.getDate() && 
+            date.getMonth() === miniSelectedDate.getMonth() && 
+            date.getFullYear() === miniSelectedDate.getFullYear()) {
+            dayElement.classList.add('selected');
+        }
+        
+        dayElement.textContent = day;
+        dayElement.onclick = () => selectMiniDate(date);
+    }
+    
+    return dayElement;
+}
+
+function selectMiniDate(date) {
+    miniSelectedDate = date;
+    generateMiniCalendar();
+}
+
+function previousMonthMini() {
+    miniCurrentDate.setMonth(miniCurrentDate.getMonth() - 1);
+    generateMiniCalendar();
+}
+
+function nextMonthMini() {
+    miniCurrentDate.setMonth(miniCurrentDate.getMonth() + 1);
+    generateMiniCalendar();
+}
+
+// Mobile sidebar functionality
+function toggleMobileSidebar() {
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+}
+
+function closeMobileSidebar() {
+    const sidebar = document.querySelector('.mobile-sidebar');
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    generateMiniCalendar();
+    
+    // Close mobile sidebar when overlay is clicked
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeMobileSidebar);
+    }
+});
+</script>

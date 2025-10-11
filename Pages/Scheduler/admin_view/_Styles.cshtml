@@ -1,0 +1,392 @@
+<style>
+/* Admin View Styles */
+
+/* Mini Calendar Styles */
+.mini-calendar-container {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.mini-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.mini-calendar-header h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.calendar-nav-btn {
+    border: none;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.calendar-nav-btn:hover {
+    color: #ff5400;
+}
+
+.mini-calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.mini-weekday {
+    text-align: center;
+    font-weight: 500;
+    color: #999;
+    font-size: 11px;
+    padding: 5px 0;
+}
+
+.mini-calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.mini-calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    margin: 0 auto;
+}
+
+.mini-calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.mini-calendar-day.today {
+    background-color: #ff5400;
+    color: white;
+    font-weight: 500;
+}
+
+.mini-calendar-day.selected {
+    background-color: #ff5400;
+    color: white;
+    font-weight: 500;
+}
+
+.mini-calendar-day.other-month {
+    color: #ccc;
+}
+
+/* Appointment Types List Styles */
+.appointment-types-container {
+    background: white;
+    border-radius: 8px;
+}
+
+.appointment-types-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.appointment-types-header h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+
+.btn-new-service {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-new-service:hover {
+    background-color: #e04800;
+}
+
+.appointment-type-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s;
+}
+
+.appointment-type-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.appointment-type-info {
+    flex: 1;
+}
+
+.appointment-type-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.appointment-type-details {
+    font-size: 14px;
+    color: #666;
+}
+
+.appointment-type-details span {
+    margin-right: 15px;
+}
+
+.btn-edit {
+    background-color: transparent;
+    color: #ff5400;
+    border: 1px solid #ff5400;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit:hover {
+    background-color: #ff5400;
+    color: white;
+}
+
+/* Sidebar Navigation Styles */
+.sidebar-nav {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    color: #333;
+}
+
+.sidebar-nav-item:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.sidebar-nav-item:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.sidebar-nav-item:hover {
+    background-color: #f8f8f8;
+}
+
+.sidebar-nav-item.active {
+    background-color: #fff5f0;
+    color: #ff5400;
+    font-weight: 500;
+    border-left: 3px solid #ff5400;
+}
+
+/* Overview Section */
+.overview-section {
+    margin-bottom: 30px;
+}
+
+.overview-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@@media (max-width: 768px) {
+    .appointment-types-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .appointment-types-header h2 {
+        font-size: 24px;
+    }
+
+    .btn-new-service {
+        width: 100%;
+    }
+
+    .appointment-type-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-edit {
+        width: 100%;
+    }
+
+    .mini-calendar-container {
+        padding: 15px;
+    }
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+    display: none;
+}
+
+@@media (max-width: 767px) {
+    .mobile-sidebar {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        z-index: 1050;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .mobile-sidebar.active {
+        left: 0;
+    }
+
+    .mobile-sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5);
+        z-index: 1040;
+    }
+
+    .mobile-sidebar-overlay.active {
+        display: block;
+    }
+}
+
+/* Back Link */
+.back-link {
+    color: #ff5400;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back-link:hover {
+    color: #e04800;
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    z-index: 1050 !important;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 4px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Notification Badge */
+.notification-badge-desktop {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #ff5400;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 0;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #fff;
+    z-index: 2;
+}
+
+.notification-badge-mobile {
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    background: #ff5400;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 0;
+    font-size: 10px;
+    font-weight: bold;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border: 1px solid #fff;
+    z-index: 2;
+}
+</style>
