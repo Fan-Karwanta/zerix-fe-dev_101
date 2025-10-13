@@ -2,6 +2,7 @@
     var isAdminView = Context.Request.Path.ToString().Contains("/admin_view");
     var dropdownLabel = isAdminView ? "Scheduler" : "Appointment";
     var schedulerUrl = "/scheduler";
+    var appointmentCalendarUrl = "/scheduler/user_view/events";
     var adminViewUrl = "/scheduler/admin_view/appointmenttypes";
 }
 
@@ -23,13 +24,13 @@
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
                             href="@schedulerUrl">
-                            Appointment
+                            Appointments
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="@adminViewUrl">
-                            Scheduler
+                            href="@appointmentCalendarUrl">
+                            Appointment Calendar
                         </a>
                     </li>
                 </ul>
@@ -48,13 +49,13 @@
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
                             href="@schedulerUrl">
-                            Appointment
+                            Appointments
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="@adminViewUrl">
-                            Scheduler
+                            href="@appointmentCalendarUrl">
+                            Appointment Calendar
                         </a>
                     </li>
                 </ul>

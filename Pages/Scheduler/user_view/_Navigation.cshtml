@@ -1,10 +1,23 @@
 @{
-    var isEventsPage = Context.Request.Path.ToString().Contains("/user_view/events");
-    var isAdminView = Context.Request.Path.ToString().Contains("/admin_view");
-    var dropdownLabel = isEventsPage ? "History" : "Appointment";
+    var currentPath = Context.Request.Path.ToString().ToLower();
+    var isEventsPage = currentPath.Contains("/user_view/events");
+    var isAdminView = currentPath.Contains("/admin_view") || currentPath.Contains("/scheduler/admin");
+    var isAppointmentPage = (currentPath == "/scheduler" || currentPath.StartsWith("/scheduler/user")) && !isEventsPage;
+    
+    // Determine dropdown label based on current page
+    string dropdownLabel = "Appointment";
+    if (isEventsPage)
+    {
+        dropdownLabel = "Calendar";
+    }
+    else if (isAdminView)
+    {
+        dropdownLabel = "Scheduler";
+    }
+    
     var schedulerUrl = "/scheduler";
-    var appointmentHistoryUrl = "/scheduler/user_view/events";
-    var adminViewUrl = "/scheduler/admin_view/appointmenttypes";
+    var appointmentCalendarUrl = "/scheduler/user_view/events";
+    var adminSchedulerUrl = "/scheduler/admin_view/appointmenttypes";
 }
 
 <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
@@ -22,24 +35,51 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scheduler-dropdown"
                     aria-labelledby="navbarDropDownScheduler">
-                    <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="@schedulerUrl">
-                            Appointment
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="@appointmentHistoryUrl">
-                            Appointment History
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                            href="@adminViewUrl">
-                            Scheduler
-                        </a>
-                    </li>
+                    @if (isAppointmentPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@adminSchedulerUrl">
+                                Scheduler
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@appointmentCalendarUrl">
+                                Appointment Calendar
+                            </a>
+                        </li>
+                    }
+                    else if (isEventsPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@schedulerUrl">
+                                Appointment
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@adminSchedulerUrl">
+                                Scheduler
+                            </a>
+                        </li>
+                    }
+                    else if (isAdminView)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@schedulerUrl">
+                                Appointments
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                                href="@appointmentCalendarUrl">
+                                Appointment Calendar
+                            </a>
+                        </li>
+                    }
                 </ul>
             </li>
             <li class="nav-item dropdown d-block d-md-none">
@@ -53,24 +93,51 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scheduler-dropdown"
                     aria-labelledby="navbarDropDownSchedulerMobile">
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="@schedulerUrl">
-                            Appointment
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="@appointmentHistoryUrl">
-                            Appointment History
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
-                            href="@adminViewUrl">
-                            Scheduler
-                        </a>
-                    </li>
+                    @if (isAppointmentPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@adminSchedulerUrl">
+                                Scheduler
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@appointmentCalendarUrl">
+                                Appointment Calendar
+                            </a>
+                        </li>
+                    }
+                    else if (isEventsPage)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@schedulerUrl">
+                                Appointment
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@adminSchedulerUrl">
+                                Scheduler
+                            </a>
+                        </li>
+                    }
+                    else if (isAdminView)
+                    {
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@schedulerUrl">
+                                Appointments
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center"
+                                href="@appointmentCalendarUrl">
+                                Appointment Calendar
+                            </a>
+                        </li>
+                    }
                 </ul>
             </li>
         </ul>
