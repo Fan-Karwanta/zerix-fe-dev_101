@@ -8,8 +8,17 @@ let hasCompletedInformation = false;
 
 function selectAppointmentDetails(button) {
     // Hide appointment details and show datetime selection
-    document.getElementById('appointment-details').style.display = 'none';
-    document.getElementById('datetime-selection').style.display = 'block';
+    const apptDet = document.getElementById('appointment-details');
+    if (apptDet) {
+        apptDet.style.display = 'none';
+        apptDet.classList.add('display-none');
+    }
+    
+    const dateTimeSection = document.getElementById('datetime-selection');
+    if (dateTimeSection) {
+        dateTimeSection.style.display = 'block';
+        dateTimeSection.classList.remove('display-none');
+    }
     
     // Get appointment data from button attributes
     const appointmentName = button.getAttribute('data-appointment');
@@ -17,10 +26,17 @@ function selectAppointmentDetails(button) {
     const duration = button.getAttribute('data-duration');
     
     // Update appointment info in the datetime selection view
-    document.getElementById('companyName').textContent = 'SM Megamall - Face';
-    document.getElementById('selected-appointment-name').textContent = appointmentName;
-    document.getElementById('selected-appointment-details').textContent = duration;
-    document.getElementById('selected-appointment-fee').textContent = fee ? `Reservation Fee: ${fee}` : '';
+    const companyName = document.getElementById('companyName');
+    if (companyName) companyName.textContent = 'SM Megamall - ' + (currentSelectedService || 'Face');
+    
+    const selectedApptName = document.getElementById('selected-appointment-name');
+    if (selectedApptName) selectedApptName.textContent = appointmentName;
+    
+    const selectedApptDetails = document.getElementById('selected-appointment-details');
+    if (selectedApptDetails) selectedApptDetails.textContent = duration;
+    
+    const selectedApptFee = document.getElementById('selected-appointment-fee');
+    if (selectedApptFee) selectedApptFee.textContent = fee ? `Reservation Fee: ${fee}` : '';
     
     // Initialize calendar and time slots
     generateCalendar();
@@ -36,6 +52,9 @@ function selectAppointmentDetails(button) {
         tomorrow.setDate(tomorrow.getDate() + 1);
         selectDate(tomorrow);
     }
+    
+    // Scroll to top of page
+    window.scrollTo(0, 0);
 }
 
 function showDateTimeSelection(button) {
@@ -149,10 +168,16 @@ function generateCalendar() {
     // Update month/year display
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
-    document.getElementById('calendar-month-year').textContent = `${monthNames[month]} ${year}`;
+    
+    const monthYearElement = document.getElementById('calendar-month-year');
+    if (monthYearElement) {
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+    }
     
     // Clear previous days
     const daysContainer = document.getElementById('calendar-days');
+    if (!daysContainer) return; // Exit if element doesn't exist
+    
     daysContainer.innerHTML = '';
     
     // Get first day of month and number of days
@@ -174,7 +199,7 @@ function generateCalendar() {
     
     // Add next month's leading days
     const totalCells = daysContainer.children.length;
-    const remainingCells = 42 - totalCells; // 6 rows × 7 days
+    const remainingCells = 42 - totalCells; // 6 rows Ã— 7 days
     for (let day = 1; day <= remainingCells; day++) {
         const dayElement = createDayElement(day, true);
         daysContainer.appendChild(dayElement);
@@ -396,9 +421,9 @@ function submitInformation() {
     const appointmentDetails = document.getElementById('info-appointment-details').textContent;
     const appointmentFee = document.getElementById('info-appointment-fee').textContent;
     
-    // Extract price from fee text (e.g., "Reservation Fee: ₱90.00" -> 90.00)
+    // Extract price from fee text (e.g., "Reservation Fee: â‚±90.00" -> 90.00)
     let price = 380.00; // Default price
-    const feeMatch = appointmentFee.match(/₱([\d,]+\.?\d*)/);
+    const feeMatch = appointmentFee.match(/â‚±([\d,]+\.?\d*)/);
     if (feeMatch) {
         price = parseFloat(feeMatch[1].replace(/,/g, ''));
     }
@@ -488,14 +513,29 @@ function showCalendarOnMobile() {
 
 // New 4-page flow navigation functions
 function showServiceCategory(button) {
-    const branch = button.getAttribute('data-branch');
+    const branch = button ? button.getAttribute('data-branch') : null;
     
     // Hide branch selection and show service category selection
-    document.getElementById('service-category').style.display = 'none';
-    document.getElementById('service-category-selection').style.display = 'block';
+    const serviceCategory = document.getElementById('service-category');
+    if (serviceCategory) {
+        serviceCategory.style.display = 'none';
+        serviceCategory.classList.add('display-none');
+    }
     
-    // Update selected branch display
-    document.getElementById('selected-branch-name').textContent = branch;
+    const serviceCategorySelection = document.getElementById('service-category-selection');
+    if (serviceCategorySelection) {
+        serviceCategorySelection.style.display = 'block';
+        serviceCategorySelection.classList.remove('display-none');
+    }
+    
+    // Update selected branch display if element exists
+    const selectedBranchName = document.getElementById('selected-branch-name');
+    if (selectedBranchName && branch) {
+        selectedBranchName.textContent = branch;
+    }
+    
+    // Scroll to top of page
+    window.scrollTo(0, 0);
 }
 
 function showBranchSelection() {
@@ -566,20 +606,30 @@ function showAppointmentDetails(button) {
         'date-time-selection',
         'datetime-selection',
         'information-view',
-        'service-category-selection'
+        'service-category-selection',
+        'payment-method-view'
     ];
     sectionsToHide.forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
+        if (el) {
+            el.style.display = 'none';
+            el.classList.add('display-none');
+        }
     });
 
     // Show appointment details
     const apptDet = document.getElementById('appointment-details');
-    if (apptDet) apptDet.style.display = 'block';
+    if (apptDet) {
+        apptDet.style.display = 'block';
+        apptDet.classList.remove('display-none');
+    }
     
     // Optionally store or display selected service
     const selCat = document.getElementById('selected-category-name');
     if (selCat && service) selCat.textContent = service;
+    
+    // Scroll to top of page
+    window.scrollTo(0, 0);
 }
 
 function selectAppointment(button) {
@@ -663,11 +713,32 @@ function showServiceCategorySelection() {
 // Used by the back button in AppointmentDetails
 function showServiceCategorySelectionDirect() {
     // Hide appointment list and show service category selection
-    document.getElementById('appointment-list').style.display = 'none';
-    document.getElementById('appointment-selection').style.display = 'none';
+    const apptList = document.getElementById('appointment-list');
+    if (apptList) {
+        apptList.style.display = 'none';
+        apptList.classList.add('display-none');
+    }
+    
+    const apptSel = document.getElementById('appointment-selection');
+    if (apptSel) {
+        apptSel.style.display = 'none';
+        apptSel.classList.add('display-none');
+    }
+    
     const apptDet = document.getElementById('appointment-details');
-    if (apptDet) apptDet.style.display = 'none';
-    document.getElementById('service-category-selection').style.display = 'block';
+    if (apptDet) {
+        apptDet.style.display = 'none';
+        apptDet.classList.add('display-none');
+    }
+    
+    const serviceCatSel = document.getElementById('service-category-selection');
+    if (serviceCatSel) {
+        serviceCatSel.style.display = 'block';
+        serviceCatSel.classList.remove('display-none');
+    }
+    
+    // Scroll to top of page
+    window.scrollTo(0, 0);
 }
 
 function showDateTimeSelection() {
@@ -699,23 +770,60 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Bootstrap is required for modal functionality');
     }
     
-    // Show branch selection by default (first page)
-    document.getElementById('service-category').style.display = 'block';
-    document.getElementById('service-category-selection').style.display = 'none';
-    document.getElementById('appointment-list').style.display = 'none';
-    document.getElementById('appointment-selection').style.display = 'none';
+    // Show branch selection by default (first page) - only if elements exist
+    const serviceCategory = document.getElementById('service-category');
+    if (serviceCategory) {
+        serviceCategory.style.display = 'block';
+        serviceCategory.classList.remove('display-none');
+    }
+    
+    const serviceCategorySelection = document.getElementById('service-category-selection');
+    if (serviceCategorySelection) {
+        serviceCategorySelection.style.display = 'none';
+        serviceCategorySelection.classList.add('display-none');
+    }
+    
+    const appointmentList = document.getElementById('appointment-list');
+    if (appointmentList) {
+        appointmentList.style.display = 'none';
+        appointmentList.classList.add('display-none');
+    }
+    
+    const appointmentSelection = document.getElementById('appointment-selection');
+    if (appointmentSelection) {
+        appointmentSelection.style.display = 'none';
+        appointmentSelection.classList.add('display-none');
+    }
+    
     const apptDet = document.getElementById('appointment-details');
-    if (apptDet) apptDet.style.display = 'none';
+    if (apptDet) {
+        apptDet.style.display = 'none';
+        apptDet.classList.add('display-none');
+    }
     
     // Hide other scheduler sections initially
     const dateTimeSection = document.getElementById('date-time-selection');
-    const informationView = document.getElementById('information-view');
-    
     if (dateTimeSection) {
         dateTimeSection.style.display = 'none';
+        dateTimeSection.classList.add('display-none');
     }
+    
+    const informationView = document.getElementById('information-view');
     if (informationView) {
         informationView.style.display = 'none';
+        informationView.classList.add('display-none');
+    }
+    
+    const datetimeSelection = document.getElementById('datetime-selection');
+    if (datetimeSelection) {
+        datetimeSelection.style.display = 'none';
+        datetimeSelection.classList.add('display-none');
+    }
+    
+    const paymentMethodView = document.getElementById('payment-method-view');
+    if (paymentMethodView) {
+        paymentMethodView.style.display = 'none';
+        paymentMethodView.classList.add('display-none');
     }
     
     // Initialize cart (empty by default)
@@ -1223,7 +1331,7 @@ const appointments = [
         endTime: '07:00',
         displayTime: '06:00 - 07:00 AM',
         duration: '60 minutes',
-        price: 'G�500.00',
+        price: 'Gé¦500.00',
         status: 'completed',
         scheduledDate: 'May 10, 2023 (Wed) at 09:00 AM',
         formAnswers: [
@@ -1243,7 +1351,7 @@ const appointments = [
         endTime: '09:00',
         displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
-        price: 'G�1500.00',
+        price: 'Gé¦1500.00',
         status: 'cancelled',
         scheduledDate: 'May 11, 2023 (Thu) at 10:00 AM',
         formAnswers: [
@@ -1263,7 +1371,7 @@ const appointments = [
         endTime: '11:00',
         displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
-        price: 'G�2000.00',
+        price: 'Gé¦2000.00',
         status: 'refund-requested',
         scheduledDate: 'May 12, 2023 (Fri) at 11:00 AM',
         formAnswers: [
@@ -1285,7 +1393,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�800.00',
+        price: 'Gé¦800.00',
         status: 'refunded',
         scheduledDate: 'May 10, 2023 (Wed) at 02:00 PM',
         formAnswers: [
@@ -1305,7 +1413,7 @@ const appointments = [
         endTime: '10:00',
         displayTime: '09:00 - 10:00 AM',
         duration: '60 minutes',
-        price: 'G�1200.00',
+        price: 'Gé¦1200.00',
         status: 'booked',
         scheduledDate: 'May 13, 2023 (Sat) at 03:00 PM',
         formAnswers: [
@@ -1325,7 +1433,7 @@ const appointments = [
         endTime: '12:00',
         displayTime: '11:00 AM - 12:00 PM',
         duration: '60 minutes',
-        price: 'G�1000.00',
+        price: 'Gé¦1000.00',
         status: 'completed',
         scheduledDate: 'May 12, 2023 (Fri) at 09:00 AM',
         formAnswers: [
@@ -1347,7 +1455,7 @@ const appointments = [
         endTime: '09:00',
         displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
-        price: 'G�450.00',
+        price: 'Gé¦450.00',
         status: 'cancelled',
         scheduledDate: 'May 14, 2023 (Sun) at 10:00 AM',
         formAnswers: [
@@ -1368,7 +1476,7 @@ const appointments = [
         endTime: '11:00',
         displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
-        price: 'G�800.00',
+        price: 'Gé¦800.00',
         status: 'refund-requested',
         scheduledDate: 'May 13, 2023 (Sat) at 11:00 AM',
         formAnswers: [
@@ -1388,7 +1496,7 @@ const appointments = [
         endTime: '13:00',
         displayTime: '12:00 - 01:00 PM',
         duration: '60 minutes',
-        price: 'G�1800.00',
+        price: 'Gé¦1800.00',
         status: 'refunded',
         scheduledDate: 'May 11, 2023 (Thu) at 02:00 PM',
         formAnswers: [
@@ -1410,7 +1518,7 @@ const appointments = [
         endTime: '07:00',
         displayTime: '06:00 - 07:00 AM',
         duration: '60 minutes',
-        price: 'G�600.00',
+        price: 'Gé¦600.00',
         status: 'booked',
         scheduledDate: 'May 15, 2023 (Mon) at 08:00 AM',
         formAnswers: [
@@ -1430,7 +1538,7 @@ const appointments = [
         endTime: '10:00',
         displayTime: '09:00 - 10:00 AM',
         duration: '60 minutes',
-        price: 'G�3000.00',
+        price: 'Gé¦3000.00',
         status: 'completed',
         scheduledDate: 'May 14, 2023 (Sun) at 03:00 PM',
         formAnswers: [
@@ -1450,7 +1558,7 @@ const appointments = [
         endTime: '12:00',
         displayTime: '11:00 AM - 12:00 PM',
         duration: '60 minutes',
-        price: 'G�1500.00',
+        price: 'Gé¦1500.00',
         status: 'cancelled',
         scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
         formAnswers: [
@@ -1472,7 +1580,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�700.00',
+        price: 'Gé¦700.00',
         status: 'refund-requested',
         scheduledDate: 'May 15, 2023 (Mon) at 11:00 AM',
         formAnswers: [
@@ -1492,7 +1600,7 @@ const appointments = [
         endTime: '11:00',
         displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
-        price: 'G�900.00',
+        price: 'Gé¦900.00',
         status: 'refunded',
         scheduledDate: 'May 13, 2023 (Sat) at 01:00 PM',
         formAnswers: [
@@ -1512,7 +1620,7 @@ const appointments = [
         endTime: '13:00',
         displayTime: '12:00 - 01:00 PM',
         duration: '60 minutes',
-        price: 'G�1100.00',
+        price: 'Gé¦1100.00',
         status: 'booked',
         scheduledDate: 'May 16, 2023 (Tue) at 09:00 AM',
         formAnswers: [
@@ -1534,7 +1642,7 @@ const appointments = [
         endTime: '10:00',
         displayTime: '09:00 - 10:00 AM',
         duration: '60 minutes',
-        price: 'G�1500.00',
+        price: 'Gé¦1500.00',
         status: 'rescheduled-by-admin',
         scheduledDate: 'May 10, 2023 (Wed) at 11:00 AM',
         originalDate: 'May 13, 2023 (Sat)',
@@ -1559,7 +1667,7 @@ const appointments = [
         endTime: '10:00',
         displayTime: '09:00 - 10:00 AM',
         duration: '60 minutes',
-        price: 'G�2500.00',
+        price: 'Gé¦2500.00',
         status: 'rescheduled-by-admin',
         scheduledDate: 'May 12, 2023 (Fri) at 03:00 PM',
         originalDate: 'May 15, 2023 (Mon)',
@@ -1583,7 +1691,7 @@ const appointments = [
         endTime: '09:00',
         displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
-        price: 'G�1800.00',
+        price: 'Gé¦1800.00',
         status: 'rescheduled-by-admin',
         scheduledDate: 'May 14, 2023 (Sun) at 01:00 PM',
         originalDate: 'May 16, 2023 (Tue)',
@@ -1609,7 +1717,7 @@ const appointments = [
         endTime: '09:30',
         displayTime: '08:00 - 09:30 AM',
         duration: '90 minutes',
-        price: 'G�750.00',
+        price: 'Gé¦750.00',
         status: 'completed',
         scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
         formAnswers: [
@@ -1629,7 +1737,7 @@ const appointments = [
         endTime: '09:15',
         displayTime: '08:30 - 09:15 AM',
         duration: '45 minutes',
-        price: 'G�500.00',
+        price: 'Gé¦500.00',
         status: 'booked',
         scheduledDate: 'May 13, 2023 (Sat) at 02:00 PM',
         formAnswers: [
@@ -1649,7 +1757,7 @@ const appointments = [
         endTime: '09:30',
         displayTime: '08:30 - 09:30 AM',
         duration: '60 minutes',
-        price: 'G�600.00',
+        price: 'Gé¦600.00',
         status: 'cancelled',
         scheduledDate: 'May 11, 2023 (Thu) at 04:00 PM',
         formAnswers: [
@@ -1671,7 +1779,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�850.00',
+        price: 'Gé¦850.00',
         status: 'booked',
         scheduledDate: 'May 10, 2023 (Wed) at 10:00 AM',
         formAnswers: [
@@ -1691,7 +1799,7 @@ const appointments = [
         endTime: '08:30',
         displayTime: '07:00 - 08:30 AM',
         duration: '90 minutes',
-        price: 'G�1200.00',
+        price: 'Gé¦1200.00',
         status: 'completed',
         scheduledDate: 'May 11, 2023 (Thu) at 11:00 AM',
         formAnswers: [
@@ -1711,7 +1819,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�900.00',
+        price: 'Gé¦900.00',
         status: 'booked',
         scheduledDate: 'May 12, 2023 (Fri) at 02:00 PM',
         formAnswers: [
@@ -1731,7 +1839,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�800.00',
+        price: 'Gé¦800.00',
         status: 'completed',
         scheduledDate: 'May 10, 2023 (Wed) at 03:00 PM',
         formAnswers: [
@@ -1751,7 +1859,7 @@ const appointments = [
         endTime: '08:30',
         displayTime: '07:00 - 08:30 AM',
         duration: '90 minutes',
-        price: 'G�1100.00',
+        price: 'Gé¦1100.00',
         status: 'booked',
         scheduledDate: 'May 11, 2023 (Thu) at 01:00 PM',
         formAnswers: [
@@ -1771,7 +1879,7 @@ const appointments = [
         endTime: '07:30',
         displayTime: '07:00 - 07:30 AM',
         duration: '30 minutes',
-        price: 'G�650.00',
+        price: 'Gé¦650.00',
         status: 'completed',
         scheduledDate: 'May 09, 2023 (Tue) at 04:00 PM',
         formAnswers: [
@@ -1791,7 +1899,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�950.00',
+        price: 'Gé¦950.00',
         status: 'booked',
         scheduledDate: 'May 10, 2023 (Wed) at 05:00 PM',
         formAnswers: [
@@ -1811,7 +1919,7 @@ const appointments = [
         endTime: '09:00',
         displayTime: '07:00 - 09:00 AM',
         duration: '120 minutes',
-        price: 'G�1500.00',
+        price: 'Gé¦1500.00',
         status: 'completed',
         scheduledDate: 'May 11, 2023 (Thu) at 09:00 AM',
         formAnswers: [
@@ -1831,7 +1939,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�1050.00',
+        price: 'Gé¦1050.00',
         status: 'booked',
         scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
         formAnswers: [
@@ -1851,7 +1959,7 @@ const appointments = [
         endTime: '07:45',
         displayTime: '07:00 - 07:45 AM',
         duration: '45 minutes',
-        price: 'G�550.00',
+        price: 'Gé¦550.00',
         status: 'completed',
         scheduledDate: 'May 10, 2023 (Wed) at 12:00 PM',
         formAnswers: [
@@ -1871,7 +1979,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'G�750.00',
+        price: 'Gé¦750.00',
         status: 'booked',
         scheduledDate: 'May 11, 2023 (Thu) at 03:00 PM',
         formAnswers: [
@@ -1887,9 +1995,15 @@ function generateMiniCalendar() {
     
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
-    document.getElementById('mini-calendar-month-year').textContent = `${monthNames[month]} ${year}`;
+    
+    const monthYearElement = document.getElementById('mini-calendar-month-year');
+    if (monthYearElement) {
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+    }
     
     const daysContainer = document.getElementById('mini-calendar-days');
+    if (!daysContainer) return; // Exit if element doesn't exist
+    
     daysContainer.innerHTML = '';
     
     const firstDay = new Date(year, month, 1).getDay();
@@ -2106,7 +2220,7 @@ function generateTimeSlots() {
                 const appointment = appointmentsAtTime[0];
                 const eventDiv = document.createElement('div');
                 eventDiv.className = `appointment-event event-${appointment.color}`;
-                eventDiv.onclick = () => showAppointmentDetails(appointment.id);
+                eventDiv.onclick = () => showAppointmentModal(appointment.id);
                 
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'event-title';
@@ -2194,7 +2308,7 @@ function findDailyAppointments(date, hour) {
     });
 }
 
-function showAppointmentDetails(appointmentId) {
+function showAppointmentModal(appointmentId) {
     const appointment = appointments.find(apt => apt.id === appointmentId);
     if (!appointment) return;
     
@@ -2726,7 +2840,7 @@ function generateDailyView() {
                 eventDiv.style.minHeight = `${Math.max(height - 2, 60)}px`; // Minimum 60px height
                 eventDiv.style.left = '0';
                 eventDiv.style.right = '0';
-                eventDiv.onclick = () => showAppointmentDetails(appointment.id);
+                eventDiv.onclick = () => showAppointmentModal(appointment.id);
                 
                 const eventTitle = document.createElement('div');
                 eventTitle.className = 'daily-event-title';
@@ -2771,9 +2885,15 @@ function generateMobileCalendar() {
     
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
-    document.getElementById('mobile-calendar-month-year').textContent = `${monthNames[month]} ${year}`;
+    
+    const monthYearElement = document.getElementById('mobile-calendar-month-year');
+    if (monthYearElement) {
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+    }
     
     const daysContainer = document.getElementById('mobile-calendar-days');
+    if (!daysContainer) return; // Exit if element doesn't exist
+    
     daysContainer.innerHTML = '';
     
     const firstDay = new Date(year, month, 1).getDay();
@@ -2917,7 +3037,7 @@ function generateMobileTimeSlots() {
             dayAppointments.forEach(apt => {
                 const card = document.createElement('div');
                 card.className = `mobile-appointment-card event-${apt.color}`;
-                card.onclick = () => showAppointmentDetails(apt.id);
+                card.onclick = () => showAppointmentModal(apt.id);
                 
                 const title = document.createElement('div');
                 title.className = 'event-title';
