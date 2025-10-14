@@ -2736,9 +2736,15 @@ function generateDailyView() {
     // Clear and rebuild header
     dailyHeader.innerHTML = '';
     
-    // Create time column (empty for header)
+    // Create time column with GMT label
     const timeColumn = document.createElement('div');
     timeColumn.className = 'time-column-daily';
+    
+    const gmtLabel = document.createElement('div');
+    gmtLabel.className = 'gmt-label';
+    gmtLabel.textContent = 'GMT+07';
+    timeColumn.appendChild(gmtLabel);
+    
     dailyHeader.appendChild(timeColumn);
     
     // Create single day column

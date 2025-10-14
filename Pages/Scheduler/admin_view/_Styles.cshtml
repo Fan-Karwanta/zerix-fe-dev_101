@@ -79,15 +79,20 @@
     background-color: #f0f0f0;
 }
 
+/* Weekday highlighting for calendar days (not headers) */
+.mini-calendar-day.weekday-highlight {
+    background-color: #feede4;
+}
+
 .mini-calendar-day.today {
-    background-color: #ff5400;
-    color: white;
+    background-color: #ff5400 !important;
+    color: white !important;
     font-weight: 500;
 }
 
 .mini-calendar-day.selected {
-    background-color: #ff5400;
-    color: white;
+    background-color: #ff5400 !important;
+    color: white !important;
     font-weight: 500;
 }
 
@@ -389,4 +394,21 @@
     border: 1px solid #fff;
     z-index: 2;
 }
+
+.header-container-toS {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.back-toS {
+    margin-bottom: 0;
+    margin-right: auto;
+}
+
+.page-title-toS {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 </style>

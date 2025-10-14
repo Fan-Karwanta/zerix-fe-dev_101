@@ -57,6 +57,12 @@ function createMiniDayElement(day, isOtherMonth) {
     } else {
         const date = new Date(miniCurrentDate.getFullYear(), miniCurrentDate.getMonth(), day);
         const today = new Date();
+        const dayOfWeek = date.getDay();
+        
+        // Add weekday highlight for Sunday (0) through Thursday (4)
+        if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+            dayElement.classList.add('weekday-highlight');
+        }
         
         // Check if this is today
         if (date.toDateString() === today.toDateString()) {
@@ -115,6 +121,8 @@ function closeMobileSidebar() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // Set initial selected date to today
+    miniSelectedDate = new Date();
     generateMiniCalendar();
     
     // Close mobile sidebar when overlay is clicked
