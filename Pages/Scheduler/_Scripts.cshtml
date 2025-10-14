@@ -1714,9 +1714,9 @@ const appointments = [
         email: 'emily@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
         startTime: '08:00',
-        endTime: '09:30',
-        displayTime: '08:00 - 09:30 AM',
-        duration: '90 minutes',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
+        duration: '60 minutes',
         price: 'Gé¦750.00',
         status: 'completed',
         scheduledDate: 'May 12, 2023 (Fri) at 10:00 AM',
@@ -1734,9 +1734,9 @@ const appointments = [
         email: 'david@example.com',
         date: new Date(2023, 4, 15), // May 15, 2023 (Monday)
         startTime: '08:30',
-        endTime: '09:15',
-        displayTime: '08:30 - 09:15 AM',
-        duration: '45 minutes',
+        endTime: '09:30',
+        displayTime: '08:30 - 09:30 AM',
+        duration: '60 minutes',
         price: 'Gé¦500.00',
         status: 'booked',
         scheduledDate: 'May 13, 2023 (Sat) at 02:00 PM',
@@ -2772,9 +2772,60 @@ function generateDailyView() {
                aptDate.getDate() === fullCurrentDate.getDate();
     });
     
-    // Track which appointments have been rendered
-    const renderedAppointments = new Set();
+    // Pre-calculate overlap groups for ALL appointments
+    const appointmentColumns = new Map(); // Maps appointment ID to its column index
+    const processedAppointments = new Set();
     
+    // Sort all appointments by start time
+    dayAppointments.sort((a, b) => {
+        const aTime = parseInt(a.startTime.split(':')[0]) * 60 + parseInt(a.startTime.split(':')[1]);
+        const bTime = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1]);
+        return aTime - bTime;
+    });
+    
+    // Assign columns to appointments
+    dayAppointments.forEach(appointment => {
+        const startHour = parseInt(appointment.startTime.split(':')[0]);
+        const startMinute = parseInt(appointment.startTime.split(':')[1]);
+        const endHour = parseInt(appointment.endTime.split(':')[0]);
+        const endMinute = parseInt(appointment.endTime.split(':')[1]);
+        const startMinutes = startHour * 60 + startMinute;
+        const endMinutes = endHour * 60 + endMinute;
+        
+        // Find all appointments that overlap with this one
+        const overlappingAppts = dayAppointments.filter(apt => {
+            const aptStartHour = parseInt(apt.startTime.split(':')[0]);
+            const aptStartMinute = parseInt(apt.startTime.split(':')[1]);
+            const aptEndHour = parseInt(apt.endTime.split(':')[0]);
+            const aptEndMinute = parseInt(apt.endTime.split(':')[1]);
+            const aptStartMinutes = aptStartHour * 60 + aptStartMinute;
+            const aptEndMinutes = aptEndHour * 60 + aptEndMinute;
+            
+            // Check for time overlap
+            return startMinutes < aptEndMinutes && endMinutes > aptStartMinutes;
+        });
+        
+        // Find the first available column
+        let column = 0;
+        const usedColumns = overlappingAppts
+            .filter(apt => appointmentColumns.has(apt.id))
+            .map(apt => appointmentColumns.get(apt.id));
+        
+        while (usedColumns.includes(column)) {
+            column++;
+        }
+        
+        appointmentColumns.set(appointment.id, column);
+        
+        // Store max columns for this overlap group
+        overlappingAppts.forEach(apt => {
+            if (!apt.maxColumns || apt.maxColumns < overlappingAppts.length) {
+                apt.maxColumns = overlappingAppts.length;
+            }
+        });
+    });
+    
+    // Create time rows with a shared appointments container
     hours.forEach((hour, hourIndex) => {
         const timeRow = document.createElement('div');
         timeRow.className = 'daily-time-row';
@@ -2787,95 +2838,102 @@ function generateDailyView() {
         const timeCell = document.createElement('div');
         timeCell.className = 'daily-time-cell';
         timeCell.style.position = 'relative';
-        
-        // Find appointments that START in this hour slot
-        const appointmentsStartingHere = dayAppointments.filter(apt => {
-            if (renderedAppointments.has(apt.id)) return false;
-            
-            const aptStartHour = parseInt(apt.startTime.split(':')[0]);
-            return aptStartHour === (hourIndex + 6);
-        });
-        
-        if (appointmentsStartingHere.length > 0) {
-            // Sort by start time
-            appointmentsStartingHere.sort((a, b) => {
-                const aTime = parseInt(a.startTime.split(':')[0]) * 60 + parseInt(a.startTime.split(':')[1]);
-                const bTime = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1]);
-                return aTime - bTime;
-            });
-            
-            appointmentsStartingHere.forEach(appointment => {
-                renderedAppointments.add(appointment.id);
-                
-                // Calculate appointment duration and height
-                const startHour = parseInt(appointment.startTime.split(':')[0]);
-                const startMinute = parseInt(appointment.startTime.split(':')[1]);
-                const endHour = parseInt(appointment.endTime.split(':')[0]);
-                const endMinute = parseInt(appointment.endTime.split(':')[1]);
-                
-                const startMinutes = startHour * 60 + startMinute;
-                const endMinutes = endHour * 60 + endMinute;
-                const durationMinutes = endMinutes - startMinutes;
-                
-                // Calculate position within the hour (0-60 minutes)
-                const minuteOffset = startMinute;
-                const topOffset = (minuteOffset / 60) * 80; // 80px per hour
-                
-                // Calculate height based on duration (80px per hour)
-                const height = (durationMinutes / 60) * 80;
-                
-                // Find overlapping appointments at the same time
-                const overlappingAppointments = dayAppointments.filter(apt => {
-                    const aptStartHour = parseInt(apt.startTime.split(':')[0]);
-                    const aptStartMinute = parseInt(apt.startTime.split(':')[1]);
-                    const aptStartMinutes = aptStartHour * 60 + aptStartMinute;
-                    
-                    return aptStartMinutes === startMinutes;
-                });
-                
-                const eventDiv = document.createElement('div');
-                eventDiv.className = `daily-appointment-event event-${appointment.color}`;
-                eventDiv.style.position = 'absolute';
-                eventDiv.style.top = `${topOffset}px`;
-                eventDiv.style.minHeight = `${Math.max(height - 2, 60)}px`; // Minimum 60px height
-                eventDiv.style.left = '0';
-                eventDiv.style.right = '0';
-                eventDiv.onclick = () => showAppointmentModal(appointment.id);
-                
-                const eventTitle = document.createElement('div');
-                eventTitle.className = 'daily-event-title';
-                
-                // Create title text node
-                const titleText = document.createTextNode(appointment.title);
-                eventTitle.appendChild(titleText);
-                
-                // Add overlap badge if there are more appointments at the same time
-                if (overlappingAppointments.length > 1) {
-                    const overlapBadge = document.createElement('span');
-                    overlapBadge.className = 'daily-overlap-badge';
-                    overlapBadge.textContent = `+${overlappingAppointments.length - 1}`;
-                    eventTitle.appendChild(overlapBadge);
-                }
-                
-                const eventSubtitle = document.createElement('div');
-                eventSubtitle.className = 'daily-event-subtitle';
-                eventSubtitle.textContent = appointment.subtitle;
-                
-                const eventTime = document.createElement('div');
-                eventTime.className = 'daily-event-time';
-                eventTime.textContent = appointment.displayTime;
-                
-                eventDiv.appendChild(eventTitle);
-                eventDiv.appendChild(eventSubtitle);
-                eventDiv.appendChild(eventTime);
-                
-                timeCell.appendChild(eventDiv);
-            });
-        }
+        timeCell.style.minHeight = '80px'; // Ensure consistent height
         
         timeRow.appendChild(timeCell);
         timeSlotsGrid.appendChild(timeRow);
     });
+    
+    // Now render all appointments in an absolute positioned overlay
+    const appointmentsContainer = document.createElement('div');
+    appointmentsContainer.style.position = 'absolute';
+    appointmentsContainer.style.top = '0';
+    appointmentsContainer.style.left = '0';
+    appointmentsContainer.style.right = '0';
+    appointmentsContainer.style.bottom = '0';
+    appointmentsContainer.style.pointerEvents = 'none'; // Allow clicks to pass through to time cells
+    
+    // Render all appointments
+    dayAppointments.forEach(appointment => {
+        // Calculate appointment duration and height
+        const startHour = parseInt(appointment.startTime.split(':')[0]);
+        const startMinute = parseInt(appointment.startTime.split(':')[1]);
+        const endHour = parseInt(appointment.endTime.split(':')[0]);
+        const endMinute = parseInt(appointment.endTime.split(':')[1]);
+        
+        const startMinutes = startHour * 60 + startMinute;
+        const endMinutes = endHour * 60 + endMinute;
+        const durationMinutes = endMinutes - startMinutes;
+        
+        // Get column assignment
+        const column = appointmentColumns.get(appointment.id);
+        const maxColumns = appointment.maxColumns || 1;
+        
+        // Calculate position from the start of the day (6 AM = 0)
+        const dayStartMinutes = 6 * 60; // 6 AM in minutes
+        const topOffset = ((startMinutes - dayStartMinutes) / 60) * 80; // 80px per hour
+        
+        // Calculate height based on duration (80px per hour)
+        const height = (durationMinutes / 60) * 80;
+        
+        // Calculate horizontal positioning
+        let widthPercent, leftPercent;
+        
+        if (maxColumns > 1) {
+            // Multiple overlapping appointments
+            const columnWidth = 100 / maxColumns;
+            widthPercent = columnWidth;
+            leftPercent = column * columnWidth;
+        } else {
+            // Single appointment - use full width
+            widthPercent = 100;
+            leftPercent = 0;
+        }
+        
+        const eventDiv = document.createElement('div');
+        eventDiv.className = `daily-appointment-event event-${appointment.color}`;
+        eventDiv.style.position = 'absolute';
+        eventDiv.style.top = `${topOffset}px`;
+        eventDiv.style.height = `${Math.max(height - 4, 60)}px`;
+        eventDiv.style.left = `calc(60px + ${leftPercent}%)`; // 60px offset for time labels
+        eventDiv.style.width = maxColumns > 1 ? `calc(${widthPercent}% - 4px)` : 'calc(100% - 64px)'; // Account for time label width
+        eventDiv.style.zIndex = column + 1; // Earlier appointments have lower z-index
+        eventDiv.style.pointerEvents = 'auto'; // Re-enable pointer events for the appointment
+        eventDiv.onclick = () => showAppointmentModal(appointment.id);
+        
+        const eventTitle = document.createElement('div');
+        eventTitle.className = 'daily-event-title';
+        
+        // Create title text node
+        const titleText = document.createTextNode(appointment.title);
+        eventTitle.appendChild(titleText);
+        
+        // Add overlap badge only for the first appointment in overlapping groups
+        if (maxColumns > 1 && column === 0) {
+            const overlapBadge = document.createElement('span');
+            overlapBadge.className = 'daily-overlap-badge';
+            overlapBadge.textContent = `+${maxColumns - 1}`;
+            eventTitle.appendChild(overlapBadge);
+        }
+        
+        const eventSubtitle = document.createElement('div');
+        eventSubtitle.className = 'daily-event-subtitle';
+        eventSubtitle.textContent = appointment.subtitle;
+        
+        const eventTime = document.createElement('div');
+        eventTime.className = 'daily-event-time';
+        eventTime.textContent = appointment.displayTime;
+        
+        eventDiv.appendChild(eventTitle);
+        eventDiv.appendChild(eventSubtitle);
+        eventDiv.appendChild(eventTime);
+        
+        appointmentsContainer.appendChild(eventDiv);
+    });
+    
+    // Add the appointments container to the grid
+    timeSlotsGrid.style.position = 'relative';
+    timeSlotsGrid.appendChild(appointmentsContainer);
 }
 
 // Mobile-specific functions
