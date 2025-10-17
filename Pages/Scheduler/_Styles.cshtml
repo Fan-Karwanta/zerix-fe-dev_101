@@ -110,6 +110,24 @@
     display: none;
 }
 
+/* Scheduler dropdown - fit content width */
+.scheduler-dropdown {
+    min-width: 100% !important;
+    width: auto !important;
+    max-width: fit-content !important;
+    position: absolute !important;
+    z-index: 1000;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.scheduler-dropdown .dropdown-item {
+    white-space: nowrap !important;
+    padding: 10px 16px !important;
+}
+
 /* Mobile-specific button styling */
 @@media (max-width: 767px) {
     .btn.btn-fill {
@@ -137,6 +155,13 @@
     .dropdown {
         position: relative;
         margin-right: 1.1rem;
+    }
+    
+    /* Scheduler dropdown - match button width on mobile */
+    .scheduler-dropdown {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 

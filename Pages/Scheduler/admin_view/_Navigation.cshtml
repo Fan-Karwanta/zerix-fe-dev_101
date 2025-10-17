@@ -132,32 +132,3 @@
         </div>
     </div>
 </nav>
-
-<style>
-/* Fix dropdown width to match button width */
-.scheduler-dropdown {
-    min-width: auto !important;
-    width: 100% !important;
-    position: absolute !important;
-    z-index: 1000;
-}
-
-/* Ensure dropdown doesn't exceed button width */
-.dropdown {
-    position: relative;
-}
-
-.dropdown .scheduler-dropdown {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-/* Mobile dropdown positioning */
-@@media (max-width: 767px) {
-    .scheduler-dropdown {
-        left: 0 !important;
-        right: auto !important;
-        transform: none !important;
-    }
-}
-</style>
