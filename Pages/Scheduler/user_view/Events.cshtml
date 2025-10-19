@@ -15,13 +15,11 @@
 <div class="container px-4 my-3 pt-md-3 pt-3">
     <!-- Mobile: Calendar Selection View -->
     <div id="mobile-calendar-view" class="d-md-none mobile-calendar-selection">
-        <div class="d-flex align-items-center mb-3">
-            <button class="btn btn-link p-0 text-decoration-none" onclick="window.history.back()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 12H5M12 19L5 12L12 5" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="window.history.back()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
             </button>
-            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0 ms-3">Appointment Calendar</h2>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Appointment Calendar</h2>
         </div>
 
         <div class="mobile-mini-calendar">
@@ -53,13 +51,11 @@
 
     <!-- Mobile: Daily Schedule View -->
     <div id="mobile-daily-view" class="d-md-none mobile-daily-schedule" style="display: none;">
-        <div class="d-flex align-items-center mb-3">
-            <button class="btn btn-link p-0 text-decoration-none" onclick="showMobileCalendar()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 12H5M12 19L5 12L12 5" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="showMobileCalendar()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
             </button>
-            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0 ms-3">Appointment Calendar</h2>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Appointment Calendar</h2>
         </div>
 
         <div class="mobile-date-navigation mb-3">
