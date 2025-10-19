@@ -1,6 +1,22 @@
 <style>
 /* Admin View Styles */
 
+/* Scheduler Dropdown Styles */
+.scheduler-dropdown {
+    min-width: 100% !important;
+    width: auto !important;
+    max-width: fit-content !important;
+}
+
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.scheduler-dropdown .dropdown-item {
+    white-space: nowrap !important;
+    padding: 10px 16px !important;
+}
+
 /* Mini Calendar Styles */
 .mini-calendar-container {
     background: white;
@@ -248,7 +264,7 @@
 .mobile-overview-section {
     padding: 15px 20px;
     background: white;
-    margin-bottom: 0;
+    margin-bottom: -30px;
     position: relative;
 }
 
@@ -326,18 +342,35 @@
 
 /* Responsive Styles */
 @@media (max-width: 991px) {
+    /* Scheduler dropdown - match button width on mobile */
+    .scheduler-dropdown {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        z-index: 1000 !important;
+    }
+
+    .navbar-nav .nav-item.dropdown {
+        position: relative;
+        width:170px;
+    }
+
     .container {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     .mobile-appointment-content {
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .appointment-types-container {
         background: transparent;
+        padding: 0;
     }
 
     .appointment-types-header {
@@ -345,11 +378,13 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        padding: 0;
     }
 
     .appointment-types-header h2 {
         font-size: 20px;
         font-weight: 500;
+        margin-left:0.8rem;
     }
 
     .btn-new-service {
@@ -374,6 +409,10 @@
 
     .btn-new-service::before {
         font-size: 24px;
+    }
+
+    .appointment-types-list {
+        margin-top: 0;
     }
 
     .appointment-type-item {
