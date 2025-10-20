@@ -2287,7 +2287,7 @@ function findAllAppointmentsAtTime(date, hour) {
     });
 }
 
-function findDailyAppointments(date, hour) {
+function findDailyAppointments(date, hour, minute = 0) {
     return appointments.filter(apt => {
         const aptDate = apt.date;
         const aptStartHour = parseInt(apt.startTime.split(':')[0]);
@@ -2295,9 +2295,9 @@ function findDailyAppointments(date, hour) {
         const aptEndHour = parseInt(apt.endTime.split(':')[0]);
         const aptEndMinute = parseInt(apt.endTime.split(':')[1]);
         
-        // Check if appointment overlaps with this hour slot
-        const slotStart = hour * 60; // Convert hour to minutes
-        const slotEnd = (hour + 1) * 60;
+        // Check if appointment overlaps with this 30-minute time slot
+        const slotStart = hour * 60 + minute; // Convert to minutes from midnight
+        const slotEnd = slotStart + 30; // 30-minute slot
         const aptStart = aptStartHour * 60 + aptStartMinute;
         const aptEnd = aptEndHour * 60 + aptEndMinute;
         
@@ -3079,26 +3079,53 @@ function generateMobileTimeSlots() {
     const timeSlotsContainer = document.getElementById('mobile-time-slots');
     timeSlotsContainer.innerHTML = '';
     
-    const hours = ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '13:00 PM', '13:30 PM', '15:00 PM', '15:30 PM', '14:00 PM'];
+    // Only full hours, no 30-minute intervals
+    const hours = [
+        { display: '6 AM', hour24: 6 },
+        { display: '7 AM', hour24: 7 },
+        { display: '8 AM', hour24: 8 },
+        { display: '9 AM', hour24: 9 },
+        { display: '10 AM', hour24: 10 },
+        { display: '11 AM', hour24: 11 },
+        { display: '12 PM', hour24: 12 },
+        { display: '1 PM', hour24: 13 },
+        { display: '2 PM', hour24: 14 },
+        { display: '3 PM', hour24: 15 },
+        { display: '4 PM', hour24: 16 },
+        { display: '5 PM', hour24: 17 },
+        { display: '6 PM', hour24: 18 },
+        { display: '7 PM', hour24: 19 },
+        { display: '8 PM', hour24: 20 },
+        { display: '9 PM', hour24: 21 },
+        { display: '10 PM', hour24: 22 },
+        { display: '11 PM', hour24: 23 }
+    ];
     
-    hours.forEach((hour, hourIndex) => {
+    hours.forEach((timeSlot) => {
         const timeRow = document.createElement('div');
         timeRow.className = 'mobile-time-row';
         
         const timeLabel = document.createElement('div');
         timeLabel.className = 'mobile-time-label';
-        timeLabel.textContent = hour;
+        timeLabel.textContent = timeSlot.display;
         timeRow.appendChild(timeLabel);
         
         const timeContent = document.createElement('div');
         timeContent.className = 'mobile-time-content';
         
-        // Check for appointments at this time
-        const hourNum = parseInt(hour.split(':')[0]);
-        const dayAppointments = findDailyAppointments(fullCurrentDate, hourNum);
+        // Find appointments that START in this hour
+        const hourAppointments = appointments.filter(apt => {
+            const aptDate = apt.date;
+            const aptStartHour = parseInt(apt.startTime.split(':')[0]);
+            
+            return aptDate.getFullYear() === fullCurrentDate.getFullYear() &&
+                   aptDate.getMonth() === fullCurrentDate.getMonth() &&
+                   aptDate.getDate() === fullCurrentDate.getDate() &&
+                   aptStartHour === timeSlot.hour24;
+        });
         
-        if (dayAppointments.length > 0) {
-            dayAppointments.forEach(apt => {
+        if (hourAppointments.length > 0) {
+            hourAppointments.forEach(apt => {
                 const card = document.createElement('div');
                 card.className = `mobile-appointment-card event-${apt.color}`;
                 card.onclick = () => showAppointmentModal(apt.id);
@@ -3107,11 +3134,16 @@ function generateMobileTimeSlots() {
                 title.className = 'event-title';
                 title.textContent = apt.title;
                 
+                const subtitle = document.createElement('div');
+                subtitle.className = 'event-subtitle';
+                subtitle.textContent = apt.subtitle;
+                
                 const time = document.createElement('div');
                 time.className = 'event-time';
                 time.textContent = apt.displayTime;
                 
                 card.appendChild(title);
+                card.appendChild(subtitle);
                 card.appendChild(time);
                 timeContent.appendChild(card);
             });
