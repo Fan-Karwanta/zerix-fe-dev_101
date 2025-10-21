@@ -539,8 +539,13 @@ function proceedToPaymentMobile() {
     const provider = selectedProvider.value;
     console.log('Proceeding with payment provider:', provider);
     
-    // Add your payment processing logic here
-    proceedToConfirmation();
+    // Reset cart and information state after successful payment
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
+    
+    // Navigate to confirmation page
+    window.location.href = '/Scheduler/user_view/Confirmed';
 }
 
 // Desktop payment processing
@@ -555,17 +560,29 @@ function proceedToPayment() {
     const provider = selectedProvider.value;
     console.log('Proceeding with payment provider:', provider);
     
-    // Add your payment processing logic here
-    proceedToConfirmation();
+    // Reset cart and information state after successful payment
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
+    
+    // Navigate to confirmation page
+    window.location.href = '/Scheduler/user_view/Confirmed';
 }
 
 function backToServiceCategoryFromPayment() {
-    // Add your back navigation logic here
-    console.log('Navigating back to service category');
-}
-
-function proceedToConfirmation() {
-    // Add your confirmation logic here
-    console.log('Proceeding to confirmation');
+    // Navigate back to service category selection
+    const paymentMethodView = document.getElementById('payment-method-view');
+    if (paymentMethodView) {
+        paymentMethodView.style.display = 'none';
+        paymentMethodView.classList.add('display-none');
+    }
+    
+    const serviceCategorySelection = document.getElementById('service-category-selection');
+    if (serviceCategorySelection) {
+        serviceCategorySelection.style.display = 'block';
+        serviceCategorySelection.classList.remove('display-none');
+    }
+    
+    window.scrollTo(0, 0);
 }
 </script>
