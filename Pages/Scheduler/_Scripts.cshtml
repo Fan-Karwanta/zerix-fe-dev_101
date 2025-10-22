@@ -3170,4 +3170,160 @@ document.addEventListener('DOMContentLoaded', function() {
         generateMobileCalendar();
     }
 });
+
+// Payment Method V2 Scripts
+// Mobile navigation functions
+function showMobilePaymentPageV2() {
+    document.getElementById('mobile-items-page-v2').style.display = 'none';
+    document.getElementById('mobile-payment-page-v2').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function showMobileItemsPageV2() {
+    document.getElementById('mobile-payment-page-v2').style.display = 'none';
+    document.getElementById('mobile-items-page-v2').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+// Mobile payment processing
+function proceedToPaymentMobile() {
+    const selectedProvider = document.querySelector('input[name="payment-provider-mobile"]:checked');
+    
+    if (!selectedProvider) {
+        alert('Please select a payment provider');
+        return;
+    }
+
+    const provider = selectedProvider.value;
+    console.log('Proceeding with payment provider:', provider);
+    
+    // Reset cart and information state after successful payment
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
+    
+    // Navigate to confirmation page
+    window.location.href = '/Scheduler/user_view/Confirmed';
+}
+
+// Desktop payment processing
+function proceedToPayment() {
+    const selectedProvider = document.querySelector('input[name="payment-provider"]:checked');
+    
+    if (!selectedProvider) {
+        alert('Please select a payment provider');
+        return;
+    }
+
+    const provider = selectedProvider.value;
+    console.log('Proceeding with payment provider:', provider);
+    
+    // Reset cart and information state after successful payment
+    hasCompletedInformation = false;
+    cart = [];
+    updateCartDisplay();
+    
+    // Navigate to confirmation page
+    window.location.href = '/Scheduler/user_view/Confirmed';
+}
+
+function backToServiceCategoryFromPayment() {
+    // Navigate back to service category selection
+    const paymentMethodView = document.getElementById('payment-method-view');
+    if (paymentMethodView) {
+        paymentMethodView.style.display = 'none';
+        paymentMethodView.classList.add('display-none');
+    }
+    
+    const serviceCategorySelection = document.getElementById('service-category-selection');
+    if (serviceCategorySelection) {
+        serviceCategorySelection.style.display = 'block';
+        serviceCategorySelection.classList.remove('display-none');
+    }
+    
+    window.scrollTo(0, 0);
+}
+
+// Toggle payment amount when checkbox is clicked
+function togglePaymentAmount(view) {
+    const fullAmount = '₱1800.00';
+    const dueAmount = '₱690.00';
+    
+    console.log('togglePaymentAmount called with view:', view);
+    
+    if (view === 'mobile') {
+        const checkbox = document.getElementById('payFullAmount');
+        const dueAmountRow = document.getElementById('mobile-due-amount-row');
+        const fullAmountSpan = document.getElementById('mobile-full-amount');
+        const buttonAmount = document.getElementById('mobile-button-amount');
+        const paymentButtonAmount = document.getElementById('mobile-payment-button-amount');
+        
+        console.log('Checkbox checked:', checkbox ? checkbox.checked : 'checkbox not found');
+        console.log('Due amount row found:', !!dueAmountRow);
+        
+        if (checkbox && dueAmountRow && fullAmountSpan) {
+            if (checkbox.checked) {
+                // Hide the "Total Amount Due" row using class
+                dueAmountRow.classList.add('hidden-row');
+                dueAmountRow.style.display = 'none';
+                // Make full amount bold and same size as due amount was
+                fullAmountSpan.classList.remove('fw-semibold');
+                fullAmountSpan.classList.add('fw-bold');
+                // Update button amounts to full amount
+                if (buttonAmount) buttonAmount.textContent = fullAmount;
+                if (paymentButtonAmount) paymentButtonAmount.textContent = fullAmount;
+                console.log('Checkbox checked - hiding due amount row');
+            } else {
+                // Show the "Total Amount Due" row
+                dueAmountRow.classList.remove('hidden-row');
+                dueAmountRow.style.display = 'flex';
+                // Restore original styling
+                fullAmountSpan.classList.remove('fw-bold');
+                fullAmountSpan.classList.add('fw-semibold');
+                // Update button amounts to due amount
+                if (buttonAmount) buttonAmount.textContent = dueAmount;
+                if (paymentButtonAmount) paymentButtonAmount.textContent = dueAmount;
+                console.log('Checkbox unchecked - showing due amount row');
+            }
+        } else {
+            console.error('Required elements not found:', {
+                checkbox: !!checkbox,
+                dueAmountRow: !!dueAmountRow,
+                fullAmountSpan: !!fullAmountSpan
+            });
+        }
+    } else if (view === 'desktop') {
+        const checkbox = document.getElementById('payFullAmountDesktop');
+        const dueAmountRow = document.getElementById('desktop-due-amount-row');
+        const fullAmountSpan = document.getElementById('desktop-full-amount');
+        
+        console.log('Desktop checkbox checked:', checkbox ? checkbox.checked : 'checkbox not found');
+        
+        if (checkbox && dueAmountRow && fullAmountSpan) {
+            if (checkbox.checked) {
+                // Hide the "Total Amount Due" row using class
+                dueAmountRow.classList.add('hidden-row');
+                dueAmountRow.style.display = 'none';
+                // Make full amount bold and same size as due amount was
+                fullAmountSpan.classList.remove('fw-semibold');
+                fullAmountSpan.classList.add('fw-bold');
+                console.log('Desktop checkbox checked - hiding due amount row');
+            } else {
+                // Show the "Total Amount Due" row
+                dueAmountRow.classList.remove('hidden-row');
+                dueAmountRow.style.display = 'flex';
+                // Restore original styling
+                fullAmountSpan.classList.remove('fw-bold');
+                fullAmountSpan.classList.add('fw-semibold');
+                console.log('Desktop checkbox unchecked - showing due amount row');
+            }
+        } else {
+            console.error('Required desktop elements not found:', {
+                checkbox: !!checkbox,
+                dueAmountRow: !!dueAmountRow,
+                fullAmountSpan: !!fullAmountSpan
+            });
+        }
+    }
+}
 </script>
