@@ -20,8 +20,8 @@
                         <p class="item-info text-muted mb-0">9:00 - 9:50 AM GMT+8</p>
                     </div>
                     <div class="item-pricing text-end">
-                        <div class="item-price fw-bold fs-5">₱190.00</div>
-                        <div class="item-original-price text-muted text-decoration-line-through small">₱300.00</div>
+                        <div class="item-price fw-bold">₱190.00</div>
+                        <div class="item-original-price text-muted small">₱300.00</div>
                     </div>
                 </div>
             </div>
@@ -36,25 +36,25 @@
                         <p class="item-info text-muted mb-0">10:00 - 10:30 AM GMT+8</p>
                     </div>
                     <div class="item-pricing text-end">
-                        <div class="item-price fw-bold fs-5">₱500.00</div>
-                        <div class="item-original-price text-muted text-decoration-line-through small">₱1500.00</div>
+                        <div class="item-price fw-bold">₱500.00</div>
+                        <div class="item-original-price text-muted small">₱1500.00</div>
                     </div>
                 </div>
             </div>
 
             <!-- Total Section -->
-            <div class="payment-totals mt-4 pt-3 border-top">
+            <div class="payment-totals mt-3 pt-3">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-muted">Total Amount <small>(full payment)</small></span>
-                    <span class="fw-semibold">₱1800.00</span>
+                    <span class="fw-semibold" id="mobile-full-amount">₱1800.00</span>
                 </div>
-                <div class="d-flex justify-content-between mb-3">
+                <div class="d-flex justify-content-between mb-3" id="mobile-due-amount-row">
                     <span class="fw-bold">Total Amount Due <small>(new, fee)</small></span>
-                    <span class="fw-bold fs-4">₱690.00</span>
+                    <span class="fw-bold" id="mobile-due-amount">₱690.00</span>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="payFullAmount">
-                    <label class="form-check-label text-muted small" for="payFullAmount">
+                    <input class="form-check-input" type="checkbox" id="payFullAmount" onclick="togglePaymentAmount('mobile')" onchange="togglePaymentAmount('mobile')">
+                    <label class="form-check-label text-muted" style="font-size: 0.8rem;" for="payFullAmount">
                         I want to pay the total amount
                     </label>
                 </div>
@@ -65,7 +65,7 @@
         <div class="mobile-items-continue-container">
             <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="showMobilePaymentPageV2()">
                 <span>Continue</span>
-                <span class="fw-bold">₱690.00</span>
+                <span class="fw-bold" id="mobile-button-amount">₱690.00</span>
             </button>
         </div>
     </div>
@@ -84,24 +84,26 @@
         <div class="payment-providers-list">
             <div class="payment-providers-box p-4 mb-4">
                 <!-- Paymongo -->
-                <div class="payment-provider-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                <div class="payment-provider-item d-flex align-items-center pb-3">
                     <input type="radio" name="payment-provider-mobile" id="provider-paymongo-mobile" value="paymongo" class="form-check-input me-3" checked>
                     <label for="provider-paymongo-mobile" class="form-check-label d-flex align-items-center justify-content-between flex-grow-1 mb-0">
                         <span class="provider-name">Paymongo</span>
                         <span class="badge bg-danger rounded-pill">Default</span>
                     </label>
                 </div>
+                <hr class="payment-separator">
 
                 <!-- Maya Business -->
-                <div class="payment-provider-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                <div class="payment-provider-item d-flex align-items-center pb-3 pt-3">
                     <input type="radio" name="payment-provider-mobile" id="provider-maya-mobile" value="maya" class="form-check-input me-3">
                     <label for="provider-maya-mobile" class="form-check-label flex-grow-1 mb-0">
                         <span class="provider-name">Maya Business</span>
                     </label>
                 </div>
+                <hr class="payment-separator">
 
                 <!-- Paypal -->
-                <div class="payment-provider-item d-flex align-items-center">
+                <div class="payment-provider-item d-flex align-items-center pt-3">
                     <input type="radio" name="payment-provider-mobile" id="provider-paypal-mobile" value="paypal" class="form-check-input me-3">
                     <label for="provider-paypal-mobile" class="form-check-label flex-grow-1 mb-0">
                         <span class="provider-name">Paypal</span>
@@ -114,7 +116,7 @@
         <div class="mobile-payment-continue-container">
             <button type="button" class="btn btn-primary py-3 w-100 d-flex justify-content-between align-items-center" onclick="proceedToPaymentMobile()">
                 <span>Continue to Payment</span>
-                <span class="fw-bold">₱690.00</span>
+                <span class="fw-bold" id="mobile-payment-button-amount">₱690.00</span>
             </button>
         </div>
     </div>
@@ -153,8 +155,8 @@
                                     <p class="item-info text-muted mb-0">9:00 - 9:50 AM GMT+8</p>
                                 </div>
                                 <div class="item-pricing text-end">
-                                    <div class="item-price fw-bold fs-5">₱190.00</div>
-                                    <div class="item-original-price text-muted text-decoration-line-through small">₱300.00</div>
+                                    <div class="item-price fw-bold">₱190.00</div>
+                                    <div class="item-original-price text-muted small">₱300.00</div>
                                 </div>
                             </div>
                         </div>
@@ -169,25 +171,25 @@
                                     <p class="item-info text-muted mb-0">10:00 - 10:30 AM GMT+8</p>
                                 </div>
                                 <div class="item-pricing text-end">
-                                    <div class="item-price fw-bold fs-5">₱500.00</div>
-                                    <div class="item-original-price text-muted text-decoration-line-through small">₱1500.00</div>
+                                    <div class="item-price fw-bold">₱500.00</div>
+                                    <div class="item-original-price text-muted small">₱1500.00</div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Total Section -->
-                        <div class="payment-totals mt-4 pt-3 border-top">
+                        <div class="payment-totals mt-3 pt-3">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted">Total Amount <small>(full payment)</small></span>
-                                <span class="fw-semibold">₱1800.00</span>
+                                <span class="fw-semibold" id="desktop-full-amount">₱1800.00</span>
                             </div>
-                            <div class="d-flex justify-content-between mb-3">
+                            <div class="d-flex justify-content-between mb-3" id="desktop-due-amount-row">
                                 <span class="fw-bold">Total Amount Due <small>(new, fee)</small></span>
-                                <span class="fw-bold fs-4">₱690.00</span>
+                                <span class="fw-bold" id="desktop-due-amount">₱690.00</span>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="payFullAmountDesktop">
-                                <label class="form-check-label text-muted small" for="payFullAmountDesktop">
+                                <input class="form-check-input" type="checkbox" id="payFullAmountDesktop" onclick="togglePaymentAmount('desktop')" onchange="togglePaymentAmount('desktop')">
+                                <label class="form-check-label text-muted" style="font-size: 0.8rem;" for="payFullAmountDesktop">
                                     I want to pay the total amount
                                 </label>
                             </div>
@@ -202,24 +204,26 @@
                     <div class="payment-providers-list">
                         <div class="payment-providers-box p-4 mb-4">
                             <!-- Paymongo -->
-                            <div class="payment-provider-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                            <div class="payment-provider-item d-flex align-items-center pb-3">
                                 <input type="radio" name="payment-provider" id="provider-paymongo" value="paymongo" class="form-check-input me-3" checked>
                                 <label for="provider-paymongo" class="form-check-label d-flex align-items-center justify-content-between flex-grow-1 mb-0">
                                     <span class="provider-name">Paymongo</span>
                                     <span class="badge bg-danger rounded-pill">Default</span>
                                 </label>
                             </div>
+                            <hr class="payment-separator">
 
                             <!-- Maya Business -->
-                            <div class="payment-provider-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                            <div class="payment-provider-item d-flex align-items-center pb-3 pt-3">
                                 <input type="radio" name="payment-provider" id="provider-maya" value="maya" class="form-check-input me-3">
                                 <label for="provider-maya" class="form-check-label flex-grow-1 mb-0">
                                     <span class="provider-name">Maya Business</span>
                                 </label>
                             </div>
+                            <hr class="payment-separator">
 
                             <!-- Paypal -->
-                            <div class="payment-provider-item d-flex align-items-center">
+                            <div class="payment-provider-item d-flex align-items-center pt-3">
                                 <input type="radio" name="payment-provider" id="provider-paypal" value="paypal" class="form-check-input me-3">
                                 <label for="provider-paypal" class="form-check-label flex-grow-1 mb-0">
                                     <span class="provider-name">Paypal</span>
@@ -266,10 +270,21 @@
 .payment-items-column,
 .payment-providers-column {
     padding: 0 1.5rem;
+    min-height: 600px;
 }
 
 .payment-items-column {
-    border-right: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.payment-items-column::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -120px;
+    bottom: 0;
+    width: 1px;
+    background-color: #e0e0e0;
 }
 
 .section-title-payment-method2 {
@@ -318,18 +333,21 @@
 
 .item-price {
     color: #333;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
 }
 
 .item-original-price {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     color: #999;
 }
 
 .payment-totals {
-    padding: 1.5rem 0 0 0;
-    margin-top: 1rem;
-    border-top: 1px solid #e0e0e0;
+    padding: 1rem 0 0 0;
+    margin-top: 0.75rem;
+}
+
+.hidden-row {
+    display: none !important;
 }
 
 /* Payment Provider Styling */
@@ -377,6 +395,16 @@
 
 .payment-provider-item.border-bottom {
     border-color: #e0e0e0 !important;
+}
+
+.payment-separator {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    opacity: 1;
 }
 
 .btn-primary {
@@ -453,26 +481,32 @@
     }
 
     .item-price {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .item-original-price {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     /* Adjust payment totals */
     .payment-totals {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
-    .payment-totals .fw-bold.fs-4 {
-        font-size: 1.25rem !important;
+    .payment-totals .fw-semibold,
+    .payment-totals .fw-bold {
+        font-size: 0.95rem !important;
     }
 
     /* Adjust payment providers box */
     .payment-providers-box {
         padding: 1rem !important;
         border-radius: 8px;
+    }
+
+    .payment-separator {
+        margin-left: -1rem;
+        margin-right: -1rem;
     }
 
     .provider-name {
@@ -584,5 +618,88 @@ function backToServiceCategoryFromPayment() {
     }
     
     window.scrollTo(0, 0);
+}
+
+// Toggle payment amount when checkbox is clicked
+function togglePaymentAmount(view) {
+    const fullAmount = '₱1800.00';
+    const dueAmount = '₱690.00';
+    
+    console.log('togglePaymentAmount called with view:', view);
+    
+    if (view === 'mobile') {
+        const checkbox = document.getElementById('payFullAmount');
+        const dueAmountRow = document.getElementById('mobile-due-amount-row');
+        const fullAmountSpan = document.getElementById('mobile-full-amount');
+        const buttonAmount = document.getElementById('mobile-button-amount');
+        const paymentButtonAmount = document.getElementById('mobile-payment-button-amount');
+        
+        console.log('Checkbox checked:', checkbox ? checkbox.checked : 'checkbox not found');
+        console.log('Due amount row found:', !!dueAmountRow);
+        
+        if (checkbox && dueAmountRow && fullAmountSpan) {
+            if (checkbox.checked) {
+                // Hide the "Total Amount Due" row using class
+                dueAmountRow.classList.add('hidden-row');
+                dueAmountRow.style.display = 'none';
+                // Make full amount bold and same size as due amount was
+                fullAmountSpan.classList.remove('fw-semibold');
+                fullAmountSpan.classList.add('fw-bold');
+                // Update button amounts to full amount
+                if (buttonAmount) buttonAmount.textContent = fullAmount;
+                if (paymentButtonAmount) paymentButtonAmount.textContent = fullAmount;
+                console.log('Checkbox checked - hiding due amount row');
+            } else {
+                // Show the "Total Amount Due" row
+                dueAmountRow.classList.remove('hidden-row');
+                dueAmountRow.style.display = 'flex';
+                // Restore original styling
+                fullAmountSpan.classList.remove('fw-bold');
+                fullAmountSpan.classList.add('fw-semibold');
+                // Update button amounts to due amount
+                if (buttonAmount) buttonAmount.textContent = dueAmount;
+                if (paymentButtonAmount) paymentButtonAmount.textContent = dueAmount;
+                console.log('Checkbox unchecked - showing due amount row');
+            }
+        } else {
+            console.error('Required elements not found:', {
+                checkbox: !!checkbox,
+                dueAmountRow: !!dueAmountRow,
+                fullAmountSpan: !!fullAmountSpan
+            });
+        }
+    } else if (view === 'desktop') {
+        const checkbox = document.getElementById('payFullAmountDesktop');
+        const dueAmountRow = document.getElementById('desktop-due-amount-row');
+        const fullAmountSpan = document.getElementById('desktop-full-amount');
+        
+        console.log('Desktop checkbox checked:', checkbox ? checkbox.checked : 'checkbox not found');
+        
+        if (checkbox && dueAmountRow && fullAmountSpan) {
+            if (checkbox.checked) {
+                // Hide the "Total Amount Due" row using class
+                dueAmountRow.classList.add('hidden-row');
+                dueAmountRow.style.display = 'none';
+                // Make full amount bold and same size as due amount was
+                fullAmountSpan.classList.remove('fw-semibold');
+                fullAmountSpan.classList.add('fw-bold');
+                console.log('Desktop checkbox checked - hiding due amount row');
+            } else {
+                // Show the "Total Amount Due" row
+                dueAmountRow.classList.remove('hidden-row');
+                dueAmountRow.style.display = 'flex';
+                // Restore original styling
+                fullAmountSpan.classList.remove('fw-bold');
+                fullAmountSpan.classList.add('fw-semibold');
+                console.log('Desktop checkbox unchecked - showing due amount row');
+            }
+        } else {
+            console.error('Required desktop elements not found:', {
+                checkbox: !!checkbox,
+                dueAmountRow: !!dueAmountRow,
+                fullAmountSpan: !!fullAmountSpan
+            });
+        }
+    }
 }
 </script>
