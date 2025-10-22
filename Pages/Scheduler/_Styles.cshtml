@@ -5168,6 +5168,8 @@
  
     max-width: 1400px;
     margin: 0 auto;
+    /* Adjustable spacing variable for iPad header margin-top */
+    --ipad-header-margin-top: 0rem;
 }
 
 .payment-titles-row {
@@ -5374,6 +5376,12 @@
 
 /* Common tablet styles (768px - 1024px) */
 @@media (min-width: 768px) and (max-width: 1024px) {
+    /* Remove top padding from container ONLY when payment method page is active on iPad/tablets */
+    /* Uses :has() to check if payment-method-view exists and is NOT hidden (no display-none class) */
+    .container:has(#payment-method-view:not(.display-none)) {
+        padding-top: 0.75rem !important;
+    }
+
     .payment-method-view-v2 {
         max-width: 100%;
         padding: 0;
@@ -5432,8 +5440,10 @@
     }
 
     /* Adjust mobile header for tablet */
+    /* To adjust the spacing, change the --ipad-header-margin-top variable in .payment-method-view-v2 */
     .mobile-header-container {
         padding: 0 1rem;
+        margin-top: var(--ipad-header-margin-top) !important;
         margin-bottom: 2rem !important;
     }
 
@@ -5493,7 +5503,7 @@
 
     /* Payment providers box for tablet */
     .payment-providers-box {
-        padding: 2rem !important;
+        padding: 1rem !important;
         margin-bottom: 2rem !important;
     }
 
@@ -5542,10 +5552,12 @@
         font-size: 1.15rem;
     }
 
-    /* Separator styling */
+    /* Separator styling - thinner line for consistency */
     .payment-separator {
-        margin-left: -2rem;
-        margin-right: -2rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-top-width: 1px;
+        opacity: 0.3;
     }
 
     /* Form check styling */
@@ -5565,10 +5577,24 @@
     }
 
     /* Show mobile views on actual mobile devices */
-    #mobile-items-page-v2,
-    #mobile-payment-page-v2 {
+    /* Show items page by default, hide payment page by default */
+    #mobile-items-page-v2 {
         display: block !important;
         visibility: visible !important;
+    }
+
+    #mobile-payment-page-v2 {
+        display: none !important;
+        visibility: visible !important;
+    }
+
+    /* When JavaScript sets inline styles, respect them */
+    #mobile-items-page-v2[style*="display: none"] {
+        display: none !important;
+    }
+
+    #mobile-payment-page-v2[style*="display: block"] {
+        display: block !important;
     }
 
     /* FORCE HIDE desktop view on mobile - use multiple selectors */
@@ -5623,6 +5649,7 @@
     .payment-separator {
         margin-left: -1rem;
         margin-right: -1rem;
+        opacity: 1;
     }
 
     .provider-name {
