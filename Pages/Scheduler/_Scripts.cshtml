@@ -3279,6 +3279,7 @@ function togglePaymentAmount(view) {
         const checkbox = document.getElementById('payFullAmount');
         const dueAmountRow = document.getElementById('mobile-due-amount-row');
         const fullAmountSpan = document.getElementById('mobile-full-amount');
+        const fullAmountLabel = document.getElementById('mobile-full-amount-label');
         const buttonAmount = document.getElementById('mobile-button-amount');
         const paymentButtonAmount = document.getElementById('mobile-payment-button-amount');
         
@@ -3293,6 +3294,11 @@ function togglePaymentAmount(view) {
                 // Make full amount bold and same size as due amount was
                 fullAmountSpan.classList.remove('fw-semibold');
                 fullAmountSpan.classList.add('fw-bold');
+                // Make the label bold
+                if (fullAmountLabel) {
+                    fullAmountLabel.classList.remove('text-muted');
+                    fullAmountLabel.classList.add('fw-bold');
+                }
                 // Update button amounts to full amount
                 if (buttonAmount) buttonAmount.textContent = fullAmount;
                 if (paymentButtonAmount) paymentButtonAmount.textContent = fullAmount;
@@ -3304,6 +3310,11 @@ function togglePaymentAmount(view) {
                 // Restore original styling
                 fullAmountSpan.classList.remove('fw-bold');
                 fullAmountSpan.classList.add('fw-semibold');
+                // Restore label styling
+                if (fullAmountLabel) {
+                    fullAmountLabel.classList.remove('fw-bold');
+                    fullAmountLabel.classList.add('text-muted');
+                }
                 // Update button amounts to due amount
                 if (buttonAmount) buttonAmount.textContent = dueAmount;
                 if (paymentButtonAmount) paymentButtonAmount.textContent = dueAmount;
@@ -3320,6 +3331,7 @@ function togglePaymentAmount(view) {
         const checkbox = document.getElementById('payFullAmountDesktop');
         const dueAmountRow = document.getElementById('desktop-due-amount-row');
         const fullAmountSpan = document.getElementById('desktop-full-amount');
+        const fullAmountLabel = document.getElementById('desktop-full-amount-label');
         
         console.log('Desktop checkbox checked:', checkbox ? checkbox.checked : 'checkbox not found');
         
@@ -3331,6 +3343,11 @@ function togglePaymentAmount(view) {
                 // Make full amount bold and same size as due amount was
                 fullAmountSpan.classList.remove('fw-semibold');
                 fullAmountSpan.classList.add('fw-bold');
+                // Make the label bold
+                if (fullAmountLabel) {
+                    fullAmountLabel.classList.remove('text-muted');
+                    fullAmountLabel.classList.add('fw-bold');
+                }
                 console.log('Desktop checkbox checked - hiding due amount row');
             } else {
                 // Show the "Total Amount Due" row
@@ -3339,6 +3356,11 @@ function togglePaymentAmount(view) {
                 // Restore original styling
                 fullAmountSpan.classList.remove('fw-bold');
                 fullAmountSpan.classList.add('fw-semibold');
+                // Restore label styling
+                if (fullAmountLabel) {
+                    fullAmountLabel.classList.remove('fw-bold');
+                    fullAmountLabel.classList.add('text-muted');
+                }
                 console.log('Desktop checkbox unchecked - showing due amount row');
             }
         } else {
