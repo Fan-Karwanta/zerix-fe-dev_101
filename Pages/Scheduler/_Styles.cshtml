@@ -3180,15 +3180,17 @@
 
 /* Overlap Badge */
 .overlap-badge {
-    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: transparent;
     color: #ff5400;
     font-size: 11px;
     font-weight: 600;
     padding: 0;
     border-radius: 0;
-    margin-left: 6px;
-    vertical-align: baseline;
+    margin-left: 0;
 }
 
 /* Appointment Header Section (Dropdown + Status) */
@@ -3820,6 +3822,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: relative;
+    padding-right: 35px;
 }
 
 .event-subtitle {
@@ -4194,6 +4198,7 @@
 @@media (max-width: 390px) {
     .mobile-mini-calendar {
         padding: 15px;
+        margin-top: 2rem;
     }
     
     .mobile-mini-calendar .mini-calendar-header h6 {
@@ -4298,7 +4303,7 @@
 .mobile-week-day {
     flex: 0 0 auto;
     min-width: 60px;
-    padding: 12px 8px;
+    padding: 8px 8px;
     text-align: center;
     background: white;
     border: 1px solid #e0e0e0;
@@ -4312,7 +4317,7 @@
     color: white;
     border-color: #ff5400;
     border-radius: 20px;
-    padding: 16px 12px;
+    padding: 10px 12px;
 }
 
 .mobile-week-day .day-name {
@@ -4328,14 +4333,14 @@
 }
 
 .mobile-week-day .day-number {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #333;
 }
 
 .mobile-week-day.active .day-number {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
 }
 
@@ -4349,12 +4354,39 @@
 
 .mobile-time-row {
     display: flex;
-    padding: 15px;
-    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+    min-height: 60px;
 }
 
 .mobile-time-row:last-child {
     border-bottom: none;
+}
+
+.mobile-time-row::after {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 50%;
+    right: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    z-index: 0;
+}
+
+.mobile-time-row.half-hour-row {
+    min-height: 30px;
+}
+
+.mobile-time-row.half-hour-row .mobile-time-label {
+    padding: 8px 15px;
+}
+
+.mobile-time-row.half-hour-row .mobile-time-content {
+    min-height: 30px;
+    padding: 5px 15px 5px 0;
 }
 
 .mobile-time-label {
@@ -4362,6 +4394,9 @@
     font-size: 13px;
     color: #999;
     font-weight: 500;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
 }
 
 .mobile-time-content {
@@ -4371,6 +4406,11 @@
     gap: 8px;
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 10px 15px 10px 0;
+    position: relative;
+    z-index: 1;
+    min-height: 60px;
+    align-items: center;
 }
 
 .mobile-appointment-card {
@@ -4380,8 +4420,10 @@
     border-left: 3px solid;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 200px;
+    width: 100%;
+    max-width: 100%;
     flex-shrink: 0;
+    background: white;
 }
 
 .mobile-appointment-card:hover {
