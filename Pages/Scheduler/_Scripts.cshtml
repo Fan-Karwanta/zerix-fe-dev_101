@@ -1789,16 +1789,16 @@ const appointments = [
     },
     {
         id: 23,
-        title: 'Amer Vet Cli...',
+        title: 'Amer Vet Clinic',
         subtitle: 'Consultation',
         customerName: 'Jane Doe',
         phone: '(+123) 555-0222',
         email: 'jane@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
         startTime: '07:00',
-        endTime: '08:30',
-        displayTime: '07:00 - 08:30 AM',
-        duration: '90 minutes',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
         price: 'Gé¦1200.00',
         status: 'completed',
         scheduledDate: 'May 11, 2023 (Thu) at 11:00 AM',
@@ -1856,9 +1856,9 @@ const appointments = [
         email: 'carol@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
         startTime: '07:00',
-        endTime: '08:30',
-        displayTime: '07:00 - 08:30 AM',
-        duration: '90 minutes',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
         price: 'Gé¦1100.00',
         status: 'booked',
         scheduledDate: 'May 11, 2023 (Thu) at 01:00 PM',
@@ -1867,26 +1867,7 @@ const appointments = [
         ],
         color: 'booked'
     },
-    {
-        id: 27,
-        title: 'Cat Vaccination',
-        subtitle: 'Vet Clinic',
-        customerName: 'David Lee',
-        phone: '(+123) 555-0226',
-        email: 'davidl@example.com',
-        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '07:30',
-        displayTime: '07:00 - 07:30 AM',
-        duration: '30 minutes',
-        price: 'Gé¦650.00',
-        status: 'completed',
-        scheduledDate: 'May 09, 2023 (Tue) at 04:00 PM',
-        formAnswers: [
-            { question: 'Cat age?', answer: '2 years' }
-        ],
-        color: 'completed'
-    },
+
     {
         id: 28,
         title: 'Bird Checkup',
@@ -1916,9 +1897,9 @@ const appointments = [
         email: 'frank@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
         startTime: '07:00',
-        endTime: '09:00',
-        displayTime: '07:00 - 09:00 AM',
-        duration: '120 minutes',
+        endTime: '08:00',
+        displayTime: '07:00 - 08:00 AM',
+        duration: '60 minutes',
         price: 'Gé¦1500.00',
         status: 'completed',
         scheduledDate: 'May 11, 2023 (Thu) at 09:00 AM',
@@ -1947,26 +1928,7 @@ const appointments = [
         ],
         color: 'booked'
     },
-    {
-        id: 31,
-        title: 'Hamster Checkup',
-        subtitle: 'Small Animal Clinic',
-        customerName: 'Henry Thompson',
-        phone: '(+123) 555-0230',
-        email: 'henry@example.com',
-        date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '07:45',
-        displayTime: '07:00 - 07:45 AM',
-        duration: '45 minutes',
-        price: 'Gé¦550.00',
-        status: 'completed',
-        scheduledDate: 'May 10, 2023 (Wed) at 12:00 PM',
-        formAnswers: [
-            { question: 'Hamster age?', answer: '1 year' }
-        ],
-        color: 'completed'
-    },
+
     {
         id: 32,
         title: 'Rabbit Grooming',
@@ -2846,22 +2808,18 @@ function generateDailyView() {
         timeCell.style.position = 'relative';
         timeCell.style.minHeight = '80px'; // Ensure consistent height
         
+        // Add half-hour interval line
+        const halfHourLine = document.createElement('div');
+        halfHourLine.className = 'half-hour-line';
+        timeCell.appendChild(halfHourLine);
+        
         timeRow.appendChild(timeCell);
         timeSlotsGrid.appendChild(timeRow);
     });
     
-    // Now render all appointments in an absolute positioned overlay
-    const appointmentsContainer = document.createElement('div');
-    appointmentsContainer.style.position = 'absolute';
-    appointmentsContainer.style.top = '0';
-    appointmentsContainer.style.left = '0';
-    appointmentsContainer.style.right = '0';
-    appointmentsContainer.style.bottom = '0';
-    appointmentsContainer.style.pointerEvents = 'none'; // Allow clicks to pass through to time cells
-    
-    // Render all appointments
+    // Now place appointments directly in their corresponding time cells
     dayAppointments.forEach(appointment => {
-        // Calculate appointment duration and height
+        // Calculate appointment start time
         const startHour = parseInt(appointment.startTime.split(':')[0]);
         const startMinute = parseInt(appointment.startTime.split(':')[1]);
         const endHour = parseInt(appointment.endTime.split(':')[0]);
@@ -2871,75 +2829,76 @@ function generateDailyView() {
         const endMinutes = endHour * 60 + endMinute;
         const durationMinutes = endMinutes - startMinutes;
         
-        // Get column assignment
-        const column = appointmentColumns.get(appointment.id);
-        const maxColumns = appointment.maxColumns || 1;
+        // Find which hour slot this appointment starts in
+        const hourIndex = startHour - 6; // 6 AM is index 0
         
-        // Calculate position from the start of the day (6 AM = 0)
-        const dayStartMinutes = 6 * 60; // 6 AM in minutes
-        const topOffset = ((startMinutes - dayStartMinutes) / 60) * 80; // 80px per hour
-        
-        // Calculate height based on duration (80px per hour)
-        const height = (durationMinutes / 60) * 80;
-        
-        // Calculate horizontal positioning
-        let widthPercent, leftPercent;
-        
-        if (maxColumns > 1) {
-            // Multiple overlapping appointments
-            const columnWidth = 100 / maxColumns;
-            widthPercent = columnWidth;
-            leftPercent = column * columnWidth;
-        } else {
-            // Single appointment - use full width
-            widthPercent = 100;
-            leftPercent = 0;
+        if (hourIndex >= 0 && hourIndex < hours.length) {
+            const timeRow = timeSlotsGrid.children[hourIndex];
+            const timeCell = timeRow.querySelector('.daily-time-cell');
+            
+            // Get column assignment
+            const column = appointmentColumns.get(appointment.id);
+            const maxColumns = appointment.maxColumns || 1;
+            
+            // Calculate height based on duration (80px per hour)
+            const height = (durationMinutes / 60) * 80;
+            
+            // Calculate vertical offset within the hour (for non-hour-aligned starts)
+            const minuteOffset = (startMinute / 60) * 80;
+            
+            const eventDiv = document.createElement('div');
+            eventDiv.className = `daily-appointment-event event-${appointment.color}`;
+            eventDiv.style.position = 'absolute';
+            eventDiv.style.top = `${minuteOffset}px`;
+            eventDiv.style.height = `${Math.max(height - 4, 60)}px`;
+            
+            // Calculate horizontal positioning
+            // Use fixed width for appointments to prevent cramping
+            const appointmentWidth = 200; // Fixed width in pixels
+            
+            if (maxColumns > 1) {
+                // Multiple overlapping appointments - place side by side with fixed width
+                eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
+                eventDiv.style.width = `${appointmentWidth}px`;
+            } else {
+                // Single appointment - use full width
+                eventDiv.style.left = '0';
+                eventDiv.style.width = 'calc(100% - 8px)';
+            }
+            
+            eventDiv.style.zIndex = column + 1;
+            eventDiv.onclick = () => showAppointmentModal(appointment.id);
+            
+            const eventTitle = document.createElement('div');
+            eventTitle.className = 'daily-event-title';
+            
+            // Create title text node
+            const titleText = document.createTextNode(appointment.title);
+            eventTitle.appendChild(titleText);
+            
+            // Add overlap badge only for the first appointment in overlapping groups
+            if (maxColumns > 1 && column === 0) {
+                const overlapBadge = document.createElement('span');
+                overlapBadge.className = 'daily-overlap-badge';
+                overlapBadge.textContent = `+${maxColumns - 1}`;
+                eventTitle.appendChild(overlapBadge);
+            }
+            
+            const eventSubtitle = document.createElement('div');
+            eventSubtitle.className = 'daily-event-subtitle';
+            eventSubtitle.textContent = appointment.subtitle;
+            
+            const eventTime = document.createElement('div');
+            eventTime.className = 'daily-event-time';
+            eventTime.textContent = appointment.displayTime;
+            
+            eventDiv.appendChild(eventTitle);
+            eventDiv.appendChild(eventSubtitle);
+            eventDiv.appendChild(eventTime);
+            
+            timeCell.appendChild(eventDiv);
         }
-        
-        const eventDiv = document.createElement('div');
-        eventDiv.className = `daily-appointment-event event-${appointment.color}`;
-        eventDiv.style.position = 'absolute';
-        eventDiv.style.top = `${topOffset}px`;
-        eventDiv.style.height = `${Math.max(height - 4, 60)}px`;
-        eventDiv.style.left = `calc(60px + ${leftPercent}%)`; // 60px offset for time labels
-        eventDiv.style.width = maxColumns > 1 ? `calc(${widthPercent}% - 4px)` : 'calc(100% - 64px)'; // Account for time label width
-        eventDiv.style.zIndex = column + 1; // Earlier appointments have lower z-index
-        eventDiv.style.pointerEvents = 'auto'; // Re-enable pointer events for the appointment
-        eventDiv.onclick = () => showAppointmentModal(appointment.id);
-        
-        const eventTitle = document.createElement('div');
-        eventTitle.className = 'daily-event-title';
-        
-        // Create title text node
-        const titleText = document.createTextNode(appointment.title);
-        eventTitle.appendChild(titleText);
-        
-        // Add overlap badge only for the first appointment in overlapping groups
-        if (maxColumns > 1 && column === 0) {
-            const overlapBadge = document.createElement('span');
-            overlapBadge.className = 'daily-overlap-badge';
-            overlapBadge.textContent = `+${maxColumns - 1}`;
-            eventTitle.appendChild(overlapBadge);
-        }
-        
-        const eventSubtitle = document.createElement('div');
-        eventSubtitle.className = 'daily-event-subtitle';
-        eventSubtitle.textContent = appointment.subtitle;
-        
-        const eventTime = document.createElement('div');
-        eventTime.className = 'daily-event-time';
-        eventTime.textContent = appointment.displayTime;
-        
-        eventDiv.appendChild(eventTitle);
-        eventDiv.appendChild(eventSubtitle);
-        eventDiv.appendChild(eventTime);
-        
-        appointmentsContainer.appendChild(eventDiv);
     });
-    
-    // Add the appointments container to the grid
-    timeSlotsGrid.style.position = 'relative';
-    timeSlotsGrid.appendChild(appointmentsContainer);
 }
 
 // Mobile-specific functions
