@@ -3933,14 +3933,15 @@
     background: white;
     max-height: 600px;
     overflow-y: auto;
-    overflow-x: auto;
-    padding: 40px 0 0 0;
+    overflow-x: hidden;
+    padding: 0;
     border-top: 1px solid #f0f0f0;
     position: relative;
 }
 
 .daily-time-slots-grid::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 .daily-time-slots-grid::-webkit-scrollbar-track {
@@ -3956,6 +3957,36 @@
     background: #aaa;
 }
 
+/* Wrapper for horizontal scrolling - all time slots scroll together */
+.daily-scroll-wrapper {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: visible;
+    width: 100%;
+    padding-top: 8px;
+}
+
+.daily-scroll-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.daily-scroll-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.daily-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.daily-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+.daily-inner-content {
+    min-width: fit-content;
+}
+
 .daily-time-row {
     display: flex;
     height: 80px;
@@ -3963,37 +3994,29 @@
     min-width: fit-content;
 }
 
-.daily-time-row:first-child::before {
+
+.daily-time-row::before {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     height: 1px;
-    background: #f0f0f0;
-}
-
-.daily-time-row::after {
-    content: '';
-    position: absolute;
-    left: 80px;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: #f0f0f0;
+    background: #e0e0e0;
+    z-index: 1;
 }
 
 /* Half-hour interval line */
 .daily-time-row .half-hour-line {
     content: '';
     position: absolute;
-    left: 80px;
+    left: 0;
     right: 0;
     top: 50%;
     height: 1px;
-    background: #e8e8e8;
+    background: #f0f0f0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
 .daily-time-label {
@@ -4005,42 +4028,27 @@
     padding-right: 15px;
     border-right: 1px solid #e0e0e0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
     position: sticky;
     left: 0;
-    top: -40px;
     background: white;
     z-index: 10;
     width: 80px;
     flex-shrink: 0;
+    padding-top: 0;
+    margin-top: -8px;
 }
 
 .daily-time-cell {
     position: relative;
     padding: 0;
-    overflow-x: auto;
+    overflow-x: visible;
     overflow-y: visible;
     flex: 1;
     min-width: 0;
 }
 
-.daily-time-cell::-webkit-scrollbar {
-    height: 6px;
-}
-
-.daily-time-cell::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.daily-time-cell::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 3px;
-}
-
-.daily-time-cell::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-}
 
 /* Daily view appointments - horizontal layout for overlapping appointments */
 .daily-appointments-row {
@@ -4053,7 +4061,7 @@
 }
 
 .daily-appointment-event {
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-radius: 6px;
     font-size: 12px;
     cursor: pointer;
@@ -4065,6 +4073,8 @@
     overflow: hidden;
     position: absolute;
     margin: 4px;
+    min-height: 60px;
+    height: 60px !important;
 }
 
 .daily-appointment-event:hover {
@@ -4145,9 +4155,7 @@
 }
 
 .daily-event-subtitle {
-    color: #999;
-    font-size: 11px;
-    margin-bottom: 4px;
+    display: none;
 }
 
 .daily-event-time {

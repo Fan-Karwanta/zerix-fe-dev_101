@@ -2825,6 +2825,18 @@ function generateDailyView() {
         });
     });
     
+    // Create a wrapper for horizontal scrolling
+    const scrollWrapper = document.createElement('div');
+    scrollWrapper.className = 'daily-scroll-wrapper';
+    scrollWrapper.style.overflowX = 'auto';
+    scrollWrapper.style.overflowY = 'visible';
+    scrollWrapper.style.width = '100%';
+    
+    // Create inner content container
+    const innerContent = document.createElement('div');
+    innerContent.className = 'daily-inner-content';
+    innerContent.style.minWidth = 'fit-content';
+    
     // Create time rows with a shared appointments container
     hours.forEach((hour, hourIndex) => {
         const timeRow = document.createElement('div');
@@ -2838,7 +2850,8 @@ function generateDailyView() {
         const timeCell = document.createElement('div');
         timeCell.className = 'daily-time-cell';
         timeCell.style.position = 'relative';
-        timeCell.style.minHeight = '80px'; // Ensure consistent height
+        timeCell.style.minHeight = '80px';
+        timeCell.style.minWidth = '600px';
         
         // Add half-hour interval line
         const halfHourLine = document.createElement('div');
@@ -2846,8 +2859,11 @@ function generateDailyView() {
         timeCell.appendChild(halfHourLine);
         
         timeRow.appendChild(timeCell);
-        timeSlotsGrid.appendChild(timeRow);
+        innerContent.appendChild(timeRow);
     });
+    
+    scrollWrapper.appendChild(innerContent);
+    timeSlotsGrid.appendChild(scrollWrapper);
     
     // Now place appointments directly in their corresponding time cells
     dayAppointments.forEach(appointment => {
@@ -2865,38 +2881,29 @@ function generateDailyView() {
         const hourIndex = startHour - 6; // 6 AM is index 0
         
         if (hourIndex >= 0 && hourIndex < hours.length) {
-            const timeRow = timeSlotsGrid.children[hourIndex];
+            const scrollWrapper = timeSlotsGrid.querySelector('.daily-scroll-wrapper');
+            const innerContent = scrollWrapper.querySelector('.daily-inner-content');
+            const timeRow = innerContent.children[hourIndex];
             const timeCell = timeRow.querySelector('.daily-time-cell');
             
             // Get column assignment
             const column = appointmentColumns.get(appointment.id);
             const maxColumns = appointment.maxColumns || 1;
             
-            // Calculate height based on duration (80px per hour)
-            const height = (durationMinutes / 60) * 80;
-            
-            // Calculate vertical offset within the hour (for non-hour-aligned starts)
+            // Fixed height for all appointments regardless of duration
             const minuteOffset = (startMinute / 60) * 80;
             
             const eventDiv = document.createElement('div');
             eventDiv.className = `daily-appointment-event event-${appointment.color}`;
             eventDiv.style.position = 'absolute';
             eventDiv.style.top = `${minuteOffset}px`;
-            eventDiv.style.height = `${Math.max(height - 4, 60)}px`;
             
-            // Calculate horizontal positioning
-            // Use fixed width for appointments to prevent cramping
-            const appointmentWidth = 200; // Fixed width in pixels
+            // Calculate horizontal positioning with fixed width
+            const appointmentWidth = 180;
             
-            if (maxColumns > 1) {
-                // Multiple overlapping appointments - place side by side with fixed width
-                eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
-                eventDiv.style.width = `${appointmentWidth}px`;
-            } else {
-                // Single appointment - use full width
-                eventDiv.style.left = '0';
-                eventDiv.style.width = 'calc(100% - 8px)';
-            }
+            // Always use fixed width for consistency
+            eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
+            eventDiv.style.width = `${appointmentWidth}px`;
             
             eventDiv.style.zIndex = column + 1;
             eventDiv.onclick = () => showAppointmentModal(appointment.id);
@@ -2916,16 +2923,11 @@ function generateDailyView() {
                 eventTitle.appendChild(overlapBadge);
             }
             
-            const eventSubtitle = document.createElement('div');
-            eventSubtitle.className = 'daily-event-subtitle';
-            eventSubtitle.textContent = appointment.subtitle;
-            
             const eventTime = document.createElement('div');
             eventTime.className = 'daily-event-time';
             eventTime.textContent = appointment.displayTime;
             
             eventDiv.appendChild(eventTitle);
-            eventDiv.appendChild(eventSubtitle);
             eventDiv.appendChild(eventTime);
             
             timeCell.appendChild(eventDiv);
