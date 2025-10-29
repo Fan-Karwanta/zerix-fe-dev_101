@@ -2121,7 +2121,7 @@ function generateWeekHeader() {
         currentDay.setDate(weekStart.getDate() + i);
         
         const dayColumn = document.createElement('div');
-        dayColumn.className = 'day-column';
+        dayColumn.className = `day-column day-column-${i + 1}`;
         
         const dayNumber = document.createElement('div');
         dayNumber.className = 'day-number';
