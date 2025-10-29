@@ -13,8 +13,8 @@
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-3 pt-3">
-    <!-- Mobile: Calendar Selection View -->
-    <div id="mobile-calendar-view" class="d-md-none mobile-calendar-selection">
+    <!-- Mobile & Tablet: Calendar Selection View -->
+    <div id="mobile-calendar-view" class="d-lg-none mobile-calendar-selection">
         <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
             <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="window.history.back()">
                 <i class="bi bi-chevron-left mobile-back-chevron"></i>
@@ -49,8 +49,8 @@
         </div>
     </div>
 
-    <!-- Mobile: Daily Schedule View -->
-    <div id="mobile-daily-view" class="d-md-none mobile-daily-schedule" style="display: none;">
+    <!-- Mobile & Tablet: Daily Schedule View -->
+    <div id="mobile-daily-view" class="d-lg-none mobile-daily-schedule" style="display: none;">
         <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
             <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="showMobileCalendar()">
                 <i class="bi bi-chevron-left mobile-back-chevron"></i>
@@ -117,7 +117,7 @@
     </div>
 
     <!-- Desktop View -->
-    <div class="events-container d-none d-md-block">
+    <div class="events-container d-none d-lg-block">
         <div class="row g-4">
             <!-- Left Side: Mini Calendar -->
             <div class="col-12 col-lg-3">

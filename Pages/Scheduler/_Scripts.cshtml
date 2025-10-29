@@ -3233,8 +3233,8 @@ document.addEventListener('DOMContentLoaded', function() {
     generateMiniCalendar();
     updateFullCalendar();
     
-    // Generate mobile calendar
-    if (window.innerWidth < 768) {
+    // Generate mobile and tablet calendar (up to 1199px - Bootstrap lg breakpoint)
+    if (window.innerWidth < 1200) {
         generateMobileCalendar();
     }
 });
