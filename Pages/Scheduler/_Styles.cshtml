@@ -3593,7 +3593,8 @@
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 0;
     border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    border-right: none;
+    margin-right: 9px;
 }
 
 /* Hide time column in monthly view week header */
@@ -3601,7 +3602,8 @@
     grid-template-columns: repeat(5, 1fr);
     border-top: 1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    border-right: none;
+    margin-right: 9px;
 }
 
 .time-column {
@@ -3624,33 +3626,33 @@
 }
 
 .day-column:last-child {
-    border-right: none;
+    border-right: 1px solid #e0e0e0;
 }
 
 /* Individual day column margin controls */
 .day-column-1 {
     /* margin-left: 0px; margin-right: 0px; */
-    margin-right: 1.4px;
+    margin-right: 0px;
 }
 
 .day-column-2 {
     /* margin-left: 0px; margin-right: 0px; */
-    margin-right: 3.3px;
+    margin-right: 0px;
 }
 
 .day-column-3 {
     /* margin-left: 0px; margin-right: 0px; */
-    margin-right: 4px;
+    margin-right: 0px;
 }
 
 .day-column-4 {
     /* margin-left: 0px; margin-right: 0px; */
-    margin-right: 6px;
+    margin-right: 0px;
 }
 
 .day-column-5 {
     /* margin-left: 0px; margin-right: 0px; */
-    margin-right: 6.2px;
+    margin-right: 0px;
 }
 
 .day-number {
@@ -3689,6 +3691,7 @@
     max-height: 600px;
     overflow-y: auto;
     border-bottom: 1px solid #e0e0e0;
+    margin-right: 1px;
 }
 
 .time-slots-grid::-webkit-scrollbar {
@@ -3714,14 +3717,14 @@
     gap: 0;
     background: transparent;
     border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    border-right: none;
 }
 
 /* Hide time labels in monthly view only */
 #monthly-view .time-row {
     grid-template-columns: repeat(5, 1fr);
     border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
+    border-right: none;
 }
 
 #monthly-view .time-label {

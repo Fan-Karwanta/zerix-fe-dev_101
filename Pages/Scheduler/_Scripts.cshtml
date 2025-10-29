@@ -218,8 +218,8 @@ function createDayElement(day, isOtherMonth) {
         const today = new Date();
         const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
         
-        // Add light circle highlight for Sun-Thu (0-4)
-        if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+        // Add light circle highlight for all days (Sun-Sat: 0-6)
+        if (dayOfWeek >= 0 && dayOfWeek <= 6) {
             dayElement.classList.add('weekday-highlight');
         }
         
@@ -1315,6 +1315,7 @@ let fullCurrentDate = new Date();
 let selectedWeekStart = null;
 let currentView = 'monthly'; // 'monthly' or 'daily'
 let currentAppointment = null; // Store current appointment for cancellation
+let weekDayOffset = 0; // Offset to show 5 days at a time (0-2): 0=Sun-Thu, 1=Mon-Fri, 2=Tue-Sat
 
 // Sample appointments data - expanded for daily view
 const appointments = [
@@ -1989,8 +1990,8 @@ function generateMiniCalendar() {
         const date = new Date(year, month, day);
         const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
         
-        // Add beige background for weekdays (Sun-Thu: 0-4)
-        if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+        // Add beige background for all days of the week (Sun-Sat: 0-6)
+        if (dayOfWeek >= 0 && dayOfWeek <= 6) {
             dayElement.classList.add('weekday-highlight');
         }
         
@@ -2029,6 +2030,18 @@ function selectMiniDate(date) {
     selectedWeekStart = new Date(date);
     selectedWeekStart.setDate(date.getDate() - dayOfWeek);
     
+    // Set offset to ensure selected date is visible in 5-day window
+    if (dayOfWeek <= 4) {
+        // Sun-Thu: Show Sun-Thu (offset 0)
+        weekDayOffset = 0;
+    } else if (dayOfWeek === 5) {
+        // Fri: Show Mon-Fri (offset 1)
+        weekDayOffset = 1;
+    } else {
+        // Sat: Show Tue-Sat (offset 2)
+        weekDayOffset = 2;
+    }
+    
     // Regenerate mini calendar to update selected state
     generateMiniCalendar();
     
@@ -2049,11 +2062,19 @@ function previousPeriod() {
     if (currentView === 'daily') {
         fullCurrentDate.setDate(fullCurrentDate.getDate() - 1);
     } else {
-        if (selectedWeekStart) {
-            selectedWeekStart.setDate(selectedWeekStart.getDate() - 7);
-            fullCurrentDate = new Date(selectedWeekStart);
+        // For monthly view, move by 5 days or adjust offset
+        if (weekDayOffset > 0) {
+            // Can shift offset backward
+            weekDayOffset--;
         } else {
-            fullCurrentDate.setDate(fullCurrentDate.getDate() - 7);
+            // At beginning of week, go to previous week and show last 5 days (offset 2)
+            if (selectedWeekStart) {
+                selectedWeekStart.setDate(selectedWeekStart.getDate() - 7);
+                fullCurrentDate = new Date(selectedWeekStart);
+            } else {
+                fullCurrentDate.setDate(fullCurrentDate.getDate() - 7);
+            }
+            weekDayOffset = 2; // Show Tue-Sat of previous week
         }
     }
     updateFullCalendar();
@@ -2063,11 +2084,19 @@ function nextPeriod() {
     if (currentView === 'daily') {
         fullCurrentDate.setDate(fullCurrentDate.getDate() + 1);
     } else {
-        if (selectedWeekStart) {
-            selectedWeekStart.setDate(selectedWeekStart.getDate() + 7);
-            fullCurrentDate = new Date(selectedWeekStart);
+        // For monthly view, move by 5 days or adjust offset
+        if (weekDayOffset < 2) {
+            // Can shift offset forward
+            weekDayOffset++;
         } else {
-            fullCurrentDate.setDate(fullCurrentDate.getDate() + 7);
+            // At end of week, go to next week and show first 5 days (offset 0)
+            if (selectedWeekStart) {
+                selectedWeekStart.setDate(selectedWeekStart.getDate() + 7);
+                fullCurrentDate = new Date(selectedWeekStart);
+            } else {
+                fullCurrentDate.setDate(fullCurrentDate.getDate() + 7);
+            }
+            weekDayOffset = 0; // Show Sun-Thu of next week
         }
     }
     updateFullCalendar();
@@ -2113,12 +2142,14 @@ function generateWeekHeader() {
     weekHeader.innerHTML = '';
     weekHeader.appendChild(timeColumn);
     
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
+    // Show only 5 days at a time based on offset
     for (let i = 0; i < 5; i++) {
+        const dayIndex = i + weekDayOffset;
         const currentDay = new Date(weekStart);
-        currentDay.setDate(weekStart.getDate() + i);
+        currentDay.setDate(weekStart.getDate() + dayIndex);
         
         const dayColumn = document.createElement('div');
         dayColumn.className = `day-column day-column-${i + 1}`;
@@ -2142,7 +2173,7 @@ function generateWeekHeader() {
         
         const dayName = document.createElement('div');
         dayName.className = 'day-name';
-        dayName.textContent = dayNames[i];
+        dayName.textContent = dayNames[dayIndex];
         
         dayColumn.appendChild(dayNumber);
         dayColumn.appendChild(dayName);
@@ -2166,8 +2197,9 @@ function generateTimeSlots() {
         timeLabel.textContent = hour;
         timeRow.appendChild(timeLabel);
         
-        // Create 5 day cells
-        for (let dayIndex = 0; dayIndex < 5; dayIndex++) {
+        // Create 5 day cells based on offset
+        for (let i = 0; i < 5; i++) {
+            const dayIndex = i + weekDayOffset;
             const timeCell = document.createElement('div');
             timeCell.className = 'time-cell';
             
@@ -2940,7 +2972,7 @@ function generateMobileCalendar() {
         const date = new Date(year, month, day);
         const dayOfWeek = date.getDay();
         
-        if (dayOfWeek >= 0 && dayOfWeek <= 4) {
+        if (dayOfWeek >= 0 && dayOfWeek <= 6) {
             dayElement.classList.add('weekday-highlight');
         }
         
@@ -2967,6 +2999,19 @@ function generateMobileCalendar() {
 function selectMobileDateAndShowSchedule(date) {
     fullCurrentDate = new Date(date);
     
+    // Set offset to ensure selected date is visible in 5-day window
+    const dayOfWeek = date.getDay();
+    if (dayOfWeek <= 4) {
+        // Sun-Thu: Show Sun-Thu (offset 0)
+        weekDayOffset = 0;
+    } else if (dayOfWeek === 5) {
+        // Fri: Show Mon-Fri (offset 1)
+        weekDayOffset = 1;
+    } else {
+        // Sat: Show Tue-Sat (offset 2)
+        weekDayOffset = 2;
+    }
+    
     // Show mobile daily view
     document.getElementById('mobile-calendar-view').style.display = 'none';
     document.getElementById('mobile-daily-view').style.display = 'block';
@@ -2981,12 +3026,30 @@ function showMobileCalendar() {
 }
 
 function previousDayMobile() {
-    fullCurrentDate.setDate(fullCurrentDate.getDate() - 1);
+    // Move by 5 days or adjust offset
+    if (weekDayOffset > 0) {
+        // Can shift offset backward
+        weekDayOffset--;
+        fullCurrentDate.setDate(fullCurrentDate.getDate() - 1);
+    } else {
+        // At beginning of week, go to previous week and show last 5 days
+        fullCurrentDate.setDate(fullCurrentDate.getDate() - 7);
+        weekDayOffset = 2; // Show Tue-Sat
+    }
     updateMobileDailyView();
 }
 
 function nextDayMobile() {
-    fullCurrentDate.setDate(fullCurrentDate.getDate() + 1);
+    // Move by 5 days or adjust offset
+    if (weekDayOffset < 2) {
+        // Can shift offset forward
+        weekDayOffset++;
+        fullCurrentDate.setDate(fullCurrentDate.getDate() + 1);
+    } else {
+        // At end of week, go to next week and show first 5 days
+        fullCurrentDate.setDate(fullCurrentDate.getDate() + 7);
+        weekDayOffset = 0; // Show Sun-Thu
+    }
     updateMobileDailyView();
 }
 
@@ -3004,19 +3067,21 @@ function updateMobileDailyView() {
 }
 
 function generateMobileWeekDays() {
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekStart = getWeekStart(fullCurrentDate);
     
+    // Show only 5 days at a time based on offset
     for (let i = 0; i < 5; i++) {
+        const dayIndex = i + weekDayOffset;
         const currentDay = new Date(weekStart);
-        currentDay.setDate(weekStart.getDate() + i);
+        currentDay.setDate(weekStart.getDate() + dayIndex);
         
         const dayElement = document.getElementById(`mobile-day-${i}`);
         if (dayElement) {
             const dayNameEl = dayElement.querySelector('.day-name');
             const dayNumberEl = dayElement.querySelector('.day-number');
             
-            dayNameEl.textContent = dayNames[i];
+            dayNameEl.textContent = dayNames[dayIndex];
             dayNumberEl.textContent = currentDay.getDate();
             
             // Check if this is the selected date
@@ -3030,6 +3095,14 @@ function generateMobileWeekDays() {
                 fullCurrentDate = new Date(currentDay);
                 updateMobileDailyView();
             };
+        }
+    }
+    
+    // Hide the extra 2 day elements (mobile-day-5 and mobile-day-6)
+    for (let i = 5; i < 7; i++) {
+        const dayElement = document.getElementById(`mobile-day-${i}`);
+        if (dayElement) {
+            dayElement.style.display = 'none';
         }
     }
 }
@@ -3143,6 +3216,16 @@ document.addEventListener('DOMContentLoaded', function() {
     miniCurrentDate = new Date(2023, 4, 1); // May 2023
     fullCurrentDate = new Date(2023, 4, 15); // May 15, 2023
     selectedWeekStart = new Date(2023, 4, 14); // Week starting May 14, 2023
+    
+    // Set initial offset based on the current date (May 15 is Monday, day 1)
+    const dayOfWeek = fullCurrentDate.getDay();
+    if (dayOfWeek <= 4) {
+        weekDayOffset = 0; // Show Sun-Thu
+    } else if (dayOfWeek === 5) {
+        weekDayOffset = 1; // Show Mon-Fri
+    } else {
+        weekDayOffset = 2; // Show Tue-Sat
+    }
     
     // Generate desktop calendars
     generateMiniCalendar();
