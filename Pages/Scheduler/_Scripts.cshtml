@@ -3113,103 +3113,210 @@ function generateMobileTimeSlots() {
     const timeSlotsContainer = document.getElementById('mobile-time-slots');
     timeSlotsContainer.innerHTML = '';
     
-    // Include both full hours and half-hour marks
-    const timeSlots = [
-        { display: '6 AM', hour24: 6, minute: 0 },
-        { display: '', hour24: 6, minute: 30, isHalfHour: true },
-        { display: '7 AM', hour24: 7, minute: 0 },
-        { display: '', hour24: 7, minute: 30, isHalfHour: true },
-        { display: '8 AM', hour24: 8, minute: 0 },
-        { display: '', hour24: 8, minute: 30, isHalfHour: true },
-        { display: '9 AM', hour24: 9, minute: 0 },
-        { display: '', hour24: 9, minute: 30, isHalfHour: true },
-        { display: '10 AM', hour24: 10, minute: 0 },
-        { display: '', hour24: 10, minute: 30, isHalfHour: true },
-        { display: '11 AM', hour24: 11, minute: 0 },
-        { display: '', hour24: 11, minute: 30, isHalfHour: true },
-        { display: '12 PM', hour24: 12, minute: 0 },
-        { display: '', hour24: 12, minute: 30, isHalfHour: true },
-        { display: '1 PM', hour24: 13, minute: 0 },
-        { display: '', hour24: 13, minute: 30, isHalfHour: true },
-        { display: '2 PM', hour24: 14, minute: 0 },
-        { display: '', hour24: 14, minute: 30, isHalfHour: true },
-        { display: '3 PM', hour24: 15, minute: 0 },
-        { display: '', hour24: 15, minute: 30, isHalfHour: true },
-        { display: '4 PM', hour24: 16, minute: 0 },
-        { display: '', hour24: 16, minute: 30, isHalfHour: true },
-        { display: '5 PM', hour24: 17, minute: 0 },
-        { display: '', hour24: 17, minute: 30, isHalfHour: true },
-        { display: '6 PM', hour24: 18, minute: 0 },
-        { display: '', hour24: 18, minute: 30, isHalfHour: true },
-        { display: '7 PM', hour24: 19, minute: 0 },
-        { display: '', hour24: 19, minute: 30, isHalfHour: true },
-        { display: '8 PM', hour24: 20, minute: 0 },
-        { display: '', hour24: 20, minute: 30, isHalfHour: true },
-        { display: '9 PM', hour24: 21, minute: 0 },
-        { display: '', hour24: 21, minute: 30, isHalfHour: true },
-        { display: '10 PM', hour24: 22, minute: 0 },
-        { display: '', hour24: 22, minute: 30, isHalfHour: true },
-        { display: '11 PM', hour24: 23, minute: 0 },
-        { display: '', hour24: 23, minute: 30, isHalfHour: true }
-    ];
+    // Create container for absolute positioning
+    const slotsWrapper = document.createElement('div');
+    slotsWrapper.className = 'mobile-slots-wrapper';
     
+    // Generate time slots from 6:00 AM to 5:00 PM (17:00)
+    const timeSlots = [];
+    for (let hour = 6; hour <= 17; hour++) {
+        for (let minute of [0, 30]) {
+            // Skip 17:30 to end at 17:00 (5:00 PM)
+            if (hour === 17 && minute === 30) continue;
+            
+            const hour12 = hour > 12 ? hour - 12 : (hour === 0 ? 12 : hour);
+            const period = hour >= 12 ? 'PM' : 'AM';
+            const display = `${hour12.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} ${period}`;
+            
+            timeSlots.push({ display, hour24: hour, minute, index: timeSlots.length });
+        }
+    }
+    
+    // Create scrollable appointments container
+    const scrollableContainer = document.createElement('div');
+    scrollableContainer.className = 'mobile-scrollable-container';
+    
+    // Create time grid rows
     timeSlots.forEach((timeSlot) => {
         const timeRow = document.createElement('div');
         timeRow.className = 'mobile-time-row';
-        if (timeSlot.isHalfHour) {
-            timeRow.classList.add('half-hour-row');
-        }
+        timeRow.setAttribute('data-hour', timeSlot.hour24);
+        timeRow.setAttribute('data-minute', timeSlot.minute);
         
         const timeLabel = document.createElement('div');
         timeLabel.className = 'mobile-time-label';
         timeLabel.textContent = timeSlot.display;
         timeRow.appendChild(timeLabel);
         
-        const timeContent = document.createElement('div');
-        timeContent.className = 'mobile-time-content';
+        slotsWrapper.appendChild(timeRow);
+    });
+    
+    // Create appointments container inside scrollable area
+    const appointmentsContainer = document.createElement('div');
+    appointmentsContainer.className = 'mobile-appointments-container';
+    
+    // Calculate total height: number of time slots × 60px per slot
+    const totalSlots = timeSlots.length; // 23 slots from 6 AM to 5 PM
+    const totalHeight = totalSlots * 60;
+    appointmentsContainer.style.height = `${totalHeight}px`;
+    appointmentsContainer.style.minHeight = `${totalHeight}px`;
+    
+    // Add horizontal lines as actual elements for each time slot
+    for (let i = 1; i < totalSlots; i++) {
+        const line = document.createElement('div');
+        line.className = 'mobile-time-separator';
+        line.style.position = 'absolute';
+        line.style.top = `${i * 60 - 1}px`;
+        line.style.left = '0';
+        line.style.width = '100%';
+        line.style.height = '1px';
+        line.style.backgroundColor = '#e0e0e0';
+        line.style.zIndex = '5';
+        line.style.pointerEvents = 'none';
+        appointmentsContainer.appendChild(line);
+    }
+    
+    scrollableContainer.appendChild(appointmentsContainer);
+    
+    // Filter appointments for today
+    const todayAppointments = appointments.filter(apt => {
+        const aptDate = apt.date;
+        return aptDate.getFullYear() === fullCurrentDate.getFullYear() &&
+               aptDate.getMonth() === fullCurrentDate.getMonth() &&
+               aptDate.getDate() === fullCurrentDate.getDate();
+    });
+    
+    // Calculate overlaps and assign columns
+    const appointmentsWithColumns = todayAppointments.map(apt => {
+        const [startHour, startMinute] = apt.startTime.split(':').map(Number);
+        const [endHour, endMinute] = apt.endTime.split(':').map(Number);
+        const startMinutes = startHour * 60 + startMinute;
+        const endMinutes = endHour * 60 + endMinute;
         
-        // Only show appointments on full hour rows
-        if (!timeSlot.isHalfHour) {
-            // Find appointments that START in this hour
-            const hourAppointments = appointments.filter(apt => {
-                const aptDate = apt.date;
-                const aptStartHour = parseInt(apt.startTime.split(':')[0]);
-                
-                return aptDate.getFullYear() === fullCurrentDate.getFullYear() &&
-                       aptDate.getMonth() === fullCurrentDate.getMonth() &&
-                       aptDate.getDate() === fullCurrentDate.getDate() &&
-                       aptStartHour === timeSlot.hour24;
-            });
+        return {
+            ...apt,
+            startMinutes,
+            endMinutes,
+            column: 0,
+            totalColumns: 1
+        };
+    });
+    
+    // Sort by start time, then by duration (longer first)
+    appointmentsWithColumns.sort((a, b) => {
+        if (a.startMinutes !== b.startMinutes) {
+            return a.startMinutes - b.startMinutes;
+        }
+        return (b.endMinutes - b.startMinutes) - (a.endMinutes - a.startMinutes);
+    });
+    
+    // Detect overlaps and assign columns - improved algorithm
+    const processed = new Set();
+    
+    for (let i = 0; i < appointmentsWithColumns.length; i++) {
+        if (processed.has(i)) continue;
+        
+        const current = appointmentsWithColumns[i];
+        const overlappingGroup = [i];
+        
+        // Find all appointments that overlap with current
+        for (let j = i + 1; j < appointmentsWithColumns.length; j++) {
+            const other = appointmentsWithColumns[j];
             
-            if (hourAppointments.length > 0) {
-                hourAppointments.forEach(apt => {
-                    const card = document.createElement('div');
-                    card.className = `mobile-appointment-card event-${apt.color}`;
-                    card.onclick = () => showAppointmentModal(apt.id);
-                    
-                    const title = document.createElement('div');
-                    title.className = 'event-title';
-                    title.textContent = apt.title;
-                    
-                    const subtitle = document.createElement('div');
-                    subtitle.className = 'event-subtitle';
-                    subtitle.textContent = apt.subtitle;
-                    
-                    const time = document.createElement('div');
-                    time.className = 'event-time';
-                    time.textContent = apt.displayTime;
-                    
-                    card.appendChild(title);
-                    card.appendChild(subtitle);
-                    card.appendChild(time);
-                    timeContent.appendChild(card);
-                });
+            // Check if they overlap with any appointment in the current group
+            let overlapsWithGroup = false;
+            for (const idx of overlappingGroup) {
+                const groupApt = appointmentsWithColumns[idx];
+                if (groupApt.startMinutes < other.endMinutes && groupApt.endMinutes > other.startMinutes) {
+                    overlapsWithGroup = true;
+                    break;
+                }
+            }
+            
+            if (overlapsWithGroup) {
+                overlappingGroup.push(j);
             }
         }
         
-        timeRow.appendChild(timeContent);
-        timeSlotsContainer.appendChild(timeRow);
+        // Only assign columns if there are actual overlaps
+        if (overlappingGroup.length > 1) {
+            // Assign columns to overlapping appointments
+            for (let k = 0; k < overlappingGroup.length; k++) {
+                const idx = overlappingGroup[k];
+                const apt = appointmentsWithColumns[idx];
+                
+                // Find the first available column
+                const usedColumns = overlappingGroup
+                    .slice(0, k)
+                    .map(prevIdx => appointmentsWithColumns[prevIdx].column);
+                
+                let column = 0;
+                while (usedColumns.includes(column)) {
+                    column++;
+                }
+                apt.column = column;
+                apt.totalColumns = overlappingGroup.length;
+                processed.add(idx);
+            }
+        } else {
+            // Single appointment, no overlap
+            current.column = 0;
+            current.totalColumns = 1;
+            processed.add(i);
+        }
+    }
+    
+    // Calculate the maximum number of columns needed
+    const maxColumns = Math.max(...appointmentsWithColumns.map(apt => apt.totalColumns), 1);
+    
+    // Set minimum width for appointments container to enable scrolling
+    const minCardWidth = 200; // Minimum width per appointment in pixels
+    const containerMinWidth = Math.max(maxColumns * minCardWidth, 500); // Minimum 500px width
+    appointmentsContainer.style.width = `${containerMinWidth}px`;
+    appointmentsContainer.style.minWidth = `${containerMinWidth}px`;
+    
+    appointmentsWithColumns.forEach(apt => {
+        // Calculate position and height
+        const durationMinutes = apt.endMinutes - apt.startMinutes;
+        
+        // Base is 6:00 AM (360 minutes from midnight)
+        const baseMinutes = 6 * 60;
+        const offsetMinutes = apt.startMinutes - baseMinutes;
+        
+        // Each 30-minute slot is 60px
+        const slotHeight = 60;
+        const topPosition = (offsetMinutes / 30) * slotHeight;
+        const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap
+        
+        // Calculate horizontal position and width based on column
+        // All appointments use fixed width for consistency
+        const columnWidth = minCardWidth - 16; // Account for margins
+        const cardWidth = `${columnWidth}px`;
+        const leftPosition = `${(apt.column * minCardWidth) + 8}px`;
+        
+        const card = document.createElement('div');
+        card.className = `mobile-appointment-card event-${apt.color}`;
+        card.onclick = () => showAppointmentModal(apt.id);
+        card.style.top = `${topPosition}px`;
+        card.style.height = `${cardHeight}px`;
+        card.style.left = leftPosition;
+        card.style.width = cardWidth;
+        
+        const title = document.createElement('div');
+        title.className = 'event-title';
+        title.textContent = apt.title;
+        
+        const time = document.createElement('div');
+        time.className = 'event-time';
+        time.textContent = apt.displayTime;
+        
+        card.appendChild(title);
+        card.appendChild(time);
+        appointmentsContainer.appendChild(card);
     });
+    
+    timeSlotsContainer.appendChild(slotsWrapper);
+    timeSlotsContainer.appendChild(scrollableContainer);
 }
 
 // Initialize calendars on page load
