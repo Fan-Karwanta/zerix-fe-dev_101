@@ -118,7 +118,10 @@ input[type="checkbox"].form-check-input:checked:focus {
   .logo-responsive-dashboard {
     width: 120px;
     height: 36px;
+    margin-left: 1rem;
   }
+
+  
   .main-scroll {
     max-height: calc(100vh - 140px);
   }

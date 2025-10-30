@@ -24,6 +24,8 @@ body {
   height: 54px;
 }
 
+
+
 .form-check-input:focus,
 .form-check-input:focus-visible {
   outline: none !important;
@@ -104,7 +106,9 @@ body {
   .logo-responsive-dashboard {
     width: 114px;
     height: 32px;
+    margin-left: 1rem;
   }
+  
   .main-scroll {
     max-height: calc(100vh - 140px);
   }
