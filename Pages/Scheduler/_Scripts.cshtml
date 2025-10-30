@@ -1856,9 +1856,9 @@ const appointments = [
         phone: '(+123) 555-0225',
         email: 'carol@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '08:00',
-        displayTime: '07:00 - 08:00 AM',
+        startTime: '08:00',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
         price: 'Gé¦1100.00',
         status: 'booked',
@@ -1877,9 +1877,9 @@ const appointments = [
         phone: '(+123) 555-0227',
         email: 'eva@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '08:00',
-        displayTime: '07:00 - 08:00 AM',
+        startTime: '08:00',
+        endTime: '09:00',
+        displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
         price: 'Gé¦950.00',
         status: 'booked',
@@ -1897,9 +1897,9 @@ const appointments = [
         phone: '(+123) 555-0228',
         email: 'frank@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '08:00',
-        displayTime: '07:00 - 08:00 AM',
+        startTime: '09:00',
+        endTime: '10:00',
+        displayTime: '09:00 - 10:00 AM',
         duration: '60 minutes',
         price: 'Gé¦1500.00',
         status: 'completed',
@@ -1917,9 +1917,9 @@ const appointments = [
         phone: '(+123) 555-0229',
         email: 'gracea@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '08:00',
-        displayTime: '07:00 - 08:00 AM',
+        startTime: '10:00',
+        endTime: '11:00',
+        displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
         price: 'Gé¦1050.00',
         status: 'booked',
@@ -1938,9 +1938,9 @@ const appointments = [
         phone: '(+123) 555-0231',
         email: 'iris@example.com',
         date: new Date(2023, 4, 14), // May 14, 2023 (Sunday)
-        startTime: '07:00',
-        endTime: '08:00',
-        displayTime: '07:00 - 08:00 AM',
+        startTime: '11:00',
+        endTime: '12:00',
+        displayTime: '11:00 - 12:00 AM',
         duration: '60 minutes',
         price: 'Gé¦750.00',
         status: 'booked',
@@ -3162,11 +3162,12 @@ function generateMobileTimeSlots() {
     appointmentsContainer.style.minHeight = `${totalHeight}px`;
     
     // Add horizontal lines as actual elements for each time slot
-    for (let i = 1; i < totalSlots; i++) {
+    // Lines should align with the time label text (accounting for 4px top padding + text centering)
+    for (let i = 0; i < totalSlots; i++) {
         const line = document.createElement('div');
         line.className = 'mobile-time-separator';
         line.style.position = 'absolute';
-        line.style.top = `${i * 60 - 1}px`;
+        line.style.top = `${i * 60 + 12}px`; // Align with text baseline
         line.style.left = '0';
         line.style.width = '100%';
         line.style.height = '1px';
@@ -3285,7 +3286,7 @@ function generateMobileTimeSlots() {
         
         // Each 30-minute slot is 60px
         const slotHeight = 60;
-        const topPosition = (offsetMinutes / 30) * slotHeight;
+        const topPosition = (offsetMinutes / 30) * slotHeight + 12; // +12px to align with horizontal lines
         const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap
         
         // Calculate horizontal position and width based on column

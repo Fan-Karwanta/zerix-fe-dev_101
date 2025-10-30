@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div class="container px-4 my-3 pt-md-3 pt-3">
+<div class="container px-4 my-3 pt-md-3 pt-0">
     <div class="row g-4">
         <!-- Left Sidebar: Mini Calendar and Navigation - Show on tablets and desktop -->
         <div class="col-12 col-md-3 d-none d-md-block">
@@ -81,9 +81,9 @@
         <div class="col-12 col-md-9 mobile-appointment-content">
             <div class="appointment-types-container">
                 <!-- Header -->
-                <div class="appointment-types-header">
+                <div class="appointment-types-header-new">
                     <h2>Appointment Types</h2>
-                    <a href="/scheduler/admin_view/newtypeofservice" class="btn btn-new-service">New Type of Service</a>
+                    <a href="/scheduler/admin_view/newtypeofservice" class="btn btn-new-service">+</a>
                 </div>
 
                 <!-- Appointment Type Items -->
@@ -93,8 +93,8 @@
                         <div class="appointment-type-info">
                             <div class="appointment-type-name">Consultation</div>
                             <div class="appointment-type-details">
-                                <span>Reservation Fee: ₱30.00</span>
-                                <span>50 minutes @@ ₱45.00</span>
+                                <div>Reservation Fee: ₱30.00</div>
+                                <div>50 minutes @ ₱45.00</div>
                             </div>
                         </div>
                         <button class="btn btn-edit">Edit</button>
@@ -105,8 +105,7 @@
                         <div class="appointment-type-info">
                             <div class="appointment-type-name">Medical Appointment</div>
                             <div class="appointment-type-details">
-                                <span>Reservation Fee: ₱30.00</span>
-                                <span>30 minutes @@ ₱45.00</span>
+                                <div>30 minutes</div>
                             </div>
                         </div>
                         <button class="btn btn-edit">Edit</button>
