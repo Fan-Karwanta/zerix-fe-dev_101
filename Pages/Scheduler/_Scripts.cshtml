@@ -2890,13 +2890,18 @@ function generateDailyView() {
             const column = appointmentColumns.get(appointment.id);
             const maxColumns = appointment.maxColumns || 1;
             
-            // Fixed height for all appointments regardless of duration
-            const minuteOffset = (startMinute / 60) * 80;
+            // Calculate position and height based on time
+            const minuteOffset = (startMinute / 60) * 75;
+            
+            // Calculate height based on duration (75px per hour)
+            const heightPerMinute = 75 / 60; // 75px per hour = 1.25px per minute
+            const calculatedHeight = durationMinutes * heightPerMinute;
             
             const eventDiv = document.createElement('div');
             eventDiv.className = `daily-appointment-event event-${appointment.color}`;
             eventDiv.style.position = 'absolute';
             eventDiv.style.top = `${minuteOffset}px`;
+            eventDiv.style.height = `${calculatedHeight}px`;
             
             // Calculate horizontal positioning with fixed width
             const appointmentWidth = 180;
