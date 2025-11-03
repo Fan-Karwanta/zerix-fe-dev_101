@@ -3628,6 +3628,19 @@
     .mobile-appointment-card .event-time {
         font-size: 13px;
     }
+    
+    /* Change weekday names to single letters for iPad Pro */
+    .mini-weekday {
+        font-size: 0;
+    }
+    
+    .mini-weekday:nth-child(1)::after { content: 'S'; font-size: 11px; }
+    .mini-weekday:nth-child(2)::after { content: 'M'; font-size: 11px; }
+    .mini-weekday:nth-child(3)::after { content: 'T'; font-size: 11px; }
+    .mini-weekday:nth-child(4)::after { content: 'W'; font-size: 11px; }
+    .mini-weekday:nth-child(5)::after { content: 'T'; font-size: 11px; }
+    .mini-weekday:nth-child(6)::after { content: 'F'; font-size: 11px; }
+    .mini-weekday:nth-child(7)::after { content: 'S'; font-size: 11px; }
 }
 
 /* Calendar Week View */
