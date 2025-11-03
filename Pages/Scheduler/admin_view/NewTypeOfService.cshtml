@@ -6,11 +6,13 @@
     ViewData["User"] = "Admin";
 }
 
+@await Html.PartialAsync("../_Styles")
+
 @await Html.PartialAsync("../admin_view/_Styles")
 
-@await Html.PartialAsync("../admin_view/_Navigation")
+@await Html.PartialAsync("../user_view/_Navigation")
 
-@await Html.PartialAsync("../admin_view/_MobileSidebar")
+@await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-3 pt-3">
     <div class="row">
@@ -41,31 +43,15 @@
                         <textarea class="form-control" rows="4" placeholder="Write some instructions about the upcoming appointment or refund policy"></textarea>
                     </div>
 
-                    <!-- Duration and Max # Pax -->
+                    <!-- Duration and Block of Time -->
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label class="form-label">Duration</label>
-                            <select class="form-select">
-                                <option selected>Select duration</option>
-                                <option value="15">15 minutes</option>
-                                <option value="30">30 minutes</option>
-                                <option value="45">45 minutes</option>
-                                <option value="60">1 hour</option>
-                                <option value="90">1.5 hours</option>
-                                <option value="120">2 hours</option>
-                            </select>
+                            <input type="number" class="form-control" placeholder="0" />
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Max # Pax (Person/ Availed/ Booking)</label>
-                            <select class="form-select">
-                                <option selected>Select max pax</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                            </select>
+                            <label class="form-label">Block of Time (Minutes between bookings)</label>
+                            <input type="number" class="form-control" placeholder="0" />
                         </div>
                     </div>
 
@@ -74,6 +60,10 @@
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label class="form-label">Price</label>
                             <input type="number" class="form-control" placeholder="0" step="0.01" />
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="requiredFullPayment">
+                                <label class="form-check-label" for="requiredFullPayment">Required full payment</label>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Reservation Fee</label>
@@ -81,14 +71,40 @@
                         </div>
                     </div>
 
-                    <!-- Type of Duration -->
+                    <!-- Refund Policy -->
                     <div class="form-group mb-4">
-                        <label class="form-label">Type of Duration</label>
+                        <label class="form-label">Refund Policy</label>
+                        <div class="refund-policy-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="refundPolicy" id="refundFull" checked>
+                                <label class="form-check-label" for="refundFull">Refund in Full (Ravoke the Total Amount Paid)</label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="refundPolicy" id="refundPartial">
+                                <label class="form-check-label" for="refundPartial">Partial Refund (Non-Refundable Reservation Fee)</label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="refundPolicy" id="noRefund">
+                                <label class="form-check-label" for="noRefund">No Refund</label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="refundPolicy" id="refundPercentage">
+                                <label class="form-check-label" for="refundPercentage">Refund a Percentage of the Total Price</label>
+                            </div>
+                            <input type="number" class="form-control mt-2" placeholder="0" style="max-width: 150px;" />
+                        </div>
+                    </div>
+
+                    <!-- Refund Duration -->
+                    <div class="form-group mb-4">
+                        <label class="form-label">Refund Duration (After the Booking Date)</label>
                         <select class="form-select">
-                            <option selected>Select type</option>
-                            <option value="minutes">Minutes</option>
-                            <option value="hours">Hours</option>
-                            <option value="days">Days</option>
+                            <option selected>0</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 days</option>
+                            <option value="3">3 days</option>
+                            <option value="7">1 week</option>
+                            <option value="14">2 weeks</option>
                         </select>
                     </div>
 
@@ -101,21 +117,21 @@
                                 <input class="form-check-input" type="checkbox" id="accessAll" checked>
                                 <label class="form-check-label" for="accessAll">All</label>
                             </div>
-                            <div class="form-check ms-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="accessMIS">
+                                <label class="form-check-label" for="accessMIS">MIS</label>
+                            </div>
+                            <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="accessHR">
                                 <label class="form-check-label" for="accessHR">HR</label>
                             </div>
-                            <div class="form-check ms-4">
-                                <input class="form-check-input" type="checkbox" id="accessIT">
-                                <label class="form-check-label" for="accessIT">IT</label>
-                            </div>
-                            <div class="form-check ms-4">
+                            <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="accessAccounting">
                                 <label class="form-check-label" for="accessAccounting">Accounting</label>
                             </div>
-                            <div class="form-check ms-4">
-                                <input class="form-check-input" type="checkbox" id="accessOthers">
-                                <label class="form-check-label" for="accessOthers">Others</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="accessClients">
+                                <label class="form-check-label" for="accessClients">Clients</label>
                             </div>
                         </div>
                     </div>
@@ -123,7 +139,7 @@
                     <!-- Category -->
                     <div class="form-group mb-4">
                         <label class="form-label">Category</label>
-                        <p class="form-text text-muted small mb-2">Select the category to which this appointment should be grouped.</p>
+                        <p class="form-text text-muted small mb-2">Select the category in which this appointment should be included</p>
                         <div class="category-tree">
                             <div class="category-item">
                                 <div class="form-check">
@@ -131,62 +147,80 @@
                                     <label class="form-check-label fw-500" for="categoryMain">Main Category</label>
                                 </div>
                                 <div class="category-children ms-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryHair">
-                                        <label class="form-check-label" for="categoryHair">Hair</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryFace">
-                                        <label class="form-check-label" for="categoryFace">Face</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryHand">
-                                        <label class="form-check-label" for="categoryHand">Hand</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryFeet">
-                                        <label class="form-check-label" for="categoryFeet">Feet</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="category-item mt-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categoryBranch">
-                                    <label class="form-check-label fw-500" for="categoryBranch">By Branch/ Agency</label>
-                                </div>
-                                <div class="category-children ms-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryHairSub">
-                                        <label class="form-check-label" for="categoryHairSub">Hair</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryFaceSub">
-                                        <label class="form-check-label" for="categoryFaceSub">Face</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryHandSub">
-                                        <label class="form-check-label" for="categoryHandSub">Hand</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryFeetSub">
-                                        <label class="form-check-label" for="categoryFeetSub">Feet</label>
+                                    <div class="category-subitem">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="category" id="categoryMegamind">
+                                            <label class="form-check-label fw-500" for="categoryMegamind">Megamind</label>
+                                        </div>
+                                        <div class="category-children ms-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHair">
+                                                <label class="form-check-label" for="categoryMegamindHair">Hair</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindFeet">
+                                                <label class="form-check-label" for="categoryMegamindFeet">Feet</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindFace">
+                                                <label class="form-check-label" for="categoryMegamindFace">Face</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHand">
+                                                <label class="form-check-label" for="categoryMegamindHand">Hand</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHead">
+                                                <label class="form-check-label" for="categoryMegamindHead">Head</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="category-item mt-3">
+                            <div class="category-item mt-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categoryMultiple">
-                                    <label class="form-check-label fw-500" for="categoryMultiple">Multiple Svc Lvl</label>
+                                    <input class="form-check-input" type="radio" name="category" id="categoryRenacence">
+                                    <label class="form-check-label fw-500" for="categoryRenacence">Renacence Qatana</label>
                                 </div>
                                 <div class="category-children ms-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryHairMulti">
-                                        <label class="form-check-label" for="categoryHairMulti">Hair</label>
+                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceNew">
+                                        <label class="form-check-label" for="categoryRenacenceNew">New</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categorySMMore">
-                                        <label class="form-check-label" for="categorySMMore">SM More...</label>
+                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceFeet">
+                                        <label class="form-check-label" for="categoryRenacenceFeet">Feet</label>
                                     </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceFace">
+                                        <label class="form-check-label" for="categoryRenacenceFace">Face</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceHand">
+                                        <label class="form-check-label" for="categoryRenacenceHand">Hand</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceHead">
+                                        <label class="form-check-label" for="categoryRenacenceHead">Head</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="category-item mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="categoryAntipolo">
+                                    <label class="form-check-label fw-500" for="categoryAntipolo">Renacence Antipolo</label>
+                                </div>
+                            </div>
+                            <div class="category-item mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="categorySMMall">
+                                    <label class="form-check-label fw-500" for="categorySMMall">SM Mall of Asia</label>
+                                </div>
+                            </div>
+                            <div class="category-item mt-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="categorySMAura">
+                                    <label class="form-check-label fw-500" for="categorySMAura">SM Aura</label>
                                 </div>
                             </div>
                         </div>
@@ -245,8 +279,8 @@
 
 .access-checkboxes {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .form-check {
@@ -281,11 +315,15 @@
 }
 
 .category-item {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .category-item:last-child {
     margin-bottom: 0;
+}
+
+.category-subitem {
+    margin-bottom: 8px;
 }
 
 .category-children {
@@ -293,7 +331,11 @@
 }
 
 .category-children .form-check {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+}
+
+.refund-policy-options .form-check {
+    margin-bottom: 6px;
 }
 
 .fw-500 {
@@ -339,12 +381,8 @@
         padding: 20px;
     }
 
-    .access-checkboxes {
-        flex-direction: column;
-    }
-
-    .form-check.ms-4 {
-        margin-left: 0 !important;
+    .category-children {
+        margin-left: 1rem !important;
     }
 
     .form-actions {

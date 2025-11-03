@@ -6,11 +6,13 @@
     ViewData["User"] = "Admin";
 }
 
+@await Html.PartialAsync("../_Styles")
+
 @await Html.PartialAsync("../admin_view/_Styles")
 
-@await Html.PartialAsync("../admin_view/_Navigation")
+@await Html.PartialAsync("../user_view/_Navigation")
 
-@await Html.PartialAsync("../admin_view/_MobileSidebar")
+@await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <!-- Mobile Overview Dropdown - Only show on phones, hide on tablets and desktop -->
 <div class="mobile-overview-section d-md-none">
