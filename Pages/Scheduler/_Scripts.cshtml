@@ -422,7 +422,7 @@ function submitInformation() {
     const appointmentFee = document.getElementById('info-appointment-fee').textContent;
     
     // Extract price from fee text (e.g., "Reservation Fee: â‚±90.00" -> 90.00)
-    let price = 378.00; // Default price
+    let price = 380.00; // Default price
     const feeMatch = appointmentFee.match(/â‚±([\d,]+\.?\d*)/);
     if (feeMatch) {
         price = parseFloat(feeMatch[1].replace(/,/g, ''));
@@ -864,10 +864,10 @@ function addToCart() {
     const servicePrices = {
         'Hair': 560.00,
         'Feet': 450.00,
-        'Face': 378.00
+        'Face': 380.00
     };
     
-    const price = servicePrices[selectedService] || 378.00;
+    const price = servicePrices[selectedService] || 380.00;
     
     // Check if item already exists in cart
     const existingItem = cart.find(item => item.service === selectedService);
@@ -1394,7 +1394,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'Gé¦780.00',
+        price: 'Gé¦800.00',
         status: 'refunded',
         scheduledDate: 'May 10, 2023 (Wed) at 02:00 PM',
         formAnswers: [
@@ -1477,7 +1477,7 @@ const appointments = [
         endTime: '11:00',
         displayTime: '10:00 - 11:00 AM',
         duration: '60 minutes',
-        price: 'Gé¦780.00',
+        price: 'Gé¦800.00',
         status: 'refund-requested',
         scheduledDate: 'May 13, 2023 (Sat) at 11:00 AM',
         formAnswers: [
@@ -1497,7 +1497,7 @@ const appointments = [
         endTime: '13:00',
         displayTime: '12:00 - 01:00 PM',
         duration: '60 minutes',
-        price: 'Gé¦1780.00',
+        price: 'Gé¦1800.00',
         status: 'refunded',
         scheduledDate: 'May 11, 2023 (Thu) at 02:00 PM',
         formAnswers: [
@@ -1692,7 +1692,7 @@ const appointments = [
         endTime: '09:00',
         displayTime: '08:00 - 09:00 AM',
         duration: '60 minutes',
-        price: 'Gé¦1780.00',
+        price: 'Gé¦1800.00',
         status: 'rescheduled-by-admin',
         scheduledDate: 'May 14, 2023 (Sun) at 01:00 PM',
         originalDate: 'May 16, 2023 (Tue)',
@@ -1840,7 +1840,7 @@ const appointments = [
         endTime: '08:00',
         displayTime: '07:00 - 08:00 AM',
         duration: '60 minutes',
-        price: 'Gé¦780.00',
+        price: 'Gé¦800.00',
         status: 'completed',
         scheduledDate: 'May 10, 2023 (Wed) at 03:00 PM',
         formAnswers: [
@@ -2850,7 +2850,7 @@ function generateDailyView() {
         const timeCell = document.createElement('div');
         timeCell.className = 'daily-time-cell';
         timeCell.style.position = 'relative';
-        timeCell.style.minHeight = '78px';
+        timeCell.style.minHeight = '80px';
         timeCell.style.minWidth = '600px';
         
         // Add half-hour interval line
@@ -2891,20 +2891,22 @@ function generateDailyView() {
             const maxColumns = appointment.maxColumns || 1;
             
             // Calculate position and height based on time
-            const minuteOffset = (startMinute / 60) * 78;
+            // Each hour cell is 80px tall, so calculate the exact pixel position based on minutes
+            const minuteOffset = (startMinute / 60) * 80;
             
-            // Calculate height based on duration (78px per hour for better visibility)
-            const heightPerMinute = 78 / 60; // 78px per hour = 1.333px per minute
+            // Calculate height based on duration (80px per hour for better visibility)
+            const heightPerMinute = 80 / 60; // 80px per hour = 1.3px per minute
             const calculatedHeight = durationMinutes * heightPerMinute;
             
             const eventDiv = document.createElement('div');
             eventDiv.className = `daily-appointment-event event-${appointment.color}`;
             eventDiv.style.position = 'absolute';
-            eventDiv.style.top = `${minuteOffset}px`;
+            eventDiv.style.top = `${minuteOffset + 0}px`; // Add 3px offset for proper alignment
             eventDiv.style.height = `${calculatedHeight}px`;
+            eventDiv.style.margin = '0'; // Remove default margin for precise positioning
             
             // Calculate horizontal positioning with fixed width
-            const appointmentWidth = 178;
+            const appointmentWidth = 180;
             
             // Always use fixed width for consistency
             eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
@@ -3160,9 +3162,9 @@ function generateMobileTimeSlots() {
     const appointmentsContainer = document.createElement('div');
     appointmentsContainer.className = 'mobile-appointments-container';
     
-    // Calculate total height: number of time slots × 78px per slot
+    // Calculate total height: number of time slots × 80px per slot
     const totalSlots = timeSlots.length; // 23 slots from 6 AM to 5 PM
-    const totalHeight = totalSlots * 78;
+    const totalHeight = totalSlots * 80;
     appointmentsContainer.style.height = `${totalHeight}px`;
     appointmentsContainer.style.minHeight = `${totalHeight}px`;
     
@@ -3172,7 +3174,7 @@ function generateMobileTimeSlots() {
         const line = document.createElement('div');
         line.className = 'mobile-time-separator';
         line.style.position = 'absolute';
-        line.style.top = `${i * 78 + 12}px`; // Align with text baseline
+        line.style.top = `${i * 80 + 12}px`; // Align with text baseline
         line.style.left = '0';
         line.style.width = '100%';
         line.style.height = '1px';
@@ -3289,8 +3291,8 @@ function generateMobileTimeSlots() {
         const baseMinutes = 6 * 60;
         const offsetMinutes = apt.startMinutes - baseMinutes;
         
-        // Each 30-minute slot is 78px (updated for better visibility)
-        const slotHeight = 78;
+        // Each 30-minute slot is 80px (updated for better visibility)
+        const slotHeight = 80;
         const topPosition = (offsetMinutes / 30) * slotHeight + 12; // +12px to align with horizontal lines
         const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap
         
@@ -3346,8 +3348,8 @@ document.addEventListener('DOMContentLoaded', function() {
     generateMiniCalendar();
     updateFullCalendar();
     
-    // Generate mobile and tablet calendar (up to 1199px - Bootstrap lg breakpoint)
-    if (window.innerWidth < 1200) {
+    // Generate mobile and tablet calendar (up to 1366px - includes iPad Pro)
+    if (window.innerWidth <= 1366) {
         generateMobileCalendar();
     }
 });
@@ -3427,7 +3429,7 @@ function backToServiceCategoryFromPayment() {
 
 // Toggle payment amount when checkbox is clicked
 function togglePaymentAmount(view) {
-    const fullAmount = '₱1780.00';
+    const fullAmount = '₱1800.00';
     const dueAmount = '₱690.00';
     
     console.log('togglePaymentAmount called with view:', view);

@@ -824,8 +824,8 @@
     min-width: 150px;
 }
 
-/* Tablet/Medium Device Styles (768px - 991px) */
-@@media (min-width: 768px) and (max-width: 1024px) {
+/* Tablet/Medium Device Styles (768px - 1023px) - iPad Air, iPad Mini */
+@@media (min-width: 768px) and (max-width: 1023px) {
     /* Show hamburger menu for tablet sizes */
     .navbar-toggler {
         display: block !important;
@@ -3605,8 +3605,23 @@
     }
 }
 
-/* iPad Pro specific adjustments */
+/* iPad Pro specific adjustments - Show mobile calendar flow */
 @@media (min-width: 1024px) and (max-width: 1366px) {
+    /* Override Bootstrap d-lg-block to hide desktop view */
+    .d-lg-block {
+        display: none !important;
+    }
+    
+    /* Show mobile views that have d-lg-none */
+    .d-lg-none {
+        display: block !important;
+    }
+    
+    /* Additional specificity for events container */
+    .events-container {
+        display: none !important;
+    }
+    
     .mobile-slots-wrapper {
         flex: 0 0 110px;
         width: 110px;
@@ -3629,18 +3644,110 @@
         font-size: 13px;
     }
     
-    /* Change weekday names to single letters for iPad Pro */
-    .mini-weekday {
-        font-size: 0;
+    /* Adjust mobile calendar for iPad Pro */
+    .mobile-mini-calendar {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
     }
     
-    .mini-weekday:nth-child(1)::after { content: 'S'; font-size: 11px; }
-    .mini-weekday:nth-child(2)::after { content: 'M'; font-size: 11px; }
-    .mini-weekday:nth-child(3)::after { content: 'T'; font-size: 11px; }
-    .mini-weekday:nth-child(4)::after { content: 'W'; font-size: 11px; }
-    .mini-weekday:nth-child(5)::after { content: 'T'; font-size: 11px; }
-    .mini-weekday:nth-child(6)::after { content: 'F'; font-size: 11px; }
-    .mini-weekday:nth-child(7)::after { content: 'S'; font-size: 11px; }
+    .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 20px;
+    }
+    
+    .mobile-mini-calendar .mini-weekday {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-day {
+        font-size: 14px;
+        min-height: 40px;
+        cursor: pointer !important;
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    }
+    
+    /* Ensure calendar days are clickable */
+    .mobile-mini-calendar .mini-calendar-days {
+        pointer-events: auto !important;
+        z-index: 1;
+    }
+    
+    /* Ensure calendar container doesn't block clicks */
+    .mobile-calendar-selection {
+        pointer-events: auto !important;
+    }
+    
+    /* Mobile header adjustments for iPad Pro */
+    .mobile-header-container h2 {
+        font-size: 28px !important;
+    }
+    
+    .mobile-back-chevron {
+        font-size: 28px;
+    }
+    
+    /* Mobile date navigation for iPad Pro */
+    .mobile-date-navigation h6 {
+        font-size: 18px;
+    }
+    
+    .mobile-date-navigation .calendar-nav-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+    
+    /* Mobile week days for iPad Pro */
+    .mobile-week-day {
+        min-width: 70px;
+        padding: 10px 10px;
+    }
+    
+    .mobile-week-day .day-name {
+        font-size: 12px;
+    }
+    
+    .mobile-week-day .day-number {
+        font-size: 18px;
+    }
+    
+    .mobile-week-day.active {
+        padding: 12px 14px;
+    }
+    
+    .mobile-week-day.active .day-number {
+        font-size: 20px;
+    }
+    
+    /* Search box for iPad Pro */
+    .mobile-daily-schedule .search-box input {
+        width: 100%;
+        max-width: 600px;
+        height: 42px;
+        font-size: 15px;
+    }
+    
+    /* Center mobile views on iPad Pro */
+    #mobile-calendar-view,
+    #mobile-daily-view {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    /* Mobile time slots container for iPad Pro */
+    .mobile-time-slots {
+        max-width: 100%;
+    }
+    
+    /* Ensure proper spacing for iPad Pro */
+    .container.px-4.my-3.pt-md-3.pt-3 {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
 }
 
 /* Calendar Week View */
