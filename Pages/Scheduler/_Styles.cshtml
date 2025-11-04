@@ -4799,8 +4799,8 @@
     display: block;
     padding: 0;
     position: relative;
-    height: 40px;
-    min-height: 40px;
+    height: 80px;
+    min-height: 80px;
 }
 
 .mobile-time-label {
@@ -4808,10 +4808,12 @@
     font-size: 12px;
     color: #999;
     font-weight: 400;
-    padding: 4px 12px 0 12px;
+    padding: 0 12px;
     text-align: left;
-    height: 80px !important;
-
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    line-height: 0;
 }
 
 .mobile-scrollable-container::-webkit-scrollbar {
