@@ -2145,9 +2145,12 @@ function generateWeekHeader() {
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
-    // Show only 5 days at a time based on offset
-    for (let i = 0; i < 5; i++) {
-        const dayIndex = i + weekDayOffset;
+    // Show 7 days on tablets (768px-1199px), 5 days on mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    const daysToShow = isTablet ? 7 : 5;
+    
+    for (let i = 0; i < daysToShow; i++) {
+        const dayIndex = isTablet ? i : (i + weekDayOffset);
         const currentDay = new Date(weekStart);
         currentDay.setDate(weekStart.getDate() + dayIndex);
         
@@ -2188,6 +2191,10 @@ function generateTimeSlots() {
     const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
+    // Show 7 days on tablets (768px-1199px), 5 days on mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    const daysToShow = isTablet ? 7 : 5;
+    
     hours.forEach((hour, hourIndex) => {
         const timeRow = document.createElement('div');
         timeRow.className = 'time-row';
@@ -2197,9 +2204,9 @@ function generateTimeSlots() {
         timeLabel.textContent = hour;
         timeRow.appendChild(timeLabel);
         
-        // Create 5 day cells based on offset
-        for (let i = 0; i < 5; i++) {
-            const dayIndex = i + weekDayOffset;
+        // Create day cells based on screen size
+        for (let i = 0; i < daysToShow; i++) {
+            const dayIndex = isTablet ? i : (i + weekDayOffset);
             const timeCell = document.createElement('div');
             timeCell.className = 'time-cell';
             
@@ -3008,17 +3015,25 @@ function generateMobileCalendar() {
 function selectMobileDateAndShowSchedule(date) {
     fullCurrentDate = new Date(date);
     
-    // Set offset to ensure selected date is visible in 5-day window
-    const dayOfWeek = date.getDay();
-    if (dayOfWeek <= 4) {
-        // Sun-Thu: Show Sun-Thu (offset 0)
+    // Check if tablet (768px-1199px) or mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    
+    if (isTablet) {
+        // Tablets show all 7 days, no offset needed
         weekDayOffset = 0;
-    } else if (dayOfWeek === 5) {
-        // Fri: Show Mon-Fri (offset 1)
-        weekDayOffset = 1;
     } else {
-        // Sat: Show Tue-Sat (offset 2)
-        weekDayOffset = 2;
+        // Set offset to ensure selected date is visible in 5-day window (mobile)
+        const dayOfWeek = date.getDay();
+        if (dayOfWeek <= 4) {
+            // Sun-Thu: Show Sun-Thu (offset 0)
+            weekDayOffset = 0;
+        } else if (dayOfWeek === 5) {
+            // Fri: Show Mon-Fri (offset 1)
+            weekDayOffset = 1;
+        } else {
+            // Sat: Show Tue-Sat (offset 2)
+            weekDayOffset = 2;
+        }
     }
     
     // Show mobile daily view
@@ -3035,29 +3050,47 @@ function showMobileCalendar() {
 }
 
 function previousDayMobile() {
-    // Move by 5 days or adjust offset
-    if (weekDayOffset > 0) {
-        // Can shift offset backward
-        weekDayOffset--;
-        fullCurrentDate.setDate(fullCurrentDate.getDate() - 1);
-    } else {
-        // At beginning of week, go to previous week and show last 5 days
+    // Check if tablet (768px-1199px) or mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    
+    if (isTablet) {
+        // Tablets show all 7 days, just go to previous week
         fullCurrentDate.setDate(fullCurrentDate.getDate() - 7);
-        weekDayOffset = 2; // Show Tue-Sat
+        weekDayOffset = 0;
+    } else {
+        // Mobile: Move by 5 days or adjust offset
+        if (weekDayOffset > 0) {
+            // Can shift offset backward
+            weekDayOffset--;
+            fullCurrentDate.setDate(fullCurrentDate.getDate() - 1);
+        } else {
+            // At beginning of week, go to previous week and show last 5 days
+            fullCurrentDate.setDate(fullCurrentDate.getDate() - 7);
+            weekDayOffset = 2; // Show Tue-Sat
+        }
     }
     updateMobileDailyView();
 }
 
 function nextDayMobile() {
-    // Move by 5 days or adjust offset
-    if (weekDayOffset < 2) {
-        // Can shift offset forward
-        weekDayOffset++;
-        fullCurrentDate.setDate(fullCurrentDate.getDate() + 1);
-    } else {
-        // At end of week, go to next week and show first 5 days
+    // Check if tablet (768px-1199px) or mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    
+    if (isTablet) {
+        // Tablets show all 7 days, just go to next week
         fullCurrentDate.setDate(fullCurrentDate.getDate() + 7);
-        weekDayOffset = 0; // Show Sun-Thu
+        weekDayOffset = 0;
+    } else {
+        // Mobile: Move by 5 days or adjust offset
+        if (weekDayOffset < 2) {
+            // Can shift offset forward
+            weekDayOffset++;
+            fullCurrentDate.setDate(fullCurrentDate.getDate() + 1);
+        } else {
+            // At end of week, go to next week and show first 5 days
+            fullCurrentDate.setDate(fullCurrentDate.getDate() + 7);
+            weekDayOffset = 0; // Show Sun-Thu
+        }
     }
     updateMobileDailyView();
 }
@@ -3079,9 +3112,13 @@ function generateMobileWeekDays() {
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekStart = getWeekStart(fullCurrentDate);
     
-    // Show only 5 days at a time based on offset
-    for (let i = 0; i < 5; i++) {
-        const dayIndex = i + weekDayOffset;
+    // Check if tablet (768px-1199px) or mobile (<768px)
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
+    const daysToShow = isTablet ? 7 : 5;
+    
+    // Show days based on screen size
+    for (let i = 0; i < daysToShow; i++) {
+        const dayIndex = isTablet ? i : (i + weekDayOffset);
         const currentDay = new Date(weekStart);
         currentDay.setDate(weekStart.getDate() + dayIndex);
         
@@ -3104,14 +3141,19 @@ function generateMobileWeekDays() {
                 fullCurrentDate = new Date(currentDay);
                 updateMobileDailyView();
             };
+            
+            // Show the element
+            dayElement.style.display = '';
         }
     }
     
-    // Hide the extra 2 day elements (mobile-day-5 and mobile-day-6)
-    for (let i = 5; i < 7; i++) {
-        const dayElement = document.getElementById(`mobile-day-${i}`);
-        if (dayElement) {
-            dayElement.style.display = 'none';
+    // Hide extra day elements on mobile (mobile-day-5 and mobile-day-6)
+    if (!isTablet) {
+        for (let i = 5; i < 7; i++) {
+            const dayElement = document.getElementById(`mobile-day-${i}`);
+            if (dayElement) {
+                dayElement.style.display = 'none';
+            }
         }
     }
 }
@@ -3162,19 +3204,20 @@ function generateMobileTimeSlots() {
     const appointmentsContainer = document.createElement('div');
     appointmentsContainer.className = 'mobile-appointments-container';
     
-    // Calculate total height: number of time slots × 80px per slot
+    // Calculate total height: 80px per hour (matching desktop)
+    // Time slots are every 30 minutes, so each slot is 40px (80px per hour)
     const totalSlots = timeSlots.length; // 23 slots from 6 AM to 5 PM
-    const totalHeight = totalSlots * 80;
+    const slotHeight = 40; // 40px per 30-minute slot = 80px per hour
+    const totalHeight = totalSlots * slotHeight;
     appointmentsContainer.style.height = `${totalHeight}px`;
     appointmentsContainer.style.minHeight = `${totalHeight}px`;
     
-    // Add horizontal lines as actual elements for each time slot
-    // Lines should align with the time label text (accounting for 4px top padding + text centering)
+    // Add horizontal lines for each 30-minute time slot
     for (let i = 0; i < totalSlots; i++) {
         const line = document.createElement('div');
         line.className = 'mobile-time-separator';
         line.style.position = 'absolute';
-        line.style.top = `${i * 80 + 12}px`; // Align with text baseline
+        line.style.top = `${i * slotHeight}px`; // Each line at exact 30-minute intervals
         line.style.left = '0';
         line.style.width = '100%';
         line.style.height = '1px';
@@ -3291,10 +3334,10 @@ function generateMobileTimeSlots() {
         const baseMinutes = 6 * 60;
         const offsetMinutes = apt.startMinutes - baseMinutes;
         
-        // Each 30-minute slot is 80px (updated for better visibility)
-        const slotHeight = 80;
-        const topPosition = (offsetMinutes / 30) * slotHeight + 12; // +12px to align with horizontal lines
-        const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap
+        // Each hour is 80px (matching desktop view)
+        const heightPerMinute = 80 / 60; // 80px per hour = 1.333px per minute
+        const topPosition = offsetMinutes * heightPerMinute; // No offset needed, align with actual time
+        const cardHeight = durationMinutes * heightPerMinute - 8; // 8px gap between cards
         
         // Calculate horizontal position and width based on column
         // All appointments use fixed width for consistency

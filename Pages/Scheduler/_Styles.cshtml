@@ -1074,23 +1074,122 @@
         font-size: 16px;
         padding: 10px 15px;
     }
-}
-
-/* Large Tablet/Small Desktop Styles (1024px - 1199px) */
-@@media (min-width: 1024px) and (max-width: 1199px) {
-    /* Timeslots container alignment */
-    .timeslots-side {
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    
+    /* Events Calendar - Show 7 days on tablets */
+    .week-header {
+        grid-template-columns: 60px repeat(7, 1fr);
     }
     
-    /* Time slots styling for this range */
-    .time-slots {
-        max-width: 500px;
+    #monthly-view .week-header {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    .time-row {
+        grid-template-columns: 60px repeat(7, 1fr);
+    }
+    
+    #monthly-view .time-row {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    /* Show all 7 day columns on tablets */
+    .day-column {
+        display: block;
+    }
+}
+
+/* Large Tablet/Small Desktop Styles (1024px - 1199px) - iPad Pro */
+@@media (min-width: 1024px) and (max-width: 1199px) {
+    /* Date & Time Selection - Mobile Flow for iPad Pro */
+    /* Stack calendar and timeslots vertically, show one at a time */
+    .datetime-unified-container {
+        margin: 0;
+        margin-bottom: 20px;
+        flex-direction: column !important;
+    }
+    
+    /* Hide vertical divider on iPad Pro */
+    .vertical-divider {
+        display: none !important;
+    }
+    
+    /* Calendar section styling */
+    .calendar-side {
+        padding: 20px 15px;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+    
+    /* Fix calendar grid and days to be clickable on iPad Pro */
+    .calendar-grid {
         width: 100%;
+        margin: 0;
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-header {
+        width: 100%;
+        margin: 0;
         padding: 0;
+        margin-bottom: 15px;
+    }
+    
+    .calendar-days {
+        pointer-events: auto;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .calendar-day {
+        pointer-events: auto;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        touch-action: manipulation;
+    }
+    
+    /* Timeslots section - hidden by default, shown after date selection */
+    .timeslots-side {
+        padding: 20px 15px;
+        display: none !important; /* Hide by default on iPad Pro, show after date selection */
+        flex-direction: column;
+        align-items: center;
+        flex: none !important;
+        max-width: 100% !important;
+    }
+    
+    /* Show mobile calendar instruction on iPad Pro */
+    .mobile-calendar-instruction {
+        display: block !important;
+    }
+    
+    .calendar-instruction {
+        display: none !important;
+    }
+    
+    /* Show mobile timeslots header on iPad Pro */
+    .mobile-timeslots-header {
+        display: block !important;
+    }
+    
+    /* Show timeslots when mobile-show-timeslots class is added on iPad Pro */
+    .timeslots-side.mobile-show-timeslots {
+        display: flex !important;
+        max-height: none;
+    }
+    
+    /* Hide calendar when showing timeslots on iPad Pro */
+    .calendar-side.mobile-hide-calendar {
+        display: none !important;
+    }
+    
+    /* Time slots styling for iPad Pro */
+    .time-slots {
+        max-width: 600px;
+        width: 100%;
+        padding: 0 20px;
         margin: 0 auto;
         align-items: stretch;
         display: flex;
@@ -1101,6 +1200,8 @@
         width: 100%;
         min-height: 45px;
         margin-bottom: 10px;
+        border-radius: 6px;
+        font-size: 16px;
     }
     
     .time-slot-content {
@@ -1128,22 +1229,41 @@
         padding: 10px 15px;
     }
     
-    /* Selected date header alignment */
+    /* Selected date header alignment for iPad Pro */
     .selected-date-header {
-        width: 100%;
-        max-width: 500px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0;
         margin-bottom: 15px;
+        width: 100%;
     }
     
-    #selected-date-display {
-        margin-left: 0;
+    /* Fix date display alignment for iPad Pro */
+    .selected-date-header h6 {
+        margin: 0;
+        padding: 0;
+        text-align: left;
     }
     
+    /* Fix chevron controls alignment for iPad Pro */
     .selected-date-header .chevron-controls {
-        margin-right: 0;
+        margin-right: 3rem;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    /* Remove the excessive margin on the date display */
+    #selected-date-display {
+        margin-left: 3rem;
+    }
+    
+    /* Ensure appointment info is aligned */
+    .selected-appointment-info {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     
     /* Back link alignment for all scheduler pages on iPad Pro */
@@ -1151,6 +1271,7 @@
         margin-bottom: 0 !important;
         position: relative;
         z-index: 1;
+        margin-left: 15px;
     }
     
     .d-none.d-md-flex .back-link {
@@ -1173,6 +1294,28 @@
     .information-desktop-header {
         margin-top: 0 !important;
         margin-bottom: 1.5rem !important;
+    }
+    
+    /* Events Calendar - Show 7 days on iPad Pro */
+    .week-header {
+        grid-template-columns: 60px repeat(7, 1fr);
+    }
+    
+    #monthly-view .week-header {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    .time-row {
+        grid-template-columns: 60px repeat(7, 1fr);
+    }
+    
+    #monthly-view .time-row {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    /* Show all 7 day columns on iPad Pro */
+    .day-column {
+        display: block;
     }
 
     /* Payment Method page alignment for iPad Pro */
@@ -4641,8 +4784,8 @@
     display: block;
     padding: 0;
     position: relative;
-    height: 60px;
-    min-height: 60px;
+    height: 40px;
+    min-height: 40px;
 }
 
 .mobile-time-label {
@@ -4652,7 +4795,8 @@
     font-weight: 400;
     padding: 4px 12px 0 12px;
     text-align: left;
-    height: 60px;
+    height: 80px !important;
+
 }
 
 .mobile-scrollable-container::-webkit-scrollbar {
