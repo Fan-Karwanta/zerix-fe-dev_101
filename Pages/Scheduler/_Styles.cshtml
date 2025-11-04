@@ -591,6 +591,48 @@
     overflow-y: auto;
 }
 
+/* Custom scrollbar for modal body - overlay style that doesn't push content */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure appointment details modal body has equal spacing */
+.appointment-details-modal-body {
+    padding: 25px 25px 25px 25px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
 .appointment-info-card {
     border-radius: 8px;
 }
@@ -2343,7 +2385,26 @@
 }
 
 .release-slot-modal-body {
-    padding: 25px;
+    padding: 25px 25px 25px 25px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.release-slot-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.release-slot-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.release-slot-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.release-slot-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .release-slot-title {
@@ -3748,148 +3809,102 @@
     }
 }
 
-/* iPad Pro specific adjustments - Show mobile calendar flow */
+/* iPad Pro specific adjustments - Show desktop calendar view */
 @@media (min-width: 1024px) and (max-width: 1366px) {
-    /* Override Bootstrap d-lg-block to hide desktop view */
-    .d-lg-block {
-        display: none !important;
-    }
-    
-    /* Show mobile views that have d-lg-none */
-    .d-lg-none {
+    /* Ensure desktop view is shown on iPad Pro */
+    .events-container {
         display: block !important;
     }
     
-    /* Additional specificity for events container */
-    .events-container {
+    /* Hide mobile views on iPad Pro */
+    #mobile-calendar-view,
+    #mobile-daily-view {
         display: none !important;
     }
-    
-    .mobile-slots-wrapper {
-        flex: 0 0 110px;
-        width: 110px;
+
+    .mini-calendar-container {
+        padding: 6px;
     }
     
-    .mobile-time-label {
-        font-size: 14px;
-        padding: 4px 20px 0 20px;
+    /* Fix mini calendar weekday alignment - make them wider */
+    .mini-calendar-weekdays {
+        gap: 10px;
     }
     
-    .mobile-appointment-card {
-        padding: 14px 16px;
+    .mini-calendar-days {
+        gap: 10px;
     }
     
-    .mobile-appointment-card .event-title {
-        font-size: 15px;
+    .mini-weekday {
+        padding: 5px 2px;
     }
     
-    .mobile-appointment-card .event-time {
+    /* Only adjust calendar view header controls to fit in one line */
+    .calendar-view-header {
+        flex-wrap: nowrap !important;
+    }
+    
+    .calendar-view-header .d-flex {
+        gap: 6px !important;
+    }
+    
+    .btn-outline-light-gray {
+        padding: 6px 12px;
         font-size: 13px;
     }
     
-    /* Adjust mobile calendar for iPad Pro */
-    .mobile-mini-calendar {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 30px;
+    .view-dropdown-btn {
+        min-width: 90px;
     }
     
-    .mobile-mini-calendar .mini-calendar-header h6 {
-        font-size: 20px;
+    .sort-dropdown-btn {
+        min-width: 80px;
     }
     
-    .mobile-mini-calendar .mini-weekday {
-        font-size: 12px;
-        padding: 8px 0;
+    .calendar-date-text {
+        font-size: 13px;
+        margin: 0 4px;
     }
     
-    .mobile-mini-calendar .mini-calendar-day {
-        font-size: 14px;
-        min-height: 40px;
-        cursor: pointer !important;
-        pointer-events: auto !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    .calendar-chevron-btn {
+        width: 32px;
+        height: 32px;
     }
     
-    /* Ensure calendar days are clickable */
-    .mobile-mini-calendar .mini-calendar-days {
-        pointer-events: auto !important;
-        z-index: 1;
+    .calendar-chevron-btn svg {
+        width: 13px;
+        height: 13px;
     }
     
-    /* Ensure calendar container doesn't block clicks */
-    .mobile-calendar-selection {
-        pointer-events: auto !important;
+    .search-box input {
+        width: 160px;
+        height: 34px;
+        font-size: 13px;
     }
     
-    /* Mobile header adjustments for iPad Pro */
-    .mobile-header-container h2 {
-        font-size: 28px !important;
+    /* Show only 5 days in the main calendar instead of 7 */
+    .week-header {
+        grid-template-columns: 80px repeat(5, 1fr) !important;
     }
     
-    .mobile-back-chevron {
-        font-size: 28px;
+    #monthly-view .week-header {
+        grid-template-columns: repeat(5, 1fr) !important;
     }
     
-    /* Mobile date navigation for iPad Pro */
-    .mobile-date-navigation h6 {
-        font-size: 18px;
+    .time-row {
+        grid-template-columns: 80px repeat(5, 1fr) !important;
     }
     
-    .mobile-date-navigation .calendar-nav-btn {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
+    #monthly-view .time-row {
+        grid-template-columns: repeat(5, 1fr) !important;
     }
     
-    /* Mobile week days for iPad Pro */
-    .mobile-week-day {
-        min-width: 70px;
-        padding: 10px 10px;
-    }
-    
-    .mobile-week-day .day-name {
-        font-size: 12px;
-    }
-    
-    .mobile-week-day .day-number {
-        font-size: 18px;
-    }
-    
-    .mobile-week-day.active {
-        padding: 12px 14px;
-    }
-    
-    .mobile-week-day.active .day-number {
-        font-size: 20px;
-    }
-    
-    /* Search box for iPad Pro */
-    .mobile-daily-schedule .search-box input {
-        width: 100%;
-        max-width: 600px;
-        height: 42px;
-        font-size: 15px;
-    }
-    
-    /* Center mobile views on iPad Pro */
-    #mobile-calendar-view,
-    #mobile-daily-view {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    /* Mobile time slots container for iPad Pro */
-    .mobile-time-slots {
-        max-width: 100%;
-    }
-    
-    /* Ensure proper spacing for iPad Pro */
-    .container.px-4.my-3.pt-md-3.pt-3 {
-        padding-left: 30px !important;
-        padding-right: 30px !important;
+    /* Hide the 6th and 7th day columns (Saturday and Sunday or last 2 days) */
+    .day-column:nth-child(6),
+    .day-column:nth-child(7),
+    .time-cell:nth-child(6),
+    .time-cell:nth-child(7) {
+        display: none !important;
     }
 }
 
@@ -4832,6 +4847,7 @@
     pointer-events: auto;
     overflow: hidden;
     z-index: 10;
+    height: 80px !important;
 }
 
 .mobile-appointment-card:hover {
@@ -5026,7 +5042,26 @@
 }
 
 .appointment-details-modal-body {
-    padding: 25px;
+    padding: 25px 25px 25px 25px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.appointment-details-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 /* Status Section */
@@ -5367,7 +5402,26 @@
 }
 
 .appointment-rescheduled-modal-body {
-    padding: 30px;
+    padding: 30px 30px 30px 30px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.appointment-rescheduled-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.appointment-rescheduled-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.appointment-rescheduled-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.appointment-rescheduled-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .appointment-rescheduled-title {
@@ -5454,7 +5508,26 @@
 }
 
 .cancel-appointment-modal-body {
-    padding: 30px;
+    padding: 30px 30px 30px 30px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.cancel-appointment-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cancel-appointment-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cancel-appointment-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.cancel-appointment-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .cancel-appointment-title {
@@ -5564,7 +5637,26 @@
 }
 
 .appointment-cancelled-modal-body {
-    padding: 30px;
+    padding: 30px 30px 30px 30px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.appointment-cancelled-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.appointment-cancelled-modal-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.appointment-cancelled-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.appointment-cancelled-modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .appointment-cancelled-title {
