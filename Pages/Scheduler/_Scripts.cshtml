@@ -2914,9 +2914,10 @@ function generateDailyView() {
             
             // Calculate horizontal positioning with fixed width
             const appointmentWidth = 180;
+            const horizontalGap = 2; // Reduced from 8px to 2px for tighter spacing
             
             // Always use fixed width for consistency
-            eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
+            eventDiv.style.left = `${column * (appointmentWidth + horizontalGap)}px`;
             eventDiv.style.width = `${appointmentWidth}px`;
             
             eventDiv.style.zIndex = column + 1;
@@ -3321,7 +3322,7 @@ function generateMobileTimeSlots() {
     const maxColumns = Math.max(...appointmentsWithColumns.map(apt => apt.totalColumns), 1);
     
     // Set minimum width for appointments container to enable scrolling
-    const minCardWidth = 200; // Minimum width per appointment in pixels
+    const minCardWidth = 200// Minimum width per appointment in pixels
     const containerMinWidth = Math.max(maxColumns * minCardWidth, 500); // Minimum 500px width
     appointmentsContainer.style.width = `${containerMinWidth}px`;
     appointmentsContainer.style.minWidth = `${containerMinWidth}px`;
@@ -3334,16 +3335,16 @@ function generateMobileTimeSlots() {
         const baseMinutes = 6 * 60;
         const offsetMinutes = apt.startMinutes - baseMinutes;
         
-        // Each hour is 80px (matching desktop view)
-        const heightPerMinute = 80 / 60; // 80px per hour = 1.333px per minute
-        const topPosition = offsetMinutes * heightPerMinute; // No offset needed, align with actual time
-        const cardHeight = durationMinutes * heightPerMinute - 8; // 8px gap between cards
+        // Each 30-minute slot is 40px (matching the time slot grid)
+        const slotHeight = 40; // 40px per 30-minute slot
+        const topPosition = (offsetMinutes / 30) * slotHeight; // Align with 30-minute grid
+        const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap between cards
         
         // Calculate horizontal position and width based on column
         // All appointments use fixed width for consistency
-        const columnWidth = minCardWidth - 16; // Account for margins
+        const columnWidth = minCardWidth -4; // Account for margins
         const cardWidth = `${columnWidth}px`;
-        const leftPosition = `${(apt.column * minCardWidth) + 8}px`;
+        const leftPosition = `${(apt.column * minCardWidth) + 2}px`;
         
         const card = document.createElement('div');
         card.className = `mobile-appointment-card event-${apt.color}`;
@@ -3572,6 +3573,180 @@ function togglePaymentAmount(view) {
                 fullAmountSpan: !!fullAmountSpan
             });
         }
+    }
+}
+
+// ========================================
+// Edit Information Page Scripts
+// ========================================
+// Get appointment ID from URL query parameter
+const urlParams = new URLSearchParams(window.location.search);
+const appointmentId = urlParams.get('id');
+
+// Validate age input
+function validateAge(input) {
+    if (input.value.length > 2) {
+        input.value = input.value.slice(0, 2);
+    }
+    if (input.value > 99) {
+        input.value = 99;
+    }
+}
+
+// Load appointment data when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    if (appointmentId) {
+        loadAppointmentData(appointmentId);
+    }
+});
+
+function loadAppointmentData(id) {
+    // In a real application, this would fetch from the server
+    // For now, we'll use the same appointments data structure
+    const appointments = [
+        {
+            id: 1,
+            title: 'Eyebrow Thread',
+            subtitle: 'SM Megamall - Face',
+            duration: '50 minutes',
+            price: '₱450.00',
+            reservationFee: '₱90.00',
+            formAnswers: [
+                { question: 'How old are you?', answer: '24 years old' },
+                { question: 'Do you have any allergies to medications?', answer: 'No' },
+                { question: 'Do you have any family history of any conditions', answer: 'No' }
+            ]
+        },
+        {
+            id: 2,
+            title: 'Consultation',
+            subtitle: 'SM Megamall - Face',
+            duration: '50 minutes',
+            price: '₱450.00',
+            reservationFee: '₱90.00',
+            formAnswers: [
+                { question: 'How old are you?', answer: '24 years old' },
+                { question: 'Do you have any allergies to medications?', answer: 'No' },
+                { question: 'Do you have any family history of any conditions', answer: 'No' }
+            ]
+        }
+    ];
+    
+    const appointment = appointments.find(apt => apt.id == id);
+    
+    if (appointment) {
+        // Update appointment info display
+        const editAppointmentTitle = document.getElementById('edit-appointment-title');
+        const editAppointmentSubtitle = document.getElementById('edit-appointment-subtitle');
+        const editAppointmentDetails = document.getElementById('edit-appointment-details');
+        const editAppointmentFee = document.getElementById('edit-appointment-fee');
+        
+        if (editAppointmentTitle) editAppointmentTitle.textContent = appointment.title;
+        if (editAppointmentSubtitle) editAppointmentSubtitle.textContent = appointment.subtitle;
+        if (editAppointmentDetails) editAppointmentDetails.textContent = `${appointment.duration} @@ ${appointment.price}`;
+        if (editAppointmentFee) editAppointmentFee.textContent = `Reservation Fee: ${appointment.reservationFee}`;
+        
+        // Pre-fill form fields with existing answers
+        if (appointment.formAnswers && appointment.formAnswers.length > 0) {
+            // Extract age from "24 years old" format
+            const ageAnswer = appointment.formAnswers.find(qa => qa.question.includes('How old are you'));
+            if (ageAnswer) {
+                const ageMatch = ageAnswer.answer.match(/\d+/);
+                if (ageMatch) {
+                    const editAge = document.getElementById('edit-age');
+                    if (editAge) editAge.value = ageMatch[0];
+                }
+            }
+            
+            // Fill allergies
+            const allergiesAnswer = appointment.formAnswers.find(qa => qa.question.includes('allergies'));
+            if (allergiesAnswer) {
+                const editAllergies = document.getElementById('edit-allergies');
+                if (editAllergies) editAllergies.value = allergiesAnswer.answer;
+            }
+            
+            // Fill family history
+            const familyHistoryAnswer = appointment.formAnswers.find(qa => qa.question.includes('family history'));
+            if (familyHistoryAnswer) {
+                const editFamilyHistory = document.getElementById('edit-family-history');
+                if (editFamilyHistory) editFamilyHistory.value = familyHistoryAnswer.answer;
+            }
+        }
+    }
+}
+
+// Handle update button click
+const updateInformationBtn = document.getElementById('updateInformationBtn');
+if (updateInformationBtn) {
+    updateInformationBtn.addEventListener('click', function() {
+        const editAge = document.getElementById('edit-age');
+        const editAllergies = document.getElementById('edit-allergies');
+        const editFamilyHistory = document.getElementById('edit-family-history');
+        
+        const age = editAge ? editAge.value : '';
+        const allergies = editAllergies ? editAllergies.value : '';
+        const familyHistory = editFamilyHistory ? editFamilyHistory.value : '';
+        
+        // Validate required fields
+        if (!age) {
+            alert('Please enter your age');
+            return;
+        }
+        
+        // In a real application, this would send data to the server
+        console.log('Updating appointment information:', {
+            appointmentId: appointmentId,
+            age: age,
+            allergies: allergies,
+            familyHistory: familyHistory
+        });
+        
+        // Show success message and redirect back to calendar
+        alert('Information updated successfully!');
+        window.location.href = '/Scheduler/user_view/Events';
+    });
+}
+
+// ========================================
+// Payment Method Page Scripts
+// ========================================
+// Mobile navigation functions
+function showMobilePaymentPage() {
+    const mobileItemsPage = document.getElementById('mobile-items-page');
+    const mobilePaymentPage = document.getElementById('mobile-payment-page');
+    if (mobileItemsPage) mobileItemsPage.style.display = 'none';
+    if (mobilePaymentPage) mobilePaymentPage.style.display = 'block';
+}
+
+function showMobileItemsPage() {
+    const mobilePaymentPage = document.getElementById('mobile-payment-page');
+    const mobileItemsPage = document.getElementById('mobile-items-page');
+    if (mobilePaymentPage) mobilePaymentPage.style.display = 'none';
+    if (mobileItemsPage) mobileItemsPage.style.display = 'block';
+}
+
+// Tablet navigation functions
+function showTabletPaymentPage() {
+    const itemsPage = document.getElementById('tablet-items-page');
+    const paymentPage = document.getElementById('tablet-payment-page');
+    
+    if (itemsPage) {
+        itemsPage.classList.add('hide-tablet-items');
+    }
+    if (paymentPage) {
+        paymentPage.classList.add('show-tablet-payment');
+    }
+}
+
+function showTabletItemsPage() {
+    const itemsPage = document.getElementById('tablet-items-page');
+    const paymentPage = document.getElementById('tablet-payment-page');
+    
+    if (paymentPage) {
+        paymentPage.classList.remove('show-tablet-payment');
+    }
+    if (itemsPage) {
+        itemsPage.classList.remove('hide-tablet-items');
     }
 }
 </script>

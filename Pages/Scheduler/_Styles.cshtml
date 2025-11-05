@@ -4108,6 +4108,14 @@
     border: none;
 }
 
+/* Desktop: Reduce horizontal spacing between appointment cards */
+@@media (min-width: 1200px) {
+    .appointment-event {
+        left: 2px;
+        right: 2px;
+    }
+}
+
 .appointment-event:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -4754,6 +4762,24 @@
     font-weight: 600;
 }
 
+/* Tablet-specific styles for 7-day week view */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .mobile-week-days {
+        gap: 6px;
+    }
+    
+    .mobile-week-day {
+        flex: 1;
+        min-width: 0;
+        max-width: calc((100% - 36px) / 7); /* 7 days with 6px gaps */
+        padding: 8px 4px;
+    }
+    
+    .mobile-week-day.active {
+        padding: 10px 6px;
+    }
+}
+
 .mobile-time-slots {
     background: white;
     border: none;
@@ -4799,8 +4825,8 @@
     display: block;
     padding: 0;
     position: relative;
-    height: 80px;
-    min-height: 80px;
+    height: 40px;
+    min-height: 40px;
 }
 
 .mobile-time-label {
@@ -4810,7 +4836,7 @@
     font-weight: 400;
     padding: 0 12px;
     text-align: left;
-    height: 80px;
+    height: 40px;
     display: flex;
     align-items: flex-start;
     line-height: 0;
@@ -5014,6 +5040,27 @@
     max-width: 500px;
     margin: 0 auto;
     border: none;
+}
+
+/* Ensure modal dialog is centered on all screen sizes */
+#appointmentDetailsModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 1rem);
+}
+
+/* Tablet-specific modal centering (iPad Mini and similar sizes) */
+@@media (min-width: 768px) and (max-width: 1024px) {
+    #appointmentDetailsModal .modal-dialog {
+        margin: 0.5rem auto;
+        max-width: 500px;
+    }
+    
+    .appointment-details-modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 .appointment-details-close-btn {
@@ -6263,5 +6310,191 @@
     .mobile-header-container {
         padding: 0 0.5rem;
     }
+}
+
+/* ========================================
+   New Type of Service Form Styles
+   ======================================== */
+/* New Type of Service Form Styles */
+.new-service-form-container {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 800px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-control-note {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    height: 100px !important;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #ff5400;
+    box-shadow: 0 0 0 0.2rem rgba(255, 84, 0, 0.1);
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.form-text {
+    font-size: 13px;
+    color: #999;
+}
+
+.access-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #ff5400;
+    border-color: #ff5400;
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.category-tree {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    background: white;
+}
+
+.category-item {
+    margin-bottom: 12px;
+}
+
+.category-item:last-child {
+    margin-bottom: 0;
+}
+
+.category-subitem {
+    margin-bottom: 8px;
+}
+
+.category-children {
+    margin-top: 8px;
+    padding-left: 24px;
+}
+
+.category-children .form-check {
+    margin-bottom: 8px;
+}
+
+.refund-policy-options .form-check {
+    margin-bottom: 6px;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.btn-save-availability {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-save-availability:hover {
+    background-color: #e04800;
+}
+
+.btn-delete-type {
+    background-color: transparent;
+    color: #ff5400;
+    border: 1px solid #ff5400;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete-type:hover {
+    background-color: #ff5400;
+    color: white;
+}
+
+/* Responsive Styles */
+@@media (max-width: 768px) {
+    .new-service-form-container {
+        padding: 20px;
+    }
+
+    .category-children {
+        margin-left: 1rem !important;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   Edit Information Page Styles
+   ======================================== */
+/* Additional page-specific styles if needed */
+.selected-appointment-info {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.info-item {
+    margin-bottom: 0.25rem;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
 }
 </style>
