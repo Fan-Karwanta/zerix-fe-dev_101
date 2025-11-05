@@ -2914,9 +2914,10 @@ function generateDailyView() {
             
             // Calculate horizontal positioning with fixed width
             const appointmentWidth = 180;
+            const horizontalGap = 2; // Reduced from 8px to 2px for tighter spacing
             
             // Always use fixed width for consistency
-            eventDiv.style.left = `${column * (appointmentWidth + 8)}px`;
+            eventDiv.style.left = `${column * (appointmentWidth + horizontalGap)}px`;
             eventDiv.style.width = `${appointmentWidth}px`;
             
             eventDiv.style.zIndex = column + 1;
