@@ -126,6 +126,13 @@
    margin-top: 40px;
 }
 
+/* Tablet specific spacing adjustment */
+@@media (min-width: 768px) and (max-width: 1024px) {
+    .appointment-types-list {
+        margin-top: 40px;
+    }
+}
+
 .appointment-types-header {
     display: flex;
     justify-content: space-between;
@@ -264,7 +271,7 @@
 .mobile-overview-section {
     padding: 15px 0;
     background: white;
-    margin-bottom: -30px;
+    /*margin-bottom: -30px; */
     position: relative;
     margin-left: 20px;
     margin-right: 20px;
@@ -313,7 +320,7 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-top: 8px;
+    margin-top: -1.5rem;
 }
 
 .mobile-sidebar-nav {
@@ -359,6 +366,12 @@
         padding-right: 4px;
     }
 
+    /* Increase top spacing to match desktop */
+    .container.px-4.my-3.pt-md-3.pt-3 {
+        padding-top: 1rem !important;
+        margin-top: 1rem !important;
+    }
+
     /* Adjust mini calendar for tablets - make it more compact */
     .mini-calendar-container {
         padding: 10px;
@@ -393,7 +406,7 @@
     }
 
     .mini-calendar-header h6 {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .calendar-nav-btn {
@@ -409,7 +422,7 @@
 
     /* Appointment types header adjustments */
     .appointment-types-header {
-        margin-bottom: 14px;
+        margin-bottom: 20px;
     }
 
     .appointment-types-header h2 {
@@ -422,11 +435,11 @@
         white-space: nowrap;
     }
 
-    /* Appointment type items - keep horizontal layout on tablets */
+    /* Appointment type items - keep horizontal layout on tablets with desktop spacing */
     .appointment-type-item {
         flex-direction: row;
-        padding: 14px;
-        margin-bottom: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
     }
 
     .appointment-type-info {
@@ -871,8 +884,8 @@
     .container.px-4.my-3.pt-md-3.pt-3 {
         margin-top: 0 !important;
         padding-top: 0 !important;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+        padding-left: 24px !important;
+        padding-right: 22px !important;
     }
 }
 
