@@ -3321,7 +3321,7 @@ function generateMobileTimeSlots() {
     const maxColumns = Math.max(...appointmentsWithColumns.map(apt => apt.totalColumns), 1);
     
     // Set minimum width for appointments container to enable scrolling
-    const minCardWidth = 200; // Minimum width per appointment in pixels
+    const minCardWidth = 200// Minimum width per appointment in pixels
     const containerMinWidth = Math.max(maxColumns * minCardWidth, 500); // Minimum 500px width
     appointmentsContainer.style.width = `${containerMinWidth}px`;
     appointmentsContainer.style.minWidth = `${containerMinWidth}px`;
@@ -3334,16 +3334,16 @@ function generateMobileTimeSlots() {
         const baseMinutes = 6 * 60;
         const offsetMinutes = apt.startMinutes - baseMinutes;
         
-        // Each hour is 80px (matching desktop view)
-        const heightPerMinute = 80 / 60; // 80px per hour = 1.333px per minute
-        const topPosition = offsetMinutes * heightPerMinute; // No offset needed, align with actual time
-        const cardHeight = durationMinutes * heightPerMinute - 8; // 8px gap between cards
+        // Each 30-minute slot is 40px (matching the time slot grid)
+        const slotHeight = 40; // 40px per 30-minute slot
+        const topPosition = (offsetMinutes / 30) * slotHeight; // Align with 30-minute grid
+        const cardHeight = (durationMinutes / 30) * slotHeight - 8; // 8px gap between cards
         
         // Calculate horizontal position and width based on column
         // All appointments use fixed width for consistency
-        const columnWidth = minCardWidth - 16; // Account for margins
+        const columnWidth = minCardWidth -4; // Account for margins
         const cardWidth = `${columnWidth}px`;
-        const leftPosition = `${(apt.column * minCardWidth) + 8}px`;
+        const leftPosition = `${(apt.column * minCardWidth) + 2}px`;
         
         const card = document.createElement('div');
         card.className = `mobile-appointment-card event-${apt.color}`;
