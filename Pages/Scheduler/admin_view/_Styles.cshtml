@@ -1232,9 +1232,9 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0;
-    border: 1px solid #e5e5e5;
-    border-radius: 4px;
-    overflow: hidden;
+    border-left: 1px solid #d0d0d0;
+    border-top: 1px solid #d0d0d0;
+    background: white;
 }
 
 .calendar-weekday {
@@ -1242,68 +1242,58 @@
     font-weight: 500;
     color: #666;
     font-size: 12px;
-    padding: 10px 8px;
-    background-color: #fafafa;
-    border-right: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.calendar-weekday:last-child {
-    border-right: none;
+    padding: 12px 8px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
 }
 
 .calendar-day {
-    min-height: 110px;
-    padding: 10px;
-    border-right: 1px solid #e5e5e5;
-    border-bottom: 1px solid #e5e5e5;
+    min-height: 100px;
+    padding: 8px 10px;
+    border-right: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
     background: white;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.calendar-day:nth-child(7n) {
-    border-right: none;
-}
-
 .calendar-day:hover {
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
 }
 
 .calendar-day.other-month {
     background-color: #fafafa;
-    color: #ccc;
 }
 
 .calendar-day.other-month .day-number {
-    color: #ccc;
+    color: #bbb;
 }
 
 .calendar-day.selected {
     background-color: #fff5f0;
-    border-color: #ff5400;
 }
 
 .day-number {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     color: #333;
     margin-bottom: 8px;
 }
 
 .calendar-day.has-event {
-    background-color: #fafafa;
+    background-color: white;
 }
 
 .day-event {
     font-size: 11px;
-    color: #333;
-    margin-bottom: 3px;
-    line-height: 1.4;
+    color: #666;
+    margin-bottom: 2px;
+    line-height: 1.5;
     text-align: left;
     width: 100%;
 }
@@ -1684,10 +1674,6 @@
         font-size: 10px;
     }
     
-    .calendar-grid {
-        gap: 0;
-    }
-    
     .calendar-day {
         min-height: 80px;
         padding: 6px;
@@ -1763,7 +1749,7 @@
     }
     
     .calendar-day {
-        min-height: 100px;
+        min-height: 95px;
         padding: 8px;
     }
     
