@@ -924,4 +924,871 @@
     }
 }
 
+/* Set Availability Page Styles */
+.header-container-availability {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.back-availability {
+    margin-bottom: 0;
+    margin-right: auto;
+    color: #ff5400;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-availability:hover {
+    color: #e04800;
+}
+
+.page-title-availability {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Availability Header Row */
+.availability-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.availability-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.availability-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+}
+
+.availability-tab:hover {
+    color: #ff5400;
+}
+
+.availability-tab.active {
+    color: #ff5400;
+    border-bottom-color: #ff5400;
+    font-weight: 500;
+}
+
+.availability-action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-block-action {
+    background-color: white;
+    color: #ff5400;
+    border: 1px solid #ff5400;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-block-action:hover {
+    background-color: #fff5f0;
+}
+
+/* Weekly Schedule Section */
+.weekly-schedule-section {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Checkbox */
+.weekly-schedule-section .form-check-input {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.weekly-schedule-section .form-check-input:checked {
+    background-color: #ff5400;
+    border-color: #ff5400;
+}
+
+.weekly-schedule-section .form-check-label {
+    font-size: 14px;
+    color: #333;
+    margin-left: -5px;
+    cursor: pointer;
+    margin-bottom: -5px;
+}
+
+/* Weekly Row Layout */
+.weekly-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.weekly-day-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.weekly-day-header-item {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    background-color: #f8f8f8;
+   
+}
+
+.weekly-day-header-item:last-child {
+    border-right: none;
+}
+
+.weekly-day-contents {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+}
+
+.weekly-day-item {
+    padding: 20px 8px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.weekly-day-item:last-child {
+    border-right: none;
+}
+
+.weekly-day-item:hover {
+    background-color: #fff5f0;
+}
+
+.weekly-day-item.active {
+    background-color: #fff5f0;
+    border: 2px solid #ff5400;
+    border-top: none;
+    border-bottom: none;
+}
+
+.weekly-day-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ff5400;
+}
+
+.weekly-day-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ff5400;
+}
+
+.weekly-day-status {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666;
+}
+
+.weekly-day-time {
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.weekly-day-break {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+}
+
+.save-hours-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.btn-save-regular-hours {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-save-regular-hours:hover {
+    background-color: #e04800;
+}
+
+/* Calendar Section */
+.calendar-section {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.calendar-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-help-icon {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-help-icon:hover svg circle,
+.btn-help-icon:hover svg path {
+    stroke: #ff5400;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.calendar-month-year {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+.btn-calendar-nav {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-calendar-nav:hover svg path {
+    stroke: #ff5400;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.calendar-weekday {
+    text-align: center;
+    font-weight: 500;
+    color: #666;
+    font-size: 12px;
+    padding: 10px 8px;
+    background-color: #fafafa;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.calendar-weekday:last-child {
+    border-right: none;
+}
+
+.calendar-day {
+    min-height: 110px;
+    padding: 10px;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar-day:hover {
+    background-color: #f9f9f9;
+}
+
+.calendar-day.other-month {
+    background-color: #fafafa;
+    color: #ccc;
+}
+
+.calendar-day.other-month .day-number {
+    color: #ccc;
+}
+
+.calendar-day.selected {
+    background-color: #fff5f0;
+    border-color: #ff5400;
+}
+
+.day-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.calendar-day.has-event {
+    background-color: #fafafa;
+}
+
+.day-event {
+    font-size: 11px;
+    color: #333;
+    margin-bottom: 3px;
+    line-height: 1.4;
+    text-align: left;
+    width: 100%;
+}
+
+.calendar-save-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.btn-save-changes {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-save-changes:hover {
+    background-color: #e04800;
+}
+
+/* Modal Styles */
+.modal-set-time {
+    max-width: 500px;
+}
+
+.modal-set-time .modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-set-time .modal-header-clicked-day {
+    border-bottom: none;
+    padding: 20px 24px 0;
+    position: relative;
+}
+
+.modal-set-time .modal-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.btn-close-custom {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+}
+
+.btn-close-custom:hover svg path {
+    stroke: #e04800;
+}
+
+.modal-set-time .modal-body {
+    padding: 20px 24px 24px;
+}
+
+.time-row-modal {
+    display: flex;
+    gap: 12px;
+}
+
+.time-input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.time-label-modal {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 400;
+}
+
+.time-control-modal {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+.time-control-modal:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.1);
+}
+
+.btn-add-time-modal {
+    background-color: transparent;
+    color: #ff5400;
+    border: 1px solid #ff5400;
+    padding: 1px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-add-time-modal:hover {
+    background-color: #fff5f0;
+}
+
+.modal-actions-set-time {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-set-hours-modal {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-set-hours-modal:hover {
+    background-color: #e04800;
+}
+
+.btn-cancel-modal {
+    background-color: transparent;
+    color: #ff5400;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-cancel-modal:hover {
+    background-color: #fff5f0;
+}
+
+/* Block Off Modals Styles */
+.modal-block-off {
+    max-width: 450px;
+}
+
+.modal-block-off .modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-block-off .modal-header-clicked-day {
+    border-bottom: none;
+    padding: 24px 28px 8px;
+    position: relative;
+}
+
+.modal-block-off .modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-subtitle {
+    font-size: 13px;
+    color: #999;
+    margin: 4px 0 0 0;
+    font-weight: 400;
+}
+
+.modal-block-off .modal-body {
+    padding: 20px 28px 28px;
+}
+
+.block-label-modal {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: block;
+}
+
+.block-input-modal {
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.block-input-modal:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.1);
+}
+
+.block-input-modal::placeholder {
+    color: #aaa;
+}
+
+.date-control-modal {
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+.date-control-modal:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.1);
+}
+
+.modal-block-off .time-row-modal {
+    margin-bottom: 20px;
+}
+
+.modal-block-off .time-input-group {
+    flex: 1;
+}
+
+.modal-block-off .time-label-modal {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.modal-block-off .time-control-modal {
+    padding: 10px 14px;
+}
+
+.btn-add-another-day {
+    background-color: transparent;
+    color: #ff5400;
+    border: 1px solid #ff5400;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.btn-add-another-day:hover {
+    background-color: #fff5f0;
+}
+
+.modal-actions-block-day {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-block-off-day-submit {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-block-off-day-submit:hover {
+    background-color: #e04800;
+}
+
+.btn-cancel-block-modal {
+    background-color: transparent;
+    color: #ff5400;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-cancel-block-modal:hover {
+    background-color: #fff5f0;
+}
+
+/* Responsive Styles for Set Availability Page */
+@@media (max-width: 767px) {
+    .page-title-availability {
+        font-size: 17px !important;
+    }
+    
+    .header-container-availability {
+        margin-top: 1rem !important;
+        padding-top: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .availability-header-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .availability-tabs {
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    .availability-tab {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .availability-action-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .btn-block-action {
+        width: 100%;
+    }
+    
+    .weekly-schedule-section,
+    .calendar-section {
+        padding: 16px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+    }
+    
+    .weekly-day-headers {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 11px;
+    }
+    
+    .weekly-day-header-item {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+    
+    .weekly-day-contents {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    .weekly-day-item {
+        padding: 12px 4px;
+        min-height: 80px;
+        font-size: 11px;
+    }
+    
+    .weekly-day-time {
+        font-size: 10px;
+    }
+    
+    .calendar-grid {
+        gap: 0;
+    }
+    
+    .calendar-day {
+        min-height: 80px;
+        padding: 6px;
+    }
+    
+    .calendar-weekday {
+        font-size: 10px;
+        padding: 8px 4px;
+    }
+    
+    .day-number {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .day-event {
+        font-size: 9px;
+        margin-bottom: 2px;
+    }
+    
+    .calendar-save-container {
+        margin-top: 16px;
+    }
+    
+    .btn-save-changes {
+        width: 100%;
+        padding: 12px 24px;
+    }
+}
+
+@@media (min-width: 768px) and (max-width: 1024px) {
+    .page-title-availability {
+        font-size: 22px !important;
+    }
+    
+    .header-container-availability {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .availability-tab {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .btn-block-action {
+        padding: 7px 16px;
+        font-size: 13px;
+    }
+    
+    .weekly-schedule-section,
+    .calendar-section {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 17px;
+    }
+    
+    .weekly-day-header-item {
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+    
+    .weekly-day-item {
+        padding: 16px 6px;
+        min-height: 100px;
+    }
+    
+    .weekly-day-time {
+        font-size: 11px;
+    }
+    
+    .calendar-day {
+        min-height: 100px;
+        padding: 8px;
+    }
+    
+    .calendar-weekday {
+        font-size: 11px;
+        padding: 10px 6px;
+    }
+    
+    .day-number {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .day-event {
+        font-size: 10px;
+        margin-bottom: 2px;
+    }
+    
+    .calendar-save-container {
+        margin-top: 20px;
+    }
+    
+    .btn-save-changes {
+        padding: 12px 36px;
+    }
+}
+
 </style>

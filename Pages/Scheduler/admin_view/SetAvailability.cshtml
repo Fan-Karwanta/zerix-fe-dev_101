@@ -1,0 +1,462 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.SetAvailabilityModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Set Availability";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header with Back Button and Title -->
+            <div class="d-flex align-items-center mb-4 header-container-availability">
+                <a href="/scheduler/admin_view/newtypeofservice" class="back-link d-inline-flex align-items-center back-availability">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ms-1">Back</span>
+                </a>
+                <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0 page-title-availability">New Type of Service</h2>
+            </div>
+
+            <!-- Tab Navigation and Action Buttons -->
+            <div class="availability-header-row mb-4">
+                <div class="availability-tabs">
+                    <button type="button" class="availability-tab active">Set Hours of Availability</button>
+                    <button type="button" class="availability-tab">Calendar Scheduling Limits</button>
+                </div>
+                <div class="availability-action-buttons">
+                    <button type="button" class="btn btn-block-action" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
+                    <button type="button" class="btn btn-block-action" data-bs-toggle="modal" data-bs-target="#blockOffTimeModal">Block Off Time</button>
+                </div>
+            </div>
+
+            <!-- Weekly Schedule Section -->
+            <div class="weekly-schedule-section mb-4">
+                <!-- Checkbox -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="regularHours" checked>
+                    <label class="form-check-label" for="regularHours">
+                        I have regular hours per week
+                    </label>
+                </div>
+                
+                <!-- Weekly Row -->
+                <div class="weekly-row mb-4">
+                    <!-- Day Headers -->
+                    <div class="weekly-day-headers">
+                        <div class="weekly-day-header-item">Sunday</div>
+                        <div class="weekly-day-header-item">Monday</div>
+                        <div class="weekly-day-header-item">Tuesday</div>
+                        <div class="weekly-day-header-item">Wednesday</div>
+                        <div class="weekly-day-header-item">Thursday</div>
+                        <div class="weekly-day-header-item">Friday</div>
+                        <div class="weekly-day-header-item">Saturday</div>
+                    </div>
+                    
+                    <!-- Day Content -->
+                    <div class="weekly-day-contents">
+                        <!-- Sunday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+
+                        <!-- Monday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+
+                        <!-- Tuesday -->
+                        <div class="weekly-day-item active" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-time">9:00 - 11:00 AM</div>
+                            <div class="weekly-day-break">Break 1</div>
+                            <div class="weekly-day-time">1:00 - 5:00 PM</div>
+                        </div>
+
+                        <!-- Wednesday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+
+                        <!-- Thursday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+
+                        <!-- Friday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+
+                        <!-- Saturday -->
+                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save Regular Hours Button -->
+                <div class="save-hours-container">
+                    <button type="button" class="btn btn-save-regular-hours">Save Regular Hours</button>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="calendar-section">
+                <div class="calendar-title-row">
+                    <h3 class="section-title mb-0">Override Hours for Specific Days</h3>
+                    <button type="button" class="btn btn-help-icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="8" cy="8" r="7" stroke="#999" stroke-width="1.5"/>
+                            <path d="M8 11.5V11.5" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 8.5V8C8.55228 8 9 7.55228 9 7C9 6.44772 8.55228 6 8 6C7.44772 6 7 6.44772 7 7" stroke="#999" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Calendar Header -->
+                <div class="calendar-header mb-3">
+                    <button type="button" class="btn btn-calendar-nav">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15L7 10L12 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h4 class="calendar-month-year">December 2025</h4>
+                    <button type="button" class="btn btn-calendar-nav">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5L13 10L8 15" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-grid">
+                    <!-- Weekday Headers -->
+                    <div class="calendar-weekday">Sunday</div>
+                    <div class="calendar-weekday">Monday</div>
+                    <div class="calendar-weekday">Tuesday</div>
+                    <div class="calendar-weekday">Wednesday</div>
+                    <div class="calendar-weekday">Thursday</div>
+                    <div class="calendar-weekday">Friday</div>
+                    <div class="calendar-weekday">Saturday</div>
+
+                    <!-- Calendar Days -->
+                    <!-- Week 1 -->
+                    <div class="calendar-day other-month">
+                        <div class="day-number">30</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">1</div>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <div class="day-number">2</div>
+                        <div class="day-event">9:00 - 11:00 AM</div>
+                        <div class="day-event">Break 1</div>
+                        <div class="day-event">1:00 - 5:00 PM</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">3</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">4</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">5</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">6</div>
+                    </div>
+
+                    <!-- Week 2 -->
+                    <div class="calendar-day">
+                        <div class="day-number">7</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">8</div>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <div class="day-number">9</div>
+                        <div class="day-event">9:00 - 11:00 AM</div>
+                        <div class="day-event">Break 1</div>
+                        <div class="day-event">1:00 - 5:00 PM</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">10</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">11</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">12</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">13</div>
+                    </div>
+
+                    <!-- Week 3 -->
+                    <div class="calendar-day">
+                        <div class="day-number">14</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">15</div>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <div class="day-number">16</div>
+                        <div class="day-event">9:00 - 11:00 AM</div>
+                        <div class="day-event">Break 1</div>
+                        <div class="day-event">1:00 - 5:00 PM</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">17</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">18</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">19</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">20</div>
+                    </div>
+
+                    <!-- Week 4 -->
+                    <div class="calendar-day">
+                        <div class="day-number">21</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">22</div>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <div class="day-number">23</div>
+                        <div class="day-event">9:00 - 11:00 AM</div>
+                        <div class="day-event">Break 1</div>
+                        <div class="day-event">1:00 - 5:00 PM</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">24</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">25</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">26</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">27</div>
+                    </div>
+
+                    <!-- Week 5 -->
+                    <div class="calendar-day">
+                        <div class="day-number">28</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="day-number">29</div>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <div class="day-number">30</div>
+                        <div class="day-event">9:00 - 11:00 AM</div>
+                        <div class="day-event">Break 1</div>
+                        <div class="day-event">1:00 - 5:00 PM</div>
+                    </div>
+                    <div class="calendar-day other-month">
+                        <div class="day-number">31</div>
+                    </div>
+                    <div class="calendar-day other-month">
+                        <div class="day-number">1</div>
+                    </div>
+                    <div class="calendar-day other-month">
+                        <div class="day-number">2</div>
+                    </div>
+                    <div class="calendar-day other-month">
+                        <div class="day-number">3</div>
+                    </div>
+                </div>
+                
+                <!-- Save Changes Button -->
+                <div class="calendar-save-container">
+                    <button type="button" class="btn btn-save-changes">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Set Time Modal -->
+<div class="modal fade" id="setTimeModal" tabindex="-1" aria-labelledby="setTimeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-set-time">
+        <div class="modal-content">
+            <div class="modal-header-clicked-day border-0 pb-0">
+                <h5 class="modal-title" id="setTimeModalLabel">Set Time</h5>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body pt-3">
+                <!-- Time Inputs Row 1 -->
+                <div class="time-row-modal mb-3">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="time" class="form-control time-control-modal" value="9:00" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="time" class="form-control time-control-modal" value="11:00" />
+                    </div>
+                </div>
+
+                <!-- Time Inputs Row 2 -->
+                <div class="time-row-modal mb-3">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="time" class="form-control time-control-modal" value="1:00" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="time" class="form-control time-control-modal" value="5:00" />
+                    </div>
+                </div>
+
+                <!-- Add Time Button -->
+                <button type="button" class="btn btn-add-time-modal mb-3">+ Add Time</button>
+
+                <!-- Action Buttons -->
+                <div class="modal-actions-set-time">
+                    <button type="button" class="btn btn-set-hours-modal">Set Hours</button>
+                    <button type="button" class="btn btn-cancel-modal" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Block Off Time Modal -->
+<div class="modal fade" id="blockOffTimeModal" tabindex="-1" aria-labelledby="blockOffTimeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-block-off">
+        <div class="modal-content">
+            <div class="modal-header-clicked-day border-0 pb-0">
+                <div>
+                    <h5 class="modal-title mb-1" id="blockOffTimeModalLabel">Block Off Time</h5>
+                    <p class="modal-subtitle">Block time based on your availability</p>
+                </div>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body pt-3">
+                <!-- Label 1 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Break 1" />
+                </div>
+
+                <!-- Time Inputs Row 1 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                    </div>
+                </div>
+
+                <!-- Label 2 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Break 2" />
+                </div>
+
+                <!-- Time Inputs Row 2 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Block Off Day Modal -->
+<div class="modal fade" id="blockOffDayModal" tabindex="-1" aria-labelledby="blockOffDayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-block-off">
+        <div class="modal-content">
+            <div class="modal-header-clicked-day border-0 pb-0">
+                <div>
+                    <h5 class="modal-title mb-1" id="blockOffDayModalLabel">Block Off Day</h5>
+                    <p class="modal-subtitle">Block day based on your availability</p>
+                </div>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body pt-3">
+                <!-- Label 1 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
+                </div>
+
+                <!-- Date Inputs Row 1 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
+                    </div>
+                </div>
+
+                <!-- Label 2 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
+                </div>
+
+                <!-- Date Inputs Row 2 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
+                    </div>
+                </div>
+
+                <!-- Add Another Day Button -->
+                <button type="button" class="btn btn-add-another-day">+ Block another day</button>
+
+                <!-- Action Buttons -->
+                <div class="modal-actions-block-day">
+                    <button type="button" class="btn btn-block-off-day-submit">Block Off Day</button>
+                    <button type="button" class="btn btn-cancel-block-modal" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
