@@ -1617,12 +1617,12 @@
 }
 
 .refund-duration-input input {
-    padding-right: 1rem;
+    padding-right: 60px;
 }
 
 .refund-duration-input .duration-unit {
     position: absolute;
-    left: 2.2rem;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     color: #666;
@@ -1666,10 +1666,89 @@
     background: #999;
 }
 
+.category-tree-container {
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 16px;
+    background-color: white;
+    width: 50%;
+}
+
+.category-parent {
+    margin-bottom: 8px;
+}
+
+.category-parent .form-check {
+    margin-bottom: 0;
+}
+
+.category-parent-label {
+    font-weight: 400;
+    color: #333;
+    font-size: 14px;
+}
+
+.category-level-1 {
+    margin-left: 24px;
+    margin-bottom: 8px;
+}
+
+.category-level-1 .form-check {
+    margin-bottom: 0;
+}
+
+.category-level-1-label {
+    font-weight: 400;
+    color: #333;
+    font-size: 14px;
+}
+
+.category-level-2 {
+    margin-left: 48px;
+    margin-bottom: 8px;
+}
+
+.category-level-2 .form-check {
+    margin-bottom: 0;
+}
+
+.category-level-2 .form-check-label {
+    font-weight: 400;
+    color: #333;
+    font-size: 14px;
+}
+
+.category-tree-container .form-check-input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d0d0d0;
+    border-radius: 3px;
+}
+
+.category-tree-container .form-check-input[type="checkbox"]:checked {
+    background-color: #ff5400;
+    border-color: #ff5400;
+}
+
+.category-tree-container .form-check-input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d0d0d0;
+}
+
+.category-tree-container .form-check-input[type="radio"]:checked {
+    background-color: #ff5400;
+    border-color: #ff5400;
+}
+
 /* Responsive Styles for Set Availability Page */
 @@media (max-width: 767px) {
     .page-title-availability {
         font-size: 17px !important;
+    }
+
+    .category-tree-container {
+        width: 100%;
     }
 
     .access-checkboxes-container {

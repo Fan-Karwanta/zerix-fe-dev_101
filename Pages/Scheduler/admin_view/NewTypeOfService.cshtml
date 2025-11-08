@@ -135,87 +135,114 @@
                     <div class="form-group mb-4">
                         <label class="form-label">Category</label>
                         <p class="form-text text-muted small mb-2">Select the category in which this appointment should be included</p>
-                        <div class="category-tree">
-                            <div class="category-item">
+                        <div class="category-tree-container">
+                            <!-- Main Category -->
+                            <div class="category-parent">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categoryMain" checked>
-                                    <label class="form-check-label fw-500" for="categoryMain">Main Category</label>
-                                </div>
-                                <div class="category-children ">
-                                    <div class="category-subitem">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="category" id="categoryMegamind">
-                                            <label class="form-check-label fw-500" for="categoryMegamind">Megamall</label>
-                                        </div>
-                                        <div class="category-children ">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHair">
-                                                <label class="form-check-label" for="categoryMegamindHair">Hair</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindFeet">
-                                                <label class="form-check-label" for="categoryMegamindFeet">Feet</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindFace">
-                                                <label class="form-check-label" for="categoryMegamindFace">Face</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHand">
-                                                <label class="form-check-label" for="categoryMegamindHand">Hand</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="category" id="categoryMegamindHead">
-                                                <label class="form-check-label" for="categoryMegamindHead">Head</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
+                                    <label class="form-check-label category-parent-label" for="categoryMainParent">Main Category</label>
                                 </div>
                             </div>
-                            <div class="category-item mt-2">
+                            
+                            <!-- Megamall (Level 1) -->
+                            <div class="category-level-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categoryRenacence">
-                                    <label class="form-check-label fw-500" for="categoryRenacence">Robinsons Galeria</label>
-                                </div>
-                                <div class="category-children ">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceNew">
-                                        <label class="form-check-label" for="categoryRenacenceNew">Hair</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceFeet">
-                                        <label class="form-check-label" for="categoryRenacenceFeet">Feet</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceFace">
-                                        <label class="form-check-label" for="categoryRenacenceFace">Face</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceHand">
-                                        <label class="form-check-label" for="categoryRenacenceHand">Hand</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="category" id="categoryRenacenceHead">
-                                        <label class="form-check-label" for="categoryRenacenceHead">Head</label>
-                                    </div>
+                                    <input class="form-check-input" type="checkbox" id="categoryMegamall" checked>
+                                    <label class="form-check-label category-level-1-label" for="categoryMegamall">Megamall</label>
                                 </div>
                             </div>
-                            <div class="category-item mt-2">
+                            
+                            <!-- Megamall Children (Level 2) -->
+                            <div class="category-level-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categoryAntipolo">
-                                    <label class="form-check-label fw-500" for="categoryAntipolo">Robinsons Antipolo</label>
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallHair" checked>
+                                    <label class="form-check-label" for="megamallHair">Hair</label>
                                 </div>
                             </div>
-                            <div class="category-item mt-2">
+                            <div class="category-level-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categorySMMall">
-                                    <label class="form-check-label fw-500" for="categorySMMall">SM Mall of Asia</label>
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallFeet">
+                                    <label class="form-check-label" for="megamallFeet">Feet</label>
                                 </div>
                             </div>
-                            <div class="category-item mt-2">
+                            <div class="category-level-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="category" id="categorySMAura">
-                                    <label class="form-check-label fw-500" for="categorySMAura">SM Aura</label>
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallFace">
+                                    <label class="form-check-label" for="megamallFace">Face</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallHand">
+                                    <label class="form-check-label" for="megamallHand">Hand</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallHand2">
+                                    <label class="form-check-label" for="megamallHand2">Hand</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Robinsons Galleria (Level 1) -->
+                            <div class="category-level-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoryGalleria" checked>
+                                    <label class="form-check-label category-level-1-label" for="categoryGalleria">Robinsons Galleria</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Robinsons Galleria Children (Level 2) -->
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHair" checked>
+                                    <label class="form-check-label" for="galleriaHair">Hair</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaFeet">
+                                    <label class="form-check-label" for="galleriaFeet">Feet</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaFace">
+                                    <label class="form-check-label" for="galleriaFace">Face</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHand">
+                                    <label class="form-check-label" for="galleriaHand">Hand</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHand2">
+                                    <label class="form-check-label" for="galleriaHand2">Hand</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Other Categories (Level 1) -->
+                            <div class="category-level-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categoryAntipolo">
+                                    <label class="form-check-label category-level-1-label" for="categoryAntipolo">Robinsons Antipolo</label>
+                                </div>
+                            </div>
+                            
+                            <div class="category-level-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categorySMMall">
+                                    <label class="form-check-label category-level-1-label" for="categorySMMall">SM Mall of Asia</label>
+                                </div>
+                            </div>
+                            
+                            <div class="category-level-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="categorySMAura">
+                                    <label class="form-check-label category-level-1-label" for="categorySMAura">SM Aura</label>
                                 </div>
                             </div>
                         </div>
