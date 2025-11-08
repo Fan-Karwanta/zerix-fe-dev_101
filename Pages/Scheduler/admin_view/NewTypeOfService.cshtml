@@ -97,21 +97,17 @@
                     <!-- Refund Duration -->
                     <div class="form-group mb-4">
                         <label class="form-label">Refund Duration (After the Booking Date)</label>
-                        <select class="form-select">
-                            <option selected>0</option>
-                            <option value="1">1 day</option>
-                            <option value="2">2 days</option>
-                            <option value="3">3 days</option>
-                            <option value="7">1 week</option>
-                            <option value="14">2 weeks</option>
-                        </select>
+                        <div class="refund-duration-input">
+                            <input type="number" class="form-control" placeholder="0" min="0" />
+                            <!-- <span class="duration-unit">hours</span> -->
+                        </div>
                     </div>
 
                     <!-- Access -->
                     <div class="form-group mb-4">
                         <label class="form-label">Access</label>
                         <p class="form-text text-muted small mb-2">This appointment will only be visible to selected User Groups</p>
-                        <div class="access-checkboxes">
+                        <div class="access-checkboxes-container">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="accessAll" checked>
                                 <label class="form-check-label" for="accessAll">All</label>

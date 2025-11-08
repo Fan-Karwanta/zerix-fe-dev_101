@@ -848,7 +848,7 @@
 
 .back-toS {
     margin-bottom: 0;
-    margin-right: auto;
+    margin-left: 1.5rem;
 }
 
 .page-title-toS {
@@ -862,6 +862,11 @@
     .page-title-toS {
         font-size: 17px !important;
     }
+
+    .back-toS {
+    margin-bottom: 0;
+    margin-left: -0.5rem;
+}
     
     /* Remove padding and margin in mobile view */
     .header-container-toS {
@@ -1605,10 +1610,70 @@
     background-color: #fff5f0;
 }
 
+/* New Type of Service Form Styles */
+.refund-duration-input {
+    position: relative;
+    max-width: 250px;
+}
+
+.refund-duration-input input {
+    padding-right: 1rem;
+}
+
+.refund-duration-input .duration-unit {
+    position: absolute;
+    left: 2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.access-checkboxes-container {
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 16px;
+    max-height: 180px;
+    overflow-y: auto;
+    background-color: white;
+    width: 50%;
+}
+
+.access-checkboxes-container .form-check {
+    margin-bottom: 12px;
+}
+
+.access-checkboxes-container .form-check:last-child {
+    margin-bottom: 0;
+}
+
+.access-checkboxes-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.access-checkboxes-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.access-checkboxes-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.access-checkboxes-container::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
 /* Responsive Styles for Set Availability Page */
 @@media (max-width: 767px) {
     .page-title-availability {
         font-size: 17px !important;
+    }
+
+    .access-checkboxes-container {
+        width: 100%;
     }
     
     .header-container-availability {
