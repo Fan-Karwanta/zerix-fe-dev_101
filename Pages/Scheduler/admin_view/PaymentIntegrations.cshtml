@@ -1,0 +1,123 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.PaymentIntegrationsModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Payment Integration";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<!-- Mobile Overview Dropdown - Only show on phones, hide on tablets and desktop -->
+<div class="mobile-overview-section d-md-none">
+    <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
+        <span>Overview</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="collapse" id="mobileOverviewMenu">
+        <div class="mobile-sidebar-nav">
+            <div class="mobile-sidebar-nav-item">Calendar</div>
+            <div class="mobile-sidebar-nav-item">Appointment Types</div>
+            <div class="mobile-sidebar-nav-item">Categories</div>
+            <div class="mobile-sidebar-nav-item">Form Questions</div>
+            <div class="mobile-sidebar-nav-item active">Payment Integrations</div>
+            <div class="mobile-sidebar-nav-item">Reports</div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row g-4">
+        <!-- Left Sidebar: Mini Calendar and Navigation - Show on tablets and desktop -->
+        <div class="col-12 col-md-3 d-none d-md-block">
+            <!-- Mini Calendar -->
+            <div class="mini-calendar-container">
+                <div class="mini-calendar-header">
+                    <button class="btn btn-sm calendar-nav-btn" onclick="previousMonthMini()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <h6 id="mini-calendar-month-year" class="mb-0 fs-16 fw-500">May 2023</h6>
+                    <button class="btn btn-sm calendar-nav-btn" onclick="nextMonthMini()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mini-calendar-weekdays">
+                    <div class="mini-weekday">S</div>
+                    <div class="mini-weekday">M</div>
+                    <div class="mini-weekday">T</div>
+                    <div class="mini-weekday">W</div>
+                    <div class="mini-weekday">T</div>
+                    <div class="mini-weekday">F</div>
+                    <div class="mini-weekday">S</div>
+                </div>
+                <div id="mini-calendar-days" class="mini-calendar-days"></div>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <div class="overview-section">
+                <div class="overview-title">Overview</div>
+                <div class="sidebar-nav">
+                    <div class="sidebar-nav-item">Calendar</div>
+                    <div class="sidebar-nav-item">Appointment Types</div>
+                    <div class="sidebar-nav-item">Categories</div>
+                    <div class="sidebar-nav-item">Form Questions</div>
+                    <div class="sidebar-nav-item active">Payment Integrations</div>
+                    <div class="sidebar-nav-item">Reports</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content: Payment Integration -->
+        <div class="col-12 col-md-9 mobile-appointment-content">
+            <div class="appointment-types-container">
+                <!-- Header -->
+                <div class="appointment-types-header">
+                    <h2>Payment Integration</h2>
+                </div>
+
+                <!-- Paymongo Panel -->
+                <div class="payment-panel">
+                    <div class="payment-header">
+                        <img src="~/assets/PayMongo_Logo.svg.png" alt="paymongo" class="payment-logo" />
+                    </div>
+                    <p class="payment-desc">Integrate your Paymongo Payment gateway. This includes: GCash, Maya, BPI, UnionBank, Credit Cards, etc.</p>
+
+                    <label class="payment-label">Paymongo Secret Key</label>
+                    <input class="form-control payment-input" placeholder="Enter key" />
+                    <div class="payment-note">Note: Your secret key (API Key) can be found from your Paymongo account.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Scoped styles for the payment panel to match screenshot */
+.payment-panel {
+    border: 2px solid #23b26d;
+    border-radius: 14px;
+    padding: 20px 24px;
+    background: #fff;
+}
+.payment-header { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.payment-logo { width: clamp(100px, 20vw, 160px); height: auto; display:inline-block; }
+.payment-brand { color:#23b26d; font-weight:600; font-size:20px; text-transform: lowercase; }
+.payment-desc { color:#666; font-size:14px; max-width:720px; margin: 6px 0 18px; }
+.payment-label { color:#23b26d; font-weight:600; font-size:14px; margin-bottom:6px; display:block; }
+.payment-input { max-width:360px; }
+.payment-note { font-size:12px; color:#666; font-style:italic; margin-top:8px; }
+</style>
+
+@await Html.PartialAsync("../admin_view/_Scripts")

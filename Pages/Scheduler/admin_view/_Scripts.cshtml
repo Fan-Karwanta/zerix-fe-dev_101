@@ -130,5 +130,36 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overlay) {
         overlay.addEventListener('click', closeMobileSidebar);
     }
+
+    // Navigate to Categories when the corresponding sidebar item is clicked (desktop and mobile)
+    const categorySelectors = ['.sidebar-nav .sidebar-nav-item', '.mobile-sidebar-nav .mobile-sidebar-nav-item'];
+    const items = document.querySelectorAll(categorySelectors.join(', '));
+    items.forEach((el) => {
+        if (el.textContent && el.textContent.trim().toLowerCase() === 'categories') {
+            el.addEventListener('click', function () {
+                window.location.href = '/scheduler/admin_view/categories';
+            });
+        }
+    });
+
+    // Navigate to Form Questions when the corresponding sidebar item is clicked (desktop and mobile)
+    const fqItems = document.querySelectorAll(categorySelectors.join(', '));
+    fqItems.forEach((el) => {
+        if (el.textContent && el.textContent.trim().toLowerCase() === 'form questions') {
+            el.addEventListener('click', function () {
+                window.location.href = '/scheduler/admin_view/formquestions';
+            });
+        }
+    });
+
+    // Navigate to Payment Integrations when the corresponding sidebar item is clicked (desktop and mobile)
+    const piItems = document.querySelectorAll(categorySelectors.join(', '));
+    piItems.forEach((el) => {
+        if (el.textContent && el.textContent.trim().toLowerCase() === 'payment integrations') {
+            el.addEventListener('click', function () {
+                window.location.href = '/scheduler/admin_view/paymentintegrations';
+            });
+        }
+    });
 });
 </script>
