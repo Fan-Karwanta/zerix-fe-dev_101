@@ -125,13 +125,13 @@
                 
                 <!-- Calendar Header -->
                 <div class="calendar-header mb-3">
-                    <button type="button" class="btn btn-calendar-nav">
+                    <button type="button" class="btn btn-calendar-nav" onclick="previousMonthMain()">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 15L7 10L12 5" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                    <h4 class="calendar-month-year">December 2025</h4>
-                    <button type="button" class="btn btn-calendar-nav">
+                    <h4 class="calendar-month-year" id="mainCalendarMonthYear">December 2025</h4>
+                    <button type="button" class="btn btn-calendar-nav" onclick="nextMonthMain()">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 5L13 10L8 15" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -151,132 +151,142 @@
 
                     <!-- Calendar Days -->
                     <!-- Week 1 -->
-                    <div class="calendar-day other-month">
+                    <div class="calendar-day other-month" data-date="2025-11-30" data-day="Sunday" onclick="openDateModal(this)">
                         <div class="day-number">30</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-01" data-day="Monday" onclick="openDateModal(this)">
                         <div class="day-number">1</div>
                     </div>
-                    <div class="calendar-day has-event">
+                    <div class="calendar-day has-event" data-date="2025-12-02" data-day="Tuesday" onclick="openDateModal(this)">
                         <div class="day-number">2</div>
-                        <div class="day-event">9:00 - 11:00 AM</div>
-                        <div class="day-event">Break 1</div>
-                        <div class="day-event">1:00 - 5:00 PM</div>
+                        <div class="day-events-list">
+                            <div class="day-event">9:00 - 11:00 AM</div>
+                            <div class="day-event">Break 1</div>
+                            <div class="day-event">1:00 - 5:00 PM</div>
+                        </div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-03" data-day="Wednesday" onclick="openDateModal(this)">
                         <div class="day-number">3</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-04" data-day="Thursday" onclick="openDateModal(this)">
                         <div class="day-number">4</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-05" data-day="Friday" onclick="openDateModal(this)">
                         <div class="day-number">5</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-06" data-day="Saturday" onclick="openDateModal(this)">
                         <div class="day-number">6</div>
                     </div>
 
                     <!-- Week 2 -->
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-07" data-day="Sunday" onclick="openDateModal(this)">
                         <div class="day-number">7</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-08" data-day="Monday" onclick="openDateModal(this)">
                         <div class="day-number">8</div>
                     </div>
-                    <div class="calendar-day has-event">
+                    <div class="calendar-day has-event" data-date="2025-12-09" data-day="Tuesday" onclick="openDateModal(this)">
                         <div class="day-number">9</div>
-                        <div class="day-event">9:00 - 11:00 AM</div>
-                        <div class="day-event">Break 1</div>
-                        <div class="day-event">1:00 - 5:00 PM</div>
+                        <div class="day-events-list">
+                            <div class="day-event">9:00 - 11:00 AM</div>
+                            <div class="day-event">Break 1</div>
+                            <div class="day-event">1:00 - 5:00 PM</div>
+                        </div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-10" data-day="Wednesday" onclick="openDateModal(this)">
                         <div class="day-number">10</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-11" data-day="Thursday" onclick="openDateModal(this)">
                         <div class="day-number">11</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-12" data-day="Friday" onclick="openDateModal(this)">
                         <div class="day-number">12</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-13" data-day="Saturday" onclick="openDateModal(this)">
                         <div class="day-number">13</div>
                     </div>
 
                     <!-- Week 3 -->
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-14" data-day="Sunday" onclick="openDateModal(this)">
                         <div class="day-number">14</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-15" data-day="Monday" onclick="openDateModal(this)">
                         <div class="day-number">15</div>
                     </div>
-                    <div class="calendar-day has-event">
+                    <div class="calendar-day has-event" data-date="2025-12-16" data-day="Tuesday" onclick="openDateModal(this)">
                         <div class="day-number">16</div>
-                        <div class="day-event">9:00 - 11:00 AM</div>
-                        <div class="day-event">Break 1</div>
-                        <div class="day-event">1:00 - 5:00 PM</div>
+                        <div class="day-events-list">
+                            <div class="day-event">9:00 - 11:00 AM</div>
+                            <div class="day-event">Break 1</div>
+                            <div class="day-event">1:00 - 5:00 PM</div>
+                        </div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-17" data-day="Wednesday" onclick="openDateModal(this)">
                         <div class="day-number">17</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-18" data-day="Thursday" onclick="openDateModal(this)">
                         <div class="day-number">18</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-19" data-day="Friday" onclick="openDateModal(this)">
                         <div class="day-number">19</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-20" data-day="Saturday" onclick="openDateModal(this)">
                         <div class="day-number">20</div>
                     </div>
 
                     <!-- Week 4 -->
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-21" data-day="Sunday" onclick="openDateModal(this)">
                         <div class="day-number">21</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-22" data-day="Monday" onclick="openDateModal(this)">
                         <div class="day-number">22</div>
                     </div>
-                    <div class="calendar-day has-event">
+                    <div class="calendar-day has-event" data-date="2025-12-23" data-day="Tuesday" onclick="openDateModal(this)">
                         <div class="day-number">23</div>
-                        <div class="day-event">9:00 - 11:00 AM</div>
-                        <div class="day-event">Break 1</div>
-                        <div class="day-event">1:00 - 5:00 PM</div>
+                        <div class="day-events-list">
+                            <div class="day-event">9:00 - 11:00 AM</div>
+                            <div class="day-event">Break 1</div>
+                            <div class="day-event">1:00 - 5:00 PM</div>
+                        </div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-24" data-day="Wednesday" onclick="openDateModal(this)">
                         <div class="day-number">24</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-25" data-day="Thursday" onclick="openDateModal(this)">
                         <div class="day-number">25</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-26" data-day="Friday" onclick="openDateModal(this)">
                         <div class="day-number">26</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-27" data-day="Saturday" onclick="openDateModal(this)">
                         <div class="day-number">27</div>
                     </div>
 
                     <!-- Week 5 -->
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-28" data-day="Sunday" onclick="openDateModal(this)">
                         <div class="day-number">28</div>
                     </div>
-                    <div class="calendar-day">
+                    <div class="calendar-day" data-date="2025-12-29" data-day="Monday" onclick="openDateModal(this)">
                         <div class="day-number">29</div>
                     </div>
-                    <div class="calendar-day has-event">
+                    <div class="calendar-day has-event" data-date="2025-12-30" data-day="Tuesday" onclick="openDateModal(this)">
                         <div class="day-number">30</div>
-                        <div class="day-event">9:00 - 11:00 AM</div>
-                        <div class="day-event">Break 1</div>
-                        <div class="day-event">1:00 - 5:00 PM</div>
+                        <div class="day-events-list">
+                            <div class="day-event">9:00 - 11:00 AM</div>
+                            <div class="day-event">Break 1</div>
+                            <div class="day-event">1:00 - 5:00 PM</div>
+                        </div>
                     </div>
-                    <div class="calendar-day other-month">
+                    <div class="calendar-day other-month" data-date="2025-12-31" data-day="Wednesday" onclick="openDateModal(this)">
                         <div class="day-number">31</div>
                     </div>
-                    <div class="calendar-day other-month">
+                    <div class="calendar-day other-month" data-date="2026-01-01" data-day="Thursday" onclick="openDateModal(this)">
                         <div class="day-number">1</div>
                     </div>
-                    <div class="calendar-day other-month">
+                    <div class="calendar-day other-month" data-date="2026-01-02" data-day="Friday" onclick="openDateModal(this)">
                         <div class="day-number">2</div>
                     </div>
-                    <div class="calendar-day other-month">
+                    <div class="calendar-day other-month" data-date="2026-01-03" data-day="Saturday" onclick="openDateModal(this)">
                         <div class="day-number">3</div>
                     </div>
                 </div>
@@ -460,3 +470,52 @@
         </div>
     </div>
 </div>
+
+<!-- Date Hours Modal -->
+<div class="modal fade" id="dateHoursModal" tabindex="-1" aria-labelledby="dateHoursModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-date-hours">
+        <div class="modal-content">
+            <div class="modal-header-date-hours">
+                <h5 class="modal-title-date-hours" id="dateHoursModalLabel">
+                    Hours for <span id="modalDateDisplay">December 19</span> -
+                </h5>
+                <button type="button" class="btn-close-date-modal" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <input type="date" class="form-control date-input-modal" id="modalEndDateInput" />
+            </div>
+            <div class="modal-body-date-hours">
+                <!-- Time Slots Container -->
+                <div id="timeSlotContainer">
+                    <!-- Time Slot 1 -->
+                    <div class="time-slot-row">
+                        <div class="time-input-wrapper">
+                            <label class="time-label-small">From</label>
+                            <input type="time" class="form-control time-input-small" value="09:00" />
+                        </div>
+                        <div class="time-input-wrapper">
+                            <label class="time-label-small">To</label>
+                            <input type="time" class="form-control time-input-small" value="17:00" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Time Button -->
+                <button type="button" class="btn btn-add-time-date-modal" onclick="addTimeSlot()">+ Add Time</button>
+
+                <!-- Day of Week Display -->
+                <div class="day-of-week-display" id="modalDayOfWeek">Saturday</div>
+
+                <!-- Action Buttons -->
+                <div class="modal-actions-date-hours">
+                    <button type="button" class="btn btn-set-hours-date-modal">Set Hours</button>
+                    <button type="button" class="btn btn-cancel-date-modal" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("../admin_view/_Scripts")

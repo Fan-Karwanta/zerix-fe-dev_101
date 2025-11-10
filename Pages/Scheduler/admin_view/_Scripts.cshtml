@@ -125,6 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
     miniSelectedDate = new Date();
     generateMiniCalendar();
     
+    // Initialize main calendar if it exists
+    if (document.querySelector('.calendar-grid')) {
+        mainCurrentDate = new Date();
+        generateMainCalendar();
+    }
+    
     // Close mobile sidebar when overlay is clicked
     const overlay = document.querySelector('.mobile-sidebar-overlay');
     if (overlay) {
@@ -162,4 +168,172 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Main Calendar Variables
+let mainCurrentDate = new Date();
+let mainSelectedDate = null;
+
+// Date Hours Modal Functions
+function openDateModal(element) {
+    const dateStr = element.getAttribute('data-date');
+    const dayOfWeek = element.getAttribute('data-day');
+    
+    if (!dateStr || !dayOfWeek) return;
+    
+    // Remove previous selected state
+    document.querySelectorAll('.calendar-grid .calendar-day').forEach(day => {
+        day.classList.remove('selected');
+    });
+    
+    // Add selected state to clicked element
+    element.classList.add('selected');
+    
+    // Parse the date
+    const date = new Date(dateStr + 'T00:00:00');
+    mainSelectedDate = date;
+    
+    // Format date for display (e.g., "December 19")
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const formattedDate = `${monthNames[date.getMonth()]} ${date.getDate()}`;
+    
+    // Update modal content
+    document.getElementById('modalDateDisplay').textContent = formattedDate;
+    document.getElementById('modalDayOfWeek').textContent = dayOfWeek;
+    document.getElementById('modalEndDateInput').value = dateStr;
+    
+    // Show the modal
+    const modal = new bootstrap.Modal(document.getElementById('dateHoursModal'));
+    modal.show();
+}
+
+// Main Calendar Navigation
+function previousMonthMain() {
+    mainCurrentDate.setMonth(mainCurrentDate.getMonth() - 1);
+    generateMainCalendar();
+}
+
+function nextMonthMain() {
+    mainCurrentDate.setMonth(mainCurrentDate.getMonth() + 1);
+    generateMainCalendar();
+}
+
+function generateMainCalendar() {
+    const year = mainCurrentDate.getFullYear();
+    const month = mainCurrentDate.getMonth();
+    
+    // Update month/year display
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    const monthYearElement = document.getElementById('mainCalendarMonthYear');
+    if (monthYearElement) {
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+    }
+    
+    // Get the calendar grid
+    const calendarGrid = document.querySelector('.calendar-grid');
+    if (!calendarGrid) return;
+    
+    // Clear existing days (keep weekday headers)
+    const weekdayHeaders = Array.from(calendarGrid.querySelectorAll('.calendar-weekday'));
+    calendarGrid.innerHTML = '';
+    weekdayHeaders.forEach(header => calendarGrid.appendChild(header));
+    
+    // Get first day of month and number of days
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+    
+    // Add previous month's trailing days
+    for (let i = firstDay - 1; i >= 0; i--) {
+        const day = daysInPrevMonth - i;
+        const prevMonth = month === 0 ? 11 : month - 1;
+        const prevYear = month === 0 ? year - 1 : year;
+        const dayElement = createMainDayElement(day, prevMonth, prevYear, true);
+        calendarGrid.appendChild(dayElement);
+    }
+    
+    // Add current month's days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = createMainDayElement(day, month, year, false);
+        calendarGrid.appendChild(dayElement);
+    }
+    
+    // Add next month's leading days
+    const totalCells = calendarGrid.children.length - 7; // Subtract weekday headers
+    const remainingCells = 35 - totalCells; // 5 rows × 7 days
+    for (let day = 1; day <= remainingCells; day++) {
+        const nextMonth = month === 11 ? 0 : month + 1;
+        const nextYear = month === 11 ? year + 1 : year;
+        const dayElement = createMainDayElement(day, nextMonth, nextYear, true);
+        calendarGrid.appendChild(dayElement);
+    }
+}
+
+function createMainDayElement(day, month, year, isOtherMonth) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+    
+    const date = new Date(year, month, day);
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayOfWeek = dayNames[date.getDay()];
+    
+    dayElement.setAttribute('data-date', dateStr);
+    dayElement.setAttribute('data-day', dayOfWeek);
+    dayElement.setAttribute('onclick', 'openDateModal(this)');
+    
+    if (isOtherMonth) {
+        dayElement.classList.add('other-month');
+    }
+    
+    // Check if this is the selected date
+    if (mainSelectedDate && 
+        date.getDate() === mainSelectedDate.getDate() && 
+        date.getMonth() === mainSelectedDate.getMonth() && 
+        date.getFullYear() === mainSelectedDate.getFullYear()) {
+        dayElement.classList.add('selected');
+    }
+    
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'day-number';
+    dayNumber.textContent = day;
+    dayElement.appendChild(dayNumber);
+    
+    // TODO: Add event data if available
+    // For now, we'll keep the static events on Tuesdays as example
+    if (date.getDay() === 2 && !isOtherMonth && day % 7 === 2) {
+        dayElement.classList.add('has-event');
+        const eventsList = document.createElement('div');
+        eventsList.className = 'day-events-list';
+        eventsList.innerHTML = `
+            <div class="day-event">9:00 - 11:00 AM</div>
+            <div class="day-event">Break 1</div>
+            <div class="day-event">1:00 - 5:00 PM</div>
+        `;
+        dayElement.appendChild(eventsList);
+    }
+    
+    return dayElement;
+}
+
+function addTimeSlot() {
+    const container = document.getElementById('timeSlotContainer');
+    
+    // Create new time slot
+    const newSlot = document.createElement('div');
+    newSlot.className = 'time-slot-row';
+    newSlot.innerHTML = `
+        <div class="time-input-wrapper">
+            <label class="time-label-small">From</label>
+            <input type="time" class="form-control time-input-small" />
+        </div>
+        <div class="time-input-wrapper">
+            <label class="time-label-small">To</label>
+            <input type="time" class="form-control time-input-small" />
+        </div>
+    `;
+    
+    container.appendChild(newSlot);
+}
 </script>
