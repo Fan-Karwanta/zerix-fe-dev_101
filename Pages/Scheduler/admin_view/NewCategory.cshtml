@@ -1,0 +1,330 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.NewCategoryModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "New Category";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<div class="container-fluid px-4 my-3 pt-md-3 pt-3" style="max-width: 1400px;">
+    <div class="row">
+        <div class="col-12">
+            <!-- Back Button -->
+            <div class="mb-3">
+                <a href="/scheduler/admin_view/categories" class="back-link d-inline-flex align-items-center" style="color: #ff5400; text-decoration: none; font-size: 14px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 4px;">
+                        <path d="M15 18L9 12L15 6" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Go Back
+                </a>
+            </div>
+
+            <!-- Page Title -->
+            <h2 class="mb-4 text-center" style="font-size: 28px; font-weight: 400; color: #333;">New Category</h2>
+
+            <!-- Form Container -->
+            <div class="new-category-form-wrapper">
+                <form id="newCategoryForm">
+                    <!-- Main Category -->
+                    <div class="form-group mb-4">
+                        <label class="form-label" style="font-size: 14px; color: #333; font-weight: 400; margin-bottom: 8px;">Main Category</label>
+                        <input type="text" class="form-control" placeholder="SM Megamall" />
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group mb-5">
+                        <label class="form-label" style="font-size: 14px; color: #333; font-weight: 400; margin-bottom: 8px;">
+                            Description <span style="color: #999;">(optional)</span>
+                        </label>
+                        <textarea class="form-control" rows="4" placeholder="Details about the category" style="resize: none;"></textarea>
+                    </div>
+
+                    <!-- Sub-Categories Container -->
+                    <div id="subCategoriesContainer">
+                        <!-- Sub-Category 1 -->
+                        <div class="sub-category-item mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label mb-0" style="font-size: 14px; color: #333; font-weight: 400;">Sub-Category 1</label>
+                                <a href="#" class="delete-subcategory-link" style="color: #ff5400; font-size: 14px; text-decoration: none;">Delete</a>
+                            </div>
+                            <input type="text" class="form-control mb-3" placeholder="Hair" />
+                            
+                            <p class="mb-2" style="font-size: 13px; color: #666;">Select the appointments included in this sub-category</p>
+                            <div class="checkbox-list">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub1_hotOil" checked>
+                                    <label class="form-check-label" for="sub1_hotOil" style="font-size: 14px; color: #333;">Hot Oil</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub1_eyebrow" checked>
+                                    <label class="form-check-label" for="sub1_eyebrow" style="font-size: 14px; color: #333;">Eyebrow Threading</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub1_eyebrowLift">
+                                    <label class="form-check-label" for="sub1_eyebrowLift" style="font-size: 14px; color: #333;">Eyebrow Lift</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub1_manicure">
+                                    <label class="form-check-label" for="sub1_manicure" style="font-size: 14px; color: #333;">Manicure</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub1_pedicure">
+                                    <label class="form-check-label" for="sub1_pedicure" style="font-size: 14px; color: #333;">Pedicure</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Category 2 -->
+                        <div class="sub-category-item mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label mb-0" style="font-size: 14px; color: #333; font-weight: 400;">Sub-Category 2</label>
+                                <a href="#" class="delete-subcategory-link" style="color: #ff5400; font-size: 14px; text-decoration: none;">Delete</a>
+                            </div>
+                            <input type="text" class="form-control mb-3" placeholder="Enter Name" />
+                            
+                            <p class="mb-2" style="font-size: 13px; color: #666;">Select the appointments included in this sub-category</p>
+                            <div class="checkbox-list">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub2_hotOil" checked>
+                                    <label class="form-check-label" for="sub2_hotOil" style="font-size: 14px; color: #333;">Hot Oil</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub2_eyebrow" checked>
+                                    <label class="form-check-label" for="sub2_eyebrow" style="font-size: 14px; color: #333;">Eyebrow Threading</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub2_eyebrowLift">
+                                    <label class="form-check-label" for="sub2_eyebrowLift" style="font-size: 14px; color: #333;">Eyebrow Lift</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub2_manicure">
+                                    <label class="form-check-label" for="sub2_manicure" style="font-size: 14px; color: #333;">Manicure</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="sub2_pedicure">
+                                    <label class="form-check-label" for="sub2_pedicure" style="font-size: 14px; color: #333;">Pedicure</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Category Button -->
+                    <div class="mb-5">
+                        <a href="#" id="btnAddSubCategory" style="color: #ff5400; font-size: 14px; text-decoration: none;">
+                            + Add Category
+                        </a>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn" style="background-color: #ff5400; color: white; border: none; padding: 12px 32px; border-radius: 6px; font-size: 14px; font-weight: 500;">
+                            Save Category
+                        </button>
+                        <a href="/scheduler/admin_view/categories" class="btn" style="background-color: transparent; color: #ff5400; border: none; padding: 12px 32px; font-size: 14px; font-weight: 500; text-decoration: none;">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* New Category Form Specific Styles */
+.new-category-form-wrapper {
+    max-width: 100%;
+}
+
+.new-category-form-wrapper .form-control {
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+}
+
+.new-category-form-wrapper .form-control:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.1);
+}
+
+.new-category-form-wrapper .form-control::placeholder {
+    color: #999;
+}
+
+.sub-category-item {
+    margin-bottom: 35px;
+}
+
+.checkbox-list {
+    padding-left: 0;
+}
+
+.checkbox-list .form-check {
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-list .form-check-input {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #d0d0d0;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-top: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.checkbox-list .form-check-input:checked {
+    background-color: #ff5400;
+    border-color: #ff5400;
+}
+
+.checkbox-list .form-check-label {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.delete-subcategory-link:hover {
+    color: #e04800 !important;
+    text-decoration: underline !important;
+}
+
+/* Responsive adjustments */
+@@media (max-width: 767px) {
+    .new-category-form-wrapper {
+        max-width: 100%;
+    }
+    
+    .new-category-form-wrapper .form-control {
+        width: 100% !important;
+    }
+    
+    h2.text-center {
+        font-size: 24px !important;
+    }
+    
+    .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 12px !important;
+    }
+    
+    .d-flex.gap-3 .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@@media (min-width: 768px) and (max-width: 1024px) {
+    h2.text-center {
+        font-size: 26px !important;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let subCategoryCount = 2;
+    
+    // Add new sub-category
+    const btnAddSubCategory = document.getElementById('btnAddSubCategory');
+    if (btnAddSubCategory) {
+        btnAddSubCategory.addEventListener('click', function(e) {
+            e.preventDefault();
+            subCategoryCount++;
+            
+            const container = document.getElementById('subCategoriesContainer');
+            const newSubCategory = document.createElement('div');
+            newSubCategory.className = 'sub-category-item mb-4';
+            newSubCategory.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label class="form-label mb-0" style="font-size: 14px; color: #333; font-weight: 400;">Sub-Category ${subCategoryCount}</label>
+                    <a href="#" class="delete-subcategory-link" style="color: #ff5400; font-size: 14px; text-decoration: none;">Delete</a>
+                </div>
+                <input type="text" class="form-control mb-3" placeholder="Enter Name" />
+                
+                <p class="mb-2" style="font-size: 13px; color: #666;">Select the appointments included in this sub-category</p>
+                <div class="checkbox-list">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_hotOil">
+                        <label class="form-check-label" for="sub${subCategoryCount}_hotOil" style="font-size: 14px; color: #333;">Hot Oil</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_eyebrow">
+                        <label class="form-check-label" for="sub${subCategoryCount}_eyebrow" style="font-size: 14px; color: #333;">Eyebrow Threading</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_eyebrowLift">
+                        <label class="form-check-label" for="sub${subCategoryCount}_eyebrowLift" style="font-size: 14px; color: #333;">Eyebrow Lift</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_manicure">
+                        <label class="form-check-label" for="sub${subCategoryCount}_manicure" style="font-size: 14px; color: #333;">Manicure</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_pedicure">
+                        <label class="form-check-label" for="sub${subCategoryCount}_pedicure" style="font-size: 14px; color: #333;">Pedicure</label>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(newSubCategory);
+            attachDeleteHandler(newSubCategory.querySelector('.delete-subcategory-link'));
+        });
+    }
+    
+    // Delete sub-category handler
+    function attachDeleteHandler(deleteLink) {
+        if (deleteLink) {
+            deleteLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const subCategoryItem = this.closest('.sub-category-item');
+                if (subCategoryItem) {
+                    subCategoryItem.remove();
+                    renumberSubCategories();
+                }
+            });
+        }
+    }
+    
+    // Renumber sub-categories
+    function renumberSubCategories() {
+        const subCategories = document.querySelectorAll('.sub-category-item');
+        subCategories.forEach((item, index) => {
+            const label = item.querySelector('.form-label');
+            if (label) {
+                label.textContent = `Sub-Category ${index + 1}`;
+            }
+        });
+        subCategoryCount = subCategories.length;
+    }
+    
+    // Attach delete handlers to existing sub-categories
+    document.querySelectorAll('.delete-subcategory-link').forEach(attachDeleteHandler);
+    
+    // Form submission
+    const form = document.getElementById('newCategoryForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Category saved successfully!');
+            window.location.href = '/scheduler/admin_view/categories';
+        });
+    }
+});
+</script>
+
+@await Html.PartialAsync("../admin_view/_Scripts")

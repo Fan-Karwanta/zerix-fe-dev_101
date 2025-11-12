@@ -336,4 +336,139 @@ function addTimeSlot() {
     
     container.appendChild(newSlot);
 }
+
+// Categories Page - New Category Form Functions
+document.addEventListener('DOMContentLoaded', function() {
+    const btnNewCategory = document.getElementById('btnNewCategory');
+    const btnBackToCategories = document.getElementById('btnBackToCategories');
+    const btnCancelCategory = document.getElementById('btnCancelCategory');
+    const btnAddSubCategory = document.getElementById('btnAddSubCategory');
+    const newCategoryForm = document.getElementById('newCategoryForm');
+    const categoriesHeader = document.getElementById('categoriesHeader');
+    const categoriesList = document.getElementById('categoriesList');
+    
+    let subCategoryCount = 2; // We start with 2 sub-categories
+    
+    // Show new category form
+    if (btnNewCategory) {
+        btnNewCategory.addEventListener('click', function(e) {
+            e.preventDefault();
+            categoriesHeader.style.display = 'none';
+            categoriesList.style.display = 'none';
+            newCategoryForm.style.display = 'block';
+        });
+    }
+    
+    // Go back to categories list
+    if (btnBackToCategories) {
+        btnBackToCategories.addEventListener('click', function(e) {
+            e.preventDefault();
+            newCategoryForm.style.display = 'none';
+            categoriesHeader.style.display = 'flex';
+            categoriesList.style.display = 'block';
+        });
+    }
+    
+    // Cancel button
+    if (btnCancelCategory) {
+        btnCancelCategory.addEventListener('click', function(e) {
+            e.preventDefault();
+            newCategoryForm.style.display = 'none';
+            categoriesHeader.style.display = 'flex';
+            categoriesList.style.display = 'block';
+        });
+    }
+    
+    // Add new sub-category
+    if (btnAddSubCategory) {
+        btnAddSubCategory.addEventListener('click', function(e) {
+            e.preventDefault();
+            subCategoryCount++;
+            
+            const subCategoriesContainer = document.getElementById('subCategoriesContainer');
+            const newSubCategory = document.createElement('div');
+            newSubCategory.className = 'sub-category-section';
+            newSubCategory.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label class="form-label mb-0" style="font-size: 14px; color: #333;">Sub-Category ${subCategoryCount}</label>
+                    <a href="#" class="delete-subcategory" style="font-size: 14px; text-decoration: none;">Delete</a>
+                </div>
+                <input type="text" class="form-control mb-3" placeholder="Enter Name" style="max-width: 100%;" />
+                
+                <p class="form-text text-muted small mb-2" style="font-size: 13px;">Select the appointments included in this sub-category</p>
+                <div class="category-checkboxes-container">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_hotOil">
+                        <label class="form-check-label" for="sub${subCategoryCount}_hotOil">Hot Oil</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_eyebrow">
+                        <label class="form-check-label" for="sub${subCategoryCount}_eyebrow">Eyebrow Threading</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_eyebrow2">
+                        <label class="form-check-label" for="sub${subCategoryCount}_eyebrow2">Eyebrow Lift</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_manicure">
+                        <label class="form-check-label" for="sub${subCategoryCount}_manicure">Manicure</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sub${subCategoryCount}_pedicure">
+                        <label class="form-check-label" for="sub${subCategoryCount}_pedicure">Pedicure</label>
+                    </div>
+                </div>
+            `;
+            
+            subCategoriesContainer.appendChild(newSubCategory);
+            
+            // Attach delete handler to the new sub-category
+            attachDeleteHandler(newSubCategory.querySelector('.delete-subcategory'));
+        });
+    }
+    
+    // Delete sub-category handler
+    function attachDeleteHandler(deleteButton) {
+        if (deleteButton) {
+            deleteButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                const subCategorySection = this.closest('.sub-category-section');
+                if (subCategorySection) {
+                    subCategorySection.remove();
+                    // Renumber remaining sub-categories
+                    renumberSubCategories();
+                }
+            });
+        }
+    }
+    
+    // Renumber sub-categories after deletion
+    function renumberSubCategories() {
+        const subCategories = document.querySelectorAll('.sub-category-section');
+        subCategories.forEach((section, index) => {
+            const label = section.querySelector('.form-label');
+            if (label) {
+                label.textContent = `Sub-Category ${index + 1}`;
+            }
+        });
+        subCategoryCount = subCategories.length;
+    }
+    
+    // Attach delete handlers to existing sub-categories
+    document.querySelectorAll('.delete-subcategory').forEach(attachDeleteHandler);
+    
+    // Handle form submission
+    const categoryForm = document.getElementById('categoryForm');
+    if (categoryForm) {
+        categoryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to the server
+            alert('Category saved successfully!');
+            // Go back to categories list
+            newCategoryForm.style.display = 'none';
+            categoriesHeader.style.display = 'flex';
+            categoriesList.style.display = 'block';
+        });
+    }
+});
 </script>
