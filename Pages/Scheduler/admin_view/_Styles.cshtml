@@ -255,6 +255,16 @@
     border-left: 3px solid #ff5400;
 }
 
+a.sidebar-nav-item {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+a.sidebar-nav-item:hover {
+    color: #333;
+}
+
 /* Overview Section */
 .overview-section {
     margin-bottom: 30px;
@@ -975,7 +985,6 @@ a.mobile-sidebar-nav-item:hover {
 .availability-tabs {
     display: flex;
     gap: 0;
-    border-bottom: 2px solid #e0e0e0;
 }
 
 .availability-tab {
@@ -1655,7 +1664,7 @@ a.mobile-sidebar-nav-item:hover {
     border: 1px solid #d0d0d0;
     border-radius: 6px;
     padding: 16px;
-    max-height: 180px;
+    max-height: 220px;
     overflow-y: auto;
     background-color: white;
     width: 50%;
@@ -1693,6 +1702,26 @@ a.mobile-sidebar-nav-item:hover {
     padding: 16px;
     background-color: white;
     width: 50%;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.category-tree-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.category-tree-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.category-tree-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.category-tree-container::-webkit-scrollbar-thumb:hover {
+    background: #999;
 }
 
 .category-parent {
@@ -1710,7 +1739,7 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .category-level-1 {
-    margin-left: 24px;
+    margin-left: 12px;
     margin-bottom: 8px;
 }
 
@@ -1725,7 +1754,7 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .category-level-2 {
-    margin-left: 48px;
+    margin-left: 32px;
     margin-bottom: 8px;
 }
 
