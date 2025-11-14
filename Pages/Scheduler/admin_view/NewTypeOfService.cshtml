@@ -147,37 +147,37 @@
                             <!-- Megamall (Level 1) -->
                             <div class="category-level-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="categoryMegamall" checked>
+                                    <input class="form-check-input category-parent-checkbox" type="checkbox" id="categoryMegamall" data-parent="megamall">
                                     <label class="form-check-label category-level-1-label" for="categoryMegamall">Megamall</label>
                                 </div>
                             </div>
                             
                             <!-- Megamall Children (Level 2) -->
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="megamall">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallHair" checked>
+                                    <input class="form-check-input" type="radio" name="megamallService" id="megamallHair">
                                     <label class="form-check-label" for="megamallHair">Hair</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="megamall">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="megamallService" id="megamallFeet">
                                     <label class="form-check-label" for="megamallFeet">Feet</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="megamall">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="megamallService" id="megamallFace">
                                     <label class="form-check-label" for="megamallFace">Face</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="megamall">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="megamallService" id="megamallHand">
                                     <label class="form-check-label" for="megamallHand">Hand</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="megamall">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="megamallService" id="megamallHand2">
                                     <label class="form-check-label" for="megamallHand2">Hand</label>
@@ -187,37 +187,37 @@
                             <!-- Robinsons Galleria (Level 1) -->
                             <div class="category-level-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="categoryGalleria" checked>
+                                    <input class="form-check-input category-parent-checkbox" type="checkbox" id="categoryGalleria" data-parent="galleria">
                                     <label class="form-check-label category-level-1-label" for="categoryGalleria">Robinsons Galleria</label>
                                 </div>
                             </div>
                             
                             <!-- Robinsons Galleria Children (Level 2) -->
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="galleria">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHair" checked>
+                                    <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHair">
                                     <label class="form-check-label" for="galleriaHair">Hair</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="galleria">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="galleriaService" id="galleriaFeet">
                                     <label class="form-check-label" for="galleriaFeet">Feet</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="galleria">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="galleriaService" id="galleriaFace">
                                     <label class="form-check-label" for="galleriaFace">Face</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="galleria">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHand">
                                     <label class="form-check-label" for="galleriaHand">Hand</label>
                                 </div>
                             </div>
-                            <div class="category-level-2">
+                            <div class="category-level-2 category-children" data-parent="galleria">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="galleriaService" id="galleriaHand2">
                                     <label class="form-check-label" for="galleriaHand2">Hand</label>
@@ -227,22 +227,100 @@
                             <!-- Other Categories (Level 1) -->
                             <div class="category-level-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="categoryAntipolo">
+                                    <input class="form-check-input category-parent-checkbox" type="checkbox" id="categoryAntipolo" data-parent="antipolo">
                                     <label class="form-check-label category-level-1-label" for="categoryAntipolo">Robinsons Antipolo</label>
                                 </div>
                             </div>
                             
-                            <div class="category-level-1">
+                            <!-- Robinsons Antipolo Children (Level 2) -->
+                            <div class="category-level-2 category-children" data-parent="antipolo">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="categorySMMall">
-                                    <label class="form-check-label category-level-1-label" for="categorySMMall">SM Mall of Asia</label>
+                                    <input class="form-check-input" type="radio" name="antipoloService" id="antipoloHair">
+                                    <label class="form-check-label" for="antipoloHair">Hair</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="antipolo">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="antipoloService" id="antipoloFeet">
+                                    <label class="form-check-label" for="antipoloFeet">Feet</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="antipolo">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="antipoloService" id="antipoloFace">
+                                    <label class="form-check-label" for="antipoloFace">Face</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="antipolo">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="antipoloService" id="antipoloHand">
+                                    <label class="form-check-label" for="antipoloHand">Hand</label>
                                 </div>
                             </div>
                             
                             <div class="category-level-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="categorySMAura">
+                                    <input class="form-check-input category-parent-checkbox" type="checkbox" id="categorySMMall" data-parent="smmall">
+                                    <label class="form-check-label category-level-1-label" for="categorySMMall">SM Mall of Asia</label>
+                                </div>
+                            </div>
+                            
+                            <!-- SM Mall of Asia Children (Level 2) -->
+                            <div class="category-level-2 category-children" data-parent="smmall">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smmallService" id="smmallHair">
+                                    <label class="form-check-label" for="smmallHair">Hair</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smmall">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smmallService" id="smmallFeet">
+                                    <label class="form-check-label" for="smmallFeet">Feet</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smmall">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smmallService" id="smmallFace">
+                                    <label class="form-check-label" for="smmallFace">Face</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smmall">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smmallService" id="smmallHand">
+                                    <label class="form-check-label" for="smmallHand">Hand</label>
+                                </div>
+                            </div>
+                            
+                            <div class="category-level-1">
+                                <div class="form-check">
+                                    <input class="form-check-input category-parent-checkbox" type="checkbox" id="categorySMAura" data-parent="smaura">
                                     <label class="form-check-label category-level-1-label" for="categorySMAura">SM Aura</label>
+                                </div>
+                            </div>
+                            
+                            <!-- SM Aura Children (Level 2) -->
+                            <div class="category-level-2 category-children" data-parent="smaura">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smauraService" id="smauraHair">
+                                    <label class="form-check-label" for="smauraHair">Hair</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smaura">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smauraService" id="smauraFeet">
+                                    <label class="form-check-label" for="smauraFeet">Feet</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smaura">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smauraService" id="smauraFace">
+                                    <label class="form-check-label" for="smauraFace">Face</label>
+                                </div>
+                            </div>
+                            <div class="category-level-2 category-children" data-parent="smaura">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="smauraService" id="smauraHand">
+                                    <label class="form-check-label" for="smauraHand">Hand</label>
                                 </div>
                             </div>
                         </div>
@@ -258,3 +336,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to toggle category children visibility
+        function toggleCategoryChildren(parentCheckbox) {
+            const parentId = parentCheckbox.getAttribute('data-parent');
+            const children = document.querySelectorAll('.category-children[data-parent="' + parentId + '"]');
+            
+            children.forEach(function(child) {
+                if (parentCheckbox.checked) {
+                    child.style.display = 'block';
+                } else {
+                    child.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize: Hide all unchecked parent's children
+        const allParentCheckboxes = document.querySelectorAll('.category-parent-checkbox');
+        allParentCheckboxes.forEach(function(checkbox) {
+            toggleCategoryChildren(checkbox);
+            
+            // Add event listener for future changes
+            checkbox.addEventListener('change', function() {
+                toggleCategoryChildren(this);
+            });
+        });
+    });
+</script>
