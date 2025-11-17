@@ -918,16 +918,17 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-@@media (min-width: 769px) and (max-width: 1023px) {
+/* iPad Mini specific - 768px */
+@@media (min-width: 768px) and (max-width: 820px) {
     .page-title-toS {
-        font-size: 22px !important;
+        font-size: 20px !important;
     }
     
     /* Remove padding and margin in tablet view */
     .header-container-toS {
         margin-top: 0 !important;
         padding-top: 1.5rem !important;
-        margin-left: -1.5rem !important;
+        margin-left: 0rem !important;
     }
     
     /* Align form container with navigation elements */
@@ -944,12 +945,56 @@ a.mobile-sidebar-nav-item:hover {
         margin-bottom: 1rem !important;
     }
     
-    /* Align container with top navigation */
+    /* Align container with top navigation - iPad Mini */
     .container.px-4.my-3.pt-md-3.pt-3 {
         margin-top: 0 !important;
         padding-top: 0 !important;
-        padding-left: 18px !important;
-        padding-right: 18px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+    
+    .back-toS {
+        margin-left: 0rem !important;
+    }
+}
+
+/* iPad Air specific - 821px to 1023px */
+@@media (min-width: 821px) and (max-width: 1023px) {
+    .page-title-toS {
+        font-size: 22px !important;
+    }
+    
+    /* Remove padding and margin in tablet view */
+    .header-container-toS {
+        margin-top: 0 !important;
+        padding-top: 1.5rem !important;
+        margin-left: 0rem !important;
+    }
+    
+    /* Align form container with navigation elements */
+    .new-service-form-container,
+    .new-category-form-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Reduce gap between header and form */
+    .header-container-toS {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Align container with top navigation - iPad Air */
+    .container.px-4.my-3.pt-md-3.pt-3 {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+    
+    .back-toS {
+        margin-left: 0rem !important;
     }
 }
 
