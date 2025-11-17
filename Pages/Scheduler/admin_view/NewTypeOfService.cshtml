@@ -27,20 +27,8 @@
                 <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0 page-title-toS">New Type of Service</h2>
             </div>
 
-            <!-- Tab Navigation -->
-            <div class="scheduling-tabs-container mb-4">
-                <button type="button" class="scheduling-tab active" data-tab="hours-availability">
-                    Set Hours of Availability
-                </button>
-                <button type="button" class="scheduling-tab" data-tab="calendar-limits">
-                    Calendar Scheduling Limits
-                </button>
-            </div>
-
             <!-- Form Container -->
             <div class="new-service-form-container">
-                <!-- Tab Content: Set Hours of Availability -->
-                <div class="tab-content active" id="hours-availability-content">
                 <form>
                     <!--    Appointment Name -->
                     <div class="form-group mb-4">
@@ -344,69 +332,6 @@
                         <button type="button" class="btn btn-delete-type">Delete Appointment Type</button>
                     </div>
                 </form>
-                </div>
-
-                <!-- Tab Content: Calendar Scheduling Limits -->
-                <div class="tab-content" id="calendar-limits-content">
-                    <form>
-                        <!-- Restrict bookings section -->
-                        <div class="scheduling-section mb-5">
-                            <h3 class="section-title mb-3">Restrict bookings based on the following conditions.</h3>
-                            
-                            <!-- Days before appointment -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Days before appointment clients can book</label>
-                                <div class="input-with-suffix">
-                                    <input type="number" class="form-control" placeholder="Enter Number" />
-                                    <span class="input-suffix">days</span>
-                                </div>
-                            </div>
-
-                            <!-- Maximum days in advance -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Maximum days in advance clients can book</label>
-                                <div class="input-with-suffix">
-                                    <input type="number" class="form-control" placeholder="Enter Number" />
-                                    <span class="input-suffix">days</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Reschedule/Cancellation section -->
-                        <div class="scheduling-section mb-5">
-                            <h3 class="section-title mb-3">Reschedule/Cancellation not allowed on the following condition.</h3>
-                            
-                            <!-- Minimum hours allowed -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Set minimum hours allowed</label>
-                                <div class="input-with-suffix">
-                                    <input type="number" class="form-control" placeholder="Enter Number" />
-                                    <span class="input-suffix">hours</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Appointments per Time Slot section -->
-                        <div class="scheduling-section mb-5">
-                            <h3 class="section-title mb-3">Appointments per Time Slot</h3>
-                            
-                            <!-- Set maximum appointments -->
-                            <div class="form-group mb-4">
-                                <label class="form-label">Set maximum appointments allowed</label>
-                                <div class="input-with-suffix">
-                                    <input type="number" class="form-control" placeholder="Enter Number" />
-                                    <span class="input-suffix">appointments</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="form-actions d-flex gap-3 mt-5">
-                            <button type="button" class="btn btn-apply-changes">Apply Changes</button>
-                            <button type="button" class="btn btn-cancel-changes">Cancel</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -414,28 +339,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Tab switching functionality
-        const tabs = document.querySelectorAll('.scheduling-tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs and contents
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Show corresponding content
-                const tabName = this.getAttribute('data-tab');
-                const content = document.getElementById(tabName + '-content');
-                if (content) {
-                    content.classList.add('active');
-                }
-            });
-        });
-        
         // Function to toggle category children visibility
         function toggleCategoryChildren(parentCheckbox) {
             const parentId = parentCheckbox.getAttribute('data-parent');

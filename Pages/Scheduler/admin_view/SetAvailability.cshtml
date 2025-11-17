@@ -31,8 +31,8 @@
             <!-- Tab Navigation and Action Buttons -->
             <div class="availability-header-row mb-4">
                 <div class="availability-tabs">
-                    <button type="button" class="availability-tab active">Set Hours of Availability</button>
-                    <button type="button" class="availability-tab">Calendar Scheduling Limits</button>
+                    <button type="button" class="availability-tab active" data-tab="hours-availability">Set Hours of Availability</button>
+                    <button type="button" class="availability-tab" data-tab="calendar-limits">Calendar Scheduling Limits</button>
                 </div>
                 <div class="availability-action-buttons">
                     <button type="button" class="btn btn-block-action" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
@@ -40,6 +40,8 @@
                 </div>
             </div>
 
+            <!-- Tab Content: Set Hours of Availability -->
+            <div class="tab-content-availability active" id="hours-availability-content">
             <!-- Weekly Schedule Section -->
             <div class="weekly-schedule-section mb-4">
                 <!-- Checkbox -->
@@ -66,39 +68,41 @@
                     <!-- Day Content -->
                     <div class="weekly-day-contents">
                         <!-- Sunday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                        <div class="weekly-day-item" data-day-name="Sunday" data-day-short="Sun" data-bs-toggle="modal" data-bs-target="#setTimeModal">
                             <div class="weekly-day-status">Close</div>
                         </div>
 
                         <!-- Monday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
-                            <div class="weekly-day-status">Close</div>
+                        <div class="weekly-day-item active" data-day-name="Monday" data-day-short="Mon" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-time-container">
+                                <div class="weekly-day-time">9:00 - 11:00 AM</div>
+                                <div class="weekly-day-break">Break 1</div>
+                                <div class="weekly-day-time">1:00 - 5:00 PM</div>
+                            </div>
                         </div>
 
                         <!-- Tuesday -->
-                        <div class="weekly-day-item active" data-bs-toggle="modal" data-bs-target="#setTimeModal">
-                            <div class="weekly-day-time">9:00 - 11:00 AM</div>
-                            <div class="weekly-day-break">Break 1</div>
-                            <div class="weekly-day-time">1:00 - 5:00 PM</div>
+                        <div class="weekly-day-item" data-day-name="Tuesday" data-day-short="Tue" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                            <div class="weekly-day-status">Close</div>
                         </div>
 
                         <!-- Wednesday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                        <div class="weekly-day-item" data-day-name="Wednesday" data-day-short="Wed" data-bs-toggle="modal" data-bs-target="#setTimeModal">
                             <div class="weekly-day-status">Close</div>
                         </div>
 
                         <!-- Thursday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                        <div class="weekly-day-item" data-day-name="Thursday" data-day-short="Thurs" data-bs-toggle="modal" data-bs-target="#setTimeModal">
                             <div class="weekly-day-status">Close</div>
                         </div>
 
                         <!-- Friday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                        <div class="weekly-day-item" data-day-name="Friday" data-day-short="Fri" data-bs-toggle="modal" data-bs-target="#setTimeModal">
                             <div class="weekly-day-status">Close</div>
                         </div>
 
                         <!-- Saturday -->
-                        <div class="weekly-day-item" data-bs-toggle="modal" data-bs-target="#setTimeModal">
+                        <div class="weekly-day-item" data-day-name="Saturday" data-day-short="Sat" data-bs-toggle="modal" data-bs-target="#setTimeModal">
                             <div class="weekly-day-status">Close</div>
                         </div>
                     </div>
@@ -294,6 +298,70 @@
                 <!-- Save Changes Button -->
                 <div class="calendar-save-container">
                     <button type="button" class="btn btn-save-changes">Save Changes</button>
+                </div>
+            </div>
+            </div>
+
+            <!-- Tab Content: Calendar Scheduling Limits -->
+            <div class="tab-content-availability" id="calendar-limits-content">
+                <!-- Restrict bookings section -->
+                <div class="scheduling-section mb-5">
+                    <h3 class="section-title mb-3">Restrict bookings based on the following conditions.</h3>
+                    
+                    <!-- Days before appointment -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Days before appointment clients can book</label>
+                            <div class="input-with-suffix">
+                                <input type="number" class="form-control" placeholder="Enter Number" />
+                                <span class="input-suffix">days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maximum days in advance -->
+                    <div class="form-group mb-4">
+                        <label class="form-label">Maximum days in advance clients can book</label>
+                        <div class="input-with-suffix">
+                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <span class="input-suffix">days</span>
+                        </div>
+                    </div>
+                </div>        
+
+                <!-- Reschedule/Cancellation section -->
+                <div class="scheduling-section mb-5">
+                    <h3 class="section-title mb-3">Reschedule/Cancellation not allowed on the following condition.</h3>
+                    
+                    <!-- Minimum hours allowed -->
+                    <div class="form-group mb-4">
+                        <label class="form-label">Set minimum hours allowed</label>
+                        <div class="input-with-suffix">
+                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <span class="input-suffix">hours</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Appointments per Time Slot section -->
+                <div class="scheduling-section mb-5">
+                    <h3 class="section-title mb-3">Appointments per Time Slot</h3>
+                    
+                    <!-- Maximum Appointments allowed -->
+                    <div class="form-group mb-4">
+                        <label class="form-label">Set maximum appointments allowed</label>
+                        <div class="input-with-suffix">
+                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <span class="input-suffix">appointments</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions d-flex gap-3 mt-5">
+                    <button type="button" class="btn btn-apply-changes">Apply Changes</button>
+                    <button type="button" class="btn btn-cancel-changes">Cancel</button>
                 </div>
             </div>
         </div>
@@ -519,3 +587,29 @@
 </div>
 
 @await Html.PartialAsync("../admin_view/_Scripts")
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality for availability page
+        const availabilityTabs = document.querySelectorAll('.availability-tab');
+        const availabilityTabContents = document.querySelectorAll('.tab-content-availability');
+        
+        availabilityTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs and contents
+                availabilityTabs.forEach(t => t.classList.remove('active'));
+                availabilityTabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Show corresponding content
+                const tabName = this.getAttribute('data-tab');
+                const content = document.getElementById(tabName + '-content');
+                if (content) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+</script>

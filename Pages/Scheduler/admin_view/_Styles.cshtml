@@ -1169,6 +1169,25 @@ a.mobile-sidebar-nav-item:hover {
     gap: 12px;
 }
 
+@@media (max-width: 767px) {
+    .availability-header-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .availability-action-buttons {
+        width: 100%;
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .btn-block-action {
+        flex: 1;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
 .btn-block-action {
     background-color: white;
     color: #ff5400;
@@ -1185,12 +1204,21 @@ a.mobile-sidebar-nav-item:hover {
     background-color: #fff5f0;
 }
 
+/* Tab Content for Availability Page */
+.tab-content-availability {
+    display: none;
+}
+
+.tab-content-availability.active {
+    display: block;
+}
+
 /* Weekly Schedule Section */
 .weekly-schedule-section {
     background: white;
-    border: 1px solid #e0e0e0;
+    padding: 20px;
     border-radius: 8px;
-    padding: 24px;
+    border: 1px solid #e0e0e0;
 }
 
 .section-title {
@@ -1303,6 +1331,93 @@ a.mobile-sidebar-nav-item:hover {
     right: 0;
     height: 2px;
     background-color: #ff5400;
+}
+
+/* Mobile Weekly Schedule - Vertical Layout */
+@@media (max-width: 767px) {
+    .weekly-day-headers {
+        display: none;
+    }
+    
+    .weekly-day-contents {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        gap: 0;
+    }
+    
+    .weekly-day-item {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 12px 16px;
+        min-height: auto;
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 0;
+        margin-bottom: 0;
+        position: relative;
+        background: white;
+    }
+    
+    .weekly-day-item:first-child {
+        border-top: 1px solid #e0e0e0;
+    }
+    
+    .weekly-day-item::before {
+        content: attr(data-day-short);
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        position: static;
+        height: auto;
+        background: none;
+        margin-bottom: 8px;
+    }
+    
+    .weekly-day-item.active {
+        border: 2px solid #000;
+        border-radius: 4px;
+        background-color: white;
+        padding: 12px 16px;
+        margin: 8px 0;
+    }
+    
+    .weekly-day-item.active::before {
+        margin-bottom: 8px;
+    }
+    
+    .weekly-day-item.active::after {
+        display: none;
+    }
+    
+    .weekly-day-status {
+        font-size: 14px;
+        color: #666;
+        align-self: flex-start;
+    }
+    
+    .weekly-day-time {
+        font-size: 14px;
+        color: #333;
+        text-align: left;
+        line-height: 1.6;
+    }
+    
+    .weekly-day-break {
+        font-size: 14px;
+        color: #666;
+        font-style: normal;
+        line-height: 1.6;
+    }
+    
+    .weekly-day-time-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+    }
 }
 
 .weekly-day-status {
@@ -2780,11 +2895,14 @@ a.mobile-sidebar-nav-item:hover {
     
     .availability-action-buttons {
         width: 100%;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 8px;
     }
     
     .btn-block-action {
-        width: 100%;
+        flex: 1;
+        font-size: 13px;
+        padding: 10px 12px;
     }
     
     .weekly-schedule-section,
