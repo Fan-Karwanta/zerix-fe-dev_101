@@ -1122,6 +1122,12 @@ a.mobile-sidebar-nav-item:hover {
     color: #e04800;
 }
 
+@@media (max-width: 767px) {
+    .back-availability span {
+        display: none;
+    }
+}
+
 .page-title-availability {
     position: absolute;
     left: 50%;
@@ -1135,6 +1141,13 @@ a.mobile-sidebar-nav-item:hover {
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+@@media (max-width: 767px) {
+    .availability-header-row {
+        border-bottom: none;
+    }
 }
 
 .availability-tabs {
@@ -1162,6 +1175,12 @@ a.mobile-sidebar-nav-item:hover {
     color: #ff5400;
     border-bottom-color: #ff5400;
     font-weight: 500;
+}
+
+@@media (max-width: 767px) {
+    .availability-tab.active {
+        border-bottom-color: transparent;
+    }
 }
 
 .availability-action-buttons {
@@ -1350,18 +1369,17 @@ a.mobile-sidebar-nav-item:hover {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 12px 16px;
-        min-height: auto;
-        border: none;
-        border-bottom: 1px solid #e0e0e0;
-        border-radius: 0;
-        margin-bottom: 0;
+        padding: 16px;
+        min-height: 60px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 16px;
         position: relative;
         background: white;
     }
     
-    .weekly-day-item:first-child {
-        border-top: 1px solid #e0e0e0;
+    .weekly-day-item:last-child {
+        margin-bottom: 0;
     }
     
     .weekly-day-item::before {
@@ -1369,22 +1387,45 @@ a.mobile-sidebar-nav-item:hover {
         font-size: 14px;
         font-weight: 400;
         color: #666;
-        position: static;
+        position: absolute;
+        top: -24px;
+        left: 0;
         height: auto;
         background: none;
-        margin-bottom: 8px;
+        margin-bottom: 0;
+    }
+    
+    .weekly-day-item {
+        margin-top: 24px;
+    }
+    
+    .weekly-day-item:first-child {
+        margin-top: 24px;
+    }
+    
+    .weekly-day-item:first-child::before {
+        position: absolute;
+        top: -24px;
+        left: 0;
+        margin-bottom: 0;
     }
     
     .weekly-day-item.active {
         border: 2px solid #000;
-        border-radius: 4px;
+        border-radius: 8px;
         background-color: white;
-        padding: 12px 16px;
-        margin: 8px 0;
+        padding: 16px;
+        margin: 16px 0;
+        margin-top: 24px;
     }
     
     .weekly-day-item.active::before {
-        margin-bottom: 8px;
+        position: absolute;
+        top: -24px;
+        left: 0;
+        margin-bottom: 0;
+        background: none !important;
+        height: auto !important;
     }
     
     .weekly-day-item.active::after {
@@ -1406,7 +1447,7 @@ a.mobile-sidebar-nav-item:hover {
     
     .weekly-day-break {
         font-size: 14px;
-        color: #666;
+        color: #333;
         font-style: normal;
         line-height: 1.6;
     }
@@ -2426,6 +2467,13 @@ a.mobile-sidebar-nav-item:hover {
     max-width: 500px;
 }
 
+@@media (max-width: 767px) {
+    .modal-set-time {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+}
+
 .modal-set-time .modal-content {
     border-radius: 8px;
     border: none;
@@ -2465,6 +2513,17 @@ a.mobile-sidebar-nav-item:hover {
 .time-row-modal {
     display: flex;
     gap: 12px;
+}
+
+@@media (max-width: 767px) {
+    .time-row-modal {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .time-input-group {
+        width: 100%;
+    }
 }
 
 .time-input-group {
@@ -2556,6 +2615,13 @@ a.mobile-sidebar-nav-item:hover {
 /* Block Off Modals Styles */
 .modal-block-off {
     max-width: 450px;
+}
+
+@@media (max-width: 767px) {
+    .modal-block-off {
+        max-width: 90%;
+        margin: 0 auto;
+    }
 }
 
 .modal-block-off .modal-content {
@@ -2901,8 +2967,9 @@ a.mobile-sidebar-nav-item:hover {
     
     .btn-block-action {
         flex: 1;
-        font-size: 13px;
-        padding: 10px 12px;
+        font-size: 12px;
+        padding: 8px 8px;
+        white-space: nowrap;
     }
     
     .weekly-schedule-section,
@@ -2930,10 +2997,10 @@ a.mobile-sidebar-nav-item:hover {
     
     .weekly-day-item {
         padding: 12px 4px;
-        min-height: 80px;
+        min-height: 50px;
         font-size: 11px;
     }
-    
+    ;;
     .weekly-day-time {
         font-size: 10px;
     }
@@ -3054,6 +3121,13 @@ a.mobile-sidebar-nav-item:hover {
 /* Date Hours Modal Styles */
 .modal-date-hours {
     max-width: 380px;
+}
+
+@@media (max-width: 767px) {
+    .modal-date-hours {
+        max-width: 90%;
+        margin: 0 auto;
+    }
 }
 
 .modal-date-hours .modal-content {
