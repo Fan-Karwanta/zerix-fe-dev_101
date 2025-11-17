@@ -1,0 +1,465 @@
+<script>
+// Admin Calendar - Dedicated script with new dummy data
+let adminCalendarData = {
+    currentView: 'monthly', // 'monthly' or 'daily'
+    currentWeekStart: new Date(2025, 6, 13), // July 13, 2025 (Sunday)
+    selectedDate: new Date(2025, 6, 15), // July 15, 2025
+    
+    // Dummy appointment data for admin calendar
+    appointments: [
+        {
+            id: 1,
+            customerName: 'Kaye Reyes',
+            phone: '(+123) 555-0102',
+            email: 'kaye.reyes@example.com',
+            service: 'Consultation',
+            category: 'SM Megamall - General',
+            date: new Date(2025, 6, 15), // July 15, 2025
+            startTime: '09:00',
+            endTime: '10:00',
+            duration: '60 minutes',
+            price: '₱500.00',
+            status: 'booked',
+            scheduledOn: 'July 14, 2025 at 2:30 PM'
+        },
+        {
+            id: 2,
+            customerName: 'John Martinez',
+            phone: '(+123) 555-0103',
+            email: 'john.m@example.com',
+            service: 'Medical Appointment',
+            category: 'SM Megamall - Medical',
+            date: new Date(2025, 6, 16), // July 16, 2025
+            startTime: '14:00',
+            endTime: '14:30',
+            duration: '30 minutes',
+            price: '₱350.00',
+            status: 'completed',
+            scheduledOn: 'July 15, 2025 at 9:00 AM'
+        },
+        {
+            id: 3,
+            customerName: 'Sarah Chen',
+            phone: '(+123) 555-0104',
+            email: 'sarah.chen@example.com',
+            service: 'Consultation',
+            category: 'SM Megamall - General',
+            date: new Date(2025, 6, 17), // July 17, 2025
+            startTime: '10:00',
+            endTime: '11:00',
+            duration: '60 minutes',
+            price: '₱500.00',
+            status: 'booked',
+            scheduledOn: 'July 16, 2025 at 11:15 AM'
+        },
+        {
+            id: 4,
+            customerName: 'Michael Santos',
+            phone: '(+123) 555-0105',
+            email: 'michael.s@example.com',
+            service: 'Medical Appointment',
+            category: 'SM Megamall - Medical',
+            date: new Date(2025, 6, 18), // July 18, 2025
+            startTime: '15:00',
+            endTime: '15:30',
+            duration: '30 minutes',
+            price: '₱350.00',
+            status: 'rescheduled',
+            scheduledOn: 'July 17, 2025 at 3:45 PM',
+            originalDate: 'July 17, 2025',
+            originalTime: '10:00 AM'
+        }
+    ]
+};
+
+// Initialize calendar views
+function initAdminCalendar() {
+    generateWeekHeader();
+    generateTimeSlots();
+    renderAppointments();
+    updateCalendarDate();
+}
+
+// Generate week header for monthly view
+function generateWeekHeader() {
+    const weekHeader = document.getElementById('week-header');
+    if (!weekHeader) return;
+    
+    const timeColumn = weekHeader.querySelector('.time-column');
+    weekHeader.innerHTML = '';
+    weekHeader.appendChild(timeColumn);
+    
+    const weekStart = new Date(adminCalendarData.currentWeekStart);
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    for (let i = 0; i < 7; i++) {
+        const currentDay = new Date(weekStart);
+        currentDay.setDate(weekStart.getDate() + i);
+        
+        const dayColumn = document.createElement('div');
+        dayColumn.className = 'day-column';
+        dayColumn.innerHTML = `
+            <div class="day-header-content">
+                <div class="day-number">${currentDay.getDate()}</div>
+                <div class="day-name">${dayNames[currentDay.getDay()]}</div>
+            </div>
+        `;
+        weekHeader.appendChild(dayColumn);
+    }
+}
+
+// Generate time slots grid
+function generateTimeSlots() {
+    const timeSlotsGrid = document.getElementById('time-slots-grid');
+    if (!timeSlotsGrid) return;
+    
+    timeSlotsGrid.innerHTML = '';
+    
+    // Generate 24 hours (00:00 to 23:00)
+    for (let hour = 0; hour < 24; hour++) {
+        const timeRow = document.createElement('div');
+        timeRow.className = 'time-row';
+        
+        // Time label column
+        const timeLabel = document.createElement('div');
+        timeLabel.className = 'time-label';
+        const displayHour = hour === 0 ? 12 : (hour > 12 ? hour - 12 : hour);
+        const ampm = hour < 12 ? 'AM' : 'PM';
+        timeLabel.textContent = `${displayHour}:00 ${ampm}`;
+        timeRow.appendChild(timeLabel);
+        
+        // Day columns (7 days)
+        for (let day = 0; day < 7; day++) {
+            const daySlot = document.createElement('div');
+            daySlot.className = 'day-slot';
+            daySlot.setAttribute('data-day', day);
+            daySlot.setAttribute('data-hour', hour);
+            timeRow.appendChild(daySlot);
+        }
+        
+        timeSlotsGrid.appendChild(timeRow);
+    }
+}
+
+// Render appointments on the calendar
+function renderAppointments() {
+    const timeSlotsGrid = document.getElementById('time-slots-grid');
+    if (!timeSlotsGrid) return;
+    
+    // Clear existing appointments
+    document.querySelectorAll('.appointment-block').forEach(block => block.remove());
+    
+    const weekStart = new Date(adminCalendarData.currentWeekStart);
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 7);
+    
+    adminCalendarData.appointments.forEach(appointment => {
+        if (appointment.date >= weekStart && appointment.date < weekEnd) {
+            const dayIndex = Math.floor((appointment.date - weekStart) / (1000 * 60 * 60 * 24));
+            const startHour = parseInt(appointment.startTime.split(':')[0]);
+            const startMinute = parseInt(appointment.startTime.split(':')[1]);
+            const endHour = parseInt(appointment.endTime.split(':')[0]);
+            const endMinute = parseInt(appointment.endTime.split(':')[1]);
+            
+            const duration = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+            const heightPercentage = (duration / 60) * 100;
+            const topOffset = (startMinute / 60) * 100;
+            
+            const daySlot = timeSlotsGrid.querySelector(`.time-row:nth-child(${startHour + 1}) .day-slot[data-day="${dayIndex}"]`);
+            if (daySlot) {
+                const appointmentBlock = document.createElement('div');
+                appointmentBlock.className = `appointment-block status-${appointment.status}`;
+                appointmentBlock.style.height = `${heightPercentage}%`;
+                appointmentBlock.style.top = `${topOffset}%`;
+                appointmentBlock.innerHTML = `
+                    <div class="appointment-time">${appointment.startTime} - ${appointment.endTime}</div>
+                    <div class="appointment-customer">${appointment.customerName}</div>
+                    <div class="appointment-service">${appointment.service}</div>
+                `;
+                appointmentBlock.onclick = () => openAppointmentDetails(appointment);
+                daySlot.appendChild(appointmentBlock);
+            }
+        }
+    });
+}
+
+// Open appointment details modal
+function openAppointmentDetails(appointment) {
+    const modal = document.getElementById('appointmentDetailsModal');
+    if (!modal) return;
+    
+    // Update modal content
+    document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
+    document.getElementById('appointmentPhone').textContent = appointment.phone;
+    document.getElementById('appointmentEmail').textContent = appointment.email;
+    document.getElementById('appointmentServiceTitle').textContent = appointment.service;
+    document.getElementById('appointmentServiceSubtitle').textContent = appointment.category;
+    
+    const dateStr = appointment.date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        weekday: 'short'
+    });
+    document.getElementById('appointmentDate').textContent = dateStr;
+    document.getElementById('appointmentTime').textContent = `${appointment.startTime}-${appointment.endTime}`;
+    document.getElementById('appointmentDuration').textContent = appointment.duration;
+    document.getElementById('appointmentPrice').textContent = appointment.price;
+    document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledOn}`;
+    
+    // Update status
+    const statusBadge = document.getElementById('appointmentStatus');
+    statusBadge.className = `appointment-status-badge status-${appointment.status}`;
+    statusBadge.querySelector('.status-text').textContent = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
+    
+    // Show modal
+    const bsModal = new bootstrap.Modal(modal);
+    bsModal.show();
+}
+
+// Switch between monthly and daily views
+function switchView(view) {
+    adminCalendarData.currentView = view;
+    document.getElementById('current-view-label').textContent = view === 'monthly' ? 'Monthly' : 'Daily';
+    
+    if (view === 'monthly') {
+        document.getElementById('monthly-view').style.display = 'block';
+        document.getElementById('daily-view').style.display = 'none';
+    } else {
+        document.getElementById('monthly-view').style.display = 'none';
+        document.getElementById('daily-view').style.display = 'block';
+        generateDailyView();
+    }
+}
+
+// Generate daily view
+function generateDailyView() {
+    const dailyHeader = document.getElementById('daily-header');
+    const dailyGrid = document.getElementById('daily-time-slots-grid');
+    if (!dailyHeader || !dailyGrid) return;
+    
+    const selectedDate = adminCalendarData.selectedDate;
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    // Update header
+    const timeColumn = dailyHeader.querySelector('.time-column-daily');
+    dailyHeader.innerHTML = '';
+    dailyHeader.appendChild(timeColumn);
+    
+    const dayColumn = document.createElement('div');
+    dayColumn.className = 'day-column-daily';
+    dayColumn.innerHTML = `
+        <div class="day-header-content">
+            <div class="day-name">${dayNames[selectedDate.getDay()]}</div>
+            <div class="day-number">${selectedDate.getDate()}</div>
+            <div class="day-month">${monthNames[selectedDate.getMonth()]}</div>
+        </div>
+    `;
+    dailyHeader.appendChild(dayColumn);
+    
+    // Generate time slots
+    dailyGrid.innerHTML = '';
+    for (let hour = 0; hour < 24; hour++) {
+        const timeRow = document.createElement('div');
+        timeRow.className = 'time-row-daily';
+        
+        const timeLabel = document.createElement('div');
+        timeLabel.className = 'time-label-daily';
+        const displayHour = hour === 0 ? 12 : (hour > 12 ? hour - 12 : hour);
+        const ampm = hour < 12 ? 'AM' : 'PM';
+        timeLabel.textContent = `${displayHour}:00 ${ampm}`;
+        timeRow.appendChild(timeLabel);
+        
+        const daySlot = document.createElement('div');
+        daySlot.className = 'day-slot-daily';
+        daySlot.setAttribute('data-hour', hour);
+        timeRow.appendChild(daySlot);
+        
+        dailyGrid.appendChild(timeRow);
+    }
+    
+    // Render appointments for selected day
+    renderDailyAppointments();
+}
+
+// Render appointments for daily view
+function renderDailyAppointments() {
+    const dailyGrid = document.getElementById('daily-time-slots-grid');
+    if (!dailyGrid) return;
+    
+    document.querySelectorAll('.appointment-block').forEach(block => block.remove());
+    
+    const selectedDate = adminCalendarData.selectedDate;
+    
+    adminCalendarData.appointments.forEach(appointment => {
+        if (appointment.date.toDateString() === selectedDate.toDateString()) {
+            const startHour = parseInt(appointment.startTime.split(':')[0]);
+            const startMinute = parseInt(appointment.startTime.split(':')[1]);
+            const endHour = parseInt(appointment.endTime.split(':')[0]);
+            const endMinute = parseInt(appointment.endTime.split(':')[1]);
+            
+            const duration = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+            const heightPercentage = (duration / 60) * 100;
+            const topOffset = (startMinute / 60) * 100;
+            
+            const daySlot = dailyGrid.querySelector(`.time-row-daily:nth-child(${startHour + 1}) .day-slot-daily`);
+            if (daySlot) {
+                const appointmentBlock = document.createElement('div');
+                appointmentBlock.className = `appointment-block status-${appointment.status}`;
+                appointmentBlock.style.height = `${heightPercentage}%`;
+                appointmentBlock.style.top = `${topOffset}%`;
+                appointmentBlock.innerHTML = `
+                    <div class="appointment-time">${appointment.startTime} - ${appointment.endTime}</div>
+                    <div class="appointment-customer">${appointment.customerName}</div>
+                    <div class="appointment-service">${appointment.service}</div>
+                `;
+                appointmentBlock.onclick = () => openAppointmentDetails(appointment);
+                daySlot.appendChild(appointmentBlock);
+            }
+        }
+    });
+}
+
+// Navigation functions
+function previousPeriod() {
+    if (adminCalendarData.currentView === 'monthly') {
+        const newDate = new Date(adminCalendarData.currentWeekStart);
+        newDate.setDate(newDate.getDate() - 7);
+        adminCalendarData.currentWeekStart = newDate;
+        generateWeekHeader();
+        renderAppointments();
+    } else {
+        const newDate = new Date(adminCalendarData.selectedDate);
+        newDate.setDate(newDate.getDate() - 1);
+        adminCalendarData.selectedDate = newDate;
+        generateDailyView();
+    }
+    updateCalendarDate();
+}
+
+function nextPeriod() {
+    if (adminCalendarData.currentView === 'monthly') {
+        const newDate = new Date(adminCalendarData.currentWeekStart);
+        newDate.setDate(newDate.getDate() + 7);
+        adminCalendarData.currentWeekStart = newDate;
+        generateWeekHeader();
+        renderAppointments();
+    } else {
+        const newDate = new Date(adminCalendarData.selectedDate);
+        newDate.setDate(newDate.getDate() + 1);
+        adminCalendarData.selectedDate = newDate;
+        generateDailyView();
+    }
+    updateCalendarDate();
+}
+
+function updateCalendarDate() {
+    const dateElement = document.getElementById('full-calendar-date');
+    if (!dateElement) return;
+    
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    if (adminCalendarData.currentView === 'monthly') {
+        const weekStart = adminCalendarData.currentWeekStart;
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekStart.getDate() + 6);
+        
+        if (weekStart.getMonth() === weekEnd.getMonth()) {
+            dateElement.textContent = `${monthNames[weekStart.getMonth()]} ${weekStart.getDate()}-${weekEnd.getDate()}, ${weekStart.getFullYear()}`;
+        } else {
+            dateElement.textContent = `${monthNames[weekStart.getMonth()]} ${weekStart.getDate()} - ${monthNames[weekEnd.getMonth()]} ${weekEnd.getDate()}, ${weekStart.getFullYear()}`;
+        }
+    } else {
+        const date = adminCalendarData.selectedDate;
+        dateElement.textContent = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    }
+}
+
+// Block Off Day modal function
+function openBlockOffDayModal() {
+    const blockOffDayModal = new bootstrap.Modal(document.getElementById('blockOffDayModal'));
+    blockOffDayModal.show();
+}
+
+// Mobile calendar functions
+function showMobileCalendar() {
+    document.getElementById('mobile-calendar-view').style.display = 'block';
+    document.getElementById('mobile-daily-view').style.display = 'none';
+}
+
+function previousDayMobile() {
+    const newDate = new Date(adminCalendarData.selectedDate);
+    newDate.setDate(newDate.getDate() - 1);
+    adminCalendarData.selectedDate = newDate;
+    updateMobileDateDisplay();
+    renderMobileTimeSlots();
+}
+
+function nextDayMobile() {
+    const newDate = new Date(adminCalendarData.selectedDate);
+    newDate.setDate(newDate.getDate() + 1);
+    adminCalendarData.selectedDate = newDate;
+    updateMobileDateDisplay();
+    renderMobileTimeSlots();
+}
+
+function updateMobileDateDisplay() {
+    const dateElement = document.getElementById('mobile-selected-date');
+    if (!dateElement) return;
+    
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const date = adminCalendarData.selectedDate;
+    dateElement.textContent = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+}
+
+function renderMobileTimeSlots() {
+    const container = document.getElementById('mobile-time-slots');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const selectedDate = adminCalendarData.selectedDate;
+    const dayAppointments = adminCalendarData.appointments.filter(apt => 
+        apt.date.toDateString() === selectedDate.toDateString()
+    );
+    
+    // Generate time slots for the day
+    for (let hour = 0; hour < 24; hour++) {
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'mobile-time-slot';
+        
+        const displayHour = hour === 0 ? 12 : (hour > 12 ? hour - 12 : hour);
+        const ampm = hour < 12 ? 'AM' : 'PM';
+        const timeStr = `${displayHour}:00 ${ampm}`;
+        
+        timeSlot.innerHTML = `<div class="mobile-time-label">${timeStr}</div>`;
+        
+        // Check if there are appointments at this hour
+        dayAppointments.forEach(apt => {
+            const aptHour = parseInt(apt.startTime.split(':')[0]);
+            if (aptHour === hour) {
+                const aptBlock = document.createElement('div');
+                aptBlock.className = `mobile-appointment-block status-${apt.status}`;
+                aptBlock.innerHTML = `
+                    <div class="mobile-apt-time">${apt.startTime} - ${apt.endTime}</div>
+                    <div class="mobile-apt-customer">${apt.customerName}</div>
+                    <div class="mobile-apt-service">${apt.service}</div>
+                `;
+                aptBlock.onclick = () => openAppointmentDetails(apt);
+                timeSlot.appendChild(aptBlock);
+            }
+        });
+        
+        container.appendChild(timeSlot);
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('time-slots-grid')) {
+        initAdminCalendar();
+    }
+});
+</script>

@@ -1,0 +1,577 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.CalendarModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Calendar";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<!-- Mobile Overview Dropdown and Block Off Day - Only show on phones, hide on tablets and desktop -->
+<div class="mobile-overview-section d-md-none">
+    <div class="d-flex justify-content-between align-items-center gap-2">
+        <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
+            <span>Overview</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="btn btn-block-off-day-mobile" onclick="openBlockOffDayModal()">Block Off Day</button>
+    </div>
+    <div class="collapse" id="mobileOverviewMenu">
+        <div class="mobile-sidebar-nav">
+            <a href="/scheduler/admin_view/calendar" class="mobile-sidebar-nav-item active">Calendar</a>
+            <a href="/scheduler/admin_view/appointmenttypes" class="mobile-sidebar-nav-item">Appointment Types</a>
+            <a href="/scheduler/admin_view/categories" class="mobile-sidebar-nav-item">Categories</a>
+            <div class="mobile-sidebar-nav-item">Form Questions</div>
+            <div class="mobile-sidebar-nav-item">Payment Integrations</div>
+            <div class="mobile-sidebar-nav-item">Reports</div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <!-- Mobile & Tablet: Calendar Selection View -->
+    <div id="mobile-calendar-view" class="d-xl-none mobile-calendar-selection">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="window.history.back()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Calendar</h2>
+        </div>
+
+        <div class="mobile-mini-calendar">
+            <div class="mini-calendar-header mb-3">
+                <button class="btn btn-sm calendar-nav-btn" onclick="previousMonthMini()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <h6 id="mobile-calendar-month-year" class="mb-0 fs-18 fw-500">May 2023</h6>
+                <button class="btn btn-sm calendar-nav-btn" onclick="nextMonthMini()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="mini-calendar-weekdays">
+                <div class="mini-weekday">SUN</div>
+                <div class="mini-weekday">MON</div>
+                <div class="mini-weekday">TUE</div>
+                <div class="mini-weekday">WED</div>
+                <div class="mini-weekday">THUR</div>
+                <div class="mini-weekday">FRI</div>
+                <div class="mini-weekday">SAT</div>
+            </div>
+            <div id="mobile-calendar-days" class="mini-calendar-days"></div>
+        </div>
+    </div>
+
+    <!-- Mobile & Tablet: Daily Schedule View -->
+    <div id="mobile-daily-view" class="d-xl-none mobile-daily-schedule" style="display: none;">
+        <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
+            <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="showMobileCalendar()">
+                <i class="bi bi-chevron-left mobile-back-chevron"></i>
+            </button>
+            <h2 class="fs-24 ff-default font-darkgray fw-400 mb-0">Calendar</h2>
+        </div>
+
+        <div class="mobile-date-navigation mb-3">
+            <button class="btn btn-sm calendar-nav-btn" onclick="previousDayMobile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h6 id="mobile-selected-date" class="mb-0 fs-16 fw-500">July 17, 2025</h6>
+            <button class="btn btn-sm calendar-nav-btn" onclick="nextDayMobile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-week-days mb-3">
+            <div class="mobile-week-day" id="mobile-day-0">
+                <div class="day-name">Sun</div>
+                <div class="day-number">19</div>
+            </div>
+            <div class="mobile-week-day active" id="mobile-day-1">
+                <div class="day-name">Mon</div>
+                <div class="day-number">16</div>
+            </div>
+            <div class="mobile-week-day" id="mobile-day-2">
+                <div class="day-name">Tue</div>
+                <div class="day-number">17</div>
+            </div>
+            <div class="mobile-week-day" id="mobile-day-3">
+                <div class="day-name">Wed</div>
+                <div class="day-number">18</div>
+            </div>
+            <div class="mobile-week-day" id="mobile-day-4">
+                <div class="day-name">Thu</div>
+                <div class="day-number">19</div>
+            </div>
+            <div class="mobile-week-day" id="mobile-day-5">
+                <div class="day-name">Fri</div>
+                <div class="day-number">20</div>
+            </div>
+            <div class="mobile-week-day" id="mobile-day-6">
+                <div class="day-name">Sat</div>
+                <div class="day-number">21</div>
+            </div>
+        </div>
+
+        <div class="search-box mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="M21 21L16.65 16.65"></path>
+            </svg>
+            <input type="text" class="form-control form-control-sm" placeholder="Search" />
+        </div>
+
+        <div class="mobile-time-slots" id="mobile-time-slots" style="padding-top: 20px;">
+            <!-- Time slots will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Desktop View -->
+    <div class="events-container d-none d-xl-block">
+        <div class="row g-4">
+            <!-- Left Side: Mini Calendar and Sidebar Navigation -->
+            <div class="col-12 col-lg-3">
+                <div class="mini-calendar-container">
+                    <div class="mini-calendar-header">
+                        <button class="btn btn-sm calendar-nav-btn" onclick="previousMonthMini()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <h6 id="mini-calendar-month-year" class="mb-0 fs-16 fw-500">May 2023</h6>
+                        <button class="btn btn-sm calendar-nav-btn" onclick="nextMonthMini()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mini-calendar-weekdays">
+                        <div class="mini-weekday">S</div>
+                        <div class="mini-weekday">M</div>
+                        <div class="mini-weekday">T</div>
+                        <div class="mini-weekday">W</div>
+                        <div class="mini-weekday">T</div>
+                        <div class="mini-weekday">F</div>
+                        <div class="mini-weekday">S</div>
+                    </div>
+                    <div id="mini-calendar-days" class="mini-calendar-days"></div>
+                </div>
+
+                <!-- Sidebar Navigation -->
+                <div class="overview-section">
+                    <div class="overview-title">Overview</div>
+                    <div class="sidebar-nav">
+                        <a href="/scheduler/admin_view/calendar" class="sidebar-nav-item active">Calendar</a>
+                        <a href="/scheduler/admin_view/appointmenttypes" class="sidebar-nav-item">Appointment Types</a>
+                        <a href="/scheduler/admin_view/categories" class="sidebar-nav-item">Categories</a>
+                        <div class="sidebar-nav-item">Form Questions</div>
+                        <div class="sidebar-nav-item">Payment Integrations</div>
+                        <div class="sidebar-nav-item">Reports</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Full Calendar View -->
+            <div class="col-12 col-lg-9">
+                <!-- Calendar Title and Block Off Day Button -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Calendar</h2>
+                    <button class="btn btn-block-off-day" onclick="openBlockOffDayModal()">Block Off Day</button>
+                </div>
+                
+                <div class="full-calendar-container">
+                    <!-- Calendar Header -->
+                    <div class="calendar-view-header">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light-gray dropdown-toggle view-dropdown-btn" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span id="current-view-label">Monthly</span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="switchView('monthly'); return false;">Monthly</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="switchView('daily'); return false;">Daily</a></li>
+                                </ul>
+                            </div>
+                            <h6 id="full-calendar-date" class="mb-0 calendar-date-text">July 15, 2025</h6>
+                            <div class="d-flex align-items-center gap-1">
+                                <button class="btn calendar-chevron-btn" onclick="previousPeriod()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <button class="btn calendar-chevron-btn" onclick="nextPeriod()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-light-gray dropdown-toggle sort-dropdown-btn" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sort
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-sort" aria-labelledby="sortDropdown">
+                                    <li><a class="dropdown-item" href="#">Booked</a></li>
+                                    <li><a class="dropdown-item" href="#">Completed</a></li>
+                                    <li><a class="dropdown-item" href="#">Rescheduled</a></li>
+                                    <li><a class="dropdown-item" href="#">Cancelled</a></li>
+                                </ul>
+                            </div>
+                            <div class="search-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <path d="M21 21L16.65 16.65"></path>
+                                </svg>
+                                <input type="text" class="form-control form-control-sm" placeholder="Search" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Week View (Monthly) -->
+                    <div class="calendar-week-view" id="monthly-view">
+                        <div class="week-header" id="week-header">
+                            <div class="time-column">
+                                <div class="gmt-label">GMT+07</div>
+                            </div>
+                            <!-- Days will be dynamically generated -->
+                        </div>
+
+                        <!-- Time Slots Grid -->
+                        <div class="time-slots-grid" id="time-slots-grid">
+                            <!-- Time slots will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <!-- Calendar Daily View -->
+                    <div class="calendar-daily-view" id="daily-view" style="display: none;">
+                        <div class="daily-header" id="daily-header">
+                            <div class="time-column-daily">
+                                <div class="gmt-label">GMT+07</div>
+                            </div>
+                            <!-- Single day column will be dynamically generated -->
+                        </div>
+
+                        <!-- Daily Time Slots Grid -->
+                        <div class="daily-time-slots-grid" id="daily-time-slots-grid">
+                            <!-- Time slots will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment Details Modal -->
+<div class="modal fade" id="appointmentDetailsModal" tabindex="-1" aria-labelledby="appointmentDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content appointment-details-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-details-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-details-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-details-modal-body">
+                <!-- Header with Appointments Dropdown and Status -->
+                <div class="appointment-header-section mb-3">
+                    <!-- Appointments Dropdown (only visible when overlapping) -->
+                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper" style="display: none;">
+                        <div class="dropdown-label-text">Appointments</div>
+                        <div class="dropdown">
+                            <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="appointmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="appointmentCount">10 Appointments</span>
+                            </button>
+                            <ul class="dropdown-menu appointment-dropdown-menu" aria-labelledby="appointmentDropdown" id="appointmentDropdownList">
+                                <!-- Dropdown items will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Status Section -->
+                    <div class="appointment-status-wrapper">
+                        <div class="status-label-text">Status</div>
+                        <div class="appointment-status-badge" id="appointmentStatus">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Name -->
+                <div class="appointment-customer-name mb-2" id="appointmentCustomerName">
+                    Laybare
+                </div>
+
+                <!-- Contact Info -->
+                <div class="appointment-contact-info mb-3">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.147 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.5953 1.99522 8.06579 2.16708 8.43376 2.48353C8.80173 2.79999 9.04207 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="appointmentPhone">(+123) 555-0101</span>
+                    <span class="contact-separator">•</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="appointmentEmail" class="email-underlined">zerixuser@example.com</span>
+                </div>
+
+                <!-- Service Title -->
+                <div class="appointment-service-title mb-2" id="appointmentServiceTitle">
+                    Eyebrow Thread
+                </div>
+
+                <!-- Service Subtitle -->
+                <div class="appointment-service-subtitle mb-2" id="appointmentServiceSubtitle">
+                    SM Megamall - Face
+                </div>
+
+                <!-- Date and Time -->
+                <div class="appointment-datetime-info mb-2">
+                    <div class="datetime-item">
+                        <span id="appointmentDateOriginal" class="date-strikethrough" style="display: none;"></span>
+                        <span id="appointmentDate">February 15, 2025 (Sun)</span>
+                    </div>
+                    <div class="datetime-item">
+                        <span id="appointmentTimeOriginal" class="time-strikethrough" style="display: none;"></span>
+                        <span id="appointmentTime">10:45-11:30 AM</span>
+                    </div>
+                    <div class="datetime-item" id="appointmentDuration">50 minutes</div>
+                    <div class="datetime-item" id="appointmentPrice">₱450.00</div>
+                </div>
+
+                <!-- Scheduled Info -->
+                <div class="appointment-scheduled-info mb-3" id="appointmentScheduledInfo">
+                    Scheduled on February 14, 2025 (Wed) at 10:00 AM
+                </div>
+
+                <!-- Form Answers Section -->
+                <div class="appointment-form-answers mb-4">
+                    <div class="form-answers-header">
+                        <span>Form Answers</span>
+                        <a href="#" class="edit-info-link" id="editInfoLink" onclick="editAppointmentInfo(event)">Edit Info</a>
+                    </div>
+                    <div class="form-answers-scrollable">
+                        <div class="form-answers-list" id="formAnswersList">
+                            <div class="form-answer-item">
+                                <div class="form-question">How old are you?</div>
+                                <div class="form-answer">24 years old</div>
+                            </div>
+                            <div class="form-answer-item">
+                                <div class="form-question">Do you have any allergies to medications?</div>
+                                <div class="form-answer">No</div>
+                            </div>
+                            <div class="form-answer-item">
+                                <div class="form-question">Do you have any family history of any conditions</div>
+                                <div class="form-answer">No</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="appointment-modal-actions" id="appointmentActions">
+                    <!-- Default buttons (Reschedule & Cancel) -->
+                    <div class="default-actions">
+                        <!-- Desktop buttons (side by side) -->
+                        <div class="d-none d-md-flex justify-content-between gap-3">
+                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                        
+                        <!-- Mobile buttons (stacked) -->
+                        <div class="d-md-none">
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Rescheduled by Admin buttons (Approve, Reschedule & Cancel) -->
+                    <div class="rescheduled-actions" style="display: none;">
+                        <!-- Desktop buttons (three buttons) -->
+                        <div class="d-none d-md-flex gap-3">
+                            <button type="button" class="btn appointment-approve-btn flex-fill" id="approveBtn">Approve</button>
+                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                        
+                        <!-- Mobile buttons (stacked) -->
+                        <div class="d-md-none">
+                            <button type="button" class="btn w-100 mb-3 appointment-approve-btn" id="approveBtnMobile">Approve</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment Rescheduled Confirmation Modal -->
+<div class="modal fade" id="appointmentRescheduledModal" tabindex="-1" aria-labelledby="appointmentRescheduledModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content appointment-rescheduled-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-rescheduled-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-rescheduled-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-rescheduled-modal-body">
+                <h3 class="appointment-rescheduled-title">Appointment Rescheduled</h3>
+                
+                <p class="appointment-rescheduled-text">
+                    Your appointment on <span class="reschedule-datetime" id="rescheduleOriginalDateTime">June 24, 2025 (Thurs) at 9:00 AM</span> 
+                    has been rescheduled to <span class="reschedule-datetime" id="rescheduleNewDateTime">June 25, 2025 (Fri) at 9:00 AM</span>.
+                </p>
+
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn appointment-rescheduled-okay-btn" data-bs-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Appointment Confirmation Modal -->
+<div class="modal fade" id="cancelAppointmentModal" tabindex="-1" aria-labelledby="cancelAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content cancel-appointment-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close cancel-appointment-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="cancel-appointment-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body cancel-appointment-modal-body">
+                <h3 class="cancel-appointment-title">Cancel Appointment</h3>
+                
+                <p class="cancel-appointment-question">
+                    Are you sure you want to cancel this appointment?
+                </p>
+
+                <p class="cancel-appointment-note">
+                    Note: Reservation fee is not refundable.
+                </p>
+
+                <div class="cancel-appointment-actions">
+                    <!-- Desktop buttons (side by side) -->
+                    <div class="d-none d-md-flex gap-3">
+                        <button type="button" class="btn cancel-keep-btn flex-fill" data-bs-dismiss="modal">Keep Appointment</button>
+                        <button type="button" class="btn cancel-confirm-btn flex-fill" id="confirmCancelBtn">Yes, Cancel Appointment</button>
+                    </div>
+                    
+                    <!-- Mobile buttons (stacked) -->
+                    <div class="d-md-none">
+                        <button type="button" class="btn w-100 mb-3 cancel-keep-btn" data-bs-dismiss="modal">Keep Appointment</button>
+                        <button type="button" class="btn w-100 cancel-confirm-btn" id="confirmCancelBtnMobile">Yes, Cancel Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Appointment Cancelled Success Modal -->
+<div class="modal fade" id="appointmentCancelledModal" tabindex="-1" aria-labelledby="appointmentCancelledModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm-approved">
+        <div class="modal-content appointment-cancelled-modal-content">
+            <div class="position-relative-wrapper">
+                <button type="button" class="btn-close appointment-cancelled-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="appointment-cancelled-close-icon">×</span>
+                </button>
+            </div>
+            <div class="modal-body appointment-cancelled-modal-body">
+                <h3 class="appointment-cancelled-title">Appointment Canceled</h3>
+                
+                <p class="appointment-cancelled-text">
+                    Your appointment on <span class="cancelled-datetime" id="cancelledDateTime">June 24, 2025 (Thurs) at 9:00 AM</span> has been canceled.
+                </p>
+
+                <button type="button" class="btn appointment-cancelled-okay-btn w-100" data-bs-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Block Off Day Modal -->
+<div class="modal fade" id="blockOffDayModal" tabindex="-1" aria-labelledby="blockOffDayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-block-off">
+        <div class="modal-content">
+            <div class="modal-header-clicked-day border-0 pb-0">
+                <div>
+                    <h5 class="modal-title mb-1" id="blockOffDayModalLabel">Block Off Day</h5>
+                    <p class="modal-subtitle">Block day based on your availability</p>
+                </div>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body pt-3">
+                <!-- Label 1 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
+                </div>
+
+                <!-- Date Inputs Row 1 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
+                    </div>
+                </div>
+
+                <!-- Label 2 -->
+                <div>
+                    <label class="block-label-modal">Label</label>
+                    <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
+                </div>
+
+                <!-- Date Inputs Row 2 -->
+                <div class="time-row-modal">
+                    <div class="time-input-group">
+                        <label class="time-label-modal">From</label>
+                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
+                    </div>
+                    <div class="time-input-group">
+                        <label class="time-label-modal">To</label>
+                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
+                    </div>
+                </div>
+
+                <!-- Add Another Day Button -->
+                <button type="button" class="btn btn-add-another-day">+ Block another day</button>
+
+                <!-- Action Buttons -->
+                <div class="modal-actions-block-day">
+                    <button type="button" class="btn btn-block-off-day-submit">Block Off Day</button>
+                    <button type="button" class="btn btn-cancel-block-modal" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("../_Scripts")
