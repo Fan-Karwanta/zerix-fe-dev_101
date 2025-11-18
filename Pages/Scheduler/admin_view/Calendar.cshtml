@@ -14,8 +14,8 @@
 
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
-<!-- Mobile Overview Dropdown and Block Off Day - Only show on phones, hide on tablets and desktop -->
-<div class="mobile-overview-section d-md-none">
+<!-- Mobile Overview Dropdown and Block Off Day - Show on phones and tablets (iPad Mini/Air), hide on desktop -->
+<div class="mobile-overview-section d-lg-none">
     <div class="d-flex justify-content-between align-items-center gap-2">
         <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
             <span>Overview</span>
