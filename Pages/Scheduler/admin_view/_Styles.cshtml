@@ -382,8 +382,8 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Responsive Styles */
 
-/* Tablet Styles (iPad Mini, iPad Air, iPad Pro) - 768px to 1024px */
-@@media (min-width: 768px) and (max-width: 1024px) {
+/* Tablet Styles (iPad Mini, iPad Air, iPad Pro) - 768px to 1023px */
+@@media (min-width: 768px) and (max-width: 1023px) {
     /* Use mobile layout on tablets - show Overview dropdown */
     .mobile-overview-section {
         display: block !important;
@@ -391,6 +391,8 @@ a.mobile-sidebar-nav-item:hover {
         margin-right: 0;
         padding: 15px 0;
     }
+
+
 
     /* Hide sidebar on tablets */
     .col-md-3 {
@@ -532,8 +534,8 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-/* iPad Air specific adjustments - 820px to 1024px */
-@@media (min-width: 820px) and (max-width: 1024px) {
+/* iPad Air specific adjustments - 820px to 1023px */
+@@media (min-width: 820px) and (max-width: 1023px) {
     /* Larger font sizes for iPad Air */
     .appointment-types-header h2 {
         font-size: 28px;
@@ -558,8 +560,8 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-/* iPad Pro Landscape and larger tablets - 1025px to 1366px */
-@@media (min-width: 1025px) and (max-width: 1366px) {
+/* iPad Pro Landscape and larger tablets - 1024px to 1366px */
+@@media (min-width: 1024px) and (max-width: 1366px) {
     .row.g-4 {
         --bs-gutter-x: 1.5rem;
     }
@@ -635,7 +637,7 @@ a.mobile-sidebar-nav-item:hover {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     /* Override Bootstrap container padding on mobile for this page */
     .container.px-4 {
         padding-left: 20px !important;
@@ -920,6 +922,11 @@ a.mobile-sidebar-nav-item:hover {
     .page-title-toS {
         font-size: 20px !important;
     }
+
+    /* Block Off Day button alignment for iPad Mini */
+    .btn-block-off-day-mobile {
+        margin-right: 0 !important;
+    }
     
     /* Remove padding and margin in tablet view */
     .header-container-toS {
@@ -959,6 +966,11 @@ a.mobile-sidebar-nav-item:hover {
 @@media (min-width: 821px) and (max-width: 1023px) {
     .page-title-toS {
         font-size: 22px !important;
+    }
+
+    /* Block Off Day button alignment for iPad Air */
+    .btn-block-off-day-mobile {     
+        margin-right: 0 !important;
     }
     
     /* Remove padding and margin in tablet view */
