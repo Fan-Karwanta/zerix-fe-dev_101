@@ -619,15 +619,21 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Mobile and Small Tablets - Below 992px */
 @@media (max-width: 991px) {
-    /* Scheduler dropdown - match button width on mobile */
+    /* Scheduler dropdown - slightly wider than button on mobile to fit "Appointment Calendar" */
     .scheduler-dropdown {
-        min-width: 100% !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        min-width: 110% !important;
+        width: 110% !important;
+        max-width: 110% !important;
         position: absolute !important;
         top: 100% !important;
         left: 0 !important;
         z-index: 1000 !important;
+    }
+}
+
+@@media (min-width: 768px) and (max-width: 1024px) {
+    .page-title-toS {
+        font-size: 22px !important;
     }
 }
 
