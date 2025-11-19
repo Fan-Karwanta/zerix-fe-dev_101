@@ -14,14 +14,18 @@
 
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
-<!-- Mobile Overview Dropdown - Only show on phones, hide on tablets and desktop -->
-<div class="mobile-overview-section d-md-none">
-    <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
+<!-- Mobile Overview Dropdown - Show on phones and tablets (iPad Mini/Air), hide on desktop -->
+<div class="mobile-overview-section d-lg-none">
+    <div class="d-flex justify-content-between align-items-center gap-2">
+        <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
         <span>Overview</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-    </button>
+        </button>
+        <!-- Placeholder for page-specific button -->
+        <div style="width: 100px;"></div>
+    </div>
     <div class="collapse" id="mobileOverviewMenu">
         <div class="mobile-sidebar-nav">
             <div class="mobile-sidebar-nav-item">Calendar</div>
@@ -36,8 +40,8 @@
 
 <div class="container px-4 my-3 pt-md-3 pt-3">
     <div class="row g-4">
-        <!-- Left Sidebar: Mini Calendar and Navigation - Show on tablets and desktop -->
-        <div class="col-12 col-md-3 d-none d-md-block">
+        <!-- Left Sidebar: Mini Calendar and Navigation - Show on desktop only (hide on tablets) -->
+        <div class="col-12 col-md-3 d-none d-lg-block">
             <!-- Mini Calendar -->
             <div class="mini-calendar-container">
                 <div class="mini-calendar-header">
@@ -79,8 +83,8 @@
             </div>
         </div>
 
-        <!-- Right Content: Form Questions -->
-        <div class="col-12 col-md-9 mobile-appointment-content">
+        <!-- Right Content: Form Questions - Full width on mobile/tablet, 9 cols on desktop -->
+        <div class="col-12 col-lg-9 mobile-appointment-content">
             <div class="appointment-types-container">
                 <!-- Header -->
                 <div class="appointment-types-header">
