@@ -560,7 +560,86 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-/* iPad Pro Landscape and larger tablets - 1024px to 1366px */
+/* iPad Pro and tablets 1024px to 1199px - Use mobile layout like iPad Air/Mini */
+@@media (min-width: 1024px) and (max-width: 1199.98px) {
+    /* FORCE HIDE sidebar with multiple selectors to override Bootstrap */
+    .col-12.col-md-3.d-none.d-lg-block,
+    .col-12.col-lg-3,
+    div[class*="col-"][class*="d-none"][class*="d-lg-block"] {
+        display: none !important;
+        visibility: hidden !important;
+    }
+    
+    /* FORCE SHOW mobile overview dropdown */
+    .mobile-overview-section,
+    .mobile-overview-section.d-lg-none {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Content takes full width */
+    .col-12.col-lg-9,
+    .mobile-appointment-content {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Hide desktop calendar view on Calendar page */
+    .events-container,
+    .events-container.d-none.d-xl-block {
+        display: none !important;
+    }
+    
+    /* Show mobile calendar selection view - but respect JavaScript display control for daily view */
+    #mobile-calendar-view.d-xl-none {
+        display: block !important;
+    }
+    
+    /* Let JavaScript control the daily view visibility - don't force it */
+    #mobile-daily-view.d-xl-none {
+        /* Remove the display: block !important to allow JS to control it */
+    }
+    
+    /* Mobile styling adjustments for better tablet display */
+    .mobile-overview-toggle {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+    
+    .mobile-sidebar-nav-item {
+        font-size: 15px;
+        padding: 14px 20px;
+    }
+    
+    .appointment-types-header h2 {
+        font-size: 28px;
+    }
+    
+    .btn-new-service {
+        padding: 11px 22px;
+        font-size: 14px;
+    }
+    
+    .appointment-type-item {
+        padding: 22px;
+    }
+    
+    .appointment-type-name {
+        font-size: 17px;
+    }
+    
+    .appointment-type-details {
+        font-size: 14px;
+    }
+    
+    .btn-edit {
+        padding: 9px 22px;
+        font-size: 14px;
+    }
+}
+
+/* iPad Pro Landscape and larger tablets - 1025px to 1366px */
 @@media (min-width: 1025px) and (max-width: 1366px) {
     .row.g-4 {
         --bs-gutter-x: 1.5rem;
@@ -619,15 +698,20 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Mobile and Small Tablets - Below 992px */
 @@media (max-width: 991px) {
-    /* Scheduler dropdown - slightly wider than button on mobile to fit "Appointment Calendar" */
+    /* Scheduler dropdown - match button width on mobile */
     .scheduler-dropdown {
-        min-width: 110% !important;
-        width: 110% !important;
-        max-width: 110% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
         position: absolute !important;
         top: 100% !important;
         left: 0 !important;
         z-index: 1000 !important;
+    }
+    
+    /* Make mobile scheduler button wider to fit "Appointment Calendar" */
+    #navbarDropDownSchedulerMobile {
+        min-width: 180px !important;
     }
 }
 

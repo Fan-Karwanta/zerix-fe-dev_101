@@ -183,11 +183,16 @@
         margin-right: 1.1rem;
     }
     
-    /* Scheduler dropdown - slightly wider than button on mobile to fit "Appointment Calendar" */
+    /* Scheduler dropdown - match button width on mobile */
     .scheduler-dropdown {
-        min-width: 110% !important;
-        width: 110% !important;
-        max-width: 110% !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Make mobile scheduler button wider to fit "Appointment Calendar" */
+    #navbarDropDownSchedulerMobile {
+        min-width: 180px !important;
     }
 }
 
@@ -3809,14 +3814,14 @@
     }
 }
 
-/* iPad Pro specific adjustments - Show desktop calendar view */
-@@media (min-width: 1024px) and (max-width: 1366px) {
-    /* Ensure desktop view is shown on iPad Pro */
+/* iPad Pro specific adjustments - Changed to start at 1200px to exclude 1024px */
+@@media (min-width: 1200px) and (max-width: 1366px) {
+    /* Ensure desktop view is shown on larger tablets */
     .events-container {
         display: block !important;
     }
     
-    /* Hide mobile views on iPad Pro */
+    /* Hide mobile views on larger tablets */
     #mobile-calendar-view,
     #mobile-daily-view {
         display: none !important;
