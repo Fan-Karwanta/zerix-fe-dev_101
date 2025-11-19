@@ -591,15 +591,26 @@ a.mobile-sidebar-nav-item:hover {
         display: none !important;
     }
     
-    /* Show mobile calendar selection view - but respect JavaScript display control for daily view */
-    #mobile-calendar-view.d-xl-none {
-        display: block !important;
+    /* Override Bootstrap's d-xl-none class for mobile calendar views */
+    /* d-xl-none sets display: none at xl breakpoint (1200px+) */
+    /* We need to show these at 1024px, but let JavaScript control which one is visible */
+    
+    /* Remove Bootstrap's display: none from both views */
+    #mobile-calendar-view.d-xl-none,
+    #mobile-daily-view.d-xl-none {
+        display: revert; /* Revert to default, allowing inline styles and JS to work */
     }
     
-    /* Let JavaScript control the daily view visibility - don't force it */
-    #mobile-daily-view.d-xl-none {
-        /* Remove the display: block !important to allow JS to control it */
+    /* Set initial visibility - calendar shows, daily view hidden */
+    #mobile-calendar-view {
+        display: block;
     }
+    
+    #mobile-daily-view {
+        display: none;
+    }
+    
+    /* JavaScript will toggle these with inline styles which have higher specificity */
     
     /* Mobile styling adjustments for better tablet display */
     .mobile-overview-toggle {
