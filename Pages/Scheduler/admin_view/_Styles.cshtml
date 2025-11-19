@@ -561,7 +561,7 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 /* iPad Pro Landscape and larger tablets - 1024px to 1366px */
-@@media (min-width: 1024px) and (max-width: 1366px) {
+@@media (min-width: 1025px) and (max-width: 1366px) {
     .row.g-4 {
         --bs-gutter-x: 1.5rem;
     }
@@ -925,7 +925,7 @@ a.mobile-sidebar-nav-item:hover {
 
     /* Block Off Day button alignment for iPad Mini */
     .btn-block-off-day-mobile {
-        margin-right: 0 !important;
+        margin-right: 2.5rem !important;
     }
     
     /* Remove padding and margin in tablet view */
@@ -962,17 +962,18 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+@@media (min-width: 820px) {
+    .btn-block-off-day-mobile {
+        margin-right: 4.5rem !important;
+    }
+}
+
 /* iPad Air specific - 821px to 1023px */
 @@media (min-width: 821px) and (max-width: 1023px) {
     .page-title-toS {
         font-size: 22px !important;
     }
 
-    /* Block Off Day button alignment for iPad Air */
-    .btn-block-off-day-mobile {     
-        margin-right: 0 !important;
-    }
-    
     /* Remove padding and margin in tablet view */
     .header-container-toS {
         margin-top: 0 !important;
