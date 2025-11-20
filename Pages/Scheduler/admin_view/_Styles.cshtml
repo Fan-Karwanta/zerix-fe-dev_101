@@ -295,6 +295,57 @@ a.sidebar-nav-item:hover {
     }
 }
 
+/* Surface Pro 7 and Asus Zenbook Fold specific alignment - 853px to 912px width */
+@@media (min-width: 853px) and (max-width: 912px) {
+    /* Ensure container padding matches navbar */
+    .container.px-4.my-3.pt-md-3.pt-3 {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 0.5rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    /* Align mobile overview section with navbar */
+    .mobile-overview-section {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 720px;
+        padding: 15px 24px;
+    }
+    
+    
+    /* Add padding to align Overview button with Scheduler dropdown */
+    .mobile-overview-section .d-flex {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* Adjust Overview button size for these screens */
+    .mobile-overview-toggle {
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+    
+    /* Position dropdown menu to align with button */
+    #mobileOverviewMenu {
+        left: 24px;
+        right: 24px;
+    }
+    
+    /* Ensure sidebar is hidden */
+    .col-md-3,
+    .col-12.col-md-3.d-none.d-lg-block {
+        display: none !important;
+    }
+    
+    /* Full width content */
+    .col-12.col-lg-9 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}
+
 .mobile-overview-toggle {
     width: auto;
     display: inline-flex;
@@ -3243,9 +3294,20 @@ a.mobile-sidebar-nav-item:hover {
 
 }
 
+@@media (min-width: 768px) and (max-width: 819px){
+    #mobileOverviewMenu {
+        margin-left: 2.4rem;
+    }
+}
 
 
-@@media (min-width: 820px) {
+@@media (max-width: 767px) {
+    #mobileOverviewMenu {
+        margin-left: 0;
+    }
+}
+
+@@media (min-width: 820px) and (max-width: 1023px) {
     .mobile-overview-toggle {
         margin-left: 4.4rem;
     }
@@ -3257,7 +3319,22 @@ a.mobile-sidebar-nav-item:hover {
 
 @@media (min-width: 1024px) {
     .mobile-overview-toggle {
+        margin-left: 3.5rem;
+    }
+    #mobileOverviewMenu {
         margin-left: 3.4rem;
+    }
+}
+
+@@media (width: 853px) {
+    .mobile-overview-toggle {
+        margin-left: 3rem !important;
+    }
+}
+
+@@media (width: 912px) {
+    .mobile-overview-toggle {
+        margin-left: 5.5rem !important;
     }
 }
 
