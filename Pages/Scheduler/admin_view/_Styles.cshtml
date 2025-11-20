@@ -773,7 +773,7 @@ a.mobile-sidebar-nav-item:hover {
     
     /* Make mobile scheduler button wider to fit "Appointment Calendar" */
     #navbarDropDownSchedulerMobile {
-        min-width: 180px !important;
+        min-width: 150px !important;
     }
 }
 
@@ -1963,6 +1963,14 @@ a.mobile-sidebar-nav-item:hover {
 /* View dropdown (Monthly) styling */
 .view-dropdown-btn {
     min-width: 100px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-dropdown-btn::after {
+    margin-left: auto;
 }
 
 /* Sort dropdown styling */
