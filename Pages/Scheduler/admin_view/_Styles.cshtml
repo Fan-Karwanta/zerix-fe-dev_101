@@ -316,7 +316,7 @@ a.sidebar-nav-item:hover {
     
     /* Add padding to align Overview button with Scheduler dropdown */
     .mobile-overview-section .d-flex {
-        padding-left: 0;
+        padding-left: 1.8rem;
         padding-right: 0;
     }
     
@@ -3326,18 +3326,6 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-@@media (width: 853px) {
-    .mobile-overview-toggle {
-        margin-left: 3rem !important;
-    }
-}
-
-@@media (width: 912px) {
-    .mobile-overview-toggle {
-        margin-left: 5.5rem !important;
-    }
-}
-
 @@media (max-width: 767px) {
     .modal-date-hours {
         max-width: 90%;
@@ -3593,6 +3581,19 @@ a.mobile-sidebar-nav-item:hover {
 
 .btn-cancel-category:hover {
     background-color: #fff5f0;
+}
+
+/* Specific device width overrides - must be at the end for proper cascade */
+@@media (min-width: 821px) and (max-width: 853px) {
+    .mobile-overview-toggle {
+        margin-left: 3rem !important;
+    }
+}
+
+@@media (width: 912px) {
+    .mobile-overview-toggle {
+        margin-left: 5.5rem !important;
+    }
 }
 
 </style>
