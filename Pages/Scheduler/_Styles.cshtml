@@ -196,6 +196,23 @@
     }
 }
 
+/* Very narrow mobile screens - Galaxy Z Fold 5 and similar (344px) */
+@@media (max-width: 360px) {
+    /* Hide "Welcome, " text in mobile user dropdown to save space */
+    #navbarDropdownMenuLinkMobile .txt-color-tertiary {
+        display: none !important;
+    }
+
+    .dropdown-menu {
+        position: absolute !important;
+        transform: none !important;
+        left: -100px !important;
+        right: auto !important;
+        top: 100% !important;
+       
+    }
+}
+
 /* Mobile hamburger styling */
 .mobile-hamburger {
     border: none;

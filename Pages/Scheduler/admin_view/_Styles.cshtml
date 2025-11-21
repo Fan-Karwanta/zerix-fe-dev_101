@@ -324,12 +324,26 @@ a.sidebar-nav-item:hover {
     .mobile-overview-toggle {
         padding: 10px 16px;
         font-size: 15px;
+        margin-left: 3rem !important; /* Default for 853px */
     }
     
-    /* Position dropdown menu to align with button */
+    /* Position dropdown menu to align with button - fixed width for consistency */
     #mobileOverviewMenu {
         left: 24px;
-        right: 24px;
+        right: auto;
+        width: 200px;
+        max-width: 200px;
+        margin-left: 3rem; /* Default for 853px */
+    }
+
+    /* Surface Pro 7 specific override */
+    @@media (min-width: 912px) and (max-width: 912px) {
+        .mobile-overview-toggle {
+            margin-left: 5.5rem !important;
+        }
+        #mobileOverviewMenu {
+            margin-left: 7rem;
+        }
     }
     
     /* Ensure sidebar is hidden */
@@ -739,7 +753,7 @@ a.mobile-sidebar-nav-item:hover {
     }
 
     .mini-calendar-container {
-        padding: 18px;
+        padding: 11px;
     }
 
     .mini-calendar-day {
@@ -3274,7 +3288,10 @@ a.mobile-sidebar-nav-item:hover {
         gap: 2px;
         margin-top: 3px;
     }
+}
 
+/* Specific override for tablets */
+@@media (min-width: 768px) and (max-width: 1024px) {
     .mobile-overview-toggle {
         margin-left: 2.4rem;
     }
@@ -3290,6 +3307,37 @@ a.mobile-sidebar-nav-item:hover {
     
     .btn-save-changes {
         padding: 12px 36px;
+    }
+}
+
+/* CRITICAL: Asus Zenbook Fold override - MUST come after the above rule */
+/* Asus Zenbook Fold portrait mode - 775px */
+@@media (min-width: 770px) and (max-width: 780px) {
+    .mobile-overview-toggle {
+        margin-left: 3rem !important;
+    }
+    #mobileOverviewMenu {
+        margin-left: 3rem !important;
+    }
+}
+
+/* Asus Zenbook Fold landscape mode - 853px */
+@@media (min-width: 850px) and (max-width: 856px) {
+    .mobile-overview-toggle {
+        margin-left: 3rem !important;
+    }
+    #mobileOverviewMenu {
+        margin-left: 3rem !important;
+    }
+}
+
+/* Exact width as backup */
+@@media (width: 853px) {
+    .mobile-overview-toggle {
+        margin-left: 3rem !important;
+    }
+    #mobileOverviewMenu {
+        margin-left: 3rem !important;
     }
 }
 
@@ -3592,16 +3640,21 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 /* Specific device width overrides - must be at the end for proper cascade */
-@@media (min-width: 821px) and (max-width: 853px) {
-    .mobile-overview-toggle {
-        margin-left: 3rem !important;
-    }
-}
+
 
 @@media (width: 912px) {
     .mobile-overview-toggle {
         margin-left: 5.5rem !important;
     }
+    #mobileOverviewMenu {
+        margin-left: 7rem;
+    }
 }
+
+/* Asus Zenbook Fold - handled earlier in file at line 3314 */   
+
+
+
+
 
 </style>
