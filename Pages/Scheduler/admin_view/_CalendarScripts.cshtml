@@ -184,10 +184,16 @@ function renderAppointments() {
     });
 }
 
+// Store current appointment being viewed
+let currentAppointment = null;
+
 // Open appointment details modal
 function openAppointmentDetails(appointment) {
     const modal = document.getElementById('appointmentDetailsModal');
     if (!modal) return;
+    
+    // Store current appointment
+    currentAppointment = appointment;
     
     // Update modal content
     document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
@@ -208,14 +214,108 @@ function openAppointmentDetails(appointment) {
     document.getElementById('appointmentPrice').textContent = appointment.price;
     document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledOn}`;
     
-    // Update status
-    const statusBadge = document.getElementById('appointmentStatus');
-    statusBadge.className = `appointment-status-badge status-${appointment.status}`;
-    statusBadge.querySelector('.status-text').textContent = appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1);
+    // Update status dropdown
+    updateStatusDropdown(appointment.status);
+    
+    // Populate appointments dropdown
+    populateAppointmentsDropdown(appointment);
     
     // Show modal
     const bsModal = new bootstrap.Modal(modal);
     bsModal.show();
+}
+
+// Update status dropdown with current status
+function updateStatusDropdown(status) {
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    
+    // Status color mapping
+    const statusColors = {
+        'booked': '#9e9e9e',
+        'completed': '#4caf50',
+        'cancelled': '#f44336',
+        'refund-requested': '#2196f3',
+        'refunded': '#e91e63',
+        'rescheduled': '#ff9800'
+    };
+    
+    // Status text mapping
+    const statusLabels = {
+        'booked': 'Booked',
+        'completed': 'Completed',
+        'cancelled': 'Cancelled',
+        'refund-requested': 'Refund Requested',
+        'refunded': 'Refunded',
+        'rescheduled': 'Rescheduled'
+    };
+    
+    statusDot.style.background = statusColors[status] || '#9e9e9e';
+    statusText.textContent = statusLabels[status] || 'Booked';
+}
+
+// Populate appointments dropdown
+function populateAppointmentsDropdown(currentAppointment) {
+    const dropdownList = document.getElementById('appointmentDropdownList');
+    const appointmentCount = document.getElementById('appointmentCount');
+    
+    // Get appointments for the same time slot
+    const sameTimeAppointments = adminCalendarData.appointments.filter(apt => 
+        apt.date.toDateString() === currentAppointment.date.toDateString() &&
+        apt.startTime === currentAppointment.startTime
+    );
+    
+    // Update count
+    const count = sameTimeAppointments.length;
+    appointmentCount.textContent = count === 1 ? '1 Appointment' : `${count} Appointments`;
+    
+    // Clear existing items
+    dropdownList.innerHTML = '';
+    
+    // Populate dropdown with appointments
+    sameTimeAppointments.forEach(apt => {
+        const li = document.createElement('li');
+        const button = document.createElement('button');
+        button.className = 'dropdown-item appointment-dropdown-item';
+        if (apt.id === currentAppointment.id) {
+            button.classList.add('active');
+        }
+        button.textContent = apt.customerName;
+        button.onclick = () => {
+            openAppointmentDetails(apt);
+        };
+        li.appendChild(button);
+        dropdownList.appendChild(li);
+    });
+}
+
+// Change appointment status
+function changeAppointmentStatus(newStatus) {
+    if (!currentAppointment) return;
+    
+    // Update the appointment status in the data
+    const appointment = adminCalendarData.appointments.find(apt => apt.id === currentAppointment.id);
+    if (appointment) {
+        appointment.status = newStatus;
+        currentAppointment.status = newStatus;
+    }
+    
+    // Update the status dropdown display
+    updateStatusDropdown(newStatus);
+    
+    // Re-render appointments to reflect status change
+    if (adminCalendarData.currentView === 'monthly') {
+        renderAppointments();
+    } else {
+        renderDailyAppointments();
+    }
+    
+    // Also update mobile view if visible
+    if (document.getElementById('mobile-daily-view').style.display !== 'none') {
+        renderMobileTimeSlots();
+    }
+    
+    console.log(`Appointment ${currentAppointment.id} status changed to: ${newStatus}`);
 }
 
 // Switch between monthly and daily views

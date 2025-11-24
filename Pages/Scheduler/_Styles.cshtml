@@ -3516,6 +3516,9 @@
     background: none;
     width: 100%;
     text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .appointment-dropdown-item:hover {
@@ -3526,6 +3529,29 @@
     background: #fff5f0;
     color: #ff5400;
     font-weight: 500;
+}
+
+/* Status dropdown button styling */
+#statusDropdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#statusDropdown .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Status dots in dropdown items */
+.appointment-dropdown-item .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
 }
 
 @@media (max-width: 576px) {

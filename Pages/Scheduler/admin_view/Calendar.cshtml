@@ -290,8 +290,8 @@
             <div class="modal-body appointment-details-modal-body">
                 <!-- Header with Appointments Dropdown and Status -->
                 <div class="appointment-header-section mb-3">
-                    <!-- Appointments Dropdown (only visible when overlapping) -->
-                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper" style="display: none;">
+                    <!-- Appointments Dropdown (always visible) -->
+                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper">
                         <div class="dropdown-label-text">Appointments</div>
                         <div class="dropdown">
                             <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="appointmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -303,12 +303,31 @@
                         </div>
                     </div>
                     
-                    <!-- Status Section -->
+                    <!-- Status Dropdown -->
                     <div class="appointment-status-wrapper">
                         <div class="status-label-text">Status</div>
-                        <div class="appointment-status-badge" id="appointmentStatus">
-                            <span class="status-dot"></span>
-                            <span class="status-text">Completed</span>
+                        <div class="dropdown">
+                            <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="status-dot" id="statusDot"></span>
+                                <span class="status-text" id="statusText">Booked</span>
+                            </button>
+                            <ul class="dropdown-menu appointment-dropdown-menu" aria-labelledby="statusDropdown" id="statusDropdownList">
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="booked" onclick="changeAppointmentStatus('booked')">
+                                    <span class="status-dot" style="background: #9e9e9e;"></span> Booked
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="completed" onclick="changeAppointmentStatus('completed')">
+                                    <span class="status-dot" style="background: #4caf50;"></span> Completed
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="cancelled" onclick="changeAppointmentStatus('cancelled')">
+                                    <span class="status-dot" style="background: #f44336;"></span> Cancelled
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="refund-requested" onclick="changeAppointmentStatus('refund-requested')">
+                                    <span class="status-dot" style="background: #2196f3;"></span> Refund Requested
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="refunded" onclick="changeAppointmentStatus('refunded')">
+                                    <span class="status-dot" style="background: #e91e63;"></span> Refunded
+                                </button></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -2324,39 +2324,35 @@ function showAppointmentModal(appointmentId) {
     const modalElement = document.getElementById('appointmentDetailsModal');
     const isModalOpen = modalElement.classList.contains('show');
     
-    // Show/hide appointments dropdown based on overlapping count
+    // Update appointments dropdown (always visible now)
     const dropdownWrapper = document.getElementById('appointmentDropdownWrapper');
-    if (overlappingAppointments.length > 1) {
-        dropdownWrapper.style.display = 'block';
+    
+    // Update dropdown count
+    const appointmentCount = overlappingAppointments.length;
+    document.getElementById('appointmentCount').textContent = appointmentCount === 1 ? '1 Appointment' : `${appointmentCount} Appointments`;
+    
+    // Populate dropdown list
+    const dropdownList = document.getElementById('appointmentDropdownList');
+    dropdownList.innerHTML = '';
+    
+    overlappingAppointments.forEach(apt => {
+        const listItem = document.createElement('li');
+        const button = document.createElement('button');
+        button.className = 'dropdown-item appointment-dropdown-item';
+        button.textContent = apt.title;
+        button.onclick = () => {
+            // Update content without re-showing modal
+            updateAppointmentModalContent(apt.id);
+        };
         
-        // Update dropdown count
-        document.getElementById('appointmentCount').textContent = `${overlappingAppointments.length} Appointments`;
+        // Mark current appointment as active
+        if (apt.id === appointmentId) {
+            button.classList.add('active');
+        }
         
-        // Populate dropdown list
-        const dropdownList = document.getElementById('appointmentDropdownList');
-        dropdownList.innerHTML = '';
-        
-        overlappingAppointments.forEach(apt => {
-            const listItem = document.createElement('li');
-            const button = document.createElement('button');
-            button.className = 'dropdown-item appointment-dropdown-item';
-            button.textContent = apt.title;
-            button.onclick = () => {
-                // Update content without re-showing modal
-                updateAppointmentModalContent(apt.id);
-            };
-            
-            // Mark current appointment as active
-            if (apt.id === appointmentId) {
-                button.classList.add('active');
-            }
-            
-            listItem.appendChild(button);
-            dropdownList.appendChild(listItem);
-        });
-    } else {
-        dropdownWrapper.style.display = 'none';
-    }
+        listItem.appendChild(button);
+        dropdownList.appendChild(listItem);
+    });
     
     // Update modal content
     document.getElementById('appointmentCustomerName').textContent = appointment.customerName;
@@ -2400,26 +2396,36 @@ function showAppointmentModal(appointmentId) {
     document.getElementById('appointmentPrice').textContent = appointment.price;
     document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledDate}`;
     
-    // Update status badge
-    const statusBadge = document.getElementById('appointmentStatus');
-    const statusDot = statusBadge.querySelector('.status-dot');
-    const statusText = statusBadge.querySelector('.status-text');
+    // Update status dropdown
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
     
-    // Remove all status classes
-    statusDot.classList.remove('completed', 'cancelled', 'refund-requested', 'refunded', 'booked', 'rescheduled-by-admin');
+    // Status color mapping
+    const statusColors = {
+        'completed': '#4caf50',
+        'cancelled': '#f44336',
+        'refund-requested': '#2196f3',
+        'refunded': '#e91e63',
+        'booked': '#9e9e9e',
+        'rescheduled-by-admin': '#ff9800',
+        'rescheduled': '#ff9800'
+    };
     
-    // Add appropriate status class and text
-    statusDot.classList.add(appointment.status);
-    
+    // Status text mapping
     const statusLabels = {
         'completed': 'Completed',
         'cancelled': 'Cancelled',
         'refund-requested': 'Refund Requested',
         'refunded': 'Refunded',
         'booked': 'Booked',
-        'rescheduled-by-admin': 'Rescheduled by the Admin'
+        'rescheduled-by-admin': 'Rescheduled by the Admin',
+        'rescheduled': 'Rescheduled'
     };
-    statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    
+    if (statusDot && statusText) {
+        statusDot.style.background = statusColors[appointment.status] || '#9e9e9e';
+        statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    }
     
     // Update form answers
     const formAnswersList = document.getElementById('formAnswersList');
@@ -2557,26 +2563,36 @@ function updateAppointmentModalContent(appointmentId) {
     document.getElementById('appointmentPrice').textContent = appointment.price;
     document.getElementById('appointmentScheduledInfo').textContent = `Scheduled on ${appointment.scheduledDate}`;
     
-    // Update status badge
-    const statusBadge = document.getElementById('appointmentStatus');
-    const statusDot = statusBadge.querySelector('.status-dot');
-    const statusText = statusBadge.querySelector('.status-text');
+    // Update status dropdown
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
     
-    // Remove all status classes
-    statusDot.classList.remove('completed', 'cancelled', 'refund-requested', 'refunded', 'booked', 'rescheduled-by-admin');
+    // Status color mapping
+    const statusColors = {
+        'completed': '#4caf50',
+        'cancelled': '#f44336',
+        'refund-requested': '#2196f3',
+        'refunded': '#e91e63',
+        'booked': '#9e9e9e',
+        'rescheduled-by-admin': '#ff9800',
+        'rescheduled': '#ff9800'
+    };
     
-    // Add appropriate status class and text
-    statusDot.classList.add(appointment.status);
-    
+    // Status text mapping
     const statusLabels = {
         'completed': 'Completed',
         'cancelled': 'Cancelled',
         'refund-requested': 'Refund Requested',
         'refunded': 'Refunded',
         'booked': 'Booked',
-        'rescheduled-by-admin': 'Rescheduled by the Admin'
+        'rescheduled-by-admin': 'Rescheduled by the Admin',
+        'rescheduled': 'Rescheduled'
     };
-    statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    
+    if (statusDot && statusText) {
+        statusDot.style.background = statusColors[appointment.status] || '#9e9e9e';
+        statusText.textContent = statusLabels[appointment.status] || appointment.status;
+    }
     
     // Update form answers
     const formAnswersList = document.getElementById('formAnswersList');
