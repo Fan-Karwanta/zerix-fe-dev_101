@@ -293,6 +293,17 @@ function populateAppointmentsDropdown(currentAppointment) {
 function changeAppointmentStatus(newStatus) {
     if (!currentAppointment) return;
     
+    // If status is cancelled, show confirmation modal first
+    if (newStatus === 'cancelled') {
+        // Store the pending status change
+        window.pendingStatusChange = newStatus;
+        
+        // Show the cancel confirmation modal
+        const cancelModal = new bootstrap.Modal(document.getElementById('cancelAppointmentModal'));
+        cancelModal.show();
+        return;
+    }
+    
     // Update the appointment status in the data
     const appointment = adminCalendarData.appointments.find(apt => apt.id === currentAppointment.id);
     if (appointment) {
@@ -316,6 +327,53 @@ function changeAppointmentStatus(newStatus) {
     }
     
     console.log(`Appointment ${currentAppointment.id} status changed to: ${newStatus}`);
+}
+
+// Confirm cancel appointment
+function confirmCancelAppointment() {
+    if (!currentAppointment || !window.pendingStatusChange) return;
+    
+    const cancelNote = document.getElementById('cancelNoteInput').value;
+    
+    // Update the appointment status in the data
+    const appointment = adminCalendarData.appointments.find(apt => apt.id === currentAppointment.id);
+    if (appointment) {
+        appointment.status = window.pendingStatusChange;
+        currentAppointment.status = window.pendingStatusChange;
+        if (cancelNote) {
+            appointment.cancelNote = cancelNote;
+            currentAppointment.cancelNote = cancelNote;
+        }
+    }
+    
+    // Update the status dropdown display
+    updateStatusDropdown(window.pendingStatusChange);
+    
+    // Re-render appointments to reflect status change
+    if (adminCalendarData.currentView === 'monthly') {
+        renderAppointments();
+    } else {
+        renderDailyAppointments();
+    }
+    
+    // Also update mobile view if visible
+    if (document.getElementById('mobile-daily-view').style.display !== 'none') {
+        renderMobileTimeSlots();
+    }
+    
+    // Close the cancel confirmation modal
+    const cancelModal = bootstrap.Modal.getInstance(document.getElementById('cancelAppointmentModal'));
+    if (cancelModal) {
+        cancelModal.hide();
+    }
+    
+    // Clear the input field
+    document.getElementById('cancelNoteInput').value = '';
+    
+    // Clear pending status
+    window.pendingStatusChange = null;
+    
+    console.log(`Appointment ${currentAppointment.id} cancelled with note: ${cancelNote}`);
 }
 
 // Switch between monthly and daily views
@@ -560,6 +618,12 @@ function renderMobileTimeSlots() {
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('time-slots-grid')) {
         initAdminCalendar();
+    }
+    
+    // Add event listener for cancel confirmation button
+    const confirmCancelBtn = document.getElementById('confirmCancelAppointment');
+    if (confirmCancelBtn) {
+        confirmCancelBtn.addEventListener('click', confirmCancelAppointment);
     }
 });
 </script>
