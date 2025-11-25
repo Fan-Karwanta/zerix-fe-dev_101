@@ -2324,35 +2324,43 @@ function showAppointmentModal(appointmentId) {
     const modalElement = document.getElementById('appointmentDetailsModal');
     const isModalOpen = modalElement.classList.contains('show');
     
-    // Update appointments dropdown (always visible now)
+    // Update appointments dropdown (only show when multiple appointments overlap)
     const dropdownWrapper = document.getElementById('appointmentDropdownWrapper');
     
     // Update dropdown count
     const appointmentCount = overlappingAppointments.length;
-    document.getElementById('appointmentCount').textContent = appointmentCount === 1 ? '1 Appointment' : `${appointmentCount} Appointments`;
     
-    // Populate dropdown list
-    const dropdownList = document.getElementById('appointmentDropdownList');
-    dropdownList.innerHTML = '';
-    
-    overlappingAppointments.forEach(apt => {
-        const listItem = document.createElement('li');
-        const button = document.createElement('button');
-        button.className = 'dropdown-item appointment-dropdown-item';
-        button.textContent = apt.title;
-        button.onclick = () => {
-            // Update content without re-showing modal
-            updateAppointmentModalContent(apt.id);
-        };
+    // Show dropdown only if there are 2 or more appointments at the same time
+    if (appointmentCount > 1) {
+        dropdownWrapper.style.display = 'block';
+        document.getElementById('appointmentCount').textContent = `${appointmentCount} Appointments`;
         
-        // Mark current appointment as active
-        if (apt.id === appointmentId) {
-            button.classList.add('active');
-        }
+        // Populate dropdown list
+        const dropdownList = document.getElementById('appointmentDropdownList');
+        dropdownList.innerHTML = '';
         
-        listItem.appendChild(button);
-        dropdownList.appendChild(listItem);
-    });
+        overlappingAppointments.forEach(apt => {
+            const listItem = document.createElement('li');
+            const button = document.createElement('button');
+            button.className = 'dropdown-item appointment-dropdown-item';
+            button.textContent = apt.title;
+            button.onclick = () => {
+                // Update content without re-showing modal
+                updateAppointmentModalContent(apt.id);
+            };
+            
+            // Mark current appointment as active
+            if (apt.id === appointmentId) {
+                button.classList.add('active');
+            }
+            
+            listItem.appendChild(button);
+            dropdownList.appendChild(listItem);
+        });
+    } else {
+        // Hide dropdown for single appointments
+        dropdownWrapper.style.display = 'none';
+    }
     
     // Update modal content
     document.getElementById('appointmentCustomerName').textContent = appointment.customerName;

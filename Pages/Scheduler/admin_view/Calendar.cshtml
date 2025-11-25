@@ -403,21 +403,19 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Action Buttons -->
                 <div class="appointment-modal-actions" id="appointmentActions">
                     <!-- Default buttons (Reschedule & Cancel) -->
                     <div class="default-actions">
                         <!-- Desktop buttons (side by side) -->
                         <div class="d-none d-md-flex justify-content-between gap-3">
-                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn">Reschedule</button>
-                            <button type="button" class="btn appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn" onclick="openCancelModal()">Cancel</button>
                         </div>
                         
                         <!-- Mobile buttons (stacked) -->
                         <div class="d-md-none">
-                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile">Reschedule</button>
-                            <button type="button" class="btn w-100 appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn" onclick="openCancelModal()">Cancel</button>
                         </div>
                     </div>
 
@@ -426,18 +424,67 @@
                         <!-- Desktop buttons (three buttons) -->
                         <div class="d-none d-md-flex gap-3">
                             <button type="button" class="btn appointment-approve-btn flex-fill" id="approveBtn">Approve</button>
-                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin">Reschedule</button>
-                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" onclick="openCancelModal()">Cancel</button>
                         </div>
                         
                         <!-- Mobile buttons (stacked) -->
                         <div class="d-md-none">
                             <button type="button" class="btn w-100 mb-3 appointment-approve-btn" id="approveBtnMobile">Approve</button>
-                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile">Reschedule</button>
-                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" onclick="openCancelModal()">Cancel</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reschedule Appointment Modal -->
+<div class="modal fade" id="rescheduleAppointmentModal" tabindex="-1" aria-labelledby="rescheduleAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content reschedule-appointment-modal-content">
+            <div class="modal-body reschedule-appointment-modal-body">
+                <!-- Back Button -->
+                <button type="button" class="btn btn-link p-0 text-decoration-none reschedule-back-btn" onclick="closeRescheduleModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ms-1">Back</span>
+                </button>
+
+                <!-- Title with Customer Name -->
+                <h3 class="reschedule-modal-title mt-3 mb-2">
+                    <span class="reschedule-label">Reschedule</span> <span class="reschedule-customer-name" id="rescheduleCustomerName">Jane McTest</span>
+                </h3>
+
+                <!-- Original Appointment Info -->
+                <p class="reschedule-original-info mb-4">
+                    <span class="reschedule-from-label">From</span> <span class="reschedule-original-datetime" id="rescheduleOriginalInfo">February 19, 2025, 9:30 AM</span> <span class="reschedule-to-label">to</span>
+                </p>
+
+                <!-- Date Input -->
+                <div class="mb-3">
+                    <label class="reschedule-input-label">Date</label>
+                    <input type="date" class="form-control reschedule-date-input" id="rescheduleDate" placeholder="Set Date">
+                </div>
+
+                <!-- Time Inputs Row -->
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label class="reschedule-input-label">From</label>
+                        <input type="time" class="form-control reschedule-time-input" id="rescheduleTimeFrom" placeholder="Set Time">
+                    </div>
+                    <div class="col-6">
+                        <label class="reschedule-input-label">To</label>
+                        <input type="time" class="form-control reschedule-time-input" id="rescheduleTimeTo" placeholder="Set Time">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button type="button" class="btn reschedule-submit-btn w-100 mb-3" onclick="submitReschedule()">Reschedule Appointment</button>
+                <button type="button" class="btn reschedule-cancel-btn w-100" onclick="closeRescheduleModal()">Cancel</button>
             </div>
         </div>
     </div>
@@ -595,3 +642,71 @@
 </div>
 
 @await Html.PartialAsync("../_Scripts")
+
+@await Html.PartialAsync("../admin_view/_CalendarScripts")
+
+<script>
+// Reschedule modal functions - inline to avoid conflicts
+function openRescheduleModal() {
+    const appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+    const appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+    
+    if (appointmentDetailsModal) {
+        appointmentDetailsModal.hide();
+    }
+    
+    setTimeout(() => {
+        const rescheduleModal = new bootstrap.Modal(document.getElementById('rescheduleAppointmentModal'));
+        rescheduleModal.show();
+    }, 300);
+}
+
+function closeRescheduleModal() {
+    const rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+    const rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+    
+    if (rescheduleModal) {
+        rescheduleModal.hide();
+    }
+    
+    setTimeout(() => {
+        const appointmentDetailsModal = new bootstrap.Modal(document.getElementById('appointmentDetailsModal'));
+        appointmentDetailsModal.show();
+    }, 300);
+}
+
+function openCancelModal() {
+    const appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+    const appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+    
+    if (appointmentDetailsModal) {
+        appointmentDetailsModal.hide();
+    }
+    
+    setTimeout(() => {
+        const cancelModal = new bootstrap.Modal(document.getElementById('cancelAppointmentModal'));
+        cancelModal.show();
+    }, 300);
+}
+
+function submitReschedule() {
+    const date = document.getElementById('rescheduleDate').value;
+    const timeFrom = document.getElementById('rescheduleTimeFrom').value;
+    const timeTo = document.getElementById('rescheduleTimeTo').value;
+    
+    if (!date || !timeFrom || !timeTo) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    const rescheduleModal = bootstrap.Modal.getInstance(document.getElementById('rescheduleAppointmentModal'));
+    if (rescheduleModal) {
+        rescheduleModal.hide();
+    }
+    
+    setTimeout(() => {
+        const confirmationModal = new bootstrap.Modal(document.getElementById('appointmentRescheduledModal'));
+        confirmationModal.show();
+    }, 300);
+}
+</script>

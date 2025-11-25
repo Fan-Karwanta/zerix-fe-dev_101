@@ -556,6 +556,77 @@ function renderMobileTimeSlots() {
     }
 }
 
+// Open reschedule modal
+function openRescheduleModal() {
+    const appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+    const appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+    
+    if (appointmentDetailsModal) {
+        appointmentDetailsModal.hide();
+    }
+    
+    // Wait for the first modal to close before opening the second
+    setTimeout(() => {
+        const rescheduleModal = new bootstrap.Modal(document.getElementById('rescheduleAppointmentModal'));
+        rescheduleModal.show();
+    }, 300);
+}
+
+// Close reschedule modal
+function closeRescheduleModal() {
+    const rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+    const rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+    
+    if (rescheduleModal) {
+        rescheduleModal.hide();
+    }
+    
+    // Wait for the modal to close before opening appointment details
+    setTimeout(() => {
+        const appointmentDetailsModal = new bootstrap.Modal(document.getElementById('appointmentDetailsModal'));
+        appointmentDetailsModal.show();
+    }, 300);
+}
+
+// Open cancel modal
+function openCancelModal() {
+    const appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+    const appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+    
+    if (appointmentDetailsModal) {
+        appointmentDetailsModal.hide();
+    }
+    
+    // Wait for the first modal to close before opening the second
+    setTimeout(() => {
+        const cancelModal = new bootstrap.Modal(document.getElementById('cancelAppointmentModal'));
+        cancelModal.show();
+    }, 300);
+}
+
+// Submit reschedule
+function submitReschedule() {
+    const date = document.getElementById('rescheduleDate').value;
+    const timeFrom = document.getElementById('rescheduleTimeFrom').value;
+    const timeTo = document.getElementById('rescheduleTimeTo').value;
+    
+    // Validate inputs
+    if (!date || !timeFrom || !timeTo) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Close reschedule modal
+    const rescheduleModal = bootstrap.Modal.getInstance(document.getElementById('rescheduleAppointmentModal'));
+    if (rescheduleModal) {
+        rescheduleModal.hide();
+    }
+    
+    // Show confirmation modal
+    const confirmationModal = new bootstrap.Modal(document.getElementById('appointmentRescheduledModal'));
+    confirmationModal.show();
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('time-slots-grid')) {
