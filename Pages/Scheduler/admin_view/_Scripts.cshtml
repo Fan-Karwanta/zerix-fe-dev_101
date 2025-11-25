@@ -337,5 +337,78 @@ function addTimeSlot() {
     container.appendChild(newSlot);
 }
 
+// Add Time Row for Set Time Modal
+function addSetTimeRow() {
+    const container = document.getElementById('setTimeModalContainer');
+    
+    const newRow = document.createElement('div');
+    newRow.className = 'time-row-modal mb-3';
+    newRow.innerHTML = `
+        <div class="time-input-group">
+            <label class="time-label-modal">From</label>
+            <input type="time" class="form-control time-control-modal" />
+        </div>
+        <div class="time-input-group">
+            <label class="time-label-modal">To</label>
+            <input type="time" class="form-control time-control-modal" />
+        </div>
+    `;
+    
+    container.appendChild(newRow);
+}
+
+// Add Time Row for Block Off Time Modal
+function addBlockOffTimeRow() {
+    const container = document.getElementById('blockOffTimeContainer');
+    const itemCount = container.querySelectorAll('.block-off-time-item').length + 1;
+    
+    const newItem = document.createElement('div');
+    newItem.className = 'block-off-time-item';
+    newItem.innerHTML = `
+        <div>
+            <label class="block-label-modal">Label</label>
+            <input type="text" class="form-control block-input-modal" placeholder="Break ${itemCount}" />
+        </div>
+        <div class="time-row-modal">
+            <div class="time-input-group">
+                <label class="time-label-modal">From</label>
+                <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+            </div>
+            <div class="time-input-group">
+                <label class="time-label-modal">To</label>
+                <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+            </div>
+        </div>
+    `;
+    
+    container.appendChild(newItem);
+}
+
+// Add Day Row for Block Off Day Modal
+function addBlockOffDayRow() {
+    const container = document.getElementById('blockOffDayContainer');
+    
+    const newItem = document.createElement('div');
+    newItem.className = 'block-off-day-item';
+    newItem.innerHTML = `
+        <div>
+            <label class="block-label-modal">Label</label>
+            <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
+        </div>
+        <div class="time-row-modal">
+            <div class="time-input-group">
+                <label class="time-label-modal">From</label>
+                <input type="date" class="form-control date-control-modal" />
+            </div>
+            <div class="time-input-group">
+                <label class="time-label-modal">To</label>
+                <input type="date" class="form-control date-control-modal" />
+            </div>
+        </div>
+    `;
+    
+    container.appendChild(newItem);
+}
+
 // Categories Page - Old code removed, now using separate NewCategory.cshtml page
 </script>

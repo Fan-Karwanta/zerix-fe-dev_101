@@ -381,32 +381,23 @@
                 </button>
             </div>
             <div class="modal-body pt-3">
-                <!-- Time Inputs Row 1 -->
-                <div class="time-row-modal mb-3">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="time" class="form-control time-control-modal" value="9:00" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="time" class="form-control time-control-modal" value="11:00" />
-                    </div>
-                </div>
-
-                <!-- Time Inputs Row 2 -->
-                <div class="time-row-modal mb-3">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="time" class="form-control time-control-modal" value="1:00" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="time" class="form-control time-control-modal" value="5:00" />
+                <!-- Time Slots Container -->
+                <div id="setTimeModalContainer">
+                    <!-- Time Inputs Row 1 -->
+                    <div class="time-row-modal mb-3">
+                        <div class="time-input-group">
+                            <label class="time-label-modal">From</label>
+                            <input type="time" class="form-control time-control-modal" />
+                        </div>
+                        <div class="time-input-group">
+                            <label class="time-label-modal">To</label>
+                            <input type="time" class="form-control time-control-modal" />
+                        </div>
                     </div>
                 </div>
 
                 <!-- Add Time Button -->
-                <button type="button" class="btn btn-add-time-modal mb-3">+ Add Time</button>
+                <button type="button" class="btn btn-add-time-modal mb-3" onclick="addSetTimeRow()">+ Add Time</button>
 
                 <!-- Action Buttons -->
                 <div class="modal-actions-set-time">
@@ -434,40 +425,36 @@
                 </button>
             </div>
             <div class="modal-body pt-3">
-                <!-- Label 1 -->
-                <div>
-                    <label class="block-label-modal">Label</label>
-                    <input type="text" class="form-control block-input-modal" placeholder="Break 1" />
+                <!-- Block Off Time Slots Container -->
+                <div id="blockOffTimeContainer">
+                    <!-- Label 1 -->
+                    <div class="block-off-time-item">
+                        <div>
+                            <label class="block-label-modal">Label</label>
+                            <input type="text" class="form-control block-input-modal" placeholder="Break 1" />
+                        </div>
+
+                        <!-- Time Inputs Row 1 -->
+                        <div class="time-row-modal">
+                            <div class="time-input-group">
+                                <label class="time-label-modal">From</label>
+                                <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                            </div>
+                            <div class="time-input-group">
+                                <label class="time-label-modal">To</label>
+                                <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Time Inputs Row 1 -->
-                <div class="time-row-modal">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
-                    </div>
-                </div>
+                <!-- Add Time Button -->
+                <button type="button" class="btn btn-add-time-modal mb-3" onclick="addBlockOffTimeRow()">+ Add Time</button>
 
-                <!-- Label 2 -->
-                <div>
-                    <label class="block-label-modal">Label</label>
-                    <input type="text" class="form-control block-input-modal" placeholder="Break 2" />
-                </div>
-
-                <!-- Time Inputs Row 2 -->
-                <div class="time-row-modal">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="time" class="form-control time-control-modal" placeholder="Set Time" />
-                    </div>
+                <!-- Action Buttons -->
+                <div class="modal-actions-block-time">
+                    <button type="button" class="btn btn-block-off-time-submit">Block Off Time</button>
+                    <button type="button" class="btn btn-cancel-block-modal" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -490,44 +477,31 @@
                 </button>
             </div>
             <div class="modal-body pt-3">
-                <!-- Label 1 -->
-                <div>
-                    <label class="block-label-modal">Label</label>
-                    <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
-                </div>
+                <!-- Block Off Day Slots Container -->
+                <div id="blockOffDayContainer">
+                    <!-- Label 1 -->
+                    <div class="block-off-day-item">
+                        <div>
+                            <label class="block-label-modal">Label</label>
+                            <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
+                        </div>
 
-                <!-- Date Inputs Row 1 -->
-                <div class="time-row-modal">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="date" class="form-control date-control-modal" value="2025-07-18" />
-                    </div>
-                </div>
-
-                <!-- Label 2 -->
-                <div>
-                    <label class="block-label-modal">Label</label>
-                    <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
-                </div>
-
-                <!-- Date Inputs Row 2 -->
-                <div class="time-row-modal">
-                    <div class="time-input-group">
-                        <label class="time-label-modal">From</label>
-                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
-                    </div>
-                    <div class="time-input-group">
-                        <label class="time-label-modal">To</label>
-                        <input type="date" class="form-control date-control-modal" placeholder="Set Date" />
+                        <!-- Date Inputs Row 1 -->
+                        <div class="time-row-modal">
+                            <div class="time-input-group">
+                                <label class="time-label-modal">From</label>
+                                <input type="date" class="form-control date-control-modal" />
+                            </div>
+                            <div class="time-input-group">
+                                <label class="time-label-modal">To</label>
+                                <input type="date" class="form-control date-control-modal" />
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Add Another Day Button -->
-                <button type="button" class="btn btn-add-another-day">+ Block another day</button>
+                <button type="button" class="btn btn-add-another-day" onclick="addBlockOffDayRow()">+ Block another day</button>
 
                 <!-- Action Buttons -->
                 <div class="modal-actions-block-day">

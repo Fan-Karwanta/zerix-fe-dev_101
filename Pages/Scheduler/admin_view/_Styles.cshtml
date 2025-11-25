@@ -2895,7 +2895,8 @@ a.mobile-sidebar-nav-item:hover {
     padding: 10px 14px;
 }
 
-.btn-add-another-day {
+.btn-add-another-day,
+.modal-block-off .btn-add-time-modal {
     background-color: transparent;
     color: #ff5400;
     border: 1px solid #ff5400;
@@ -2910,7 +2911,8 @@ a.mobile-sidebar-nav-item:hover {
     margin-bottom: 16px;
 }
 
-.btn-add-another-day:hover {
+.btn-add-another-day:hover,
+.modal-block-off .btn-add-time-modal:hover {
     background-color: #fff5f0;
 }
 
@@ -2953,6 +2955,45 @@ a.mobile-sidebar-nav-item:hover {
 
 .btn-cancel-block-modal:hover {
     background-color: #fff5f0;
+}
+
+/* Block Off Time Modal Action Styles */
+.modal-actions-block-time {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn-block-off-time-submit {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-block-off-time-submit:hover {
+    background-color: #e04800;
+}
+
+/* Block Off Time/Day Item Spacing */
+.block-off-time-item,
+.block-off-day-item {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+.block-off-time-item:last-child,
+.block-off-day-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 /* New Type of Service Form Styles */
