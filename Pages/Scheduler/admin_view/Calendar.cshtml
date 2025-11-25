@@ -484,9 +484,10 @@
                     Are you sure you want to cancel this appointment?
                 </p>
 
-                <p class="cancel-appointment-note">
-                    Note: Reservation fee is not refundable.
-                </p>
+                <!-- Note to Client Textarea -->
+                <div class="mb-3">
+                    <textarea class="form-control cancel-note-textarea" id="cancelNoteTextarea" placeholder="Include note to client (reason for cancellation)" style="min-height: 100px !important;"></textarea>
+                </div>
 
                 <div class="cancel-appointment-actions">
                     <!-- Desktop buttons (side by side) -->
