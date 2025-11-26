@@ -2696,16 +2696,49 @@ a.mobile-sidebar-nav-item:hover {
 .time-row-modal {
     display: flex;
     gap: 12px;
+    align-items: flex-start;
+}
+
+/* Delete Row Button */
+.btn-delete-row {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-top: 28px;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+}
+
+.btn-delete-row:hover {
+    opacity: 0.7;
+}
+
+.btn-delete-row svg {
+    width: 20px;
+    height: 20px;
 }
 
 @@media (max-width: 767px) {
     .time-row-modal {
-        flex-direction: column;
-        gap: 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
     }
     
     .time-input-group {
-        width: 100%;
+        flex: 1;
+        min-width: calc(50% - 20px);
+    }
+    
+    .btn-delete-row {
+        margin-top: 28px;
+        align-self: flex-start;
     }
 }
 
@@ -2797,13 +2830,28 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Block Off Modals Styles */
 .modal-block-off {
-    max-width: 450px;
+    max-width: 520px;
+    width: 95%;
 }
 
-@@media (max-width: 767px) {
+@@media (max-width: 575px) {
     .modal-block-off {
-        max-width: 90%;
+        max-width: 95%;
         margin: 0 auto;
+    }
+    
+    .modal-block-off .time-row-modal {
+        flex-wrap: nowrap;
+    }
+    
+    .modal-block-off .time-input-group {
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .modal-block-off .btn-delete-row {
+        margin-top: 28px;
+        flex-shrink: 0;
     }
 }
 
@@ -3457,6 +3505,11 @@ a.mobile-sidebar-nav-item:hover {
     display: flex;
     gap: 12px;
     margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.time-slot-row .btn-delete-row {
+    margin-top: 24px;
 }
 
 .time-input-wrapper {
