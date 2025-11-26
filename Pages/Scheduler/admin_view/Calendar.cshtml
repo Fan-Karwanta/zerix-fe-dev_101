@@ -190,7 +190,7 @@
             <!-- Calendar Title and Block Off Day Button -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Calendar</h2>
-                <button class="btn btn-block-off-day" onclick="openBlockOffDayModal()">Block Off Day</button>
+                <button class="btn btn-block-off-day" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
             </div>
             
             <div class="full-calendar-container">
@@ -578,40 +578,27 @@
 
 <!-- Block Off Day Modal -->
 <div class="modal fade" id="blockOffDayModal" tabindex="-1" aria-labelledby="blockOffDayModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-block-off">
-        <div class="modal-content">
-            <div class="modal-header-clicked-day border-0 pb-0">
-                <div>
-                    <h5 class="modal-title mb-1" id="blockOffDayModalLabel">Block Off Day</h5>
-                    <p class="modal-subtitle">Block day based on your availability</p>
-                </div>
-                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body pt-3">
-                <!-- Block Off Day Slots Container -->
+    <div class="modal-dialog modal-dialog-centered modal-block-off-new">
+        <div class="modal-content block-off-modal-content">
+            <!-- Close Button -->
+            <button type="button" class="btn-close-block-off" data-bs-dismiss="modal" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div class="modal-body block-off-modal-body">
+                <!-- Title -->
+                <h4 class="block-off-modal-title">Block Off Day</h4>
+                <p class="block-off-modal-subtitle">Block day based on your availability</p>
+
+                <!-- Block Off Day Items Container -->
                 <div id="blockOffDayContainer">
                     <!-- Block Off Day Item 1 -->
-                    <div class="block-off-day-item">
-                        <div>
-                            <label class="block-label-modal">Label</label>
-                            <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
-                        </div>
-
-                        <!-- Date Inputs Row 1 -->
-                        <div class="time-row-modal">
-                            <div class="time-input-group">
-                                <label class="time-label-modal">From</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <div class="time-input-group">
-                                <label class="time-label-modal">To</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <button type="button" class="btn btn-delete-row" onclick="deleteBlockDayRow(this)">
+                    <div class="block-off-day-item-new">
+                        <div class="block-off-label-row">
+                            <label class="block-off-label">Label</label>
+                            <button type="button" class="btn-delete-block-item" onclick="deleteBlockDayItemNew(this)">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6.66667 5V3.33333C6.66667 2.89131 6.84226 2.46738 7.15482 2.15482C7.46738 1.84226 7.89131 1.66667 8.33333 1.66667H11.6667C12.1087 1.66667 12.5326 1.84226 12.8452 2.15482C13.1577 2.46738 13.3333 2.89131 13.3333 3.33333V5M15.8333 5V16.6667C15.8333 17.1087 15.6577 17.5326 15.3452 17.8452C15.0326 18.1577 14.6087 18.3333 14.1667 18.3333H5.83333C5.39131 18.3333 4.96738 18.1577 4.65482 17.8452C4.34226 17.5326 4.16667 17.1087 4.16667 16.6667V5H15.8333Z" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -619,27 +606,26 @@
                                     <path d="M11.6667 9.16667V14.1667" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
+                        </div>
+                        <input type="text" class="form-control block-off-input" placeholder="Holiday" />
+
+                        <div class="block-off-date-row">
+                            <div class="block-off-date-group">
+                                <label class="block-off-date-label">From</label>
+                                <input type="date" class="form-control block-off-date-input" />
+                            </div>
+                            <div class="block-off-date-group">
+                                <label class="block-off-date-label">To</label>
+                                <input type="date" class="form-control block-off-date-input" />
+                            </div>
                         </div>
                     </div>
 
                     <!-- Block Off Day Item 2 -->
-                    <div class="block-off-day-item">
-                        <div>
-                            <label class="block-label-modal">Label</label>
-                            <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
-                        </div>
-
-                        <!-- Date Inputs Row 2 -->
-                        <div class="time-row-modal">
-                            <div class="time-input-group">
-                                <label class="time-label-modal">From</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <div class="time-input-group">
-                                <label class="time-label-modal">To</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <button type="button" class="btn btn-delete-row" onclick="deleteBlockDayRow(this)">
+                    <div class="block-off-day-item-new">
+                        <div class="block-off-label-row">
+                            <label class="block-off-label">Label</label>
+                            <button type="button" class="btn-delete-block-item" onclick="deleteBlockDayItemNew(this)">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6.66667 5V3.33333C6.66667 2.89131 6.84226 2.46738 7.15482 2.15482C7.46738 1.84226 7.89131 1.66667 8.33333 1.66667H11.6667C12.1087 1.66667 12.5326 1.84226 12.8452 2.15482C13.1577 2.46738 13.3333 2.89131 13.3333 3.33333V5M15.8333 5V16.6667C15.8333 17.1087 15.6577 17.5326 15.3452 17.8452C15.0326 18.1577 14.6087 18.3333 14.1667 18.3333H5.83333C5.39131 18.3333 4.96738 18.1577 4.65482 17.8452C4.34226 17.5326 4.16667 17.1087 4.16667 16.6667V5H15.8333Z" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -647,17 +633,29 @@
                                     <path d="M11.6667 9.16667V14.1667" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
+                        </div>
+                        <input type="text" class="form-control block-off-input" placeholder="Example: Vacation, Holiday" />
+
+                        <div class="block-off-date-row">
+                            <div class="block-off-date-group">
+                                <label class="block-off-date-label">From</label>
+                                <input type="date" class="form-control block-off-date-input" />
+                            </div>
+                            <div class="block-off-date-group">
+                                <label class="block-off-date-label">To</label>
+                                <input type="date" class="form-control block-off-date-input" />
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Add Another Day Button -->
-                <button type="button" class="btn btn-add-another-day" onclick="addBlockOffDayRow()">+ Block another day</button>
+                <button type="button" class="btn btn-add-block-day-new" onclick="addBlockOffDayItemNew()">+ Block another day</button>
 
                 <!-- Action Buttons -->
-                <div class="modal-actions-block-day">
-                    <button type="button" class="btn btn-block-off-day-submit">Block Off Day</button>
-                    <button type="button" class="btn btn-cancel-block-modal" data-bs-dismiss="modal">Cancel</button>
+                <div class="block-off-modal-actions">
+                    <button type="button" class="btn btn-block-off-submit-new">Block Off Day</button>
+                    <button type="button" class="btn btn-block-off-cancel-new" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

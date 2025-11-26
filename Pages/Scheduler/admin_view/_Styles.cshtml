@@ -1720,6 +1720,9 @@ a.mobile-sidebar-nav-item:hover {
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-block-off-day:hover {
@@ -1740,6 +1743,9 @@ a.mobile-sidebar-nav-item:hover {
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-block-off-day-mobile:hover {
@@ -3481,6 +3487,7 @@ a.mobile-sidebar-nav-item:hover {
     border-radius: 8px;
     border: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100% !important;
 }
 
 .modal-header-date-hours {
@@ -4312,6 +4319,239 @@ a.mobile-sidebar-nav-item:hover {
 
     .reports-form-question-item {
         min-width: 100%;
+    }
+}
+
+/* ========================================
+   Block Off Day Modal - New Design
+   ======================================== */
+
+.modal-block-off-new {
+    max-width: 480px;
+}
+
+.block-off-modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    padding: 0;
+}
+
+.btn-close-block-off {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-block-off:hover svg path {
+    stroke: #e04800;
+}
+
+.block-off-modal-body {
+    padding: 40px 32px 32px 32px;
+}
+
+.block-off-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.block-off-modal-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 24px 0;
+}
+
+/* Block Off Day Item */
+.block-off-day-item-new {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.block-off-day-item-new:last-child {
+    border-bottom: none;
+    margin-bottom: 16px;
+    padding-bottom: 0;
+}
+
+.block-off-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.block-off-label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin: 0;
+}
+
+.btn-delete-block-item {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete-block-item:hover svg path {
+    stroke: #e04800;
+}
+
+.block-off-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.block-off-input::placeholder {
+    color: #999;
+}
+
+.block-off-input:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Date Row */
+.block-off-date-row {
+    display: flex;
+    gap: 16px;
+}
+
+.block-off-date-group {
+    flex: 1;
+}
+
+.block-off-date-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.block-off-date-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+}
+
+.block-off-date-input:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Add Another Day Button */
+.btn-add-block-day-new {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid #ff5400;
+    border-radius: 6px;
+    color: #ff5400;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 24px;
+}
+
+.btn-add-block-day-new:hover {
+    background: #fff5f0;
+}
+
+/* Action Buttons */
+.block-off-modal-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn-block-off-submit-new {
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-block-off-submit-new:hover {
+    background-color: #e04800;
+    color: white;
+}
+
+.btn-block-off-cancel-new {
+    background: transparent;
+    border: none;
+    color: #ff5400;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 14px 24px;
+    transition: color 0.2s;
+}
+
+.btn-block-off-cancel-new:hover {
+    color: #e04800;
+}
+
+/* Mobile Responsive */
+@@media (max-width: 576px) {
+    .modal-block-off-new {
+        max-width: 95%;
+        margin: 10px;
+    }
+
+    .block-off-modal-body {
+        padding: 32px 20px 24px 20px;
+    }
+
+    .block-off-date-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .block-off-modal-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-block-off-submit-new {
+        width: 100%;
+    }
+
+    .btn-block-off-cancel-new {
+        width: 100%;
     }
 }
 
