@@ -449,12 +449,17 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Tablet Styles (iPad Mini, iPad Air, iPad Pro) - 768px to 1023px */
 @@media (min-width: 768px) and (max-width: 1023px) {
-    /* Use mobile layout on tablets - show Overview dropdown */
-    .mobile-overview-section {
+    /* Use mobile layout on tablets - show Overview dropdown (but respect d-md-none for Calendar page) */
+    .mobile-overview-section.d-lg-none {
         display: block !important;
         margin-left: 0;
         margin-right: 0;
         padding: 15px 0;
+    }
+    
+    /* Hide mobile overview section when d-md-none class is present (Calendar page) */
+    .mobile-overview-section.d-md-none {
+        display: none !important;
     }
 
 
@@ -635,11 +640,15 @@ a.mobile-sidebar-nav-item:hover {
         visibility: hidden !important;
     }
     
-    /* FORCE SHOW mobile overview dropdown */
-    .mobile-overview-section,
+    /* FORCE SHOW mobile overview dropdown - but respect d-md-none class for Calendar page */
     .mobile-overview-section.d-lg-none {
         display: block !important;
         visibility: visible !important;
+    }
+    
+    /* Hide mobile overview section when d-md-none class is present (Calendar page) */
+    .mobile-overview-section.d-md-none {
+        display: none !important;
     }
     
     /* Content takes full width */
@@ -4552,6 +4561,253 @@ a.mobile-sidebar-nav-item:hover {
 
     .btn-block-off-cancel-new {
         width: 100%;
+    }
+}
+
+/* ============================================
+   TABLET CALENDAR VIEW STYLES - Admin Calendar Page
+   Matches the user view Events.cshtml tablet design
+   ============================================ */
+
+/* Tablet styles for Calendar page - 768px to 1199px */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    /* Mobile calendar selection view - full width layout */
+    .mobile-calendar-selection {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Header container styling */
+    .mobile-calendar-selection .mobile-header-container {
+        margin-bottom: 1.5rem;
+        padding: 0 20px;
+        margin-top: 1.5rem !important;
+    }
+    
+    /* Back chevron styling */
+    .mobile-calendar-selection .mobile-back-chevron {
+        font-size: 24px;
+        color: #ff5400;
+    }
+    
+    /* Calendar title styling */
+    .mobile-calendar-selection h2 {
+        font-size: 20px;
+        font-weight: 400;
+    }
+    
+    /* Mobile mini calendar - full width, with subtle border */
+    .mobile-calendar-selection .mobile-mini-calendar {
+        background: white;
+        border: 1px solid #e5e5e5;
+        border-radius: 12px;
+        padding: 28px 24px;
+        max-width: 100%;
+        margin: 0;
+        box-shadow: none;
+    }
+    
+    /* Calendar header with orange month/year */
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 18px !important;
+        font-weight: 500;
+        color: #ff5400 !important;
+        margin: 0;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header .calendar-nav-btn {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: #666;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header .calendar-nav-btn:hover {
+        color: #ff5400;
+    }
+    
+    /* Weekday headers */
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-weekdays {
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        gap: 0;
+        margin-bottom: 8px;
+        padding: 0;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-weekday {
+        text-align: center;
+        font-size: 11px;
+        font-weight: 500;
+        color: #888;
+        padding: 8px 0;
+        text-transform: uppercase;
+    }
+    
+    /* Calendar days grid - large circles filling the space */
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-days {
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        gap: 8px;
+        row-gap: 14px;
+        padding: 0;
+    }
+    
+    /* Individual day cells - large circles */
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day {
+        aspect-ratio: 1;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        margin: 0 auto;
+        min-height: 0 !important;
+        min-width: 0;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.today {
+        background-color: #ff5400 !important;
+        color: white !important;
+        font-weight: 500;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.selected {
+        background-color: #ff5400 !important;
+        color: white !important;
+        font-weight: 500;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.other-month {
+        color: #ccc;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.weekday-highlight {
+        background-color: #fde8dc;
+    }
+    
+    /* Ensure weekday-highlight doesn't override selected state */
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.weekday-highlight.selected,
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day.weekday-highlight.today {
+        background-color: #ff5400 !important;
+        color: white !important;
+    }
+}
+
+/* iPad Mini specific adjustments - 768px to 819px */
+@@media (min-width: 768px) and (max-width: 819px) {
+    .mobile-calendar-selection .mobile-mini-calendar {
+        padding: 20px 16px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 16px !important;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day {
+        font-size: 13px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-days {
+        gap: 6px;
+        row-gap: 10px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-weekday {
+        font-size: 10px;
+    }
+}
+
+/* iPad Air specific adjustments - 820px to 1023px */
+@@media (min-width: 820px) and (max-width: 1023px) {
+    .mobile-calendar-selection .mobile-mini-calendar {
+        padding: 26px 22px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 18px !important;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day {
+        font-size: 14px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-days {
+        gap: 8px;
+        row-gap: 12px;
+    }
+}
+
+/* iPad Pro and larger tablets - 1024px to 1199px */
+@@media (min-width: 1024px) and (max-width: 1199px) {
+    .mobile-calendar-selection .mobile-mini-calendar {
+        padding: 30px 26px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 20px !important;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-day {
+        font-size: 15px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-calendar-days {
+        gap: 10px;
+        row-gap: 14px;
+    }
+    
+    .mobile-calendar-selection .mobile-mini-calendar .mini-weekday {
+        font-size: 12px;
+    }
+}
+
+/* Mobile Daily Schedule View - Tablet adjustments */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .mobile-daily-schedule {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .mobile-daily-schedule .mobile-header-container {
+        margin-bottom: 1.5rem;
+        padding: 0 20px;
+    }
+    
+    .mobile-daily-schedule .mobile-back-chevron {
+        font-size: 24px;
+        color: #ff5400;
+    }
+    
+    .mobile-daily-schedule h2 {
+        font-size: 20px;
+        font-weight: 400;
     }
 }
 

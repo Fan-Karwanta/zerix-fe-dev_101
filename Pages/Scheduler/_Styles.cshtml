@@ -2310,6 +2310,11 @@
         width: 18.5rem;
     }
 }
+@@media (max-width: 768px) {
+        .modal-body .btn {
+        width: 100%
+    }
+}
 
 /* Add bottom padding to service category content to account for fixed cart */
 .service-category-selection-view {
@@ -3576,6 +3581,71 @@
     }
 }
 
+/* Tablet styles for appointment modal dropdowns - 768px to 1199px */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .appointment-header-section {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .appointment-dropdown-wrapper,
+    .appointment-status-wrapper {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .appointment-dropdown-btn {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .appointment-dropdown-btn span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: calc(100% - 20px);
+    }
+    
+    .appointment-dropdown-menu {
+        width: 100%;
+        min-width: 180px;
+        max-height: 200px;
+        z-index: 1060;
+    }
+    
+    .dropdown-label-text,
+    .status-label-text {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+    
+    /* Ensure dropdown doesn't get cut off */
+    .appointment-details-modal-content {
+        overflow: visible !important;
+    }
+    
+    .appointment-details-modal-body {
+        overflow: visible !important;
+    }
+    
+    .appointment-header-section .dropdown {
+        position: relative;
+    }
+    
+    .appointment-header-section .dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+}
+
 /* History Dropdown Button */
 .btn-outline-orange {
     border: 2px solid #ff5400;
@@ -4708,6 +4778,76 @@
     }
 }
 
+/* Tablet adjustments for mobile mini calendar - 768px to 1199px */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .mobile-mini-calendar {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 100%;
+        overflow: visible;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-header h6 {
+        font-size: 18px !important;
+        font-weight: 500;
+        color: #ff5400 !important;
+        margin: 0;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-weekdays {
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        gap: 0;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-mini-calendar .mini-weekday {
+        text-align: center;
+        font-size: 11px;
+        font-weight: 500;
+        color: #888;
+        padding: 8px 0;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-days {
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        gap: 8px;
+        row-gap: 12px;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-day {
+        aspect-ratio: 1;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        min-height: 0 !important;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        padding: 0;
+    }
+    
+    .mobile-mini-calendar .mini-calendar-day.weekday-highlight {
+        background-color: #fde8dc;
+    }
+}
+
 /* Mobile Daily Schedule View */
 .mobile-daily-schedule {
     
@@ -5117,15 +5257,38 @@
 }
 
 /* Tablet-specific modal centering (iPad Mini and similar sizes) */
-@@media (min-width: 768px) and (max-width: 1024px) {
+@@media (min-width: 768px) and (max-width: 1199px) {
     #appointmentDetailsModal .modal-dialog {
         margin: 0.5rem auto;
-        max-width: 500px;
+        max-width: 480px;
     }
     
     .appointment-details-modal-content {
         width: 100%;
         margin: 0 auto;
+        overflow: visible !important;
+    }
+    
+    .appointment-details-modal-body {
+        overflow: visible !important;
+        padding: 20px;
+    }
+    
+    /* Fix dropdown positioning in modal */
+    .appointment-header-section {
+        position: relative;
+        z-index: 10;
+    }
+    
+    .appointment-header-section .dropdown {
+        position: static;
+    }
+    
+    .appointment-header-section .dropdown-menu.show {
+        position: absolute !important;
+        z-index: 1060 !important;
+        width: auto;
+        min-width: 200px;
     }
 }
 
@@ -5593,6 +5756,7 @@
 .cancel-appointment-modal-content {
     border-radius: 12px;
     border: none;
+    width: 100% !important;
 }
 
 .cancel-appointment-close-btn {
@@ -6375,6 +6539,7 @@
 
     .mobile-header-container {
         padding: 0 0.5rem;
+        margin-top: 0.5rem;
     }
 
     .category-tree {

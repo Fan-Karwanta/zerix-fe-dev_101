@@ -14,8 +14,8 @@
 
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
-<!-- Mobile Overview Dropdown and Block Off Day - Show on phones and tablets (iPad Mini/Air), hide on desktop -->
-<div class="mobile-overview-section d-lg-none">
+<!-- Mobile Overview Dropdown and Block Off Day - Show on phones only, hide on tablets and desktop -->
+<div class="mobile-overview-section d-md-none">
     <div class="d-flex justify-content-between align-items-center gap-2">
         <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
             <span>Overview</span>
@@ -39,7 +39,7 @@
 
 <div class="container px-4 my-3 pt-md-3 pt-3">
     <!-- Mobile & Tablet: Calendar Selection View -->
-    <div id="mobile-calendar-view" class="d-lg-none mobile-calendar-selection">
+    <div id="mobile-calendar-view" class="d-xl-none mobile-calendar-selection">
         <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
             <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="window.history.back()">
                 <i class="bi bi-chevron-left mobile-back-chevron"></i>
@@ -75,7 +75,7 @@
     </div>
 
     <!-- Mobile & Tablet: Daily Schedule View -->
-    <div id="mobile-daily-view" class="d-lg-none mobile-daily-schedule" style="display: none;">
+    <div id="mobile-daily-view" class="d-xl-none mobile-daily-schedule" style="display: none;">
         <div class="d-flex align-items-center justify-content-center mb-3 position-relative mobile-header-container">
             <button class="btn btn-link p-0 text-decoration-none position-absolute start-0" onclick="showMobileCalendar()">
                 <i class="bi bi-chevron-left mobile-back-chevron"></i>
@@ -142,7 +142,7 @@
     </div>
 
     <!-- Desktop View -->
-    <div class="row g-4 d-none d-lg-flex">
+    <div class="row g-4 d-none d-xl-flex">
         <!-- Left Sidebar: Mini Calendar and Navigation - Show on desktop only -->
         <div class="col-12 col-md-3">
             <div class="mini-calendar-container">
