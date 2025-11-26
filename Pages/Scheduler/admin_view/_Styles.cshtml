@@ -4811,4 +4811,93 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+/* ==================== MOBILE MODAL CENTERING FIX ==================== */
+/* Fix for Calendar page modals not centered on mobile */
+@@media (max-width: 767px) {
+    /* Reschedule Appointment Modal - Mobile Centering */
+    #rescheduleAppointmentModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #rescheduleAppointmentModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Cancel Appointment Modal - Mobile Centering */
+    #cancelAppointmentModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #cancelAppointmentModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Appointment Rescheduled Confirmation Modal - Mobile Centering */
+    #appointmentRescheduledModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #appointmentRescheduledModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Appointment Cancelled Modal - Mobile Centering */
+    #appointmentCancelledModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #appointmentCancelledModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Block Off Day Modal - Mobile Centering */
+    #blockOffDayModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #blockOffDayModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Reschedule modal title text size fix - match other text sizes */
+    .reschedule-modal-title {
+        font-size: 16px;
+    }
+    
+    .reschedule-label,
+    .reschedule-customer-name {
+        font-size: 16px;
+    }
+}
+
 </style>
