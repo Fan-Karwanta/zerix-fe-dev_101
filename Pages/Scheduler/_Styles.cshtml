@@ -2312,13 +2312,13 @@
 }
 @@media (max-width: 768px) {
         .modal-body .btn {
-        width: 100%
+        width: 108%
     }
 }
 
 @@media (max-width: 390px) {
         .modal-body .btn {
-        width: 110%
+        width: 108%
     }
 }
 
@@ -3434,16 +3434,19 @@
 /* Appointment Header Section (Dropdown + Status) */
 .appointment-header-section {
     display: flex;
+    flex-direction: row;
     gap: 15px;
     align-items: flex-start;
 }
 
 .appointment-dropdown-wrapper {
     flex: 1;
+    min-width: 0;
 }
 
 .appointment-status-wrapper {
     flex: 1;
+    min-width: 0;
 }
 
 .dropdown-label-text {
@@ -3575,15 +3578,47 @@
     display: inline-block;
 }
 
+/* Mobile styles - keep dropdowns in row but with smaller text */
 @@media (max-width: 576px) {
     .appointment-header-section {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row;
+        gap: 10px;
     }
     
     .appointment-dropdown-wrapper,
     .appointment-status-wrapper {
-        width: 100%;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .appointment-dropdown-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .dropdown-label-text,
+    .status-label-text {
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+}
+
+/* Small tablet styles - 577px to 767px */
+@@media (min-width: 577px) and (max-width: 767px) {
+    .appointment-header-section {
+        flex-direction: row;
+        gap: 12px;
+    }
+    
+    .appointment-dropdown-wrapper,
+    .appointment-status-wrapper {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .appointment-dropdown-btn {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 }
 
@@ -5846,7 +5881,7 @@
     border: 2px solid #ff5400;
     border-radius: 6px;
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
 }
@@ -5863,7 +5898,7 @@
     border: none;
     border-radius: 6px;
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
 }
@@ -5873,14 +5908,26 @@
     color: white;
 }
 
+/* Cancel modal buttons - always in a row */
+.cancel-buttons-row {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+}
+
+.cancel-buttons-row .cancel-keep-btn,
+.cancel-buttons-row .cancel-confirm-btn {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    padding: 12px 16px;
+}
+
 @@media (max-width: 576px) {
     .cancel-appointment-modal-content {
         max-width: 90%;
         margin: 0 15px;
     }
-    .appointment-dropdown-menu{
-        width: 110%;
-        }
     
     .cancel-appointment-modal-body {
         padding: 25px 20px;
@@ -5888,6 +5935,13 @@
     
     .cancel-appointment-title {
         font-size: 18px;
+    }
+    
+    /* Smaller font for buttons on very small screens */
+    .cancel-buttons-row .cancel-keep-btn,
+    .cancel-buttons-row .cancel-confirm-btn {
+        font-size: 12px;
+        padding: 10px 12px;
     }
 }
 

@@ -14,25 +14,27 @@
 
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
-<!-- Mobile Overview Dropdown and Block Off Day - Show on phones only, hide on tablets and desktop -->
-<div class="mobile-overview-section d-md-none">
-    <div class="d-flex justify-content-between align-items-center gap-2">
-        <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
-            <span>Overview</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
-                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-        <button class="btn btn-block-off-day-mobile" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
-    </div>
-    <div class="collapse" id="mobileOverviewMenu">
-        <div class="mobile-sidebar-nav">
-            <a href="/scheduler/admin_view/calendar" class="mobile-sidebar-nav-item active">Calendar</a>
-            <a href="/scheduler/admin_view/appointmenttypes" class="mobile-sidebar-nav-item">Appointment Types</a>
-            <a href="/scheduler/admin_view/categories" class="mobile-sidebar-nav-item">Categories</a>
-            <a href="/scheduler/admin_view/formquestions" class="mobile-sidebar-nav-item">Form Questions</a>
-            <a href="/scheduler/admin_view/paymentintegrations" class="mobile-sidebar-nav-item">Payment Integrations</a>
-            <a href="/scheduler/admin_view/reports" class="mobile-sidebar-nav-item">Reports</a>
+<!-- Mobile Overview Dropdown and Block Off Day - Show on phones and tablets, hide on desktop -->
+<div class="container px-4 d-xl-none">
+    <div class="mobile-overview-section">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
+                <span>Overview</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <button class="btn btn-block-off-day-mobile" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
+        </div>
+        <div class="collapse" id="mobileOverviewMenu">
+            <div class="mobile-sidebar-nav">
+                <a href="/scheduler/admin_view/calendar" class="mobile-sidebar-nav-item active">Calendar</a>
+                <a href="/scheduler/admin_view/appointmenttypes" class="mobile-sidebar-nav-item">Appointment Types</a>
+                <a href="/scheduler/admin_view/categories" class="mobile-sidebar-nav-item">Categories</a>
+                <a href="/scheduler/admin_view/formquestions" class="mobile-sidebar-nav-item">Form Questions</a>
+                <a href="/scheduler/admin_view/paymentintegrations" class="mobile-sidebar-nav-item">Payment Integrations</a>
+                <a href="/scheduler/admin_view/reports" class="mobile-sidebar-nav-item">Reports</a>
+            </div>
         </div>
     </div>
 </div>
@@ -537,16 +539,10 @@
                 </div>
 
                 <div class="cancel-appointment-actions">
-                    <!-- Desktop buttons (side by side) -->
-                    <div class="d-none d-md-flex gap-3">
+                    <!-- Buttons always side by side -->
+                    <div class="d-flex gap-3 cancel-buttons-row">
                         <button type="button" class="btn cancel-keep-btn flex-fill" data-bs-dismiss="modal">Keep Appointment</button>
                         <button type="button" class="btn cancel-confirm-btn flex-fill" id="confirmCancelBtn">Yes, Cancel Appointment</button>
-                    </div>
-                    
-                    <!-- Mobile buttons (stacked) -->
-                    <div class="d-md-none">
-                        <button type="button" class="btn w-100 mb-3 cancel-keep-btn" data-bs-dismiss="modal">Keep Appointment</button>
-                        <button type="button" class="btn w-100 cancel-confirm-btn" id="confirmCancelBtnMobile">Yes, Cancel Appointment</button>
                     </div>
                 </div>
             </div>
