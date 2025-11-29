@@ -282,31 +282,9 @@ a.sidebar-nav-item:hover {
     padding: 15px 0;
     background: white;
     position: relative;
-}
-
-/* Mobile phones - add side margins */
-@@media (max-width: 767px) {
-    .mobile-overview-section {
-        margin-left: 55px;
-        margin-right: 4px;
-    }
-
-    .mobile-overview-toggle{
-        margin-left: -2.2rem;
-    }
-
-    #mobileOverviewMenu{
-        margin-left: -1.2rem !important;
-    }
-}
-
-/* Tablet and larger - no extra margins needed since container handles alignment */
-@@media (min-width: 768px) {
-    .mobile-overview-section {
-        margin-left: 0;
-        margin-right: 0;
-        padding: 15px 0;
-    }
+    /* Align with container - no extra margins needed */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* Surface Pro 7 and Asus Zenbook Fold specific alignment - 853px to 912px width */
@@ -347,6 +325,7 @@ a.sidebar-nav-item:hover {
     font-weight: 500;
     text-align: left;
     gap: 8px;
+    margin-left: 0; /* Consistent alignment across all screens */
 }
 
 .mobile-overview-toggle:hover,
@@ -377,6 +356,7 @@ a.sidebar-nav-item:hover {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     margin-top: 8px;
+    margin-left: 0; /* Consistent alignment across all screens */
 }
 
 .mobile-sidebar-nav {
@@ -2759,24 +2739,62 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 @@media (max-width: 767px) {
+    /* General Time Row Mobile Styles (for Block Off modals etc.) */
     .time-row-modal {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 8px;
-        align-items: flex-end;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 8px 12px;
+        width: 100%;
+        margin-bottom: 16px;
+        align-items: end;
     }
     
     .time-input-group {
-        flex: 1;
-        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .time-label-modal {
+        font-size: 16px;
+        font-weight: 500;
+        color: #ff5400;
+        margin-bottom: 8px;
+    }
+    
+    .time-control-modal {
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fff;
+        color: #333;
     }
     
     .btn-delete-row {
         margin-top: 0;
-        margin-bottom: 4px;
-        align-self: flex-end;
+        margin-bottom: 0;
+        align-self: center;
         flex-shrink: 0;
+    }
+    
+    .btn-add-time-modal {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 16px;
+        margin-bottom: 16px;
+        border-radius: 8px;
+    }
+    
+    .btn-set-hours-modal {
+        padding: 14px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    
+    .btn-cancel-modal {
+        font-size: 16px;
+        padding: 12px;
     }
 }
 
@@ -3588,6 +3606,33 @@ a.mobile-sidebar-nav-item:hover {
     
     .modal-date-hours .modal-content {
         width: 100%;
+        padding: 16px;
+        padding-top: 40px !important;
+    }
+    
+    .modal-date-hours .modal-header-date-hours {
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .modal-date-hours .date-hours-title-row {
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        padding-right: 0;
+        width: 100%;
+    }
+    
+    .modal-date-hours .date-input-modal-inline {
+        width: 35%;
+        max-width: 35%;
+        flex-shrink: 0;
+    }
+    
+    .modal-date-hours .btn-close-date-modal {
+        top: -31px;
+        right: 0;
     }
 }
 
@@ -5045,30 +5090,122 @@ a.mobile-sidebar-nav-item:hover {
         margin: 0 auto;
     }
     
-    /* Set Time Modal - Fix time inputs layout on mobile */
+    /* ==================== SET TIME MODAL - MOBILE DEDICATED DESIGN ==================== */
+    #setTimeModal .modal-content {
+        padding: 20px;
+    }
+    
+    #setTimeModal .modal-header-clicked-day {
+        padding: 0 0 16px 0;
+    }
+    
+    #setTimeModal .modal-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    #setTimeModal .btn-close-custom {
+        top: 0;
+        right: 0;
+    }
+    
+    #setTimeModal .modal-body {
+        padding: 0;
+    }
+    
+    /* Time Row - Labels on top row, inputs on bottom row */
     #setTimeModal .time-row-modal {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 8px;
-        align-items: flex-end;
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 8px 12px;
+        width: 100%;
+        margin-bottom: 20px;
+        align-items: start;
+    }
+    
+    /* Labels row */
+    #setTimeModal .time-row-modal .time-input-group:nth-child(1) .time-label-modal,
+    #setTimeModal .time-row-modal .time-input-group:nth-child(2) .time-label-modal {
+        font-size: 16px;
+        font-weight: 500;
+        color: #ff5400;
+        margin-bottom: 8px;
+        display: block;
     }
     
     #setTimeModal .time-input-group {
-        flex: 1;
-        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #setTimeModal .time-input-group:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+    
+    #setTimeModal .time-input-group:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+    
+    #setTimeModal .time-label-modal {
+        font-size: 16px;
+        font-weight: 500;
+        color: #ff5400;
+        margin-bottom: 8px;
     }
     
     #setTimeModal .time-control-modal {
         width: 100%;
-        padding: 8px 6px;
-        font-size: 13px;
+        padding: 12px 10px;
+        font-size: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fff;
+        color: #333;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    #setTimeModal .time-control-modal::-webkit-calendar-picker-indicator {
+        opacity: 0.6;
     }
     
     #setTimeModal .btn-delete-row {
+        grid-column: 3;
+        grid-row: 2;
         margin-top: 0;
-        margin-bottom: 4px;
+        align-self: center;
         flex-shrink: 0;
+    }
+    
+    #setTimeModal .btn-add-time-modal {
+        width: 100%;
+        padding: 3px 16px;
+        font-size: 16px;
+        margin-bottom: 16px;
+        border-radius: 8px;
+    }
+    
+    #setTimeModal .modal-actions-set-time {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    #setTimeModal .btn-set-hours-modal {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    
+    #setTimeModal .btn-cancel-modal {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
     }
     
     /* Block Off Time Modal - Mobile Centering */
