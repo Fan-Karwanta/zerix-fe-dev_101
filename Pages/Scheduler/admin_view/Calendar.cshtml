@@ -662,3 +662,101 @@
 @await Html.PartialAsync("../admin_view/_Scripts")
 @await Html.PartialAsync("../admin_view/_CalendarScripts")
 @await Html.PartialAsync("../admin_view/_BlockOffDayScripts")
+
+<!-- Inline Reschedule Modal Script - Dedicated for Calendar.cshtml to avoid conflicts -->
+<script>
+(function() {
+    // Self-contained reschedule modal functions to avoid variable conflicts
+    
+    // Open reschedule modal
+    window.openRescheduleModal = function() {
+        var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+        if (appointmentDetailsModalEl) {
+            var appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+            if (appointmentDetailsModal) {
+                appointmentDetailsModal.hide();
+            }
+        }
+        
+        // Wait for the first modal to close before opening the second
+        setTimeout(function() {
+            var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+            if (rescheduleModalEl) {
+                var rescheduleModal = new bootstrap.Modal(rescheduleModalEl);
+                rescheduleModal.show();
+            }
+        }, 300);
+    };
+    
+    // Close reschedule modal and go back to appointment details
+    window.closeRescheduleModal = function() {
+        var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+        if (rescheduleModalEl) {
+            var rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+            if (rescheduleModal) {
+                rescheduleModal.hide();
+            }
+        }
+        
+        // Wait for the modal to close before opening appointment details
+        setTimeout(function() {
+            var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+            if (appointmentDetailsModalEl) {
+                var appointmentDetailsModal = new bootstrap.Modal(appointmentDetailsModalEl);
+                appointmentDetailsModal.show();
+            }
+        }, 300);
+    };
+    
+    // Open cancel modal
+    window.openCancelModal = function() {
+        var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+        if (appointmentDetailsModalEl) {
+            var appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+            if (appointmentDetailsModal) {
+                appointmentDetailsModal.hide();
+            }
+        }
+        
+        // Wait for the first modal to close before opening the second
+        setTimeout(function() {
+            var cancelModalEl = document.getElementById('cancelAppointmentModal');
+            if (cancelModalEl) {
+                var cancelModal = new bootstrap.Modal(cancelModalEl);
+                cancelModal.show();
+            }
+        }, 300);
+    };
+    
+    // Submit reschedule
+    window.submitReschedule = function() {
+        var date = document.getElementById('rescheduleDate').value;
+        var timeFrom = document.getElementById('rescheduleTimeFrom').value;
+        var timeTo = document.getElementById('rescheduleTimeTo').value;
+        
+        // Validate inputs
+        if (!date || !timeFrom || !timeTo) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Close reschedule modal
+        var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+        if (rescheduleModalEl) {
+            var rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+            if (rescheduleModal) {
+                rescheduleModal.hide();
+            }
+        }
+        
+        // Show confirmation modal
+        setTimeout(function() {
+            var confirmationModalEl = document.getElementById('appointmentRescheduledModal');
+            if (confirmationModalEl) {
+                var confirmationModal = new bootstrap.Modal(confirmationModalEl);
+                confirmationModal.show();
+            }
+        }, 300);
+    };
+})();
+</script>

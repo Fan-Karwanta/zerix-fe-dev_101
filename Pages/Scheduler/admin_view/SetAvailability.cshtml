@@ -573,15 +573,18 @@
     <div class="modal-dialog modal-dialog-centered modal-date-hours">
         <div class="modal-content">
             <div class="modal-header-date-hours">
-                <h5 class="modal-title-date-hours" id="dateHoursModalLabel">
-                    Hours for <span id="modalDateDisplay">December 19</span> -
-                </h5>
+                <!-- Title and End Date Input Row -->
+                <div class="date-hours-title-row">
+                    <h5 class="modal-title-date-hours" id="dateHoursModalLabel">
+                        Hours for <span id="modalDateDisplay">December 19</span> -
+                    </h5>
+                    <input type="text" class="form-control date-input-modal-inline" id="modalEndDateInput" placeholder="Enter End Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+                </div>
                 <button type="button" class="btn-close-date-modal" data-bs-dismiss="modal" aria-label="Close">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 5L5 15M5 5L15 15" stroke="#ff5400" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </button>
-                <input type="date" class="form-control date-input-modal" id="modalEndDateInput" />
             </div>
             <div class="modal-body-date-hours">
                 <!-- Time Slots Container -->
@@ -590,11 +593,11 @@
                     <div class="time-slot-row">
                         <div class="time-input-wrapper">
                             <label class="time-label-small">From</label>
-                            <input type="time" class="form-control time-input-small" value="09:00" />
+                            <input type="text" class="form-control time-input-small" placeholder="Set Time" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" />
                         </div>
                         <div class="time-input-wrapper">
                             <label class="time-label-small">To</label>
-                            <input type="time" class="form-control time-input-small" value="17:00" />
+                            <input type="text" class="form-control time-input-small" placeholder="Set Time" onfocus="(this.type='time')" onblur="if(!this.value)this.type='text'" />
                         </div>
                         <button type="button" class="btn btn-delete-row" onclick="deleteTimeSlotRow(this)">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -607,11 +610,11 @@
                     </div>
                 </div>
 
+                <!-- Day of Week Display - Above Add Time Button, Left Aligned -->
+                <div class="day-of-week-display" id="modalDayOfWeek">Saturday</div>
+
                 <!-- Add Time Button -->
                 <button type="button" class="btn btn-add-time-date-modal" onclick="addTimeSlot()">+ Add Time</button>
-
-                <!-- Day of Week Display -->
-                <div class="day-of-week-display" id="modalDayOfWeek">Saturday</div>
 
                 <!-- Action Buttons -->
                 <div class="modal-actions-date-hours">
