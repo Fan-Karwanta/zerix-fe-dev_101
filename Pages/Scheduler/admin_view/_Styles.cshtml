@@ -287,12 +287,16 @@ a.sidebar-nav-item:hover {
 /* Mobile phones - add side margins */
 @@media (max-width: 767px) {
     .mobile-overview-section {
-        margin-left: 20px;
+        margin-left: 38px;
         margin-right: 4px;
     }
 
     .mobile-overview-toggle{
-        margin-left: -1.2rem;
+        margin-left: -2.2rem;
+    }
+
+    #mobileOverviewMenu{
+        margin-left: -1.2rem !important;
     }
 }
 
@@ -1173,11 +1177,22 @@ a.mobile-sidebar-nav-item:hover {
     position: relative;
     display: flex;
     align-items: center;
-    max-width: 300px;
+    max-width: 200px;
 }
 
 .input-with-suffix .form-control {
     padding-right: 70px;
+}
+
+/* Hide number input spinners for cleaner look */
+.input-with-suffix .form-control[type="number"]::-webkit-outer-spin-button,
+.input-with-suffix .form-control[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-with-suffix .form-control[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .input-suffix {
@@ -2560,6 +2575,15 @@ a.mobile-sidebar-nav-item:hover {
     text-transform: capitalize;
 }
 
+/* Day name abbreviations - hidden by default on desktop */
+.calendar-weekday .day-abbr {
+    display: none;
+}
+
+.calendar-weekday .day-full {
+    display: inline;
+}
+
 .calendar-grid .calendar-day {
     min-height: 110px;
     padding: 10px;
@@ -2708,7 +2732,7 @@ a.mobile-sidebar-nav-item:hover {
     justify-content: center;
     width: 24px;
     height: 24px;
-    margin-top: 28px;
+    margin-top: 35px;
     flex-shrink: 0;
     transition: opacity 0.2s;
 }
@@ -3037,15 +3061,110 @@ a.mobile-sidebar-nav-item:hover {
 /* Block Off Time/Day Item Spacing */
 .block-off-time-item,
 .block-off-day-item {
-    margin-bottom: 8px;
-    padding-bottom: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .block-off-time-item:last-child,
 .block-off-day-item:last-child {
-    margin-bottom: 0;
+    margin-bottom: 16px;
     padding-bottom: 0;
     border-bottom: none;
+}
+
+/* Block Label Row - Label and Delete Button Side by Side */
+.block-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.block-label-row .block-label-modal {
+    margin-bottom: 0;
+}
+
+/* Delete Button in Label Row */
+.btn-delete-block-item {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+}
+
+.btn-delete-block-item:hover {
+    opacity: 0.7;
+}
+
+/* Block Date Row - From and To Side by Side */
+.block-date-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.block-date-group {
+    flex: 1;
+}
+
+.block-date-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.block-date-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.block-date-input::placeholder {
+    color: #999;
+}
+
+.block-date-input:focus {
+    outline: none;
+    border-color: #ff5400;
+}
+
+/* Action Buttons - Side by Side Layout */
+.modal-actions-block-day-inline {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.modal-actions-block-day-inline .btn-block-off-day-submit {
+    width: auto;
+    padding: 12px 24px;
+}
+
+.btn-cancel-block-modal-inline {
+    background-color: transparent;
+    color: #ff5400;
+    border: none;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel-block-modal-inline:hover {
+    color: #e04800;
 }
 
 /* New Type of Service Form Styles */
@@ -3214,6 +3333,13 @@ a.mobile-sidebar-nav-item:hover {
         width: 100%;
     }
     
+    /* Ensure content doesn't overflow on mobile */
+    .tab-content-availability {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
     .header-container-availability {
         margin-top: 1rem !important;
         padding-top: 0 !important;
@@ -3250,11 +3376,23 @@ a.mobile-sidebar-nav-item:hover {
     
     .weekly-schedule-section,
     .calendar-section {
-        padding: 16px;
+        padding: 12px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: hidden;
     }
     
     .section-title {
         font-size: 16px;
+    }
+    
+    /* Calendar grid - ensure it fits in mobile viewport */
+    .calendar-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(7, 1fr) !important;
+        overflow: hidden !important;
     }
     
     .weekly-day-headers {
@@ -3276,19 +3414,31 @@ a.mobile-sidebar-nav-item:hover {
         min-height: 50px;
         font-size: 11px;
     }
-    ;;
+    
     .weekly-day-time {
         font-size: 10px;
     }
     
     .calendar-grid .calendar-day {
-        min-height: 80px !important;
-        padding: 6px !important;
+        min-height: 45px !important;
+        height: auto !important;
+        padding: 4px !important;
+        aspect-ratio: unset;
     }
     
     .calendar-grid .calendar-weekday {
-        font-size: 9px;
-        padding: 8px 4px;
+        font-size: 10px;
+        padding: 6px 2px;
+        white-space: nowrap;
+    }
+    
+    /* Show abbreviations on mobile, hide full names */
+    .calendar-weekday .day-abbr {
+        display: inline !important;
+    }
+    
+    .calendar-weekday .day-full {
+        display: none !important;
     }
     
     .day-number {
@@ -3324,7 +3474,7 @@ a.mobile-sidebar-nav-item:hover {
     
     .header-container-availability {
         margin-top: 0 !important;
-        padding-top: 0 !important;
+        padding-top: 1rem !important;
         margin-bottom: 1rem !important;
     }
     

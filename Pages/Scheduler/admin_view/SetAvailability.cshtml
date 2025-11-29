@@ -31,8 +31,8 @@
             <!-- Tab Navigation and Action Buttons -->
             <div class="availability-header-row mb-4">
                 <div class="availability-tabs">
-                    <button type="button" class="availability-tab active" data-tab="hours-availability">Set Hours of Availability</button>
-                    <button type="button" class="availability-tab" data-tab="calendar-limits">Calendar Scheduling Limits</button>
+                    <button type="button" class="availability-tab active" data-tab="hours-availability">Set Hrs of Availability</button>
+                    <button type="button" class="availability-tab" data-tab="calendar-limits">Scheduling Limits</button>
                 </div>
                 <div class="availability-action-buttons">
                     <button type="button" class="btn btn-block-action" data-bs-toggle="modal" data-bs-target="#blockOffDayModal">Block Off Day</button>
@@ -145,13 +145,13 @@
                 <!-- Calendar Grid -->
                 <div class="calendar-grid">
                     <!-- Weekday Headers -->
-                    <div class="calendar-weekday">Sunday</div>
-                    <div class="calendar-weekday">Monday</div>
-                    <div class="calendar-weekday">Tuesday</div>
-                    <div class="calendar-weekday">Wednesday</div>
-                    <div class="calendar-weekday">Thursday</div>
-                    <div class="calendar-weekday">Friday</div>
-                    <div class="calendar-weekday">Saturday</div>
+                    <div class="calendar-weekday"><span class="day-full">Sunday</span><span class="day-abbr">Sun</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Monday</span><span class="day-abbr">Mon</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Tuesday</span><span class="day-abbr">Tue</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Wednesday</span><span class="day-abbr">Wed</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Thursday</span><span class="day-abbr">Thurs</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Friday</span><span class="day-abbr">Fri</span></div>
+                    <div class="calendar-weekday"><span class="day-full">Saturday</span><span class="day-abbr">Sat</span></div>
 
                     <!-- Calendar Days -->
                     <!-- Week 1 -->
@@ -313,7 +313,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Days before appointment clients can book</label>
                             <div class="input-with-suffix">
-                                <input type="number" class="form-control" placeholder="Enter Number" />
+                                <input type="number" class="form-control" placeholder="Enter Number" min="0" max="99" />
                                 <span class="input-suffix">days</span>
                             </div>
                         </div>
@@ -323,7 +323,7 @@
                     <div class="form-group mb-4">
                         <label class="form-label">Maximum days in advance clients can book</label>
                         <div class="input-with-suffix">
-                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <input type="number" class="form-control" placeholder="Enter Number" min="0" max="99" />
                             <span class="input-suffix">days</span>
                         </div>
                     </div>
@@ -337,7 +337,7 @@
                     <div class="form-group mb-4">
                         <label class="form-label">Set minimum hours allowed</label>
                         <div class="input-with-suffix">
-                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <input type="number" class="form-control" placeholder="Enter Number" min="0" max="99" />
                             <span class="input-suffix">hours</span>
                         </div>
                     </div>
@@ -352,7 +352,7 @@
                     <div class="form-group mb-4">
                         <label class="form-label">Set maximum appointments allowed</label>
                         <div class="input-with-suffix">
-                            <input type="number" class="form-control" placeholder="Enter Number" />
+                            <input type="number" class="form-control" placeholder="Enter Number" min="0" max="99" />
                             <span class="input-suffix">appointments</span>
                         </div>
                     </div>
@@ -500,22 +500,10 @@
                 <div id="blockOffDayContainer">
                     <!-- Block Off Day Item 1 -->
                     <div class="block-off-day-item">
-                        <div>
+                        <!-- Label Row with Delete Button -->
+                        <div class="block-label-row">
                             <label class="block-label-modal">Label</label>
-                            <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
-                        </div>
-
-                        <!-- Date Inputs Row 1 -->
-                        <div class="time-row-modal">
-                            <div class="time-input-group">
-                                <label class="time-label-modal">From</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <div class="time-input-group">
-                                <label class="time-label-modal">To</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <button type="button" class="btn btn-delete-row" onclick="deleteBlockDayRow(this)">
+                            <button type="button" class="btn btn-delete-block-item" onclick="deleteBlockDayRow(this)">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6.66667 5V3.33333C6.66667 2.89131 6.84226 2.46738 7.15482 2.15482C7.46738 1.84226 7.89131 1.66667 8.33333 1.66667H11.6667C12.1087 1.66667 12.5326 1.84226 12.8452 2.15482C13.1577 2.46738 13.3333 2.89131 13.3333 3.33333V5M15.8333 5V16.6667C15.8333 17.1087 15.6577 17.5326 15.3452 17.8452C15.0326 18.1577 14.6087 18.3333 14.1667 18.3333H5.83333C5.39131 18.3333 4.96738 18.1577 4.65482 17.8452C4.34226 17.5326 4.16667 17.1087 4.16667 16.6667V5H15.8333Z" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -523,27 +511,28 @@
                                     <path d="M11.6667 9.16667V14.1667" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
+                        </div>
+                        <input type="text" class="form-control block-input-modal" placeholder="Holiday" />
+
+                        <!-- Date Inputs Row -->
+                        <div class="block-date-row">
+                            <div class="block-date-group">
+                                <label class="block-date-label">From</label>
+                                <input type="text" class="form-control block-date-input" placeholder="Set Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+                            </div>
+                            <div class="block-date-group">
+                                <label class="block-date-label">To</label>
+                                <input type="text" class="form-control block-date-input" placeholder="Set Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+                            </div>
                         </div>
                     </div>
 
                     <!-- Block Off Day Item 2 -->
                     <div class="block-off-day-item">
-                        <div>
+                        <!-- Label Row with Delete Button -->
+                        <div class="block-label-row">
                             <label class="block-label-modal">Label</label>
-                            <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
-                        </div>
-
-                        <!-- Date Inputs Row 2 -->
-                        <div class="time-row-modal">
-                            <div class="time-input-group">
-                                <label class="time-label-modal">From</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <div class="time-input-group">
-                                <label class="time-label-modal">To</label>
-                                <input type="date" class="form-control date-control-modal" />
-                            </div>
-                            <button type="button" class="btn btn-delete-row" onclick="deleteBlockDayRow(this)">
+                            <button type="button" class="btn btn-delete-block-item" onclick="deleteBlockDayRow(this)">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2.5 5H4.16667H17.5" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M6.66667 5V3.33333C6.66667 2.89131 6.84226 2.46738 7.15482 2.15482C7.46738 1.84226 7.89131 1.66667 8.33333 1.66667H11.6667C12.1087 1.66667 12.5326 1.84226 12.8452 2.15482C13.1577 2.46738 13.3333 2.89131 13.3333 3.33333V5M15.8333 5V16.6667C15.8333 17.1087 15.6577 17.5326 15.3452 17.8452C15.0326 18.1577 14.6087 18.3333 14.1667 18.3333H5.83333C5.39131 18.3333 4.96738 18.1577 4.65482 17.8452C4.34226 17.5326 4.16667 17.1087 4.16667 16.6667V5H15.8333Z" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -551,6 +540,19 @@
                                     <path d="M11.6667 9.16667V14.1667" stroke="#ff5400" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
+                        </div>
+                        <input type="text" class="form-control block-input-modal" placeholder="Example: Vacation, Holiday" />
+
+                        <!-- Date Inputs Row -->
+                        <div class="block-date-row">
+                            <div class="block-date-group">
+                                <label class="block-date-label">From</label>
+                                <input type="text" class="form-control block-date-input" placeholder="Set Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+                            </div>
+                            <div class="block-date-group">
+                                <label class="block-date-label">To</label>
+                                <input type="text" class="form-control block-date-input" placeholder="Set Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -558,10 +560,10 @@
                 <!-- Add Another Day Button -->
                 <button type="button" class="btn btn-add-another-day" onclick="addBlockOffDayRow()">+ Block another day</button>
 
-                <!-- Action Buttons -->
-                <div class="modal-actions-block-day">
+                <!-- Action Buttons - Side by Side -->
+                <div class="modal-actions-block-day-inline">
                     <button type="button" class="btn btn-block-off-day-submit">Block Off Day</button>
-                    <button type="button" class="btn btn-cancel-block-modal" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-cancel-block-modal-inline" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -648,6 +650,32 @@
                 const content = document.getElementById(tabName + '-content');
                 if (content) {
                     content.classList.add('active');
+                }
+            });
+        });
+
+        // Limit number inputs to max 99 (enforce on input)
+        const numberInputs = document.querySelectorAll('.input-with-suffix input[type="number"]');
+        numberInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                // Remove non-numeric characters
+                this.value = this.value.replace(/[^0-9]/g, '');
+                
+                // Limit to 2 digits (max 99)
+                if (this.value.length > 2) {
+                    this.value = this.value.slice(0, 2);
+                }
+                
+                // Enforce max value of 99
+                if (parseInt(this.value) > 99) {
+                    this.value = '99';
+                }
+            });
+
+            // Prevent typing more than 2 characters
+            input.addEventListener('keypress', function(e) {
+                if (this.value.length >= 2 && e.key !== 'Backspace' && e.key !== 'Delete') {
+                    e.preventDefault();
                 }
             });
         });
