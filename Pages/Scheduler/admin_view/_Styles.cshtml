@@ -287,7 +287,7 @@ a.sidebar-nav-item:hover {
 /* Mobile phones - add side margins */
 @@media (max-width: 767px) {
     .mobile-overview-section {
-        margin-left: 38px;
+        margin-left: 55px;
         margin-right: 4px;
     }
 
@@ -1602,6 +1602,10 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .weekly-day-item.active::before {
+        content: attr(data-day-short);
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
         position: absolute;
         top: -24px;
         left: 0;
@@ -1616,7 +1620,7 @@ a.mobile-sidebar-nav-item:hover {
     
     .weekly-day-status {
         font-size: 14px;
-        color: #666;
+        color: #999;
         align-self: flex-start;
     }
     
@@ -1644,7 +1648,7 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .weekly-day-status {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #666;
 }
@@ -2674,8 +2678,16 @@ a.mobile-sidebar-nav-item:hover {
 
 @@media (max-width: 767px) {
     .modal-set-time {
-        max-width: 90%;
-        margin: 0 auto;
+        max-width: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+    }
+    
+    .modal-set-time .modal-content {
+        width: 100%;
     }
 }
 
@@ -2748,19 +2760,23 @@ a.mobile-sidebar-nav-item:hover {
 
 @@media (max-width: 767px) {
     .time-row-modal {
+        display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-wrap: nowrap;
+        gap: 8px;
+        align-items: flex-end;
     }
     
     .time-input-group {
         flex: 1;
-        min-width: calc(50% - 20px);
+        min-width: 0;
     }
     
     .btn-delete-row {
-        margin-top: 28px;
-        align-self: flex-start;
+        margin-top: 0;
+        margin-bottom: 4px;
+        align-self: flex-end;
+        flex-shrink: 0;
     }
 }
 
@@ -2859,10 +2875,18 @@ a.mobile-sidebar-nav-item:hover {
     width: 95%;
 }
 
-@@media (max-width: 575px) {
+@@media (max-width: 767px) {
     .modal-block-off {
-        max-width: 95%;
-        margin: 0 auto;
+        max-width: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+    }
+    
+    .modal-block-off .modal-content {
+        width: 100%;
     }
     
     .modal-block-off .time-row-modal {
@@ -3554,8 +3578,16 @@ a.mobile-sidebar-nav-item:hover {
 }
 @@media (max-width: 767px) {
     .modal-date-hours {
-        max-width: 95%;
-        margin: 0 auto;
+        max-width: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+    }
+    
+    .modal-date-hours .modal-content {
+        width: 100%;
     }
 }
 
@@ -4994,6 +5026,79 @@ a.mobile-sidebar-nav-item:hover {
     .reschedule-label,
     .reschedule-customer-name {
         font-size: 16px;
+    }
+    
+    /* ==================== SET AVAILABILITY PAGE MODALS - MOBILE CENTERING ==================== */
+    
+    /* Set Time Modal - Mobile Centering */
+    #setTimeModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #setTimeModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Set Time Modal - Fix time inputs layout on mobile */
+    #setTimeModal .time-row-modal {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        align-items: flex-end;
+    }
+    
+    #setTimeModal .time-input-group {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    #setTimeModal .time-control-modal {
+        width: 100%;
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+    
+    #setTimeModal .btn-delete-row {
+        margin-top: 0;
+        margin-bottom: 4px;
+        flex-shrink: 0;
+    }
+    
+    /* Block Off Time Modal - Mobile Centering */
+    #blockOffTimeModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #blockOffTimeModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    /* Date Hours Modal - Mobile Centering */
+    #dateHoursModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1rem);
+        margin: 0.5rem auto;
+        max-width: calc(100% - 1rem);
+    }
+    
+    #dateHoursModal .modal-content {
+        width: 100%;
+        margin: 0 auto;
     }
 }
 
