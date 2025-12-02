@@ -2930,25 +2930,36 @@ a.mobile-sidebar-nav-item:hover {
 
 .modal-block-off .modal-header-clicked-day {
     border-bottom: none;
-    padding: 24px 28px 8px;
+    padding: 32px 28px 8px;
     position: relative;
 }
 
+.modal-block-off .btn-close-custom {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+
 .modal-block-off .modal-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #333;
 }
 
 .modal-subtitle {
-    font-size: 13px;
-    color: #999;
-    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #888;
+    margin: 8px 0 0 0;
     font-weight: 400;
 }
 
 .modal-block-off .modal-body {
-    padding: 20px 28px 28px;
+    padding: 20px 28px 32px;
 }
 
 .block-label-modal {
@@ -2960,13 +2971,13 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .block-input-modal {
-    padding: 10px 14px;
-    border: 1px solid #e0e0e0;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 14px;
     color: #333;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 0;
 }
 
 .block-input-modal:focus {
@@ -3015,7 +3026,7 @@ a.mobile-sidebar-nav-item:hover {
     background-color: transparent;
     color: #ff5400;
     border: 1px solid #ff5400;
-    padding: 3px 16px;
+    padding: 12px 16px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
@@ -3023,7 +3034,7 @@ a.mobile-sidebar-nav-item:hover {
     transition: all 0.2s;
     width: 100%;
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: block;
 }
 
@@ -3103,14 +3114,14 @@ a.mobile-sidebar-nav-item:hover {
 /* Block Off Time/Day Item Spacing */
 .block-off-time-item,
 .block-off-day-item {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #f0f0f0;
 }
 
 .block-off-time-item:last-child,
 .block-off-day-item:last-child {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     padding-bottom: 0;
     border-bottom: none;
 }
@@ -3125,6 +3136,9 @@ a.mobile-sidebar-nav-item:hover {
 
 .block-label-row .block-label-modal {
     margin-bottom: 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
 }
 
 /* Delete Button in Label Row */
@@ -3149,8 +3163,8 @@ a.mobile-sidebar-nav-item:hover {
 /* Block Date Row - From and To Side by Side */
 .block-date-row {
     display: flex;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 16px;
+    margin-top: 16px;
 }
 
 .block-date-group {
@@ -3159,16 +3173,17 @@ a.mobile-sidebar-nav-item:hover {
 
 .block-date-label {
     display: block;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 400;
 }
 
 .block-date-input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px 14px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
     color: #333;
 }
@@ -3180,6 +3195,7 @@ a.mobile-sidebar-nav-item:hover {
 .block-date-input:focus {
     outline: none;
     border-color: #ff5400;
+    box-shadow: none;
 }
 
 /* Action Buttons - Side by Side Layout */
@@ -3187,18 +3203,21 @@ a.mobile-sidebar-nav-item:hover {
     display: flex;
     gap: 16px;
     align-items: center;
+    margin-top: 8px;
 }
 
 .modal-actions-block-day-inline .btn-block-off-day-submit {
+    flex: 0 0 auto;
     width: auto;
-    padding: 12px 24px;
+    min-width: 120px;
+    padding: 14px 24px;
 }
 
 .btn-cancel-block-modal-inline {
     background-color: transparent;
     color: #ff5400;
     border: none;
-    padding: 12px 24px;
+    padding: 14px 24px;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
@@ -3207,6 +3226,25 @@ a.mobile-sidebar-nav-item:hover {
 
 .btn-cancel-block-modal-inline:hover {
     color: #e04800;
+}
+
+/* Mobile responsive for block off modal actions */
+@@media (max-width: 576px) {
+    .modal-actions-block-day-inline {
+        flex-direction: row;
+        gap: 12px;
+    }
+    
+    .modal-actions-block-day-inline .btn-block-off-day-submit {
+        min-width: 100px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .btn-cancel-block-modal-inline {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
 }
 
 /* New Type of Service Form Styles */
