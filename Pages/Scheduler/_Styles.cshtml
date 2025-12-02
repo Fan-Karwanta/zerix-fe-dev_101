@@ -2312,13 +2312,13 @@
 }
 @@media (max-width: 768px) {
         .modal-body .btn {
-        width: 106.5%
+        width: 100%
     }
 }
 
 @@media (max-width: 390px) {
         .modal-body .btn {
-        width: 108%
+        width: 100%
     }
 }
 
@@ -3578,11 +3578,13 @@
     display: inline-block;
 }
 
-/* Mobile styles - keep dropdowns in row but with smaller text */
+/* Mobile styles - keep dropdowns in row with same height as desktop */
 @@media (max-width: 576px) {
     .appointment-header-section {
+        display: flex;
         flex-direction: row;
         gap: 10px;
+        align-items: flex-start;
     }
     
     .appointment-dropdown-wrapper,
@@ -3592,14 +3594,18 @@
     }
     
     .appointment-dropdown-btn {
-        padding: 8px 10px;
+        padding: 8px 12px;
         font-size: 12px;
+        height: 38px;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
     }
     
     .dropdown-label-text,
     .status-label-text {
         font-size: 11px;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
     }
 }
 
@@ -5683,6 +5689,15 @@
     
     .form-answers-scrollable {
         max-height: 150px;
+    }
+    
+    /* Ensure buttons maintain proper height on mobile */
+    .appointment-reschedule-btn,
+    .appointment-cancel-btn,
+    .appointment-approve-btn,
+    .appointment-cancel-btn-outline {
+        padding: 12px 24px;
+        font-size: 14px;
     }
 }
 

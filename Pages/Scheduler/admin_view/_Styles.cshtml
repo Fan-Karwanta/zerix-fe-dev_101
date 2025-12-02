@@ -3141,6 +3141,18 @@ a.mobile-sidebar-nav-item:hover {
     font-weight: 400;
 }
 
+/* Mobile: Align delete button with input field end */
+@@media (max-width: 576px) {
+    .block-label-row {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    
+    .block-label-row .btn-delete-block-item {
+        margin-left: 6rem;
+    }
+}
+
 /* Delete Button in Label Row */
 .btn-delete-block-item {
     background: transparent;
