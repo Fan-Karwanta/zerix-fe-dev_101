@@ -3586,21 +3586,19 @@
     display: inline-block;
 }
 
-/* Mobile styles - keep dropdowns in row with same height as desktop */
+/* Mobile styles - stack dropdowns vertically */
 @@media (max-width: 576px) {
     .appointment-header-section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 12px;
-        align-items: flex-start;
+        align-items: stretch;
         width: 100%;
     }
     
     .appointment-dropdown-wrapper,
     .appointment-status-wrapper {
-        flex: 1 1 0;
-        min-width: 0;
-        width: 50%;
+        width: 100%;
     }
     
     .appointment-dropdown-wrapper .dropdown,
@@ -3610,10 +3608,10 @@
     }
     
     .appointment-dropdown-btn {
-        padding: 10px 12px;
-        font-size: 13px;
-        height: 40px;
-        min-height: 40px;
+        padding: 10px 14px;
+        font-size: 14px;
+        height: 44px;
+        min-height: 44px;
         display: flex;
         align-items: center;
         width: 100%;
@@ -3626,11 +3624,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        font-size: 14px;
     }
     
     .dropdown-label-text,
     .status-label-text {
-        font-size: 12px;
+        font-size: 13px;
         margin-bottom: 6px;
         text-align: left;
     }
@@ -3644,7 +3643,7 @@
         right: auto !important;
         transform: none !important;
         min-width: 100%;
-        width: 8.1rem;
+        width: 100%;
         max-width: 100%;
     }
 }
@@ -3652,17 +3651,21 @@
 /* Extra small mobile styles - 360px and below */
 @@media (max-width: 375px) {
     .appointment-header-section {
-        gap: 8px;
+        gap: 0px;
     }
     
     .appointment-dropdown-btn {
-        padding: 8px 10px;
-        font-size: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .appointment-dropdown-btn span {
+        font-size: 13px;
     }
     
     .dropdown-label-text,
     .status-label-text {
-        font-size: 11px;
+        font-size: 12px;
     }
     
     /* Ensure dropdown menu stays within bounds on very small screens */
@@ -3674,24 +3677,23 @@
         right: auto !important;
         transform: none !important;
         min-width: 100%;
-        max-width: calc(100vw - 40px);
+        width: 100%;
+        max-width: 100%;
     }
 }
 
-/* Small tablet styles - 577px to 767px */
+/* Small tablet styles - 577px to 767px - stack dropdowns vertically */
 @@media (min-width: 577px) and (max-width: 767px) {
     .appointment-header-section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 12px;
         width: 100%;
     }
     
     .appointment-dropdown-wrapper,
     .appointment-status-wrapper {
-        flex: 1 1 0;
-        min-width: 0;
-        width: 50%;
+        width: 100%;
     }
     
     .appointment-dropdown-wrapper .dropdown,
@@ -3701,13 +3703,18 @@
     }
     
     .appointment-dropdown-btn {
-        padding: 10px 12px;
-        font-size: 13px;
+        padding: 10px 14px;
+        font-size: 14px;
         width: 100%;
+    }
+    
+    .appointment-dropdown-btn span {
+        font-size: 14px;
     }
     
     .dropdown-label-text,
     .status-label-text {
+        font-size: 13px;
         text-align: left;
     }
     
@@ -3718,25 +3725,22 @@
         right: auto !important;
         transform: none !important;
         min-width: 100%;
-        width: auto;
+        width: 100%;
     }
 }
 
-/* Tablet styles for appointment modal dropdowns - 768px to 1199px */
+/* Tablet styles for appointment modal dropdowns - 768px to 1199px - stack dropdowns vertically */
 @@media (min-width: 768px) and (max-width: 1199px) {
     .appointment-header-section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 12px;
-        align-items: flex-start;
         width: 100%;
     }
     
     .appointment-dropdown-wrapper,
     .appointment-status-wrapper {
-        flex: 1 1 0;
-        min-width: 0;
-        width: 50%;
+        width: 100%;
     }
     
     .appointment-dropdown-wrapper .dropdown,
@@ -3747,8 +3751,8 @@
     
     .appointment-dropdown-btn {
         width: 100%;
-        padding: 10px 12px;
-        font-size: 13px;
+        padding: 10px 14px;
+        font-size: 14px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -3758,12 +3762,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: calc(100% - 20px);
+        font-size: 14px;
     }
     
     .dropdown-label-text,
     .status-label-text {
-        font-size: 11px;
+        font-size: 13px;
         margin-bottom: 6px;
         text-align: left;
     }
@@ -3786,7 +3790,7 @@
         right: auto !important;
         transform: none !important;
         min-width: 100%;
-        width: auto;
+        width: 100%;
         z-index: 1060;
     }
 }
