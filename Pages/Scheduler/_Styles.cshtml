@@ -3741,12 +3741,13 @@
     .appointment-dropdown-wrapper,
     .appointment-status-wrapper {
         width: 100%;
+        position: relative;
     }
     
     .appointment-dropdown-wrapper .dropdown,
     .appointment-status-wrapper .dropdown {
         width: 100%;
-        position: relative;
+        position: relative !important;
     }
     
     .appointment-dropdown-btn {
@@ -3772,26 +3773,168 @@
         text-align: left;
     }
     
-    /* Ensure dropdown doesn't get cut off */
+    /* Modal scrolling for tablet - allow body to scroll while dropdowns can overflow */
     .appointment-details-modal-content {
         overflow: visible !important;
+        max-height: calc(100vh - 40px);
+        display: flex;
+        flex-direction: column;
     }
     
     .appointment-details-modal-body {
-        overflow: visible !important;
+        overflow-y: auto !important;
+        overflow-x: visible !important;
+        max-height: calc(100vh - 120px);
+        padding: 20px;
     }
     
-    /* Fix dropdown menu alignment */
-    .appointment-dropdown-wrapper .appointment-dropdown-menu,
-    .appointment-status-wrapper .appointment-dropdown-menu {
+    /* Ensure the modal dialog is properly positioned */
+    .appointment-details-modal .modal-dialog {
+        margin: 20px auto;
+        max-height: calc(100vh - 40px);
+    }
+    
+    /* Fix dropdown menu alignment - position relative to parent .dropdown */
+    .appointment-dropdown-wrapper .dropdown .appointment-dropdown-menu,
+    .appointment-status-wrapper .dropdown .appointment-dropdown-menu {
         position: absolute !important;
+        inset: unset !important;
         top: 100% !important;
         left: 0 !important;
-        right: auto !important;
+        right: 0 !important;
+        bottom: auto !important;
         transform: none !important;
-        min-width: 100%;
-        width: 100%;
+        min-width: unset !important;
+        width: 100% !important;
+        max-width: 100% !important;
         z-index: 1060;
+        box-sizing: border-box;
+        margin-top: 2px;
+    }
+    
+    /* Ensure dropdown items don't overflow */
+    .appointment-dropdown-item {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Short viewport height styles for tablets (e.g., Nest Hub 1024x600) */
+@@media (min-width: 768px) and (max-height: 700px) {
+    /* Modal dialog positioning */
+    #appointmentDetailsModal .modal-dialog {
+        margin: 10px auto;
+        max-height: calc(100vh - 20px);
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    /* Modal content container */
+    #appointmentDetailsModal .appointment-details-modal-content {
+        max-height: calc(100vh - 20px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    /* Modal body - scrollable area */
+    #appointmentDetailsModal .appointment-details-modal-body {
+        overflow-y: auto !important;
+        overflow-x: hidden;
+        flex: 1;
+        max-height: none;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Action buttons - stay at bottom inside modal */
+    #appointmentDetailsModal .appointment-modal-actions {
+        margin-top: auto;
+        padding-top: 15px;
+        flex-shrink: 0;
+        background: white;
+    }
+    
+    /* Compact spacing for short viewports */
+    .appointment-header-section {
+        gap: 8px;
+        margin-bottom: 8px !important;
+    }
+    
+    .appointment-dropdown-btn {
+        padding: 6px 10px;
+        height: 36px;
+        min-height: 36px;
+        font-size: 13px;
+    }
+    
+    .dropdown-label-text,
+    .status-label-text {
+        font-size: 11px;
+        margin-bottom: 3px;
+    }
+    
+    .appointment-customer-name {
+        font-size: 15px;
+        margin-bottom: 4px !important;
+    }
+    
+    .appointment-contact-info {
+        font-size: 11px;
+        margin-bottom: 8px !important;
+    }
+    
+    .appointment-service-title {
+        font-size: 13px;
+        margin-bottom: 2px !important;
+    }
+    
+    .appointment-service-subtitle {
+        font-size: 12px;
+        margin-bottom: 6px !important;
+    }
+    
+    .appointment-datetime-info {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+    
+    .appointment-datetime-info .datetime-item {
+        margin-bottom: 2px;
+    }
+    
+    .form-answers-section {
+        padding: 8px;
+        margin-top: 8px !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .form-answers-header {
+        margin-bottom: 6px;
+        font-size: 13px;
+    }
+    
+    .form-answer-item {
+        padding: 4px 0;
+    }
+    
+    .form-question {
+        font-size: 11px;
+    }
+    
+    .form-answer {
+        font-size: 12px;
+    }
+    
+    /* Reschedule/Cancel buttons */
+    #appointmentDetailsModal .appointment-reschedule-btn,
+    #appointmentDetailsModal .appointment-cancel-btn {
+        padding: 10px 24px;
+        font-size: 14px;
     }
 }
 

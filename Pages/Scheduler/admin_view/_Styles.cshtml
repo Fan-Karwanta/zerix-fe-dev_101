@@ -2923,6 +2923,28 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+/* iPad Mini specific - Block Off Day Modal Centering and Delete Button Fix (768px to 819px) */
+@@media (min-width: 768px) and (max-width: 819px) {
+    /* Center the modal dialog properly - override width: 95% */
+    #blockOffDayModal .modal-dialog.modal-block-off {
+        max-width: 420px;
+        width: 420px;
+        margin: 1.75rem auto;
+    }
+    
+    /* Fix delete button alignment - position on the right side of label row like iPad Pro/Air */
+    #blockOffDayModal .block-label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    #blockOffDayModal .block-label-row .btn-delete-block-item {
+        margin-left: auto;
+    }
+}
+
 .modal-block-off .modal-content {
     border-radius: 12px;
     border: none;
@@ -3780,7 +3802,10 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-body-date-hours {
-    padding: 0;
+        padding: 0;
+        gap: 12px;
+        margin-bottom: 12px;
+        align-items: flex-end;
 }
 
 #timeSlotContainer {
@@ -3789,9 +3814,6 @@ a.mobile-sidebar-nav-item:hover {
 
 .time-slot-row {
     display: flex;
-    gap: 12px;
-    margin-bottom: 12px;
-    align-items: flex-end;
 }
 
 .time-slot-row .btn-delete-row {
