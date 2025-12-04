@@ -2923,25 +2923,44 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-/* iPad Mini specific - Block Off Day Modal Centering and Delete Button Fix (768px to 819px) */
+/* iPad Mini specific - Modal Fixes (768px to 819px) */
 @@media (min-width: 768px) and (max-width: 819px) {
-    /* Center the modal dialog properly - override width: 95% */
+    /* Block Off Day Modal - Center and fix delete button */
     #blockOffDayModal .modal-dialog.modal-block-off {
         max-width: 420px;
         width: 420px;
         margin: 1.75rem auto;
     }
     
-    /* Fix delete button alignment - position on the right side of label row like iPad Pro/Air */
+    /* Fix delete button - force it to the right edge */
     #blockOffDayModal .block-label-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
         margin-bottom: 8px;
+        width: 100%;
     }
     
-    #blockOffDayModal .block-label-row .btn-delete-block-item {
-        margin-left: auto;
+    #blockOffDayModal .block-label-row .block-label-modal {
+        flex: 0 0 auto;
+    }
+    
+    #blockOffDayModal .block-label-row .btn-delete-block-item,
+    #blockOffDayModal .block-label-row .btn {
+        margin-left: auto !important;
+        flex: 0 0 auto;
+    }
+    
+    /* Cancel Appointment Modal - Center properly */
+    #cancelAppointmentModal .modal-dialog {
+        max-width: 400px;
+        width: 400px;
+        margin: 1.75rem auto;
+    }
+    
+    #cancelAppointmentModal .modal-dialog.modal-sm-approved {
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }
 
