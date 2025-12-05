@@ -3061,27 +3061,6 @@ a.mobile-sidebar-nav-item:hover {
         margin: 1.75rem auto;
     }
     
-    /* Fix delete button - position at right edge aligned with input field */
-    #blockOffDayModal .block-label-row {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        margin-bottom: 8px;
-        width: 100%;
-        position: relative;
-    }
-    
-    #blockOffDayModal .block-label-row .block-label-modal {
-        flex: 0 0 auto;
-    }
-    
-    #blockOffDayModal .block-label-row .btn-delete-block-item,
-    #blockOffDayModal .block-label-row .btn {
-        position: absolute !important;
-        right: -132px !important;
-        margin-left: 0 !important;
-    }
-    
     /* Cancel Appointment Modal - Center properly */
     #cancelAppointmentModal .modal-dialog {
         max-width: 400px;
@@ -3305,9 +3284,10 @@ a.mobile-sidebar-nav-item:hover {
 /* Block Label Row - Label and Delete Button Side by Side */
 .block-label-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+    width: 100%;
 }
 
 .block-label-row .block-label-modal {
@@ -3317,16 +3297,11 @@ a.mobile-sidebar-nav-item:hover {
     font-weight: 400;
 }
 
-/* Mobile: Align delete button with input field end */
-@@media (max-width: 576px) {
-    .block-label-row {
-        justify-content: flex-start;
-        gap: 8px;
-    }
-    
-    .block-label-row .btn-delete-block-item {
-        margin-left: 6rem;
-    }
+/* Delete button alignment - all screen sizes */
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 /* Delete Button in Label Row */
@@ -3433,7 +3408,105 @@ a.mobile-sidebar-nav-item:hover {
         padding: 12px 24px;
         font-size: 14px;
     }
+
+    .block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    flex-shrink: 0;
+    margin-left: 7rem !important;
+  }
 }
+
+/* Iphone SE */
+@@media (width: 375px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 6.5rem !important;
+  }
+
+}
+
+/* Iphone XR */
+@@media (width: 414px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 8rem !important;
+  }
+
+}
+
+/* Iphone 12 Pro */
+@@media (width: 390px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 7.2rem !important;
+  }
+
+}
+
+/* Iphone 14 Pro Max */
+@@media (width: 430px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 8.3rem !important;
+  }
+
+}
+
+/* Pixel 7  */
+@@media (width: 412px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 7.8rem !important;
+  }
+
+}
+
+/* Samsung Galaxy S8+  */
+@@media (width: 360px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 6rem !important;
+  }
+
+}
+
+/* Ipad Mini */
+
+@@media (width: 768px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 6rem !important;
+  }
+
+}
+
+/* Surface Pro */
+@@media (width: 540px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 11.4rem !important;
+  }
+
+}
+
+/* Galaxy Z Fold  */
+@@media (width: 344px){
+
+.block-label-row .btn-delete-block-item,
+.block-label-row .btn {
+    margin-left: 5.8rem !important;
+  }
+
+}
+
 
 /* New Type of Service Form Styles */
 .refund-duration-input {
