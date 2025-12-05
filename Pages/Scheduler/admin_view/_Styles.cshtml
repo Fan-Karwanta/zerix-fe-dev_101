@@ -2932,13 +2932,14 @@ a.mobile-sidebar-nav-item:hover {
         margin: 1.75rem auto;
     }
     
-    /* Fix delete button - force it to the right edge */
+    /* Fix delete button - position at right edge aligned with input field */
     #blockOffDayModal .block-label-row {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
         margin-bottom: 8px;
         width: 100%;
+        position: relative;
     }
     
     #blockOffDayModal .block-label-row .block-label-modal {
@@ -2947,8 +2948,9 @@ a.mobile-sidebar-nav-item:hover {
     
     #blockOffDayModal .block-label-row .btn-delete-block-item,
     #blockOffDayModal .block-label-row .btn {
-        margin-left: auto !important;
-        flex: 0 0 auto;
+        position: absolute !important;
+        right: -132px !important;
+        margin-left: 0 !important;
     }
     
     /* Cancel Appointment Modal - Center properly */
@@ -3071,7 +3073,7 @@ a.mobile-sidebar-nav-item:hover {
     background-color: transparent;
     color: #ff5400;
     border: 1px solid #ff5400;
-    padding: 12px 16px;
+    padding: 4px 16px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
