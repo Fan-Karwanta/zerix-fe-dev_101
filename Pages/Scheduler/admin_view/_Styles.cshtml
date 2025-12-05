@@ -2210,6 +2210,135 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+/* Nest Hub Max and similar screens (1200px to 1399px) - Show 4 days */
+@@media (min-width: 1200px) and (max-width: 1399px) {
+    /* Adjust calendar container to prevent overflow */
+    .full-calendar-container {
+        padding: 15px;
+        overflow: hidden;
+    }
+    
+    /* Calendar view header - make controls more compact */
+    .calendar-view-header {
+        flex-wrap: nowrap !important;
+        gap: 8px;
+    }
+    
+    .calendar-view-header .d-flex {
+        gap: 6px !important;
+    }
+    
+    .btn-outline-light-gray {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .view-dropdown-btn {
+        min-width: 85px;
+    }
+    
+    .sort-dropdown-btn {
+        min-width: 70px;
+    }
+    
+    .calendar-date-text {
+        font-size: 13px;
+        margin: 0 4px;
+    }
+    
+    .calendar-chevron-btn {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .calendar-chevron-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .search-box input {
+        width: 140px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    /* Grid for 4 days - JS generates exactly 4 columns */
+    .week-header {
+        grid-template-columns: 70px repeat(4, 1fr) !important;
+    }
+    
+    #monthly-view .week-header {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    .time-row {
+        grid-template-columns: 70px repeat(4, 1fr) !important;
+    }
+    
+    #monthly-view .time-row {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    /* Adjust day column padding */
+    .day-column {
+        padding: 12px 8px;
+    }
+    
+    .day-number {
+        font-size: 18px;
+    }
+    
+    .day-number.orange-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    /* Adjust appointment event sizing */
+    .appointment-event {
+        padding: 8px;
+        font-size: 11px;
+    }
+    
+    .event-title {
+        font-size: 12px;
+        padding-right: 25px;
+    }
+    
+    .event-subtitle {
+        font-size: 10px;
+    }
+    
+    .event-time {
+        font-size: 9px;
+    }
+    
+    /* Adjust mini calendar in sidebar */
+    .mini-calendar-container {
+        padding: 12px;
+    }
+    
+    .mini-calendar-day {
+        height: 28px;
+        width: 28px;
+        font-size: 12px;
+    }
+    
+    .mini-weekday {
+        font-size: 10px;
+    }
+    
+    /* Sidebar adjustments */
+    .sidebar-nav-item {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+    
+    .overview-title {
+        font-size: 15px;
+    }
+}
+
 .appointment-event:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);

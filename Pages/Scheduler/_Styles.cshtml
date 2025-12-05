@@ -4237,8 +4237,8 @@
     }
 }
 
-/* iPad Pro specific adjustments - Changed to start at 1200px to exclude 1024px */
-@@media (min-width: 1200px) and (max-width: 1366px) {
+/* Medium screens (1200px to 1399px) - JS generates 4 days dynamically */
+@@media (min-width: 1200px) and (max-width: 1399px) {
     /* Ensure desktop view is shown on larger tablets */
     .events-container {
         display: block !important;
@@ -4310,29 +4310,21 @@
         font-size: 13px;
     }
     
-    /* Show only 5 days in the main calendar instead of 7 */
+    /* Grid for 4 days - JS generates exactly 4 columns */
     .week-header {
-        grid-template-columns: 80px repeat(5, 1fr) !important;
+        grid-template-columns: 80px repeat(4, 1fr) !important;
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(5, 1fr) !important;
+        grid-template-columns: repeat(4, 1fr) !important;
     }
     
     .time-row {
-        grid-template-columns: 80px repeat(5, 1fr) !important;
+        grid-template-columns: 80px repeat(4, 1fr) !important;
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(5, 1fr) !important;
-    }
-    
-    /* Hide the 6th and 7th day columns (Saturday and Sunday or last 2 days) */
-    .day-column:nth-child(6),
-    .day-column:nth-child(7),
-    .time-cell:nth-child(6),
-    .time-cell:nth-child(7) {
-        display: none !important;
+        grid-template-columns: repeat(4, 1fr) !important;
     }
 }
 

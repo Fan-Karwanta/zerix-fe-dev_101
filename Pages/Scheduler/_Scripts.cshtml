@@ -2145,9 +2145,14 @@ function generateWeekHeader() {
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
-    // Show 7 days on tablets (768px-1199px), 5 days on mobile (<768px)
-    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
-    const daysToShow = isTablet ? 7 : 5;
+    // Determine days to show based on screen width:
+    // - Tablets (768px-1199px): 7 days
+    // - Medium screens (1200px-1399px): 4 days (Nest Hub Max, etc.)
+    // - Large screens (1400px+): 5 days
+    const screenWidth = window.innerWidth;
+    const isTablet = screenWidth >= 768 && screenWidth < 1200;
+    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
+    const daysToShow = isTablet ? 7 : (isMediumScreen ? 4 : 5);
     
     for (let i = 0; i < daysToShow; i++) {
         const dayIndex = isTablet ? i : (i + weekDayOffset);
@@ -2191,9 +2196,14 @@ function generateTimeSlots() {
     const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
-    // Show 7 days on tablets (768px-1199px), 5 days on mobile (<768px)
-    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1200;
-    const daysToShow = isTablet ? 7 : 5;
+    // Determine days to show based on screen width:
+    // - Tablets (768px-1199px): 7 days
+    // - Medium screens (1200px-1399px): 4 days (Nest Hub Max, etc.)
+    // - Large screens (1400px+): 5 days
+    const screenWidth = window.innerWidth;
+    const isTablet = screenWidth >= 768 && screenWidth < 1200;
+    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
+    const daysToShow = isTablet ? 7 : (isMediumScreen ? 4 : 5);
     
     hours.forEach((hour, hourIndex) => {
         const timeRow = document.createElement('div');
