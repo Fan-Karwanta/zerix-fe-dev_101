@@ -7050,4 +7050,135 @@
 .info-item:last-child {
     margin-bottom: 0;
 }
+
+/* ========================================
+   Reschedule Appointment Modal Styles
+   ======================================== */
+.reschedule-appointment-modal-content {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.reschedule-appointment-modal-body {
+    padding: 24px;
+}
+
+.reschedule-back-btn {
+    color: #ff5400;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+}
+
+.reschedule-back-btn:hover {
+    color: #e64a00;
+    text-decoration: none;
+}
+
+.reschedule-modal-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+}
+
+.reschedule-label {
+    color: #999;
+}
+
+.reschedule-customer-name {
+    color: #333;
+    font-weight: 500;
+}
+
+.reschedule-original-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.reschedule-from-label,
+.reschedule-to-label {
+    color: #999;
+}
+
+.reschedule-original-datetime {
+    color: #333;
+    font-weight: 500;
+}
+
+.reschedule-input-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 6px;
+    font-weight: 400;
+}
+
+.reschedule-date-input,
+.reschedule-time-input {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+}
+
+.reschedule-date-input::placeholder,
+.reschedule-time-input::placeholder {
+    color: #999;
+}
+
+.reschedule-date-input:focus,
+.reschedule-time-input:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 84, 0, 0.1);
+}
+
+.reschedule-submit-btn {
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.reschedule-submit-btn:hover {
+    background: #e64a00;
+    color: white;
+}
+
+.reschedule-cancel-btn {
+    background: white;
+    color: #ff5400;
+    border: 2px solid #ff5400;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.reschedule-cancel-btn:hover {
+    background: #fff5f0;
+    color: #ff5400;
+    border-color: #ff5400;
+}
+
+/* Mobile responsive for reschedule modal */
+@@media (max-width: 767.98px) {
+    .reschedule-modal-title {
+        font-size: 16px;
+    }
+    
+    .reschedule-label,
+    .reschedule-customer-name {
+        font-size: 16px;
+    }
+}
 </style>

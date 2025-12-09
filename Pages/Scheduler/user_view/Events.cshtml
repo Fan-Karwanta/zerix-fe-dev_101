@@ -252,8 +252,8 @@
             <div class="modal-body appointment-details-modal-body">
                 <!-- Header with Appointments Dropdown and Status -->
                 <div class="appointment-header-section mb-3">
-                    <!-- Appointments Dropdown (only visible when overlapping) -->
-                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper" style="display: none;">
+                    <!-- Appointments Dropdown (always visible) -->
+                    <div class="appointment-dropdown-wrapper" id="appointmentDropdownWrapper">
                         <div class="dropdown-label-text">Appointments</div>
                         <div class="dropdown">
                             <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="appointmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -265,12 +265,31 @@
                         </div>
                     </div>
                     
-                    <!-- Status Section -->
+                    <!-- Status Dropdown -->
                     <div class="appointment-status-wrapper">
                         <div class="status-label-text">Status</div>
-                        <div class="appointment-status-badge" id="appointmentStatus">
-                            <span class="status-dot"></span>
-                            <span class="status-text">Completed</span>
+                        <div class="dropdown">
+                            <button class="btn appointment-dropdown-btn dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="status-dot" id="statusDot"></span>
+                                <span class="status-text" id="statusText">Booked</span>
+                            </button>
+                            <ul class="dropdown-menu appointment-dropdown-menu" aria-labelledby="statusDropdown" id="statusDropdownList">
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="booked" onclick="changeAppointmentStatus('booked')">
+                                    <span class="status-dot" style="background: #9e9e9e;"></span> Booked
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="completed" onclick="changeAppointmentStatus('completed')">
+                                    <span class="status-dot" style="background: #4caf50;"></span> Completed
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="cancelled" onclick="changeAppointmentStatus('cancelled')">
+                                    <span class="status-dot" style="background: #f44336;"></span> Cancelled
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="refund-requested" onclick="changeAppointmentStatus('refund-requested')">
+                                    <span class="status-dot" style="background: #2196f3;"></span> Refund Requested
+                                </button></li>
+                                <li><button class="dropdown-item appointment-dropdown-item" data-status="refunded" onclick="changeAppointmentStatus('refunded')">
+                                    <span class="status-dot" style="background: #e91e63;"></span> Refunded
+                                </button></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -353,14 +372,14 @@
                     <div class="default-actions">
                         <!-- Desktop buttons (side by side) -->
                         <div class="d-none d-md-flex justify-content-between gap-3">
-                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn">Reschedule</button>
-                            <button type="button" class="btn appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn appointment-reschedule-btn" id="rescheduleBtn" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn" onclick="openCancelModal()">Cancel</button>
                         </div>
                         
                         <!-- Mobile buttons (stacked) -->
                         <div class="d-md-none">
-                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile">Reschedule</button>
-                            <button type="button" class="btn w-100 appointment-cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnMobile" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn" onclick="openCancelModal()">Cancel</button>
                         </div>
                     </div>
 
@@ -369,18 +388,67 @@
                         <!-- Desktop buttons (three buttons) -->
                         <div class="d-none d-md-flex gap-3">
                             <button type="button" class="btn appointment-approve-btn flex-fill" id="approveBtn">Approve</button>
-                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin">Reschedule</button>
-                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn appointment-reschedule-btn flex-fill" id="rescheduleBtnAdmin" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn appointment-cancel-btn-outline flex-fill" onclick="openCancelModal()">Cancel</button>
                         </div>
                         
                         <!-- Mobile buttons (stacked) -->
                         <div class="d-md-none">
                             <button type="button" class="btn w-100 mb-3 appointment-approve-btn" id="approveBtnMobile">Approve</button>
-                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile">Reschedule</button>
-                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn w-100 mb-3 appointment-reschedule-btn" id="rescheduleBtnAdminMobile" onclick="openRescheduleModal()">Reschedule</button>
+                            <button type="button" class="btn w-100 appointment-cancel-btn-outline" onclick="openCancelModal()">Cancel</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reschedule Appointment Modal -->
+<div class="modal fade" id="rescheduleAppointmentModal" tabindex="-1" aria-labelledby="rescheduleAppointmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content reschedule-appointment-modal-content">
+            <div class="modal-body reschedule-appointment-modal-body">
+                <!-- Back Button -->
+                <button type="button" class="btn btn-link p-0 text-decoration-none reschedule-back-btn" onclick="closeRescheduleModal()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#ff5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ms-1">Back</span>
+                </button>
+
+                <!-- Title with Customer Name -->
+                <h3 class="reschedule-modal-title mt-3 mb-2">
+                    <span class="reschedule-label">Reschedule</span> <span class="reschedule-customer-name" id="rescheduleCustomerName">Jane McTest</span>
+                </h3>
+
+                <!-- Original Appointment Info -->
+                <p class="reschedule-original-info mb-4">
+                    <span class="reschedule-from-label">From</span> <span class="reschedule-original-datetime" id="rescheduleOriginalInfo">February 19, 2025, 9:30 AM</span> <span class="reschedule-to-label">to</span>
+                </p>
+
+                <!-- Date Input -->
+                <div class="mb-3">
+                    <label class="reschedule-input-label">Date</label>
+                    <input type="date" class="form-control reschedule-date-input" id="rescheduleDate" placeholder="Set Date">
+                </div>
+
+                <!-- Time Inputs Row -->
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label class="reschedule-input-label">From</label>
+                        <input type="time" class="form-control reschedule-time-input" id="rescheduleTimeFrom" placeholder="Set Time">
+                    </div>
+                    <div class="col-6">
+                        <label class="reschedule-input-label">To</label>
+                        <input type="time" class="form-control reschedule-time-input" id="rescheduleTimeTo" placeholder="Set Time">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button type="button" class="btn reschedule-submit-btn w-100 mb-3" onclick="submitReschedule()">Reschedule Appointment</button>
+                <button type="button" class="btn reschedule-cancel-btn w-100" onclick="closeRescheduleModal()">Cancel</button>
             </div>
         </div>
     </div>
@@ -427,21 +495,16 @@
                     Are you sure you want to cancel this appointment?
                 </p>
 
-                <p class="cancel-appointment-note">
-                    Note: Reservation fee is not refundable.
-                </p>
+                <!-- Note to Client Textarea -->
+                <div class="mb-3">
+                    <textarea class="form-control cancel-note-textarea" id="cancelNoteTextarea" placeholder="Include note to client (reason for cancellation)" style="min-height: 100px !important;"></textarea>
+                </div>
 
                 <div class="cancel-appointment-actions">
-                    <!-- Desktop buttons (side by side) -->
-                    <div class="d-none d-md-flex gap-3">
+                    <!-- Buttons always side by side -->
+                    <div class="d-flex gap-3 cancel-buttons-row">
                         <button type="button" class="btn cancel-keep-btn flex-fill" data-bs-dismiss="modal">Keep Appointment</button>
                         <button type="button" class="btn cancel-confirm-btn flex-fill" id="confirmCancelBtn">Yes, Cancel Appointment</button>
-                    </div>
-                    
-                    <!-- Mobile buttons (stacked) -->
-                    <div class="d-md-none">
-                        <button type="button" class="btn w-100 mb-3 cancel-keep-btn" data-bs-dismiss="modal">Keep Appointment</button>
-                        <button type="button" class="btn w-100 cancel-confirm-btn" id="confirmCancelBtnMobile">Yes, Cancel Appointment</button>
                     </div>
                 </div>
             </div>
@@ -472,3 +535,130 @@
 </div>
 
 @await Html.PartialAsync("../_Scripts")
+
+<!-- Inline Modal Scripts for Events.cshtml -->
+<script>
+(function() {
+    // Self-contained modal functions
+    
+    // Open reschedule modal
+    window.openRescheduleModal = function() {
+        var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+        if (appointmentDetailsModalEl) {
+            var appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+            if (appointmentDetailsModal) {
+                appointmentDetailsModal.hide();
+            }
+        }
+        
+        // Wait for the first modal to close before opening the second
+        setTimeout(function() {
+            var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+            if (rescheduleModalEl) {
+                var rescheduleModal = new bootstrap.Modal(rescheduleModalEl);
+                rescheduleModal.show();
+            }
+        }, 300);
+    };
+    
+    // Close reschedule modal and go back to appointment details
+    window.closeRescheduleModal = function() {
+        var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+        if (rescheduleModalEl) {
+            var rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+            if (rescheduleModal) {
+                rescheduleModal.hide();
+            }
+        }
+        
+        // Wait for the modal to close before opening appointment details
+        setTimeout(function() {
+            var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+            if (appointmentDetailsModalEl) {
+                var appointmentDetailsModal = new bootstrap.Modal(appointmentDetailsModalEl);
+                appointmentDetailsModal.show();
+            }
+        }, 300);
+    };
+    
+    // Open cancel modal
+    window.openCancelModal = function() {
+        var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
+        if (appointmentDetailsModalEl) {
+            var appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
+            if (appointmentDetailsModal) {
+                appointmentDetailsModal.hide();
+            }
+        }
+        
+        // Wait for the first modal to close before opening the second
+        setTimeout(function() {
+            var cancelModalEl = document.getElementById('cancelAppointmentModal');
+            if (cancelModalEl) {
+                var cancelModal = new bootstrap.Modal(cancelModalEl);
+                cancelModal.show();
+            }
+        }, 300);
+    };
+    
+    // Submit reschedule
+    window.submitReschedule = function() {
+        var date = document.getElementById('rescheduleDate').value;
+        var timeFrom = document.getElementById('rescheduleTimeFrom').value;
+        var timeTo = document.getElementById('rescheduleTimeTo').value;
+        
+        // Validate inputs
+        if (!date || !timeFrom || !timeTo) {
+            alert('Please fill in all fields');
+            return;
+        }
+        
+        // Close reschedule modal
+        var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
+        if (rescheduleModalEl) {
+            var rescheduleModal = bootstrap.Modal.getInstance(rescheduleModalEl);
+            if (rescheduleModal) {
+                rescheduleModal.hide();
+            }
+        }
+        
+        // Show confirmation modal
+        setTimeout(function() {
+            var confirmationModalEl = document.getElementById('appointmentRescheduledModal');
+            if (confirmationModalEl) {
+                var confirmationModal = new bootstrap.Modal(confirmationModalEl);
+                confirmationModal.show();
+            }
+        }, 300);
+    };
+    
+    // Change appointment status
+    window.changeAppointmentStatus = function(status) {
+        var statusDot = document.getElementById('statusDot');
+        var statusText = document.getElementById('statusText');
+        
+        var statusColors = {
+            'booked': '#9e9e9e',
+            'completed': '#4caf50',
+            'cancelled': '#f44336',
+            'refund-requested': '#2196f3',
+            'refunded': '#e91e63'
+        };
+        
+        var statusLabels = {
+            'booked': 'Booked',
+            'completed': 'Completed',
+            'cancelled': 'Cancelled',
+            'refund-requested': 'Refund Requested',
+            'refunded': 'Refunded'
+        };
+        
+        if (statusDot) {
+            statusDot.style.background = statusColors[status] || '#9e9e9e';
+        }
+        if (statusText) {
+            statusText.textContent = statusLabels[status] || 'Booked';
+        }
+    };
+})();
+</script>
