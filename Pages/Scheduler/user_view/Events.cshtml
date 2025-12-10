@@ -495,10 +495,10 @@
                     Are you sure you want to cancel this appointment?
                 </p>
 
-                <!-- Note to Client Textarea -->
-                <div class="mb-3">
-                    <textarea class="form-control cancel-note-textarea" id="cancelNoteTextarea" placeholder="Include note to client (reason for cancellation)" style="min-height: 100px !important;"></textarea>
-                </div>
+                <!-- Refund Note for Users -->
+                <p class="cancel-appointment-note mb-4">
+                    Note: The total amount paid is not refundable.
+                </p>
 
                 <div class="cancel-appointment-actions">
                     <!-- Buttons always side by side -->
@@ -541,8 +541,9 @@
 (function() {
     // Self-contained modal functions
     
-    // Open reschedule modal
+    // Open reschedule - redirect to DateTimeSelection page for users
     window.openRescheduleModal = function() {
+        // Close the appointment details modal first
         var appointmentDetailsModalEl = document.getElementById('appointmentDetailsModal');
         if (appointmentDetailsModalEl) {
             var appointmentDetailsModal = bootstrap.Modal.getInstance(appointmentDetailsModalEl);
@@ -551,14 +552,9 @@
             }
         }
         
-        // Wait for the first modal to close before opening the second
-        setTimeout(function() {
-            var rescheduleModalEl = document.getElementById('rescheduleAppointmentModal');
-            if (rescheduleModalEl) {
-                var rescheduleModal = new bootstrap.Modal(rescheduleModalEl);
-                rescheduleModal.show();
-            }
-        }, 300);
+        // Redirect to DateTimeSelection page for rescheduling
+        // Pass reschedule=true parameter to indicate this is a reschedule action
+        window.location.href = '/Scheduler/user_view/DateTimeSelection?reschedule=true';
     };
     
     // Close reschedule modal and go back to appointment details
