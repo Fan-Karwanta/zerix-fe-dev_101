@@ -1,6 +1,157 @@
 <style>
 /* Admin View Styles */
 
+/* ==================== GLOBAL MODAL CENTERING FIX ==================== */
+/* This ensures all modals are properly centered on all screen sizes */
+
+/* Force modal-dialog-centered behavior on all modals */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+    margin: 0.5rem auto;
+}
+
+.modal-dialog .modal-content {
+    width: 100%;
+}
+
+/* Tablet screens (768px - 1024px) - iPad Mini, iPad Air, etc. */
+@@media (min-width: 768px) and (max-width: 1024px) {
+    .modal-dialog {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: calc(100% - 1rem) !important;
+        margin: 0.5rem auto !important;
+        max-width: 500px !important;
+    }
+    
+    .modal-dialog.modal-set-time,
+    .modal-set-time {
+        max-width: 480px !important;
+    }
+    
+    .modal-dialog.modal-block-off,
+    .modal-block-off {
+        max-width: 500px !important;
+    }
+    
+    .modal-content {
+        margin: 0 auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Set Time Modal - Tablet specific fixes */
+    .modal-set-time .modal-content {
+        overflow-x: hidden !important;
+        padding: 20px 24px !important;
+    }
+    
+    .modal-set-time .modal-body {
+        overflow: hidden !important;
+    }
+    
+    /* Fix time row layout on tablets */
+    .modal-set-time .time-row-modal {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr auto !important;
+        gap: 12px !important;
+        align-items: end !important;
+        margin-bottom: 12px !important;
+        width: 100% !important;
+    }
+    
+    .modal-set-time .time-input-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    .modal-set-time .time-label-modal {
+        display: block !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .modal-set-time .time-control-modal {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .modal-set-time .btn-delete-row {
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+        align-self: end !important;
+    }
+}
+
+/* Smaller tablets and large phones (576px - 767px) */
+@@media (min-width: 576px) and (max-width: 767px) {
+    .modal-dialog {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: calc(100% - 1rem) !important;
+        margin: 0.5rem auto !important;
+        max-width: calc(100% - 2rem) !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Set Time Modal - Smaller tablet fixes */
+    .modal-set-time .modal-content {
+        overflow-x: hidden !important;
+        padding: 20px 24px !important;
+    }
+    
+    .modal-set-time .modal-body {
+        overflow: hidden !important;
+    }
+    
+    .modal-set-time .time-row-modal {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr auto !important;
+        gap: 12px !important;
+        align-items: end !important;
+        margin-bottom: 12px !important;
+        width: 100% !important;
+    }
+    
+    .modal-set-time .time-input-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    .modal-set-time .time-label-modal {
+        display: block !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .modal-set-time .time-control-modal {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .modal-set-time .btn-delete-row {
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+        align-self: end !important;
+    }
+}
+
+/* Mobile screens (below 576px) */
+@@media (max-width: 575px) {
+    .modal-dialog {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: calc(100% - 1rem) !important;
+        margin: 0.5rem auto !important;
+        max-width: calc(100% - 1rem) !important;
+    }
+}
+/* ==================== END GLOBAL MODAL CENTERING FIX ==================== */
+
 /* Scheduler Dropdown Styles */
 .scheduler-dropdown {
     min-width: 100% !important;
@@ -285,6 +436,19 @@ a.sidebar-nav-item:hover {
     /* Align with container - no extra margins needed */
     margin-left: 0;
     margin-right: 0;
+    overflow: visible;
+    z-index: 100;
+}
+
+/* Ensure the flex container with the toggle button has proper positioning for absolute dropdown */
+.mobile-overview-section > .d-flex {
+    position: relative;
+}
+
+/* Ensure the container wrapping mobile overview doesn't clip the dropdown */
+.container.px-4.d-xl-none,
+.container.px-4.d-lg-none {
+    overflow: visible !important;
 }
 
 /* Surface Pro 7 and Asus Zenbook Fold specific alignment - 853px to 912px width */
@@ -326,6 +490,11 @@ a.sidebar-nav-item:hover {
     text-align: left;
     gap: 8px;
     margin-left: 0; /* Consistent alignment across all screens */
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 101;
 }
 
 .mobile-overview-toggle:hover,
@@ -350,13 +519,29 @@ a.sidebar-nav-item:hover {
     left: 0;
     width: auto;
     min-width: 200px;
-    z-index: 1000;
+    z-index: 1050;
     background: white;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     margin-top: 8px;
     margin-left: 0; /* Consistent alignment across all screens */
+}
+
+/* Fix Bootstrap collapse with absolute positioning on mobile */
+#mobileOverviewMenu.collapse:not(.show) {
+    display: none !important;
+}
+
+#mobileOverviewMenu.collapse.show {
+    display: block !important;
+}
+
+/* Ensure collapsing state also works */
+#mobileOverviewMenu.collapsing {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
 }
 
 .mobile-sidebar-nav {
@@ -710,6 +895,11 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Mobile and Small Tablets - Below 992px */
 @@media (max-width: 991px) {
+    /* Ensure nav-item dropdown has proper positioning context */
+    .navbar-nav .nav-item.dropdown {
+        position: relative !important;
+    }
+    
     /* Scheduler dropdown - match button width on mobile */
     .scheduler-dropdown {
         min-width: 100% !important;
@@ -718,12 +908,19 @@ a.mobile-sidebar-nav-item:hover {
         position: absolute !important;
         top: 100% !important;
         left: 0 !important;
-        z-index: 1000 !important;
+        z-index: 1050 !important;
     }
     
     /* Make mobile scheduler button wider to fit "Appointment Calendar" */
     #navbarDropDownSchedulerMobile {
         min-width: 150px !important;
+    }
+    
+    /* Ensure navbar doesn't clip dropdowns */
+    .navbar,
+    .navbar .container,
+    .navbar-nav {
+        overflow: visible !important;
     }
 }
 
@@ -2900,9 +3097,10 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-set-time .modal-title {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     color: #333;
+    font-family: inherit;
 }
 
 .btn-close-custom {
@@ -2921,6 +3119,20 @@ a.mobile-sidebar-nav-item:hover {
 
 .modal-set-time .modal-body {
     padding: 20px 24px 24px;
+}
+
+/* Set Time Modal - Consistent styling with other modals */
+.modal-set-time .time-label-modal {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.modal-set-time .btn-add-time-modal {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .time-row-modal {
@@ -3066,16 +3278,17 @@ a.mobile-sidebar-nav-item:hover {
 .modal-actions-set-time {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 16px;
 }
 
 .btn-set-hours-modal {
     background-color: #ff5400;
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
@@ -3090,10 +3303,10 @@ a.mobile-sidebar-nav-item:hover {
     background-color: transparent;
     color: #ff5400;
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 400;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
     width: 100%;
@@ -3785,9 +3998,15 @@ a.mobile-sidebar-nav-item:hover {
         overflow-x: hidden;
     }
     
-    /* Prevent horizontal scrollbar on mobile */
-    .container.px-4 {
+    /* Prevent horizontal scrollbar on mobile - but not for dropdown containers */
+    .container.px-4.my-3 {
         overflow-x: hidden;
+    }
+    
+    /* Ensure dropdown containers remain visible */
+    .container.px-4.d-xl-none,
+    .container.px-4.d-lg-none {
+        overflow: visible !important;
     }
     
     body {
@@ -5611,20 +5830,21 @@ a.mobile-sidebar-nav-item:hover {
     #setTimeModal .modal-actions-set-time {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        margin-top: 16px;
     }
     
     #setTimeModal .btn-set-hours-modal {
         width: 100%;
         padding: 14px 24px;
-        font-size: 16px;
+        font-size: 15px;
         border-radius: 8px;
     }
     
     #setTimeModal .btn-cancel-modal {
         width: 100%;
-        font-size: 16px;
-        padding: 12px;
+        font-size: 15px;
+        padding: 8px 24px;
     }
     
     /* Block Off Time Modal - Mobile Centering */
