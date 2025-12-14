@@ -1309,23 +1309,25 @@ a.mobile-sidebar-nav-item:hover {
 @@media (max-width: 767px) {
     .availability-header-row {
         border-bottom: none;
+        overflow: hidden;
     }
     
-    /* Center the gray vertical line under tabs */
+    /* Center the gray vertical line between tabs */
     .availability-tabs {
         position: relative;
         justify-content: center;
         width: 100%;
+        overflow: hidden;
     }
     
     .availability-tabs::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
         width: 1px;
-        height: 100%;
+        height: 60%;
         background-color: #e0e0e0;
     }
 }
@@ -1333,6 +1335,20 @@ a.mobile-sidebar-nav-item:hover {
 .availability-tabs {
     display: flex;
     gap: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Centered vertical divider between tabs */
+.availability-tabs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 60%;
+    background-color: #e0e0e0;
 }
 
 .availability-tab {
@@ -2811,13 +2827,20 @@ a.mobile-sidebar-nav-item:hover {
 
 @@media (max-width: 767px) {
     .modal-set-time {
-        max-width: calc(100% - 2rem);
-        margin: 1rem;
+        max-width: 90%;
+        width: 90%;
+        margin: 0.5rem auto;
+        overflow-x: hidden;
     }
     
     .modal-set-time .modal-content {
         width: 100%;
         padding: 16px;
+        overflow-x: hidden;
+    }
+    
+    .modal-set-time .modal-body {
+        overflow-x: hidden;
     }
     
     .modal-set-time .modal-header-clicked-day {
@@ -3759,7 +3782,16 @@ a.mobile-sidebar-nav-item:hover {
     
     .availability-tabs {
         width: 100%;
-        overflow-x: auto;
+        overflow-x: hidden;
+    }
+    
+    /* Prevent horizontal scrollbar on mobile */
+    .container.px-4 {
+        overflow-x: hidden;
+    }
+    
+    body {
+        overflow-x: hidden;
     }
     
     .availability-tab {
@@ -5458,17 +5490,28 @@ a.mobile-sidebar-nav-item:hover {
         justify-content: center;
         min-height: calc(100% - 1rem);
         margin: 0.5rem auto;
-        max-width: calc(100% - 1rem);
+        max-width: 90%;
+        width: 90%;
     }
     
     #setTimeModal .modal-content {
         width: 100%;
         margin: 0 auto;
+        overflow-x: hidden;
     }
     
     /* ==================== SET TIME MODAL - MOBILE DEDICATED DESIGN ==================== */
     #setTimeModal .modal-content {
         padding: 20px;
+        overflow-x: hidden;
+    }
+    
+    #setTimeModal .modal-body {
+        overflow-x: hidden;
+    }
+    
+    #setTimeModal {
+        overflow-x: hidden;
     }
     
     #setTimeModal .modal-header-clicked-day {
