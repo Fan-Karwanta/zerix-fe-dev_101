@@ -14,6 +14,8 @@
 
 .modal-dialog .modal-content {
     width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* Tablet screens (768px - 1024px) - iPad Mini, iPad Air, etc. */
@@ -3055,6 +3057,7 @@ a.mobile-sidebar-nav-item:hover {
         padding: 0;
         max-height: 350px;
         overflow-y: auto;
+        overflow-x: hidden;
     }
     
     .modal-set-time #setTimeModalContainer {
@@ -3062,8 +3065,10 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .modal-set-time .btn-add-time-modal {
+        width: calc(100% - 32px);
         margin-left: 16px;
         margin-right: 16px;
+        box-sizing: border-box;
     }
     
     .modal-set-time .modal-actions-set-time {
@@ -3143,6 +3148,8 @@ a.mobile-sidebar-nav-item:hover {
     padding: 0;
     max-height: 400px;
     overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 #setTimeModalContainer {
@@ -3150,8 +3157,10 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-set-time .btn-add-time-modal {
+    width: calc(100% - 48px);
     margin-left: 24px;
     margin-right: 24px;
+    box-sizing: border-box;
 }
 
 .modal-set-time .modal-actions-set-time {
@@ -3373,11 +3382,13 @@ a.mobile-sidebar-nav-item:hover {
     
     .modal-block-off .modal-content {
         width: 100%;
+        overflow-x: hidden;
     }
     
     .modal-block-off .modal-body {
         padding: 0;
         max-height: 400px;
+        overflow-x: hidden;
     }
     
     #blockOffTimeContainer,
@@ -3473,6 +3484,7 @@ a.mobile-sidebar-nav-item:hover {
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 450px;
+    box-sizing: border-box;
 }
 
 #blockOffTimeContainer,
@@ -4305,11 +4317,13 @@ a.mobile-sidebar-nav-item:hover {
         width: 100%;
         padding: 16px;
         padding-top: 40px !important;
+        overflow-x: hidden;
     }
     
     .modal-date-hours .modal-body-date-hours {
         padding: 0;
         max-height: 350px;
+        overflow-x: hidden;
     }
     
     .modal-date-hours #timeSlotContainer {
@@ -4322,8 +4336,10 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .modal-date-hours .btn-add-time-date-modal {
+        width: calc(100% - 32px);
         margin-left: 16px;
         margin-right: 16px;
+        box-sizing: border-box;
     }
     
     .modal-date-hours .modal-actions-date-hours {
@@ -4362,6 +4378,7 @@ a.mobile-sidebar-nav-item:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     width: 100% !important;
     padding: 24px;
+    overflow-x: hidden;
 }
 
 .modal-header-date-hours {
@@ -4452,6 +4469,8 @@ a.mobile-sidebar-nav-item:hover {
         align-items: flex-end;
         max-height: 400px;
         overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: border-box;
 }
 
 #timeSlotContainer {
@@ -4464,8 +4483,10 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-date-hours .btn-add-time-date-modal {
+    width: calc(100% - 48px);
     margin-left: 24px;
     margin-right: 24px;
+    box-sizing: border-box;
 }
 
 .modal-date-hours .modal-actions-date-hours {
@@ -4678,10 +4699,14 @@ a.mobile-sidebar-nav-item:hover {
     border-radius: 16px;
     border: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .reschedule-appointment-modal-body {
     padding: 24px;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .reschedule-back-btn {
@@ -5278,6 +5303,8 @@ a.mobile-sidebar-nav-item:hover {
 
 .block-off-modal-body {
     padding: 40px 32px 32px 32px;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .block-off-modal-title {
@@ -5458,6 +5485,7 @@ a.mobile-sidebar-nav-item:hover {
 
     .block-off-modal-body {
         padding: 32px 20px 24px 20px;
+        overflow-x: hidden;
     }
 
     .block-off-date-row {
@@ -5711,7 +5739,7 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .mobile-daily-schedule .mobile-header-container {
-        margin-bottom: 1.5rem;
+;;        margin-bottom: 1.5rem;
         padding: 0 20px;
     }
     
