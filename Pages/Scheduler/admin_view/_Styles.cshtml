@@ -49,7 +49,9 @@
     }
     
     .modal-set-time .modal-body {
-        overflow: hidden !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        max-height: 380px !important;
     }
     
     /* Fix time row layout on tablets */
@@ -104,7 +106,9 @@
     }
     
     .modal-set-time .modal-body {
-        overflow: hidden !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        max-height: 360px !important;
     }
     
     .modal-set-time .time-row-modal {
@@ -3039,6 +3043,8 @@ a.mobile-sidebar-nav-item:hover {
     
     .modal-set-time .modal-body {
         overflow-x: hidden;
+        max-height: 350px;
+        overflow-y: auto;
     }
     
     .modal-set-time .modal-header-clicked-day {
@@ -3046,7 +3052,22 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .modal-set-time .modal-body {
-        padding: 12px 16px 16px;
+        padding: 0;
+        max-height: 350px;
+        overflow-y: auto;
+    }
+    
+    .modal-set-time #setTimeModalContainer {
+        padding: 12px 16px 0;
+    }
+    
+    .modal-set-time .btn-add-time-modal {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    
+    .modal-set-time .modal-actions-set-time {
+        padding: 0 16px 16px;
     }
     
     .modal-set-time .modal-title {
@@ -3119,7 +3140,22 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-set-time .modal-body {
-    padding: 20px 24px 24px;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#setTimeModalContainer {
+    padding: 20px 24px 0;
+}
+
+.modal-set-time .btn-add-time-modal {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.modal-set-time .modal-actions-set-time {
+    padding: 0 24px 24px;
 }
 
 /* Set Time Modal - Consistent styling with other modals */
@@ -3339,6 +3375,25 @@ a.mobile-sidebar-nav-item:hover {
         width: 100%;
     }
     
+    .modal-block-off .modal-body {
+        padding: 0;
+        max-height: 400px;
+    }
+    
+    #blockOffTimeContainer,
+    #blockOffDayContainer {
+        padding: 16px 20px 0;
+    }
+    
+    .modal-block-off .btn-add-another-day {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    
+    .modal-block-off .modal-actions-block-day-inline {
+        padding: 0 20px 24px;
+    }
+    
     .modal-block-off .time-row-modal {
         flex-wrap: nowrap;
     }
@@ -3414,9 +3469,24 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-block-off .modal-body {
-    padding: 20px 28px 32px;
+    padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    max-height: 450px;
+}
+
+#blockOffTimeContainer,
+#blockOffDayContainer {
+    padding: 20px 28px 0;
+}
+
+.modal-block-off .btn-add-another-day {
+    margin-left: 28px;
+    margin-right: 28px;
+}
+
+.modal-block-off .modal-actions-block-day-inline {
+    padding: 0 28px 32px;
 }
 
 .block-label-modal {
@@ -4237,6 +4307,29 @@ a.mobile-sidebar-nav-item:hover {
         padding-top: 40px !important;
     }
     
+    .modal-date-hours .modal-body-date-hours {
+        padding: 0;
+        max-height: 350px;
+    }
+    
+    .modal-date-hours #timeSlotContainer {
+        padding: 0 16px;
+    }
+    
+    .modal-date-hours .day-of-week-display {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .modal-date-hours .btn-add-time-date-modal {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+    
+    .modal-date-hours .modal-actions-date-hours {
+        padding: 0 16px 16px;
+    }
+    
     .modal-date-hours .modal-header-date-hours {
         flex-direction: row;
         align-items: center;
@@ -4355,8 +4448,28 @@ a.mobile-sidebar-nav-item:hover {
 .modal-body-date-hours {
         padding: 0;
         gap: 12px;
-        margin-bottom: 12px;
+        margin-bottom: 0;
         align-items: flex-end;
+        max-height: 400px;
+        overflow-y: auto;
+}
+
+#timeSlotContainer {
+    padding: 0 24px;
+}
+
+.modal-date-hours .day-of-week-display {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.modal-date-hours .btn-add-time-date-modal {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.modal-date-hours .modal-actions-date-hours {
+    padding: 0 24px 24px;
 }
 
 #timeSlotContainer {
