@@ -95,140 +95,150 @@
 
                         <!-- Question 1 -->
                         <div class="question-container mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <label class="question-label mb-0">Question 1</label>
-                                <div class="d-flex align-items-center gap-2">
+                            <div class="question-header-row mb-3">
+                                <div class="question-label-group">
+                                    <label class="question-label mb-0">Question 1</label>
                                     <button class="btn-delete">Delete</button>
+                                </div>
+                                <div class="question-dropdown-wrapper">
                                     <div class="custom-dropdown" data-question="1">
-                                        <button type="button" class="custom-dropdown-toggle">
-                                            <span class="dropdown-icon">≡</span>
-                                            <span class="dropdown-text">Textbox</span>
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
-                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <div class="custom-dropdown-menu">
-                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                                <span class="item-icon">≡</span>
-                                                <span>Textbox</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                                <span class="item-icon">◉</span>
-                                                <span>Multiple Choice</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                                <span class="item-icon">☑</span>
-                                                <span>Checkboxes</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                                <span class="item-icon">▼</span>
-                                                <span>Dropdown List</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                                <span class="item-icon">123</span>
-                                                <span>Number</span>
-                                            </div>
+                                    <button type="button" class="custom-dropdown-toggle">
+                                        <span class="dropdown-icon">≡</span>
+                                        <span class="dropdown-text">Textbox</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="custom-dropdown-menu">
+                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="item-icon">≡</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="item-icon">◉</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="item-icon">☑</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="item-icon">▼</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="item-icon">123</span>
+                                            <span>Number</span>
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                             <input type="text" class="question-input mb-3" placeholder="ex. Write other concerns.">
-                            <div class="required-checkbox">
-                                <input class="custom-checkbox" type="checkbox" id="required1">
-                                <label class="checkbox-label" for="required1">
-                                    Required
-                                </label>
+                            <div class="required-checkbox-row">
+                                <div class="required-checkbox">
+                                    <input class="custom-checkbox" type="checkbox" id="required1">
+                                    <label class="checkbox-label" for="required1">
+                                        Required
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Question 2 - Multiple Choice -->
                         <div class="question-container mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <label class="question-label mb-0">Question 2</label>
-                                <div class="d-flex align-items-center gap-2">
+                            <div class="question-header-row mb-3">
+                                <div class="question-label-group">
+                                    <label class="question-label mb-0">Question 2</label>
                                     <button class="btn-delete">Delete</button>
+                                </div>
+                                <div class="question-dropdown-wrapper">
                                     <div class="custom-dropdown" data-question="2">
-                                        <button type="button" class="custom-dropdown-toggle">
-                                            <span class="dropdown-icon">◉</span>
-                                            <span class="dropdown-text">Multiple Choice</span>
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
-                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <div class="custom-dropdown-menu">
-                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                                <span class="item-icon">≡</span>
-                                                <span>Textbox</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                                <span class="item-icon">◉</span>
-                                                <span>Multiple Choice</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                                <span class="item-icon">☑</span>
-                                                <span>Checkboxes</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                                <span class="item-icon">▼</span>
-                                                <span>Dropdown List</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                                <span class="item-icon">123</span>
-                                                <span>Number</span>
-                                            </div>
+                                    <button type="button" class="custom-dropdown-toggle">
+                                        <span class="dropdown-icon">◉</span>
+                                        <span class="dropdown-text">Multiple Choice</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="custom-dropdown-menu">
+                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="item-icon">≡</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="item-icon">◉</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="item-icon">☑</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="item-icon">▼</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="item-icon">123</span>
+                                            <span>Number</span>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                             <input type="text" class="question-input mb-2" placeholder="ex. Do you reside in Metro Manila?">
                             <div class="mb-3">
                                 <input type="text" class="option-input" placeholder="1. Enter Option Here">
                             </div>
-                            <div class="required-checkbox">
-                                <input class="custom-checkbox" type="checkbox" id="required2">
-                                <label class="checkbox-label" for="required2">
-                                    Required
-                                </label>
+                            <div class="required-checkbox-row">
+                                <div class="required-checkbox">
+                                    <input class="custom-checkbox" type="checkbox" id="required2">
+                                    <label class="checkbox-label" for="required2">
+                                        Required
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Question 3 - Checkboxes -->
                         <div class="question-container mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <label class="question-label mb-0">Question 2</label>
-                                <div class="d-flex align-items-center gap-2">
+                            <div class="question-header-row mb-3">
+                                <div class="question-label-group">
+                                    <label class="question-label mb-0">Question 2</label>
                                     <button class="btn-delete">Delete</button>
+                                </div>
+                                <div class="question-dropdown-wrapper">
                                     <div class="custom-dropdown" data-question="3">
-                                        <button type="button" class="custom-dropdown-toggle">
-                                            <span class="dropdown-icon">☑</span>
-                                            <span class="dropdown-text">Checkboxes</span>
-                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
-                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                        <div class="custom-dropdown-menu show">
-                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                                <span class="item-icon">≡</span>
-                                                <span>Textbox</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                                <span class="item-icon">◉</span>
-                                                <span>Multiple Choice</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                                <span class="item-icon">☑</span>
-                                                <span>Checkboxes</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                                <span class="item-icon">▼</span>
-                                                <span>Dropdown List</span>
-                                            </div>
-                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                                <span class="item-icon">123</span>
-                                                <span>Number</span>
-                                            </div>
+                                    <button type="button" class="custom-dropdown-toggle">
+                                        <span class="dropdown-icon">☑</span>
+                                        <span class="dropdown-text">Checkboxes</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="custom-dropdown-menu">
+                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="item-icon">≡</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="item-icon">◉</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="item-icon">☑</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="item-icon">▼</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="item-icon">123</span>
+                                            <span>Number</span>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                             <input type="text" class="question-input mb-2" placeholder="ex. Do you have any allergies?">
@@ -260,8 +270,8 @@
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="d-flex justify-content-end gap-3">
-                            <button class="btn btn-outline-secondary">Cancel</button>
+                        <div class="d-flex justify-content-end align-items-center gap-4">
+                            <button class="btn-cancel-link">Cancel</button>
                             <button class="btn btn-primary">Save Form</button>
                         </div>
                     </div>
@@ -340,14 +350,31 @@
     .form-preview-services .form-check-input {
         width: 16px;
         height: 16px;
-        border: 2px solid #FF6B35;
+        border: none;
         cursor: pointer;
         margin: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #FF6B35;
+        border-radius: 2px;
+        position: relative;
     }
 
     .form-preview-services .form-check-input:checked {
         background-color: #FF6B35;
-        border-color: #FF6B35;
+    }
+
+    .form-preview-services .form-check-input:checked::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
     }
 
     .custom-form-container {
@@ -398,6 +425,23 @@
         border-bottom: none;
     }
 
+    .question-header-row {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    .question-label-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .question-dropdown-wrapper {
+        margin-left: auto;
+    }
+
     .question-label {
         font-size: 14px;
         font-weight: 600;
@@ -430,15 +474,15 @@
         background: #fff;
         border: 1px solid #E0E0E0;
         border-radius: 4px;
-        padding: 6px 12px;
+        padding: 8px 12px;
         font-size: 14px;
         color: #333;
         cursor: pointer;
-        min-width: 160px;
+        min-width: 140px;
     }
 
     .custom-dropdown-toggle:hover {
-        border-color: #999;
+        border-color: #FF6B35;
     }
 
     .custom-dropdown-toggle .dropdown-icon {
@@ -576,6 +620,11 @@
     }
 
 
+    .required-checkbox-row {
+        display: flex;
+        justify-content: flex-end;
+    }
+
     .required-checkbox {
         display: flex;
         align-items: center;
@@ -629,6 +678,21 @@
 
     .btn-link.text-primary:hover {
         color: #e55a2b !important;
+    }
+
+    .btn-cancel-link {
+        background: none;
+        border: none;
+        color: #FF6B35;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .btn-cancel-link:hover {
+        color: #e55a2b;
+        text-decoration: underline;
     }
 
     .btn-outline-secondary {
