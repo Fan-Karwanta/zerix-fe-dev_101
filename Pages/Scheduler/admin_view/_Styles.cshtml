@@ -5034,7 +5034,7 @@ a.mobile-sidebar-nav-item:hover {
     gap: 24px;
     margin-bottom: 16px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: none;
 }
 
 .reports-top-filter-group {
@@ -5053,10 +5053,12 @@ a.mobile-sidebar-nav-item:hover {
     font-size: 14px;
     color: #333;
     font-weight: 400;
-    padding: 6px 12px;
+    padding: 8px 24px;
     background: #f5f5f5;
     border-radius: 4px;
     border: 1px solid #e0e0e0;
+    min-width: 100px;
+    text-align: center;
 }
 
 .reports-date-range-display {
@@ -5086,7 +5088,7 @@ a.mobile-sidebar-nav-item:hover {
 .reports-table tbody td {
     padding: 14px 16px;
     color: #333;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none;
     vertical-align: top;
 }
 
@@ -5131,11 +5133,11 @@ a.mobile-sidebar-nav-item:hover {
 
 .reports-form-questions-row td {
     padding: 0 !important;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: none;
 }
 
 .reports-form-questions-row.collapsed td {
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: none;
 }
 
 .reports-form-questions {
@@ -5183,6 +5185,20 @@ a.mobile-sidebar-nav-item:hover {
 .reports-question-answer {
     font-size: 14px;
     color: #333;
+}
+
+/* Summary Mode - Hide Form Questions */
+.reports-summary-mode .reports-form-questions-row {
+    display: none !important;
+}
+
+/* Add subtle row separation with alternating backgrounds */
+.reports-table tbody tr.reports-row:nth-child(4n+1) {
+    background: #fff;
+}
+
+.reports-table tbody tr.reports-row:nth-child(4n+3) {
+    background: #fafafa;
 }
 
 /* Responsive Styles for Reports */

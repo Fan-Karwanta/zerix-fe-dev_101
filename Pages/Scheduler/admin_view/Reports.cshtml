@@ -81,11 +81,11 @@
             <!-- Report Type Radio Buttons -->
             <div class="reports-filter-group reports-radio-group">
                 <div class="reports-radio-item">
-                    <input type="radio" name="reportType" id="summaryReport" value="summary">
+                    <input type="radio" name="reportType" id="summaryReport" value="summary" onchange="toggleFormQuestionsByReportType()">
                     <label for="summaryReport">Summary Report</label>
                 </div>
                 <div class="reports-radio-item">
-                    <input type="radio" name="reportType" id="detailedReport" value="detailed" checked>
+                    <input type="radio" name="reportType" id="detailedReport" value="detailed" checked onchange="toggleFormQuestionsByReportType()">
                     <label for="detailedReport">Detailed Report</label>
                 </div>
             </div>
@@ -226,6 +226,20 @@
                 chevron.classList.remove('reports-chevron-up');
                 chevron.classList.add('reports-chevron-down');
             }
+        }
+
+        // Toggle Form Questions visibility based on Report Type (Summary/Detailed)
+        function toggleFormQuestionsByReportType() {
+            const isSummary = document.getElementById('summaryReport').checked;
+            const formQuestionRows = document.querySelectorAll('.reports-form-questions-row');
+            
+            formQuestionRows.forEach(row => {
+                if (isSummary) {
+                    row.style.display = 'none';
+                } else {
+                    row.style.display = 'table-row';
+                }
+            });
         }
 
         // Generate Report
