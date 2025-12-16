@@ -1,0 +1,724 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.NewCustomFormModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Form Questions";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row g-4">
+        <div class="col-12">
+            <!-- Desktop Header -->
+            <div class="d-none d-md-flex align-items-center mb-4 position-relative">
+                <a href="/scheduler/admin_view/formquestions" class="btn btn-link p-0 back-link text-decoration-none">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ms-2">Go Back</span>
+                </a>
+                <h2 class="fs-32 ff-default font-darkgray fw-400 position-absolute start-50 translate-middle-x" style="margin-bottom: 2.9rem;">Form Questions</h2>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="d-md-none">
+                <div class="d-flex align-items-center justify-content-center mb-3 position-relative" style="margin-top: 0.8rem;">
+                    <a href="/scheduler/admin_view/formquestions" class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="ms-2">Go Back</span>
+                    </a>
+                    <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Form Questions</h2>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="row">
+                <!-- Left Column: Form shown while scheduling -->
+                <div class="col-12 col-lg-3 mb-4">
+                    <div class="form-preview-section">
+                        <h6 class="form-preview-title">Form shown while scheduling</h6>
+                        
+                        <div class="form-preview-item">
+                            <div class="form-preview-name">Megamall- Face</div>
+                            <div class="form-preview-services">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                    Hair Rebond
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                    Hot Oil
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-preview-item">
+                            <div class="form-preview-name">Robinsons- Face</div>
+                            <div class="form-preview-services">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                    Hair Rebond
+                                </label>
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" checked>
+                                    Hot Oil
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form Fields -->
+                <div class="col-12 col-lg-9">
+                    <div class="custom-form-container">
+                        <!-- Form Name -->
+                        <div class="mb-4">
+                            <label class="form-label">Form Name <span class="text-muted">(optional)</span></label>
+                            <input type="text" class="form-control" placeholder="Enter Name">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label class="form-label">Description <span class="text-muted">(optional)</span></label>
+                            <textarea class="form-control" rows="4" placeholder="Write some instructions about the upcoming appointment or refund policy"></textarea>
+                        </div>
+
+                        <!-- Question 1 -->
+                        <div class="question-container mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label class="question-label mb-0">Question 1</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="btn-delete">Delete</button>
+                                    <div class="custom-dropdown" data-question="1">
+                                        <button type="button" class="custom-dropdown-toggle">
+                                            <span class="dropdown-icon">≡</span>
+                                            <span class="dropdown-text">Textbox</span>
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="custom-dropdown-menu">
+                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                                <span class="item-icon">≡</span>
+                                                <span>Textbox</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                                <span class="item-icon">◉</span>
+                                                <span>Multiple Choice</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                                <span class="item-icon">☑</span>
+                                                <span>Checkboxes</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                                <span class="item-icon">▼</span>
+                                                <span>Dropdown List</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                                <span class="item-icon">123</span>
+                                                <span>Number</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="question-input mb-3" placeholder="ex. Write other concerns.">
+                            <div class="required-checkbox">
+                                <input class="custom-checkbox" type="checkbox" id="required1">
+                                <label class="checkbox-label" for="required1">
+                                    Required
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 - Multiple Choice -->
+                        <div class="question-container mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label class="question-label mb-0">Question 2</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="btn-delete">Delete</button>
+                                    <div class="custom-dropdown" data-question="2">
+                                        <button type="button" class="custom-dropdown-toggle">
+                                            <span class="dropdown-icon">◉</span>
+                                            <span class="dropdown-text">Multiple Choice</span>
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="custom-dropdown-menu">
+                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                                <span class="item-icon">≡</span>
+                                                <span>Textbox</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                                <span class="item-icon">◉</span>
+                                                <span>Multiple Choice</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                                <span class="item-icon">☑</span>
+                                                <span>Checkboxes</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                                <span class="item-icon">▼</span>
+                                                <span>Dropdown List</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                                <span class="item-icon">123</span>
+                                                <span>Number</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="question-input mb-2" placeholder="ex. Do you reside in Metro Manila?">
+                            <div class="mb-3">
+                                <input type="text" class="option-input" placeholder="1. Enter Option Here">
+                            </div>
+                            <div class="required-checkbox">
+                                <input class="custom-checkbox" type="checkbox" id="required2">
+                                <label class="checkbox-label" for="required2">
+                                    Required
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 - Checkboxes -->
+                        <div class="question-container mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <label class="question-label mb-0">Question 2</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <button class="btn-delete">Delete</button>
+                                    <div class="custom-dropdown" data-question="3">
+                                        <button type="button" class="custom-dropdown-toggle">
+                                            <span class="dropdown-icon">☑</span>
+                                            <span class="dropdown-text">Checkboxes</span>
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="custom-dropdown-menu show">
+                                            <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
+                                                <span class="item-icon">≡</span>
+                                                <span>Textbox</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
+                                                <span class="item-icon">◉</span>
+                                                <span>Multiple Choice</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                                <span class="item-icon">☑</span>
+                                                <span>Checkboxes</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
+                                                <span class="item-icon">▼</span>
+                                                <span>Dropdown List</span>
+                                            </div>
+                                            <div class="custom-dropdown-item" data-value="number" data-icon="123">
+                                                <span class="item-icon">123</span>
+                                                <span>Number</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" class="question-input mb-2" placeholder="ex. Do you have any allergies?">
+                            <div class="options-list mb-3">
+                                <div class="option-item">
+                                    <span class="option-number">1.</span>
+                                    <span class="option-text">Nuts</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-number">2.</span>
+                                    <span class="option-text">Dairy</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-number">3.</span>
+                                    <span class="option-text">None</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-number">4.</span>
+                                    <input type="text" class="option-input-inline" placeholder="Enter Option Here">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add Question Button -->
+                        <div class="mb-4">
+                            <button class="btn btn-link text-primary p-0 text-decoration-none">
+                                + Add Question
+                            </button>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-end gap-3">
+                            <button class="btn btn-outline-secondary">Cancel</button>
+                            <button class="btn btn-primary">Save Form</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("../admin_view/_Scripts")
+
+<style>
+    .back-link {
+        color: #FF6B35;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+    }
+
+    .back-link:hover {
+        color: #e55a2b;
+    }
+
+    .back-link svg {
+        stroke: #FF6B35;
+        width: 20px;
+        height: 20px;
+    }
+
+    .form-preview-section {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .form-preview-title {
+        font-size: 12px;
+        font-weight: 400;
+        color: #999;
+        margin-bottom: 16px;
+    }
+
+    .form-preview-item {
+        margin-bottom: 16px;
+    }
+
+    .form-preview-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .form-preview-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .form-preview-services {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-preview-services .form-check-label {
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-weight: 400;
+    }
+
+    .form-preview-services .form-check-input {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #FF6B35;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    .form-preview-services .form-check-input:checked {
+        background-color: #FF6B35;
+        border-color: #FF6B35;
+    }
+
+    .custom-form-container {
+        background: transparent;
+        padding: 0;
+    }
+
+    .form-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .form-label .text-muted {
+        font-weight: 400;
+        color: #999;
+    }
+
+    .form-control {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #333;
+        background: #fff;
+    }
+
+    .form-control:focus {
+        border-color: #999;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .form-control::placeholder {
+        color: #999;
+    }
+
+    .question-container {
+        border: none;
+        border-radius: 0;
+        padding: 20px 0;
+        background: transparent;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .question-container:last-of-type {
+        border-bottom: none;
+    }
+
+    .question-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .btn-delete {
+        background: none;
+        border: none;
+        color: #FF6B35;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .btn-delete:hover {
+        color: #e55a2b;
+    }
+
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .custom-dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 6px 12px;
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+        min-width: 160px;
+    }
+
+    .custom-dropdown-toggle:hover {
+        border-color: #999;
+    }
+
+    .custom-dropdown-toggle .dropdown-icon {
+        font-size: 16px;
+        color: #666;
+    }
+
+    .custom-dropdown-toggle .dropdown-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .custom-dropdown-toggle .dropdown-arrow {
+        stroke: #666;
+        margin-left: auto;
+    }
+
+    .custom-dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 4px);
+        background: #fff;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        min-width: 180px;
+        z-index: 1000;
+        display: none;
+    }
+
+    .custom-dropdown-menu.show {
+        display: block;
+    }
+
+    .custom-dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+    }
+
+    .custom-dropdown-item:hover {
+        background: #F5F5F5;
+    }
+
+    .custom-dropdown-item .item-icon {
+        font-size: 16px;
+        color: #666;
+        width: 20px;
+        text-align: center;
+    }
+
+    .question-input {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #333;
+        width: 100%;
+        background: #fff;
+    }
+
+    .question-input:focus {
+        outline: none;
+        border-color: #999;
+    }
+
+    .question-input::placeholder {
+        color: #999;
+    }
+
+    .option-input {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #333;
+        width: 100%;
+        background: #fff;
+    }
+
+    .option-input:focus {
+        outline: none;
+        border-color: #999;
+    }
+
+    .option-input::placeholder {
+        color: #999;
+    }
+
+    .options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .option-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .option-number {
+        color: #666;
+        min-width: 20px;
+    }
+
+    .option-text {
+        color: #333;
+    }
+
+    .option-input-inline {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 14px;
+        color: #333;
+        flex: 1;
+        background: #fff;
+    }
+
+    .option-input-inline:focus {
+        outline: none;
+        border-color: #999;
+    }
+
+    .option-input-inline::placeholder {
+        color: #999;
+    }
+
+
+    .required-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .custom-checkbox {
+        width: 16px;
+        height: 16px;
+        border: 2px solid #E0E0E0;
+        cursor: pointer;
+        margin: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 2px;
+        position: relative;
+    }
+
+    .custom-checkbox:checked {
+        background-color: #fff;
+        border-color: #E0E0E0;
+    }
+
+    .custom-checkbox:checked::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 0px;
+        width: 4px;
+        height: 8px;
+        border: solid #333;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .checkbox-label {
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    .btn-link.text-primary {
+        font-size: 14px;
+        font-weight: 400;
+        color: #FF6B35 !important;
+        text-decoration: none;
+    }
+
+    .btn-link.text-primary:hover {
+        color: #e55a2b !important;
+    }
+
+    .btn-outline-secondary {
+        border: 1px solid #E0E0E0;
+        color: #666;
+        background: #fff;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 4px;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #F5F5F5;
+        border-color: #E0E0E0;
+        color: #666;
+    }
+
+    .btn-primary {
+        background-color: #FF6B35;
+        border-color: #FF6B35;
+        color: #fff;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 4px;
+    }
+
+    .btn-primary:hover {
+        background-color: #e55a2b;
+        border-color: #e55a2b;
+    }
+
+    @@media (max-width: 991px) {
+        .question-container {
+            padding: 16px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.custom-dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
+            const menu = dropdown.querySelector('.custom-dropdown-menu');
+            const items = dropdown.querySelectorAll('.custom-dropdown-item');
+            const iconSpan = toggle.querySelector('.dropdown-icon');
+            const textSpan = toggle.querySelector('.dropdown-text');
+            
+            // Toggle dropdown on button click
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Close all other dropdowns
+                document.querySelectorAll('.custom-dropdown-menu.show').forEach(otherMenu => {
+                    if (otherMenu !== menu) {
+                        otherMenu.classList.remove('show');
+                    }
+                });
+                
+                // Toggle current dropdown
+                menu.classList.toggle('show');
+            });
+            
+            // Handle item selection
+            items.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const value = this.getAttribute('data-value');
+                    const icon = this.getAttribute('data-icon');
+                    const text = this.textContent.trim();
+                    
+                    // Update toggle button
+                    iconSpan.textContent = icon;
+                    textSpan.textContent = text;
+                    
+                    // Close dropdown
+                    menu.classList.remove('show');
+                });
+            });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.custom-dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        });
+    });
+</script>
