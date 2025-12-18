@@ -4339,7 +4339,7 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Date Hours Modal Styles */
 .modal-date-hours {
-    max-width: 420px;
+    max-width: 500px;
 }
 
 #dateHoursModal .modal-dialog {
@@ -4348,8 +4348,8 @@ a.mobile-sidebar-nav-item:hover {
     justify-content: center;
     min-height: calc(100% - 1rem);
     margin: 0.5rem auto;
-    width: 90%;
-    max-width: 420px;
+    width: 95%;
+    max-width: 500px;
 }
 
 #dateHoursModal .modal-content {
@@ -4364,7 +4364,7 @@ a.mobile-sidebar-nav-item:hover {
 
 @@media (min-width: 768px) {
     #dateHoursModal .modal-dialog {
-        width: 420px;
+        width: 500px;
     }
     
     #dateHoursModal .modal-content {
@@ -4384,7 +4384,7 @@ a.mobile-sidebar-nav-item:hover {
     
     #dateHoursModal .modal-content {
         width: 100%;
-        padding: 20px;
+        padding: 16px;
         overflow-x: hidden;
     }
     
@@ -4396,11 +4396,6 @@ a.mobile-sidebar-nav-item:hover {
     
     #dateHoursModal #timeSlotContainer {
         padding: 0;
-    }
-    
-    #dateHoursModal .day-of-week-display {
-        padding-left: 0;
-        padding-right: 0;
     }
     
     #dateHoursModal .btn-add-time-date-modal {
@@ -4415,66 +4410,68 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     #dateHoursModal .modal-header-date-hours {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 0 0 16px 0;
+        padding: 0;
         margin-bottom: 16px;
     }
     
+    /* Keep title and date input inline on mobile */
     #dateHoursModal .date-hours-title-row {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
         gap: 8px;
-        padding-right: 30px;
         width: 100%;
     }
     
     #dateHoursModal .modal-title-date-hours {
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 400;
         color: #333;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
     
     #dateHoursModal .date-input-modal-inline {
-        width: 100%;
-        max-width: 100%;
-        flex-shrink: 0;
-        padding: 12px;
-    }
-    
-    #dateHoursModal .btn-close-date-modal {
-        top: 0;
-        right: 0;
+        flex: 1;
+        min-width: 100px;
+        max-width: none;
+        padding: 10px 12px;
+        font-size: 13px;
     }
     
     #dateHoursModal .time-slot-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr auto;
-        gap: 12px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
         align-items: flex-end;
     }
     
     #dateHoursModal .time-input-wrapper {
-        width: 100%;
         flex: 1;
+        min-width: 0;
     }
     
     #dateHoursModal .time-label-small {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 500;
         color: #ff5400;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
     
     #dateHoursModal .time-input-small {
         width: 100%;
-        padding: 12px 10px;
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+    
+    #dateHoursModal .time-separator {
+        margin-bottom: 12px;
         font-size: 14px;
     }
     
     #dateHoursModal .btn-delete-row {
         margin-bottom: 8px;
+        flex-shrink: 0;
     }
     
     #dateHoursModal .btn-add-time-date-modal {
@@ -4497,6 +4494,12 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+@@media (max-width 430px){
+        #dateHoursModal .btn-delete-row{
+            margin-bottom: -18px !important;
+            flex-shrink: 0;        }
+}
+
 .modal-date-hours .modal-content {
     border-radius: 12px;
     border: none;
@@ -4505,23 +4508,30 @@ a.mobile-sidebar-nav-item:hover {
     overflow-x: hidden;
 }
 
+/* Close button row - separate from title */
+.modal-close-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
 .modal-header-date-hours {
     padding: 0;
     border-bottom: none;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
     position: relative;
     margin-bottom: 20px;
 }
 
-/* Title and End Date Input Row - Inline Layout */
+/* Title and End Date Input Row - Always Inline Layout */
 .date-hours-title-row {
     display: flex;
     align-items: center;
     gap: 8px;
     flex: 1;
-    padding-right: 40px;
+    flex-wrap: nowrap;
 }
 
 .modal-title-date-hours {
@@ -4530,23 +4540,23 @@ a.mobile-sidebar-nav-item:hover {
     color: #333;
     margin: 0;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .modal-title-date-hours span {
     font-weight: 500;
 }
 
-/* Inline Date Input - Shorter Width */
+/* Inline Date Input - Flexible Width */
 .date-input-modal-inline {
-    width: 160px;
-    min-width: 140px;
+    flex: 1;
+    min-width: 120px;
     max-width: 180px;
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 13px;
+    border-radius: 6px;
+    font-size: 14px;
     color: #333;
-    flex-shrink: 0;
 }
 
 .date-input-modal-inline::placeholder {
@@ -4563,9 +4573,6 @@ a.mobile-sidebar-nav-item:hover {
     border: none;
     padding: 0;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
 .btn-close-date-modal:hover svg path {
@@ -4601,11 +4608,6 @@ a.mobile-sidebar-nav-item:hover {
     padding: 0;
 }
 
-.modal-date-hours .day-of-week-display {
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .modal-date-hours .btn-add-time-date-modal {
     width: 100%;
     margin-left: 0;
@@ -4623,6 +4625,7 @@ a.mobile-sidebar-nav-item:hover {
 
 .time-slot-row {
     display: flex;
+    flex-wrap: nowrap;
     margin-top: 1rem;
     gap: 12px;
     align-items: flex-end;
@@ -4630,17 +4633,26 @@ a.mobile-sidebar-nav-item:hover {
 
 .time-slot-row .btn-delete-row {
     margin-bottom: 11px;
+    flex-shrink: 0;
+}
+
+.time-separator {
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
 }
 
 .time-input-wrapper {
-    flex: 0 0 auto;
-    width: 150px;
+    flex: 1;
+    min-width: 0;
 }
 
 .time-label-small {
     display: block;
     font-size: 13px;
-    color: #666;
+    color: #ff5400;
+    font-weight: 500;
     margin-bottom: 6px;
 }
 
@@ -4661,16 +4673,6 @@ a.mobile-sidebar-nav-item:hover {
 .time-input-small:focus {
     outline: none;
     border-color: #ff5400;
-}
-
-/* Day of Week Display - Left Aligned, Above Add Time Button */
-.day-of-week-display {
-    text-align: left;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    padding: 0;
-    margin-bottom: 12px;
 }
 
 .btn-add-time-date-modal {

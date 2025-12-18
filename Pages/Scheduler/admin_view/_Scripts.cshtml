@@ -199,7 +199,6 @@ function openDateModal(element) {
     
     // Update modal content
     document.getElementById('modalDateDisplay').textContent = formattedDate;
-    document.getElementById('modalDayOfWeek').textContent = dayOfWeek;
     
     // Show the modal
     const modal = new bootstrap.Modal(document.getElementById('dateHoursModal'));
@@ -327,6 +326,7 @@ function addTimeSlot() {
             <label class="time-label-small">From</label>
             <input type="time" class="form-control time-input-small" />
         </div>
+        <span class="time-separator">—</span>
         <div class="time-input-wrapper">
             <label class="time-label-small">To</label>
             <input type="time" class="form-control time-input-small" />
