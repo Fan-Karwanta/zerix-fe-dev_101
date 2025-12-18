@@ -1547,12 +1547,12 @@ a.mobile-sidebar-nav-item:hover {
     overflow: hidden;
 }
 
-/* Vertical divider between tabs - centered */
+/* Vertical divider between tabs - centered between the two buttons */
 .availability-tabs::after {
     content: '';
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: calc(50% + 8px);
     transform: translate(-50%, -50%);
     width: 1px;
     height: 60%;
@@ -3065,13 +3065,17 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     .modal-set-time .btn-add-time-modal {
-        width: calc(100% - 32px);
-        margin-left: 16px;
-        margin-right: 16px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
         box-sizing: border-box;
     }
     
     .modal-set-time .modal-actions-set-time {
+        padding: 0;
+    }
+    
+    .modal-buttons-container {
         padding: 0 16px 16px;
     }
     
@@ -3157,14 +3161,19 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .modal-set-time .btn-add-time-modal {
-    width: calc(100% - 48px);
-    margin-left: 24px;
-    margin-right: 24px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     box-sizing: border-box;
 }
 
-.modal-set-time .modal-actions-set-time {
+/* Modal buttons container - consistent padding for Add Time and action buttons */
+.modal-buttons-container {
     padding: 0 24px 24px;
+}
+
+.modal-set-time .modal-actions-set-time {
+    padding: 0;
 }
 
 /* Set Time Modal - Consistent styling with other modals */
@@ -3255,10 +3264,17 @@ a.mobile-sidebar-nav-item:hover {
     
     .btn-add-time-modal {
         width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
         padding: 14px 16px;
         font-size: 16px;
         margin-bottom: 16px;
         border-radius: 8px;
+    }
+    
+    .modal-buttons-container {
+        padding: 0 16px 16px;
     }
     
     .btn-set-hours-modal {
@@ -3311,6 +3327,7 @@ a.mobile-sidebar-nav-item:hover {
     cursor: pointer;
     transition: all 0.2s;
     width: 100%;
+    box-sizing: border-box;
     text-align: center;
     display: block;
 }
@@ -3326,6 +3343,7 @@ a.mobile-sidebar-nav-item:hover {
     flex-direction: column;
     gap: 8px;
     margin-top: 16px;
+    padding: 0;
 }
 
 .btn-set-hours-modal {
@@ -3810,6 +3828,22 @@ a.mobile-sidebar-nav-item:hover {
     margin-left: 6.5rem !important;
   }
 
+}
+
+/* Mobile Phones - Small screens */
+@@media (max-width: 430px) {
+    .btn-add-time-modal {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+        padding: 3px 16px !important;
+        font-size: 16px !important;
+    }
+    
+    .modal-buttons-container {
+        padding: 0 16px 16px !important;
+    }
 }
 
 /* Iphone XR */
@@ -4303,8 +4337,39 @@ a.mobile-sidebar-nav-item:hover {
 
 /* Date Hours Modal Styles */
 .modal-date-hours {
-    max-width: 480px;
+    max-width: 420px;
 }
+
+#dateHoursModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - 1rem);
+    margin: 0.5rem auto;
+    width: 90%;
+    max-width: 420px;
+}
+
+#dateHoursModal .modal-content {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding: 20px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@@media (min-width: 768px) {
+    #dateHoursModal .modal-dialog {
+        width: 420px;
+    }
+    
+    #dateHoursModal .modal-content {
+        padding: 24px;
+    }
+}
+
 @@media (max-width: 767px) {
     .modal-date-hours {
         max-width: calc(100% - 1rem);
@@ -4315,71 +4380,126 @@ a.mobile-sidebar-nav-item:hover {
         min-height: calc(100% - 1rem);
     }
     
-    .modal-date-hours .modal-content {
+    #dateHoursModal .modal-content {
         width: 100%;
-        padding: 16px;
-        padding-top: 40px !important;
+        padding: 20px;
         overflow-x: hidden;
     }
     
-    .modal-date-hours .modal-body-date-hours {
+    #dateHoursModal .modal-body-date-hours {
         padding: 0;
         max-height: 350px;
         overflow-x: hidden;
     }
     
-    .modal-date-hours #timeSlotContainer {
-        padding: 0 16px;
+    #dateHoursModal #timeSlotContainer {
+        padding: 0;
     }
     
-    .modal-date-hours .day-of-week-display {
-        padding-left: 16px;
-        padding-right: 16px;
+    #dateHoursModal .day-of-week-display {
+        padding-left: 0;
+        padding-right: 0;
     }
     
-    .modal-date-hours .btn-add-time-date-modal {
-        width: calc(100% - 32px);
-        margin-left: 16px;
-        margin-right: 16px;
+    #dateHoursModal .btn-add-time-date-modal {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
         box-sizing: border-box;
     }
     
-    .modal-date-hours .modal-actions-date-hours {
-        padding: 0 16px 16px;
+    #dateHoursModal .modal-actions-date-hours {
+        padding: 0;
     }
     
-    .modal-date-hours .modal-header-date-hours {
-        flex-direction: row;
-        align-items: center;
+    #dateHoursModal .modal-header-date-hours {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 0 0 16px 0;
+        margin-bottom: 16px;
+    }
+    
+    #dateHoursModal .date-hours-title-row {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 8px;
-    }
-    
-    .modal-date-hours .date-hours-title-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 4px;
-        padding-right: 0;
+        padding-right: 30px;
         width: 100%;
     }
     
-    .modal-date-hours .date-input-modal-inline {
-        width: 35%;
-        max-width: 35%;
-        flex-shrink: 0;
+    #dateHoursModal .modal-title-date-hours {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
     }
     
-    .modal-date-hours .btn-close-date-modal {
-        top: -31px;
+    #dateHoursModal .date-input-modal-inline {
+        width: 100%;
+        max-width: 100%;
+        flex-shrink: 0;
+        padding: 12px;
+    }
+    
+    #dateHoursModal .btn-close-date-modal {
+        top: 0;
         right: 0;
+    }
+    
+    #dateHoursModal .time-slot-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 12px;
+        align-items: flex-end;
+    }
+    
+    #dateHoursModal .time-input-wrapper {
+        width: 100%;
+        flex: 1;
+    }
+    
+    #dateHoursModal .time-label-small {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ff5400;
+        margin-bottom: 8px;
+    }
+    
+    #dateHoursModal .time-input-small {
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+    
+    #dateHoursModal .btn-delete-row {
+        margin-bottom: 8px;
+    }
+    
+    #dateHoursModal .btn-add-time-date-modal {
+        padding: 10px 16px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+    
+    #dateHoursModal .btn-set-hours-date-modal {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+    
+    #dateHoursModal .btn-cancel-date-modal {
+        width: 100%;
+        font-size: 15px;
+        padding: 8px 24px;
     }
 }
 
 .modal-date-hours .modal-content {
-    border-radius: 8px;
+    border-radius: 12px;
     border: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     width: 100% !important;
-    padding: 24px;
     overflow-x: hidden;
 }
 
@@ -4476,23 +4596,23 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 #timeSlotContainer {
-    padding: 0 24px;
+    padding: 0;
 }
 
 .modal-date-hours .day-of-week-display {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .modal-date-hours .btn-add-time-date-modal {
-    width: calc(100% - 48px);
-    margin-left: 24px;
-    margin-right: 24px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
     box-sizing: border-box;
 }
 
 .modal-date-hours .modal-actions-date-hours {
-    padding: 0 24px 24px;
+    padding: 0;
 }
 
 #timeSlotContainer {
@@ -4502,6 +4622,8 @@ a.mobile-sidebar-nav-item:hover {
 .time-slot-row {
     display: flex;
     margin-top: 1rem;
+    gap: 12px;
+    align-items: flex-end;
 }
 
 .time-slot-row .btn-delete-row {
@@ -4509,7 +4631,8 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .time-input-wrapper {
-    flex: 1;
+    flex: 0 0 auto;
+    width: 150px;
 }
 
 .time-label-small {
@@ -4520,12 +4643,13 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 .time-input-small {
-    width: 85%;
+    width: 100%;
     padding: 10px 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
     color: #333;
+    box-sizing: border-box;
 }
 
 .time-input-small::placeholder {
@@ -5987,11 +6111,16 @@ a.mobile-sidebar-nav-item:hover {
         border-radius: 8px;
     }
     
+    #setTimeModal .modal-buttons-container {
+        padding: 0 16px 16px;
+    }
+    
     #setTimeModal .modal-actions-set-time {
         display: flex;
         flex-direction: column;
         gap: 8px;
         margin-top: 16px;
+        padding: 0;
     }
     
     #setTimeModal .btn-set-hours-modal {
