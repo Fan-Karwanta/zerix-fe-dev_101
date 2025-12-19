@@ -6183,6 +6183,43 @@ a.mobile-sidebar-nav-item:hover {
     #blockOffTimeModal .modal-content {
         width: 100%;
         margin: 0 auto;
+        overflow-x: hidden;
+    }
+    
+    /* Block Off Time Modal - Input alignment fix */
+    #blockOffTimeModal .block-off-time-item {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #blockOffTimeModal .block-input-modal {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #blockOffTimeModal .time-row-modal {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #blockOffTimeModal .time-input-group {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    #blockOffTimeModal .time-control-modal {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #blockOffTimeContainer {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
     
     /* Date Hours Modal - Mobile Centering */
