@@ -6238,4 +6238,67 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
+/* ==================== FORM QUESTIONS PAGE STYLES ==================== */
+
+/* Desktop Header - Add proper top spacing */
+.d-none.d-md-flex.align-items-center.mb-4.position-relative {
+    margin-top: 2rem;
+}
+
+/* Form Questions Title - Add top margin for proper spacing from navbar */
+.fs-32.ff-default.font-darkgray.fw-400.position-absolute.start-50.translate-middle-x {
+    margin-top: 0;
+}
+
+/* Question Header Row - Proper alignment */
+.question-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+/* Question Label Group - Left side */
+.question-label-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Question Dropdown Wrapper - Right side */
+.question-dropdown-wrapper {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* Ensure Delete button and Dropdown are vertically aligned */
+.btn-delete {
+    line-height: 1;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.custom-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+}
+
+/* Mobile Header - Add proper top spacing */
+@@media (max-width: 767px) {
+    .d-md-none .d-flex.align-items-center.justify-content-center.mb-3.position-relative {
+        margin-top: 1.5rem;
+    }
+}
+
+/* Tablet adjustments */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .d-none.d-md-flex.align-items-center.mb-4.position-relative {
+        margin-top: 1.5rem;
+    }
+}
+
 </style>

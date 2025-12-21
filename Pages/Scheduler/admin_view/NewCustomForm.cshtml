@@ -18,26 +18,26 @@
     <div class="row g-4">
         <div class="col-12">
             <!-- Desktop Header -->
-            <div class="d-none d-md-flex align-items-center mb-4 position-relative">
-                <a href="/scheduler/admin_view/formquestions" class="btn btn-link p-0 back-link text-decoration-none">
+            <div class="form-questions-desktop-header">
+                <a href="/scheduler/admin_view/formquestions" class="form-questions-back-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span class="ms-2">Go Back</span>
                 </a>
-                <h2 class="fs-32 ff-default font-darkgray fw-400 position-absolute start-50 translate-middle-x" style="margin-bottom: 2.9rem;">Form Questions</h2>
+                <h2 class="form-questions-page-title">Form Questions</h2>
             </div>
 
             <!-- Mobile Header -->
-            <div class="d-md-none">
-                <div class="d-flex align-items-center justify-content-center mb-3 position-relative" style="margin-top: 0.8rem;">
-                    <a href="/scheduler/admin_view/formquestions" class="btn btn-link p-0 back-link text-decoration-none position-absolute start-0">
+            <div class="form-questions-mobile-header">
+                <div class="form-questions-mobile-header-inner">
+                    <a href="/scheduler/admin_view/formquestions" class="form-questions-mobile-back-link">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         <span class="ms-2">Go Back</span>
                     </a>
-                    <h2 class="fs-32 ff-default font-darkgray fw-400 mb-0">Form Questions</h2>
+                    <h2 class="form-questions-mobile-page-title">Form Questions</h2>
                 </div>
             </div>
 
@@ -45,32 +45,32 @@
             <div class="row">
                 <!-- Left Column: Form shown while scheduling -->
                 <div class="col-12 col-lg-3 mb-4">
-                    <div class="form-preview-section">
-                        <h6 class="form-preview-title">Form shown while scheduling</h6>
+                    <div class="fq-left-sidebar">
+                        <h6 class="fq-sidebar-title">Form shown while scheduling</h6>
                         
-                        <div class="form-preview-item">
-                            <div class="form-preview-name">Megamall- Face</div>
-                            <div class="form-preview-services">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" checked>
+                        <div class="fq-sidebar-item">
+                            <div class="fq-sidebar-item-name">Megamall- Face</div>
+                            <div class="fq-sidebar-services">
+                                <label class="fq-sidebar-checkbox-label">
+                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
                                     Hair Rebond
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" checked>
+                                <label class="fq-sidebar-checkbox-label">
+                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
                                     Hot Oil
                                 </label>
                             </div>
                         </div>
 
-                        <div class="form-preview-item">
-                            <div class="form-preview-name">Robinsons- Face</div>
-                            <div class="form-preview-services">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" checked>
+                        <div class="fq-sidebar-item">
+                            <div class="fq-sidebar-item-name">Robinsons- Face</div>
+                            <div class="fq-sidebar-services">
+                                <label class="fq-sidebar-checkbox-label">
+                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
                                     Hair Rebond
                                 </label>
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" checked>
+                                <label class="fq-sidebar-checkbox-label">
+                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
                                     Hot Oil
                                 </label>
                             </div>
@@ -80,65 +80,65 @@
 
                 <!-- Right Column: Form Fields -->
                 <div class="col-12 col-lg-9">
-                    <div class="custom-form-container">
+                    <div class="fq-form-container">
                         <!-- Form Name -->
-                        <div class="mb-4">
-                            <label class="form-label">Form Name <span class="text-muted">(optional)</span></label>
-                            <input type="text" class="form-control" placeholder="Enter Name">
+                        <div class="fq-field-group">
+                            <label class="fq-field-label">Form Name <span class="fq-label-optional">(optional)</span></label>
+                            <input type="text" class="fq-input-text" placeholder="Enter Name">
                         </div>
 
                         <!-- Description -->
-                        <div class="mb-4">
-                            <label class="form-label">Description <span class="text-muted">(optional)</span></label>
-                            <textarea class="form-control" rows="4" placeholder="Write some instructions about the upcoming appointment or refund policy"></textarea>
+                        <div class="fq-field-group">
+                            <label class="fq-field-label">Description <span class="fq-label-optional">(optional)</span></label>
+                            <textarea class="fq-textarea" rows="4" placeholder="Write some instructions about the upcoming appointment or refund policy"></textarea>
                         </div>
 
                         <!-- Question 1 -->
-                        <div class="question-container mb-3">
-                            <div class="question-header-row mb-3">
-                                <div class="question-label-group">
-                                    <label class="question-label mb-0">Question 1</label>
-                                    <button class="btn-delete">Delete</button>
+                        <div class="fq-question-container">
+                            <div class="fq-question-header">
+                                <div class="fq-question-left">
+                                    <label class="fq-question-label">Question 1</label>
+                                    <button class="fq-delete-btn">Delete</button>
                                 </div>
-                                <div class="question-dropdown-wrapper">
-                                    <div class="custom-dropdown" data-question="1">
-                                    <button type="button" class="custom-dropdown-toggle">
-                                        <span class="dropdown-icon">≡</span>
-                                        <span class="dropdown-text">Textbox</span>
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                <div class="fq-question-right">
+                                    <div class="fq-dropdown" data-question="1">
+                                    <button type="button" class="fq-dropdown-toggle">
+                                        <span class="fq-dropdown-icon">≡</span>
+                                        <span class="fq-dropdown-text">Textbox</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-dropdown-arrow">
                                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </button>
-                                    <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                            <span class="item-icon">≡</span>
+                                    <div class="fq-dropdown-menu">
+                                        <div class="fq-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="fq-item-icon">≡</span>
                                             <span>Textbox</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                            <span class="item-icon">◉</span>
+                                        <div class="fq-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="fq-item-icon">◉</span>
                                             <span>Multiple Choice</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                            <span class="item-icon">☑</span>
+                                        <div class="fq-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="fq-item-icon">☑</span>
                                             <span>Checkboxes</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                            <span class="item-icon">▼</span>
+                                        <div class="fq-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="fq-item-icon">▼</span>
                                             <span>Dropdown List</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                            <span class="item-icon">123</span>
+                                        <div class="fq-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="fq-item-icon">123</span>
                                             <span>Number</span>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                            <input type="text" class="question-input mb-3" placeholder="ex. Write other concerns.">
-                            <div class="required-checkbox-row">
-                                <div class="required-checkbox">
-                                    <input class="custom-checkbox" type="checkbox" id="required1">
-                                    <label class="checkbox-label" for="required1">
+                            <input type="text" class="fq-question-input" placeholder="ex. Write other concerns.">
+                            <div class="fq-required-row">
+                                <div class="fq-required-checkbox-wrapper">
+                                    <input class="fq-checkbox" type="checkbox" id="required1">
+                                    <label class="fq-checkbox-label" for="required1">
                                         Required
                                     </label>
                                 </div>
@@ -146,54 +146,54 @@
                         </div>
 
                         <!-- Question 2 - Multiple Choice -->
-                        <div class="question-container mb-3">
-                            <div class="question-header-row mb-3">
-                                <div class="question-label-group">
-                                    <label class="question-label mb-0">Question 2</label>
-                                    <button class="btn-delete">Delete</button>
+                        <div class="fq-question-container">
+                            <div class="fq-question-header">
+                                <div class="fq-question-left">
+                                    <label class="fq-question-label">Question 2</label>
+                                    <button class="fq-delete-btn">Delete</button>
                                 </div>
-                                <div class="question-dropdown-wrapper">
-                                    <div class="custom-dropdown" data-question="2">
-                                    <button type="button" class="custom-dropdown-toggle">
-                                        <span class="dropdown-icon">◉</span>
-                                        <span class="dropdown-text">Multiple Choice</span>
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                <div class="fq-question-right">
+                                    <div class="fq-dropdown" data-question="2">
+                                    <button type="button" class="fq-dropdown-toggle">
+                                        <span class="fq-dropdown-icon">◉</span>
+                                        <span class="fq-dropdown-text">Multiple Choice</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-dropdown-arrow">
                                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </button>
-                                    <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                            <span class="item-icon">≡</span>
+                                    <div class="fq-dropdown-menu">
+                                        <div class="fq-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="fq-item-icon">≡</span>
                                             <span>Textbox</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                            <span class="item-icon">◉</span>
+                                        <div class="fq-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="fq-item-icon">◉</span>
                                             <span>Multiple Choice</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                            <span class="item-icon">☑</span>
+                                        <div class="fq-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="fq-item-icon">☑</span>
                                             <span>Checkboxes</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                            <span class="item-icon">▼</span>
+                                        <div class="fq-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="fq-item-icon">▼</span>
                                             <span>Dropdown List</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                            <span class="item-icon">123</span>
+                                        <div class="fq-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="fq-item-icon">123</span>
                                             <span>Number</span>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                            <input type="text" class="question-input mb-2" placeholder="ex. Do you reside in Metro Manila?">
-                            <div class="mb-3">
-                                <input type="text" class="option-input" placeholder="1. Enter Option Here">
+                            <input type="text" class="fq-question-input" placeholder="ex. Do you reside in Metro Manila?">
+                            <div class="fq-option-group">
+                                <input type="text" class="fq-option-input" placeholder="1. Enter Option Here">
                             </div>
-                            <div class="required-checkbox-row">
-                                <div class="required-checkbox">
-                                    <input class="custom-checkbox" type="checkbox" id="required2">
-                                    <label class="checkbox-label" for="required2">
+                            <div class="fq-required-row">
+                                <div class="fq-required-checkbox-wrapper">
+                                    <input class="fq-checkbox" type="checkbox" id="required2">
+                                    <label class="fq-checkbox-label" for="required2">
                                         Required
                                     </label>
                                 </div>
@@ -201,78 +201,78 @@
                         </div>
 
                         <!-- Question 3 - Checkboxes -->
-                        <div class="question-container mb-3">
-                            <div class="question-header-row mb-3">
-                                <div class="question-label-group">
-                                    <label class="question-label mb-0">Question 2</label>
-                                    <button class="btn-delete">Delete</button>
+                        <div class="fq-question-container">
+                            <div class="fq-question-header">
+                                <div class="fq-question-left">
+                                    <label class="fq-question-label">Question 2</label>
+                                    <button class="fq-delete-btn">Delete</button>
                                 </div>
-                                <div class="question-dropdown-wrapper">
-                                    <div class="custom-dropdown" data-question="3">
-                                    <button type="button" class="custom-dropdown-toggle">
-                                        <span class="dropdown-icon">☑</span>
-                                        <span class="dropdown-text">Checkboxes</span>
-                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                                <div class="fq-question-right">
+                                    <div class="fq-dropdown" data-question="3">
+                                    <button type="button" class="fq-dropdown-toggle">
+                                        <span class="fq-dropdown-icon">☑</span>
+                                        <span class="fq-dropdown-text">Checkboxes</span>
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-dropdown-arrow">
                                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </button>
-                                    <div class="custom-dropdown-menu">
-                                        <div class="custom-dropdown-item" data-value="textbox" data-icon="≡">
-                                            <span class="item-icon">≡</span>
+                                    <div class="fq-dropdown-menu">
+                                        <div class="fq-dropdown-item" data-value="textbox" data-icon="≡">
+                                            <span class="fq-item-icon">≡</span>
                                             <span>Textbox</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="multiple" data-icon="◉">
-                                            <span class="item-icon">◉</span>
+                                        <div class="fq-dropdown-item" data-value="multiple" data-icon="◉">
+                                            <span class="fq-item-icon">◉</span>
                                             <span>Multiple Choice</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="checkboxes" data-icon="☑">
-                                            <span class="item-icon">☑</span>
+                                        <div class="fq-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                            <span class="fq-item-icon">☑</span>
                                             <span>Checkboxes</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="dropdown" data-icon="▼">
-                                            <span class="item-icon">▼</span>
+                                        <div class="fq-dropdown-item" data-value="dropdown" data-icon="▼">
+                                            <span class="fq-item-icon">▼</span>
                                             <span>Dropdown List</span>
                                         </div>
-                                        <div class="custom-dropdown-item" data-value="number" data-icon="123">
-                                            <span class="item-icon">123</span>
+                                        <div class="fq-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="fq-item-icon">123</span>
                                             <span>Number</span>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                            <input type="text" class="question-input mb-2" placeholder="ex. Do you have any allergies?">
-                            <div class="options-list mb-3">
-                                <div class="option-item">
-                                    <span class="option-number">1.</span>
-                                    <span class="option-text">Nuts</span>
+                            <input type="text" class="fq-question-input" placeholder="ex. Do you have any allergies?">
+                            <div class="fq-options-list">
+                                <div class="fq-option-item">
+                                    <span class="fq-option-number">1.</span>
+                                    <span class="fq-option-text">Nuts</span>
                                 </div>
-                                <div class="option-item">
-                                    <span class="option-number">2.</span>
-                                    <span class="option-text">Dairy</span>
+                                <div class="fq-option-item">
+                                    <span class="fq-option-number">2.</span>
+                                    <span class="fq-option-text">Dairy</span>
                                 </div>
-                                <div class="option-item">
-                                    <span class="option-number">3.</span>
-                                    <span class="option-text">None</span>
+                                <div class="fq-option-item">
+                                    <span class="fq-option-number">3.</span>
+                                    <span class="fq-option-text">None</span>
                                 </div>
-                                <div class="option-item">
-                                    <span class="option-number">4.</span>
-                                    <input type="text" class="option-input-inline" placeholder="Enter Option Here">
+                                <div class="fq-option-item">
+                                    <span class="fq-option-number">4.</span>
+                                    <input type="text" class="fq-option-input-inline" placeholder="Enter Option Here">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Add Question Button -->
-                        <div class="mb-4">
-                            <button class="btn btn-link text-primary p-0 text-decoration-none">
+                        <div class="fq-add-question-wrapper">
+                            <button class="fq-add-question-btn">
                                 + Add Question
                             </button>
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="d-flex justify-content-end align-items-center gap-4">
-                            <button class="btn-cancel-link">Cancel</button>
-                            <button class="btn btn-primary">Save Form</button>
+                        <div class="fq-action-buttons">
+                            <button class="fq-cancel-btn">Cancel</button>
+                            <button class="fq-save-btn">Save Form</button>
                         </div>
                     </div>
                 </div>
@@ -284,60 +284,139 @@
 @await Html.PartialAsync("../admin_view/_Scripts")
 
 <style>
-    .back-link {
+    /* ==================== FORM QUESTIONS PAGE - DEDICATED STYLES ==================== */
+    
+    /* Desktop Header */
+    .form-questions-desktop-header {
+        display: none;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        position: relative;
+        margin-top: 2rem;
+    }
+    
+    @@media (min-width: 768px) {
+        .form-questions-desktop-header {
+            display: flex;
+        }
+    }
+    
+    .form-questions-back-link {
         color: #FF6B35;
         font-size: 14px;
         font-weight: 400;
         display: flex;
         align-items: center;
+        text-decoration: none;
+        padding: 0;
     }
 
-    .back-link:hover {
+    .form-questions-back-link:hover {
         color: #e55a2b;
     }
 
-    .back-link svg {
+    .form-questions-back-link svg {
         stroke: #FF6B35;
         width: 20px;
         height: 20px;
     }
+    
+    .form-questions-page-title {
+        font-size: 32px;
+        font-weight: 400;
+        color: #333;
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    /* Mobile Header */
+    .form-questions-mobile-header {
+        display: block;
+    }
+    
+    @@media (min-width: 768px) {
+        .form-questions-mobile-header {
+            display: none;
+        }
+    }
+    
+    .form-questions-mobile-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        position: relative;
+        margin-top: 1.5rem;
+    }
+    
+    .form-questions-mobile-back-link {
+        color: #FF6B35;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0;
+        position: absolute;
+        left: 0;
+    }
+    
+    .form-questions-mobile-back-link:hover {
+        color: #e55a2b;
+    }
+    
+    .form-questions-mobile-back-link svg {
+        stroke: #FF6B35;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .form-questions-mobile-page-title {
+        font-size: 32px;
+        font-weight: 400;
+        color: #333;
+        margin: 0;
+    }
 
-    .form-preview-section {
+    /* Left Sidebar */
+    .fq-left-sidebar {
         background: transparent;
         border: none;
         border-radius: 0;
         padding: 0;
     }
 
-    .form-preview-title {
+    .fq-sidebar-title {
         font-size: 12px;
         font-weight: 400;
         color: #999;
         margin-bottom: 16px;
     }
 
-    .form-preview-item {
+    .fq-sidebar-item {
         margin-bottom: 16px;
     }
 
-    .form-preview-item:last-child {
+    .fq-sidebar-item:last-child {
         margin-bottom: 0;
     }
 
-    .form-preview-name {
+    .fq-sidebar-item-name {
         font-size: 14px;
         font-weight: 600;
         color: #333;
         margin-bottom: 10px;
     }
 
-    .form-preview-services {
+    .fq-sidebar-services {
         display: flex;
         flex-direction: column;
         gap: 8px;
     }
 
-    .form-preview-services .form-check-label {
+    .fq-sidebar-checkbox-label {
         font-size: 14px;
         color: #333;
         display: flex;
@@ -347,7 +426,7 @@
         font-weight: 400;
     }
 
-    .form-preview-services .form-check-input {
+    .fq-sidebar-checkbox {
         width: 16px;
         height: 16px;
         border: none;
@@ -361,11 +440,11 @@
         position: relative;
     }
 
-    .form-preview-services .form-check-input:checked {
+    .fq-sidebar-checkbox:checked {
         background-color: #FF6B35;
     }
 
-    .form-preview-services .form-check-input:checked::after {
+    .fq-sidebar-checkbox:checked::after {
         content: '';
         position: absolute;
         left: 5px;
@@ -377,78 +456,115 @@
         transform: rotate(45deg);
     }
 
-    .custom-form-container {
+    /* Form Container */
+    .fq-form-container {
         background: transparent;
         padding: 0;
     }
 
-    .form-label {
+    /* Form Fields */
+    .fq-field-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .fq-field-label {
         font-size: 14px;
         font-weight: 600;
         color: #333;
         margin-bottom: 8px;
+        display: block;
     }
 
-    .form-label .text-muted {
+    .fq-label-optional {
         font-weight: 400;
         color: #999;
     }
 
-    .form-control {
+    .fq-input-text {
         border: 1px solid #E0E0E0;
         border-radius: 4px;
         padding: 10px 12px;
         font-size: 14px;
         color: #333;
         background: #fff;
+        width: 100%;
     }
 
-    .form-control:focus {
+    .fq-input-text:focus {
         border-color: #999;
         box-shadow: none;
         outline: none;
     }
 
-    .form-control::placeholder {
+    .fq-input-text::placeholder {
+        color: #999;
+    }
+    
+    .fq-textarea {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #333;
+        background: #fff;
+        width: 100%;
+        resize: vertical;
+    }
+
+    .fq-textarea:focus {
+        border-color: #999;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .fq-textarea::placeholder {
         color: #999;
     }
 
-    .question-container {
+    /* Question Container */
+    .fq-question-container {
         border: none;
         border-radius: 0;
         padding: 20px 0;
         background: transparent;
         border-bottom: 1px solid #E0E0E0;
+        margin-bottom: 1rem;
     }
 
-    .question-container:last-of-type {
+    .fq-question-container:last-of-type {
         border-bottom: none;
     }
 
-    .question-header-row {
+    /* Question Header */
+    .fq-question-header {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
+        gap: 16px;
+        margin-bottom: 1rem;
     }
 
-    .question-label-group {
+    .fq-question-left {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex-shrink: 0;
     }
 
-    .question-dropdown-wrapper {
+    .fq-question-right {
         margin-left: auto;
+        flex-shrink: 0;
     }
 
-    .question-label {
+    .fq-question-label {
         font-size: 14px;
         font-weight: 600;
         color: #333;
+        margin: 0;
     }
 
-    .btn-delete {
+    .fq-delete-btn {
         background: none;
         border: none;
         color: #FF6B35;
@@ -456,19 +572,24 @@
         font-weight: 400;
         padding: 0;
         cursor: pointer;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        height: 38px;
     }
 
-    .btn-delete:hover {
+    .fq-delete-btn:hover {
         color: #e55a2b;
     }
 
-    .custom-dropdown {
+    /* Dropdown */
+    .fq-dropdown {
         position: relative;
         display: inline-block;
     }
 
-    .custom-dropdown-toggle {
-        display: flex;
+    .fq-dropdown-toggle {
+        display: inline-flex;
         align-items: center;
         gap: 8px;
         background: #fff;
@@ -479,28 +600,30 @@
         color: #333;
         cursor: pointer;
         min-width: 140px;
+        height: 38px;
+        box-sizing: border-box;
     }
 
-    .custom-dropdown-toggle:hover {
+    .fq-dropdown-toggle:hover {
         border-color: #FF6B35;
     }
 
-    .custom-dropdown-toggle .dropdown-icon {
+    .fq-dropdown-icon {
         font-size: 16px;
         color: #666;
     }
 
-    .custom-dropdown-toggle .dropdown-text {
+    .fq-dropdown-text {
         flex: 1;
         text-align: left;
     }
 
-    .custom-dropdown-toggle .dropdown-arrow {
+    .fq-dropdown-arrow {
         stroke: #666;
         margin-left: auto;
     }
 
-    .custom-dropdown-menu {
+    .fq-dropdown-menu {
         position: absolute;
         right: 0;
         top: calc(100% + 4px);
@@ -513,11 +636,11 @@
         display: none;
     }
 
-    .custom-dropdown-menu.show {
+    .fq-dropdown-menu.show {
         display: block;
     }
 
-    .custom-dropdown-item {
+    .fq-dropdown-item {
         display: flex;
         align-items: center;
         gap: 12px;
@@ -528,18 +651,44 @@
         transition: background-color 0.15s ease;
     }
 
-    .custom-dropdown-item:hover {
+    .fq-dropdown-item:hover {
         background: #F5F5F5;
     }
 
-    .custom-dropdown-item .item-icon {
+    .fq-item-icon {
         font-size: 16px;
         color: #666;
         width: 20px;
         text-align: center;
     }
 
-    .question-input {
+    /* Question Input */
+    .fq-question-input {
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        padding: 10px 12px;
+        font-size: 14px;
+        color: #333;
+        width: 100%;
+        background: #fff;
+        margin-bottom: 1rem;
+    }
+
+    .fq-question-input:focus {
+        outline: none;
+        border-color: #999;
+    }
+
+    .fq-question-input::placeholder {
+        color: #999;
+    }
+
+    /* Options */
+    .fq-option-group {
+        margin-bottom: 1rem;
+    }
+
+    .fq-option-input {
         border: 1px solid #E0E0E0;
         border-radius: 4px;
         padding: 10px 12px;
@@ -549,41 +698,23 @@
         background: #fff;
     }
 
-    .question-input:focus {
+    .fq-option-input:focus {
         outline: none;
         border-color: #999;
     }
 
-    .question-input::placeholder {
+    .fq-option-input::placeholder {
         color: #999;
     }
 
-    .option-input {
-        border: 1px solid #E0E0E0;
-        border-radius: 4px;
-        padding: 10px 12px;
-        font-size: 14px;
-        color: #333;
-        width: 100%;
-        background: #fff;
-    }
-
-    .option-input:focus {
-        outline: none;
-        border-color: #999;
-    }
-
-    .option-input::placeholder {
-        color: #999;
-    }
-
-    .options-list {
+    .fq-options-list {
         display: flex;
         flex-direction: column;
         gap: 8px;
+        margin-bottom: 1rem;
     }
 
-    .option-item {
+    .fq-option-item {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -591,16 +722,16 @@
         color: #333;
     }
 
-    .option-number {
+    .fq-option-number {
         color: #666;
         min-width: 20px;
     }
 
-    .option-text {
+    .fq-option-text {
         color: #333;
     }
 
-    .option-input-inline {
+    .fq-option-input-inline {
         border: 1px solid #E0E0E0;
         border-radius: 4px;
         padding: 8px 12px;
@@ -610,28 +741,28 @@
         background: #fff;
     }
 
-    .option-input-inline:focus {
+    .fq-option-input-inline:focus {
         outline: none;
         border-color: #999;
     }
 
-    .option-input-inline::placeholder {
+    .fq-option-input-inline::placeholder {
         color: #999;
     }
 
-
-    .required-checkbox-row {
+    /* Required Checkbox */
+    .fq-required-row {
         display: flex;
         justify-content: flex-end;
     }
 
-    .required-checkbox {
+    .fq-required-checkbox-wrapper {
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    .custom-checkbox {
+    .fq-checkbox {
         width: 16px;
         height: 16px;
         border: 2px solid #E0E0E0;
@@ -644,12 +775,12 @@
         position: relative;
     }
 
-    .custom-checkbox:checked {
+    .fq-checkbox:checked {
         background-color: #fff;
         border-color: #E0E0E0;
     }
 
-    .custom-checkbox:checked::after {
+    .fq-checkbox:checked::after {
         content: '';
         position: absolute;
         left: 3px;
@@ -661,7 +792,7 @@
         transform: rotate(45deg);
     }
 
-    .checkbox-label {
+    .fq-checkbox-label {
         font-size: 14px;
         color: #333;
         cursor: pointer;
@@ -669,18 +800,35 @@
         font-weight: 400;
     }
 
-    .btn-link.text-primary {
+    /* Add Question Button */
+    .fq-add-question-wrapper {
+        margin-bottom: 1.5rem;
+    }
+
+    .fq-add-question-btn {
         font-size: 14px;
         font-weight: 400;
-        color: #FF6B35 !important;
+        color: #FF6B35;
         text-decoration: none;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
     }
 
-    .btn-link.text-primary:hover {
-        color: #e55a2b !important;
+    .fq-add-question-btn:hover {
+        color: #e55a2b;
     }
 
-    .btn-cancel-link {
+    /* Action Buttons */
+    .fq-action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .fq-cancel-btn {
         background: none;
         border: none;
         color: #FF6B35;
@@ -690,66 +838,57 @@
         cursor: pointer;
     }
 
-    .btn-cancel-link:hover {
+    .fq-cancel-btn:hover {
         color: #e55a2b;
         text-decoration: underline;
     }
 
-    .btn-outline-secondary {
-        border: 1px solid #E0E0E0;
-        color: #666;
-        background: #fff;
-        padding: 10px 24px;
-        font-size: 14px;
-        font-weight: 500;
-        border-radius: 4px;
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: #F5F5F5;
-        border-color: #E0E0E0;
-        color: #666;
-    }
-
-    .btn-primary {
+    .fq-save-btn {
         background-color: #FF6B35;
-        border-color: #FF6B35;
+        border: 1px solid #FF6B35;
         color: #fff;
         padding: 10px 24px;
         font-size: 14px;
         font-weight: 500;
         border-radius: 4px;
+        cursor: pointer;
     }
 
-    .btn-primary:hover {
+    .fq-save-btn:hover {
         background-color: #e55a2b;
         border-color: #e55a2b;
     }
 
+    /* Responsive Styles */
     @@media (max-width: 991px) {
-        .question-container {
+        .fq-question-container {
             padding: 16px;
+        }
+        
+        .form-questions-page-title,
+        .form-questions-mobile-page-title {
+            font-size: 24px;
         }
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const dropdowns = document.querySelectorAll('.custom-dropdown');
+        const dropdowns = document.querySelectorAll('.fq-dropdown');
         
         dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.custom-dropdown-toggle');
-            const menu = dropdown.querySelector('.custom-dropdown-menu');
-            const items = dropdown.querySelectorAll('.custom-dropdown-item');
-            const iconSpan = toggle.querySelector('.dropdown-icon');
-            const textSpan = toggle.querySelector('.dropdown-text');
+            const toggle = dropdown.querySelector('.fq-dropdown-toggle');
+            const menu = dropdown.querySelector('.fq-dropdown-menu');
+            const items = dropdown.querySelectorAll('.fq-dropdown-item');
+            const iconSpan = toggle.querySelector('.fq-dropdown-icon');
+            const textSpan = toggle.querySelector('.fq-dropdown-text');
             
             // Toggle dropdown on button click
             toggle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 
                 // Close all other dropdowns
-                document.querySelectorAll('.custom-dropdown-menu.show').forEach(otherMenu => {
+                document.querySelectorAll('.fq-dropdown-menu.show').forEach(otherMenu => {
                     if (otherMenu !== menu) {
                         otherMenu.classList.remove('show');
                     }
@@ -780,7 +919,7 @@
         
         // Close dropdowns when clicking outside
         document.addEventListener('click', function() {
-            document.querySelectorAll('.custom-dropdown-menu.show').forEach(menu => {
+            document.querySelectorAll('.fq-dropdown-menu.show').forEach(menu => {
                 menu.classList.remove('show');
             });
         });
