@@ -35,51 +35,51 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <span class="ms-2">Go Back</span>
+                        <span class="fq-back-text">Go Back</span>
                     </a>
                     <h2 class="form-questions-mobile-page-title">Form Questions</h2>
                 </div>
             </div>
 
             <!-- Main Content -->
-            <div class="row">
+            <div class="row fq-main-row">
                 <!-- Left Column: Form shown while scheduling -->
-                <div class="col-12 col-lg-3 mb-4">
+                <div class="col-12 col-lg-3 mb-4 fq-sidebar-column">
                     <div class="fq-left-sidebar">
                         <h6 class="fq-sidebar-title">Form shown while scheduling</h6>
                         
                         <div class="fq-sidebar-item">
                             <div class="fq-sidebar-item-name">Megamall- Face</div>
                             <div class="fq-sidebar-services">
-                                <label class="fq-sidebar-checkbox-label">
-                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
-                                    Hair Rebond
-                                </label>
-                                <label class="fq-sidebar-checkbox-label">
-                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
-                                    Hot Oil
-                                </label>
+                                <div class="form-check fq-form-check">
+                                    <input type="checkbox" class="form-check-input" id="megamall-hair" checked>
+                                    <label class="form-check-label" for="megamall-hair">Hair Rebond</label>
+                                </div>
+                                <div class="form-check fq-form-check">
+                                    <input type="checkbox" class="form-check-input" id="megamall-oil" checked>
+                                    <label class="form-check-label" for="megamall-oil">Hot Oil</label>
+                                </div>
                             </div>
                         </div>
 
                         <div class="fq-sidebar-item">
                             <div class="fq-sidebar-item-name">Robinsons- Face</div>
                             <div class="fq-sidebar-services">
-                                <label class="fq-sidebar-checkbox-label">
-                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
-                                    Hair Rebond
-                                </label>
-                                <label class="fq-sidebar-checkbox-label">
-                                    <input type="checkbox" class="fq-sidebar-checkbox" checked>
-                                    Hot Oil
-                                </label>
+                                <div class="form-check fq-form-check">
+                                    <input type="checkbox" class="form-check-input" id="robinsons-hair" checked>
+                                    <label class="form-check-label" for="robinsons-hair">Hair Rebond</label>
+                                </div>
+                                <div class="form-check fq-form-check">
+                                    <input type="checkbox" class="form-check-input" id="robinsons-oil" checked>
+                                    <label class="form-check-label" for="robinsons-oil">Hot Oil</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column: Form Fields -->
-                <div class="col-12 col-lg-9">
+                <div class="col-12 col-lg-9 fq-form-column">
                     <div class="fq-form-container">
                         <!-- Form Name -->
                         <div class="fq-field-group">
@@ -136,11 +136,9 @@
                             </div>
                             <input type="text" class="fq-question-input" placeholder="ex. Write other concerns.">
                             <div class="fq-required-row">
-                                <div class="fq-required-checkbox-wrapper">
-                                    <input class="fq-checkbox" type="checkbox" id="required1">
-                                    <label class="fq-checkbox-label" for="required1">
-                                        Required
-                                    </label>
+                                <div class="form-check fq-form-check">
+                                    <input class="form-check-input" type="checkbox" id="required1">
+                                    <label class="form-check-label" for="required1">Required</label>
                                 </div>
                             </div>
                         </div>
@@ -187,15 +185,17 @@
                                 </div>
                             </div>
                             <input type="text" class="fq-question-input" placeholder="ex. Do you reside in Metro Manila?">
-                            <div class="fq-option-group">
-                                <input type="text" class="fq-option-input" placeholder="1. Enter Option Here">
+                            <div class="fq-options-container">
+                                <div class="fq-option-row" data-option-index="1">
+                                    <input type="text" class="fq-option-input" placeholder="1. Enter Option Here">
+                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
+                                </div>
+                                <button type="button" class="fq-add-option-btn">+ Add Option</button>
                             </div>
                             <div class="fq-required-row">
-                                <div class="fq-required-checkbox-wrapper">
-                                    <input class="fq-checkbox" type="checkbox" id="required2">
-                                    <label class="fq-checkbox-label" for="required2">
-                                        Required
-                                    </label>
+                                <div class="form-check fq-form-check">
+                                    <input class="form-check-input" type="checkbox" id="required2">
+                                    <label class="form-check-label" for="required2">Required</label>
                                 </div>
                             </div>
                         </div>
@@ -242,23 +242,20 @@
                                 </div>
                             </div>
                             <input type="text" class="fq-question-input" placeholder="ex. Do you have any allergies?">
-                            <div class="fq-options-list">
-                                <div class="fq-option-item">
-                                    <span class="fq-option-number">1.</span>
-                                    <span class="fq-option-text">Nuts</span>
+                            <div class="fq-options-container">
+                                <div class="fq-option-row" data-option-index="1">
+                                    <input type="text" class="fq-option-input" value="Nuts" placeholder="1. Enter Option Here">
+                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
                                 </div>
-                                <div class="fq-option-item">
-                                    <span class="fq-option-number">2.</span>
-                                    <span class="fq-option-text">Dairy</span>
+                                <div class="fq-option-row" data-option-index="2">
+                                    <input type="text" class="fq-option-input" value="Dairy" placeholder="2. Enter Option Here">
+                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
                                 </div>
-                                <div class="fq-option-item">
-                                    <span class="fq-option-number">3.</span>
-                                    <span class="fq-option-text">None</span>
+                                <div class="fq-option-row" data-option-index="3">
+                                    <input type="text" class="fq-option-input" value="None" placeholder="3. Enter Option Here">
+                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
                                 </div>
-                                <div class="fq-option-item">
-                                    <span class="fq-option-number">4.</span>
-                                    <input type="text" class="fq-option-input-inline" placeholder="Enter Option Here">
-                                </div>
+                                <button type="button" class="fq-add-option-btn">+ Add Option</button>
                             </div>
                         </div>
 
@@ -269,13 +266,19 @@
                             </button>
                         </div>
 
-                        <!-- Action Buttons -->
-                        <div class="fq-action-buttons">
+                        <!-- Action Buttons (Desktop) -->
+                        <div class="fq-action-buttons fq-action-buttons-desktop">
                             <button class="fq-cancel-btn">Cancel</button>
                             <button class="fq-save-btn">Save Form</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Mobile Action Buttons (at bottom) -->
+            <div class="fq-mobile-actions">
+                <button class="fq-save-btn fq-save-btn-mobile">Save Form</button>
+                <button class="fq-cancel-btn fq-cancel-btn-mobile">Cancel</button>
             </div>
         </div>
     </div>
@@ -373,6 +376,17 @@
         height: 20px;
     }
     
+    .fq-back-text {
+        margin-left: 8px;
+        display: none;
+    }
+    
+    @@media (min-width: 480px) {
+        .fq-back-text {
+            display: inline;
+        }
+    }
+    
     .form-questions-mobile-page-title {
         font-size: 32px;
         font-weight: 400;
@@ -416,44 +430,41 @@
         gap: 8px;
     }
 
-    .fq-sidebar-checkbox-label {
-        font-size: 14px;
-        color: #333;
+    /* Form Check Checkbox Styling */
+    .fq-form-check {
         display: flex;
         align-items: center;
         gap: 8px;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+    
+    .fq-form-check .form-check-input {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        border: 2px solid #E0E0E0;
+        border-radius: 4px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+    
+    .fq-form-check .form-check-input:checked {
+        background-color: #FF6B35;
+        border-color: #FF6B35;
+    }
+    
+    .fq-form-check .form-check-input:focus {
+        box-shadow: none;
+        border-color: #FF6B35;
+    }
+    
+    .fq-form-check .form-check-label {
+        font-size: 14px;
+        color: #333;
         cursor: pointer;
         font-weight: 400;
-    }
-
-    .fq-sidebar-checkbox {
-        width: 16px;
-        height: 16px;
-        border: none;
-        cursor: pointer;
         margin: 0;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-color: #FF6B35;
-        border-radius: 2px;
-        position: relative;
-    }
-
-    .fq-sidebar-checkbox:checked {
-        background-color: #FF6B35;
-    }
-
-    .fq-sidebar-checkbox:checked::after {
-        content: '';
-        position: absolute;
-        left: 5px;
-        top: 2px;
-        width: 4px;
-        height: 8px;
-        border: solid #fff;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
     }
 
     /* Form Container */
@@ -687,6 +698,54 @@
     .fq-option-group {
         margin-bottom: 1rem;
     }
+    
+    .fq-options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 1rem;
+    }
+    
+    .fq-option-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .fq-option-row input {
+        flex: 1;
+    }
+    
+    .fq-remove-option-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
+    }
+    
+    .fq-remove-option-btn:hover {
+        color: #FF6B35;
+    }
+    
+    .fq-add-option-btn {
+        background: none;
+        border: none;
+        color: #FF6B35;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 0;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+    
+    .fq-add-option-btn:hover {
+        color: #e55a2b;
+    }
 
     .fq-option-input {
         border: 1px solid #E0E0E0;
@@ -756,50 +815,6 @@
         justify-content: flex-end;
     }
 
-    .fq-required-checkbox-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .fq-checkbox {
-        width: 16px;
-        height: 16px;
-        border: 2px solid #E0E0E0;
-        cursor: pointer;
-        margin: 0;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        border-radius: 2px;
-        position: relative;
-    }
-
-    .fq-checkbox:checked {
-        background-color: #fff;
-        border-color: #E0E0E0;
-    }
-
-    .fq-checkbox:checked::after {
-        content: '';
-        position: absolute;
-        left: 3px;
-        top: 0px;
-        width: 4px;
-        height: 8px;
-        border: solid #333;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-    }
-
-    .fq-checkbox-label {
-        font-size: 14px;
-        color: #333;
-        cursor: pointer;
-        margin: 0;
-        font-weight: 400;
-    }
-
     /* Add Question Button */
     .fq-add-question-wrapper {
         margin-bottom: 1.5rem;
@@ -859,10 +874,30 @@
         border-color: #e55a2b;
     }
 
+    /* Mobile Action Buttons */
+    .fq-mobile-actions {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .fq-save-btn-mobile {
+        width: 100%;
+        padding: 14px 24px;
+        border-radius: 25px;
+    }
+    
+    .fq-cancel-btn-mobile {
+        text-align: center;
+    }
+
     /* Responsive Styles */
     @@media (max-width: 991px) {
         .fq-question-container {
-            padding: 16px;
+            padding: 16px 0;
         }
         
         .form-questions-page-title,
@@ -871,7 +906,7 @@
         }
         
         .fq-left-sidebar {
-            margin-bottom: 2rem;
+            margin-bottom: 0;
         }
         
         .fq-sidebar-item {
@@ -895,18 +930,38 @@
     }
     
     @@media (max-width: 767px) {
+        /* Reorder columns on mobile - form first, sidebar at bottom */
+        .fq-main-row {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .fq-form-column {
+            order: 1;
+        }
+        
+        .fq-sidebar-column {
+            order: 2;
+            margin-bottom: 0 !important;
+        }
+        
         .fq-sidebar-checkbox-label {
-            font-size: 13px;
+            font-size: 14px;
         }
         
         .fq-sidebar-item-name {
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
         }
         
-        .fq-action-buttons {
-            flex-direction: column;
-            gap: 1rem;
-            align-items: stretch;
+        /* Hide desktop action buttons on mobile */
+        .fq-action-buttons-desktop {
+            display: none;
+        }
+        
+        /* Show mobile action buttons */
+        .fq-mobile-actions {
+            display: flex;
         }
         
         .fq-save-btn {
@@ -917,47 +972,275 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const dropdowns = document.querySelectorAll('.fq-dropdown');
+        // Question counter for adding new questions
+        let questionCounter = document.querySelectorAll('.fq-question-container').length;
         
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.fq-dropdown-toggle');
-            const menu = dropdown.querySelector('.fq-dropdown-menu');
-            const items = dropdown.querySelectorAll('.fq-dropdown-item');
-            const iconSpan = toggle.querySelector('.fq-dropdown-icon');
-            const textSpan = toggle.querySelector('.fq-dropdown-text');
+        // Placeholder text based on question type
+        const placeholdersByType = {
+            'textbox': 'ex. Write other concerns.',
+            'multiple': 'ex. Do you reside in Metro Manila?',
+            'checkboxes': 'ex. Do you have any allergies?',
+            'dropdown': 'ex. Select your preferred time slot',
+            'number': 'ex. Enter your age'
+        };
+        
+        // Initialize dropdowns
+        function initializeDropdowns() {
+            const dropdowns = document.querySelectorAll('.fq-dropdown');
             
-            // Toggle dropdown on button click
-            toggle.addEventListener('click', function(e) {
-                e.stopPropagation();
+            dropdowns.forEach(dropdown => {
+                // Skip if already initialized
+                if (dropdown.dataset.initialized) return;
+                dropdown.dataset.initialized = 'true';
                 
-                // Close all other dropdowns
-                document.querySelectorAll('.fq-dropdown-menu.show').forEach(otherMenu => {
-                    if (otherMenu !== menu) {
-                        otherMenu.classList.remove('show');
-                    }
-                });
+                const toggle = dropdown.querySelector('.fq-dropdown-toggle');
+                const menu = dropdown.querySelector('.fq-dropdown-menu');
+                const items = dropdown.querySelectorAll('.fq-dropdown-item');
+                const iconSpan = toggle.querySelector('.fq-dropdown-icon');
+                const textSpan = toggle.querySelector('.fq-dropdown-text');
                 
-                // Toggle current dropdown
-                menu.classList.toggle('show');
-            });
-            
-            // Handle item selection
-            items.forEach(item => {
-                item.addEventListener('click', function(e) {
+                // Toggle dropdown on button click
+                toggle.addEventListener('click', function(e) {
                     e.stopPropagation();
                     
-                    const value = this.getAttribute('data-value');
-                    const icon = this.getAttribute('data-icon');
-                    const text = this.textContent.trim();
+                    // Close all other dropdowns
+                    document.querySelectorAll('.fq-dropdown-menu.show').forEach(otherMenu => {
+                        if (otherMenu !== menu) {
+                            otherMenu.classList.remove('show');
+                        }
+                    });
                     
-                    // Update toggle button
-                    iconSpan.textContent = icon;
-                    textSpan.textContent = text;
-                    
-                    // Close dropdown
-                    menu.classList.remove('show');
+                    // Toggle current dropdown
+                    menu.classList.toggle('show');
+                });
+                
+                // Handle item selection
+                items.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        
+                        const value = this.getAttribute('data-value');
+                        const icon = this.getAttribute('data-icon');
+                        // Get only the text from the span, not the icon
+                        const textElement = this.querySelector('span:last-child');
+                        const text = textElement ? textElement.textContent.trim() : this.textContent.trim();
+                        
+                        // Update toggle button
+                        iconSpan.textContent = icon;
+                        textSpan.textContent = text;
+                        
+                        // Update placeholder based on selected type
+                        const questionContainer = dropdown.closest('.fq-question-container');
+                        if (questionContainer) {
+                            const questionInput = questionContainer.querySelector('.fq-question-input');
+                            if (questionInput && placeholdersByType[value]) {
+                                questionInput.placeholder = placeholdersByType[value];
+                            }
+                            
+                            // Update question content based on type
+                            updateQuestionContent(questionContainer, value);
+                        }
+                        
+                        // Close dropdown
+                        menu.classList.remove('show');
+                    });
                 });
             });
+        }
+        
+        // Update question content based on type (show/hide options section)
+        function updateQuestionContent(container, type) {
+            // Remove existing options section if any
+            const existingOptionGroup = container.querySelector('.fq-option-group');
+            const existingOptionsList = container.querySelector('.fq-options-list');
+            const existingOptionsContainer = container.querySelector('.fq-options-container');
+            if (existingOptionGroup) existingOptionGroup.remove();
+            if (existingOptionsList) existingOptionsList.remove();
+            if (existingOptionsContainer) existingOptionsContainer.remove();
+            
+            // Add options section for types that need it
+            if (type === 'multiple' || type === 'checkboxes' || type === 'dropdown') {
+                const questionInput = container.querySelector('.fq-question-input');
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'fq-options-container';
+                optionsContainer.innerHTML = `
+                    <div class="fq-option-row" data-option-index="1">
+                        <input type="text" class="fq-option-input" placeholder="1. Enter Option Here">
+                        <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
+                    </div>
+                    <button type="button" class="fq-add-option-btn">+ Add Option</button>
+                `;
+                questionInput.insertAdjacentElement('afterend', optionsContainer);
+                initializeOptionButtons(optionsContainer);
+            }
+        }
+        
+        // Initialize add/remove option buttons
+        function initializeOptionButtons(container) {
+            const addBtn = container.querySelector('.fq-add-option-btn');
+            if (addBtn && !addBtn.dataset.initialized) {
+                addBtn.dataset.initialized = 'true';
+                addBtn.addEventListener('click', function() {
+                    const optionRows = container.querySelectorAll('.fq-option-row');
+                    const newIndex = optionRows.length + 1;
+                    const newRow = document.createElement('div');
+                    newRow.className = 'fq-option-row';
+                    newRow.dataset.optionIndex = newIndex;
+                    newRow.innerHTML = `
+                        <input type="text" class="fq-option-input" placeholder="${newIndex}. Enter Option Here">
+                        <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
+                    `;
+                    addBtn.insertAdjacentElement('beforebegin', newRow);
+                    initializeRemoveButtons(container);
+                });
+            }
+            initializeRemoveButtons(container);
+        }
+        
+        // Initialize remove option buttons
+        function initializeRemoveButtons(container) {
+            container.querySelectorAll('.fq-remove-option-btn').forEach(btn => {
+                if (btn.dataset.initialized) return;
+                btn.dataset.initialized = 'true';
+                btn.addEventListener('click', function() {
+                    const row = this.closest('.fq-option-row');
+                    if (row) {
+                        row.remove();
+                        renumberOptions(container);
+                    }
+                });
+            });
+        }
+        
+        // Renumber options after removal
+        function renumberOptions(container) {
+            const rows = container.querySelectorAll('.fq-option-row');
+            rows.forEach((row, index) => {
+                const input = row.querySelector('.fq-option-input');
+                if (input) {
+                    const currentValue = input.value;
+                    input.placeholder = `${index + 1}. Enter Option Here`;
+                    row.dataset.optionIndex = index + 1;
+                }
+            });
+        }
+        
+        // Create a new question HTML
+        function createQuestionHTML(questionNumber) {
+            return `
+                <div class="fq-question-container">
+                    <div class="fq-question-header">
+                        <div class="fq-question-left">
+                            <label class="fq-question-label">Question ${questionNumber}</label>
+                            <button class="fq-delete-btn">Delete</button>
+                        </div>
+                        <div class="fq-question-right">
+                            <div class="fq-dropdown" data-question="${questionNumber}">
+                                <button type="button" class="fq-dropdown-toggle">
+                                    <span class="fq-dropdown-icon">≡</span>
+                                    <span class="fq-dropdown-text">Textbox</span>
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-dropdown-arrow">
+                                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <div class="fq-dropdown-menu">
+                                    <div class="fq-dropdown-item" data-value="textbox" data-icon="≡">
+                                        <span class="fq-item-icon">≡</span>
+                                        <span>Textbox</span>
+                                    </div>
+                                    <div class="fq-dropdown-item" data-value="multiple" data-icon="◉">
+                                        <span class="fq-item-icon">◉</span>
+                                        <span>Multiple Choice</span>
+                                    </div>
+                                    <div class="fq-dropdown-item" data-value="checkboxes" data-icon="☑">
+                                        <span class="fq-item-icon">☑</span>
+                                        <span>Checkboxes</span>
+                                    </div>
+                                    <div class="fq-dropdown-item" data-value="dropdown" data-icon="▼">
+                                        <span class="fq-item-icon">▼</span>
+                                        <span>Dropdown List</span>
+                                    </div>
+                                    <div class="fq-dropdown-item" data-value="number" data-icon="123">
+                                        <span class="fq-item-icon">123</span>
+                                        <span>Number</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="fq-question-input" placeholder="ex. Write other concerns.">
+                    <div class="fq-required-row">
+                        <div class="form-check fq-form-check">
+                            <input class="form-check-input" type="checkbox" id="required${questionNumber}">
+                            <label class="form-check-label" for="required${questionNumber}">Required</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Add Question button functionality
+        const addQuestionBtn = document.querySelector('.fq-add-question-btn');
+        if (addQuestionBtn) {
+            addQuestionBtn.addEventListener('click', function() {
+                questionCounter++;
+                const addQuestionWrapper = document.querySelector('.fq-add-question-wrapper');
+                const newQuestionHTML = createQuestionHTML(questionCounter);
+                
+                // Insert new question before the Add Question button
+                addQuestionWrapper.insertAdjacentHTML('beforebegin', newQuestionHTML);
+                
+                // Initialize dropdown for the new question
+                initializeDropdowns();
+                
+                // Initialize delete button for the new question
+                initializeDeleteButtons();
+            });
+        }
+        
+        // Delete button functionality
+        function initializeDeleteButtons() {
+            document.querySelectorAll('.fq-delete-btn').forEach(btn => {
+                // Skip if already initialized
+                if (btn.dataset.initialized) return;
+                btn.dataset.initialized = 'true';
+                
+                btn.addEventListener('click', function() {
+                    const questionContainer = this.closest('.fq-question-container');
+                    if (questionContainer) {
+                        questionContainer.remove();
+                        // Renumber remaining questions
+                        renumberQuestions();
+                    }
+                });
+            });
+        }
+        
+        // Renumber questions after deletion
+        function renumberQuestions() {
+            const questions = document.querySelectorAll('.fq-question-container');
+            questions.forEach((question, index) => {
+                const label = question.querySelector('.fq-question-label');
+                if (label) {
+                    label.textContent = `Question ${index + 1}`;
+                }
+                const checkbox = question.querySelector('.form-check-input');
+                const checkboxLabel = question.querySelector('.form-check-label');
+                if (checkbox && checkboxLabel) {
+                    checkbox.id = `required${index + 1}`;
+                    checkboxLabel.setAttribute('for', `required${index + 1}`);
+                }
+            });
+            questionCounter = questions.length;
+        }
+        
+        // Initialize on page load
+        initializeDropdowns();
+        initializeDeleteButtons();
+        
+        // Initialize option buttons for existing questions
+        document.querySelectorAll('.fq-options-container').forEach(container => {
+            initializeOptionButtons(container);
         });
         
         // Close dropdowns when clicking outside
