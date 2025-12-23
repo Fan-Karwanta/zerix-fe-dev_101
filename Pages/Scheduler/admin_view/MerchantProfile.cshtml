@@ -90,7 +90,7 @@
         <div class="merchant-section">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="merchant-section-title mb-0">Payment Providers</div>
-                <button class="btn btn-add-provider-mobile">
+                <button class="btn btn-add-provider-mobile" onclick="openAddProviderModal()">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -120,11 +120,11 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
@@ -137,11 +137,11 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
@@ -154,11 +154,11 @@
                             <td><span class="status-badge status-inactive">Inactive</span></td>
                             <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
@@ -237,7 +237,7 @@
         <div class="merchant-providers-section mt-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="merchant-section-title mb-0">Payment Providers</div>
-                <button class="btn btn-add-provider">
+                <button class="btn btn-add-provider" onclick="openAddProviderModal()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -267,11 +267,11 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
@@ -284,11 +284,11 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
@@ -301,17 +301,201 @@
                             <td><span class="status-badge status-inactive">Inactive</span></td>
                             <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu">
-                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
+                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
-                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
                                     </svg>
                                 </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Payment Provider Modal -->
+<div class="modal fade" id="addProviderModal" tabindex="-1" aria-labelledby="addProviderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-add-provider">
+        <div class="modal-content modal-add-provider-content">
+            <div class="modal-header modal-add-provider-header">
+                <h5 class="modal-title modal-add-provider-title" id="addProviderModalLabel">Add Payment Provider</h5>
+                <button type="button" class="btn-close btn-close-provider" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-add-provider-body">
+                <form id="addProviderForm">
+                    <!-- Provider Type -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">* Provider Type</label>
+                        <select class="form-select provider-form-select" required>
+                            <option value="" selected disabled>-- Select Provider --</option>
+                            <option value="paymongo">Paymongo</option>
+                            <option value="stripe">Stripe</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+
+                    <!-- Provider Name -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">* Provider Name</label>
+                        <input type="text" class="form-control provider-form-input" placeholder="" required />
+                    </div>
+
+                    <!-- Configuration Name -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">Configuration Name</label>
+                        <input type="text" class="form-control provider-form-input" placeholder="" />
+                        <small class="provider-form-hint">Allows multiple configurations per provider</small>
+                    </div>
+
+                    <!-- Mode -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">* Mode</label>
+                        <select class="form-select provider-form-select" required>
+                            <option value="" selected disabled>-- Select Mode --</option>
+                            <option value="test">Test</option>
+                            <option value="live">Live</option>
+                        </select>
+                    </div>
+
+                    <!-- Public Key -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">* Public Key</label>
+                        <input type="text" class="form-control provider-form-input" placeholder="" required />
+                    </div>
+
+                    <!-- Secret Key -->
+                    <div class="provider-form-group">
+                        <label class="provider-form-label">* Secret Key</label>
+                        <input type="password" class="form-control provider-form-input" placeholder="" required />
+                    </div>
+
+                    <!-- Checkboxes -->
+                    <div class="provider-form-group">
+                        <div class="form-check provider-form-check">
+                            <input class="form-check-input provider-checkbox" type="checkbox" id="setDefaultProvider">
+                            <label class="form-check-label provider-checkbox-label" for="setDefaultProvider">
+                                Set as Default Provider
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="provider-form-group">
+                        <div class="form-check provider-form-check">
+                            <input class="form-check-input provider-checkbox" type="checkbox" id="enableWebhook">
+                            <label class="form-check-label provider-checkbox-label" for="enableWebhook">
+                                Enable Webhook Automatically
+                            </label>
+                        </div>
+                        <small class="provider-form-hint">Automatically configure webhook with provider</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer modal-add-provider-footer">
+                <button type="button" class="btn btn-cancel-provider" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-save-provider" onclick="saveProvider()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Webhook Management Modal -->
+<div class="modal fade" id="webhookModal" tabindex="-1" aria-labelledby="webhookModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-webhook">
+        <div class="modal-content modal-webhook-content">
+            <div class="modal-header modal-webhook-header">
+                <h5 class="modal-title modal-webhook-title" id="webhookModalLabel">Webhook Management- <span id="webhookProviderName">Paymongo</span></h5>
+                <button type="button" class="btn-close btn-close-webhook" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body modal-webhook-body">
+                <!-- Current Status Section -->
+                <div class="webhook-section">
+                    <h6 class="webhook-section-title">Current Status</h6>
+                    <div class="webhook-status-row">
+                        <span class="webhook-status-label">Status:</span>
+                        <span class="webhook-status-badge webhook-status-enabled" id="webhookStatusBadge">Enabled</span>
+                        <button class="btn btn-webhook-toggle btn-disable" id="webhookToggleBtn" onclick="toggleWebhookStatus()">Disable</button>
+                    </div>
+                    <div class="webhook-url-row">
+                        <span class="webhook-url-label">URL:</span>
+                        <span class="webhook-url-text" id="webhookUrlText">https://low-mixing-lately-associates.trycloudflare.com/api/v1/webhooks/paymongo/merchants/1/config/1</span>
+                    </div>
+                </div>
+
+                <!-- Webhook Events Section -->
+                <div class="webhook-section">
+                    <h6 class="webhook-section-title">Webhook Events</h6>
+                    <p class="webhook-section-subtitle">Select which events should trigger webhook notifications.</p>
+                    
+                    <div class="webhook-events-grid">
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event1" checked>
+                            <label for="event1" class="webhook-event-label">
+                                <span class="webhook-event-name">checkout_session.payment.paid</span>
+                                <span class="webhook-event-desc">Checkout session payment successfully completed</span>
+                            </label>
+                        </div>
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event2" checked>
+                            <label for="event2" class="webhook-event-label">
+                                <span class="webhook-event-name">payment.paid</span>
+                                <span class="webhook-event-desc">Payment successfully completed</span>
+                            </label>
+                        </div>
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event3" checked>
+                            <label for="event3" class="webhook-event-label">
+                                <span class="webhook-event-name">payment.failed</span>
+                                <span class="webhook-event-desc">Payment failed or declined</span>
+                            </label>
+                        </div>
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event4" checked>
+                            <label for="event4" class="webhook-event-label">
+                                <span class="webhook-event-name">payment.refunded</span>
+                                <span class="webhook-event-desc">Payment refunded</span>
+                            </label>
+                        </div>
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event5" checked>
+                            <label for="event5" class="webhook-event-label">
+                                <span class="webhook-event-name">payment.failed</span>
+                                <span class="webhook-event-desc">Payment failed or declined</span>
+                            </label>
+                        </div>
+                        <div class="webhook-event-item">
+                            <input type="checkbox" class="webhook-event-checkbox" id="event6" checked>
+                            <label for="event6" class="webhook-event-label">
+                                <span class="webhook-event-name">source.chargeable</span>
+                                <span class="webhook-event-desc">Source is chargeable</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-save-events" onclick="saveWebhookEvents()">Save Events</button>
+                </div>
+
+                <!-- Test Webhook Section -->
+                <div class="webhook-section">
+                    <h6 class="webhook-section-title">Test Webhook</h6>
+                    <p class="webhook-section-subtitle">Send a test event to verify webhook configuration.</p>
+                    
+                    <div class="webhook-test-buttons">
+                        <button class="btn btn-send-test" onclick="sendTestEvent()">Send Test Event</button>
+                        <button class="btn btn-refresh-status" onclick="refreshWebhookStatus()">Refresh Status</button>
+                    </div>
+
+                    <div class="webhook-health-status">
+                        <span class="webhook-health-label">Webhook Health Status</span>
+                        <div class="webhook-health-info">
+                            <span class="webhook-health-status-label">Status:</span>
+                            <span class="webhook-health-status-value" id="webhookHealthStatus">Healthy</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -364,7 +548,7 @@
     background-color: #F37021;
     color: #fff;
     border: none;
-    border-radius: 20px;
+    border-radius: 6px;
     padding: 6px 14px;
     font-size: 12px;
     font-weight: 500;
@@ -629,6 +813,704 @@
 .merchant-desktop-content {
     background: transparent;
 }
+
+/* ============================================
+   ADD PAYMENT PROVIDER MODAL STYLES
+   ============================================ */
+
+/* Modal Dialog */
+.modal-add-provider {
+    max-width: 500px;
+}
+
+/* Modal Content */
+.modal-add-provider-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Header */
+.modal-add-provider-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px 24px;
+}
+
+.modal-add-provider-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.btn-close-provider {
+    font-size: 14px;
+    color: #F37021;
+    opacity: 1;
+}
+
+.btn-close-provider:hover {
+    color: #d45e18;
+}
+
+/* Modal Body */
+.modal-add-provider-body {
+    padding: 24px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* Form Groups */
+.provider-form-group {
+    margin-bottom: 20px;
+}
+
+.provider-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.provider-form-input,
+.provider-form-select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.provider-form-input:focus,
+.provider-form-select:focus {
+    border-color: #F37021;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(243, 112, 33, 0.1);
+}
+
+.provider-form-input::placeholder {
+    color: #999;
+}
+
+.provider-form-select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Form Hints */
+.provider-form-hint {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+}
+
+/* Checkboxes */
+.provider-form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.provider-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.provider-checkbox:checked {
+    background-color: #F37021;
+    border-color: #F37021;
+}
+
+.provider-checkbox-label {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Modal Footer */
+.modal-add-provider-footer {
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-cancel-provider {
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-cancel-provider:hover {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+.btn-save-provider {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-save-provider:hover {
+    background-color: #d45e18;
+}
+
+/* Responsive Adjustments */
+@@media (max-width: 576px) {
+    .modal-add-provider {
+        max-width: 95%;
+        margin: 10px auto;
+    }
+    
+    .modal-add-provider-header,
+    .modal-add-provider-body,
+    .modal-add-provider-footer {
+        padding: 16px;
+    }
+    
+    .modal-add-provider-title {
+        font-size: 16px;
+    }
+    
+    .provider-form-label {
+        font-size: 13px;
+    }
+    
+    .provider-form-input,
+    .provider-form-select {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+    
+    .provider-checkbox-label {
+        font-size: 13px;
+    }
+    
+    .btn-cancel-provider,
+    .btn-save-provider {
+        font-size: 13px;
+        padding: 7px 16px;
+    }
+}
+
+/* ============================================
+   WEBHOOK MANAGEMENT MODAL STYLES
+   ============================================ */
+
+/* Modal Dialog */
+.modal-webhook {
+    max-width: 600px;
+}
+
+/* Modal Content */
+.modal-webhook-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Header */
+.modal-webhook-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px 24px;
+}
+
+.modal-webhook-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #F37021;
+    margin: 0;
+}
+
+.modal-webhook-title span {
+    font-weight: 400;
+}
+
+.btn-close-webhook {
+    font-size: 14px;
+    color: #F37021;
+    opacity: 1;
+}
+
+.btn-close-webhook:hover {
+    color: #d45e18;
+}
+
+/* Modal Body */
+.modal-webhook-body {
+    padding: 24px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Webhook Sections */
+.webhook-section {
+    margin-bottom: 28px;
+}
+
+.webhook-section:last-child {
+    margin-bottom: 0;
+}
+
+.webhook-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.webhook-section-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+/* Current Status Section */
+.webhook-status-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.webhook-status-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.webhook-status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.webhook-status-enabled {
+    background-color: #d1f4f4;
+    color: #0d9488;
+}
+
+.webhook-status-disabled {
+    background-color: #ffe0e0;
+    color: #d32f2f;
+}
+
+.btn-webhook-toggle {
+    margin-left: auto;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.btn-webhook-toggle.btn-disable {
+    background-color: #F37021;
+    color: #fff;
+}
+
+.btn-webhook-toggle.btn-disable:hover {
+    background-color: #d45e18;
+}
+
+.btn-webhook-toggle.btn-enable {
+    background-color: #0d9488;
+    color: #fff;
+}
+
+.btn-webhook-toggle.btn-enable:hover {
+    background-color: #0a7a6f;
+}
+
+.webhook-url-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.webhook-url-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    min-width: 40px;
+    flex-shrink: 0;
+}
+
+.webhook-url-text {
+    font-size: 13px;
+    color: #666;
+    word-break: break-all;
+    line-height: 1.5;
+}
+
+/* Webhook Events Section */
+.webhook-events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.webhook-event-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.webhook-event-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.webhook-event-checkbox:checked {
+    background-color: #F37021;
+    border-color: #F37021;
+}
+
+.webhook-event-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.webhook-event-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.webhook-event-desc {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.4;
+}
+
+.btn-save-events {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-save-events:hover {
+    background-color: #d45e18;
+}
+
+/* Test Webhook Section */
+.webhook-test-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn-send-test {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-send-test:hover {
+    background-color: #d45e18;
+}
+
+.btn-refresh-status {
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-refresh-status:hover {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+.webhook-health-status {
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.webhook-health-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.webhook-health-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.webhook-health-status-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+}
+
+.webhook-health-status-value {
+    font-size: 13px;
+    color: #0d9488;
+    font-weight: 500;
+}
+
+/* Responsive Adjustments for Webhook Modal */
+@@media (max-width: 768px) {
+    .modal-webhook {
+        max-width: 95%;
+        margin: 10px auto;
+    }
+    
+    .webhook-events-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .webhook-test-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-send-test,
+    .btn-refresh-status {
+        width: 100%;
+    }
+}
+
+@@media (max-width: 576px) {
+    .modal-webhook-header,
+    .modal-webhook-body {
+        padding: 16px;
+    }
+    
+    .modal-webhook-title {
+        font-size: 16px;
+    }
+    
+    .webhook-section-title {
+        font-size: 14px;
+    }
+    
+    .webhook-section-subtitle {
+        font-size: 12px;
+    }
+    
+    .webhook-status-row {
+        flex-wrap: wrap;
+    }
+    
+    .btn-webhook-toggle {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    
+    .webhook-url-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+    
+    .webhook-event-name {
+        font-size: 13px;
+    }
+    
+    .webhook-event-desc {
+        font-size: 11px;
+    }
+    
+    .btn-save-events {
+        width: 100%;
+    }
+}
 </style>
 
 @await Html.PartialAsync("../admin_view/_Scripts")
+
+<script>
+    // Function to open the Add Provider modal
+    function openAddProviderModal() {
+        var modal = new bootstrap.Modal(document.getElementById('addProviderModal'));
+        modal.show();
+    }
+
+    // Function to save provider (placeholder for actual implementation)
+    function saveProvider() {
+        // Get form values
+        var form = document.getElementById('addProviderForm');
+        
+        // Basic validation
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        // Get form data
+        var providerType = form.querySelector('select[required]').value;
+        var providerName = form.querySelectorAll('input[required]')[0].value;
+        var configName = form.querySelectorAll('input')[1].value;
+        var mode = form.querySelectorAll('select')[1].value;
+        var publicKey = form.querySelectorAll('input[required]')[1].value;
+        var secretKey = form.querySelectorAll('input[required]')[2].value;
+        var setDefault = document.getElementById('setDefaultProvider').checked;
+        var enableWebhook = document.getElementById('enableWebhook').checked;
+
+        // TODO: Implement actual save logic here
+        console.log('Saving provider:', {
+            providerType,
+            providerName,
+            configName,
+            mode,
+            publicKey,
+            secretKey,
+            setDefault,
+            enableWebhook
+        });
+
+        // Close modal after save
+        var modal = bootstrap.Modal.getInstance(document.getElementById('addProviderModal'));
+        modal.hide();
+
+        // Reset form
+        form.reset();
+
+        // Show success message (optional)
+        alert('Provider saved successfully!');
+    }
+
+    // Function to open the Webhook Management modal
+    function openWebhookModal(providerName, status, url) {
+        // Update modal content with provider data
+        document.getElementById('webhookProviderName').textContent = providerName;
+        document.getElementById('webhookUrlText').textContent = url;
+        
+        // Update status badge and button
+        var statusBadge = document.getElementById('webhookStatusBadge');
+        var toggleBtn = document.getElementById('webhookToggleBtn');
+        
+        if (status === 'Enabled') {
+            statusBadge.textContent = 'Enabled';
+            statusBadge.className = 'webhook-status-badge webhook-status-enabled';
+            toggleBtn.textContent = 'Disable';
+            toggleBtn.className = 'btn btn-webhook-toggle btn-disable';
+        } else {
+            statusBadge.textContent = 'Disabled';
+            statusBadge.className = 'webhook-status-badge webhook-status-disabled';
+            toggleBtn.textContent = 'Enable';
+            toggleBtn.className = 'btn btn-webhook-toggle btn-enable';
+        }
+        
+        // Open modal
+        var modal = new bootstrap.Modal(document.getElementById('webhookModal'));
+        modal.show();
+    }
+
+    // Function to toggle webhook status
+    function toggleWebhookStatus() {
+        var statusBadge = document.getElementById('webhookStatusBadge');
+        var toggleBtn = document.getElementById('webhookToggleBtn');
+        
+        if (statusBadge.textContent === 'Enabled') {
+            // Disable webhook
+            statusBadge.textContent = 'Disabled';
+            statusBadge.className = 'webhook-status-badge webhook-status-disabled';
+            toggleBtn.textContent = 'Enable';
+            toggleBtn.className = 'btn btn-webhook-toggle btn-enable';
+            
+            console.log('Webhook disabled');
+            alert('Webhook has been disabled');
+        } else {
+            // Enable webhook
+            statusBadge.textContent = 'Enabled';
+            statusBadge.className = 'webhook-status-badge webhook-status-enabled';
+            toggleBtn.textContent = 'Disable';
+            toggleBtn.className = 'btn btn-webhook-toggle btn-disable';
+            
+            console.log('Webhook enabled');
+            alert('Webhook has been enabled');
+        }
+    }
+
+    // Function to save webhook events
+    function saveWebhookEvents() {
+        var checkboxes = document.querySelectorAll('.webhook-event-checkbox');
+        var selectedEvents = [];
+        
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                var eventName = checkbox.nextElementSibling.querySelector('.webhook-event-name').textContent;
+                selectedEvents.push(eventName);
+            }
+        });
+        
+        console.log('Saving webhook events:', selectedEvents);
+        alert('Webhook events saved successfully!');
+    }
+
+    // Function to send test event
+    function sendTestEvent() {
+        console.log('Sending test webhook event...');
+        
+        // Simulate sending test event
+        setTimeout(function() {
+            alert('Test event sent successfully!');
+            document.getElementById('webhookHealthStatus').textContent = 'Healthy';
+        }, 500);
+    }
+
+    // Function to refresh webhook status
+    function refreshWebhookStatus() {
+        console.log('Refreshing webhook status...');
+        
+        // Simulate refreshing status
+        setTimeout(function() {
+            alert('Webhook status refreshed!');
+            document.getElementById('webhookHealthStatus').textContent = 'Healthy';
+        }, 500);
+    }
+</script>
