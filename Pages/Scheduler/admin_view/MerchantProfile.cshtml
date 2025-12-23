@@ -105,6 +105,10 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Mode</th>
+                            <th>Webhook URL</th>
+                            <th>Status</th>
+                            <th>Webhook</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,16 +116,52 @@
                             <td>1</td>
                             <td>Paymongo</td>
                             <td>Live</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Paymongo</td>
                             <td>Live</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Paymongo</td>
                             <td>Test</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -288,6 +328,7 @@
     font-weight: 400;
     color: #333;
     font-family: inherit;
+    margin-top: -2rem;
 }
 
 /* Back Link */
@@ -308,7 +349,7 @@
     background-color: #F37021;
     color: #fff;
     border: none;
-    border-radius: 20px;
+    border-radius: 6px;
     padding: 8px 20px;
     font-size: 14px;
     font-weight: 500;
@@ -493,11 +534,14 @@
 .merchant-table-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
+    display: block;
 }
 .merchant-table-mobile {
-    min-width: 280px;
+    min-width: 600px;
     margin-bottom: 0;
     width: 100%;
+    table-layout: auto;
 }
 .merchant-table-mobile thead {
     background-color: #F37021;
@@ -530,12 +574,12 @@
     font-weight: 500;
 }
 .status-active {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+    background-color: #d4f4dd;
+    color: #0d894f;
 }
 .status-inactive {
-    background-color: #fff3e0;
-    color: #e65100;
+    background-color: #ffe0e0;
+    color: #d32f2f;
 }
 
 /* Webhook Badges */
@@ -547,32 +591,38 @@
     font-weight: 500;
 }
 .webhook-enabled {
-    background-color: #e3f2fd;
-    color: #1565c0;
+    background-color: #d1f4f4;
+    color: #0d9488;
 }
 .webhook-disabled {
-    background-color: #ffebee;
-    color: #c62828;
+    background-color: #ffe0e0;
+    color: #d32f2f;
 }
 
 /* Action Menu Button */
 .btn-action-menu {
     background: none;
-    border: 1px solid #F37021;
+    border: 1px solid #9e9e9e;
     border-radius: 4px;
     padding: 6px 10px;
-    color: #F37021;
+    color: #757575;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .btn-action-menu:hover {
-    background-color: #fff5f0;
+    background-color: #f5f5f5;
 }
 
 /* Mobile Sections */
 .merchant-profile-mobile .merchant-section {
     margin-bottom: 20px;
+}
+
+/* Mobile View Container */
+.merchant-profile-page.d-lg-none {
+    min-height: 100vh;
+    padding-bottom: 60px;
 }
 
 /* Desktop Content */
