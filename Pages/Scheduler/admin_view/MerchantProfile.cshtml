@@ -1,0 +1,584 @@
+@page
+@model zerix_fe_dev.Pages.Scheduler.admin_view.MerchantProfileModel
+@{
+    Layout = "_Scheduler";
+    ViewData["Title"] = "Merchant Profile";
+    ViewData["User"] = "Admin";
+}
+
+@await Html.PartialAsync("../_Styles")
+
+@await Html.PartialAsync("../admin_view/_Styles")
+
+@await Html.PartialAsync("../user_view/_Navigation")
+
+@await Html.PartialAsync("../user_view/_MobileSidebar")
+
+<!-- Mobile View -->
+<div class="container px-4 d-lg-none merchant-profile-page">
+    <!-- Mobile Overview Dropdown -->
+    <div class="mobile-overview-section">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <button class="btn mobile-overview-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mobileOverviewMenu" aria-expanded="false" aria-controls="mobileOverviewMenu">
+                <span>Overview</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dropdown-arrow">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="collapse" id="mobileOverviewMenu">
+            <div class="mobile-sidebar-nav">
+                <a href="/scheduler/admin_view/calendar" class="mobile-sidebar-nav-item">Calendar</a>
+                <a href="/scheduler/admin_view/appointmenttypes" class="mobile-sidebar-nav-item">Appointment Types</a>
+                <a href="/scheduler/admin_view/categories" class="mobile-sidebar-nav-item">Categories</a>
+                <a href="/scheduler/admin_view/formquestions" class="mobile-sidebar-nav-item">Form Questions</a>
+                <a href="/scheduler/admin_view/merchantprofile" class="mobile-sidebar-nav-item active">Merchant Profile</a>
+                <a href="/scheduler/admin_view/reports" class="mobile-sidebar-nav-item">Reports</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="merchant-profile-mobile">
+        <!-- Mobile Header -->
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-3">
+            <h2 class="merchant-mobile-title">Merchant Details</h2>
+            <button class="btn btn-save-changes-mobile">Save Changes</button>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="merchant-section">
+            <div class="merchant-section-title">Basic Information</div>
+            
+            <div class="merchant-field-row-mobile">
+                <label class="merchant-label-mobile">ID</label>
+                <span class="merchant-value-mobile">1</span>
+            </div>
+
+            <div class="merchant-field-row-mobile">
+                <label class="merchant-label-mobile">Name</label>
+                <input type="text" class="form-control merchant-input-mobile" placeholder="Enter Name" />
+            </div>
+
+            <div class="merchant-field-row-mobile">
+                <label class="merchant-label-mobile">Email</label>
+                <input type="email" class="form-control merchant-input-mobile" placeholder="Enter Name" />
+            </div>
+
+            <div class="merchant-field-row-mobile">
+                <label class="merchant-label-mobile">Website</label>
+                <input type="text" class="form-control merchant-input-mobile" placeholder="Enter Name" />
+            </div>
+
+            <div class="merchant-field-row-mobile">
+                <label class="merchant-label-mobile">Status</label>
+                <input type="text" class="form-control merchant-input-mobile" placeholder="Enter Name" />
+            </div>
+        </div>
+
+        <!-- Configuration -->
+        <div class="merchant-section">
+            <div class="merchant-section-title">Configuration</div>
+            <div class="form-check">
+                <input class="form-check-input merchant-checkbox" type="checkbox" id="allowDuplicateMobile">
+                <label class="form-check-label merchant-checkbox-label" for="allowDuplicateMobile">
+                    Allow Duplicate Bookings
+                </label>
+            </div>
+        </div>
+
+        <!-- Payment Providers -->
+        <div class="merchant-section">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="merchant-section-title mb-0">Payment Providers</div>
+                <button class="btn btn-add-provider-mobile">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Add
+                </button>
+            </div>
+
+            <div class="merchant-table-wrapper">
+                <table class="table merchant-table-mobile">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Paymongo</td>
+                            <td>Live</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Paymongo</td>
+                            <td>Live</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Paymongo</td>
+                            <td>Test</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop View - Full Width (No Sidebar) -->
+<div class="container px-4 my-3 pt-md-3 pt-3 d-none d-lg-block merchant-profile-page">
+    <!-- Go Back Link -->
+    <a href="javascript:history.back()" class="btn btn-link p-0 merchant-back-link text-decoration-none mb-2 d-inline-flex align-items-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-1">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Go Back
+    </a>
+
+    <!-- Centered Title -->
+    <h2 class="merchant-page-title text-center mb-4">Merchant Details</h2>
+
+    <!-- Main Content Area -->
+    <div class="merchant-desktop-content">
+        <div class="row">
+            <!-- Left Column: Basic Information -->
+            <div class="col-md-5">
+                <div class="merchant-section-title">Basic Information</div>
+                
+                <div class="merchant-field-row">
+                    <label class="merchant-label">ID</label>
+                    <span class="merchant-value">1</span>
+                </div>
+
+                <div class="merchant-field-row">
+                    <label class="merchant-label">Name</label>
+                    <input type="text" class="form-control merchant-input" placeholder="Enter Name" />
+                </div>
+
+                <div class="merchant-field-row">
+                    <label class="merchant-label">Email</label>
+                    <input type="email" class="form-control merchant-input" placeholder="Enter Name" />
+                </div>
+
+                <div class="merchant-field-row">
+                    <label class="merchant-label">Website</label>
+                    <input type="text" class="form-control merchant-input" placeholder="Enter Name" />
+                </div>
+
+                <div class="merchant-field-row">
+                    <label class="merchant-label">Status</label>
+                    <input type="text" class="form-control merchant-input" placeholder="Enter Name" />
+                </div>
+            </div>
+
+            <!-- Right Column: Configuration and Save Button -->
+            <div class="col-md-7">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="merchant-section-title">Configuration</div>
+                        <div class="form-check">
+                            <input class="form-check-input merchant-checkbox" type="checkbox" id="allowDuplicateDesktop">
+                            <label class="form-check-label merchant-checkbox-label" for="allowDuplicateDesktop">
+                                Allow Duplicate Bookings
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-save-changes">Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Providers Section -->
+        <div class="merchant-providers-section mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="merchant-section-title mb-0">Payment Providers</div>
+                <button class="btn btn-add-provider">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Add Provider
+                </button>
+            </div>
+
+            <div class="merchant-table-container">
+                <table class="table merchant-table-desktop">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Mode</th>
+                            <th>Webhook URL</th>
+                            <th>Status</th>
+                            <th>Webhook</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Paymongo</td>
+                            <td>Live</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Paymongo</td>
+                            <td>Live</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Paymongo</td>
+                            <td>Test</td>
+                            <td>https://paymenttest.com</td>
+                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                            <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
+                            <td>
+                                <button class="btn btn-action-menu">
+                                    <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="8" r="1.5" fill="currentColor"/>
+                                        <circle cx="2" cy="14" r="1.5" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* ============================================
+   MERCHANT PROFILE PAGE STYLES
+   ============================================ */
+
+/* Page Title */
+.merchant-page-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+    font-family: inherit;
+}
+
+/* Back Link */
+.merchant-back-link {
+    color: #F37021;
+    font-size: 14px;
+    font-weight: 500;
+}
+.merchant-back-link:hover {
+    color: #d45e18;
+}
+.merchant-back-link svg {
+    stroke: #F37021;
+}
+
+/* Save Changes Button - Desktop */
+.btn-save-changes {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn-save-changes:hover {
+    background-color: #d45e18;
+    color: #fff;
+}
+
+/* Save Changes Button - Mobile */
+.btn-save-changes-mobile {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.btn-save-changes-mobile:hover {
+    background-color: #d45e18;
+    color: #fff;
+}
+
+/* Section Titles */
+.merchant-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+/* Desktop Field Rows */
+.merchant-field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 16px;
+}
+.merchant-label {
+    font-size: 14px;
+    color: #666;
+    min-width: 60px;
+    flex-shrink: 0;
+}
+.merchant-value {
+    font-size: 14px;
+    color: #333;
+}
+.merchant-input {
+    flex: 1;
+    max-width: 180px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+.merchant-input::placeholder {
+    color: #999;
+}
+
+/* Mobile Field Rows */
+.merchant-mobile-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 0;
+}
+.merchant-field-row-mobile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 12px;
+}
+.merchant-label-mobile {
+    font-size: 13px;
+    color: #666;
+    min-width: 55px;
+    flex-shrink: 0;
+}
+.merchant-value-mobile {
+    font-size: 13px;
+    color: #333;
+}
+.merchant-input-mobile {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 13px;
+}
+.merchant-input-mobile::placeholder {
+    color: #999;
+}
+
+/* Checkbox */
+.merchant-checkbox-label {
+    font-size: 14px;
+    color: #666;
+}
+.merchant-checkbox:checked {
+    background-color: #F37021;
+    border-color: #F37021;
+}
+
+/* Add Provider Button - Desktop */
+.btn-add-provider {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.btn-add-provider:hover {
+    background-color: #d45e18;
+    color: #fff;
+}
+.btn-add-provider svg {
+    stroke: #fff;
+}
+
+/* Add Provider Button - Mobile */
+.btn-add-provider-mobile {
+    background-color: #F37021;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.btn-add-provider-mobile:hover {
+    background-color: #d45e18;
+    color: #fff;
+}
+.btn-add-provider-mobile svg {
+    stroke: #fff;
+}
+
+/* Desktop Table */
+.merchant-table-container {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.merchant-table-desktop {
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+}
+.merchant-table-desktop thead {
+    background-color: #F37021;
+}
+.merchant-table-desktop thead th {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 16px;
+    border: none;
+    text-align: left;
+}
+.merchant-table-desktop tbody td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.merchant-table-desktop tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Mobile Table */
+.merchant-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.merchant-table-mobile {
+    min-width: 280px;
+    margin-bottom: 0;
+    width: 100%;
+}
+.merchant-table-mobile thead {
+    background-color: #F37021;
+}
+.merchant-table-mobile thead th {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 12px;
+    border: none;
+    white-space: nowrap;
+}
+.merchant-table-mobile tbody td {
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+.merchant-table-mobile tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.status-active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+.status-inactive {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+/* Webhook Badges */
+.webhook-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.webhook-enabled {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+.webhook-disabled {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Action Menu Button */
+.btn-action-menu {
+    background: none;
+    border: 1px solid #F37021;
+    border-radius: 4px;
+    padding: 6px 10px;
+    color: #F37021;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-action-menu:hover {
+    background-color: #fff5f0;
+}
+
+/* Mobile Sections */
+.merchant-profile-mobile .merchant-section {
+    margin-bottom: 20px;
+}
+
+/* Desktop Content */
+.merchant-desktop-content {
+    background: transparent;
+}
+</style>
+
+@await Html.PartialAsync("../admin_view/_Scripts")

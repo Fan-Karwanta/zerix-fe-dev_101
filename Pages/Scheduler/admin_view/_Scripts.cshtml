@@ -158,12 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Navigate to Payment Integrations when the corresponding sidebar item is clicked (desktop and mobile)
+    // Navigate to Merchant Profile when the corresponding sidebar item is clicked (desktop and mobile)
     const piItems = document.querySelectorAll(categorySelectors.join(', '));
     piItems.forEach((el) => {
-        if (el.textContent && el.textContent.trim().toLowerCase() === 'payment integrations') {
+        if (el.textContent && el.textContent.trim().toLowerCase() === 'merchant profile') {
             el.addEventListener('click', function () {
-                window.location.href = '/scheduler/admin_view/paymentintegrations';
+                window.location.href = '/scheduler/admin_view/merchantprofile';
             });
         }
     });
