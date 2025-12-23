@@ -15,16 +15,49 @@
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-3 pt-3 reports-page">
-    <!-- Go Back Link -->
-    <a href="javascript:history.back()" class="reports-go-back">
+    <!-- Mobile Header with Back and Title -->
+    <div class="reports-mobile-header d-md-none">
+        <a href="javascript:history.back()" class="reports-back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <h2 class="reports-mobile-title">Reports</h2>
+    </div>
+
+    <!-- Desktop Go Back Link -->
+    <a href="javascript:history.back()" class="reports-go-back d-none d-md-inline-flex">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Go Back
     </a>
 
-    <!-- Reports Title -->
-    <h2 class="reports-title">Reports</h2>
+    <!-- Desktop Reports Title -->
+    <h2 class="reports-title d-none d-md-block">Reports</h2>
+
+    <!-- Mobile Filter Button -->
+    <div class="reports-mobile-filter-btn-wrapper d-md-none">
+        <button type="button" class="reports-mobile-filter-btn" data-bs-toggle="modal" data-bs-target="#reportsFilterModal">
+            Filter
+        </button>
+    </div>
+
+    <!-- Mobile Filter Tags Row -->
+    <div class="reports-mobile-filter-tags d-md-none">
+        <div class="reports-filter-tag-group">
+            <span class="reports-filter-tag-label">Appointment Type</span>
+            <span class="reports-filter-tag-value" id="mobileFilterTypeTag">All</span>
+        </div>
+        <div class="reports-filter-tag-group">
+            <span class="reports-filter-tag-label">Status</span>
+            <span class="reports-filter-tag-value" id="mobileFilterStatusTag">Cancelled</span>
+        </div>
+        <div class="reports-filter-tag-group">
+            <span class="reports-filter-tag-label">Date Range</span>
+            <span class="reports-filter-tag-value" id="mobileFilterDateTag">09/11/2024 - 10/25/2024</span>
+        </div>
+    </div>
 
     <!-- Reports Main Layout -->
     <div class="reports-main-layout">
@@ -207,6 +240,77 @@
     </div>
 </div>
 
+<!-- Mobile Filter Modal -->
+<div class="modal fade" id="reportsFilterModal" tabindex="-1" aria-labelledby="reportsFilterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered reports-filter-modal-dialog">
+        <div class="modal-content reports-filter-modal-content">
+            <div class="modal-body reports-filter-modal-body">
+                <!-- Date Range -->
+                <div class="reports-modal-filter-group">
+                    <label class="reports-modal-filter-label">Date Range</label>
+                    <div class="reports-modal-date-input-wrapper">
+                        <input type="text" class="form-control reports-modal-date-input" id="modalReportDateFrom" placeholder="From">
+                        <svg class="reports-modal-calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="reports-modal-date-input-wrapper">
+                        <input type="text" class="form-control reports-modal-date-input" id="modalReportDateTo" placeholder="To">
+                        <svg class="reports-modal-calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Appointment Type -->
+                <div class="reports-modal-filter-group">
+                    <label class="reports-modal-filter-label">Appointment Type</label>
+                    <div class="reports-modal-select-wrapper">
+                        <select class="form-select reports-modal-select" id="modalReportAppointmentType">
+                            <option value="all" selected>All</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="medical">Medical Appointment</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Status -->
+                <div class="reports-modal-filter-group">
+                    <label class="reports-modal-filter-label">Status</label>
+                    <div class="reports-modal-select-wrapper reports-modal-status-wrapper">
+                        <select class="form-select reports-modal-select reports-modal-status-select" id="modalReportStatus">
+                            <option value="cancelled" selected>Cancelled</option>
+                            <option value="booked">Booked</option>
+                            <option value="completed">Completed</option>
+                            <option value="rescheduled">Rescheduled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Report Type Radio Buttons -->
+                <div class="reports-modal-radio-group">
+                    <div class="reports-modal-radio-item">
+                        <input type="radio" name="modalReportType" id="modalSummaryReport" value="summary">
+                        <label for="modalSummaryReport">Summary Report</label>
+                    </div>
+                    <div class="reports-modal-radio-item">
+                        <input type="radio" name="modalReportType" id="modalDetailedReport" value="detailed" checked>
+                        <label for="modalDetailedReport">Detailed Report</label>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="btn reports-modal-generate-btn" onclick="generateReportFromModal()">Generate</button>
+
+                <!-- Export to CSV Link -->
+                <a href="#" class="reports-modal-export-link" onclick="exportToCSV()">Export to CSV</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     <script>
         // Toggle Form Questions visibility
@@ -270,6 +374,57 @@
         function exportToCSV() {
             console.log('Exporting to CSV...');
             // Implementation for CSV export
+        }
+
+        // Generate Report from Mobile Modal
+        function generateReportFromModal() {
+            // Get filter values from modal
+            const dateFrom = document.getElementById('modalReportDateFrom').value;
+            const dateTo = document.getElementById('modalReportDateTo').value;
+            const appointmentType = document.getElementById('modalReportAppointmentType').value;
+            const status = document.getElementById('modalReportStatus').value;
+            const reportType = document.querySelector('input[name="modalReportType"]:checked').value;
+
+            // Sync values to desktop form
+            document.getElementById('reportDateFrom').value = dateFrom;
+            document.getElementById('reportDateTo').value = dateTo;
+            document.getElementById('reportAppointmentType').value = appointmentType;
+            document.getElementById('reportStatus').value = status;
+            if (reportType === 'summary') {
+                document.getElementById('summaryReport').checked = true;
+            } else {
+                document.getElementById('detailedReport').checked = true;
+            }
+
+            // Update mobile filter tags
+            const typeTag = document.getElementById('mobileFilterTypeTag');
+            const statusTag = document.getElementById('mobileFilterStatusTag');
+            const dateTag = document.getElementById('mobileFilterDateTag');
+
+            if (typeTag) typeTag.textContent = appointmentType === 'all' ? 'All' : appointmentType;
+            if (statusTag) statusTag.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+            if (dateTag && dateFrom && dateTo) dateTag.textContent = `${dateFrom} - ${dateTo}`;
+
+            // Update desktop top filters display
+            const topFilters = document.querySelector('.reports-top-filters');
+            if (topFilters) {
+                const typeDisplay = topFilters.querySelector('.reports-top-filter-group:nth-child(1) .reports-top-filter-value');
+                const statusDisplay = topFilters.querySelector('.reports-top-filter-group:nth-child(2) .reports-top-filter-value');
+                const dateDisplay = topFilters.querySelector('.reports-date-range-display .reports-top-filter-value');
+                
+                if (typeDisplay) typeDisplay.textContent = appointmentType === 'all' ? 'All' : appointmentType;
+                if (statusDisplay) statusDisplay.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+                if (dateDisplay && dateFrom && dateTo) dateDisplay.textContent = `${dateFrom} - ${dateTo}`;
+            }
+
+            // Toggle form questions based on report type
+            toggleFormQuestionsByReportType();
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('reportsFilterModal'));
+            if (modal) modal.hide();
+
+            console.log('Generating report from modal with:', { dateFrom, dateTo, appointmentType, status, reportType });
         }
 
         // Initialize date pickers

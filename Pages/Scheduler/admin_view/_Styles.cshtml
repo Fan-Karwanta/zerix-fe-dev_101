@@ -5428,12 +5428,24 @@ a.mobile-sidebar-nav-item:hover {
 }
 
 @@media (max-width: 767px) {
+    /* Reduce container padding on mobile for reports page */
+    .reports-page {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
     .reports-title {
         font-size: 20px;
     }
 
+    /* Hide desktop filters panel on mobile */
     .reports-filters-panel {
-        flex-direction: column;
+        display: none !important;
+    }
+
+    /* Hide desktop top filters on mobile */
+    .reports-top-filters {
+        display: none !important;
     }
 
     .reports-filter-group {
@@ -5445,20 +5457,341 @@ a.mobile-sidebar-nav-item:hover {
         gap: 12px;
     }
 
-    .reports-table thead th,
+    /* Mobile results panel - ensure no overflow hidden */
+    .reports-results-panel {
+        overflow: visible;
+        width: 100%;
+    }
+
+    /* Mobile table - horizontally scrollable */
+    .reports-table-container {
+        overflow-x: auto !important;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        max-width: calc(100% + 32px);
+        width: calc(100% + 32px);
+    }
+
+    .reports-table {
+        min-width: 800px;
+        width: max-content;
+        table-layout: auto;
+    }
+
+    .reports-table thead th {
+        padding: 14px 20px;
+        font-size: 14px;
+        white-space: nowrap;
+        background: #f8f8f8;
+        border-bottom: 1px solid #eee;
+    }
+
     .reports-table tbody td {
-        padding: 10px 8px;
-        font-size: 13px;
+        padding: 14px 20px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    /* Form questions row should also scroll */
+    .reports-form-questions-row td {
+        min-width: 800px;
+    }
+
+    .reports-form-questions {
+        padding: 16px 20px;
+        min-width: 800px;
     }
 
     .reports-form-questions-content {
-        grid-template-columns: 1fr;
-        row-gap: 16px;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        row-gap: 12px;
     }
 
     .reports-form-question-item {
-        min-width: 100%;
+        min-width: 0;
     }
+
+    .reports-question-label {
+        font-size: 11px;
+        color: #666;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .reports-question-answer {
+        font-size: 13px;
+    }
+}
+
+/* ==================== REPORTS MOBILE STYLES ==================== */
+
+/* Mobile Header */
+.reports-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 12px;
+    margin-top: 1rem;
+}
+
+.reports-back-btn {
+    position: absolute;
+    left: 0;
+    color: #ff5400;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.reports-back-btn:hover {
+    color: #e64a00;
+}
+
+.reports-mobile-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+    font-family: inherit;
+}
+
+/* Mobile Filter Button */
+.reports-mobile-filter-btn-wrapper {
+    margin-bottom: 12px;
+}
+
+.reports-mobile-filter-btn {
+    background: transparent;
+    border: none;
+    color: #ff5400;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0;
+    cursor: pointer;
+}
+
+.reports-mobile-filter-btn:hover {
+    color: #e64a00;
+}
+
+/* Mobile Filter Tags Row */
+.reports-mobile-filter-tags {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+}
+
+.reports-filter-tag-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.reports-filter-tag-label {
+    font-size: 11px;
+    color: #999;
+}
+
+.reports-filter-tag-value {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+    white-space: nowrap;
+}
+
+/* ==================== REPORTS FILTER MODAL STYLES ==================== */
+
+.reports-filter-modal-dialog {
+    max-width: 320px;
+    margin: 1rem auto;
+}
+
+.reports-filter-modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.reports-filter-modal-body {
+    padding: 24px 20px;
+}
+
+.reports-modal-filter-group {
+    margin-bottom: 16px;
+}
+
+.reports-modal-filter-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.reports-modal-date-input-wrapper {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.reports-modal-date-input {
+    width: 100%;
+    padding: 12px 14px;
+    padding-right: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+}
+
+.reports-modal-date-input::placeholder {
+    color: #999;
+}
+
+.reports-modal-date-input:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 84, 0, 0.1);
+}
+
+.reports-modal-calendar-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+}
+
+.reports-modal-select-wrapper {
+    position: relative;
+}
+
+.reports-modal-select {
+    width: 100%;
+    padding: 12px 14px;
+    padding-right: 36px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: white;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+.reports-modal-select:focus {
+    border-color: #ff5400;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 84, 0, 0.1);
+}
+
+/* Status select with dot indicator */
+.reports-modal-status-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f44336;
+    z-index: 1;
+}
+
+.reports-modal-status-select {
+    padding-left: 30px;
+}
+
+/* Radio Group in Modal */
+.reports-modal-radio-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.reports-modal-radio-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.reports-modal-radio-item:last-child {
+    margin-bottom: 0;
+}
+
+.reports-modal-radio-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff5400;
+    cursor: pointer;
+}
+
+.reports-modal-radio-item label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    margin: 0;
+}
+
+/* Generate Button in Modal */
+.reports-modal-generate-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: #ff5400;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+
+.reports-modal-generate-btn:hover {
+    background: #e64a00;
+    color: white;
+}
+
+/* Export Link in Modal */
+.reports-modal-export-link {
+    display: block;
+    text-align: center;
+    color: #ff5400;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 16px;
+}
+
+.reports-modal-export-link:hover {
+    color: #e64a00;
+    text-decoration: underline;
 }
 
 /* ========================================
