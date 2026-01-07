@@ -43,14 +43,20 @@
 
             <!-- Main Content -->
             <div class="row fq-main-row">
-                <!-- Left Column: Form shown while scheduling -->
+                <!-- Left Sidebar: Form shown while scheduling -->
                 <div class="col-12 col-lg-3 mb-4 fq-sidebar-column">
                     <div class="fq-left-sidebar">
                         <h6 class="fq-sidebar-title">Form shown while scheduling</h6>
                         
-                        <div class="fq-sidebar-item">
-                            <div class="fq-sidebar-item-name">Megamall- Face</div>
-                            <div class="fq-sidebar-services">
+                        <!-- Megamall Location - Collapsible -->
+                        <div class="fq-location-item" data-location="megamall">
+                            <button type="button" class="fq-location-toggle" data-expanded="false">
+                                <span class="fq-location-name">Megamall- Face</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-location-arrow">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="fq-location-services" style="display: none;">
                                 <div class="form-check fq-form-check">
                                     <input type="checkbox" class="form-check-input" id="megamall-hair" checked>
                                     <label class="form-check-label" for="megamall-hair">Hair Rebond</label>
@@ -62,9 +68,15 @@
                             </div>
                         </div>
 
-                        <div class="fq-sidebar-item">
-                            <div class="fq-sidebar-item-name">Robinsons- Face</div>
-                            <div class="fq-sidebar-services">
+                        <!-- Robinsons Location - Collapsible (expanded by default) -->
+                        <div class="fq-location-item" data-location="robinsons">
+                            <button type="button" class="fq-location-toggle" data-expanded="true">
+                                <span class="fq-location-name">Robinsons- Face</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="fq-location-arrow expanded">
+                                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="fq-location-services">
                                 <div class="form-check fq-form-check">
                                     <input type="checkbox" class="form-check-input" id="robinsons-hair" checked>
                                     <label class="form-check-label" for="robinsons-hair">Hair Rebond</label>
@@ -185,12 +197,8 @@
                                 </div>
                             </div>
                             <input type="text" class="fq-question-input" placeholder="ex. Do you reside in Metro Manila?">
-                            <div class="fq-options-container">
-                                <div class="fq-option-row" data-option-index="1">
-                                    <input type="text" class="fq-option-input" placeholder="1. Enter Option Here">
-                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
-                                </div>
-                                <button type="button" class="fq-add-option-btn">+ Add Option</button>
+                            <div class="fq-options-list">
+                                <div class="fq-option-text-item" data-option-index="1">1. Enter Option Here</div>
                             </div>
                             <div class="fq-required-row">
                                 <div class="form-check fq-form-check">
@@ -242,20 +250,11 @@
                                 </div>
                             </div>
                             <input type="text" class="fq-question-input" placeholder="ex. Do you have any allergies?">
-                            <div class="fq-options-container">
-                                <div class="fq-option-row" data-option-index="1">
-                                    <input type="text" class="fq-option-input" value="Nuts" placeholder="1. Enter Option Here">
-                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
-                                </div>
-                                <div class="fq-option-row" data-option-index="2">
-                                    <input type="text" class="fq-option-input" value="Dairy" placeholder="2. Enter Option Here">
-                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
-                                </div>
-                                <div class="fq-option-row" data-option-index="3">
-                                    <input type="text" class="fq-option-input" value="None" placeholder="3. Enter Option Here">
-                                    <button type="button" class="fq-remove-option-btn" title="Remove option">&times;</button>
-                                </div>
-                                <button type="button" class="fq-add-option-btn">+ Add Option</button>
+                            <div class="fq-options-list">
+                                <div class="fq-option-text-item" data-option-index="1">1. Nuts</div>
+                                <div class="fq-option-text-item" data-option-index="2">2. Dairy</div>
+                                <div class="fq-option-text-item" data-option-index="3">3. None</div>
+                                <div class="fq-option-text-item fq-option-placeholder" data-option-index="4">4. Enter Option Here</div>
                             </div>
                         </div>
 
@@ -610,7 +609,7 @@
         font-size: 14px;
         color: #333;
         cursor: pointer;
-        min-width: 140px;
+        min-width: 180px;
         height: 38px;
         box-sizing: border-box;
     }
@@ -894,7 +893,96 @@
         text-align: center;
     }
 
+    /* Left Sidebar - Collapsible Location Items */
+    .fq-left-sidebar {
+        background: transparent;
+        padding: 0;
+    }
+
+    .fq-location-item {
+        margin-bottom: 8px;
+    }
+
+    .fq-location-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 8px 0;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .fq-location-toggle:hover {
+        color: #FF6B35;
+    }
+
+    .fq-location-name {
+        flex: 1;
+    }
+
+    .fq-location-arrow {
+        stroke: #666;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .fq-location-arrow.expanded {
+        transform: rotate(180deg);
+    }
+
+    .fq-location-services {
+        padding-left: 8px;
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Options List - Numbered Text Items */
+    .fq-options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 1rem;
+        padding-left: 8px;
+    }
+
+    .fq-option-text-item {
+        font-size: 14px;
+        color: #333;
+        padding: 4px 0;
+        cursor: text;
+    }
+
+    .fq-option-text-item.fq-option-placeholder {
+        color: #999;
+    }
+
     /* Responsive Styles */
+    
+    /* Tablet screens (768px - 1199px) - Fix header spacing */
+    @@media (min-width: 768px) and (max-width: 1199px) {
+        .container.px-4.my-3.pt-md-3.pt-3 {
+            padding-top: 0 !important;
+            margin-top: 0.5rem !important;
+        }
+        
+        .form-questions-desktop-header {
+            margin-top: 0 !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .form-questions-page-title {
+            font-size: 28px;
+        }
+    }
+    
     @@media (max-width: 991px) {
         .fq-question-container {
             padding: 16px 0;
@@ -1247,6 +1335,30 @@
         document.addEventListener('click', function() {
             document.querySelectorAll('.fq-dropdown-menu.show').forEach(menu => {
                 menu.classList.remove('show');
+            });
+        });
+        
+        // Initialize Collapsible Location Toggles
+        const locationToggles = document.querySelectorAll('.fq-location-toggle');
+        locationToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const locationItem = this.closest('.fq-location-item');
+                const services = locationItem.querySelector('.fq-location-services');
+                const arrow = this.querySelector('.fq-location-arrow');
+                const isExpanded = this.getAttribute('data-expanded') === 'true';
+                
+                if (isExpanded) {
+                    // Collapse
+                    services.style.display = 'none';
+                    arrow.classList.remove('expanded');
+                    this.setAttribute('data-expanded', 'false');
+                } else {
+                    // Expand
+                    services.style.display = 'flex';
+                    arrow.classList.add('expanded');
+                    this.setAttribute('data-expanded', 'true');
+                }
             });
         });
     });
