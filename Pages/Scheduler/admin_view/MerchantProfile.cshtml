@@ -1403,7 +1403,7 @@
     }
     
     .modal-webhook-header {
-        padding: 14px 16px;
+        padding: 16px 20px;
         border-bottom: none;
     }
     
@@ -1418,144 +1418,128 @@
     }
     
     .btn-close-webhook {
-        font-size: 12px;
+        font-size: 14px;
     }
     
     .modal-webhook-body {
-        padding: 0 16px 16px;
+        padding: 0 20px 20px;
     }
     
-    /* Current Status Section with bottom border */
+    /* Current Status Section */
     .webhook-section {
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         padding-bottom: 16px;
         border-bottom: 1px solid #eee;
     }
     
-    /* Webhook Events section - no bottom border */
     .webhook-section:nth-child(2) {
         border-bottom: none;
-        padding-bottom: 0;
+        margin-bottom: 0;
     }
     
     .webhook-section-title {
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         color: #333;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
     
     .webhook-section-subtitle {
-        font-size: 10px;
+        font-size: 11px;
         color: #666;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
     
-    /* Status row - inline layout like Image 2 */
+    /* Status row - keep inline */
     .webhook-status-row {
-        display: flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        margin-bottom: 10px !important;
-        flex-wrap: nowrap !important;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+        flex-wrap: nowrap;
     }
     
     .webhook-status-label {
-        font-size: 11px !important;
-        font-weight: 500 !important;
+        font-size: 12px;
+        font-weight: 500;
         color: #333;
-        min-width: auto !important;
-        flex-shrink: 0;
     }
     
     .webhook-status-badge {
-        padding: 2px 10px !important;
-        font-size: 10px !important;
-        border-radius: 4px !important;
-        flex-shrink: 0;
+        padding: 3px 12px;
+        font-size: 11px;
+        border-radius: 4px;
     }
     
-    /* Small inline Disable/Enable button - matching inspiration */
-    .btn-webhook-toggle,
-    .btn.btn-webhook-toggle,
-    button.btn-webhook-toggle {
-        padding: 4px 12px !important;
-        font-size: 10px !important;
-        font-weight: 500 !important;
+    /* Small inline Disable button */
+    .btn-webhook-toggle {
+        padding: 4px 14px !important;
+        font-size: 11px !important;
+        font-weight: 500;
         margin-left: 0 !important;
         width: auto !important;
-        margin-top: 0 !important;
-        border-radius: 4px !important;
-        flex-shrink: 0;
-        min-width: auto !important;
+        border-radius: 4px;
     }
     
     /* URL row */
     .webhook-url-row {
         display: flex;
         flex-direction: row;
-        gap: 8px;
+        gap: 10px;
         align-items: flex-start;
     }
     
     .webhook-url-label {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         color: #333;
-        min-width: 26px;
+        min-width: 30px;
         flex-shrink: 0;
     }
     
     .webhook-url-text {
-        font-size: 10px;
+        font-size: 11px;
         color: #666;
-        line-height: 1.4;
+        line-height: 1.5;
         word-break: break-all;
     }
     
     /* Events grid - single column */
     .webhook-events-grid {
         grid-template-columns: 1fr;
-        gap: 10px;
-        margin-bottom: 12px;
+        gap: 12px;
+        margin-bottom: 16px;
     }
     
     .webhook-event-item {
-        gap: 8px;
-        align-items: flex-start;
+        gap: 10px;
     }
     
     .webhook-event-checkbox {
-        width: 14px;
-        height: 14px;
-        margin-top: 2px;
-        flex-shrink: 0;
-    }
-    
-    .webhook-event-label {
-        gap: 1px;
+        width: 16px;
+        height: 16px;
     }
     
     .webhook-event-name {
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
     }
     
     .webhook-event-desc {
-        font-size: 9px;
+        font-size: 10px;
         color: #999;
     }
     
-    /* Small Save Events button - not full width */
+    /* Small Save Events button */
     .btn-save-events {
-        padding: 5px 12px;
-        font-size: 10px;
+        padding: 6px 16px !important;
+        font-size: 11px !important;
         font-weight: 500;
         width: auto !important;
         border-radius: 4px;
     }
     
-    /* Hide test webhook section on mobile/tablet */
+    /* Hide test webhook section */
     .webhook-section:last-child {
         display: none;
     }
