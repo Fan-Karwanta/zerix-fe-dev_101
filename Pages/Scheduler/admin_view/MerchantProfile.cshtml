@@ -120,13 +120,20 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(1)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(1)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -137,13 +144,20 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(2)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(2)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -154,13 +168,20 @@
                             <td><span class="status-badge status-inactive">Inactive</span></td>
                             <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(3)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(3)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -267,13 +288,20 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(1)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(1)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -284,13 +312,20 @@
                             <td><span class="status-badge status-active">Active</span></td>
                             <td><span class="webhook-badge webhook-enabled">Enabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(2)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(2)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -301,13 +336,20 @@
                             <td><span class="status-badge status-inactive">Inactive</span></td>
                             <td><span class="webhook-badge webhook-disabled">Disabled</span></td>
                             <td>
-                                <button class="btn btn-action-menu" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">
-                                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="2" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="8" cy="2" r="1.5" fill="currentColor"/>
-                                        <circle cx="14" cy="2" r="1.5" fill="currentColor"/>
-                                    </svg>
-                                </button>
+                                <div class="action-dropdown">
+                                    <button class="btn btn-action-menu" onclick="toggleActionMenu(this)">
+                                        <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="2" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="8" cy="2" r="2" fill="currentColor"/>
+                                            <circle cx="14" cy="2" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <div class="action-dropdown-menu">
+                                        <button class="action-dropdown-item" onclick="editProvider(3)">Edit</button>
+                                        <button class="action-dropdown-item" onclick="openWebhookModal('Paymongo', 'Enabled', 'https://paymenttest.com')">Manage</button>
+                                        <button class="action-dropdown-item" onclick="deleteProvider(3)">Delete</button>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -685,7 +727,7 @@
 .merchant-table-container {
     background: #fff;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
 }
 .merchant-table-desktop {
     width: 100%;
@@ -717,9 +759,11 @@
 /* Mobile Table */
 .merchant-table-wrapper {
     overflow-x: auto;
+    overflow-y: visible;
     -webkit-overflow-scrolling: touch;
     width: 100%;
     display: block;
+    position: relative;
 }
 .merchant-table-mobile {
     min-width: 600px;
@@ -785,16 +829,62 @@
 
 /* Action Menu Button */
 .btn-action-menu {
-    background: none;
-    border: 1px solid #9e9e9e;
-    border-radius: 4px;
-    padding: 6px 10px;
-    color: #757575;
+    background: #FFF5F0;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #F37021;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .btn-action-menu:hover {
+    background-color: #FFE8DB;
+}
+
+/* Action Dropdown */
+.action-dropdown {
+    position: static;
+    display: inline-block;
+}
+
+.merchant-table-desktop td:last-child,
+.merchant-table-mobile td:last-child {
+    position: relative;
+    overflow: visible;
+}
+
+.action-dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 100px;
+    z-index: 9999;
+    padding: 6px 0;
+}
+
+.action-dropdown-menu.show {
+    display: block;
+}
+
+.action-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.action-dropdown-item:hover {
     background-color: #f5f5f5;
 }
 
@@ -1301,71 +1391,173 @@
     font-weight: 500;
 }
 
-/* Responsive Adjustments for Webhook Modal */
-@@media (max-width: 768px) {
+/* Responsive Adjustments for Webhook Modal - Tablet & Mobile */
+@@media (max-width: 991px) {
     .modal-webhook {
-        max-width: 95%;
-        margin: 10px auto;
+        max-width: 280px;
+        margin: 20px auto;
     }
     
-    .webhook-events-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
+    .modal-webhook-content {
+        border-radius: 8px;
     }
     
-    .webhook-test-buttons {
-        flex-direction: column;
-    }
-    
-    .btn-send-test,
-    .btn-refresh-status {
-        width: 100%;
-    }
-}
-
-@@media (max-width: 576px) {
-    .modal-webhook-header,
-    .modal-webhook-body {
-        padding: 16px;
+    .modal-webhook-header {
+        padding: 14px 16px;
+        border-bottom: none;
     }
     
     .modal-webhook-title {
-        font-size: 16px;
-    }
-    
-    .webhook-section-title {
         font-size: 14px;
+        font-weight: 500;
+        color: #F37021;
     }
     
-    .webhook-section-subtitle {
+    .modal-webhook-title span {
+        display: none;
+    }
+    
+    .btn-close-webhook {
         font-size: 12px;
     }
     
+    .modal-webhook-body {
+        padding: 0 16px 16px;
+    }
+    
+    /* Current Status Section with bottom border */
+    .webhook-section {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    /* Webhook Events section - no bottom border */
+    .webhook-section:nth-child(2) {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .webhook-section-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .webhook-section-subtitle {
+        font-size: 10px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    
+    /* Status row - inline layout like Image 2 */
     .webhook-status-row {
-        flex-wrap: wrap;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+        flex-wrap: nowrap !important;
     }
     
-    .btn-webhook-toggle {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 8px;
+    .webhook-status-label {
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        color: #333;
+        min-width: auto !important;
+        flex-shrink: 0;
     }
     
+    .webhook-status-badge {
+        padding: 2px 10px !important;
+        font-size: 10px !important;
+        border-radius: 4px !important;
+        flex-shrink: 0;
+    }
+    
+    /* Small inline Disable/Enable button - matching inspiration */
+    .btn-webhook-toggle,
+    .btn.btn-webhook-toggle,
+    button.btn-webhook-toggle {
+        padding: 4px 12px !important;
+        font-size: 10px !important;
+        font-weight: 500 !important;
+        margin-left: 0 !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        border-radius: 4px !important;
+        flex-shrink: 0;
+        min-width: auto !important;
+    }
+    
+    /* URL row */
     .webhook-url-row {
-        flex-direction: column;
-        gap: 6px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .webhook-url-label {
+        font-size: 11px;
+        font-weight: 500;
+        color: #333;
+        min-width: 26px;
+        flex-shrink: 0;
+    }
+    
+    .webhook-url-text {
+        font-size: 10px;
+        color: #666;
+        line-height: 1.4;
+        word-break: break-all;
+    }
+    
+    /* Events grid - single column */
+    .webhook-events-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .webhook-event-item {
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .webhook-event-checkbox {
+        width: 14px;
+        height: 14px;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+    
+    .webhook-event-label {
+        gap: 1px;
     }
     
     .webhook-event-name {
-        font-size: 13px;
+        font-size: 11px;
+        font-weight: 500;
     }
     
     .webhook-event-desc {
-        font-size: 11px;
+        font-size: 9px;
+        color: #999;
     }
     
+    /* Small Save Events button - not full width */
     .btn-save-events {
-        width: 100%;
+        padding: 5px 12px;
+        font-size: 10px;
+        font-weight: 500;
+        width: auto !important;
+        border-radius: 4px;
+    }
+    
+    /* Hide test webhook section on mobile/tablet */
+    .webhook-section:last-child {
+        display: none;
     }
 }
 </style>
@@ -1373,6 +1565,53 @@
 @await Html.PartialAsync("../admin_view/_Scripts")
 
 <script>
+    // Function to toggle action dropdown menu
+    function toggleActionMenu(button) {
+        // Close all other open dropdowns first
+        document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+            if (menu !== button.nextElementSibling) {
+                menu.classList.remove('show');
+            }
+        });
+        
+        // Toggle current dropdown
+        var menu = button.nextElementSibling;
+        menu.classList.toggle('show');
+    }
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.action-dropdown')) {
+            document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+                menu.classList.remove('show');
+            });
+        }
+    });
+    
+    // Function to edit provider
+    function editProvider(providerId) {
+        console.log('Editing provider:', providerId);
+        // Close dropdown
+        document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+            menu.classList.remove('show');
+        });
+        // TODO: Implement edit provider logic
+        alert('Edit provider ' + providerId);
+    }
+    
+    // Function to delete provider
+    function deleteProvider(providerId) {
+        console.log('Deleting provider:', providerId);
+        // Close dropdown
+        document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+            menu.classList.remove('show');
+        });
+        // TODO: Implement delete provider logic
+        if (confirm('Are you sure you want to delete this provider?')) {
+            alert('Provider ' + providerId + ' deleted');
+        }
+    }
+
     // Function to open the Add Provider modal
     function openAddProviderModal() {
         var modal = new bootstrap.Modal(document.getElementById('addProviderModal'));

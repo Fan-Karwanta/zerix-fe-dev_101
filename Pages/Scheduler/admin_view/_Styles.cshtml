@@ -4979,8 +4979,19 @@ a.mobile-sidebar-nav-item:hover {
 
 /* ==================== REPORTS PAGE STYLES ==================== */
 
-/* Go Back Link */
+/* Header Row - Back button left, Title centered */
+.reports-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+/* Go Back Link - positioned absolute left */
 .reports-go-back {
+    position: absolute;
+    left: 0;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -4988,7 +4999,6 @@ a.mobile-sidebar-nav-item:hover {
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
-    margin-bottom: 8px;
 }
 
 .reports-go-back:hover {
@@ -4996,13 +5006,29 @@ a.mobile-sidebar-nav-item:hover {
     text-decoration: none;
 }
 
-/* Reports Title */
-.reports-title {
+/* Back button for mobile - positioned absolute left */
+.reports-back-btn {
+    position: absolute;
+    left: 0;
+    color: #ff5400;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.reports-back-btn:hover {
+    color: #e64a00;
+}
+
+/* Reports Title - Centered */
+.reports-title-centered {
     font-size: 24px;
     font-weight: 400;
     color: #333;
+    margin: 0;
     text-align: center;
-    margin-bottom: 24px;
 }
 
 /* Reports Main Layout - Full Width without sidebar */
@@ -5210,11 +5236,11 @@ a.mobile-sidebar-nav-item:hover {
     font-size: 14px;
     color: #666;
     font-weight: 400;
-    padding: 10px 14px;
-    background: #f8f8f8;
-    border-radius: 6px;
-    border: 1px solid #e6e6e6;
-    min-width: 110px;
+    padding: 8px 14px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    min-width: 140px;
     text-align: left;
 }
 
@@ -5371,7 +5397,7 @@ a.mobile-sidebar-nav-item:hover {
     background: #fff;
 }
 
-/* Responsive Styles for Reports */
+/* Responsive Styles for Reports - Tablet */
 @@media (max-width: 991px) {
     .reports-main-layout {
         flex-direction: column;
@@ -5416,14 +5442,34 @@ a.mobile-sidebar-nav-item:hover {
         margin-top: 8px;
     }
 
+    /* Tablet: Filter tags layout - fill available space */
     .reports-top-filters {
+        display: flex;
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 16px;
     }
 
+    /* Appointment Type and Status - equal width, side by side */
+    .reports-top-filter-group {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .reports-top-filter-value {
+        width: 100%;
+        min-width: auto;
+    }
+
+    /* Date Range - full width on its own row */
     .reports-date-range-display {
+        flex: 0 0 100%;
         margin-left: 0;
-        flex: 100%;
+    }
+
+    .reports-date-range-display .reports-top-filter-value {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
     }
 }
 
@@ -5533,39 +5579,6 @@ a.mobile-sidebar-nav-item:hover {
 
 /* ==================== REPORTS MOBILE STYLES ==================== */
 
-/* Mobile Header */
-.reports-mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-bottom: 12px;
-    margin-top: 1rem;
-}
-
-.reports-back-btn {
-    position: absolute;
-    left: 0;
-    color: #ff5400;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-}
-
-.reports-back-btn:hover {
-    color: #e64a00;
-}
-
-.reports-mobile-title {
-    font-size: 24px;
-    font-weight: 400;
-    color: #333;
-    margin: 0;
-    font-family: inherit;
-}
-
 /* Mobile Filter Button */
 .reports-mobile-filter-btn-wrapper {
     margin-bottom: 12px;
@@ -5588,35 +5601,37 @@ a.mobile-sidebar-nav-item:hover {
 /* Mobile Filter Tags Row */
 .reports-mobile-filter-tags {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 16px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px;
 }
 
 .reports-filter-tag-group {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    flex-shrink: 0;
+    flex: 1;
+    min-width: calc(50% - 6px);
+}
+
+/* Date Range takes full width */
+.reports-filter-tag-group:last-child {
+    flex: 0 0 100%;
 }
 
 .reports-filter-tag-label {
-    font-size: 11px;
-    color: #999;
+    font-size: 12px;
+    color: #666;
 }
 
 .reports-filter-tag-value {
-    display: inline-block;
-    padding: 6px 12px;
+    display: block;
+    padding: 10px 14px;
     background: #f5f5f5;
     border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 13px;
+    border-radius: 6px;
+    font-size: 14px;
     color: #333;
-    white-space: nowrap;
 }
 
 /* ==================== REPORTS FILTER MODAL STYLES ==================== */

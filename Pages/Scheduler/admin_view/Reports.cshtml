@@ -15,26 +15,26 @@
 @await Html.PartialAsync("../user_view/_MobileSidebar")
 
 <div class="container px-4 my-3 pt-md-3 pt-3 reports-page">
-    <!-- Mobile Header with Back and Title -->
-    <div class="reports-mobile-header d-md-none">
+    <!-- Mobile/Tablet Header - Back button left, Title centered -->
+    <div class="reports-header-row d-md-none">
         <a href="javascript:history.back()" class="reports-back-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </a>
-        <h2 class="reports-mobile-title">Reports</h2>
+        <h2 class="reports-title-centered">Reports</h2>
     </div>
 
-    <!-- Desktop Go Back Link -->
-    <a href="javascript:history.back()" class="reports-go-back d-none d-md-inline-flex">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Go Back
-    </a>
-
-    <!-- Desktop Reports Title -->
-    <h2 class="reports-title d-none d-md-block">Reports</h2>
+    <!-- Desktop Header - Back button left, Title centered -->
+    <div class="reports-header-row d-none d-md-flex">
+        <a href="javascript:history.back()" class="reports-go-back">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Go Back
+        </a>
+        <h2 class="reports-title-centered">Reports</h2>
+    </div>
 
     <!-- Mobile Filter Button -->
     <div class="reports-mobile-filter-btn-wrapper d-md-none">
