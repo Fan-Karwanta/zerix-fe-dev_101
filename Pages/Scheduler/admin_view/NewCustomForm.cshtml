@@ -993,12 +993,37 @@
         }
         
         .form-questions-desktop-header {
-            margin-top: 0 !important;
+            margin-top: 1.3rem !important;
             margin-bottom: 1rem !important;
         }
         
         .form-questions-page-title {
             font-size: 28px;
+        }
+        
+        /* Reorder columns on tablet - form first, sidebar at bottom */
+        .fq-main-row {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .fq-form-column {
+            order: 1;
+        }
+        
+        .fq-sidebar-column {
+            order: 2;
+            margin-bottom: 0 !important;
+        }
+        
+        /* Hide desktop action buttons on tablet */
+        .fq-action-buttons-desktop {
+            display: none;
+        }
+        
+        /* Show mobile action buttons on tablet */
+        .fq-mobile-actions {
+            display: flex;
         }
     }
     

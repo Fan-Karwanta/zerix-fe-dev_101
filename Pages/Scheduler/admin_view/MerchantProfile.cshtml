@@ -627,7 +627,7 @@
 }
 .merchant-input {
     flex: 1;
-    max-width: 180px;
+    max-width: 300px;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 8px 12px;
@@ -1001,16 +1001,19 @@
 /* Checkboxes */
 .provider-form-check {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 8px;
+    padding-left: 0;
 }
 
 .provider-checkbox {
     width: 18px;
     height: 18px;
-    margin-right: 10px;
+    margin-left: 0px !important;
+    margin-top: 2px;
     cursor: pointer;
     border: 1px solid #ddd;
+    flex-shrink: 0;
 }
 
 .provider-checkbox:checked {
@@ -1023,6 +1026,7 @@
     color: #333;
     margin: 0;
     cursor: pointer;
+    line-height: 1.4;
 }
 
 /* Modal Footer */
@@ -1394,17 +1398,21 @@
 /* Responsive Adjustments for Webhook Modal - Tablet & Mobile */
 @@media (max-width: 991px) {
     .modal-webhook {
-        max-width: 280px;
+        max-width: 320px;
         margin: 20px auto;
     }
     
     .modal-webhook-content {
         border-radius: 8px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
     }
     
     .modal-webhook-header {
         padding: 16px 20px;
         border-bottom: none;
+        flex-shrink: 0;
     }
     
     .modal-webhook-title {
@@ -1423,6 +1431,8 @@
     
     .modal-webhook-body {
         padding: 0 20px 20px;
+        overflow-y: auto;
+        flex: 1;
     }
     
     /* Current Status Section */
@@ -1433,8 +1443,8 @@
     }
     
     .webhook-section:nth-child(2) {
-        border-bottom: none;
-        margin-bottom: 0;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 20px;
     }
     
     .webhook-section-title {
@@ -1450,13 +1460,14 @@
         margin-bottom: 12px;
     }
     
-    /* Status row - keep inline */
+    /* Status row - Disable button on the right */
     .webhook-status-row {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 12px;
         flex-wrap: nowrap;
+        justify-content: flex-start;
     }
     
     .webhook-status-label {
@@ -1471,12 +1482,12 @@
         border-radius: 4px;
     }
     
-    /* Small inline Disable button */
+    /* Disable button positioned to the right */
     .btn-webhook-toggle {
         padding: 4px 14px !important;
         font-size: 11px !important;
         font-weight: 500;
-        margin-left: 0 !important;
+        margin-left: auto !important;
         width: auto !important;
         border-radius: 4px;
     }
@@ -1539,9 +1550,11 @@
         border-radius: 4px;
     }
     
-    /* Hide test webhook section */
+    /* Show test webhook section on mobile/tablet */
     .webhook-section:last-child {
-        display: none;
+        display: block;
+        border-bottom: none;
+        margin-bottom: 0;
     }
 }
 </style>
@@ -1570,6 +1583,13 @@
                 menu.classList.remove('show');
             });
         }
+    });
+    
+    // Close action dropdowns when any modal is shown
+    document.addEventListener('show.bs.modal', function() {
+        document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+            menu.classList.remove('show');
+        });
     });
     
     // Function to edit provider
@@ -1648,6 +1668,11 @@
 
     // Function to open the Webhook Management modal
     function openWebhookModal(providerName, status, url) {
+        // Close all action dropdown menus before showing the modal
+        document.querySelectorAll('.action-dropdown-menu.show').forEach(function(menu) {
+            menu.classList.remove('show');
+        });
+        
         // Update modal content with provider data
         document.getElementById('webhookProviderName').textContent = providerName;
         document.getElementById('webhookUrlText').textContent = url;

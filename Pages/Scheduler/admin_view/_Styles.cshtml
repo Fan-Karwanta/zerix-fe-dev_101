@@ -5240,7 +5240,7 @@ a.mobile-sidebar-nav-item:hover {
     background: #f5f5f5;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
-    min-width: 140px;
+    min-width: 180px;
     text-align: left;
 }
 
@@ -5479,6 +5479,12 @@ a.mobile-sidebar-nav-item:hover {
         padding-top: 0 !important;
         margin-top: 0 !important;
     }
+    
+    /* Fix spacing for mobile header */
+    .reports-page .reports-header-row {
+        margin-top: 0.5rem;
+        margin-bottom: 16px;
+    }
 
     .reports-title {
         font-size: 20px;
@@ -5614,8 +5620,20 @@ a.mobile-sidebar-nav-item:hover {
     min-width: calc(50% - 6px);
 }
 
-/* Date Range takes full width */
-.reports-filter-tag-group:last-child {
+/* Date Range - takes half width on first row */
+.reports-filter-tag-date {
+    flex: 1;
+    min-width: calc(50% - 6px);
+}
+
+/* Status - takes half width on first row */
+.reports-filter-tag-status {
+    flex: 1;
+    min-width: calc(50% - 6px);
+}
+
+/* Appointment Type takes full width on second row */
+.reports-filter-tag-type {
     flex: 0 0 100%;
 }
 
