@@ -2542,3 +2542,131 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
     min-width: 278px !important;
   }
 }
+
+/* SMS Compose New Design Styles */
+.recipients-input-field {
+  height: 40px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  flex: 1;
+}
+
+.recipients-input-field:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+#smsSection .sms.recipients-container {
+  height: auto;
+  min-height: 40px;
+}
+
+/* Schedule date input styling */
+.schedule-date-input {
+  width: auto !important;
+}
+
+.schedule-date-input .input-group-text {
+  padding: 0.375rem 0.5rem;
+  border-right: none;
+}
+
+.schedule-date-input .form-control {
+  border-left: none;
+  padding-left: 0;
+}
+
+#scheduleDropdownDesktop .form-control,
+#scheduleDropdownMobile .form-control {
+  height: 38px;
+}
+
+#scheduleDropdownDesktop .form-select,
+#scheduleDropdownMobile .form-select {
+  height: 38px;
+  padding: 0.375rem 0.5rem;
+}
+
+#scheduleDropdownDesktop input[type="number"]::-webkit-inner-spin-button,
+#scheduleDropdownDesktop input[type="number"]::-webkit-outer-spin-button,
+#scheduleDropdownMobile input[type="number"]::-webkit-inner-spin-button,
+#scheduleDropdownMobile input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#scheduleDropdownDesktop input[type="number"],
+#scheduleDropdownMobile input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Mobile specific adjustments for SMS compose */
+@media (max-width: 767.98px) {
+  #smsSection .message-compose-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  #smsSection .recipients-container {
+    height: 40px !important;
+  }
+
+  #smsSection .form-control.message.mobile {
+    height: 200px;
+  }
+
+  #scheduleDropdownMobile {
+    margin-top: 0.75rem !important;
+  }
+
+  #scheduleDropdownMobile .form-control,
+  #scheduleDropdownMobile .form-select {
+    height: 36px;
+    font-size: 14px;
+  }
+}
+
+/* Import Recipients Modal Styles */
+#importRecipientsModal .modal-content {
+  border-radius: 8px;
+}
+
+#importRecipientsModal .btn-close {
+  font-size: 12px;
+  opacity: 1;
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}
+
+#dropZoneDesktop,
+#dropZoneMobile {
+  background-color: #fafafa;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#dropZoneDesktop:hover,
+#dropZoneMobile:hover,
+#dropZoneDesktop.drag-over,
+#dropZoneMobile.drag-over {
+  background-color: #fff5ec;
+  border-color: #ff5400 !important;
+}
+
+#importSection {
+  min-height: 280px;
+}
+
+#importSection .btn-fill {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+#importRecipientsModal .btn-fill {
+  width: 100% !important;
+  max-width: 100% !important;
+}
