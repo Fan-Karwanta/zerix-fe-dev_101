@@ -289,7 +289,16 @@ ViewData["User"] = "Admin";
                 <div class="mb-2 mb-md-3 d-none d-md-block">
                     <label for="recipients" class="form-label mb-1">To</label>
                     <div class="sms recipients-container d-flex gap-3 gap-md-4">
-                        <input type="text" class="form-control recipients-input-field" placeholder="" />
+                        <div class="tag-input d-flex align-items-center gap-1 flex-grow-1" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap; max-width: 480px;">
+                            <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
+                            <span class="tag">IT <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <input type="text" class="recipients-input border-0" placeholder="" style="flex: 1; min-width: 50px; outline: none;" />
+                        </div>
                         <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#groupsModal">
                             Groups
                         </button>
@@ -303,8 +312,10 @@ ViewData["User"] = "Admin";
                 </div>
                 <!-- Mobile: To field with plus button -->
                 <div class="mb-3 d-md-none">
-                    <div class="recipients-container input-group border rounded d-flex">
-                        <input type="text" class="form-control border-0" placeholder="" />
+                    <div class="recipients-container input-group border rounded d-flex flex-wrap align-items-center p-1">
+                        <div class="tag-input d-flex flex-wrap align-items-center gap-1 flex-grow-1 border-0 p-1">
+                            <input type="text" class="recipients-input border-0 flex-grow-1" placeholder="" style="min-width: 50px; outline: none;" />
+                        </div>
                         <button class="btn btn-custom txt-color-primary p-0 pe-2" type="button" data-bs-toggle="modal"
                             data-bs-target="#recipientsModal">
                             <img src="~/images/icons/add-contacts.svg" alt="Add" height="26" width="26" />
@@ -316,7 +327,7 @@ ViewData["User"] = "Admin";
                     <label for="messageFormControl" class="form-label mb-1" aria-required="true">
                         Message<span class="text-danger d-none d-md-inline">*</span>
                     </label>
-                    <textarea class="d-md-none d-block form-control message mobile rounded" rows="3"></textarea>
+                    <textarea class="d-md-none d-block form-control message mobile rounded" rows="3" style="border-bottom: 1px solid #dee2e6 !important;"></textarea>
                     <textarea class="d-none d-md-block form-control message rounded p-1 compose-message"
                         rows="3"></textarea>
                 </div>
@@ -342,18 +353,19 @@ ViewData["User"] = "Admin";
                     </div>
                 </div>
                 <!-- Desktop: Date/Time picker row (shown when Schedule Sending is checked) -->
-                <div class="d-none justify-content-center mt-3" id="scheduleDropdownDesktop">
+                <div class="d-none justify-content-end mt-3" id="scheduleDropdownDesktop">
                     <div class="d-flex align-items-center gap-2">
-                        <div class="input-group schedule-date-input" style="width: auto;">
-                            <span class="input-group-text bg-white border" style="cursor: pointer;" onclick="document.getElementById('dateInputDesktop').showPicker()">
+                        <div class="input-group border rounded bg-white" style="width: 150px; height: 32px;">
+                            <span class="input-group-text bg-white border-0 py-0 px-2" style="cursor: pointer;" onclick="document.getElementById('dateInputDesktopHidden').showPicker()">
                                 <i class="bi bi-calendar fs-14 font-orange"></i>
                             </span>
-                            <input type="date" id="dateInputDesktop" class="form-control border" style="width: 120px;" />
+                            <input type="text" id="dateInputDesktop" class="form-control border-0 py-0 ps-0" placeholder="mm/dd/yyyy" style="height: 30px; font-size: 13px;" onclick="document.getElementById('dateInputDesktopHidden').showPicker()" readonly />
+                            <input type="date" id="dateInputDesktopHidden" class="position-absolute opacity-0" style="width: 0; height: 0; pointer-events: none;" onchange="document.getElementById('dateInputDesktop').value = this.value ? new Date(this.value).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'}) : ''" />
                         </div>
-                        <input type="number" min="1" max="12" class="form-control text-center border" placeholder="8" style="width: 50px;" oninput="validateRange(this)">
+                        <input type="number" min="1" max="12" class="form-control text-center border rounded py-0" placeholder="8" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
                         <span class="text-muted">:</span>
-                        <input type="number" min="0" max="59" class="form-control text-center border" placeholder="00" style="width: 50px;" oninput="validateRange(this)">
-                        <select class="form-select border" style="width: 70px;">
+                        <input type="number" min="0" max="59" class="form-control text-center border rounded py-0" placeholder="00" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
+                        <select class="form-select border rounded py-0" style="width: 65px; height: 32px; font-size: 13px;">
                             <option value="am">am</option>
                             <option value="pm">pm</option>
                         </select>
@@ -382,17 +394,19 @@ ViewData["User"] = "Admin";
                     </div>
                     <!-- Mobile: Date/Time picker row (shown when Schedule Sending is checked) -->
                     <div class="d-none justify-content-center mt-3" id="scheduleDropdownMobile">
-                        <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center">
-                            <div class="input-group schedule-date-input" style="width: auto;">
-                                <span class="input-group-text bg-white border" style="cursor: pointer;" onclick="document.getElementById('dateInputMobile').showPicker()">
-                                    <i class="bi bi-calendar fs-14 font-orange"></i>
-                                </span>
-                                <input type="date" id="dateInputMobile" class="form-control border" style="width: 120px;" />
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="input-group border rounded" style="width: auto; height: 32px;">
+                                    <span class="input-group-text bg-white border-0 py-0 px-2" style="cursor: pointer;" onclick="document.getElementById('dateInputMobile').showPicker()">
+                                        <i class="bi bi-calendar fs-14 font-orange"></i>
+                                    </span>
+                                    <input type="date" id="dateInputMobile" class="form-control border-0 py-0 ps-0" style="width: 100px; height: 30px; font-size: 13px;" />
+                                </div>
+                                <input type="number" min="1" max="12" class="form-control text-center border rounded py-0" placeholder="8" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
+                                <span class="text-muted">:</span>
+                                <input type="number" min="0" max="59" class="form-control text-center border rounded py-0" placeholder="00" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
                             </div>
-                            <input type="number" min="1" max="12" class="form-control text-center border" placeholder="8" style="width: 45px;" oninput="validateRange(this)">
-                            <span class="text-muted">:</span>
-                            <input type="number" min="0" max="59" class="form-control text-center border" placeholder="00" style="width: 45px;" oninput="validateRange(this)">
-                            <select class="form-select border" style="width: 65px;">
+                            <select class="form-select border rounded py-0" style="width: 60px; height: 32px; font-size: 13px;">
                                 <option value="am">am</option>
                                 <option value="pm">pm</option>
                             </select>
@@ -1126,10 +1140,10 @@ ViewData["User"] = "Admin";
     <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
         <div class="modal-content" style="border-radius: 4px;">
             <!-- Modal Header -->
-            <div class="modal-header border-0 pb-0 pt-3 px-4">
+            <div class="modal-header border-0 pb-2 pt-3 px-4 justify-content-between">
                 <div class="modal-title fs-18 font-orange" id="importRecipientsModalLabel">Import Recipient</div>
                 <button type="button" class="btn p-0 border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="font-orange fs-20" style="margin-left: 6rem;">&times;</span>
+                    <span class="font-orange" style="font-size: 28px; line-height: 1;">&times;</span>
                 </button>
             </div>
             <!-- Modal Body -->
