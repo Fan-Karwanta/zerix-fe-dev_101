@@ -289,15 +289,17 @@ ViewData["User"] = "Admin";
                 <div class="mb-2 mb-md-3 d-none d-md-block">
                     <label for="recipients" class="form-label mb-1">To</label>
                     <div class="sms recipients-container d-flex gap-3 gap-md-4">
-                        <div class="tag-input d-flex align-items-center gap-1 flex-grow-1" style="overflow-x: auto; overflow-y: hidden; white-space: nowrap; max-width: 480px;">
-                            <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
-                            <span class="tag">IT <span class="remove-tag">&times;</span></span>
-                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                            <input type="text" class="recipients-input border-0" placeholder="" style="flex: 1; min-width: 50px; outline: none;" />
+                        <div class="tag-input scroll-x">
+                            <div class="d-flex flex-row align-items-center gap-2">
+                                <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
+                                <span class="tag">IT <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                                <input type="text" class="recipients-input border-0">
+                            </div>
                         </div>
                         <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#groupsModal">
                             Groups
@@ -331,88 +333,62 @@ ViewData["User"] = "Admin";
                     <textarea class="d-none d-md-block form-control message rounded p-1 compose-message"
                         rows="3"></textarea>
                 </div>
-                <!-- Desktop: Compose send options -->
-                <div class="d-none d-md-flex justify-content-between align-items-center">
-                    <!-- Use Template link on left -->
-                    <div>
-                        <a href="#" class="font-orange fs-14 text-decoration-none" data-bs-toggle="modal"
-                            data-bs-target="#useTemplateModal">Use Template</a>
-                    </div>
-                    <!-- Schedule Sending and Send Button on right -->
-                    <div class="d-flex flex-row align-items-center">
-                        <!-- Schedule Sending checkbox -->
-                        <div class="form-check d-flex align-items-center me-3">
-                            <input class="form-check-input me-2" type="checkbox" id="scheduleSendingDesktop"
-                                onchange="toggleDateTimePickerDesktop()" style="margin-bottom: 4px;">
-                            <label class="form-check-label text-muted fs-14" for="scheduleSendingDesktop">
-                                Schedule Sending
-                            </label>
-                        </div>
-                        <!-- Send Button -->
-                        <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
-                    </div>
-                </div>
-                <!-- Desktop: Date/Time picker row (shown when Schedule Sending is checked) -->
-                <div class="d-none justify-content-end mt-3" id="scheduleDropdownDesktop">
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="input-group border rounded bg-white" style="width: 150px; height: 32px;">
-                            <span class="input-group-text bg-white border-0 py-0 px-2" style="cursor: pointer;" onclick="document.getElementById('dateInputDesktopHidden').showPicker()">
-                                <i class="bi bi-calendar fs-14 font-orange"></i>
-                            </span>
-                            <input type="text" id="dateInputDesktop" class="form-control border-0 py-0 ps-0" placeholder="mm/dd/yyyy" style="height: 30px; font-size: 13px;" onclick="document.getElementById('dateInputDesktopHidden').showPicker()" readonly />
-                            <input type="date" id="dateInputDesktopHidden" class="position-absolute opacity-0" style="width: 0; height: 0; pointer-events: none;" onchange="document.getElementById('dateInputDesktop').value = this.value ? new Date(this.value).toLocaleDateString('en-US', {month: '2-digit', day: '2-digit', year: 'numeric'}) : ''" />
-                        </div>
-                        <input type="number" min="1" max="12" class="form-control text-center border rounded py-0" placeholder="8" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
-                        <span class="text-muted">:</span>
-                        <input type="number" min="0" max="59" class="form-control text-center border rounded py-0" placeholder="00" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
-                        <select class="form-select border rounded py-0" style="width: 65px; height: 32px; font-size: 13px;">
-                            <option value="am">am</option>
-                            <option value="pm">pm</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Mobile: Compose send options -->
-                <div class="d-md-none">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <!-- Use Template link on left -->
-                        <div>
-                            <a href="#" class="font-orange fs-14 text-decoration-none" onclick="showUseTemplateMobile()">Use Template</a>
-                        </div>
-                        <!-- Schedule Sending and Send Button on right -->
-                        <div class="d-flex flex-row align-items-center">
-                            <!-- Schedule Sending checkbox -->
-                            <div class="form-check d-flex align-items-center me-2" >
-                                <input class="form-check-input me-1" type="checkbox" id="scheduleSendingMobile"
-                                    onchange="toggleDateTimePickerMobile()" style="margin-bottom: 4px;" >
-                                <label class="form-check-label text-muted fs-12" for="scheduleSendingMobile">
+                <!-- Compose send options -->
+                <div class="d-flex justify-content-end align-items-center">
+                    <!-- Schedule Sending and Send Button -->
+                    <div class="d-flex flex-row flex-md-row align-items-md-center align-self-end">
+                        <!-- Schedule Sending-->
+                        <div class="btn-group dropdown mt-0 align-self-center me-2">
+                            <div class="form-check d-flex align-items-center me-md-4 text-center">
+                                <input class="form-check-input me-2 mb-1" type="checkbox" id="scheduleSending"
+                                    onchange="toggleDateTimePicker()">
+                                <label class="form-check-label text-muted fs-14" for="scheduleSending">
                                     Schedule Sending
                                 </label>
                             </div>
-                            <!-- Send Button -->
+                        </div>
+                        <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
+                        <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
+                            <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
+                                aria-labelledby="scheduleSending">
+                                <li class="dropdown-item p-0 m-0">
+                                    <div class="form-group d-flex p-0">
+                                        <div class="input-group justify-content-start align-items-start border-0 gap-1">
+                                            <div class="input-group align-items-start justify-content-start"
+                                                id="scheduleSendDate">
+                                                <span class="input-group-text" id="dateIcon">
+                                                    <i class="bi bi-calendar fs-12 font-orange"></i>
+                                                </span>
+                                                <input type="date" id="dateInput"
+                                                    class="form-control custom-date-input" />
+                                            </div>
+                                            <div class="d-flex flex-row">
+                                                <input type="number" min="1" max="12" class="form-control"
+                                                    placeholder="8" oninput="validateRange(this)">
+                                                <span class="input-group-text">:</span>
+                                                <input type="number" min="0" max="59" class="form-control"
+                                                    placeholder="00" oninput="validateRange(this)">
+                                            </div>
+                                            <select name="sources" id="sources" class="custom-select sources"
+                                                placeholder="am">
+                                                <option value="1">am</option>
+                                                <option value="2">pm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Send Button with dropdown -->
+                        <div class="btn-group dropup send-options d-md-flex d-none">
+                            <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
+                        </div>
+                        <div class="btn-group dropup send-options d-md-none d-fllex">
                             <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
                         </div>
                     </div>
-                    <!-- Mobile: Date/Time picker row (shown when Schedule Sending is checked) -->
-                    <div class="d-none justify-content-center mt-3" id="scheduleDropdownMobile">
-                        <div class="d-flex flex-column align-items-center gap-2">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="input-group border rounded" style="width: auto; height: 32px;">
-                                    <span class="input-group-text bg-white border-0 py-0 px-2" style="cursor: pointer;" onclick="document.getElementById('dateInputMobile').showPicker()">
-                                        <i class="bi bi-calendar fs-14 font-orange"></i>
-                                    </span>
-                                    <input type="date" id="dateInputMobile" class="form-control border-0 py-0 ps-0" style="width: 100px; height: 30px; font-size: 13px;" />
-                                </div>
-                                <input type="number" min="1" max="12" class="form-control text-center border rounded py-0" placeholder="8" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
-                                <span class="text-muted">:</span>
-                                <input type="number" min="0" max="59" class="form-control text-center border rounded py-0" placeholder="00" style="width: 40px; height: 32px; font-size: 13px;" oninput="validateRange(this)">
-                            </div>
-                            <select class="form-select border rounded py-0" style="width: 60px; height: 32px; font-size: 13px;">
-                                <option value="am">am</option>
-                                <option value="pm">pm</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
+
             </form>
         </div>
     </div>
@@ -1143,7 +1119,7 @@ ViewData["User"] = "Admin";
             <div class="modal-header border-0 pb-2 pt-3 px-4 justify-content-between">
                 <div class="modal-title fs-18 font-orange" id="importRecipientsModalLabel">Import Recipient</div>
                 <button type="button" class="btn p-0 border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="font-orange" style="font-size: 28px; line-height: 1;">&times;</span>
+                    <span class="font-orange" style="font-size: 28px; line-height: 1; margin-left: 5.7rem;">&times;</span>
                 </button>
             </div>
             <!-- Modal Body -->
