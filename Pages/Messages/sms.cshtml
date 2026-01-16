@@ -320,7 +320,7 @@ ViewData["User"] = "Admin";
                         </div>
                         <button class="btn btn-custom txt-color-primary p-0 pe-2 d-flex align-items-center" type="button" data-bs-toggle="modal"
                             data-bs-target="#recipientsModal">
-                            <img src="~/images/icons/add-contacts.svg" alt="Add" height="26" width="26" style="vertical-align: middle; margin-top: 7px;" />
+                            <img src="~/images/icons/add-contacts.svg" alt="Add" height="26" width="26" style="vertical-align: middle; margin-bottom: 7px;" />
                         </button>
                     </div>
                 </div>
@@ -333,65 +333,58 @@ ViewData["User"] = "Admin";
                     <textarea class="d-none d-md-block form-control message rounded p-1 compose-message"
                         rows="3"></textarea>
                 </div>
-                <!-- Use Template Link -->
-                <div class="mb-3">
-                    <a href="#" class="font-orange fs-14 text-decoration-none d-none d-md-inline-block" data-bs-toggle="modal" data-bs-target="#useTemplateModal">Use Template</a>
-                    <a href="#" class="font-orange fs-14 text-decoration-none d-md-none" onclick="showUseTemplateMobile()">Use Template</a>
-                </div>
-                <!-- Compose send options -->
-                <div class="d-flex justify-content-end align-items-center">
-                    <!-- Schedule Sending and Send Button -->
-                    <div class="d-flex flex-row flex-md-row align-items-md-center align-self-end">
-                        <!-- Schedule Sending-->
-                        <div class="btn-group dropdown mt-0 align-self-center me-2">
-                            <div class="form-check d-flex align-items-center me-md-4 text-center">
-                                <input class="form-check-input me-2 mb-1" type="checkbox" id="scheduleSending"
-                                    onchange="toggleDateTimePicker()">
-                                <label class="form-check-label text-muted fs-14" for="scheduleSending">
-                                    Schedule Sending
-                                </label>
-                            </div>
-                        </div>
-                        <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
-                        <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
-                            <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
-                                aria-labelledby="scheduleSending">
-                                <li class="dropdown-item p-0 m-0">
-                                    <div class="form-group d-flex p-0">
-                                        <div class="input-group justify-content-start align-items-start border-0 gap-1">
-                                            <div class="input-group align-items-start justify-content-start"
-                                                id="scheduleSendDate">
-                                                <span class="input-group-text" id="dateIcon">
-                                                    <i class="bi bi-calendar fs-12 font-orange"></i>
-                                                </span>
-                                                <input type="date" id="dateInput"
-                                                    class="form-control custom-date-input" />
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <input type="number" min="1" max="12" class="form-control"
-                                                    placeholder="8" oninput="validateRange(this)">
-                                                <span class="input-group-text">:</span>
-                                                <input type="number" min="0" max="59" class="form-control"
-                                                    placeholder="00" oninput="validateRange(this)">
-                                            </div>
-                                            <select name="sources" id="sources" class="custom-select sources"
-                                                placeholder="am">
-                                                <option value="1">am</option>
-                                                <option value="2">pm</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Send Button with dropdown -->
-                        <div class="btn-group dropup send-options d-md-flex d-none">
-                            <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
-                        </div>
-                        <div class="btn-group dropup send-options d-md-none d-fllex">
-                            <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
-                        </div>
+                <!-- Use Template + Schedule Sending + Send (aligned in one row) -->
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Use Template Link -->
+                    <div>
+                        <a href="#" class="font-orange fs-14 text-decoration-none d-none d-md-inline-block" data-bs-toggle="modal" data-bs-target="#useTemplateModal">Use Template</a>
+                        <a href="#" class="font-orange fs-14 text-decoration-none d-md-none" onclick="showUseTemplateMobile()">Use Template</a>
                     </div>
+                    <!-- Schedule Sending and Send Button -->
+                    <div class="d-flex flex-row align-items-center">
+                        <!-- Schedule Sending-->
+                        <div class="form-check d-flex align-items-center me-2 me-md-4">
+                            <input class="form-check-input me-2" type="checkbox" id="scheduleSending"
+                                onchange="toggleDateTimePicker()">
+                            <label class="form-check-label text-muted fs-14" for="scheduleSending" style="margin-top: 6px;">
+                                Schedule Sending
+                            </label>
+                        </div>
+                        <!-- Send Button -->
+                        <button type="button" class="btn btn-fill rounded send fs-14">Send</button>
+                    </div>
+                </div>
+                <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
+                <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
+                    <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
+                        aria-labelledby="scheduleSending">
+                        <li class="dropdown-item p-0 m-0">
+                            <div class="form-group d-flex p-0">
+                                <div class="input-group justify-content-start align-items-start border-0 gap-1">
+                                    <div class="input-group align-items-start justify-content-start"
+                                        id="scheduleSendDate">
+                                        <span class="input-group-text" id="dateIcon">
+                                            <i class="bi bi-calendar fs-12 font-orange"></i>
+                                        </span>
+                                        <input type="date" id="dateInput"
+                                            class="form-control custom-date-input" />
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <input type="number" min="1" max="12" class="form-control"
+                                            placeholder="8" oninput="validateRange(this)">
+                                        <span class="input-group-text">:</span>
+                                        <input type="number" min="0" max="59" class="form-control"
+                                            placeholder="00" oninput="validateRange(this)">
+                                    </div>
+                                    <select name="sources" id="sources" class="custom-select sources"
+                                        placeholder="am">
+                                        <option value="1">am</option>
+                                        <option value="2">pm</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
 
             </form>
