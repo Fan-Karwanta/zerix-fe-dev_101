@@ -2627,6 +2627,12 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
     height: 36px;
     font-size: 14px;
   }
+
+  /* Fix schedule dropdown overflow on mobile - left align instead of right */
+  #scheduleDropdown .dropdown-menu {
+    right: auto !important;
+    left: -2rem !important;
+  }
 }
 
 /* Import Recipients Modal Styles */
