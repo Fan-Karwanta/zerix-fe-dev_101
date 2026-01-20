@@ -556,6 +556,36 @@ textarea.compose-message {
 .recipients-container {
   height: 40px;
 }
+
+/* Mobile recipients container - horizontal scroll */
+@media (max-width: 767.98px) {
+  .recipients-container {
+    height: auto;
+    min-height: 40px;
+    max-height: 48px;
+  }
+  
+  .recipients-container .tag-input {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  
+  .recipients-container .tag-input::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .recipients-container .tag-input::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 4px;
+  }
+  
+  .recipients-container .tag-input .tag {
+    flex-shrink: 0;
+  }
+}
 .recipients-input {
   height: 28px;
   font-size: 12px;

@@ -314,13 +314,20 @@ ViewData["User"] = "Admin";
                 </div>
                 <!-- Mobile: To field with plus button -->
                 <div class="mb-3 d-md-none">
-                    <div class="recipients-container input-group border rounded d-flex flex-wrap align-items-center p-1">
-                        <div class="tag-input d-flex flex-wrap align-items-center gap-1 flex-grow-1 border-0 p-1">
+                    <div class="recipients-container input-group border rounded d-flex flex-nowrap align-items-center p-1">
+                        <div class="tag-input d-flex flex-nowrap align-items-center gap-1 flex-grow-1 border-0 p-1 overflow-auto" style="max-width: calc(100% - 40px);">
+                            <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
+                            <span class="tag">IT <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
+                            <span class="tag">Admin <span class="remove-tag">&times;</span></span>
                             <input type="text" class="recipients-input border-0 flex-grow-1" placeholder="" style="min-width: 50px; outline: none;" />
                         </div>
                         <button class="btn btn-custom txt-color-primary p-0 pe-2 d-flex align-items-center" type="button" data-bs-toggle="modal"
                             data-bs-target="#recipientsModal">
-                            <img src="~/images/icons/add-contacts.svg" alt="Add" height="26" width="26" style="vertical-align: middle; margin-bottom: 7px;" />
+                            <img src="~/images/icons/add-contacts.svg" alt="Add" height="26" width="26" style="vertical-align: middle; margin-bottom: 3px;" />
                         </button>
                     </div>
                 </div>
