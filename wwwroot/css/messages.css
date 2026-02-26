@@ -2388,6 +2388,10 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
     max-width: 310px !important;
     min-width: 280px !important;
   }
+
+  .date-time-dropdown {
+    right: -90px;
+  }
 }
 
 /* Support for 360px mobile screens */
