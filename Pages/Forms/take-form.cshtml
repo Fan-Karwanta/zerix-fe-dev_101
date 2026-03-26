@@ -1,0 +1,309 @@
+@page
+@model zerix_fe_dev.Pages.Forms.TakeFormModel
+@{
+    Layout = "_Forms";
+    ViewData["Title"] = "Take Form";
+    ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Forms dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownForms" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="28" width="28" alt="Forms"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Forms</span>
+                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Forms</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownForms">
+                </ul>
+            </li>
+            <li class="nav-item d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownFormsOffcanvas" role="button">
+                    <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Forms</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#FormsDashboardOffcanvas" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/scheduler">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="Settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="FormsDashboardOffcanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1" id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/email">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/forms">
+                        <img src="~/images/icons/poll-black.svg" alt="Forms" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Forms</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/accounts/login">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+<div class="container my-4 px-4">
+    <!-- Back link -->
+    <div class="mb-3">
+        <a href="/forms" class="form-back-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+            </svg>
+            Select Form
+        </a>
+    </div>
+
+    <!-- Form detail -->
+    <div class="form-detail-container">
+        <div class="form-detail-card">
+            <!-- Form header -->
+            <div class="form-detail-header">
+                <h2 class="form-detail-title">@Model.Form.Title</h2>
+                <p class="form-detail-description">@Model.Form.Description</p>
+            </div>
+
+            <!-- Form body with questions -->
+            <div class="form-detail-body">
+                <form id="surveyForm">
+                    @foreach (var question in Model.Form.Questions)
+                    {
+                        <div class="form-field-group">
+                            <div class="form-field-label">@question.QuestionText</div>
+
+                            @if (question.QuestionType == "dropdown")
+                            {
+                                <select class="form-field-select" name="question_@question.Id">
+                                    @foreach (var option in question.Options)
+                                    {
+                                        <option value="@option" selected="@(option == question.DefaultValue)">@option</option>
+                                    }
+                                </select>
+                            }
+                            else if (question.QuestionType == "radio")
+                            {
+                                <div class="form-radio-group">
+                                    @foreach (var option in question.Options)
+                                    {
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="question_@question.Id" id="q@(question.Id)_@option.Replace(" ", "_")"
+                                                value="@option" @(option == question.DefaultValue ? "checked" : "") />
+                                            <label for="q@(question.Id)_@option.Replace(" ", "_")">@option</label>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else if (question.QuestionType == "checkbox")
+                            {
+                                <div class="form-checkbox-group">
+                                    @foreach (var option in question.Options)
+                                    {
+                                        var isChecked = option == "Health insurance" || option == "Work-from-home option";
+                                        <div class="form-checkbox-item">
+                                            <input type="checkbox" name="question_@question.Id" id="q@(question.Id)_@option.Replace(" ", "_")"
+                                                value="@option" @(isChecked ? "checked" : "") />
+                                            <label for="q@(question.Id)_@option.Replace(" ", "_")">@option</label>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else if (question.QuestionType == "text")
+                            {
+                                <input type="text" class="form-field-input" name="question_@question.Id"
+                                    placeholder="Enter here" />
+                            }
+                        </div>
+                    }
+
+                    <div class="mt-4">
+                        <button type="button" class="btn-submit-form" id="btnSubmitForm">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade form-success-modal" id="formSuccessModal" tabindex="-1" aria-labelledby="formSuccessModalLabel"
+    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                </div>
+                <div class="form-success-title">Submitted Successfully</div>
+                <p class="form-success-message">Your response has been submitted successfully.</p>
+                <button type="button" class="btn-close-modal" id="btnCloseSuccessModal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const submitBtn = document.getElementById('btnSubmitForm');
+            const closeBtn = document.getElementById('btnCloseSuccessModal');
+            const successModal = new bootstrap.Modal(document.getElementById('formSuccessModal'));
+
+            submitBtn.addEventListener('click', function () {
+                successModal.show();
+            });
+
+            closeBtn.addEventListener('click', function () {
+                successModal.hide();
+                window.location.href = '/forms';
+            });
+        });
+    </script>
+}
