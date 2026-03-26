@@ -1,0 +1,1667 @@
+@page
+@model zerix_fe_dev.Pages.Forms.admin_view.CreateFormModel
+@{
+    Layout = "_Forms";
+    ViewData["Title"] = "Create Form";
+    ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Create Form dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateForms" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="28" width="28" alt="Forms"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Create Form</span>
+                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Create Form</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateForms">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400 font-orange">Create Forms</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateFormsMobile">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#CreateFormDashboardOffcanvas" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/scheduler">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="Settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="CreateFormDashboardOffcanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1" id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/email">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/forms">
+                        <img src="~/images/icons/poll-black.svg" alt="Forms" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Forms</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/accounts/login">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- Desktop Header -->
+            <div class="cf-desktop-header">
+                <a href="/forms" class="cf-back-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Go Back</span>
+                </a>
+                <h2 class="cf-page-title">Form Questions</h2>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="cf-mobile-header">
+                <div class="cf-mobile-header-inner">
+                    <a href="/forms" class="cf-mobile-back-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <h2 class="cf-mobile-page-title">Form Questions</h2>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="cf-tabs">
+                <button class="cf-tab active" data-tab="questions">Questions</button>
+                <span class="cf-tab-divider"></span>
+                <button class="cf-tab" data-tab="settings">Settings</button>
+            </div>
+
+            <!-- ==================== QUESTIONS TAB ==================== -->
+            <div class="cf-tab-content active" id="tab-questions">
+                <div class="cf-form-container">
+                    <!-- Form Name -->
+                    <div class="cf-field-group">
+                        <label class="cf-field-label">Form Name</label>
+                        <input type="text" class="cf-input-text" placeholder="Enter Name" id="formName">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="cf-field-group">
+                        <label class="cf-field-label">Description <span class="cf-label-optional">(optional)</span></label>
+                        <textarea class="cf-textarea" rows="4" placeholder="Write some instructions about the upcoming appointment or refund policy" id="formDescription"></textarea>
+                    </div>
+
+                    <!-- Question 1 - Textbox -->
+                    <div class="cf-question-container" data-question-index="1">
+                        <div class="cf-question-header">
+                            <div class="cf-question-left">
+                                <label class="cf-question-label">Question 1</label>
+                                <button class="cf-delete-btn">Delete</button>
+                            </div>
+                            <div class="cf-question-right">
+                                <div class="cf-type-dropdown">
+                                    <button type="button" class="cf-type-dropdown-toggle">
+                                        <span class="cf-type-icon">&#9776;</span>
+                                        <span class="cf-type-text">Textbox</span>
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cf-type-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="cf-type-dropdown-menu">
+                                        <div class="cf-type-dropdown-item" data-value="multiple" data-icon="&#9673;">
+                                            <span class="cf-type-item-icon">&#9673;</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="dropdown" data-icon="&#9660;">
+                                            <span class="cf-type-item-icon">&#9660;</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="textbox" data-icon="&#9776;">
+                                            <span class="cf-type-item-icon">&#9776;</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="checkboxes" data-icon="&#9745;">
+                                            <span class="cf-type-item-icon">&#9745;</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="cf-type-item-icon">123</span>
+                                            <span>Number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="cf-question-input" placeholder="ex. Write other concerns.">
+                        <div class="cf-required-row">
+                            <div class="cf-check-group">
+                                <input type="checkbox" class="cf-checkbox" id="cf-required-1">
+                                <label class="cf-check-label" for="cf-required-1">Required</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 - Multiple Choice -->
+                    <div class="cf-question-container" data-question-index="2">
+                        <div class="cf-question-header">
+                            <div class="cf-question-left">
+                                <label class="cf-question-label">Question 2</label>
+                                <button class="cf-delete-btn">Delete</button>
+                            </div>
+                            <div class="cf-question-right">
+                                <div class="cf-type-dropdown">
+                                    <button type="button" class="cf-type-dropdown-toggle">
+                                        <span class="cf-type-icon">&#9673;</span>
+                                        <span class="cf-type-text">Multiple Choice</span>
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cf-type-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="cf-type-dropdown-menu">
+                                        <div class="cf-type-dropdown-item" data-value="multiple" data-icon="&#9673;">
+                                            <span class="cf-type-item-icon">&#9673;</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="dropdown" data-icon="&#9660;">
+                                            <span class="cf-type-item-icon">&#9660;</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="textbox" data-icon="&#9776;">
+                                            <span class="cf-type-item-icon">&#9776;</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="checkboxes" data-icon="&#9745;">
+                                            <span class="cf-type-item-icon">&#9745;</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="cf-type-item-icon">123</span>
+                                            <span>Number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="cf-question-input" placeholder="ex. Do you reside in Metro Manila?">
+                        <div class="cf-options-container">
+                            <span class="cf-option-text">1. Enter Option Here</span>
+                        </div>
+                        <div class="cf-required-row">
+                            <div class="cf-check-group">
+                                <input type="checkbox" class="cf-checkbox" id="cf-required-2">
+                                <label class="cf-check-label" for="cf-required-2">Required</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 - Checkboxes -->
+                    <div class="cf-question-container" data-question-index="3">
+                        <div class="cf-question-header">
+                            <div class="cf-question-left">
+                                <label class="cf-question-label">Question 3</label>
+                                <button class="cf-delete-btn">Delete</button>
+                            </div>
+                            <div class="cf-question-right">
+                                <div class="cf-type-dropdown">
+                                    <button type="button" class="cf-type-dropdown-toggle">
+                                        <span class="cf-type-icon">&#9745;</span>
+                                        <span class="cf-type-text">Checkboxes</span>
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cf-type-arrow">
+                                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <div class="cf-type-dropdown-menu">
+                                        <div class="cf-type-dropdown-item" data-value="multiple" data-icon="&#9673;">
+                                            <span class="cf-type-item-icon">&#9673;</span>
+                                            <span>Multiple Choice</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="dropdown" data-icon="&#9660;">
+                                            <span class="cf-type-item-icon">&#9660;</span>
+                                            <span>Dropdown List</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="textbox" data-icon="&#9776;">
+                                            <span class="cf-type-item-icon">&#9776;</span>
+                                            <span>Textbox</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="checkboxes" data-icon="&#9745;">
+                                            <span class="cf-type-item-icon">&#9745;</span>
+                                            <span>Checkboxes</span>
+                                        </div>
+                                        <div class="cf-type-dropdown-item" data-value="number" data-icon="123">
+                                            <span class="cf-type-item-icon">123</span>
+                                            <span>Number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="cf-question-input" placeholder="ex. Do you have any allergies?">
+                        <div class="cf-options-container">
+                            <span class="cf-option-text">1. Nuts</span>
+                            <span class="cf-option-text">2. Dairy</span>
+                            <span class="cf-option-text">3. None</span>
+                            <span class="cf-option-text">4. Enter Option Here</span>
+                        </div>
+                        <div class="cf-required-row">
+                            <div class="cf-check-group">
+                                <input type="checkbox" class="cf-checkbox" id="cf-required-3">
+                                <label class="cf-check-label" for="cf-required-3">Required</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Question Button -->
+                    <div class="cf-add-question-wrapper">
+                        <button class="cf-add-question-btn">+ Add Question</button>
+                    </div>
+
+                    <!-- Desktop Action Buttons -->
+                    <div class="cf-action-buttons cf-action-buttons-desktop">
+                        <button class="cf-save-link-btn">Save</button>
+                        <button class="cf-publish-btn">Publish</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Action Buttons -->
+                <div class="cf-mobile-actions">
+                    <button class="cf-publish-btn cf-publish-btn-mobile">Publish</button>
+                    <button class="cf-save-link-btn cf-save-link-btn-mobile">Save</button>
+                </div>
+            </div>
+
+            <!-- ==================== SETTINGS TAB ==================== -->
+            <div class="cf-tab-content" id="tab-settings">
+                <div class="cf-settings-container">
+                    <!-- Accept Responses -->
+                    <div class="cf-setting-row">
+                        <span class="cf-setting-label">Accept responses</span>
+                        <label class="cf-toggle-switch">
+                            <input type="checkbox" id="acceptResponses">
+                            <span class="cf-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Set close date & time -->
+                    <div class="cf-setting-row">
+                        <span class="cf-setting-label">Set close date & time</span>
+                        <label class="cf-toggle-switch">
+                            <input type="checkbox" id="setCloseDate">
+                            <span class="cf-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="cf-setting-detail" id="closeDateDetail" style="display: none;">
+                        <div class="cf-datetime-row">
+                            <svg class="cf-calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="4" width="18" height="18" rx="2" stroke="#878A99" stroke-width="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6" stroke="#878A99" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="8" y1="2" x2="8" y2="6" stroke="#878A99" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="3" y1="10" x2="21" y2="10" stroke="#878A99" stroke-width="2"/>
+                            </svg>
+                            <input type="text" class="cf-date-input" placeholder="01/15/2024" id="closeDate">
+                            <input type="text" class="cf-time-input" placeholder="8" id="closeHour">
+                            <span class="cf-time-separator">:</span>
+                            <input type="text" class="cf-time-input" placeholder="00" id="closeMinute">
+                            <select class="cf-ampm-select" id="closeAmPm">
+                                <option value="am">am</option>
+                                <option value="pm">pm</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Limit number of responses -->
+                    <div class="cf-setting-row">
+                        <span class="cf-setting-label">Limit number of responses</span>
+                        <label class="cf-toggle-switch">
+                            <input type="checkbox" id="limitResponses">
+                            <span class="cf-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="cf-setting-detail" id="limitResponsesDetail" style="display: none;">
+                        <div class="cf-limit-row">
+                            <input type="number" class="cf-number-input" placeholder="Enter Number" id="responseLimit">
+                            <span class="cf-limit-label">responses</span>
+                        </div>
+                    </div>
+
+                    <!-- 1 response per user -->
+                    <div class="cf-setting-row">
+                        <span class="cf-setting-label">1 response per user</span>
+                        <label class="cf-toggle-switch">
+                            <input type="checkbox" id="oneResponsePerUser">
+                            <span class="cf-toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Access Section -->
+                    <div class="cf-access-section">
+                        <h6 class="cf-access-title">Access</h6>
+                        <p class="cf-access-description">This form will only be visible to selected User Groups.</p>
+                        <div class="cf-access-list">
+                            <div class="cf-access-item">
+                                <input type="checkbox" class="cf-access-checkbox" id="access-all" value="All">
+                                <label for="access-all">All</label>
+                            </div>
+                            <div class="cf-access-item">
+                                <input type="checkbox" class="cf-access-checkbox" id="access-mis" value="MIS">
+                                <label for="access-mis">MIS</label>
+                            </div>
+                            <div class="cf-access-item">
+                                <input type="checkbox" class="cf-access-checkbox" id="access-hr" value="HR">
+                                <label for="access-hr">HR</label>
+                            </div>
+                            <div class="cf-access-item">
+                                <input type="checkbox" class="cf-access-checkbox" id="access-accounting" value="Accounting">
+                                <label for="access-accounting">Accounting</label>
+                            </div>
+                            <div class="cf-access-item">
+                                <input type="checkbox" class="cf-access-checkbox" id="access-clients" value="Clients">
+                                <label for="access-clients">Clients</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Action Buttons -->
+                    <div class="cf-action-buttons cf-action-buttons-desktop">
+                        <button class="cf-save-link-btn">Save</button>
+                        <button class="cf-publish-btn">Publish</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Action Buttons -->
+                <div class="cf-mobile-actions">
+                    <button class="cf-publish-btn cf-publish-btn-mobile">Publish</button>
+                    <button class="cf-save-link-btn cf-save-link-btn-mobile">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ==================== CREATE FORM PAGE - DEDICATED STYLES ==================== */
+
+    /* Desktop Header */
+    .cf-desktop-header {
+        display: none;
+        align-items: center;
+        margin-bottom: 24px;
+        position: relative;
+        margin-top: 8px;
+    }
+
+    @@media (min-width: 768px) {
+        .cf-desktop-header {
+            display: flex;
+        }
+    }
+
+    .cf-back-link {
+        color: #FF5400;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0;
+        gap: 4px;
+    }
+
+    .cf-back-link:hover {
+        color: #e04900;
+    }
+
+    .cf-back-link svg {
+        stroke: #FF5400;
+        width: 14px;
+        height: 14px;
+    }
+
+    .cf-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 27px;
+    }
+
+    /* Mobile Header */
+    .cf-mobile-header {
+        display: block;
+    }
+
+    @@media (min-width: 768px) {
+        .cf-mobile-header {
+            display: none;
+        }
+    }
+
+    .cf-mobile-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        position: relative;
+        margin-top: 0;
+    }
+
+    .cf-mobile-back-link {
+        color: #FF5400;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0;
+        position: absolute;
+        left: 0;
+    }
+
+    .cf-mobile-back-link:hover {
+        color: #e04900;
+    }
+
+    .cf-mobile-back-link svg {
+        stroke: #FF5400;
+        width: 14px;
+        height: 14px;
+    }
+
+    .cf-mobile-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        line-height: 23px;
+    }
+
+    /* ==================== TABS ==================== */
+    .cf-tabs {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 24px;
+        border-bottom: none;
+    }
+
+    .cf-tab {
+        background: none;
+        border: none;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #495057;
+        padding: 4px 0;
+        cursor: pointer;
+        position: relative;
+        border-bottom: none;
+        line-height: 18px;
+    }
+
+    .cf-tab.active {
+        color: #FF5400;
+        font-weight: 400;
+    }
+
+    .cf-tab:hover {
+        color: #FF5400;
+    }
+
+    .cf-tab-divider {
+        width: 0px;
+        height: 25px;
+        border-left: 1px solid #878A99;
+        display: inline-block;
+    }
+
+    .cf-tab-content {
+        display: none;
+    }
+
+    .cf-tab-content.active {
+        display: block;
+    }
+
+    /* ==================== QUESTIONS TAB STYLES ==================== */
+    .cf-form-container {
+        background: transparent;
+        padding: 0;
+        max-width: 696px;
+    }
+
+    @@media (max-width: 767px) {
+        .cf-form-container {
+            max-width: 100%;
+        }
+    }
+
+    /* Form Fields */
+    .cf-field-group {
+        margin-bottom: 40px;
+    }
+
+    .cf-field-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        margin-bottom: 8px;
+        display: block;
+        line-height: 21px;
+    }
+
+    .cf-label-optional {
+        font-weight: 400;
+        color: #878A99;
+    }
+
+    .cf-input-text {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 10px 16px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        background: #FFFFFF;
+        width: 100%;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-input-text:focus {
+        border-color: #CED4DA;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .cf-input-text::placeholder {
+        color: #878A99;
+    }
+
+    .cf-textarea {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 9px 16px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        background: #FFFFFF;
+        width: 100%;
+        resize: vertical;
+        height: 140px;
+        box-sizing: border-box;
+    }
+
+    .cf-textarea:focus {
+        border-color: #CED4DA;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .cf-textarea::placeholder {
+        color: #878A99;
+    }
+
+    /* Question Container */
+    .cf-question-container {
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        padding-top: 24px;
+        padding-bottom: 8px;
+        background: transparent;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .cf-question-container:last-of-type {
+        border-bottom: none;
+    }
+
+    /* Question Header */
+    .cf-question-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 16px;
+        margin-bottom: 10px;
+    }
+
+    .cf-question-left {
+        display: flex;
+        align-items: center;
+        gap: 21px;
+        flex-shrink: 0;
+    }
+
+    .cf-question-right {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .cf-question-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        margin: 0;
+        line-height: 21px;
+    }
+
+    .cf-delete-btn {
+        background: none;
+        border: none;
+        color: #FF5400;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 0;
+        cursor: pointer;
+        line-height: 21px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .cf-delete-btn:hover {
+        color: #e04900;
+    }
+
+    /* Type Dropdown */
+    .cf-type-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .cf-type-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #FFFFFF;
+        border: 1px solid #CED4DA;
+        border-radius: 8px;
+        padding: 8px 13px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        cursor: pointer;
+        min-width: 177px;
+        height: 34px;
+        box-sizing: border-box;
+    }
+
+    .cf-type-dropdown-toggle:hover {
+        border-color: #CED4DA;
+    }
+
+    .cf-type-icon {
+        font-size: 14px;
+        color: #8C8C8C;
+    }
+
+    .cf-type-text {
+        flex: 1;
+        text-align: left;
+        line-height: 16px;
+    }
+
+    .cf-type-arrow {
+        stroke: #212529;
+        margin-left: auto;
+        width: 10px;
+        height: 10px;
+    }
+
+    .cf-type-dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 4px);
+        background: #FFFFFF;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0px 5px 5px rgba(30, 32, 37, 0.12);
+        min-width: 177px;
+        z-index: 1000;
+        display: none;
+        padding: 16px 0;
+    }
+
+    .cf-type-dropdown-menu.show {
+        display: block;
+    }
+
+    .cf-type-dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #08182E;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+        line-height: 16px;
+    }
+
+    .cf-type-dropdown-item:hover {
+        background: #F5F5F5;
+    }
+
+    .cf-type-item-icon {
+        font-size: 14px;
+        color: #8C8C8C;
+        width: 16px;
+        text-align: center;
+    }
+
+    /* Question Input */
+    .cf-question-input {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 10px 16px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        width: 100%;
+        background: #FFFFFF;
+        margin-bottom: 0;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-question-input:focus {
+        outline: none;
+        border-color: #CED4DA;
+    }
+
+    .cf-question-input::placeholder {
+        color: #878A99;
+    }
+
+    /* Options */
+    .cf-options-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-top: 8px;
+        margin-bottom: 0;
+    }
+
+    .cf-option-row {
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+
+    .cf-option-row input {
+        flex: 1;
+    }
+
+    .cf-option-text {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #8C8C8C;
+        line-height: 21px;
+        padding: 0;
+    }
+
+    .cf-option-input {
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #8C8C8C;
+        width: 100%;
+        background: transparent;
+        height: 21px;
+        line-height: 21px;
+    }
+
+    .cf-option-input:focus {
+        outline: none;
+        border-color: transparent;
+    }
+
+    .cf-option-input::placeholder {
+        color: #8C8C8C;
+    }
+
+    .cf-remove-option-btn {
+        display: none;
+    }
+
+    .cf-add-option-btn {
+        display: none;
+    }
+
+    /* Required Checkbox */
+    .cf-required-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 4px;
+    }
+
+    .cf-check-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .cf-checkbox {
+        width: 15.39px;
+        height: 15.39px;
+        cursor: pointer;
+        border: 1px solid #CED4DA;
+        border-radius: 3.5px;
+        background: #FFFFFF;
+    }
+
+    .cf-check-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        cursor: pointer;
+        margin: 0;
+        line-height: 21px;
+    }
+
+    /* Add Question Button */
+    .cf-add-question-wrapper {
+        margin-top: 16px;
+        margin-bottom: 40px;
+    }
+
+    .cf-add-question-btn {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #FF5400;
+        text-decoration: none;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        line-height: 21px;
+    }
+
+    .cf-add-question-btn:hover {
+        color: #e04900;
+    }
+
+    /* Action Buttons */
+    .cf-action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        margin-top: 0;
+    }
+
+    .cf-save-link-btn {
+        background: none;
+        border: none;
+        border-radius: 4px;
+        color: #FF5400;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 13px 29px;
+        cursor: pointer;
+        line-height: 21px;
+    }
+
+    .cf-save-link-btn:hover {
+        color: #e04900;
+    }
+
+    .cf-publish-btn {
+        background-color: #FF5400;
+        border: none;
+        color: #FFFFFF;
+        padding: 13px 35px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+        line-height: 21px;
+        min-width: 117px;
+        height: 47px;
+    }
+
+    .cf-publish-btn:hover {
+        background-color: #e04900;
+    }
+
+    /* Mobile Action Buttons */
+    .cf-mobile-actions {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        gap: 16px;
+        margin-top: 50px;
+        padding-bottom: 24px;
+    }
+
+    .cf-publish-btn-mobile {
+        width: 100%;
+        padding: 13px 24px;
+        border-radius: 4px;
+        height: 47px;
+    }
+
+    .cf-save-link-btn-mobile {
+        text-align: center;
+        width: 100%;
+        height: 47px;
+        padding: 13px 24px;
+        border-radius: 4px;
+    }
+
+    /* ==================== SETTINGS TAB STYLES ==================== */
+    .cf-settings-container {
+        max-width: 696px;
+        padding: 0;
+    }
+
+    @@media (max-width: 767px) {
+        .cf-settings-container {
+            max-width: 100%;
+        }
+    }
+
+    .cf-setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: none;
+    }
+
+    .cf-setting-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+    }
+
+    /* Toggle Switch */
+    .cf-toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 24px;
+    }
+
+    .cf-toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .cf-toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.3s;
+        border-radius: 24px;
+    }
+
+    .cf-toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+    }
+
+    .cf-toggle-switch input:checked + .cf-toggle-slider {
+        background-color: #FF5400;
+    }
+
+    .cf-toggle-switch input:checked + .cf-toggle-slider:before {
+        transform: translateX(20px);
+    }
+
+    /* Setting Detail (expandable) */
+    .cf-setting-detail {
+        padding: 0 0 16px 0;
+    }
+
+    .cf-calendar-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+    }
+
+    .cf-datetime-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .cf-date-input {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        width: 130px;
+        background: #FFFFFF;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-date-input:focus {
+        outline: none;
+        border-color: #CED4DA;
+    }
+
+    .cf-time-input {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        width: 55px;
+        text-align: center;
+        background: #FFFFFF;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-time-input:focus {
+        outline: none;
+        border-color: #CED4DA;
+    }
+
+    .cf-time-separator {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+    }
+
+    .cf-ampm-select {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 8px 8px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        background: #FFFFFF;
+        cursor: pointer;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-ampm-select:focus {
+        outline: none;
+        border-color: #CED4DA;
+    }
+
+    .cf-limit-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .cf-number-input {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        width: 130px;
+        background: #FFFFFF;
+        height: 37px;
+        box-sizing: border-box;
+    }
+
+    .cf-number-input:focus {
+        outline: none;
+        border-color: #CED4DA;
+    }
+
+    .cf-number-input::placeholder {
+        color: #878A99;
+    }
+
+    .cf-limit-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+    }
+
+    /* Access Section */
+    .cf-access-section {
+        margin-top: 16px;
+        padding-top: 8px;
+    }
+
+    .cf-access-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: 4px;
+    }
+
+    .cf-access-description {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: #878A99;
+        margin-bottom: 12px;
+        font-style: italic;
+    }
+
+    .cf-access-list {
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 12px 16px;
+        max-height: 220px;
+        overflow-y: scroll;
+        background: #FFFFFF;
+    }
+
+    .cf-access-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 0;
+    }
+
+    .cf-access-checkbox {
+        width: 15.39px;
+        height: 15.39px;
+        cursor: pointer;
+        border: 1px solid #CED4DA;
+        border-radius: 3.5px;
+    }
+
+    .cf-access-item label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        color: #212529;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    /* ==================== RESPONSIVE STYLES ==================== */
+
+    @@media (max-width: 767px) {
+        .cf-tabs {
+            justify-content: center;
+            gap: 0;
+        }
+
+        .cf-tab:first-child {
+            margin-right: auto;
+            padding-left: 16px;
+        }
+
+        .cf-tab:last-child {
+            margin-left: auto;
+            padding-right: 16px;
+        }
+
+        .cf-tab-divider {
+            margin: 0 24px;
+        }
+
+        .cf-tab {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .cf-action-buttons-desktop {
+            display: none;
+        }
+
+        .cf-mobile-actions {
+            display: flex;
+        }
+
+        .cf-publish-btn {
+            width: 100%;
+        }
+
+        .cf-datetime-row {
+            flex-wrap: nowrap;
+        }
+
+        .cf-date-input {
+            flex: 1;
+            width: auto;
+            min-width: 0;
+        }
+
+        .cf-time-input {
+            width: 45px;
+            padding: 8px 6px;
+        }
+
+        .cf-ampm-select {
+            padding: 8px 4px;
+        }
+
+        .cf-field-group {
+            margin-bottom: 40px;
+        }
+
+        .cf-question-header {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // ==================== TAB SWITCHING ====================
+        const tabs = document.querySelectorAll('.cf-tab');
+        const tabContents = document.querySelectorAll('.cf-tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const targetTab = this.getAttribute('data-tab');
+
+                // Remove active from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+
+                // Add active to clicked tab and corresponding content
+                this.classList.add('active');
+                document.getElementById('tab-' + targetTab).classList.add('active');
+            });
+        });
+
+        // ==================== QUESTION TYPE DROPDOWNS ====================
+        let questionCounter = document.querySelectorAll('.cf-question-container').length;
+
+        const placeholdersByType = {
+            'textbox': 'ex. Write other concerns.',
+            'multiple': 'ex. Do you reside in Metro Manila?',
+            'checkboxes': 'ex. Do you have any allergies?',
+            'dropdown': 'ex. Select your preferred time slot',
+            'number': 'ex. Enter your age'
+        };
+
+        function initializeTypeDropdowns() {
+            const dropdowns = document.querySelectorAll('.cf-type-dropdown');
+
+            dropdowns.forEach(dropdown => {
+                if (dropdown.dataset.initialized) return;
+                dropdown.dataset.initialized = 'true';
+
+                const toggle = dropdown.querySelector('.cf-type-dropdown-toggle');
+                const menu = dropdown.querySelector('.cf-type-dropdown-menu');
+                const items = dropdown.querySelectorAll('.cf-type-dropdown-item');
+                const iconSpan = toggle.querySelector('.cf-type-icon');
+                const textSpan = toggle.querySelector('.cf-type-text');
+
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    document.querySelectorAll('.cf-type-dropdown-menu.show').forEach(otherMenu => {
+                        if (otherMenu !== menu) otherMenu.classList.remove('show');
+                    });
+                    menu.classList.toggle('show');
+                });
+
+                items.forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const value = this.getAttribute('data-value');
+                        const icon = this.getAttribute('data-icon');
+                        const textElement = this.querySelector('span:last-child');
+                        const text = textElement ? textElement.textContent.trim() : this.textContent.trim();
+
+                        iconSpan.innerHTML = icon;
+                        textSpan.textContent = text;
+
+                        const questionContainer = dropdown.closest('.cf-question-container');
+                        if (questionContainer) {
+                            const questionInput = questionContainer.querySelector('.cf-question-input');
+                            if (questionInput && placeholdersByType[value]) {
+                                questionInput.placeholder = placeholdersByType[value];
+                            }
+                            updateQuestionContent(questionContainer, value);
+                        }
+
+                        menu.classList.remove('show');
+                    });
+                });
+            });
+        }
+
+        function updateQuestionContent(container, type) {
+            const existingOptions = container.querySelector('.cf-options-container');
+            if (existingOptions) existingOptions.remove();
+
+            if (type === 'multiple' || type === 'checkboxes' || type === 'dropdown') {
+                const questionInput = container.querySelector('.cf-question-input');
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'cf-options-container';
+                optionsContainer.innerHTML = `
+                    <span class="cf-option-text">1. Enter Option Here</span>
+                `;
+                questionInput.insertAdjacentElement('afterend', optionsContainer);
+            }
+        }
+
+        // ==================== ADD / DELETE QUESTIONS ====================
+        function createQuestionHTML(questionNumber) {
+            return `
+                <div class="cf-question-container" data-question-index="${questionNumber}">
+                    <div class="cf-question-header">
+                        <div class="cf-question-left">
+                            <label class="cf-question-label">Question ${questionNumber}</label>
+                            <button class="cf-delete-btn">Delete</button>
+                        </div>
+                        <div class="cf-question-right">
+                            <div class="cf-type-dropdown">
+                                <button type="button" class="cf-type-dropdown-toggle">
+                                    <span class="cf-type-icon">&#9776;</span>
+                                    <span class="cf-type-text">Textbox</span>
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="cf-type-arrow">
+                                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <div class="cf-type-dropdown-menu">
+                                    <div class="cf-type-dropdown-item" data-value="multiple" data-icon="&#9673;">
+                                        <span class="cf-type-item-icon">&#9673;</span>
+                                        <span>Multiple Choice</span>
+                                    </div>
+                                    <div class="cf-type-dropdown-item" data-value="dropdown" data-icon="&#9660;">
+                                        <span class="cf-type-item-icon">&#9660;</span>
+                                        <span>Dropdown List</span>
+                                    </div>
+                                    <div class="cf-type-dropdown-item" data-value="textbox" data-icon="&#9776;">
+                                        <span class="cf-type-item-icon">&#9776;</span>
+                                        <span>Textbox</span>
+                                    </div>
+                                    <div class="cf-type-dropdown-item" data-value="checkboxes" data-icon="&#9745;">
+                                        <span class="cf-type-item-icon">&#9745;</span>
+                                        <span>Checkboxes</span>
+                                    </div>
+                                    <div class="cf-type-dropdown-item" data-value="number" data-icon="123">
+                                        <span class="cf-type-item-icon">123</span>
+                                        <span>Number</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" class="cf-question-input" placeholder="ex. Write other concerns.">
+                    <div class="cf-required-row">
+                        <div class="cf-check-group">
+                            <input type="checkbox" class="cf-checkbox" id="cf-required-${questionNumber}">
+                            <label class="cf-check-label" for="cf-required-${questionNumber}">Required</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const addQuestionBtn = document.querySelector('.cf-add-question-btn');
+        if (addQuestionBtn) {
+            addQuestionBtn.addEventListener('click', function () {
+                questionCounter++;
+                const addQuestionWrapper = document.querySelector('.cf-add-question-wrapper');
+                addQuestionWrapper.insertAdjacentHTML('beforebegin', createQuestionHTML(questionCounter));
+                initializeTypeDropdowns();
+                initializeDeleteButtons();
+            });
+        }
+
+        function initializeDeleteButtons() {
+            document.querySelectorAll('.cf-delete-btn').forEach(btn => {
+                if (btn.dataset.initialized) return;
+                btn.dataset.initialized = 'true';
+                btn.addEventListener('click', function () {
+                    const questionContainer = this.closest('.cf-question-container');
+                    if (questionContainer) {
+                        questionContainer.remove();
+                        renumberQuestions();
+                    }
+                });
+            });
+        }
+
+        function renumberQuestions() {
+            const questions = document.querySelectorAll('.cf-question-container');
+            questions.forEach((question, index) => {
+                const label = question.querySelector('.cf-question-label');
+                if (label) label.textContent = `Question ${index + 1}`;
+                const checkbox = question.querySelector('.cf-checkbox');
+                const checkboxLabel = question.querySelector('.cf-check-label');
+                if (checkbox && checkboxLabel) {
+                    checkbox.id = `cf-required-${index + 1}`;
+                    checkboxLabel.setAttribute('for', `cf-required-${index + 1}`);
+                }
+                question.dataset.questionIndex = index + 1;
+            });
+            questionCounter = questions.length;
+        }
+
+        // ==================== SETTINGS TOGGLES ====================
+        const setCloseDateToggle = document.getElementById('setCloseDate');
+        const closeDateDetail = document.getElementById('closeDateDetail');
+        if (setCloseDateToggle) {
+            setCloseDateToggle.addEventListener('change', function () {
+                closeDateDetail.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+
+        const limitResponsesToggle = document.getElementById('limitResponses');
+        const limitResponsesDetail = document.getElementById('limitResponsesDetail');
+        if (limitResponsesToggle) {
+            limitResponsesToggle.addEventListener('change', function () {
+                limitResponsesDetail.style.display = this.checked ? 'block' : 'none';
+            });
+        }
+
+        // ==================== INITIALIZE ====================
+        initializeTypeDropdowns();
+        initializeDeleteButtons();
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.cf-type-dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        });
+    });
+</script>
