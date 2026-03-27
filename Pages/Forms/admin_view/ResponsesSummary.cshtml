@@ -1,0 +1,928 @@
+@page
+@model zerix_fe_dev.Pages.Forms.admin_view.ResponsesSummaryModel
+@{
+    Layout = "_Forms";
+    ViewData["Title"] = "Responses Summary";
+    ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Create Form dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateForms" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="28" width="28" alt="Forms"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Create Form</span>
+                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Create Form</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateForms">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400 font-orange">Create Forms</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateFormsMobile">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#ResponsesSummaryDashboardOffcanvas" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/scheduler">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="Settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="ResponsesSummaryDashboardOffcanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1" id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/email">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/forms">
+                        <img src="~/images/icons/poll-black.svg" alt="Forms" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Forms</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/accounts/login">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- Desktop Header -->
+            <div class="rs-desktop-header">
+                <a href="/forms" class="rs-back-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Go Back</span>
+                </a>
+                <h2 class="rs-page-title">Responses Summary</h2>
+                <button class="rs-export-btn rs-export-btn-desktop">Export Answers</button>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="rs-mobile-header">
+                <div class="rs-mobile-header-inner">
+                    <a href="/forms" class="rs-mobile-back-link">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <h2 class="rs-mobile-page-title">Responses Summary</h2>
+                </div>
+                <button class="rs-export-btn rs-export-btn-mobile">Export Answers</button>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="rs-cards-container">
+
+                <!-- Card 1: Who has responded? -->
+                <div class="rs-card rs-card-respondents">
+                    <div class="rs-card-scroll-wrapper">
+                        <div class="rs-card-inner">
+                            <h3 class="rs-card-title-large">Who has responded?</h3>
+                            <div class="rs-respondent-list">
+                                <span class="rs-respondent-name">Juan Dela Cruz</span>
+                                <span class="rs-respondent-name">Maria Santos</span>
+                                <span class="rs-respondent-name">Pedro Reyes</span>
+                                <span class="rs-respondent-name">Ana Garcia</span>
+                                <span class="rs-respondent-name">Jose Mendoza</span>
+                                <span class="rs-respondent-name">Carmen Lopez</span>
+                                <span class="rs-respondent-name">Miguel Torres</span>
+                                <span class="rs-respondent-name">Rosa Fernandez</span>
+                                <span class="rs-respondent-name">Carlos Rivera</span>
+                                <span class="rs-respondent-name">Elena Morales</span>
+                                <span class="rs-respondent-name">Francisco Ramos</span>
+                                <span class="rs-respondent-name">Isabel Cruz</span>
+                                <span class="rs-respondent-name">Ricardo Bautista</span>
+                                <span class="rs-respondent-name">Teresa Villanueva</span>
+                                <span class="rs-respondent-name">Antonio Aquino</span>
+                                <span class="rs-respondent-name">Lucia Gonzales</span>
+                                <span class="rs-respondent-name">Roberto Pascual</span>
+                                <span class="rs-respondent-name">Patricia Navarro</span>
+                                <span class="rs-respondent-name">Fernando Castillo</span>
+                                <span class="rs-respondent-name">Gloria Diaz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Department (Dropdown question) -->
+                <div class="rs-card">
+                    <div class="rs-card-inner rs-card-chart-inner">
+                        <div class="rs-question-header">
+                            <h3 class="rs-question-title">Department</h3>
+                            <span class="rs-question-responses">100 Responses</span>
+                        </div>
+                        <div class="rs-chart-container">
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Sales</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 45%;"></div>
+                                </div>
+                                <span class="rs-chart-value">18 (18%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Marketing</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 37.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">15 (15%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Human Resources</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 55%;"></div>
+                                </div>
+                                <span class="rs-chart-value">22 (22%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">IT</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 80%;"></div>
+                                </div>
+                                <span class="rs-chart-value">32 (32%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Finance</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 12.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">5 (5%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Operations</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 20%;"></div>
+                                </div>
+                                <span class="rs-chart-value">8 (8%)</span>
+                            </div>
+                            <div class="rs-chart-axis">
+                                <span class="rs-chart-label rs-axis-spacer"></span>
+                                <div class="rs-chart-axis-ticks">
+                                    <span class="rs-axis-tick">0</span>
+                                    <span class="rs-axis-tick">20</span>
+                                    <span class="rs-axis-tick">40</span>
+                                </div>
+                                <span class="rs-chart-value rs-axis-spacer"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: How satisfied are you with your current role? (Multiple Choice) -->
+                <div class="rs-card">
+                    <div class="rs-card-inner rs-card-chart-inner">
+                        <div class="rs-question-header">
+                            <h3 class="rs-question-title">How satisfied are you with your current role?</h3>
+                            <span class="rs-question-responses">100 Responses</span>
+                        </div>
+                        <div class="rs-chart-container">
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Very Satisfied</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 37.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">15 (15%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Satisfied</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 55%;"></div>
+                                </div>
+                                <span class="rs-chart-value">22 (22%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Neutral</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 80%;"></div>
+                                </div>
+                                <span class="rs-chart-value">32 (32%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Dissatisfied</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 12.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">5 (5%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Very dissatisfied</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 20%;"></div>
+                                </div>
+                                <span class="rs-chart-value">8 (8%)</span>
+                            </div>
+                            <div class="rs-chart-axis">
+                                <span class="rs-chart-label rs-axis-spacer"></span>
+                                <div class="rs-chart-axis-ticks">
+                                    <span class="rs-axis-tick">0</span>
+                                    <span class="rs-axis-tick">20</span>
+                                    <span class="rs-axis-tick">40</span>
+                                </div>
+                                <span class="rs-chart-value rs-axis-spacer"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Which of the following benefits do you use? (Checkboxes) -->
+                <div class="rs-card">
+                    <div class="rs-card-inner rs-card-chart-inner">
+                        <div class="rs-question-header">
+                            <h3 class="rs-question-title">Which of the following benefits do you use?</h3>
+                            <span class="rs-question-responses">100 Responses</span>
+                        </div>
+                        <div class="rs-chart-container">
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Health insurance</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 37.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">15 (15%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Work-from-home option</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 55%;"></div>
+                                </div>
+                                <span class="rs-chart-value">22 (22%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Paid time off</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 92.5%;"></div>
+                                </div>
+                                <span class="rs-chart-value">37 (32%)</span>
+                            </div>
+                            <div class="rs-chart-row">
+                                <span class="rs-chart-label">Learning &amp; development...</span>
+                                <div class="rs-chart-bar-wrapper">
+                                    <div class="rs-chart-bar" style="width: 20%;"></div>
+                                </div>
+                                <span class="rs-chart-value">8 (8%)</span>
+                            </div>
+                            <div class="rs-chart-axis">
+                                <span class="rs-chart-label rs-axis-spacer"></span>
+                                <div class="rs-chart-axis-ticks">
+                                    <span class="rs-axis-tick">0</span>
+                                    <span class="rs-axis-tick">20</span>
+                                    <span class="rs-axis-tick">40</span>
+                                </div>
+                                <span class="rs-chart-value rs-axis-spacer"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: What suggestions do you have for improving the workplace? (Textbox) -->
+                <div class="rs-card rs-card-text-responses">
+                    <div class="rs-card-scroll-wrapper">
+                        <div class="rs-card-inner">
+                            <div class="rs-question-header">
+                                <h3 class="rs-question-title">What suggestions do you have for improving the workplace?</h3>
+                                <span class="rs-question-responses">100 Responses</span>
+                            </div>
+                            <div class="rs-text-response-list">
+                                <span class="rs-text-response">I think flexible working hours would greatly improve work-life balance for everyone in the team. It would help reduce burnout...</span>
+                                <span class="rs-text-response">Better communication between departments is needed. Sometimes we don't know what other teams are working on until it's too late...</span>
+                                <span class="rs-text-response">The office could use more collaborative spaces. Open areas with whiteboards and comfortable seating for brainstorming sessions...</span>
+                                <span class="rs-text-response">More training and professional development opportunities would be great. I'd love to attend workshops and conferences related...</span>
+                                <span class="rs-text-response">The current health benefits are good but adding mental health support like counseling services would be really beneficial for...</span>
+                                <span class="rs-text-response">I suggest implementing a mentorship program where senior employees can guide newer team members through their career growth...</span>
+                                <span class="rs-text-response">We need better project management tools. The current system is outdated and makes it hard to track progress across multiple...</span>
+                                <span class="rs-text-response">Regular team building activities outside of work would help improve relationships between colleagues and boost morale across...</span>
+                                <span class="rs-text-response">The parking situation needs improvement. Many employees struggle to find parking spots especially during peak hours in the...</span>
+                                <span class="rs-text-response">I would appreciate more transparency from management regarding company goals and financial performance. Regular town halls...</span>
+                                <span class="rs-text-response">The cafeteria food options could be improved with healthier choices. Adding a salad bar and more vegetarian options would be...</span>
+                                <span class="rs-text-response">Remote work policies should be more clearly defined. Having a written policy would help everyone understand expectations and...</span>
+                                <span class="rs-text-response">Investing in ergonomic furniture for all employees would reduce physical strain and improve productivity throughout the day...</span>
+                                <span class="rs-text-response">A suggestion box system where employees can anonymously share ideas and concerns would encourage more honest feedback from...</span>
+                                <span class="rs-text-response">Recognition programs for outstanding work would motivate employees to perform better and feel valued for their contributions...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ==================== RESPONSES SUMMARY PAGE - DEDICATED STYLES ==================== */
+
+    /* Desktop Header */
+    .rs-desktop-header {
+        display: none;
+        align-items: center;
+        margin-bottom: 24px;
+        position: relative;
+        margin-top: 8px;
+        max-width: 972px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @@media (min-width: 768px) {
+        .rs-desktop-header {
+            display: flex;
+        }
+    }
+
+    .rs-back-link {
+        color: #FF5400;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0;
+        gap: 4px;
+    }
+
+    .rs-back-link:hover {
+        color: #e04900;
+    }
+
+    .rs-back-link svg {
+        stroke: #FF5400;
+        width: 14px;
+        height: 14px;
+    }
+
+    .rs-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        flex: 1;
+        text-align: center;
+        line-height: 27px;
+        white-space: nowrap;
+    }
+
+    /* Mobile Header */
+    .rs-mobile-header {
+        display: block;
+    }
+
+    @@media (min-width: 768px) {
+        .rs-mobile-header {
+            display: none;
+        }
+    }
+
+    .rs-mobile-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        position: relative;
+        margin-top: 0;
+    }
+
+    .rs-mobile-back-link {
+        color: #FF5400;
+        font-size: 14px;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0;
+        position: absolute;
+        left: 0;
+    }
+
+    .rs-mobile-back-link:hover {
+        color: #e04900;
+    }
+
+    .rs-mobile-back-link svg {
+        stroke: #FF5400;
+        width: 14px;
+        height: 14px;
+    }
+
+    .rs-mobile-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        line-height: 23px;
+    }
+
+    /* Export Button */
+    .rs-export-btn {
+        background-color: #FF5400;
+        border: none;
+        color: #FFFFFF;
+        padding: 13px 12px 15px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+        line-height: 21px;
+        min-width: 180px;
+        height: 49px;
+        text-align: center;
+    }
+
+    .rs-export-btn:hover {
+        background-color: #e04900;
+    }
+
+    .rs-export-btn-desktop {
+        margin-left: auto;
+    }
+
+    .rs-export-btn-mobile {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    /* Cards Container */
+    .rs-cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 972px;
+        margin: 0 auto;
+        padding-bottom: 60px;
+    }
+
+    /* Card Base */
+    .rs-card {
+        border: 1px solid #E6E6E6;
+        border-radius: 8px;
+    }
+
+    .rs-card-inner {
+        padding: 16px 64px;
+    }
+
+    .rs-card-chart-inner {
+        padding: 40px 64px;
+    }
+
+    /* Scroll wrapper for respondents and text responses */
+    .rs-card-scroll-wrapper {
+        max-height: 259px;
+        overflow-y: scroll;
+        position: relative;
+        scrollbar-width: thin;
+        scrollbar-color: #CED6DB #F0F0F0;
+    }
+
+    .rs-card-text-responses .rs-card-scroll-wrapper {
+        max-height: 306px;
+    }
+
+    /* Custom scrollbar - always visible with track */
+    .rs-card-scroll-wrapper::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .rs-card-scroll-wrapper::-webkit-scrollbar-track {
+        background: #F0F0F0;
+        border-radius: 3px;
+        margin: 8px 0;
+    }
+
+    .rs-card-scroll-wrapper::-webkit-scrollbar-thumb {
+        background: #C4C4C4;
+        border-radius: 3px;
+    }
+
+    .rs-card-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #A0A0A0;
+    }
+
+    /* Card Title (Who has responded?) */
+    .rs-card-title-large {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000000;
+        margin: 0 0 10px 0;
+        line-height: 23px;
+    }
+
+    /* Respondent List */
+    .rs-respondent-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .rs-respondent-name {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        line-height: 25px;
+    }
+
+    /* Question Header */
+    .rs-question-header {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .rs-question-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #212529;
+        margin: 0;
+        line-height: 21px;
+    }
+
+    .rs-question-responses {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #212529;
+        line-height: 21px;
+    }
+
+    /* Chart Container */
+    .rs-chart-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+        overflow: visible;
+    }
+
+    .rs-chart-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 24px;
+        overflow: visible;
+    }
+
+    .rs-chart-label {
+        font-family: 'Roboto', 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #474747;
+        line-height: 14px;
+        width: 140px;
+        min-width: 140px;
+        max-width: 140px;
+        text-align: right;
+        flex-shrink: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .rs-chart-bar-wrapper {
+        width: 200px;
+        flex-shrink: 0;
+        height: 16px;
+        position: relative;
+    }
+
+    .rs-chart-bar-wrapper::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -12px;
+        bottom: -12px;
+        width: 1px;
+        background-color: #C4C4C4;
+        z-index: 1;
+    }
+
+    .rs-chart-row:first-child .rs-chart-bar-wrapper::before {
+        top: 0;
+    }
+
+    .rs-chart-row:nth-last-child(2) .rs-chart-bar-wrapper::before {
+        bottom: 0;
+    }
+
+    .rs-chart-bar {
+        height: 100%;
+        background-color: #FF5400;
+        border-radius: 0;
+        min-width: 2px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .rs-chart-value {
+        font-family: 'Roboto', 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #474747;
+        line-height: 14px;
+        white-space: nowrap;
+    }
+
+    /* Chart Axis Ticks */
+    .rs-chart-axis {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: 4px;
+    }
+
+    .rs-axis-spacer {
+        visibility: hidden;
+    }
+
+    .rs-chart-axis-ticks {
+        width: 200px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        height: 16px;
+    }
+
+    .rs-axis-tick {
+        font-family: 'Roboto', 'Microsoft Sans Serif', sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        color: #474747;
+        line-height: 14px;
+    }
+
+    /* Text Response List */
+    .rs-text-response-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .rs-text-response {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        line-height: 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Mobile dropdown overlay fix - prevent pushing content down */
+    .navbar-nav .nav-item.dropdown {
+        position: relative;
+    }
+
+    .navbar-nav .nav-item.dropdown .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+    }
+
+    /* ==================== RESPONSIVE STYLES ==================== */
+
+    @@media (max-width: 767px) {
+        .rs-card-inner {
+            padding: 16px 20px;
+        }
+
+        .rs-card-chart-inner {
+            padding: 24px 20px;
+        }
+
+        .rs-chart-label {
+            width: 100px;
+            min-width: 100px;
+            max-width: 100px;
+            font-size: 11px;
+        }
+
+        .rs-chart-value {
+            font-size: 11px;
+        }
+
+        .rs-chart-bar-wrapper,
+        .rs-chart-axis-ticks {
+            width: 140px;
+        }
+
+        .rs-cards-container {
+            max-width: 100%;
+        }
+
+        .rs-export-btn-desktop {
+            display: none;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .rs-export-btn-mobile {
+            display: none;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .rs-chart-label {
+            width: 70px;
+            min-width: 70px;
+            max-width: 70px;
+            font-size: 10px;
+        }
+
+        .rs-chart-value {
+            font-size: 10px;
+        }
+
+        .rs-chart-bar-wrapper,
+        .rs-chart-axis-ticks {
+            width: 100px;
+        }
+    }
+</style>

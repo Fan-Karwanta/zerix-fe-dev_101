@@ -36,6 +36,12 @@
                             Create Form
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item dropdown d-block d-md-none">
@@ -60,6 +66,12 @@
                         <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
                             href="/forms/admin_view/createform">
                             Create Form
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
                         </a>
                     </li>
                 </ul>
@@ -355,7 +367,11 @@
                         </div>
                         <input type="text" class="cf-question-input" placeholder="ex. Do you reside in Metro Manila?">
                         <div class="cf-options-container">
-                            <span class="cf-option-text">1. Enter Option Here</span>
+                            <div class="cf-option-row" data-option-index="1">
+                                <input type="text" class="cf-option-input" placeholder="1. Enter Option Here">
+                                <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                            </div>
+                            <button type="button" class="cf-add-option-btn">+ Add Option</button>
                         </div>
                         <div class="cf-required-row">
                             <div class="cf-check-group">
@@ -408,10 +424,19 @@
                         </div>
                         <input type="text" class="cf-question-input" placeholder="ex. Do you have any allergies?">
                         <div class="cf-options-container">
-                            <span class="cf-option-text">1. Nuts</span>
-                            <span class="cf-option-text">2. Dairy</span>
-                            <span class="cf-option-text">3. None</span>
-                            <span class="cf-option-text">4. Enter Option Here</span>
+                            <div class="cf-option-row" data-option-index="1">
+                                <input type="text" class="cf-option-input" placeholder="1. Enter Option Here" value="Nuts">
+                                <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                            </div>
+                            <div class="cf-option-row" data-option-index="2">
+                                <input type="text" class="cf-option-input" placeholder="2. Enter Option Here" value="Dairy">
+                                <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                            </div>
+                            <div class="cf-option-row" data-option-index="3">
+                                <input type="text" class="cf-option-input" placeholder="3. Enter Option Here" value="None">
+                                <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                            </div>
+                            <button type="button" class="cf-add-option-btn">+ Add Option</button>
                         </div>
                         <div class="cf-required-row">
                             <div class="cf-check-group">
@@ -958,7 +983,7 @@
     .cf-options-container {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 8px;
         margin-top: 8px;
         margin-bottom: 0;
     }
@@ -966,50 +991,66 @@
     .cf-option-row {
         display: flex;
         align-items: center;
-        gap: 0;
+        gap: 8px;
     }
 
     .cf-option-row input {
         flex: 1;
     }
 
-    .cf-option-text {
-        font-family: 'Microsoft Sans Serif', sans-serif;
-        font-size: 14px;
-        font-weight: 400;
-        color: #8C8C8C;
-        line-height: 21px;
-        padding: 0;
-    }
-
     .cf-option-input {
-        border: none;
-        border-radius: 0;
-        padding: 0;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        padding: 10px 16px;
         font-family: 'Microsoft Sans Serif', sans-serif;
         font-size: 14px;
-        color: #8C8C8C;
+        color: #212529;
         width: 100%;
-        background: transparent;
-        height: 21px;
-        line-height: 21px;
+        background: #FFFFFF;
+        height: 37px;
+        box-sizing: border-box;
     }
 
     .cf-option-input:focus {
         outline: none;
-        border-color: transparent;
+        border-color: #CED4DA;
     }
 
     .cf-option-input::placeholder {
-        color: #8C8C8C;
+        color: #878A99;
     }
 
     .cf-remove-option-btn {
-        display: none;
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
+    }
+
+    .cf-remove-option-btn:hover {
+        color: #FF5400;
     }
 
     .cf-add-option-btn {
-        display: none;
+        background: none;
+        border: none;
+        color: #FF5400;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 0;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        line-height: 21px;
+    }
+
+    .cf-add-option-btn:hover {
+        color: #e04900;
     }
 
     /* Required Checkbox */
@@ -1389,12 +1430,12 @@
 
         .cf-tab:first-child {
             margin-right: auto;
-            padding-left: 16px;
+            padding-left: 50px;
         }
 
         .cf-tab:last-child {
             margin-left: auto;
-            padding-right: 16px;
+            padding-right: 65px;
         }
 
         .cf-tab-divider {
@@ -1535,10 +1576,61 @@
                 const optionsContainer = document.createElement('div');
                 optionsContainer.className = 'cf-options-container';
                 optionsContainer.innerHTML = `
-                    <span class="cf-option-text">1. Enter Option Here</span>
+                    <div class="cf-option-row" data-option-index="1">
+                        <input type="text" class="cf-option-input" placeholder="1. Enter Option Here">
+                        <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                    </div>
+                    <button type="button" class="cf-add-option-btn">+ Add Option</button>
                 `;
                 questionInput.insertAdjacentElement('afterend', optionsContainer);
+                initializeOptionButtons(optionsContainer);
             }
+        }
+
+        function initializeOptionButtons(container) {
+            const addBtn = container.querySelector('.cf-add-option-btn');
+            if (addBtn && !addBtn.dataset.initialized) {
+                addBtn.dataset.initialized = 'true';
+                addBtn.addEventListener('click', function () {
+                    const optionRows = container.querySelectorAll('.cf-option-row');
+                    const newIndex = optionRows.length + 1;
+                    const newRow = document.createElement('div');
+                    newRow.className = 'cf-option-row';
+                    newRow.dataset.optionIndex = newIndex;
+                    newRow.innerHTML = `
+                        <input type="text" class="cf-option-input" placeholder="${newIndex}. Enter Option Here">
+                        <button type="button" class="cf-remove-option-btn" title="Remove option">&times;</button>
+                    `;
+                    addBtn.insertAdjacentElement('beforebegin', newRow);
+                    initializeRemoveButtons(container);
+                });
+            }
+            initializeRemoveButtons(container);
+        }
+
+        function initializeRemoveButtons(container) {
+            container.querySelectorAll('.cf-remove-option-btn').forEach(btn => {
+                if (btn.dataset.initialized) return;
+                btn.dataset.initialized = 'true';
+                btn.addEventListener('click', function () {
+                    const row = this.closest('.cf-option-row');
+                    if (row) {
+                        row.remove();
+                        renumberOptions(container);
+                    }
+                });
+            });
+        }
+
+        function renumberOptions(container) {
+            const rows = container.querySelectorAll('.cf-option-row');
+            rows.forEach((row, index) => {
+                const input = row.querySelector('.cf-option-input');
+                if (input) {
+                    input.placeholder = `${index + 1}. Enter Option Here`;
+                    row.dataset.optionIndex = index + 1;
+                }
+            });
         }
 
         // ==================== ADD / DELETE QUESTIONS ====================
@@ -1656,6 +1748,11 @@
         // ==================== INITIALIZE ====================
         initializeTypeDropdowns();
         initializeDeleteButtons();
+
+        // Initialize option buttons for existing options containers
+        document.querySelectorAll('.cf-options-container').forEach(container => {
+            initializeOptionButtons(container);
+        });
 
         // Close dropdowns when clicking outside
         document.addEventListener('click', function () {
