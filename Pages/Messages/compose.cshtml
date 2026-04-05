@@ -646,39 +646,6 @@ ViewData["User"] = "Admin";
                                     </label>
                                 </div>
                             </div>
-                            <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
-                            <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
-                                <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
-                                    aria-labelledby="scheduleSending">
-                                    <li class="dropdown-item p-0 m-0">
-                                        <div class="form-group d-flex p-0">
-                                            <div
-                                                class="input-group justify-content-start align-items-start border-0 gap-1">
-                                                <div class="input-group align-items-start justify-content-start"
-                                                    id="scheduleSendDate">
-                                                    <span class="input-group-text" id="dateIcon">
-                                                        <i class="bi bi-calendar fs-12 font-orange"></i>
-                                                    </span>
-                                                    <input type="date" id="dateInput"
-                                                        class="form-control custom-date-input" />
-                                                </div>
-                                                <div class="d-flex flex-row">
-                                                    <input type="number" min="1" max="12" class="form-control"
-                                                        placeholder="8" oninput="validateRange(this)">
-                                                    <span class="input-group-text">:</span>
-                                                    <input type="number" min="0" max="59" class="form-control"
-                                                        placeholder="00" oninput="validateRange(this)">
-                                                </div>
-                                                <select name="sources" id="sources" class="custom-select sources"
-                                                    placeholder="am">
-                                                    <option value="1">am</option>
-                                                    <option value="2">pm</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                             <!-- Send Button with dropdown -->
                             <div class="btn-group dropup send-options d-md-flex d-none">
                                 <button type="button" class="btn btn-fill rounded send me-2 fs-14">Send</button>
@@ -689,10 +656,6 @@ ViewData["User"] = "Admin";
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end mb-2" id="dropdownMenu"
                                     style="display: none;">
-                                    <!-- <li class="dropdown-item">
-                                        <input type="checkbox" id="smsCheckbox">
-                                        <label for="smsCheckbox">SMS (GSM)</label>
-                                    </li> -->
                                     <li class="dropdown-item">
                                         <input type="checkbox" id="messagingCheckbox">
                                         <label for="messagingCheckbox">Messaging</label>
@@ -714,6 +677,38 @@ ViewData["User"] = "Admin";
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
+                    <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
+                        <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
+                            aria-labelledby="scheduleSending">
+                            <li class="dropdown-item p-0 m-0">
+                                <div class="form-group d-flex p-0">
+                                    <div class="input-group justify-content-start align-items-start border-0 gap-1">
+                                        <div class="input-group align-items-start justify-content-start"
+                                            id="scheduleSendDate">
+                                            <span class="input-group-text" id="dateIcon">
+                                                <i class="bi bi-calendar fs-12 font-orange"></i>
+                                            </span>
+                                            <input type="date" id="dateInput"
+                                                class="form-control custom-date-input" />
+                                        </div>
+                                        <div class="d-flex flex-row">
+                                            <input type="number" min="1" max="12" class="form-control"
+                                                placeholder="8" oninput="validateRange(this)">
+                                            <span class="input-group-text">:</span>
+                                            <input type="number" min="0" max="59" class="form-control"
+                                                placeholder="00" oninput="validateRange(this)">
+                                        </div>
+                                        <select name="sources" id="sources" class="custom-select sources"
+                                            placeholder="am">
+                                            <option value="1">am</option>
+                                            <option value="2">pm</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="attached-files">

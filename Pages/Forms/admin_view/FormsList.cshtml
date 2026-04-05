@@ -1,0 +1,583 @@
+@page
+@model zerix_fe_dev.Pages.Forms.admin_view.FormsListModel
+@{
+    Layout = "_Forms";
+    ViewData["Title"] = "Forms List";
+    ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Create Form dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-md-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateForms" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="28" width="28" alt="Forms"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Create Form</span>
+                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Create Form</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block" />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateForms">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown d-block d-md-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400 font-orange">Create Forms</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
+                    aria-labelledby="navbarDropDownCreateFormsMobile">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms">
+                            Forms List
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/createform">
+                            Create Form
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/responsessummary">
+                            Responses Summary
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#FormsListDashboardOffcanvas" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/scheduler">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/settings/users">
+                    <img src="~/images/icons/settings.svg" height="30" width="30" alt="Settings" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Settings</span>
+                </a>
+                <a class="nav-link box btn-orange dashboard-items border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="FormsListDashboardOffcanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1" id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/email">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/forms">
+                        <img src="~/images/icons/poll-black.svg" alt="Forms" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Forms</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <img src="~/images/icons/settings-black.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/accounts/login">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+<div class="container px-4 my-3 pt-md-3 pt-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- Desktop Header -->
+            <div class="fl-desktop-header">
+                <h2 class="fl-page-title">Forms List</h2>
+                <a href="/forms/admin_view/createform" class="fl-new-form-btn">New Custom Form</a>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="fl-mobile-header">
+                <h2 class="fl-mobile-page-title">Form Questions</h2>
+                <a href="/forms/admin_view/createform" class="fl-new-form-btn-mobile">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5V19M5 12H19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Forms List -->
+            <div class="fl-list-container">
+                @foreach (var form in Model.Forms)
+                {
+                    <div class="fl-form-item">
+                        <div class="fl-form-info">
+                            <div class="fl-form-title">@form.Title</div>
+                            <div class="fl-form-created-by">Created by: @form.CreatedBy</div>
+                        </div>
+                        <div class="fl-form-actions">
+                            <button class="fl-more-btn" onclick="toggleFormDropdown(this)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="5" r="1.5" fill="#FF5400"/>
+                                    <circle cx="12" cy="12" r="1.5" fill="#FF5400"/>
+                                    <circle cx="12" cy="19" r="1.5" fill="#FF5400"/>
+                                </svg>
+                            </button>
+                            <div class="fl-dropdown-menu">
+                                <a href="/forms/admin_view/createform?id=@form.Id" class="fl-dropdown-item">Edit</a>
+                                <button class="fl-dropdown-item" onclick="deleteForm(@form.Id)">Delete</button>
+                                <a href="/forms/admin_view/responsessummary?id=@form.Id" class="fl-dropdown-item">View Responses</a>
+                                <button class="fl-dropdown-item" onclick="copyFormLink(@form.Id)">Copy Link</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ==================== FORMS LIST PAGE - DEDICATED STYLES ==================== */
+
+    /* Desktop Header */
+    .fl-desktop-header {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        position: relative;
+        margin-top: 8px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @@media (min-width: 768px) {
+        .fl-desktop-header {
+            display: flex;
+        }
+    }
+
+    .fl-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        line-height: 27px;
+    }
+
+    .fl-new-form-btn {
+        background-color: #FF5400;
+        border: none;
+        color: #FFFFFF;
+        padding: 10px 24px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 21px;
+        white-space: nowrap;
+    }
+
+    .fl-new-form-btn:hover {
+        background-color: #e04900;
+        color: #FFFFFF;
+    }
+
+    /* Mobile Header */
+    .fl-mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        margin-top: 0;
+    }
+
+    @@media (min-width: 768px) {
+        .fl-mobile-header {
+            display: none;
+        }
+    }
+
+    .fl-mobile-page-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #495057;
+        margin: 0;
+        line-height: 23px;
+    }
+
+    .fl-new-form-btn-mobile {
+        background-color: #FF5400;
+        border: none;
+        color: #FFFFFF;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    .fl-new-form-btn-mobile:hover {
+        background-color: #e04900;
+        color: #FFFFFF;
+    }
+
+    /* Forms List Container */
+    .fl-list-container {
+        max-width: 700px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Form Item */
+    .fl-form-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border: 1px solid #E6E6E6;
+        border-radius: 0;
+        background-color: #FFFFFF;
+        position: relative;
+    }
+
+    .fl-form-item:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .fl-form-item:last-child {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .fl-form-item:only-child {
+        border-radius: 8px;
+    }
+
+    .fl-form-item + .fl-form-item {
+        border-top: none;
+    }
+
+    .fl-form-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .fl-form-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: #212529;
+        line-height: 21px;
+        margin-bottom: 2px;
+    }
+
+    .fl-form-created-by {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: #878A99;
+        line-height: 18px;
+    }
+
+    /* More Button (three dots) */
+    .fl-form-actions {
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .fl-more-btn {
+        background: #FFF5EC;
+        border: none;
+        cursor: pointer;
+        padding: 6px 8px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.15s ease;
+    }
+
+    .fl-more-btn:hover {
+        background-color: #FFE8D5;
+    }
+
+    /* Dropdown Menu */
+    .fl-dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 4px);
+        background: #FFFFFF;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0px 5px 15px rgba(30, 32, 37, 0.12);
+        min-width: 160px;
+        z-index: 1050;
+        display: none;
+        padding: 8px 0;
+    }
+
+    .fl-dropdown-menu.show {
+        display: block;
+    }
+
+    .fl-dropdown-item {
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #212529;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+        line-height: 21px;
+    }
+
+    .fl-dropdown-item:hover {
+        background-color: #F5F5F5;
+        color: #212529;
+        text-decoration: none;
+    }
+
+    /* Mobile dropdown overlay fix */
+    .navbar-nav .nav-item.dropdown {
+        position: relative;
+    }
+
+    .navbar-nav .nav-item.dropdown .dropdown-menu {
+        position: absolute;
+        z-index: 1050;
+    }
+
+    /* ==================== RESPONSIVE STYLES ==================== */
+
+    @@media (max-width: 767px) {
+        .fl-list-container {
+            max-width: 100%;
+        }
+
+        .fl-form-item {
+            padding: 14px 16px;
+        }
+
+        .fl-form-title {
+            font-size: 15px;
+        }
+
+        .fl-form-created-by {
+            font-size: 12px;
+        }
+
+        .fl-dropdown-menu {
+            right: 0;
+            min-width: 140px;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .fl-form-item {
+            padding: 12px 14px;
+        }
+    }
+</style>
+
+<script>
+    function toggleFormDropdown(button) {
+        event.stopPropagation();
+        // Close all other open dropdowns
+        document.querySelectorAll('.fl-dropdown-menu.show').forEach(menu => {
+            if (menu !== button.nextElementSibling) {
+                menu.classList.remove('show');
+            }
+        });
+        // Toggle this dropdown
+        const dropdown = button.nextElementSibling;
+        dropdown.classList.toggle('show');
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.fl-dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+    });
+
+    function deleteForm(formId) {
+        if (confirm('Are you sure you want to delete this form?')) {
+            // Handle delete logic
+            console.log('Deleting form:', formId);
+        }
+    }
+
+    function copyFormLink(formId) {
+        const link = window.location.origin + '/forms/take-form?id=' + formId;
+        navigator.clipboard.writeText(link).then(function () {
+            alert('Link copied to clipboard!');
+        }).catch(function () {
+            // Fallback
+            const tempInput = document.createElement('input');
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard!');
+        });
+    }
+</script>

@@ -926,3 +926,80 @@
         }
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Dynamically compute bar widths and axis ticks for all chart containers
+        document.querySelectorAll('.rs-chart-container').forEach(function (chartContainer) {
+            var rows = chartContainer.querySelectorAll('.rs-chart-row');
+            var values = [];
+
+            rows.forEach(function (row) {
+                var valueSpan = row.querySelector('.rs-chart-value');
+                if (valueSpan) {
+                    var match = valueSpan.textContent.match(/^(\d+)/);
+                    if (match) {
+                        values.push(parseInt(match[1], 10));
+                    }
+                }
+            });
+
+            if (values.length === 0) return;
+
+            var maxValue = Math.max.apply(null, values);
+            if (maxValue === 0) return;
+
+            // Compute a nice rounded ceiling for the axis
+            var axisCeil = niceAxisMax(maxValue);
+
+            // Update bar widths relative to axisCeil
+            var i = 0;
+            rows.forEach(function (row) {
+                var bar = row.querySelector('.rs-chart-bar');
+                var valueSpan = row.querySelector('.rs-chart-value');
+                if (bar && valueSpan) {
+                    var match = valueSpan.textContent.match(/^(\d+)/);
+                    if (match) {
+                        var count = parseInt(match[1], 10);
+                        var pct = (count / axisCeil) * 100;
+                        bar.style.width = Math.max(pct, 0.5) + '%';
+                        i++;
+                    }
+                }
+            });
+
+            // Update axis ticks
+            var axisContainer = chartContainer.querySelector('.rs-chart-axis-ticks');
+            if (axisContainer) {
+                var tickCount = 3;
+                var tickHtml = '';
+                for (var t = 0; t < tickCount; t++) {
+                    var tickVal = Math.round((axisCeil / (tickCount - 1)) * t);
+                    tickHtml += '<span class="rs-axis-tick">' + formatNumber(tickVal) + '</span>';
+                }
+                axisContainer.innerHTML = tickHtml;
+            }
+        });
+
+        function niceAxisMax(maxVal) {
+            if (maxVal <= 0) return 10;
+            var magnitude = Math.pow(10, Math.floor(Math.log10(maxVal)));
+            var normalized = maxVal / magnitude;
+            var nice;
+            if (normalized <= 1) nice = 1;
+            else if (normalized <= 2) nice = 2;
+            else if (normalized <= 5) nice = 5;
+            else nice = 10;
+            var result = nice * magnitude;
+            // Ensure result is >= maxVal
+            if (result < maxVal) result = Math.ceil(maxVal / magnitude) * magnitude;
+            return result;
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(num % 1000000 === 0 ? 0 : 1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1) + 'K';
+            return num.toString();
+        }
+    });
+</script>
