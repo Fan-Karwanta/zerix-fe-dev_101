@@ -26,12 +26,6 @@
                     aria-labelledby="navbarDropDownCreateForms">
                     <li>
                         <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms">
-                            Forms List
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
                             href="/forms/admin_view/createform">
                             Create Form
                         </a>
@@ -44,37 +38,16 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown d-block d-md-none">
+            <li class="nav-item d-block d-md-none">
                 <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
-                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#formsListNavOffCanvas" aria-controls="offcanvasDropdown" aria-expanded="false">
                     <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
                     <span class="txt-color-primary me-3 fs-16 fw-400 font-orange">Create Forms</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
-                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
-                    aria-labelledby="navbarDropDownCreateFormsMobile">
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms">
-                            Forms List
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms/admin_view/createform">
-                            Create Form
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms/admin_view/responsessummary">
-                            Responses Summary
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
 
@@ -226,6 +199,27 @@
     </div>
 </div>
 
+<!-- Off-canvas bottom for mobile Create Forms nav dropdown -->
+<div class="offcanvas offcanvas-bottom d-block d-md-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="formsListNavOffCanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/forms/admin_view/createform">
+                        <span class="fs-16 fw-light">Create Form</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/forms/admin_view/responsessummary">
+                        <span class="fs-16 fw-light">Responses Summary</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div class="container px-4 my-3 pt-md-3 pt-3">
     <div class="row">
         <div class="col-12">
@@ -239,9 +233,7 @@
             <div class="fl-mobile-header">
                 <h2 class="fl-mobile-page-title">Form Questions</h2>
                 <a href="/forms/admin_view/createform" class="fl-new-form-btn-mobile">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 5V19M5 12H19" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <span style="font-family: 'Microsoft Sans Serif', sans-serif; font-size: 24px; font-weight: 400; color: #FFFFFF; line-height: 21px;">+</span>
                 </a>
             </div>
 
@@ -256,10 +248,10 @@
                         </div>
                         <div class="fl-form-actions">
                             <button class="fl-more-btn" onclick="toggleFormDropdown(this)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="5" r="1.5" fill="#FF5400"/>
-                                    <circle cx="12" cy="12" r="1.5" fill="#FF5400"/>
-                                    <circle cx="12" cy="19" r="1.5" fill="#FF5400"/>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="5" cy="12" r="2" fill="currentColor"/>
+                                    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                                    <circle cx="19" cy="12" r="2" fill="currentColor"/>
                                 </svg>
                             </button>
                             <div class="fl-dropdown-menu">
@@ -284,10 +276,10 @@
         display: none;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 24px;
+        margin-bottom: 32px;
         position: relative;
         margin-top: 8px;
-        max-width: 700px;
+        max-width: 747px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -311,16 +303,20 @@
         background-color: #FF5400;
         border: none;
         color: #FFFFFF;
-        padding: 10px 24px;
+        padding: 13px 12px 15px;
         font-family: 'Microsoft Sans Serif', sans-serif;
         font-size: 14px;
         font-weight: 400;
         border-radius: 4px;
         cursor: pointer;
         text-decoration: none;
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         line-height: 21px;
         white-space: nowrap;
+        min-width: 180px;
+        height: 49px;
     }
 
     .fl-new-form-btn:hover {
@@ -356,9 +352,9 @@
         background-color: #FF5400;
         border: none;
         color: #FFFFFF;
-        width: 32px;
-        height: 32px;
-        border-radius: 6px;
+        width: 40px;
+        height: 33px;
+        border-radius: 4px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -374,11 +370,11 @@
 
     /* Forms List Container */
     .fl-list-container {
-        max-width: 700px;
+        max-width: 747px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 11px;
     }
 
     /* Form Item */
@@ -386,27 +382,13 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 20px;
+        padding: 16px 32px;
         border: 1px solid #E6E6E6;
-        border-radius: 0;
+        border-radius: 8px;
         background-color: #FFFFFF;
         position: relative;
-    }
-
-    .fl-form-item:first-child {
-        border-radius: 8px 8px 0 0;
-    }
-
-    .fl-form-item:last-child {
-        border-radius: 0 0 8px 8px;
-    }
-
-    .fl-form-item:only-child {
-        border-radius: 8px;
-    }
-
-    .fl-form-item + .fl-form-item {
-        border-top: none;
+        min-height: 80px;
+        box-sizing: border-box;
     }
 
     .fl-form-info {
@@ -416,19 +398,19 @@
 
     .fl-form-title {
         font-family: 'Microsoft Sans Serif', sans-serif;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 400;
         color: #212529;
-        line-height: 21px;
-        margin-bottom: 2px;
+        line-height: 20px;
+        margin-bottom: 8px;
     }
 
     .fl-form-created-by {
         font-family: 'Microsoft Sans Serif', sans-serif;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 400;
         color: #878A99;
-        line-height: 18px;
+        line-height: 20px;
     }
 
     /* More Button (three dots) */
@@ -438,15 +420,17 @@
     }
 
     .fl-more-btn {
-        background: #FFF5EC;
+        background: #FFF7EC;
         border: none;
         cursor: pointer;
-        padding: 6px 8px;
-        border-radius: 6px;
+        width: 36px;
+        height: 32px;
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: background-color 0.15s ease;
+        color: #FF5400;
     }
 
     .fl-more-btn:hover {
@@ -461,11 +445,11 @@
         background: #FFFFFF;
         border: none;
         border-radius: 4px;
-        box-shadow: 0px 5px 15px rgba(30, 32, 37, 0.12);
-        min-width: 160px;
+        box-shadow: 0px 5px 5px rgba(30, 32, 37, 0.12);
+        width: 159px;
         z-index: 1050;
         display: none;
-        padding: 8px 0;
+        padding: 16px 19px;
     }
 
     .fl-dropdown-menu.show {
@@ -473,25 +457,25 @@
     }
 
     .fl-dropdown-item {
-        display: block;
+        display: flex;
+        align-items: center;
         width: 100%;
-        padding: 8px 16px;
+        padding: 5px 0;
         font-family: 'Microsoft Sans Serif', sans-serif;
         font-size: 14px;
         font-weight: 400;
-        color: #212529;
+        color: #495057;
         background: none;
         border: none;
         text-align: left;
         cursor: pointer;
         text-decoration: none;
-        transition: background-color 0.15s ease;
-        line-height: 21px;
+        transition: color 0.15s ease;
+        line-height: 18px;
     }
 
     .fl-dropdown-item:hover {
-        background-color: #F5F5F5;
-        color: #212529;
+        color: #FF5400;
         text-decoration: none;
     }
 
@@ -510,29 +494,26 @@
     @@media (max-width: 767px) {
         .fl-list-container {
             max-width: 100%;
+            gap: 16px;
         }
 
         .fl-form-item {
-            padding: 14px 16px;
+            padding: 16px 20px;
+            min-height: 80px;
+            gap: 24px;
         }
 
         .fl-form-title {
-            font-size: 15px;
+            font-size: 16px;
+            line-height: 20px;
         }
 
         .fl-form-created-by {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .fl-dropdown-menu {
             right: 0;
-            min-width: 140px;
-        }
-    }
-
-    @@media (max-width: 480px) {
-        .fl-form-item {
-            padding: 12px 14px;
         }
     }
 </style>

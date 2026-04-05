@@ -26,7 +26,7 @@
                     aria-labelledby="navbarDropDownCreateForms">
                     <li>
                         <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms">
+                            href="/forms/admin_view/formslist">
                             Forms List
                         </a>
                     </li>
@@ -38,31 +38,16 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown d-block d-md-none">
+            <li class="nav-item d-block d-md-none">
                 <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
-                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#createFormNavOffCanvas" aria-controls="offcanvasDropdown" aria-expanded="false">
                     <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
                     <span class="txt-color-primary me-3 fs-16 fw-400 font-orange">Create Forms</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
-                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
-                    aria-labelledby="navbarDropDownCreateFormsMobile">
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms">
-                            Forms List
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
-                            href="/forms/admin_view/responsessummary">
-                            Responses Summary
-                        </a>
-                    </li>
-                </ul>
             </li>
         </ul>
 
@@ -211,6 +196,27 @@
             <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
             <span class="fs-16 fw-light">Logout</span>
         </a>
+    </div>
+</div>
+
+<!-- Off-canvas bottom for mobile Create Forms nav dropdown -->
+<div class="offcanvas offcanvas-bottom d-block d-md-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="createFormNavOffCanvas" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/forms/admin_view/formslist">
+                        <span class="fs-16 fw-light">Forms List</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/forms/admin_view/responsessummary">
+                        <span class="fs-16 fw-light">Responses Summary</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
