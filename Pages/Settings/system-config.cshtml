@@ -1,0 +1,590 @@
+@page
+@model SystemConfigModel
+@{
+Layout = "_Layout";
+ViewData["Title"] = "System Configuration";
+ViewData["User"] = "Admin";
+}
+
+<nav
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    <div class="container px-4" id="desktop-navbar">
+        <!-- Settings dropdown button -->
+        <ul class="navbar-nav me-3">
+            <li class="nav-item dropdown d-none d-lg-block">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/icons/settings.svg" height="28" width="28" alt="Logo"
+                        class="d-inline-block align-top me-2 color-primary" />
+                    <span class="txt-color-primary fs-20 fw-400">Settings</span>
+                </a>
+            </li>
+            <li class="nav-item d-block d-lg-none">
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                    href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#settingsoffcanvasDropdown" aria-controls="offcanvasDropdown" aria-expanded="false">
+                    <img src="~/images/icons/settings.svg" height="21" width="21" alt="Logo"
+                        class="d-inline-block align-top ms-1 me-2 color-primary" />
+                    <span class="txt-color-primary me-3 fs-16 fw-400">Settings</span>
+                    <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                        class="d-inline-block me-2" />
+                </a>
+            </li>
+        </ul>
+
+        <!-- Off-canvas toggle button for mobile dashboard -->
+        <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="6" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="9" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+
+        <!-- Navbar content for larger screens -->
+        <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
+            <div class="navbar-nav d-flex flex-row dashboard-navbar">
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/messages">
+                    <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                    href="/contacts">
+                    <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
+                    <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
+                        class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/email">
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Forms" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/poll.svg" height="30" width="30" alt="Forms" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Forms</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="#">
+                    <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
+                </a>
+                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/permissiondenied">
+                    <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
+                    <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Off-canvas sidebar for mobile view dashboard -->
+<div class="offcanvas offcanvas-end d-block d-lg-none offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
+    tabindex="-1" id="DashboardoffcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header py-2 mt-2">
+        <div class="mt-4 offcanvas-title fw-bold fs-24 px-1 " id="offcanvasNavbarLabel">Dashboard</div>
+    </div>
+    <hr class="my-0 mx-3">
+    <div class="offcanvas-body mt-4">
+        <!-- Main navigation links -->
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3 w-100">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages">
+                        <img src="~/images/icons/mail-black.svg" alt="Messages" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Messages</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/contacts">
+                        <img src="~/images/icons/contacts-black.svg" alt="Contacts" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Contacts</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#keywords">
+                        <img src="~/images/icons/keyword-black.svg" alt="Keywords" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Keywords</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/notifications">
+                        <img src="~/images/icons/notification-black.svg" alt="Notifications" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#reports">
+                        <img src="~/images/icons/reports-black.svg" alt="Reports" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#forms">
+                        <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Email</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#forms">
+                        <img src="~/images/icons/poll-black.svg" alt="Forms" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Forms</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#scheduler">
+                        <img src="~/images/icons/scheduler-black.svg" alt="Scheduler" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Scheduler</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="#settings">
+                        <img src="~/images/icons/settings.svg" alt="Settings" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light font-orange">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/permissiondenied">
+                        <img src="~/images/icons/others-black.svg" alt="Others" height="24" width="24"
+                            class="icon me-2" />
+                        <span class="fs-16 fw-light">Others</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-auto my-4">
+        <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
+            <img src="/images/icons/logout-black.svg" alt="Logout" height="21" width="24" class="icon me-2" />
+            <span class="fs-16 fw-light">Logout</span>
+        </a>
+    </div>
+</div>
+
+<!-- Settings off-canvas -->
+<div class="offcanvas offcanvas-bottom d-block d-lg-none border border-end-0 rounded-top d-flex flex-column"
+    tabindex="-1" id="settingsoffcanvasDropdown" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-body mt-2">
+        <div class="d-flex flex-column align-items-start">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/user-groups">
+                        <span class="fs-16 fw-light">User Groups</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/user-roles">
+                        <span class="fs-16 fw-light">User Roles</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/system-config">
+                        <span class="fs-16 fw-light">System Configuration</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/logs">
+                        <span class="fs-16 fw-light">Logs</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Desktop Tab Navigation -->
+<div class="container my-2 pt-4 px-4 d-lg-block d-none">
+    <nav class="navbar navbar-expand-lg user-settings-nav mt-2 mb-4 py-0">
+        <div class="collapse navbar-collapse py-0">
+            <ul class="navbar-nav mr-auto py-0">
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/users">Users</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/user-groups">User Groups</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/user-roles">User Roles</a>
+                </li>
+                <li class="nav-item px-4 active">
+                    <a class="nav-link active" href="/settings/system-config">System Configuration</a>
+                </li>
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="/settings/logs">Logs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- System Configuration Content -->
+<div class="container my-4 px-4" id="systemConfigSection">
+    <!-- Desktop View -->
+    <div class="d-none d-lg-block">
+        <div class="sc-content-wrapper">
+            <div class="sc-label">Logo</div>
+            <div class="sc-upload-area" id="scDesktopDropZone">
+                <div class="sc-upload-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z" stroke="#C4C4C4" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="sc-upload-text">Drag and Drop File</div>
+                <div class="sc-upload-subtext">( .jpeg, .jpg, or .png )</div>
+                <input type="file" id="scDesktopFileInput" accept=".jpeg,.jpg,.png" class="sc-file-input" />
+            </div>
+            <div class="sc-preview-container" id="scDesktopPreview" style="display: none;">
+                <img id="scDesktopPreviewImg" src="" alt="Logo Preview" class="sc-preview-img" />
+                <button type="button" class="sc-remove-btn" onclick="removeDesktopFile()">&times;</button>
+            </div>
+            <div class="sc-save-wrapper">
+                <button class="sc-save-btn" onclick="saveSystemConfig()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile View -->
+    <div class="d-block d-lg-none">
+        <div class="sc-mobile-title">SYSTEM CONFIGURATION</div>
+        <div class="sc-label">Logo</div>
+        <div class="sc-upload-area sc-upload-area-mobile" id="scMobileDropZone">
+            <div class="sc-upload-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#C4C4C4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12Z" stroke="#C4C4C4" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="sc-upload-text">Drag and Drop File</div>
+            <div class="sc-upload-subtext">( .jpeg, .jpg, or .png )</div>
+            <input type="file" id="scMobileFileInput" accept=".jpeg,.jpg,.png" class="sc-file-input" />
+        </div>
+        <div class="sc-preview-container" id="scMobilePreview" style="display: none;">
+            <img id="scMobilePreviewImg" src="" alt="Logo Preview" class="sc-preview-img" />
+            <button type="button" class="sc-remove-btn" onclick="removeMobileFile()">&times;</button>
+        </div>
+        <div class="sc-mobile-save-wrapper">
+            <button class="sc-save-btn sc-save-btn-mobile" onclick="saveSystemConfig()">Save</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ==================== SYSTEM CONFIGURATION - DEDICATED STYLES ==================== */
+
+    .sc-content-wrapper {
+        max-width: 450px;
+    }
+
+    .sc-mobile-title {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: #495057;
+        margin-bottom: 24px;
+        margin-top: 8px;
+    }
+
+    .sc-label {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #495057;
+        margin-bottom: 12px;
+    }
+
+    /* Upload Area */
+    .sc-upload-area {
+        border: 1px dashed #C4C4C4;
+        border-radius: 8px;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        background-color: #FFFFFF;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
+        max-width: 350px;
+        min-height: 200px;
+    }
+
+    .sc-upload-area:hover {
+        border-color: #FF5400;
+        background-color: #FFF9F5;
+    }
+
+    .sc-upload-area.sc-dragover {
+        border-color: #FF5400;
+        background-color: #FFF3EB;
+    }
+
+    .sc-upload-area-mobile {
+        max-width: 100%;
+    }
+
+    .sc-upload-icon {
+        margin-bottom: 12px;
+    }
+
+    .sc-upload-text {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: #878A99;
+        margin-bottom: 4px;
+    }
+
+    .sc-upload-subtext {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: #C4C4C4;
+    }
+
+    .sc-file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Preview */
+    .sc-preview-container {
+        position: relative;
+        max-width: 350px;
+        margin-top: 12px;
+        border: 1px solid #E6E6E6;
+        border-radius: 8px;
+        padding: 12px;
+        background-color: #FFFFFF;
+    }
+
+    .sc-preview-img {
+        max-width: 100%;
+        max-height: 200px;
+        display: block;
+        margin: 0 auto;
+        border-radius: 4px;
+    }
+
+    .sc-remove-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #FF5400;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        line-height: 24px;
+        text-align: center;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .sc-remove-btn:hover {
+        background: #e04900;
+    }
+
+    /* Save Button */
+    .sc-save-wrapper {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        max-width: 350px;
+    }
+
+    .sc-save-btn {
+        background-color: #FF5400;
+        border: none;
+        color: #FFFFFF;
+        padding: 12px 48px;
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+        min-width: 160px;
+        text-align: center;
+    }
+
+    .sc-save-btn:hover {
+        background-color: #e04900;
+    }
+
+    /* Mobile Save */
+    .sc-mobile-save-wrapper {
+        margin-top: 32px;
+        margin-bottom: 32px;
+    }
+
+    .sc-save-btn-mobile {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+
+    @@media (max-width: 991px) {
+        .sc-preview-container {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<script>
+    // Desktop drag & drop and file input
+    (function () {
+        var desktopDropZone = document.getElementById('scDesktopDropZone');
+        var desktopFileInput = document.getElementById('scDesktopFileInput');
+        var desktopPreview = document.getElementById('scDesktopPreview');
+        var desktopPreviewImg = document.getElementById('scDesktopPreviewImg');
+
+        if (desktopDropZone) {
+            desktopDropZone.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                desktopDropZone.classList.add('sc-dragover');
+            });
+            desktopDropZone.addEventListener('dragleave', function () {
+                desktopDropZone.classList.remove('sc-dragover');
+            });
+            desktopDropZone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                desktopDropZone.classList.remove('sc-dragover');
+                var files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleDesktopFile(files[0]);
+                }
+            });
+        }
+
+        if (desktopFileInput) {
+            desktopFileInput.addEventListener('change', function () {
+                if (this.files.length > 0) {
+                    handleDesktopFile(this.files[0]);
+                }
+            });
+        }
+
+        window.handleDesktopFile = function (file) {
+            var validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (validTypes.indexOf(file.type) === -1) {
+                alert('Please upload a .jpeg, .jpg, or .png file.');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                desktopPreviewImg.src = e.target.result;
+                desktopPreview.style.display = 'block';
+                desktopDropZone.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.removeDesktopFile = function () {
+            desktopPreviewImg.src = '';
+            desktopPreview.style.display = 'none';
+            desktopDropZone.style.display = 'flex';
+            desktopFileInput.value = '';
+        };
+    })();
+
+    // Mobile drag & drop and file input
+    (function () {
+        var mobileDropZone = document.getElementById('scMobileDropZone');
+        var mobileFileInput = document.getElementById('scMobileFileInput');
+        var mobilePreview = document.getElementById('scMobilePreview');
+        var mobilePreviewImg = document.getElementById('scMobilePreviewImg');
+
+        if (mobileDropZone) {
+            mobileDropZone.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                mobileDropZone.classList.add('sc-dragover');
+            });
+            mobileDropZone.addEventListener('dragleave', function () {
+                mobileDropZone.classList.remove('sc-dragover');
+            });
+            mobileDropZone.addEventListener('drop', function (e) {
+                e.preventDefault();
+                mobileDropZone.classList.remove('sc-dragover');
+                var files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleMobileFile(files[0]);
+                }
+            });
+        }
+
+        if (mobileFileInput) {
+            mobileFileInput.addEventListener('change', function () {
+                if (this.files.length > 0) {
+                    handleMobileFile(this.files[0]);
+                }
+            });
+        }
+
+        window.handleMobileFile = function (file) {
+            var validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (validTypes.indexOf(file.type) === -1) {
+                alert('Please upload a .jpeg, .jpg, or .png file.');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                mobilePreviewImg.src = e.target.result;
+                mobilePreview.style.display = 'block';
+                mobileDropZone.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.removeMobileFile = function () {
+            mobilePreviewImg.src = '';
+            mobilePreview.style.display = 'none';
+            mobileDropZone.style.display = 'flex';
+            mobileFileInput.value = '';
+        };
+    })();
+
+    function saveSystemConfig() {
+        alert('System configuration saved successfully!');
+    }
+</script>

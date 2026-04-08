@@ -17,8 +17,8 @@
                     aria-expanded="false">
                     <img src="~/images/icons/poll.svg" height="28" width="28" alt="Forms"
                         class="d-inline-block align-top me-2 color-primary" />
-                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Responses Summary</span>
-                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Responses Summary</span>
+                    <span class="txt-color-primary fs-20 fw-400 me-3 font-orange d-none d-lg-block">Create Form</span>
+                    <span class="txt-color-primary fs-16 fw-400 me-3 font-orange d-block d-lg-none">Create Form</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block" />
                 </a>
@@ -33,7 +33,7 @@
                     <li>
                         <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
                             href="/forms/admin_view/formslist">
-                            Create Forms
+                            Create Form
                         </a>
                     </li>
                 </ul>
@@ -43,7 +43,7 @@
                     href="#" id="navbarDropDownCreateFormsMobile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
-                    <span class="txt-color-primary fs-16 fw-400 font-orange">Responses Summary</span>
+                    <span class="txt-color-primary fs-16 fw-400 font-orange">Create Form</span>
                     <img src="~/images/icons/arrow-down.svg" height="10" width="10" alt="arrow-down"
                         class="d-inline-block ms-2" />
                 </a>
@@ -59,7 +59,7 @@
                     <li>
                         <a class="dropdown-item fs-13 ff-default font-darkgray d-flex align-items-center"
                             href="/forms/admin_view/createform">
-                            Create Forms
+                            Create Form
                         </a>
                     </li>
                 </ul>
@@ -221,7 +221,7 @@
         <div class="col-12">
             <!-- Desktop Header -->
             <div class="rs-desktop-header">
-                <a href="/forms" class="rs-back-link">
+                <a href="javascript:void(0)" class="rs-back-link" onclick="goBackToCreateForm()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -234,7 +234,7 @@
             <!-- Mobile Header -->
             <div class="rs-mobile-header">
                 <div class="rs-mobile-header-inner">
-                    <a href="/forms" class="rs-mobile-back-link">
+                    <a href="javascript:void(0)" class="rs-mobile-back-link" onclick="goBackToCreateForm()">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -992,4 +992,9 @@
             return num.toString();
         }
     });
+
+    function goBackToCreateForm() {
+        console.log('goBackToCreateForm called. Navigating to Forms List.');
+        window.location.href = '/forms/admin_view/formslist';
+    }
 </script>
