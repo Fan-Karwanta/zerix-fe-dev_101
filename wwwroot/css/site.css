@@ -24,7 +24,14 @@ body {
   height: 54px;
 }
 
-
+.version-text {
+  font-size: 10px !important;
+  color: #6c757d;
+  white-space: nowrap;
+  line-height: 1;
+  text-align: center;
+  margin-left: 3rem;
+}
 
 .form-check-input:focus,
 .form-check-input:focus-visible {
@@ -106,7 +113,11 @@ body {
   .logo-responsive-dashboard {
     width: 114px;
     height: 32px;
-   
+  }
+  .version-text {
+    font-size: 7px !important;
+    margin-left: 2.5rem;
+    margin-top: 0.1rem !important;
   }
   
   .main-scroll {

@@ -198,6 +198,11 @@ ViewData["User"] = "Admin";
         <div class="d-flex flex-column align-items-start">
             <ul class="navbar-nav me-3">
                 <li class="nav-item mb-2">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/users">
+                        <span class="fs-16 fw-light">Users</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/user-groups">
                         <span class="fs-16 fw-light">User Groups</span>
                     </a>
@@ -205,11 +210,6 @@ ViewData["User"] = "Admin";
                 <li class="nav-item mb-2">
                     <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/user-roles">
                         <span class="fs-16 fw-light">User Roles</span>
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/settings/system-config">
-                        <span class="fs-16 fw-light">System Configuration</span>
                     </a>
                 </li>
                 <li class="nav-item mb-2">
@@ -262,6 +262,7 @@ ViewData["User"] = "Admin";
                 </div>
                 <div class="sc-upload-text">Drag and Drop File</div>
                 <div class="sc-upload-subtext">( .jpeg, .jpg, or .png )</div>
+                <div class="sc-recommended-size">Recommended Size: 190 X 54px.</div>
                 <input type="file" id="scDesktopFileInput" accept=".jpeg,.jpg,.png" class="sc-file-input" />
             </div>
             <div class="sc-preview-container" id="scDesktopPreview" style="display: none;">
@@ -287,6 +288,7 @@ ViewData["User"] = "Admin";
             </div>
             <div class="sc-upload-text">Drag and Drop File</div>
             <div class="sc-upload-subtext">( .jpeg, .jpg, or .png )</div>
+            <div class="sc-recommended-size">Recommended Size: 190 X 54px.</div>
             <input type="file" id="scMobileFileInput" accept=".jpeg,.jpg,.png" class="sc-file-input" />
         </div>
         <div class="sc-preview-container" id="scMobilePreview" style="display: none;">
@@ -424,10 +426,20 @@ ViewData["User"] = "Admin";
     }
 
     /* Save Button */
+    .sc-recommended-size {
+        font-family: 'Microsoft Sans Serif', sans-serif;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        color: #C4C4C4;
+        margin-top: 8px;
+        text-align: center;
+    }
+
     .sc-save-wrapper {
         margin-top: 40px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         max-width: 350px;
     }
 

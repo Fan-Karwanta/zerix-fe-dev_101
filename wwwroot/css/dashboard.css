@@ -391,11 +391,10 @@ input[type="checkbox"]:not(:checked) {
 }
 
 .version-text {
-  position: relative;
-  top: -10px;
-  height: 1px !important;
-  text-align: right !important;
-  margin-right: 5px !important;
+  font-size: 10px;
+  color: #6c757d;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 #ticket-details textarea.form-control,

@@ -208,7 +208,7 @@
         <div class="col-12">
             <!-- Desktop Header -->
             <div class="cf-desktop-header">
-                <a href="/forms" class="cf-back-link">
+                <a href="/forms/admin_view/formslist" class="cf-back-link">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -220,7 +220,7 @@
             <!-- Mobile Header -->
             <div class="cf-mobile-header">
                 <div class="cf-mobile-header-inner">
-                    <a href="/forms" class="cf-mobile-back-link">
+                    <a href="/forms/admin_view/formslist" class="cf-mobile-back-link">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -1472,19 +1472,31 @@
         const tabs = document.querySelectorAll('.cf-tab');
         const tabContents = document.querySelectorAll('.cf-tab-content');
 
+        function activateTab(targetTab) {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(tc => tc.classList.remove('active'));
+
+            const matchingTab = document.querySelector('.cf-tab[data-tab="' + targetTab + '"]');
+            const matchingContent = document.getElementById('tab-' + targetTab);
+            if (matchingTab && matchingContent) {
+                matchingTab.classList.add('active');
+                matchingContent.classList.add('active');
+            }
+        }
+
         tabs.forEach(tab => {
             tab.addEventListener('click', function () {
                 const targetTab = this.getAttribute('data-tab');
-
-                // Remove active from all tabs and contents
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(tc => tc.classList.remove('active'));
-
-                // Add active to clicked tab and corresponding content
-                this.classList.add('active');
-                document.getElementById('tab-' + targetTab).classList.add('active');
+                activateTab(targetTab);
             });
         });
+
+        // Activate tab from URL hash (e.g. #tab-questions)
+        var hash = window.location.hash;
+        if (hash && hash.startsWith('#tab-')) {
+            var tabName = hash.replace('#tab-', '');
+            activateTab(tabName);
+        }
 
         // ==================== QUESTION TYPE DROPDOWNS ====================
         let questionCounter = document.querySelectorAll('.cf-question-container').length;
