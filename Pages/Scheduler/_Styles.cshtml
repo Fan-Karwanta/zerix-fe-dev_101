@@ -180,6 +180,11 @@
     
     .dropdown {
         position: relative;
+    }
+
+    /* Only apply right margin to sort/view dropdowns in calendar header, not navbar dropdowns */
+    .calendar-view-header .dropdown,
+    .selected-date-header .dropdown {
         margin-right: 1.1rem;
     }
     
@@ -219,10 +224,9 @@
     .dropdown-menu {
         position: absolute !important;
         transform: none !important;
-        left: -100px !important;
+        left: 0 !important;
         right: auto !important;
         top: 100% !important;
-       
     }
 }
 
@@ -4540,6 +4544,54 @@
     background: transparent;
     border-top: none;
     z-index: 0;
+}
+
+/* Monthly view: single row of day columns, appointments stacked */
+.monthly-day-row {
+    grid-template-columns: repeat(5, 1fr) !important;
+}
+
+/* Tablet: 7 day columns for monthly stacked row */
+@@media (min-width: 768px) and (max-width: 1199px) {
+    .monthly-day-row {
+        grid-template-columns: repeat(7, 1fr) !important;
+    }
+}
+
+/* Medium screens (1200-1399px): 4 day columns */
+@@media (min-width: 1200px) and (max-width: 1399px) {
+    .monthly-day-row {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+.monthly-day-cell {
+    position: relative;
+    min-height: 120px;
+    padding: 8px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: stretch;
+    vertical-align: top;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+
+.monthly-day-cell:last-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Monthly stacked appointments use normal flow (not absolute) */
+.monthly-stacked-event {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
 }
 
 /* Appointment Events */

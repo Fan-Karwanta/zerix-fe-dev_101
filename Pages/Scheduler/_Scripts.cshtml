@@ -2193,7 +2193,6 @@ function generateTimeSlots() {
     const timeSlotsGrid = document.getElementById('time-slots-grid');
     timeSlotsGrid.innerHTML = '';
     
-    const hours = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM'];
     const weekStart = selectedWeekStart || getWeekStart(fullCurrentDate);
     
     // Determine days to show based on screen width:
@@ -2205,66 +2204,70 @@ function generateTimeSlots() {
     const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
     const daysToShow = isTablet ? 7 : (isMediumScreen ? 4 : 5);
     
-    hours.forEach((hour, hourIndex) => {
-        const timeRow = document.createElement('div');
-        timeRow.className = 'time-row';
+    // Monthly view: single row of day columns, appointments stacked by time
+    const dayRow = document.createElement('div');
+    dayRow.className = 'time-row monthly-day-row';
+    
+    for (let i = 0; i < daysToShow; i++) {
+        const dayIndex = isTablet ? i : (i + weekDayOffset);
+        const currentDay = new Date(weekStart);
+        currentDay.setDate(weekStart.getDate() + dayIndex);
         
-        const timeLabel = document.createElement('div');
-        timeLabel.className = 'time-label';
-        timeLabel.textContent = hour;
-        timeRow.appendChild(timeLabel);
+        const timeCell = document.createElement('div');
+        timeCell.className = 'time-cell monthly-day-cell';
         
-        // Create day cells based on screen size
-        for (let i = 0; i < daysToShow; i++) {
-            const dayIndex = isTablet ? i : (i + weekDayOffset);
-            const timeCell = document.createElement('div');
-            timeCell.className = 'time-cell';
+        // Get all appointments for this day, sorted by start time
+        const dayAppointments = appointments.filter(apt => {
+            const aptDate = apt.date;
+            return aptDate.getFullYear() === currentDay.getFullYear() &&
+                   aptDate.getMonth() === currentDay.getMonth() &&
+                   aptDate.getDate() === currentDay.getDate();
+        }).sort((a, b) => {
+            const aMinutes = parseInt(a.startTime.split(':')[0]) * 60 + parseInt(a.startTime.split(':')[1]);
+            const bMinutes = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1]);
+            return aMinutes - bMinutes;
+        });
+        
+        const maxVisible = 2;
+        const visibleAppointments = dayAppointments.slice(0, maxVisible);
+        const hiddenCount = dayAppointments.length - maxVisible;
+        
+        visibleAppointments.forEach((appointment, aptIndex) => {
+            const eventDiv = document.createElement('div');
+            eventDiv.className = `appointment-event monthly-stacked-event event-${appointment.color}`;
+            eventDiv.onclick = () => showAppointmentModal(appointment.id);
             
-            // Check if there are appointments for this time slot
-            const currentDay = new Date(weekStart);
-            currentDay.setDate(weekStart.getDate() + dayIndex);
+            const eventTitle = document.createElement('div');
+            eventTitle.className = 'event-title';
+            eventTitle.textContent = appointment.title;
             
-            const appointmentsAtTime = findAllAppointmentsAtTime(currentDay, hourIndex + 6);
-            
-            if (appointmentsAtTime.length > 0) {
-                // Show the first appointment
-                const appointment = appointmentsAtTime[0];
-                const eventDiv = document.createElement('div');
-                eventDiv.className = `appointment-event event-${appointment.color}`;
-                eventDiv.onclick = () => showAppointmentModal(appointment.id);
-                
-                const eventTitle = document.createElement('div');
-                eventTitle.className = 'event-title';
-                eventTitle.textContent = appointment.title;
-                
-                // Show overlap indicator if there are more appointments
-                if (appointmentsAtTime.length > 1) {
-                    const overlapBadge = document.createElement('span');
-                    overlapBadge.className = 'overlap-badge';
-                    overlapBadge.textContent = `+${appointmentsAtTime.length - 1}`;
-                    eventTitle.appendChild(overlapBadge);
-                }
-                
-                const eventSubtitle = document.createElement('div');
-                eventSubtitle.className = 'event-subtitle';
-                eventSubtitle.textContent = appointment.subtitle;
-                
-                const eventTime = document.createElement('div');
-                eventTime.className = 'event-time';
-                eventTime.textContent = appointment.displayTime || `${appointment.startTime} - ${appointment.endTime}`;
-                
-                eventDiv.appendChild(eventTitle);
-                eventDiv.appendChild(eventSubtitle);
-                eventDiv.appendChild(eventTime);
-                
-                timeCell.appendChild(eventDiv);
+            // Show overlap badge on last visible if there are hidden appointments
+            if (aptIndex === maxVisible - 1 && hiddenCount > 0) {
+                const overlapBadge = document.createElement('span');
+                overlapBadge.className = 'overlap-badge';
+                overlapBadge.textContent = `+${hiddenCount}`;
+                eventTitle.appendChild(overlapBadge);
             }
             
-            timeRow.appendChild(timeCell);
-        }
+            const eventSubtitle = document.createElement('div');
+            eventSubtitle.className = 'event-subtitle';
+            eventSubtitle.textContent = appointment.subtitle;
+            
+            const eventTime = document.createElement('div');
+            eventTime.className = 'event-time';
+            eventTime.textContent = appointment.displayTime || `${appointment.startTime} - ${appointment.endTime}`;
+            
+            eventDiv.appendChild(eventTitle);
+            eventDiv.appendChild(eventSubtitle);
+            eventDiv.appendChild(eventTime);
+            
+            timeCell.appendChild(eventDiv);
+        });
         
-        timeSlotsGrid.appendChild(timeRow);
-    });
+        dayRow.appendChild(timeCell);
+    }
+    
+    timeSlotsGrid.appendChild(dayRow);
 }
 
 function getWeekStart(date) {
