@@ -77,19 +77,19 @@
                             </ul>
                         </li>
                         <!-- Mobile view User dropdown -->
-                        <li class="nav-item dropdown d-sm-none"> <!-- Only visible on mobile -->
-                            <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#"
+                        <li class="nav-item dropdown d-block d-sm-none position-relative"> <!-- Only visible on mobile -->
+                            <a class="fs-5 nav-link pb-0 pt-1 text-dark d-flex align-middle align-items-center" href="#"
                                 id="navbarDropdownMenuLinkMobile" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                <span class="ff-default txt-color-tertiary me-2 fs-16 fw-400">Welcome, </span><span
-                                    class="fs-16 fw-500 txt-color-primary me-2">@ViewData["User"]</span>
+                                <span class="ff-default txt-color-tertiary me-2 fs-14 fw-400">Welcome, </span>
+                                <span class="fs-14 fw-400 txt-color-primary username-truncate">@ViewData["User"]</span>
                                 <img src="/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                                     class="d-inline-block" />
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                            <ul class="dropdown-menu dropdown-menu-end position-absolute ud-shadow bg-body-tertiary rounded border-0"
                                 aria-labelledby="navbarDropdownMenuLinkMobile">
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
+                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
                                         href="/accounts/switch-organization">
                                         <img src="/images/icons/switch.svg" alt="Switch Icon" class="me-2" width="16"
                                             height="16">
@@ -97,7 +97,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
+                                    <hr class="dropdown-divider mx-3">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
                                         href="/accounts/profile">
                                         <img src="/images/icons/profile.svg" alt="Profile Icon" class="me-2" width="16"
                                             height="16">
@@ -105,7 +108,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
+                                    <hr class="dropdown-divider mx-3">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
                                         href="/accounts/logout">
                                         <img src="/images/icons/logout.svg" alt="Logout Icon" class="me-2" width="16"
                                             height="16">
