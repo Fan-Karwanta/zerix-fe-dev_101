@@ -22,19 +22,35 @@
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block" />
                 </a>
-                <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
+                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0" style="min-width: 100%; position: absolute; top: 100%; left: 0; z-index: 1050;"
                     aria-labelledby="navbarDropDownForms">
+                    <li>
+                        <a class="dropdown-item fs-14 ff-default d-flex align-items-center my-2"
+                            href="/forms/admin_view/formslist">
+                            Create Form
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="nav-item d-block d-md-none">
+            <li class="nav-item dropdown d-block d-md-none" style="position: relative;">
                 <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
-                    href="#" id="navbarDropdownFormsOffcanvas" role="button">
+                    href="#" id="navbarDropdownFormsMobile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/poll.svg" height="21" width="21" alt="Forms"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
                     <span class="txt-color-primary me-3 fs-16 fw-400">Forms</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
+                <ul class="dropdown-menu ud-shadow bg-body-tertiary rounded border-0"
+                    style="min-width: 100%; position: absolute; top: 100%; left: 0; z-index: 1050;"
+                    aria-labelledby="navbarDropdownFormsMobile">
+                    <li>
+                        <a class="dropdown-item fs-13 ff-default font-darkgray d-flex align-items-center"
+                            href="/forms/admin_view/formslist">
+                            Create Form
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
 
