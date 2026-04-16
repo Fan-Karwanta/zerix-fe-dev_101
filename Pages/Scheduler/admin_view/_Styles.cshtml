@@ -2065,8 +2065,120 @@ a.mobile-sidebar-nav-item:hover {
     min-height: 60px;
 }
 
+/* Monthly view: make day-slot a flex column container for stacking */
+#monthly-view .day-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    min-height: 600px;
+}
+
 .day-slot:last-child {
     border-right: none;
+}
+
+/* Monthly View - Stacked Appointments Layout */
+.monthly-row {
+    display: flex;
+    min-height: 600px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.monthly-day-column {
+    flex: 1;
+    border-right: 1px solid #e0e0e0;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: white;
+    min-height: 600px;
+    overflow-y: auto;
+}
+
+.monthly-day-column:last-child {
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Monthly view appointment blocks - stacked layout */
+/* Using #monthly-view prefix for higher specificity to override position: absolute */
+#monthly-view .appointment-block.monthly-stacked {
+    position: relative !important;
+    left: 0;
+    right: 0;
+    top: auto;
+    height: auto;
+    min-height: 80px;
+    margin-bottom: 0;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    border-left: 4px solid;
+    box-sizing: border-box;
+}
+
+#monthly-view .appointment-block.monthly-stacked:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Status colors for monthly stacked appointments */
+#monthly-view .appointment-block.monthly-stacked.status-booked {
+    background-color: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+#monthly-view .appointment-block.monthly-stacked.status-completed {
+    background-color: #e8f5e9;
+    border-left-color: #4caf50;
+}
+
+#monthly-view .appointment-block.monthly-stacked.status-rescheduled {
+    background-color: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+#monthly-view .appointment-block.monthly-stacked.status-cancelled {
+    background-color: #ffebee;
+    border-left-color: #f44336;
+}
+
+#monthly-view .appointment-block.monthly-stacked.status-refund-requested {
+    background-color: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+#monthly-view .appointment-block.monthly-stacked.status-refunded {
+    background-color: #fce4ec;
+    border-left-color: #e91e63;
+}
+
+/* Monthly view grid - different from daily view */
+#monthly-view .time-slots-grid {
+    display: block;
+    grid-template-rows: none;
+    max-height: none;
+    overflow-y: visible;
+    border-left: 1px solid #e0e0e0;
+}
+
+/* Override appointment-block positioning in monthly view */
+#monthly-view .appointment-block {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    height: auto !important;
+    min-height: 80px;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    border-left: 4px solid;
 }
 
 .week-header {
@@ -2443,6 +2555,40 @@ a.mobile-sidebar-nav-item:hover {
     border: none;
 }
 
+/* Monthly view stacked layout - appointments stack from top, no time-based gaps */
+#monthly-view .monthly-stacked-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    min-height: 500px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#monthly-view .monthly-stacked-row .time-label {
+    display: none !important;
+}
+
+#monthly-view .monthly-stacked-cell {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 8px !important;
+    align-items: stretch !important;
+    border-right: 1px solid #e0e0e0;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+/* Override absolute positioning for monthly stacked events */
+#monthly-view .monthly-stacked-event {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+}
+
 /* Desktop: Reduce horizontal spacing between appointment cards */
 @@media (min-width: 1200px) {
     .appointment-event {
@@ -2517,6 +2663,10 @@ a.mobile-sidebar-nav-item:hover {
     }
     
     #monthly-view .time-row {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+
+    #monthly-view .monthly-stacked-row {
         grid-template-columns: repeat(4, 1fr) !important;
     }
     
@@ -2608,6 +2758,61 @@ a.mobile-sidebar-nav-item:hover {
     background: #f5d6f5;
     border: 1px solid #e6b3e6;
     border-left: 4px solid #e91e63;
+}
+
+/* Monthly View Responsive Styles - Desktop (1200px to 1399px) */
+@@media (min-width: 1200px) and (max-width: 1399px) {
+    /* Monthly view - adjust for 4 day columns */
+    .monthly-row {
+        min-height: 500px;
+    }
+
+    .monthly-day-column {
+        min-height: 500px;
+        padding: 6px;
+        gap: 6px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked {
+        min-height: 70px;
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked .appointment-customer {
+        font-size: 12px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked .appointment-service {
+        font-size: 10px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked .appointment-time {
+        font-size: 9px;
+    }
+}
+
+/* Monthly View Responsive Styles - Large Desktop (1400px and up) */
+@@media (min-width: 1400px) {
+    .monthly-row {
+        min-height: 650px;
+    }
+
+    .monthly-day-column {
+        min-height: 650px;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked {
+        min-height: 90px;
+        padding: 12px;
+    }
+
+    #monthly-view .appointment-block.monthly-stacked .appointment-customer {
+        font-size: 13px;
+        font-weight: 500;
+    }
 }
 
 .event-booked {

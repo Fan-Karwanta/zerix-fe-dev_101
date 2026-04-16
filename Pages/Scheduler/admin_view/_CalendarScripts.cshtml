@@ -1,5 +1,6 @@
 <script>
 // Admin Calendar - Dedicated script with new dummy data
+
 let adminCalendarData = {
     currentView: 'monthly', // 'monthly' or 'daily'
     currentWeekStart: new Date(2025, 6, 13), // July 13, 2025 (Sunday)
@@ -74,10 +75,12 @@ let adminCalendarData = {
 
 // Initialize calendar views
 function initAdminCalendar() {
+    console.log('=== initAdminCalendar called ===');
     generateWeekHeader();
     generateTimeSlots();
     renderAppointments();
     updateCalendarDate();
+    console.log('=== initAdminCalendar completed ===');
 }
 
 // Generate week header for monthly view
@@ -112,76 +115,176 @@ function generateWeekHeader() {
 // Generate time slots grid
 function generateTimeSlots() {
     const timeSlotsGrid = document.getElementById('time-slots-grid');
-    if (!timeSlotsGrid) return;
-    
+    if (!timeSlotsGrid) {
+        console.error('time-slots-grid element not found');
+        return;
+    }
+
     timeSlotsGrid.innerHTML = '';
-    
-    // Generate 24 hours (00:00 to 23:00)
-    for (let hour = 0; hour < 24; hour++) {
-        const timeRow = document.createElement('div');
-        timeRow.className = 'time-row';
-        
-        // Time label column
+    console.log('generateTimeSlots called, currentView:', adminCalendarData.currentView);
+
+    // Check if we're in monthly view
+    const isMonthlyView = adminCalendarData.currentView === 'monthly';
+    console.log('isMonthlyView:', isMonthlyView);
+
+    if (isMonthlyView) {
+        // Monthly view: Single row with 7 day slots (no time labels, no time rows)
+        console.log('Creating monthly view structure with 7 day slots');
+        const monthlyRow = document.createElement('div');
+        monthlyRow.className = 'time-row monthly-row';
+
+        // No time label for monthly view
         const timeLabel = document.createElement('div');
         timeLabel.className = 'time-label';
-        const displayHour = hour === 0 ? 12 : (hour > 12 ? hour - 12 : hour);
-        const ampm = hour < 12 ? 'AM' : 'PM';
-        timeLabel.textContent = `${displayHour}:00 ${ampm}`;
-        timeRow.appendChild(timeLabel);
-        
-        // Day columns (7 days)
+        timeLabel.style.display = 'none'; // Hide time label in monthly view
+        monthlyRow.appendChild(timeLabel);
+
+        // Create 7 day slots
         for (let day = 0; day < 7; day++) {
             const daySlot = document.createElement('div');
             daySlot.className = 'day-slot';
             daySlot.setAttribute('data-day', day);
-            daySlot.setAttribute('data-hour', hour);
-            timeRow.appendChild(daySlot);
+            monthlyRow.appendChild(daySlot);
         }
-        
-        timeSlotsGrid.appendChild(timeRow);
+
+        timeSlotsGrid.appendChild(monthlyRow);
+        console.log('Monthly view structure created, added to DOM');
+    } else {
+        // Daily view: Generate 24 hours (00:00 to 23:00)
+        for (let hour = 0; hour < 24; hour++) {
+            const timeRow = document.createElement('div');
+            timeRow.className = 'time-row';
+
+            // Time label column
+            const timeLabel = document.createElement('div');
+            timeLabel.className = 'time-label';
+            const displayHour = hour === 0 ? 12 : (hour > 12 ? hour - 12 : hour);
+            const ampm = hour < 12 ? 'AM' : 'PM';
+            timeLabel.textContent = `${displayHour}:00 ${ampm}`;
+            timeRow.appendChild(timeLabel);
+
+            // Day columns (7 days)
+            for (let day = 0; day < 7; day++) {
+                const daySlot = document.createElement('div');
+                daySlot.className = 'day-slot';
+                daySlot.setAttribute('data-day', day);
+                daySlot.setAttribute('data-hour', hour);
+                timeRow.appendChild(daySlot);
+            }
+
+            timeSlotsGrid.appendChild(timeRow);
+        }
     }
 }
 
 // Render appointments on the calendar
 function renderAppointments() {
     const timeSlotsGrid = document.getElementById('time-slots-grid');
-    if (!timeSlotsGrid) return;
-    
+    if (!timeSlotsGrid) {
+        console.error('time-slots-grid not found in renderAppointments');
+        return;
+    }
+
+    console.log('renderAppointments called, view:', adminCalendarData.currentView);
+
     // Clear existing appointments
     document.querySelectorAll('.appointment-block').forEach(block => block.remove());
-    
+
     const weekStart = new Date(adminCalendarData.currentWeekStart);
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 7);
-    
-    adminCalendarData.appointments.forEach(appointment => {
-        if (appointment.date >= weekStart && appointment.date < weekEnd) {
-            const dayIndex = Math.floor((appointment.date - weekStart) / (1000 * 60 * 60 * 24));
-            const startHour = parseInt(appointment.startTime.split(':')[0]);
-            const startMinute = parseInt(appointment.startTime.split(':')[1]);
-            const endHour = parseInt(appointment.endTime.split(':')[0]);
-            const endMinute = parseInt(appointment.endTime.split(':')[1]);
-            
-            const duration = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
-            const heightPercentage = (duration / 60) * 100;
-            const topOffset = (startMinute / 60) * 100;
-            
-            const daySlot = timeSlotsGrid.querySelector(`.time-row:nth-child(${startHour + 1}) .day-slot[data-day="${dayIndex}"]`);
-            if (daySlot) {
-                const appointmentBlock = document.createElement('div');
-                appointmentBlock.className = `appointment-block status-${appointment.status}`;
-                appointmentBlock.style.height = `${heightPercentage}%`;
-                appointmentBlock.style.top = `${topOffset}%`;
-                appointmentBlock.innerHTML = `
-                    <div class="appointment-time">${appointment.startTime} - ${appointment.endTime}</div>
-                    <div class="appointment-customer">${appointment.customerName}</div>
-                    <div class="appointment-service">${appointment.service}</div>
-                `;
-                appointmentBlock.onclick = () => openAppointmentDetails(appointment);
-                daySlot.appendChild(appointmentBlock);
+
+    // Check if we're in monthly view
+    const isMonthlyView = adminCalendarData.currentView === 'monthly';
+
+    if (isMonthlyView) {
+        // Monthly view: Group appointments by day and stack them from top
+        console.log('Rendering monthly view appointments, total appointments:', adminCalendarData.appointments.length);
+        const dayAppointments = {};
+        let appointmentsInRange = 0;
+
+        // Group appointments by day index
+        adminCalendarData.appointments.forEach(appointment => {
+            if (appointment.date >= weekStart && appointment.date < weekEnd) {
+                appointmentsInRange++;
+                const dayIndex = Math.floor((appointment.date - weekStart) / (1000 * 60 * 60 * 24));
+                if (!dayAppointments[dayIndex]) {
+                    dayAppointments[dayIndex] = [];
+                }
+                dayAppointments[dayIndex].push(appointment);
             }
-        }
-    });
+        });
+
+        console.log('Appointments in current week range:', appointmentsInRange);
+        console.log('Days with appointments:', Object.keys(dayAppointments));
+
+        // Sort appointments within each day by start time and render them stacked
+        Object.keys(dayAppointments).forEach(dayIndex => {
+            const daySlot = timeSlotsGrid.querySelector(`.day-slot[data-day="${dayIndex}"]`);
+            console.log(`Day ${dayIndex}: found slot?`, !!daySlot, '- appointments count:', dayAppointments[dayIndex].length);
+            if (daySlot) {
+                // Sort appointments by start time
+                dayAppointments[dayIndex].sort((a, b) => {
+                    const timeA = parseInt(a.startTime.split(':')[0]) * 60 + parseInt(a.startTime.split(':')[1]);
+                    const timeB = parseInt(b.startTime.split(':')[0]) * 60 + parseInt(b.startTime.split(':')[1]);
+                    return timeA - timeB;
+                });
+
+                // Render each appointment as a stacked card
+                dayAppointments[dayIndex].forEach(appointment => {
+                    console.log(`Creating appointment block for day ${dayIndex}:`, appointment.customerName, appointment.startTime);
+                    const appointmentBlock = document.createElement('div');
+                    appointmentBlock.className = `appointment-block status-${appointment.status}`;
+                    // Force inline styles for monthly view stacking
+                    appointmentBlock.style.position = 'relative';
+                    appointmentBlock.style.top = 'auto';
+                    appointmentBlock.style.left = 'auto';
+                    appointmentBlock.style.right = 'auto';
+                    appointmentBlock.style.height = 'auto';
+                    appointmentBlock.style.minHeight = '80px';
+                    appointmentBlock.style.marginBottom = '8px';
+                    appointmentBlock.style.padding = '10px';
+                    appointmentBlock.innerHTML = `
+                        <div class="appointment-time">${appointment.startTime} - ${appointment.endTime}</div>
+                        <div class="appointment-customer">${appointment.customerName}</div>
+                        <div class="appointment-service">${appointment.service}</div>
+                    `;
+                    appointmentBlock.onclick = () => openAppointmentDetails(appointment);
+                    daySlot.appendChild(appointmentBlock);
+                });
+            }
+        });
+    } else {
+        // Daily view: Time-based positioning with gaps
+        adminCalendarData.appointments.forEach(appointment => {
+            if (appointment.date >= weekStart && appointment.date < weekEnd) {
+                const dayIndex = Math.floor((appointment.date - weekStart) / (1000 * 60 * 60 * 24));
+                const startHour = parseInt(appointment.startTime.split(':')[0]);
+                const startMinute = parseInt(appointment.startTime.split(':')[1]);
+                const endHour = parseInt(appointment.endTime.split(':')[0]);
+                const endMinute = parseInt(appointment.endTime.split(':')[1]);
+
+                const duration = (endHour * 60 + endMinute) - (startHour * 60 + startMinute);
+                const heightPercentage = (duration / 60) * 100;
+                const topOffset = (startMinute / 60) * 100;
+
+                const daySlot = timeSlotsGrid.querySelector(`.time-row:nth-child(${startHour + 1}) .day-slot[data-day="${dayIndex}"]`);
+                if (daySlot) {
+                    const appointmentBlock = document.createElement('div');
+                    appointmentBlock.className = `appointment-block status-${appointment.status}`;
+                    appointmentBlock.style.height = `${heightPercentage}%`;
+                    appointmentBlock.style.top = `${topOffset}%`;
+                    appointmentBlock.innerHTML = `
+                        <div class="appointment-time">${appointment.startTime} - ${appointment.endTime}</div>
+                        <div class="appointment-customer">${appointment.customerName}</div>
+                        <div class="appointment-service">${appointment.service}</div>
+                    `;
+                    appointmentBlock.onclick = () => openAppointmentDetails(appointment);
+                    daySlot.appendChild(appointmentBlock);
+                }
+            }
+        });
+    }
 }
 
 // Store current appointment being viewed
@@ -322,10 +425,13 @@ function changeAppointmentStatus(newStatus) {
 function switchView(view) {
     adminCalendarData.currentView = view;
     document.getElementById('current-view-label').textContent = view === 'monthly' ? 'Monthly' : 'Daily';
-    
+
     if (view === 'monthly') {
         document.getElementById('monthly-view').style.display = 'block';
         document.getElementById('daily-view').style.display = 'none';
+        // Regenerate time slots for monthly view layout
+        generateTimeSlots();
+        renderAppointments();
     } else {
         document.getElementById('monthly-view').style.display = 'none';
         document.getElementById('daily-view').style.display = 'block';
@@ -629,8 +735,26 @@ function submitReschedule() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('=== DOMContentLoaded fired ===');
+    console.log('time-slots-grid found?', !!document.getElementById('time-slots-grid'));
     if (document.getElementById('time-slots-grid')) {
+        console.log('=== Calling initAdminCalendar ===');
         initAdminCalendar();
+
+        // Debug: Log the HTML structure after initialization
+        setTimeout(() => {
+            const timeSlotsGrid = document.getElementById('time-slots-grid');
+            if (timeSlotsGrid) {
+                console.log('=== time-slots-grid HTML structure ===');
+                console.log('time-slots-grid innerHTML (first 500 chars):', timeSlotsGrid.innerHTML.substring(0, 500));
+                console.log('Has monthly-row?', !!timeSlotsGrid.querySelector('.monthly-row'));
+                console.log('Has monthly-day-column?', !!timeSlotsGrid.querySelector('.monthly-day-column'));
+                console.log('Has time-row?', !!timeSlotsGrid.querySelector('.time-row'));
+                console.log('Has day-slot?', !!timeSlotsGrid.querySelector('.day-slot'));
+                console.log('Has appointment-block?', !!timeSlotsGrid.querySelector('.appointment-block'));
+                console.log('Has appointment-block.monthly-stacked?', !!timeSlotsGrid.querySelector('.appointment-block.monthly-stacked'));
+            }
+        }, 1000);
     }
 });
 </script>

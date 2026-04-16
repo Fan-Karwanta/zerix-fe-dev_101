@@ -1174,7 +1174,6 @@
     
     #monthly-view .week-header {
         grid-template-columns: repeat(7, 1fr);
-        margin-right: 9px;
     }
     
     .time-row {
@@ -1183,7 +1182,6 @@
     
     #monthly-view .time-row {
         grid-template-columns: repeat(7, 1fr);
-        margin-right: 9px;
     }
     
     /* Show all 7 day columns on tablets */
@@ -1397,7 +1395,6 @@
     
     #monthly-view .week-header {
         grid-template-columns: repeat(7, 1fr);
-        margin-right: 9px;
     }
     
     .time-row {
@@ -1406,7 +1403,6 @@
     
     #monthly-view .time-row {
         grid-template-columns: repeat(7, 1fr);
-        margin-right: 9px;
     }
     
     /* Show all 7 day columns on iPad Pro */
@@ -4349,7 +4345,6 @@
     
     #monthly-view .week-header {
         grid-template-columns: repeat(4, 1fr) !important;
-        margin-right: 9px;
     }
     
     .time-row {
@@ -4358,7 +4353,6 @@
     
     #monthly-view .time-row {
         grid-template-columns: repeat(4, 1fr) !important;
-        margin-right: 9px;
     }
 }
 
@@ -4477,11 +4471,7 @@
     margin-right: 1px;
 }
 
-/* Monthly view: auto height for stacked appointments */
-#monthly-view .time-slots-grid {
-    grid-template-rows: auto;
-    max-height: 600px;
-}
+/* Monthly view uses same 13-row structure as weekly view */
 
 .time-slots-grid::-webkit-scrollbar {
     width: 8px;
@@ -4509,12 +4499,11 @@
     border-right: none;
 }
 
-/* Hide time labels in monthly view only */
+/* Monthly view - hide time labels and use 5 equal columns */
 #monthly-view .time-row {
     grid-template-columns: repeat(5, 1fr);
     border-left: 1px solid #e0e0e0;
     border-right: none;
-    margin-right: 9px;
 }
 
 #monthly-view .time-label {
@@ -4553,26 +4542,6 @@
     background: transparent;
     border-top: none;
     z-index: 0;
-}
-
-/* Monthly stacked layout - appointments flow vertically */
-.monthly-stacked-row {
-    height: auto !important;
-}
-
-.monthly-day-cell {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    padding: 4px !important;
-    gap: 4px;
-    min-height: 80px;
-}
-
-.monthly-day-cell .appointment-event {
-    position: static !important;
-    margin: 0 !important;
-    width: auto !important;
 }
 
 /* Appointment Events */
@@ -4667,10 +4636,11 @@
 .event-title {
     font-weight: 600;
     color: #333;
+    font-size: 13px;
     margin-bottom: 2px;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     position: relative;
     padding-right: 35px;
 }
@@ -4679,6 +4649,9 @@
     color: #666;
     font-size: 11px;
     margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .event-time {
@@ -5538,7 +5511,6 @@
     
     #monthly-view .week-header {
         grid-template-columns: repeat(5, 1fr);
-        margin-right: 9px;
     }
     
     .time-row {
@@ -5547,7 +5519,6 @@
     
     #monthly-view .time-row {
         grid-template-columns: repeat(5, 1fr);
-        margin-right: 9px;
     }
     
     .time-label {
@@ -5567,7 +5538,6 @@
     
     #monthly-view .week-header {
         grid-template-columns: repeat(3, 1fr);
-        margin-right: 9px;
     }
     
     .time-row {
@@ -5576,7 +5546,6 @@
     
     #monthly-view .time-row {
         grid-template-columns: repeat(3, 1fr);
-        margin-right: 9px;
     }
     
     .day-column:nth-child(n+5) {
