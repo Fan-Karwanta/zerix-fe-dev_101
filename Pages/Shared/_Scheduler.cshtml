@@ -25,11 +25,49 @@
     <link href="https://cdn.jsdelivr.net/npm/overlayscrollbars/css/OverlayScrollbars.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars/js/OverlayScrollbars.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css">
+
+    <!-- Isolate layout header from scheduler page styles -->
+    <style>
+        #scheduler-layout-header .container {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            padding-left: var(--bs-gutter-x, 0.75rem) !important;
+            padding-right: var(--bs-gutter-x, 0.75rem) !important;
+        }
+        #scheduler-layout-header .navbar-brand {
+            flex-shrink: 0 !important;
+            margin-right: auto !important;
+        }
+        #scheduler-layout-header #navbarNavDropdown {
+            flex-shrink: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        #scheduler-layout-header .dropdown-menu.dropdown-menu-end {
+            left: auto !important;
+            right: 0 !important;
+        }
+        #scheduler-layout-header .dropdown-menu {
+            position: absolute !important;
+            z-index: 1050 !important;
+        }
+        #scheduler-layout-header .dropdown-item {
+            width: auto !important;
+            padding: 10px 20px !important;
+        }
+        #scheduler-layout-header .navbar-nav {
+            overflow: visible !important;
+        }
+        #scheduler-layout-header .dropdown {
+            margin-right: 0 !important;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav id="scheduler-layout-header" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
                 <a class="navbar-brand d-flex flex-column align-items-center" asp-area="" asp-page="/">
                     <img src="/images/new-zerix-logo.png" alt="Logo"
@@ -39,7 +77,7 @@
                 <div class="d-flex justify-content-end align-items-center" id="navbarNavDropdown">
                     <ul class="navbar-nav me-3">
                         <!-- Dropdown for desktop view User-->
-                        <li class="nav-item dropdown d-none d-sm-block"> <!-- Only visible on desktop -->
+                        <li class="nav-item dropdown d-none d-sm-block">
                             <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#"
                                 id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -54,67 +92,52 @@
                                     <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
                                         href="/accounts/switch-organization">
                                         <img src="/images/icons/switch.svg" alt="Switch Icon" class="me-2" width="16"
-                                            height="16">
-                                        Switch Organization
+                                            height="16" />
+                                        Switch Company
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
-                                        href="/accounts/profile">
-                                        <img src="/images/icons/profile.svg" alt="Profile Icon" class="me-2" width="16"
-                                            height="16">
-                                        Profile
-                                    </a>
+                                    <hr class="dropdown-divider divider-color mx-3">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center my-2"
-                                        href="/accounts/logout">
+                                    <a class="dropdown-item fs-14 ff-default font-red d-flex align-items-center my-2"
+                                        href="/accounts/login">
                                         <img src="/images/icons/logout.svg" alt="Logout Icon" class="me-2" width="16"
-                                            height="16">
-                                        Logout
+                                            height="16" />
+                                        Log out
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- Mobile view User dropdown -->
-                        <li class="nav-item dropdown d-block d-sm-none position-relative"> <!-- Only visible on mobile -->
+
+                        <!-- Offcanvas trigger for mobile view User-->
+                        <li class="nav-item dropdown d-block d-sm-none position-relative">
                             <a class="fs-5 nav-link pb-0 pt-1 text-dark d-flex align-middle align-items-center" href="#"
-                                id="navbarDropdownMenuLinkMobile" role="button" data-bs-toggle="dropdown"
+                                id="navbarDropdownMobileLink" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <span class="ff-default txt-color-tertiary me-2 fs-14 fw-400">Welcome, </span>
                                 <span class="fs-14 fw-400 txt-color-primary username-truncate">@ViewData["User"]</span>
-                                <img src="/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
+                                <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                                     class="d-inline-block" />
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end position-absolute ud-shadow bg-body-tertiary rounded border-0"
-                                aria-labelledby="navbarDropdownMenuLinkMobile">
+                                aria-labelledby="navbarDropdownMobileLink">
                                 <li>
                                     <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
                                         href="/accounts/switch-organization">
-                                        <img src="/images/icons/switch.svg" alt="Switch Icon" class="me-2" width="16"
-                                            height="16">
-                                        Switch Organization
+                                        <img src="~/images/icons/switch.svg" alt="Switch Icon" class="me-2" width="16"
+                                            height="16" />
+                                        Switch Company
                                     </a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider mx-3">
                                 </li>
                                 <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
-                                        href="/accounts/profile">
-                                        <img src="/images/icons/profile.svg" alt="Profile Icon" class="me-2" width="16"
-                                            height="16">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider mx-3">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fs-14 ff-default font-darkgray d-flex align-items-center py-1"
-                                        href="/accounts/logout">
-                                        <img src="/images/icons/logout.svg" alt="Logout Icon" class="me-2" width="16"
-                                            height="16">
+                                    <a class="dropdown-item fs-14 ff-default font-red d-flex align-items-center py-1"
+                                        href="/accounts/login">
+                                        <img src="~/images/icons/logout.svg" alt="Logout Icon" class="me-2" width="16"
+                                            height="16" />
                                         Logout
                                     </a>
                                 </li>

@@ -902,7 +902,7 @@ a.mobile-sidebar-nav-item:hover {
 /* Mobile and Small Tablets - Below 992px */
 @@media (max-width: 991px) {
     /* Ensure nav-item dropdown has proper positioning context */
-    .navbar-nav .nav-item.dropdown {
+    #desktop-navbar .navbar-nav .nav-item.dropdown {
         position: relative !important;
     }
     
@@ -922,11 +922,16 @@ a.mobile-sidebar-nav-item:hover {
         min-width: 150px !important;
     }
     
-    /* Ensure navbar doesn't clip dropdowns */
-    .navbar,
-    .navbar .container,
-    .navbar-nav {
+    /* Ensure scheduler navbar doesn't clip dropdowns */
+    #desktop-navbar,
+    #desktop-navbar .navbar-nav {
         overflow: visible !important;
+    }
+    
+    /* Preserve right-alignment for user dropdown in layout header */
+    .dropdown-menu.dropdown-menu-end {
+        left: auto !important;
+        right: 0 !important;
     }
 }
 
