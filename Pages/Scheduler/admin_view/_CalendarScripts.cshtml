@@ -95,8 +95,15 @@ function generateWeekHeader() {
     const weekStart = new Date(adminCalendarData.currentWeekStart);
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
-    for (let i = 0; i < 7; i++) {
+
+    // Match column count to the responsive CSS grid so the header stays on one row.
+    // - 1200-1399px (tablets/medium screens): 4 columns
+    // - everything else (default desktop): 5 columns
+    const screenWidth = window.innerWidth;
+    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
+    const daysToShow = isMediumScreen ? 4 : 5;
+
+    for (let i = 0; i < daysToShow; i++) {
         const currentDay = new Date(weekStart);
         currentDay.setDate(weekStart.getDate() + i);
         
@@ -127,9 +134,14 @@ function generateTimeSlots() {
     const isMonthlyView = adminCalendarData.currentView === 'monthly';
     console.log('isMonthlyView:', isMonthlyView);
 
+    // Keep day-slot count in sync with the week header (see generateWeekHeader).
+    const screenWidth = window.innerWidth;
+    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
+    const daysToShow = isMediumScreen ? 4 : 5;
+
     if (isMonthlyView) {
-        // Monthly view: Single row with 7 day slots (no time labels, no time rows)
-        console.log('Creating monthly view structure with 7 day slots');
+        // Monthly view: Single row with day slots matching the header column count
+        console.log('Creating monthly view structure with day slots:', daysToShow);
         const monthlyRow = document.createElement('div');
         monthlyRow.className = 'time-row monthly-row';
 
@@ -139,8 +151,8 @@ function generateTimeSlots() {
         timeLabel.style.display = 'none'; // Hide time label in monthly view
         monthlyRow.appendChild(timeLabel);
 
-        // Create 7 day slots
-        for (let day = 0; day < 7; day++) {
+        // Create day slots
+        for (let day = 0; day < daysToShow; day++) {
             const daySlot = document.createElement('div');
             daySlot.className = 'day-slot';
             daySlot.setAttribute('data-day', day);

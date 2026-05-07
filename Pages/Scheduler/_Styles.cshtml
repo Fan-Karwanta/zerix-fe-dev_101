@@ -5257,6 +5257,18 @@
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* Ensure day-name and day-number are perfectly centered horizontally
+       inside the cell on all screen sizes (incl. Galaxy Z Fold 5 / narrow phones) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-week-day .day-name,
+.mobile-week-day .day-number {
+    width: 100%;
+    text-align: center;
 }
 
 .mobile-week-day.active {
