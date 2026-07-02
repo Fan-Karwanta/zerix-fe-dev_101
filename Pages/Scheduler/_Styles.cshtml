@@ -1172,24 +1172,24 @@
         padding: 10px 15px;
     }
     
-    /* Events Calendar - Show 7 days on tablets */
+    /* Events Calendar - day columns auto-fit to one line */
     .week-header {
-        grid-template-columns: 60px repeat(7, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .time-row {
-        grid-template-columns: 60px repeat(7, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
-    /* Show all 7 day columns on tablets */
+    /* Show all day columns */
     .day-column {
         display: block;
     }
@@ -1393,24 +1393,24 @@
         margin-bottom: 1.5rem !important;
     }
     
-    /* Events Calendar - Show 7 days on iPad Pro */
+    /* Events Calendar - day columns auto-fit to one line */
     .week-header {
-        grid-template-columns: 60px repeat(7, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .time-row {
-        grid-template-columns: 60px repeat(7, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
-    /* Show all 7 day columns on iPad Pro */
+    /* Show all day columns */
     .day-column {
         display: block;
     }
@@ -4343,21 +4343,21 @@
         font-size: 13px;
     }
     
-    /* Grid for 4 days - JS generates exactly 4 columns */
+    /* Grid auto-fits day columns so they stay on one line */
     .week-header {
-        grid-template-columns: 80px repeat(4, 1fr) !important;
+        grid-template-columns: 80px repeat(auto-fit, minmax(0, 1fr)) !important;
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr)) !important;
     }
     
     .time-row {
-        grid-template-columns: 80px repeat(4, 1fr) !important;
+        grid-template-columns: 80px repeat(auto-fit, minmax(0, 1fr)) !important;
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr)) !important;
     }
 }
 
@@ -4368,7 +4368,7 @@
 
 .week-header {
     display: grid;
-    grid-template-columns: 80px repeat(5, 1fr);
+    grid-template-columns: 80px repeat(auto-fit, minmax(0, 1fr));
     gap: 0;
     background: white;
     border-top: 1px solid #e0e0e0;
@@ -4381,7 +4381,7 @@
 
 /* Hide time column in monthly view week header */
 #monthly-view .week-header {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     border-top: 1px solid #e0e0e0;
     border-left: 1px solid #e0e0e0;
     border-right: none;
@@ -4497,16 +4497,16 @@
 
 .time-row {
     display: grid;
-    grid-template-columns: 80px repeat(5, 1fr);
+    grid-template-columns: 80px repeat(auto-fit, minmax(0, 1fr));
     gap: 0;
     background: transparent;
     border-left: 1px solid #e0e0e0;
     border-right: none;
 }
 
-/* Monthly view - hide time labels and use 5 equal columns */
+/* Monthly view - hide time labels and use equal columns */
 #monthly-view .time-row {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     border-left: 1px solid #e0e0e0;
     border-right: none;
 }
@@ -5523,19 +5523,19 @@
     }
     
     .week-header {
-        grid-template-columns: 60px repeat(5, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .time-row {
-        grid-template-columns: 60px repeat(5, 1fr);
+        grid-template-columns: 60px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .time-label {
@@ -5550,19 +5550,19 @@
     }
     
     .week-header {
-        grid-template-columns: 50px repeat(3, 1fr);
+        grid-template-columns: 50px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .time-row {
-        grid-template-columns: 50px repeat(3, 1fr);
+        grid-template-columns: 50px repeat(auto-fit, minmax(0, 1fr));
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     }
     
     .day-column:nth-child(n+5) {
