@@ -96,12 +96,9 @@ function generateWeekHeader() {
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    // Match column count to the responsive CSS grid so the header stays on one row.
-    // - 1200-1399px (tablets/medium screens): 4 columns
-    // - everything else (default desktop): 5 columns
-    const screenWidth = window.innerWidth;
-    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
-    const daysToShow = isMediumScreen ? 4 : 5;
+    // Always render 5 day columns. On medium screens (1200-1399px) the CSS keeps
+    // 5 columns and enables horizontal scrolling instead of collapsing to 4.
+    const daysToShow = 5;
 
     for (let i = 0; i < daysToShow; i++) {
         const currentDay = new Date(weekStart);
@@ -135,9 +132,7 @@ function generateTimeSlots() {
     console.log('isMonthlyView:', isMonthlyView);
 
     // Keep day-slot count in sync with the week header (see generateWeekHeader).
-    const screenWidth = window.innerWidth;
-    const isMediumScreen = screenWidth >= 1200 && screenWidth < 1400;
-    const daysToShow = isMediumScreen ? 4 : 5;
+    const daysToShow = 5;
 
     if (isMonthlyView) {
         // Monthly view: Single row with day slots matching the header column count

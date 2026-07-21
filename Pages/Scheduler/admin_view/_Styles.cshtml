@@ -2602,12 +2602,17 @@ a.mobile-sidebar-nav-item:hover {
     }
 }
 
-/* Nest Hub Max and similar screens (1200px to 1399px) - Show 4 days */
+/* Nest Hub Max and similar screens (1200px to 1399px) - Keep 5 days, scroll horizontally */
 @@media (min-width: 1200px) and (max-width: 1399px) {
     /* Adjust calendar container to prevent overflow */
     .full-calendar-container {
         padding: 15px;
         overflow: hidden;
+    }
+
+    /* Enable horizontal scrolling for the calendar so all 5 day columns stay visible */
+    .calendar-week-view {
+        overflow-x: auto;
     }
     
     /* Calendar view header - make controls more compact */
@@ -2654,25 +2659,44 @@ a.mobile-sidebar-nav-item:hover {
         font-size: 12px;
     }
     
-    /* Grid for 4 days - JS generates exactly 4 columns */
+    /* Keep 5 columns and give the grid a min-width so it overflows and scrolls
+       horizontally. All rows share the same min-width/column sizing so the
+       vertical alignment lines stay perfectly in sync while scrolling. */
     .week-header {
-        grid-template-columns: 70px repeat(4, 1fr) !important;
+        grid-template-columns: 70px repeat(5, minmax(180px, 1fr)) !important;
+        min-width: 970px !important;
     }
     
     #monthly-view .week-header {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(5, minmax(180px, 1fr)) !important;
+        min-width: 900px !important;
+        /* Match the grid's right margin (grid no longer has its own scrollbar
+           here) so the header columns line up with the appointment columns. */
+        margin-right: 1px !important;
     }
     
     .time-row {
-        grid-template-columns: 70px repeat(4, 1fr) !important;
+        grid-template-columns: 70px repeat(5, minmax(180px, 1fr)) !important;
+        min-width: 970px !important;
     }
     
     #monthly-view .time-row {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(5, minmax(180px, 1fr)) !important;
+        min-width: 900px !important;
     }
 
     #monthly-view .monthly-stacked-row {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(5, minmax(180px, 1fr)) !important;
+        min-width: 900px !important;
+    }
+
+    /* Let the grid overflow horizontally into the parent scroll container instead
+       of creating its own horizontal scrollbar. This keeps the header and grid
+       columns perfectly aligned while scrolling. Vertical scrolling is handled by
+       the individual stacked cells. */
+    #monthly-view .time-slots-grid {
+        overflow: visible !important;
+        max-height: none !important;
     }
     
     /* Adjust day column padding */
