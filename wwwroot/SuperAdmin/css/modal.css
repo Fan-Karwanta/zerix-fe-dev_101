@@ -1,5 +1,5 @@
 .modal-header {
-  /* background-color: #fff7ec; */
+  /* background-color: #EFF6FF; */
   border-bottom: none;
 }
 
@@ -15,7 +15,7 @@
   position: absolute;
   width: 1.2em;
   height: 2px;
-  background-color: #d40000; /* Orange color */
+  background-color: #d40000; /* Brand color */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
@@ -27,14 +27,14 @@
 
 .custom-close:hover::before,
 .custom-close:hover::after {
-  background-color: #c50000; /* Darker orange on hover */
+  background-color: #c50000; /* Darker brand on hover */
   width: 1.25rem;
   height: 2.5px;
 }
 
 @media (max-width: 576px) {
   #UsersModal .modal-header-custom {
-    background-color: #fff4e5;
+    background-color: #EFF6FF;
     padding: 10px 20px;
     height: 60px;
   }

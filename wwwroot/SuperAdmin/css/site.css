@@ -87,18 +87,18 @@ body {
 }
 
 input[type="checkbox"].form-check-input:not(:checked):focus {
-  border-color: #ff5400;
-  box-shadow: 0 0 0 0.25rem #ff540070;
+  border-color: #e7eaf0;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
 }
 input[type="checkbox"].form-check-input:checked:focus {
-  border-color: #ff5400;
-  box-shadow: 0 0 0 0.25rem #ff540070;
+  border-color: #e7eaf0;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
 }
 
 .btn:focus,
 .btn:active:focus,
 .btn:active {
-  box-shadow: 0 0 0 0.25rem #ff540070;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
   outline: none !important;
 }
 

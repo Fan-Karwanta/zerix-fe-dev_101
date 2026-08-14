@@ -29,7 +29,7 @@
 .dashboard-item {
   width: 106px; /* Fixed width */
   height: 100px; /* Fixed height */
-  border: 1px solid #ff5500;
+  border: 1px solid #1D4ED8;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 
 .dashboard-icon .dashboard-text {
-  color: #ff5500;
+  color: #1D4ED8;
 }
 
 /* chat */
@@ -79,8 +79,8 @@
 
 /* Chat bubble styling */
 .chat-bubble {
-  /* background-color: #ff7e28; Change to match the orange bubble */
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  /* background-color: #3B82F6; Change to match the blue bubble */
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   padding: 10px 15px;
   border-radius: 20px;
@@ -141,13 +141,13 @@
   padding: 0.75rem 1rem !important;
 }
 .nav-underline .nav-link.active {
-  border-color: #ff5400; /* Bootstrap primary color */
-  color: #ff5400 !important;
+  border-color: #e7eaf0; /* Bootstrap primary color */
+  color: #1d4ed8 !important;
 }
 .nav-underline .nav-link:hover,
 .nav-underline .nav-link:focus {
-  border-color: #ff5400 !important;
-  color: #ff5400 !important;
+  border-color: #e7eaf0 !important;
+  color: #1d4ed8 !important;
 }
 
 .support-container {
@@ -169,20 +169,20 @@
 }
 
 #support-header {
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   height: 56px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
 
 #helpdesk-form .btn {
-  background-color: #ff5500;
-  border-color: #ff5500;
+  background-color: #1D4ED8;
+  border-color: #1D4ED8;
 }
 
 #helpdesk-form .btn:hover,
 #helpdesk-form .btn:focus {
-  background-color: #ff5500 !important;
+  background-color: #1D4ED8 !important;
 }
 
 .support-icon {
@@ -226,7 +226,7 @@
 }
 
 .attached-file-badge {
-  background-color: #fff5ec;
+  background-color: #EFF6FF;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -243,20 +243,20 @@
 .btn-file-close svg {
   width: 24px;
   height: 24px;
-  fill: #ff5400; /* Custom color */
+  fill: #1d4ed8; /* Custom color */
 }
 .btn-file-close:hover svg {
-  fill: #e04b00; /* Darker shade on hover */
+  fill: #1E40AF; /* Darker shade on hover */
 }
 
 .btn-close {
   padding: 0;
   margin-left: 5px;
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .btn-close:hover {
-  color: #ff8e32;
+  color: #3b82f6;
 }
 
 .cursor-pointer {
@@ -264,7 +264,7 @@
 }
 
 .attached-file-badge {
-  background-color: #fff5ec;
+  background-color: #EFF6FF;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -304,7 +304,7 @@
 }
 
 .ticket-table table thead {
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   font-weight: normal;
 }
@@ -496,6 +496,6 @@ input[type="checkbox"]:not(:checked) {
 
   .btn.btn-primary:active,
   .btn.btn-primary:hover {
-    background-color: #ff5400;
+    background-color: #1d4ed8;
   }
 }

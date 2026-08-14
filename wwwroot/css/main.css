@@ -58,7 +58,7 @@
 }
 
 .txt-color-primary {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .txt-color-primary-alt {
@@ -73,28 +73,31 @@
   color: #878a99;
 }
 
+.btn-brand,
 .btn-orange-fill {
-  background-color: #ff6600;
+  background-color: #1d4ed8;
   color: white;
   border-radius: 4px;
   border: 1px;
 }
 
 .color-primary {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .color-primary-alt {
   color: white;
 }
 
+.btn-brand:hover,
 .btn-orange-fill:hover {
-  background-color: #e65c00;
+  background-color: #1e40af;
   color: white;
 }
 
+.bg-brand-light,
 .bg-orange-light {
-  background-color: #fff7ec;
+  background-color: #eff6ff;
 }
 
 .max-width {
@@ -131,30 +134,35 @@
 }
 
 .box-border {
-  border: 2px solid #ff6600;
+  border: 2px solid #e7eaf0;
 }
 
+.btn-nav,
 .btn-orange {
   background-color: white;
   border-radius: 4px;
   text-decoration: none;
 }
 
+.border-default,
 .border-orange {
-  border: 1px solid #ff6600;
+  border: 1px solid #e7eaf0;
 }
 
+.btn-nav:hover,
 .btn-orange:hover {
-  border-color: #e65c00;
-  color: #ff5400;
+  border-color: #1e40af;
+  color: #1d4ed8;
 }
 
+.btn-nav .icon,
 .btn-orange .icon {
   width: 30px; /* Icon width */
   height: 30px; /* Icon height */
-  fill: #e65c00; /* Inherit the current text color */
+  fill: #1d4ed8; /* Inherit the current text color */
 }
 
+.btn-nav:disabled,
 .btn-orange:disabled {
   border-color: #808080;
   color: white;
@@ -174,7 +182,7 @@
 
 .offcanvas.offcanvas-bottom {
   height: auto; /* Set height to auto to fit content */
-  max-height: 50vh; /* Optionally, limit the max height to 50% of the viewport height */
+  max-height: 50vh; /* Optionally, limit the max height to 50% of the viewport */
 }
 
 .navbar-toggler.custom-toggler {
@@ -192,20 +200,20 @@
 }
 
 .sidebar .options {
-  background-color: #ff54000d;
-  color: #ff5400;
+  background-color: #1d4ed80d;
+  color: #1d4ed8;
 }
 .sidebar .options-border {
-  border-top: 1px solid #ff540040;
+  border-top: 1px solid #e7eaf0;
 }
 
 .custom-active {
-  background-color: #ff5400 !important; /* Background color for the active state */
+  background-color: #1d4ed8 !important; /* Background color for the active state */
   color: white !important; /* Text color */
 }
 
 .custom-active:hover {
-  background-color: #e04900 !important; /* Slightly darker color on hover */
+  background-color: #1e40af !important; /* Slightly darker color on hover */
   color: white !important; /* Ensure text remains white on hover */
 }
 
@@ -214,7 +222,7 @@
 }
 
 .nav-link:hover {
-  color: #ff5400; /* Hover color for non-active links */
+  color: #1d4ed8; /* Hover color for non-active links */
 }
 
 /* Mobile Sidebar Styles */
@@ -238,24 +246,24 @@
 }
 
 .sidebar-mobile .item {
-  background-color: #ff54000d;
-  border-bottom: 0.5px solid #ff540040;
+  background-color: #1d4ed80d;
+  border-bottom: 0.5px solid #e7eaf0;
 }
 
 .sidebar-mobile .box.active {
-  background-color: #ff5400; /* Background color for active state */
+  background-color: #1d4ed8; /* Background color for active state */
   color: white; /* Text color for active state */
 }
 
 .sidebar-mobile .box:hover {
-  background-color: #ff54000d; /* Hover effect */
-  border-color: #e65c00;
+  background-color: #1d4ed80d; /* Hover effect */
+  border-color: #1e40af;
   color: white;
 }
 
 /* Icon Styles */
 .sidebar-mobile .box i {
-  color: #ff5400; /* Icon color */
+  color: #1d4ed8; /* Icon color */
   font-size: 1.5rem; /* Icon size */
 }
 
@@ -269,7 +277,7 @@
   margin-left: auto; /* Align to right */
   display: block; /* Ensure it takes full width */
   padding: 0.5rem; /* Add some padding for touch targets */
-  color: #ff5400; /* Orange color to match the design */
+  color: #1d4ed8; /* Brand color to match the design */
 }
 
 /* Message Container Styles */
@@ -384,7 +392,7 @@
 }
 
 .message-header-bg-color {
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
 }
 
 /* Message Body Styles */
@@ -408,7 +416,7 @@
 }
 
 .message-sent .message-box {
-  background-color: #fff7ec; /* Light orange background for sent messages */
+  background-color: #eff6ff; /* Light brand background for sent messages */
 }
 
 .message-text {
@@ -466,7 +474,7 @@
 .input-group-text {
   border: none; /* Remove border */
   background-color: white; /* White background for icons */
-  color: #ff5400; /* Orange color for icons */
+  color: #1d4ed8; /* Brand color for icons */
 }
 
 /* Textarea styles */
@@ -525,11 +533,11 @@ textarea.form-control::-webkit-scrollbar-corner {
 .btn-close {
   padding: 0;
   margin-left: 5px;
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .btn-close:hover {
-  color: #ff8e32;
+  color: #1e40af;
 }
 
 .cursor-pointer {
@@ -603,8 +611,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: #ff5400;
-  border: 1px solid #ff5400;
+  background-color: #1d4ed8;
+  border: 1px solid #1d4ed8;
 }
 
 input[type="checkbox"]:checked::after {
@@ -621,7 +629,7 @@ input[type="checkbox"]:checked::after {
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
-  background-color: #fff7ec; /* Custom orange color */
+  background-color: #eff6ff; /* Custom brand color */
   color: black; /* Text color on hover/focus/active */
 }
 

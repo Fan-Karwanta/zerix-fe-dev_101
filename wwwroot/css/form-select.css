@@ -55,8 +55,8 @@
   top: 55%;
   right: 8px;
   margin-top: -3px;
-  border-bottom: 1px solid #ff5400;
-  border-right: 1px solid #ff5400;
+  border-bottom: 1px solid #e7eaf0;
+  border-right: 1px solid #e7eaf0;
   transform: rotate(45deg) translateY(-60%);
   transition: all 0.25s ease-in-out;
   transform-origin: 40% 0;

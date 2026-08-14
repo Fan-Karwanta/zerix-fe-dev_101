@@ -3,11 +3,11 @@
 }
 
 .user-settings-nav .nav-item.active {
-  border-bottom: 1px solid #ff5400;
+  border-bottom: 1px solid #e7eaf0;
 }
 
 .user-settings-nav .nav-item .active {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .min-h-title {
@@ -64,7 +64,7 @@ table tbody tr td input[type="checkbox"] {
 
 .users-table-header {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -129,7 +129,7 @@ table tbody tr td input[type="checkbox"] {
 .more-icon-btn:focus .more-icon,
 .more-icon-btn:focus,
 .more-icon-btn:hover {
-  background-color: #fff7ec;
+  background-color: #eff6ff;
   content: url("/images/icons/more-icon-hover.svg"); /* Change the image path to the hover image */
 }
 
@@ -160,7 +160,7 @@ button.more-icon-btn:focus-visible {
 
 .users-settings.results.form-select:focus {
   outline: none !important; /* Remove outline when focused */
-  border-color: none !important; /* Change border color to orange */
+  border-color: none !important; /* Change border color to brand */
   box-shadow: none;
 }
 .users-settings.results.form-select.width {
@@ -176,7 +176,7 @@ button.more-icon-btn:focus-visible {
 }
 
 .users-settings-delete {
-  border: 1px solid #ff5400;
+  border: 1px solid #e7eaf0;
   max-width: 90px;
   max-height: 40px;
   height: 40px;
@@ -207,7 +207,7 @@ button.more-icon-btn:focus-visible {
 /* Add a user modal */
 
 .modal-header {
-  background-color: #fff7ec;
+  background-color: #eff6ff;
   border-bottom: none;
 }
 .modal-header .btn-close {
@@ -216,7 +216,7 @@ button.more-icon-btn:focus-visible {
 }
 .modal-header h5 {
   font-size: 1.5rem;
-  color: #ff5400;
+  color: #1d4ed8;
   margin: 0;
 }
 .modal-footer.users {
@@ -226,19 +226,19 @@ button.more-icon-btn:focus-visible {
   justify-content: flex-end;
 }
 .btn.btn-cancel:hover {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .btn.btn-cancel {
-  color: #ff5400;
+  color: #1d4ed8;
   background-color: white;
-  border: 1px solid #ff5400;
+  border: 1px solid #e7eaf0;
   width: 90px;
   height: 40px;
   margin-right: 16px;
 }
 .btn.btn-save {
-  background-color: #ff5400;
+  background-color: #1d4ed8;
   color: white;
   border: none;
   width: 90px;
@@ -260,7 +260,7 @@ button.more-icon-btn:focus-visible {
   position: absolute;
   width: 1.2em;
   height: 2px;
-  background-color: #ff5400; /* Orange color */
+  background-color: #1d4ed8; /* Blue color */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
@@ -272,13 +272,13 @@ button.more-icon-btn:focus-visible {
 
 .custom-close:hover::before,
 .custom-close:hover::after {
-  background-color: #ff4500; /* Darker orange on hover */
+  background-color: #1D4ED8; /* Darker blue on hover */
 }
 
 /* delete a user */
 
 .delete-user.cancel-btn:hover {
-  color: #ff4500 !important;
+  color: #1D4ED8 !important;
 }
 
 .delete-user.btn-cancel,
@@ -294,12 +294,12 @@ button.more-icon-btn:focus-visible {
 
 .back-arrow {
   font-size: 1.5rem;
-  color: orange;
+  color: #1D4ED8;
   cursor: pointer;
 }
 .download-link {
   font-size: 0.9rem;
-  color: orange;
+  color: #1D4ED8;
   text-decoration: none;
 }
 .upload-area {
@@ -313,11 +313,11 @@ button.more-icon-btn:focus-visible {
 }
 
 .upload-area.dragover {
-  border-color: #ff5400;
+  border-color: #e7eaf0;
 }
 
 .upload-btn {
-  background-color: orange;
+  background-color: #1D4ED8;
   border: none;
   color: white;
   padding: 10px 30px;
@@ -357,7 +357,7 @@ button.more-icon-btn:focus-visible {
 }
 .users-group.btn-details:hover,
 .users-group.btn-edit:hover {
-  color: #ff4500;
+  color: #1D4ED8;
 }
 
 .users-group.btn-details {
@@ -367,7 +367,7 @@ button.more-icon-btn:focus-visible {
 /* users group details modal */
 
 .users-group.modal-header {
-  background-color: #fff7ec;
+  background-color: #eff6ff;
 }
 
 /*  */
@@ -382,7 +382,7 @@ button.more-icon-btn:focus-visible {
 
 /* Header custom background */
 .users-group.modal-header-custom {
-  background-color: #fff4e5;
+  background-color: #EFF6FF;
   padding: 10px 20px;
   height: 60px;
 }
@@ -830,12 +830,14 @@ button.btn:hover {
 }
 
 /* For buttons with specific colors that need to maintain their color on hover */
+a.bg-color-brand.btn:hover,
 a.bg-color-ff5400.btn:hover,
+button.bg-color-brand.btn:hover,
 button.bg-color-ff5400.btn:hover,
 button.btn-save.btn:hover {
-  background-color: #ff5400 !important;
+  background-color: #1d4ed8 !important;
   color: white !important;
-  border-color: #ff5400 !important;
+  border-color: #1d4ed8 !important;
 }
 
 a.bg-color-878A99.btn:hover {
@@ -847,14 +849,14 @@ a.bg-color-878A99.btn:hover {
 button.color-495057.users-settings-delete:hover {
   background-color: transparent !important;
   color: white !important;
-  border-color: #ff4500 !important;
+  border-color: #E7EAF0 !important;
 }
 
 /* For cancel buttons that need to maintain their style */
 .btn.btn-cancel:hover {
   background-color: white !important;
-  color: #ff5400 !important;
-  border-color: #ff5400 !important;
+  color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
 }
 
 @media (max-width: 390px) {

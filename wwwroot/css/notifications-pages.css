@@ -90,7 +90,7 @@
 }
 
 .notification-title-clickable:hover {
-    color: #FF5400 !important;
+    color: #1D4ED8 !important;
     text-decoration: underline;
 }
 
@@ -123,33 +123,45 @@
     font-size: 0.875rem !important; /* 14px */
 }
 
+.border-default,
 .border-orange {
-    border-color: #FF5400 !important;
+    border-color: #E7EAF0 !important;
 }
 
+.text-brand,
 .text-orange {
-    color: #FF5400 !important;
+    color: #1D4ED8 !important;
 }
 
+.btn-outline-warning.border-default,
 .btn-outline-warning.border-orange {
-    border-color: #FF5400;
-    color: #FF5400;
+    border-color: #E7EAF0;
+    color: #1D4ED8;
 }
 
+.btn-outline-warning.border-default:hover,
 .btn-outline-warning.border-orange:hover,
+.btn-outline-warning.border-default:focus,
 .btn-outline-warning.border-orange:focus,
+.btn-outline-warning.border-default:active,
 .btn-outline-warning.border-orange:active {
-    background-color: #FF5400 !important;
-    border-color: #FF5400 !important;
-    color: #fff !important; /* override .text-orange !important */
+    background-color: #1D4ED8 !important;
+    border-color: #1D4ED8 !important;
+    color: #fff !important; /* override .text-brand !important */
 }
 
 /* Ensure child elements also inherit white color on interactive states */
+.btn-outline-warning.border-default:hover svg,
 .btn-outline-warning.border-orange:hover svg,
+.btn-outline-warning.border-default:focus svg,
 .btn-outline-warning.border-orange:focus svg,
+.btn-outline-warning.border-default:active svg,
 .btn-outline-warning.border-orange:active svg,
+.btn-outline-warning.border-default:hover span,
 .btn-outline-warning.border-orange:hover span,
+.btn-outline-warning.border-default:focus span,
 .btn-outline-warning.border-orange:focus span,
+.btn-outline-warning.border-default:active span,
 .btn-outline-warning.border-orange:active span {
     color: #fff !important;
 }
@@ -298,7 +310,7 @@
 }
 
 .mobile-modal-tab-btn.active {
-    background-color: #FF5400;
+    background-color: #1D4ED8;
     color: white;
 }
 
@@ -309,7 +321,7 @@
 
 .mobile-modal-tab-btn:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 84, 0, 0.2);
+    box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.2);
 }
 
 /* Modal tab content */

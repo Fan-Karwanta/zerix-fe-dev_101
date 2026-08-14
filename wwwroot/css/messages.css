@@ -63,7 +63,7 @@ ul[aria-labelledby="navbarDropDownDepartments"] {
 }
 
 .message-option-active {
-  color: #ff5400;
+  color: #1d4ed8;
   text-decoration: underline;
 }
 
@@ -97,7 +97,7 @@ a:hover {
 }
 
 .list-group-item.unread {
-  background: #fff7ec;
+  background: #eff6ff;
 }
 
 .btn {
@@ -124,7 +124,7 @@ a:hover {
   height: 56px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -259,7 +259,7 @@ a:hover {
 }
 
 .attached-file-badge {
-  background-color: #fff5ec;
+  background-color: #EFF6FF;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -279,17 +279,17 @@ a:hover {
 .btn-file-close svg {
   width: 24px;
   height: 24px;
-  fill: #ff5400; /* Custom color */
+  fill: #1d4ed8; /* Custom color */
 }
 .btn-file-close:hover svg {
-  fill: #e04b00; /* Darker shade on hover */
+  fill: #1E40AF; /* Darker shade on hover */
 }
 
 .cursor-pointer {
   cursor: pointer;
 }
 .btn-send {
-  background-color: #ff6e14;
+  background-color: #3B82F6;
   border: none;
   color: white;
 }
@@ -394,7 +394,7 @@ table th {
 }
 
 .message-header-bg-color {
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
 }
 
 /* Message Body Styles */
@@ -402,7 +402,7 @@ table th {
 .input-group-text {
   border: none; /* Remove border */
   background-color: white; /* White background for icons */
-  color: #ff5400; /* Orange color for icons */
+  color: #1d4ed8; /* Blue color for icons */
 }
 
 /* Textarea styles */
@@ -490,7 +490,7 @@ textarea.form-control::-webkit-scrollbar-corner {
 }
 
 .attached-file-badge {
-  background-color: #fff5ec;
+  background-color: #EFF6FF;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -501,11 +501,11 @@ textarea.form-control::-webkit-scrollbar-corner {
 .btn-close {
   padding: 0;
   margin-left: 5px;
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .btn-close:hover {
-  color: #ff8e32;
+  color: #3b82f6;
 }
 
 .cursor-pointer {
@@ -549,7 +549,7 @@ textarea.compose-message {
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
-  background-color: #fff7ec; /* Custom orange color */
+  background-color: #eff6ff; /* Custom blue color */
   color: black; /* Text color on hover/focus/active */
 }
 
@@ -991,7 +991,7 @@ form.search-templates {
 
 .templates-table-header {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -1060,7 +1060,7 @@ form.search-templates {
   text-align: center !important;
 }
 .templates table td:last-child button:hover {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .templates .delete.btn.btn-outline {
@@ -1072,7 +1072,7 @@ form.search-templates {
 }
 
 .templates-table-header th:first-child input[type="checkbox"]:checked {
-  background-color: #ff5400 !important;
+  background-color: #1d4ed8 !important;
 }
 
 #addTemplateSection .custom-select-trigger {
@@ -1154,7 +1154,7 @@ form.search-templates {
 }
 
 .archive a:hover {
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
 }
 
 .archive button.btn.btn-fill {
@@ -1170,7 +1170,7 @@ form.search-templates {
 /* Add template  start*/
 
 .add-template .header {
-  background-color: #ff54000d;
+  background-color: #1d4ed80d;
 }
 
 .add-template .content {
@@ -1197,7 +1197,7 @@ form.search-templates {
 }
 
 .add-template a.orange:hover {
-  color: #e04b00 !important;
+  color: #1E40AF !important;
 }
 
 .add-template .scroll {
@@ -1207,7 +1207,7 @@ form.search-templates {
 
 .add-template .add-templates-table-header {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -1284,7 +1284,7 @@ input[type="search"]#desktopSearchInput::-webkit-search-cancel-button {
 }
 
 .highlight {
-  background-color: #ff660070;
+  background-color: #1d4ed870;
   padding: 2px 4px;
   border-radius: 4px;
 }
@@ -1941,7 +1941,7 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
   }
 
   .side-bar-options button.btn.btn-fill {
-    background-color: #ff5400 !important;
+    background-color: #1d4ed8 !important;
   }
 
   .message-option {
@@ -2185,7 +2185,7 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
   }
 
   .archive a:hover {
-    color: #ff5400 !important;
+    color: #1d4ed8 !important;
   }
 
   .archive button.btn.btn-fill {
@@ -2696,8 +2696,8 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
 #dropZoneMobile:hover,
 #dropZoneDesktop.drag-over,
 #dropZoneMobile.drag-over {
-  background-color: #fff5ec;
-  border-color: #ff5400 !important;
+  background-color: #eff6ff;
+  border-color: #e7eaf0 !important;
 }
 
 #importSection {

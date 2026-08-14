@@ -1,6 +1,7 @@
 /* colors.css */
+.text-brand,
 .font-orange {
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 .font-red {
@@ -50,8 +51,9 @@
   background-color: #212529;
 }
 
+.bg-color-brand,
 .bg-color-ff5400 {
-  background-color: #ff5400;
+  background-color: #1d4ed8;
 }
 
 .bg-color-fff {
@@ -70,8 +72,9 @@
   background-color: #e9ebec;
 }
 
+.bg-brand-light,
 .bg-color-FFF7EC {
-  background-color: #fff7ec;
+  background-color: #eff6ff;
 }
 
 .bg-color-ced4da {

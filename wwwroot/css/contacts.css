@@ -24,7 +24,7 @@ table th:first-child input[type="checkbox"] {
   background-color: white !important;
 }
 table th:first-child input[type="checkbox"]:checked {
-  background-color: #ff5400 !important;
+  background-color: #1d4ed8 !important;
 }
 
 input[type="search"]::placeholder {
@@ -40,7 +40,7 @@ table {
 }
 
 table td button:hover {
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
 }
 
 .page-item {
@@ -210,7 +210,7 @@ table td button:hover {
 
 .contacts table thead {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   vertical-align: middle;
 }
@@ -280,7 +280,7 @@ table td button:hover {
 
 .contacts-group table thead {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   vertical-align: middle;
 }
@@ -319,7 +319,7 @@ table td button:hover {
 }
 
 .contacts-group table td:last-child button.btn-edit:hover {
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
 }
 
 .contacts-group table td:last-child button.btn-details {
@@ -398,7 +398,7 @@ table td button:hover {
 
 #addContactGroupModal table thead {
   height: 57px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   vertical-align: middle;
 }
@@ -458,7 +458,7 @@ table td button:hover {
 }
 
 #detailsModal .modal-header.modal-header-custom {
-  background-color: #fff4e5 !important;
+  background-color: #EFF6FF !important;
 }
 
 #detailsModal .scroll {
@@ -575,7 +575,7 @@ table td button:hover {
 
 .contact-list table thead {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -697,12 +697,12 @@ table td button:hover {
 
 .import-contacts .back-arrow {
   font-size: 1.5rem;
-  color: orange;
+  color: #1D4ED8;
   cursor: pointer;
 }
 .import-contacts .download-link {
   font-size: 0.9rem;
-  color: orange;
+  color: #1D4ED8;
   text-decoration: none;
 }
 .import-contacts .upload-area {
@@ -716,11 +716,11 @@ table td button:hover {
 }
 
 .import-contacts .upload-area.dragover {
-  border-color: #ff5400;
+  border-color: #e7eaf0;
 }
 
 .import-contacts .upload-btn {
-  background-color: orange;
+  background-color: #1D4ED8;
   border: none;
   color: white;
   padding: 10px 30px;
@@ -767,7 +767,7 @@ table td button:hover {
 
 #customFieldSection table thead th {
   font-weight: 400;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
 
@@ -852,7 +852,7 @@ table td button:hover {
 }
 #addcontactsGroupMobileSection table thead {
   height: 46px;
-  background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
   vertical-align: middle;
 }
@@ -973,14 +973,14 @@ table td button:hover {
 
   #blocklistSectionMobile #table-contactlist table thead,
   #addcontactsGroupMobileSection table thead {
-    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     height: 46px;
     color: white;
     vertical-align: middle;
   }
   #changeViewButton.toContactList {
-    background-color: #ff5400;
-    border: 1px #ff5400 solid;
+    background-color: #1d4ed8;
+    border: 1px #e7eaf0 solid;
   }
   #changeViewButton.toBlockList {
     background-color: #495057;
@@ -1097,7 +1097,7 @@ table td button:hover {
   }
 
   #detailsModal .modal-header.modal-header-custom {
-    background-color: #fff4e5 !important;
+    background-color: #EFF6FF !important;
   }
   #detailsModal table td:first-child {
     padding-left: 25px !important;
@@ -1124,7 +1124,7 @@ table td button:hover {
 
   #addcontactsGroupMobileSection table thead {
     height: 46px;
-    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     vertical-align: middle;
   }
@@ -1209,8 +1209,8 @@ table td button:hover {
     border: 1px #495057 solid;
   }
   #changeViewButton.toContactList {
-    background-color: #ff5400;
-    border: 1px #ff5400 solid;
+    background-color: #1d4ed8;
+    border: 1px #e7eaf0 solid;
   }
 
   #blocklistSectionMobile .scroll {
@@ -1232,7 +1232,7 @@ table td button:hover {
   }
 
   #blocklistSectionMobile #table-contactlist table thead {
-    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   }
 
   #blocklistSectionMobile #table-blocklist table thead {
@@ -1360,7 +1360,7 @@ table td button:hover {
   }
 
   #addFieldModal .modal-header {
-    background-color: #fff7ec;
+    background-color: #eff6ff;
   }
 
   #addFieldModal .btn {
@@ -1541,7 +1541,7 @@ table td button:hover {
   }
 
   #detailsModal .modal-header.modal-header-custom {
-    background-color: #fff4e5 !important;
+    background-color: #EFF6FF !important;
   }
   #detailsModal table td:first-child {
     padding-left: 12px !important;
@@ -1565,7 +1565,7 @@ table td button:hover {
 
   #addcontactsGroupMobileSection table thead {
     height: 36px;
-    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
     color: white;
     vertical-align: middle;
   }
@@ -1647,8 +1647,8 @@ table td button:hover {
     border: 1px #495057 solid;
   }
   #changeViewButton.toContactList {
-    background-color: #ff5400;
-    border: 1px #ff5400 solid;
+    background-color: #1d4ed8;
+    border: 1px #e7eaf0 solid;
   }
 
   #blocklistSectionMobile .scroll {
@@ -1670,7 +1670,7 @@ table td button:hover {
   }
 
   #blocklistSectionMobile #table-contactlist table thead {
-    background: linear-gradient(180deg, #ff8e32 0%, #ff5400 100%);
+    background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   }
 
   #blocklistSectionMobile #table-blocklist table thead {
@@ -1793,7 +1793,7 @@ table td button:hover {
   }
 
   #addFieldModal .modal-header {
-    background-color: #fff7ec;
+    background-color: #eff6ff;
   }
 
   #addFieldModal .btn {

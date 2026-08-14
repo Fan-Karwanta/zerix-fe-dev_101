@@ -94,10 +94,10 @@ a.card {
 }
 
 .side-navbar .card.active {
-  background: #ff54000d !important;
+  background: #1d4ed80d !important;
 }
 .side-navbar .card.active span {
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
 }
 
 .side-navbar .card.inactive {
@@ -108,10 +108,10 @@ a.card {
 }
 
 .side-navbar .card.inactive:hover {
-  background: #ff54000d !important;
+  background: #1d4ed80d !important;
 }
 .side-navbar .card.inactive:hover span {
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
 }
 
 .content {
@@ -203,7 +203,7 @@ a.card {
 }
 
 .options .filters .active {
-  color: #ff5400;
+  color: #1d4ed8;
   background: transparent !important;
   font-weight: 700;
 }
@@ -429,15 +429,15 @@ table .dropdown-item {
 }
 
 #activateModal .form-check-input:focus {
-  box-shadow: 0 0 0 0.25rem #ff540070;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
 }
 #activateModal .form-check-input:checked {
-  background-color: #ff5400;
-  border-color: #e65c00;
+  background-color: #1d4ed8;
+  border-color: #1e40af;
 }
 #activateModal .form-check-input:hover {
-  border-color: #e65c00;
-  box-shadow: 0 0 0 0.25rem #ff540070;
+  border-color: #1e40af;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
 }
 
 #activateModal .date-container input {
@@ -484,8 +484,8 @@ table .dropdown-item {
 .pagination .page-link:hover {
   text-decoration: none;
   background: transparent;
-  box-shadow: 0 0 0 0.25rem #ff540070;
-  color: #ff5400;
+  box-shadow: 0 0 0 0.25rem #1d4ed870;
+  color: #1d4ed8;
 }
 
 .reverse-icon {
@@ -611,7 +611,7 @@ table .dropdown-item {
 
 .serial-key .add-serial:hover {
   text-decoration: none !important;
-  color: #ff5400 !important;
+  color: #1d4ed8 !important;
   cursor: pointer;
 }
 
@@ -659,9 +659,9 @@ table .dropdown-item {
 }
 
 #addSerialKeyModal .nav-link.active {
-  border-bottom: 4px solid #ff5400 !important ;
+  border-bottom: 4px solid #e7eaf0 !important ;
   font-weight: 700;
-  color: #ff5400;
+  color: #1d4ed8;
 }
 
 /* #addSerialKeyModel .item-container {
@@ -750,7 +750,7 @@ table .dropdown-item {
 #activateConfirm:hover,
 #new-client:hover {
   color: white !important;
-  background-color: #ff5400 !important;
+  background-color: #1d4ed8 !important;
 }
 
 @media (max-width: 576px) {
@@ -908,7 +908,7 @@ table .dropdown-item {
   }
 
   .content .filters .custom-select-trigger {
-    color: #ff5400;
+    color: #1d4ed8;
     font-family: "Satoshi";
     font-weight: 700;
     padding: 7px 55px 9px 15px !important;

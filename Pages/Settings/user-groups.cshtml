@@ -12,7 +12,7 @@ ViewData["User"] = "Admin";
         <!-- Messages dropdown button -->
         <ul class="navbar-nav me-3">
             <li class="nav-item dropdown d-none d-lg-block">
-                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-nav border-default py-2 px-2 px-md-3 py-md-2"
                     href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/settings.svg" height="28" width="28" alt="Logo"
                         class="d-inline-block align-top me-2 color-primary" />
@@ -20,7 +20,7 @@ ViewData["User"] = "Admin";
                 </a>
             </li>
             <li class="nav-item d-block d-lg-none">
-                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-orange border-orange py-2 px-2 px-md-3 py-md-2"
+                <a class="fs-5 nav-link text-dark d-flex align-items-center btn-nav border-default py-2 px-2 px-md-3 py-md-2"
                     href="#" id="navbarDropdownOffcanvasToggle" role="button" data-bs-toggle="offcanvas"
                     data-bs-target="#settingsoffcanvasDropdown" aria-controls="offcanvasDropdown" aria-expanded="false">
                     <img src="~/images/icons/settings.svg" height="21" width="21" alt="Logo"
@@ -36,7 +36,7 @@ ViewData["User"] = "Admin";
         <button class="navbar-toggler custom-toggler d-block d-lg-none pe-0" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#DashboardoffcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="#FF5400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-menu">
                 <line x1="6" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -50,48 +50,48 @@ ViewData["User"] = "Admin";
         <!-- Navbar content for larger screens -->
         <div class="justify-content-end d-none d-lg-flex" id="navbarNavDropdown">
             <div class="navbar-nav d-flex flex-row dashboard-navbar">
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
                     href="/messages">
                     <img src="~/images/icons/messages.svg" height="30" width="30" alt="Messages" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Messages</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center txt-color-primary"
                     href="/contacts">
                     <img src="~/images/icons/contacts.svg" height="30" width="30" alt="Contacts" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Contacts</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="#">
                     <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="/notifications">
                     <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
                         class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="#">
                     <img src="~/images/icons/reports.svg" height="30" width="30" alt="Reports" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Reports</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="/email">
                     <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Forms" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="#">
                     <img src="~/images/icons/poll.svg" height="30" width="30" alt="Forms" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Forms</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="#">
                     <img src="~/images/icons/scheduler.svg" height="30" width="30" alt="Scheduler" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Scheduler</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-orange border-orange d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="/permissiondenied">
                     <img src="~/images/icons/others.svg" height="30" width="30" alt="Others" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Others</span>
@@ -174,7 +174,7 @@ ViewData["User"] = "Admin";
                     <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="#settings">
                         <img src="~/images/icons/settings.svg" alt="Settings" height="24" width="24"
                             class="icon me-2" />
-                        <span class="fs-16 fw-light font-orange">Settings</span>
+                        <span class="fs-16 fw-light text-brand">Settings</span>
                     </a>
                 </li>
                 <li class="nav-item mb-2">
@@ -260,7 +260,7 @@ ViewData["User"] = "Admin";
         <div class="fs-20 d-lg-none d-flex color-495057">USER GROUPS</div>
         <div class="d-flex gap-4">
             <button
-                class="btn color-fff bg-color-ff5400 d-flex flex-row justify-content-between align-items-center fs-16 px-4 py-2"
+                class="btn color-fff bg-color-brand d-flex flex-row justify-content-between align-items-center fs-16 px-4 py-2"
                 data-bs-toggle="modal" data-bs-target="#addGroupModal">
                 <img src="/images/icons/add-plus.svg" height="16" width="16" alt="Scheduler" class="icon my-1 me-2" />
                 Add a Group
@@ -279,7 +279,7 @@ ViewData["User"] = "Admin";
         <div class="d-flex justify-content-between align-items-center">
             <div class="text-start fs-16 color-495057">USER GROUPS</div>
             <a href="#" id="addGroupBtn"
-                class="btn px-2 py-2 color-fff bg-color-ff5400 d-flex flex-row justify-content-between align-items-center flex-grow fs-14">
+                class="btn px-2 py-2 color-fff bg-color-brand d-flex flex-row justify-content-between align-items-center flex-grow fs-14">
                 <img src="/images/icons/add-plus.svg" height="16" width="16" alt="Scheduler" class="icon me-2" />
                 Add a Group
             </a>
@@ -317,7 +317,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -335,7 +335,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -353,7 +353,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -371,7 +371,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -389,7 +389,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -407,7 +407,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -425,7 +425,7 @@ ViewData["User"] = "Admin";
                         <td>Lorem ipsum dolor amet</td>
                         <td>
                             <div>
-                                <button class="btn action users-group btn-edit font-orange fs-14" type="button">
+                                <button class="btn action users-group btn-edit text-brand fs-14" type="button">
                                     <img src="/images/icons/edit-outline.svg" class="more-icon" alt="edit" height="16"
                                         width="16">
                                     Edit
@@ -468,20 +468,20 @@ ViewData["User"] = "Admin";
                     <ul class="pagination m-0">
                         <li class="page-item">
                             <a class="page-link reverse-icon" href="#"><i
-                                    class="bi bi-skip-forward font-orange"></i></a>
+                                    class="bi bi-skip-forward text-brand"></i></a>
                         </li>
                         <li class="page-item"><a class="page-link reverse-icon" href="#"><i
-                                    class="bi bi-play font-orange"></i></a>
+                                    class="bi bi-play text-brand"></i></a>
                         </li>
                         <li class="page-item"><a class="page-link color-212529" href="#">1</a></li>
                         <li class="page-item"><a class="page-link color-ced4da" href="#">2</a></li>
                         <li class="page-item"><a class="page-link color-ced4da" href="#">3</a></li>
                         <li class="page-item"><a class="page-link color-ced4da" href="#">4</a></li>
                         <li class="page-item"><a class="page-link color-ced4da" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-play font-orange"></i></a>
+                        <li class="page-item"><a class="page-link" href="#"><i class="bi bi-play text-brand"></i></a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#"><i
-                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                                    class="bi bi-skip-forward text-brand"></i></a></li>
                     </ul>
                 </nav>
             </div>
@@ -490,7 +490,7 @@ ViewData["User"] = "Admin";
             <button class="users-settings-delete fs-14 d-flex flex-row align-items-center btn color-495057">
                 <img src="~/images/icons/delete-outline.svg" height="18" width="18" alt="Logo"
                     class="d-inline-block align-top me-2" />
-                <span class="font-orange ff-default">
+                <span class="text-brand ff-default">
                     Delete
                 </span>
             </button>
@@ -518,10 +518,10 @@ ViewData["User"] = "Admin";
                         <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">4</a></li>
                         <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">5</a></li>
                         <li class="page-item"><a class="page-link border-0" href="#"><i
-                                    class="bi bi-play font-orange"></i></a>
+                                    class="bi bi-play text-brand"></i></a>
                         </li>
                         <li class="page-item"><a class="page-link border-0" href="#"><i
-                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                                    class="bi bi-skip-forward text-brand"></i></a></li>
                     </ul>
                 </nav>
             </div>
@@ -549,7 +549,7 @@ ViewData["User"] = "Admin";
                     <button class="users-settings-delete d-flex flex-row align-items-center btn color-495057 py-2">
                         <img src="~/images/icons/delete-outline.svg" height="18" width="18" alt="Logo"
                             class="d-inline-block align-top me-2" />
-                        <span class="font-orange ff-default fs-14">
+                        <span class="text-brand ff-default fs-14">
                             Delete
                         </span>
                     </button>
@@ -566,7 +566,7 @@ ViewData["User"] = "Admin";
         <div class="add-group modal-content">
             <!-- Modal Header -->
             <div class="add-group modal-header">
-                <div class="modal-title fs-20 font-orange ms-2" id="addGroupModalLabel">Add a Group</div>
+                <div class="modal-title fs-20 text-brand ms-2" id="addGroupModalLabel">Add a Group</div>
                 <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -704,10 +704,10 @@ ViewData["User"] = "Admin";
                                             <li class="page-item"><a class="page-link border-0 color-ced4da"
                                                     href="#">5</a></li>
                                             <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                        class="bi bi-play font-orange"></i></a>
+                                                        class="bi bi-play text-brand"></i></a>
                                             </li>
                                             <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                        class="bi bi-skip-forward font-orange"></i></a></li>
+                                                        class="bi bi-skip-forward text-brand"></i></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -739,10 +739,10 @@ ViewData["User"] = "Admin";
                                             <li class="page-item"><a class="page-link border-0 color-ced4da"
                                                     href="#">5</a></li>
                                             <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                        class="bi bi-play font-orange"></i></a>
+                                                        class="bi bi-play text-brand"></i></a>
                                             </li>
                                             <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                        class="bi bi-skip-forward font-orange"></i></a></li>
+                                                        class="bi bi-skip-forward text-brand"></i></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -772,7 +772,7 @@ ViewData["User"] = "Admin";
                                             class="users-settings-delete d-flex flex-row align-items-center btn color-495057 py-2">
                                             <img src="~/images/icons/delete-outline.svg" height="18" width="18"
                                                 alt="Logo" class="d-inline-block align-top me-2" />
-                                            <span class="font-orange ff-default fs-14">
+                                            <span class="text-brand ff-default fs-14">
                                                 Delete
                                             </span>
                                         </button>
@@ -801,7 +801,7 @@ ViewData["User"] = "Admin";
         <div class="users-group modal-content">
             <!-- Modal Header -->
             <div class="users-group modal-header modal-header-custom">
-                <div class="modal-title fs-20 font-orange" id="detailsModalLabel">Details</div>
+                <div class="modal-title fs-20 text-brand" id="detailsModalLabel">Details</div>
                 <button type="button" class="custom-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -1023,10 +1023,10 @@ ViewData["User"] = "Admin";
                                     <ul class="pagination m-0">
                                         <li class="page-item">
                                             <a class="page-link reverse-icon" href="#"><i
-                                                    class="bi bi-skip-forward font-orange"></i></a>
+                                                    class="bi bi-skip-forward text-brand"></i></a>
                                         </li>
                                         <li class="page-item"><a class="page-link reverse-icon" href="#"><i
-                                                    class="bi bi-play font-orange"></i></a>
+                                                    class="bi bi-play text-brand"></i></a>
                                         </li>
                                         <li class="page-item"><a class="page-link color-212529" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link color-ced4da" href="#">2</a></li>
@@ -1034,10 +1034,10 @@ ViewData["User"] = "Admin";
                                         <li class="page-item"><a class="page-link color-ced4da" href="#">4</a></li>
                                         <li class="page-item"><a class="page-link color-ced4da" href="#">5</a></li>
                                         <li class="page-item"><a class="page-link" href="#"><i
-                                                    class="bi bi-play font-orange"></i></a>
+                                                    class="bi bi-play text-brand"></i></a>
                                         </li>
                                         <li class="page-item"><a class="page-link" href="#"><i
-                                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                                                    class="bi bi-skip-forward text-brand"></i></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -1047,7 +1047,7 @@ ViewData["User"] = "Admin";
                                 class="users-settings-delete fs-14 d-flex flex-row align-items-center btn color-495057">
                                 <img src="~/images/icons/delete-outline.svg" height="18" width="18" alt="Logo"
                                     class="d-inline-block align-top me-2" />
-                                <span class="font-orange ff-default">
+                                <span class="text-brand ff-default">
                                     Delete
                                 </span>
                             </button>
@@ -1080,10 +1080,10 @@ ViewData["User"] = "Admin";
                                         <li class="page-item"><a class="page-link border-0 color-ced4da" href="#">5</a>
                                         </li>
                                         <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                    class="bi bi-play font-orange"></i></a>
+                                                    class="bi bi-play text-brand"></i></a>
                                         </li>
                                         <li class="page-item"><a class="page-link border-0" href="#"><i
-                                                    class="bi bi-skip-forward font-orange"></i></a></li>
+                                                    class="bi bi-skip-forward text-brand"></i></a></li>
                                     </ul>
                                 </nav>
                             </div>

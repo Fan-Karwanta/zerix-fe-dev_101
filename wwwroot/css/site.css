@@ -37,7 +37,7 @@ body {
 .form-check-input:focus-visible {
   outline: none !important;
   box-shadow: none !important;
-  border: 1px #ff5400 solid !important;
+  border: 1px #e7eaf0 solid !important;
 }
 
 .form-control:focus,

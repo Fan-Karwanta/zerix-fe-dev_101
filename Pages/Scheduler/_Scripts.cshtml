@@ -2175,13 +2175,13 @@ function generateWeekHeader() {
         
         // Check if this is the selected date from mini calendar
         if (fullCurrentDate && currentDay.toDateString() === fullCurrentDate.toDateString()) {
-            dayNumber.classList.add('orange-circle');
+            dayNumber.classList.add('brand-circle');
         }
         // Otherwise check if this is today
         else {
             const today = new Date();
             if (currentDay.toDateString() === today.toDateString()) {
-                dayNumber.classList.add('orange-circle');
+                dayNumber.classList.add('brand-circle');
             }
         }
         
