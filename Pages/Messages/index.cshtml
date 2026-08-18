@@ -6,6 +6,981 @@ ViewData["Title"] = "Messages";
 ViewData["User"] = "Admin";
 }
 
+<style>
+    /* ==========================================================================
+       Messaging (Group Chat) — Figma
+       ========================================================================== */
+    .msg-page {
+        background: #F5F6FD;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        padding-bottom: 40px;
+        min-height: calc(100vh - 188px);
+    }
+
+    .msg-layout {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 32px;
+        padding-top: 24px;
+        height: 787px;
+    }
+
+    /* ---------------------------------------------------------------- sidebar */
+    .msg-sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 346px;
+        flex: none;
+    }
+
+    .company-select {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 18px;
+        width: 100%;
+        height: 49px;
+        background: #FFFFFF;
+        border: 1px solid #D3DAE6;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .company-select__label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 9px;
+        font-size: 15px;
+        line-height: 19px;
+        color: #161B22;
+    }
+
+    .company-select__label i {
+        font-size: 17px;
+        color: #4A5468;
+    }
+
+    .company-select__caret {
+        font-size: 12px;
+        color: #161B22;
+    }
+
+    .msg-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 0 20px;
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(22, 27, 34, 0.05), 0px 8px 20px rgba(22, 27, 34, 0.06);
+        border-radius: 16px;
+    }
+
+    .msg-card__search {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 16px 16px 0;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .msg-search-input {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1px 14px;
+        gap: 10px;
+        height: 37px;
+        flex: 1 1 auto;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+    }
+
+    .msg-search-input i {
+        font-size: 15px;
+        color: #878A99;
+    }
+
+    .msg-search-input input {
+        border: 0;
+        outline: 0;
+        width: 100%;
+        font-size: 14px;
+        line-height: 16px;
+        color: #212529;
+        background: transparent;
+    }
+
+    .msg-search-input input::placeholder {
+        color: #878A99;
+    }
+
+    .msg-new-chat {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 37px;
+        height: 37px;
+        flex: none;
+        background: #FFFFFF;
+        border: 1px solid #1D4ED8;
+        border-radius: 4px;
+        color: #1D4ED8;
+        font-size: 14px;
+    }
+
+    .msg-card__filters {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 14px 0 16px;
+        width: 100%;
+    }
+
+    .msg-tabs {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 3px;
+        gap: 2px;
+        height: 34px;
+        background: rgba(233, 235, 236, 0.5);
+        border-radius: 20px;
+    }
+
+    .msg-tab {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 12px;
+        height: 28px;
+        border: 0;
+        background: transparent;
+        border-radius: 16px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #495057;
+    }
+
+    .msg-tab.is-active {
+        background: #FFFFFF;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06);
+        color: #1D4ED8;
+    }
+
+    .msg-tab__badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 5px;
+        min-width: 15px;
+        height: 15px;
+        background: #1D4ED8;
+        border-radius: 8px;
+        font-size: 9px;
+        line-height: 11px;
+        color: #FFFFFF;
+    }
+
+    .msg-select-link {
+        font-size: 13px;
+        line-height: 16px;
+        color: #878A99;
+        text-decoration: none;
+    }
+
+    .msg-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 8px 8px 0;
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .msg-list__label {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        width: 100%;
+        font-size: 10.5px;
+        line-height: 13px;
+        letter-spacing: 0.525px;
+        color: #878A99;
+    }
+
+    .msg-list__label.mt {
+        padding: 10px 4px 4px;
+    }
+
+    .chat-item {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px 8px;
+        gap: 10px;
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .chat-item:hover {
+        background: rgba(233, 235, 236, 0.5);
+    }
+
+    .chat-item.is-active {
+        background: rgba(29, 78, 216, 0.08);
+        padding-left: 11px;
+    }
+
+    .chat-item.is-active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #1D4ED8;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 42px;
+        height: 42px;
+        flex: none;
+        border-radius: 21px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+    }
+
+    .avatar--sm {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        font-size: 9px;
+        line-height: 10px;
+    }
+
+    .avatar-wrap {
+        position: relative;
+        flex: none;
+    }
+
+    .avatar-pin {
+        box-sizing: border-box;
+        position: absolute;
+        right: -2px;
+        bottom: -2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15px;
+        height: 15px;
+        background: #1D4ED8;
+        border: 2px solid #FFFFFF;
+        border-radius: 7.5px;
+        color: #FFFFFF;
+        font-size: 7px;
+    }
+
+    .chat-item__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2px 0;
+        gap: 4px;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .chat-item__top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .chat-item__name {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 16px;
+        line-height: 21px;
+        color: #212529;
+        min-width: 0;
+    }
+
+    .chat-item__name i {
+        font-size: 11px;
+        color: #1D4ED8;
+    }
+
+    .chat-item__time {
+        font-size: 11px;
+        line-height: 21px;
+        text-align: right;
+        color: #878A99;
+        white-space: nowrap;
+    }
+
+    .chat-item__subject {
+        font-size: 14px;
+        line-height: 21px;
+        color: #212529;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .chat-item__preview {
+        font-size: 12px;
+        line-height: 21px;
+        color: #878A99;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .chat-item__meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        width: 26px;
+        flex: none;
+    }
+
+    .unread-dot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 5px;
+        background: #1D4ED8;
+        border-radius: 24px;
+        font-size: 8px;
+        line-height: 10px;
+        color: #FFFFFF;
+    }
+
+    .kebab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 26px;
+        height: 26px;
+        border: 0;
+        background: transparent;
+        border-radius: 13px;
+        color: #878A99;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .kebab:hover {
+        background: rgba(233, 235, 236, 0.8);
+    }
+
+    /* ------------------------------------------------------------- chat panel */
+    .msg-chat {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1 1 auto;
+        min-width: 0;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(22, 27, 34, 0.05), 0px 8px 20px rgba(22, 27, 34, 0.06);
+        border-radius: 16px;
+    }
+
+    .chat-head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 24px;
+        gap: 16px;
+        width: 100%;
+        height: 69px;
+    }
+
+    .chat-head__title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .chat-head__name {
+        font-size: 20px;
+        line-height: 25px;
+        color: #212529;
+    }
+
+    .chat-head__members {
+        font-size: 11px;
+        line-height: 14px;
+        color: #495057;
+    }
+
+    .icon-chip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        flex: none;
+        background: rgba(29, 78, 216, 0.08);
+        border: 0;
+        border-radius: 12px;
+        color: #212529;
+        font-size: 12px;
+    }
+
+    .chat-head__tools {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        flex: 1 1 auto;
+    }
+
+    .chat-search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 9px 14px;
+        gap: 9px;
+        width: 280px;
+        height: 34px;
+        background: #F5F6FA;
+        border-radius: 10px;
+    }
+
+    .chat-search i {
+        font-size: 14px;
+        color: #8A93A6;
+    }
+
+    .chat-search input {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        width: 100%;
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+    }
+
+    .chat-search input::placeholder {
+        color: #8A93A6;
+    }
+
+    .chat-head__actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .chat-head__actions button {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        width: 18px;
+        height: 18px;
+        line-height: 1;
+        color: #212529;
+        opacity: 0.95;
+        font-size: 16px;
+    }
+
+    .pinned-bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 9px 24px 11px;
+        gap: 10px;
+        width: 100%;
+        background: #EAF3FF;
+    }
+
+    .pinned-bar i {
+        font-size: 14px;
+        color: #1D4ED8;
+    }
+
+    .pinned-bar__text {
+        flex: 1 1 auto;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #161B22;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .pinned-bar__close {
+        border: 0;
+        background: transparent;
+        color: #8A93A6;
+        font-size: 14px;
+        line-height: 1;
+        padding: 0;
+    }
+
+    .chat-stream {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 24px;
+        gap: 20px;
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        background: #F5F6FA;
+    }
+
+    .stream-note {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center;
+        color: #8A93A6;
+    }
+
+    .stream-day {
+        padding: 4px 0;
+    }
+
+    .stream-divider {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .stream-divider::before,
+    .stream-divider::after {
+        content: "";
+        flex: 1 1 auto;
+        height: 1px;
+        background: #D3DAE6;
+    }
+
+    .stream-divider span {
+        font-size: 12px;
+        line-height: 14px;
+        color: #8A93A6;
+    }
+
+    .msg-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 14px;
+        max-width: 604px;
+    }
+
+    .msg-row--out {
+        align-self: flex-end;
+        flex-direction: row;
+    }
+
+    .msg-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        position: relative;
+        min-width: 0;
+    }
+
+    .msg-row--out .msg-block {
+        align-items: flex-end;
+    }
+
+    .msg-author {
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #161B22;
+    }
+
+    .bubble {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 16px;
+        gap: 5px;
+        max-width: 550px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 0.5px rgba(22, 27, 34, 0.05);
+        border-radius: 16px 16px 16px 4px;
+    }
+
+    .bubble__text {
+        font-size: 14px;
+        line-height: 21px;
+        color: #4A5468;
+    }
+
+    .bubble__meta {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 3px;
+        width: 100%;
+        font-size: 9px;
+        line-height: 11px;
+        color: #4A5468;
+    }
+
+    .bubble--out {
+        background: #1D4ED8;
+        border-radius: 16px 16px 4px 16px;
+    }
+
+    .bubble--out .bubble__text,
+    .bubble--out .bubble__meta {
+        color: #FFFFFF;
+    }
+
+    .bubble--out .bubble__meta {
+        justify-content: flex-end;
+    }
+
+    .bubble--soft {
+        background: #EAF3FF;
+        border-radius: 16px 16px 4px 16px;
+    }
+
+    .bubble--soft .bubble__meta {
+        justify-content: flex-end;
+        color: #4A5468;
+    }
+
+    .reaction-chip {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        height: 20px;
+        padding: 0 6px;
+        bottom: -10px;
+        background: #EAF3FF;
+        box-shadow: 0px 1px 0.5px rgba(22, 27, 34, 0.08);
+        border-radius: 13px;
+        border: 0;
+        font-size: 9px;
+        line-height: 11px;
+        color: #212529;
+        z-index: 2;
+    }
+
+    .reaction-chip span.emoji {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .msg-block .reaction-chip {
+        right: 16px;
+    }
+
+    .msg-row--out .reaction-chip {
+        left: 16px;
+        right: auto;
+    }
+
+    .msg-tools {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 8px;
+        width: 26px;
+        flex: none;
+        opacity: 0;
+        transition: opacity .12s ease-in-out;
+    }
+
+    .msg-row:hover .msg-tools {
+        opacity: 1;
+    }
+
+    .msg-tool {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        background: #FFFFFF;
+        border: 1px solid #E9EBEC;
+        border-radius: 12px;
+        color: #878A99;
+        font-size: 12px;
+        line-height: 1;
+    }
+
+    .msg-react {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 26px;
+        height: 26px;
+        padding: 0;
+        background: #EAF3FF;
+        border: 1px solid #1D4ED8;
+        box-shadow: 0px 1px 0.5px rgba(22, 27, 34, 0.08);
+        border-radius: 13px;
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .msg-react--plain {
+        background: #FFFFFF;
+        border: 1px solid #CED4DA;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    /* -------------------------------------------------------------- composer */
+    .chat-composer {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 24px 16px;
+        gap: 24px;
+        width: 100%;
+        height: 69px;
+        background: #FFFFFF;
+        border-top: 1px solid #E7EAF0;
+        border-radius: 0 0 16px 16px;
+    }
+
+    .composer-tools {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 24px;
+        height: 24px;
+    }
+
+    .composer-tool {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: #4A5468;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .composer-divider {
+        width: 1px;
+        height: 24px;
+        background: #E9EBEC;
+    }
+
+    .composer-input {
+        flex: 1 1 auto;
+        border: 0;
+        outline: 0;
+        resize: none;
+        height: 24px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+        font-family: inherit;
+    }
+
+    .composer-input::placeholder {
+        color: #8A93A6;
+    }
+
+    .composer-send {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 34px;
+        height: 34px;
+        flex: none;
+        border: 0;
+        background: #1D4ED8;
+        border-radius: 17px;
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+
+    /* ------------------------------------------------------- menus / popovers */
+    .msg-menu {
+        box-sizing: border-box;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 6px;
+        position: absolute;
+        width: 180px;
+        background: #FFFFFF;
+        border: 1px solid #CED4DA;
+        box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.14);
+        border-radius: 8px;
+        z-index: 1050;
+    }
+
+    .msg-menu.is-open {
+        display: flex;
+    }
+
+    .msg-menu__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 10px;
+        gap: 8px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+        text-align: left;
+    }
+
+    .msg-menu__item:hover {
+        background: rgba(233, 235, 236, 0.6);
+    }
+
+    .msg-menu__item i {
+        font-size: 13px;
+    }
+
+    .msg-menu__item--danger {
+        color: #E0431F;
+    }
+
+    .msg-menu__divider {
+        width: calc(100% - 8px);
+        height: 1px;
+        margin: 6px 4px;
+        background: #E9EBEC;
+    }
+
+    .react-list {
+        box-sizing: border-box;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px;
+        position: absolute;
+        width: 190px;
+        background: #FFFFFF;
+        border: 1px solid #CED4DA;
+        box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.16);
+        border-radius: 8px;
+        z-index: 1060;
+    }
+
+    .react-list.is-open {
+        display: flex;
+    }
+
+    .react-list__head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2px 4px 6px;
+        gap: 5px;
+        width: 100%;
+        font-size: 11px;
+        line-height: 14px;
+        letter-spacing: 0.33px;
+        text-transform: uppercase;
+        color: #878A99;
+    }
+
+    .react-list__body {
+        width: 100%;
+        max-height: 220px;
+        overflow-y: auto;
+    }
+
+    .react-list__row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px 4px;
+        gap: 8px;
+        height: 30px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #212529;
+    }
+
+    /* --------------------------------------------------------------- responsive */
+    @@media (max-width: 991.98px) {
+        .msg-layout {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .msg-sidebar {
+            width: 100%;
+        }
+
+        .msg-card {
+            height: 520px;
+        }
+
+        .msg-chat {
+            width: 100%;
+            height: 640px;
+        }
+    }
+</style>
 
 <nav
     class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
@@ -75,30 +1050,8 @@ ViewData["User"] = "Admin";
                     <img src="~/images/icons/keyword.svg" height="30" width="30" alt="Keywords" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Keywords</span>
                 </a>
-                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center position-relative"
-                    href="/notifications" style="overflow: visible;">
-                    <span class="notif-badge-container position-relative d-inline-block" style="width: 30px; height: 30px;" style="display: inline-block;">
-                        <span class="notif-badge" style="
-                        position: absolute;
-                        top: -23px;
-                        right: -32px;
-                        background: #1D4ED8;
-                        color: #fff;
-                        border-radius: 53%;
-                        padding: 5px 0;
-                        font-size: 12px;
-                        font-weight: bold;
-                        min-width: 32px;
-                        min-height: 32px;
-                        max-width: 32px;
-                        max-height: 32px;
-                        width: 32px;
-                        height: 32px;
-                        text-align: center;
-                        border: 2px solid #fff;
-                        z-index: 2;
-                    " ></span>
-                    </span>
+                <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
+                    href="/notifications">
                     <img src="~/images/icons/notification.svg" height="30" width="30" alt="Notifications"
                         class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Notifications</span>
@@ -110,7 +1063,7 @@ ViewData["User"] = "Admin";
                 </a>
                 <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
                     href="/email">
-                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Forms" class="icon my-1" />
+                    <img src="~/images/icons/at-mail.svg" height="30" width="30" alt="Email" class="icon my-1" />
                     <span class="txt-color-primary fs-11 ff-microsoft-san-serif">Email</span>
                 </a>
                 <a class="nav-link box dashboard-items btn-nav border-default d-flex flex-column align-items-center px-2 px-md-3 text-center"
@@ -136,15 +1089,7 @@ ViewData["User"] = "Admin";
             </div>
         </div>
     </div>
-    <div class="container px-4 d-none" id="backToChat">
-        <div class="d-flex flex-row justify-content-start align-items-center align-middle">
-            <img src="~/images/icons/go-back.svg" height="24" width="24" alt="Logo"
-                class="align-middle align-self-center me-2 color-primary" />
-            <span class="text-brand fs-20">Use Template</span>
-        </div>
-    </div>
 </nav>
-
 
 <!-- Off-canvas sidebar for mobile view dashboard -->
 <div class="offcanvas offcanvas-end offcanvas-half-width border border-end-0 rounded-start d-flex flex-column"
@@ -154,10 +1099,8 @@ ViewData["User"] = "Admin";
     </div>
     <hr class="my-0 mx-3">
     <div class="offcanvas-body mt-4">
-        <!-- Main navigation links -->
         <div class="d-flex flex-column align-items-start">
             <ul class="navbar-nav me-3 w-100">
-                <!-- Corrected links without data-bs-toggle and unique ids -->
                 <li class="nav-item mb-2">
                     <a class="fs-5 nav-link text-dark d-flex align-items-center bg-color-E9EBEC80" href="/messages">
                         <img src="~/images/icons/messages.svg" alt="Messages" height="24" width="24"
@@ -184,21 +1127,6 @@ ViewData["User"] = "Admin";
                         <img src="~/images/icons/notification-black.svg" alt="Notifications" height="24" width="24"
                             class="icon me-2" />
                         <span class="fs-16 fw-light">Notifications</span>
-                        <span style="
-                        position: relative;
-                        top: -11px;
-                        right: 102px;
-                        background: #1D4ED8;
-                        color: #fff;
-                        border-radius: 53%;
-                        padding: 3px 3px;
-                        font-size: 10px;
-                        font-weight: bold;
-                        min-width: 12px;
-                        text-align: center;
-                        border: 2px solid #fff;
-                        z-index: 2;
-                    "></span>
                     </a>
                 </li>
                 <li class="nav-item mb-2">
@@ -209,7 +1137,7 @@ ViewData["User"] = "Admin";
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#forms">
+                    <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#email">
                         <img src="~/images/icons/at-mail-black.svg" alt="Email" height="24" width="24"
                             class="icon me-2" />
                         <span class="fs-16 fw-light">Email</span>
@@ -245,7 +1173,6 @@ ViewData["User"] = "Admin";
                 </li>
             </ul>
         </div>
-        <!-- Logout link at the bottom -->
     </div>
     <div class="mt-auto my-4">
         <a class="fs-5 nav-link text-dark d-flex align-items-center" href="#logout">
@@ -255,12 +1182,10 @@ ViewData["User"] = "Admin";
     </div>
 </div>
 
-<!-- Off-canvas sidebar for mobile view dashboard -->
 <!-- Messages off-canvas -->
 <div class="offcanvas offcanvas-bottom d-block d-md-none border border-end-0 rounded-top d-flex flex-column"
     tabindex="-1" id="messagesoffcanvasDropdown" aria-labelledby="offcanvasNavbarLabel">
     <div class="offcanvas-body mt-2">
-        <!-- Main navigation links -->
         <div class="d-flex flex-column align-items-start">
             <ul class="navbar-nav me-3">
                 <li class="nav-item mb-2">
@@ -278,1730 +1203,582 @@ ViewData["User"] = "Admin";
     </div>
 </div>
 
-<div class="container px-4 my-2 pt-md-4 pt-2" id="desktop">
-    <div class="mb-md-3 mt-md-2 my-2 pb-md-2 pb-0">
-        <div class="row col-lg-2 col-12 text-brand">
-            <a href="/messages/sms"
-                class="col-4 col-lg-6 px-4 border-end border-secondary text-muted text-center text-decoration-none">
-                SMS
-            </a>
-            <a href="/messages" class="col-4 col-lg-6 px-4 text-center text-decoration-none text-brand">
-                Messaging
-            </a>
-        </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between" id="messagingSection">
-        <div class="sidebar-container d-flex flex-column">
-            <div class="sidebar">
-                <div class="sidebar-components d-md-block d-none">
-                    <a class="department-dropdown fs-5 nav-link text-dark d-flex justify-content-between align-items-center btn-nav border-default py-2 px-2 px-md-3 py-md-2 mb-4"
-                        href="#" id="navbarDropDownDepartments" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <div class="d-flex flex-row">
-                            <img src="~/images/icons/department.svg" height="28" width="28" alt="Logo"
-                                class="d-inline-block align-top me-2 color-primary ms-3" />
-                            <span class="txt-color-primary fs-20 me-3 text-brand">Departments</span>
-                        </div>
-                        <img src="~/images/icons/arrow-down.svg" height="16" width="16" alt="arrow-down"
-                            class="d-inline-block" />
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scroll"
-                        aria-labelledby="navbarDropDownDepartments">
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 1
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 2
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 2
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 2
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 2
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center" href="#">
-                                Departments 2
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="d-flex justify-content-between align-items-center align-middle mb-3">
-                        <form class="d-flex message-search flex-grow-1">
-                            <div class="input-group message-search">
-                                <span class="input-group-text pe-0" id="search-addon">
-                                    <i class="bi bi-search color-878A99"></i> <!-- Search icon -->
-                                </span>
-                                <input class="form-control" type="search" placeholder="Search Inbox"
-                                    aria-label="Search">
-                            </div>
-                        </form>
-                        <a href="/messages/compose"
-                            class="compose text-decoration-none text-brand d-flex align-items-center justify-content-end">
-                            <img src="~/images/icons/edit.svg" height="28" width="28" alt="Logo"
-                                class="d-inline-block align-top me-2 color-primary" />
-                            <span class="text-brand">Compose</span>
-                        </a>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between mb-3">
-                        <div class="text-brand">
-                            <a href="#" class="message-option message-option-active me-1">All</a>
-                            <a href="#" class="message-option">Unread</a>
-                        </div>
-                        <div class="text-brand">
-                            <a href="#" class="message-option" id="selectAll" onclick="toggleSelectAll(event)">Select
-                                All</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-components d-md-none d-block mt-md-0 mt-3">
-                    <div class="d-flex flex-row align-items-center gap-4">
-                        <a class="department-dropdown fs-5 nav-link text-dark d-flex justify-content-between align-items-center btn-nav border-default py-2 px-2 px-md-3 py-md-2"
-                            href="#" id="navbarDropDownDepartments" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <div class="d-flex flex-row">
-                                <img src="~/images/icons/department.svg" height="20" width="20" alt="Logo"
-                                    class="d-inline-block align-top me-2 color-primary" />
-                            </div>
-                            <img src="~/images/icons/arrow-down.svg" height="14" width="14" alt="arrow-down"
-                                class="d-inline-block" />
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0 scroll"
-                            aria-labelledby="navbarDropDownDepartments">
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 1
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
-                                    href="#">
-                                    Departments 2
-                                </a>
-                            </li>
-                        </ul>
-                        <form class="d-flex message-search flex-grow-1">
-                            <div class="input-group message-search">
-                                <span class="input-group-text pe-1" id="search-addon">
-                                    <i class="bi bi-search color-878A99"></i> <!-- Search icon -->
-                                </span>
-                                <input class="form-control" type="search" placeholder="Search Inbox" aria-label="Search
-                                    ">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center align-middle my-3">
-                        <div class="text-brand">
-                            <a href="#" class="message-option message-option-active me-3">All</a>
-                            <a href="#" class="message-option">Unread</a>
-                        </div>
-                        <a href="/messages/compose"
-                            class="compose text-decoration-none text-brand d-flex align-items-center justify-content-center">
-                            <img src="~/images/icons/edit.svg" height="24" width="24" alt="Logo"
-                                class="d-inline-block align-top me-2 color-primary" />
-                            <span class="text-brand align-middle pb-1">Compose</span>
-                        </a>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="text-brand d-none mb-3" id="selectAllContainer">
-                            <a href="#" class="message-option" id="selectAllMobile"
-                                onclick="toggleSelectAll(event)">Select
-                                All</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation-list">
-                <div class="list-group scroll">
-                    <a class=" list-group-item active-message d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand fs-16">Juan Cruz</span>
-                            <span class="fs-14">Project Update</span>
-                            <span class="text-muted fs-14">This is noted, Miss Ana!</span>
-                        </div>
-                        <span class="text-muted fs-14">1:42 AM</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item unread d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                    <a class="list-group-item d-flex flex-row">
-                        <input type="checkbox" class="align-self-start mt-1" onclick="handleCheckboxChange()">
-                        <div
-                            class="conversation-item list-item-content d-flex flex-column align-items-start flex-grow-1 ps-2 gap-1">
-                            <span class="text-brand">Anna Santos</span>
-                            <span class="fs-14">OrderTayo Pages</span>
-                            <span class="text-muted fs-14">Hi, this is the OrderTayo Pages. Please...</span>
-                        </div>
-                        <span class="text-muted fs-14">Thurs</span>
-                    </a>
-                </div>
-            </div>
-            <div class="d-flex flex-row mt-3 justify-content-start gap-2 gap-md-3 side-bar-options">
-                <button
-                    class="fs-14 btn btn-outline d-flex flex-row justify-content-center align-items-center align-middle">
-                    <img src="~/images/icons/archive.svg" height="18" width="18" alt="Logo"
-                        class="d-inline-block align-top me-2 color-primary d-none d-lg-block" />
-                    <img src="~/images/icons/archive.svg" height="18" width="18" alt="Logo"
-                        class="d-inline-block align-top me-2 color-primary d-block d-lg-none" />
-                    <span class="d-none d-md-block">Archive</span>
-                </button>
-                <button
-                    class="fs-14 btn btn-fill d-flex flex-row justify-content-center align-items-center align-middle">
-                    <img src="~/images/icons/delete-outline-white.svg" height="18" width="18" alt="Logo"
-                        class="d-inline-block align-top me-2 color-primary d-none d-lg-block" />
-                    <img src="~/images/icons/delete-outline-white.svg" height="18" width="18" alt="Logo"
-                        class="d-inline-block align-top me-2 color-primary d-block d-lg-none" />
-                    <span class="d-none d-md-block">Delete</span>
-                </button>
-            </div>
-        </div>
-        <div class="main-content d-none d-md-block">
-            <!-- Chat Header -->
-            <div class="chat-header p-3 d-flex justify-content-between align-items-center">
-                <div class="left d-flex flex-row justify-content-center align-items-center align-middle">
-                    <span class="fs-20 px-4 chat-name text-truncate">Juan Cruz adasdasdasdadasdasd</span>
-                    <span class="fs-14 chat-number text-truncate ">(+63 999 444 8888)</span>
-                </div>
-                <div class="right d-flex flex-row justify-content-center align-items-center">
-                    <form class="d-flex chat-search">
-                        <div class="input-group chat-search desktop">
-                            <span class="input-group-text pe-0" id="search-addon">
-                                <i class="bi bi-search color-878A99 fs-12"></i>
-                            </span>
-                            <input class="form-control fs-14" type="search" placeholder="Search Conversation"
-                                aria-label="Search" id="desktopSearchInput">
-                            <div class="search-controls d-none" id="desktopSearchControls">
-                                <span class="search-count me-2 fs-12">0/0</span>
-                                <button type="button" class="btn btn-link p-0" id="prevResult">
-                                    <!-- <i class="bi bi-chevron-up"></i> -->
-                                    <img src="~/images/icons/arrow-up-white.svg" height="12" width="12" alt="prev" />
-                                </button>
-                                <button type="button" class="btn btn-link p-0" id="nextResult">
-                                    <!-- <i class="bi bi-chevron-down"></i> -->
-                                    <img src="~/images/icons/arrow-down-white.svg" height="12" width="12" alt="next" />
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="dropdown ms-3">
-                        <a class="dropdown-toggle" href="#" id="dropdownMessageSettings" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="~/images/icons/gear.svg" height="24" width="24" alt="Logo"
-                                class="d-inline-block align-top me-2 color-primary" />
-                        </a>
-                        <ul class="chat-settings dropdown-menu dropdown-menu-end mt-2 border-0 gap-1"
-                            aria-labelledby="dropdownMessageSettings">
-                            <li><a class="dropdown-item fs-16" href="#">Mark as Unread</a></li>
-                            <li><a class="dropdown-item fs-16" href="#">Block</a></li>
-                            <li><a class="dropdown-item fs-16" href="#">Export File</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chat Content -->
-            <div class="chat-content desktop border">
-                <div class="scroll px-3 pt-2">
-                    <div class="d-flex flex-row justify-content-start align-items-center">
-                        <div class="received-message d-flex flex-column align-items-start">
-                            <div class="message d-flex flex-row justify-content-start align-items-center">
-                                <div class="bg-color-fff p-4 mb-2 me-2">
-                                    <div class="fs-14 message-text-content">We'll cover project updates, upcoming
-                                        deadlines,
-                                        and
-                                        brainstorming ideas for the new campaign. Hope to see you all
-                                        there!<br><br>Cheers,
-                                        <br>Ana
-                                    </div>
-                                    <div class="sent-via text-muted">
-                                        Via SMS
-                                    </div>
-                                </div>
-                                <a href="/messages/forward">
-                                    <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                                </a>
-                            </div>
-                            <small class="text-muted align-self-end me-4 pe-2 fs-12">1:41 AM</small>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end my-4">
-                        <div class="sent-message d-flex flex-column align-items-end">
-                            <div class="message d-flex flex-row justify-content-start align-items-center">
-                                <a href="/messages/forward">
-                                    <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                                </a>
-                                <div class="d-flex flex-column bg-color-FFF7EC color-495057 fs-14 py-4 px-2 mb-2 ms-2">
-                                    <div class="fs-14 message-text-content">This is noted, Miss Ana!</div>
-                                </div>
-                            </div>
-                            <small class="text-muted fs-12">1:42 AM</small>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end my-4">
-                        <div class="sent-message d-flex flex-column align-items-end">
-                            <div class="message d-flex flex-row justify-content-start align-items-center">
-                                <a href="/messages/forward">
-                                    <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                                </a>
-                                <div class="d-flex flex-column bg-color-FFF7EC color-495057 fs-14 py-4 px-3 mb-2 ms-2">
-                                    <div class="fs-14 message-text-content">Hi, please see attachments for your
-                                        reference.</div>
-                                    <div class="d-flex flex-column my-1">
-                                        <span>
-                                            <a href="#" class="text-brand me-2">Account_Reports.pdf</a>
-                                            <span class="color-878A99">148kb</span>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="text-brand me-2">Agreement.pdf</a>
-                                            <span class="color-878A99">137kb</span>
-                                        </span>
-                                        <span class="fs-12 color-878A99 mt-1">Attachments will be removed in 7
-                                            days.</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <small class="text-muted fs-12">1:59 AM</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="my-2">
-                <a href="#" class="text-brand fs-14" data-bs-toggle="modal" data-bs-target="#useTemplateModal">Use
-                    Template</a>
-            </div>
-            <!-- Chat Footer -->
-            <div class="chat-footer bg-color-white d-flex align-items-center">
-                <form method="post" enctype="multipart/form-data" class="w-100">
-                    <div
-                        class="input-group rounded border px-2 py-1 px-md-3 py-md-2 d-flex justify-content-center align-items-center">
-                        <label class="input-group-text bg-white border-0 cursor-pointer p-1 py-md-4 px-md-2">
-                            <input type="file" name="files" multiple hidden
-                                accept=".pdf, .doc, .docx, .xls, .xlsx, .txt" onchange="displayUploadedFiles(this)">
-                            <i class="bi bi-paperclip txt-color-primary fs-5"></i>
-                        </label>
-
-                        <label class="input-group-text bg-white border-0 cursor-pointer p-1 py-md-4 me-2">
-                            @* <input type="file" name="audioFiles" multiple hidden accept="audio/*"
-                                onchange="displayUploadedFiles(this)">
-                            <i class="bi bi-mic txt-color-primary fs-5"></i> *@
-                            <input type="button" name="audioFiles" hidden accept="audio/*"
-                                onclick="recordVoiceToText(this)">
-                            <i id="voiceIconAudio" class="bi bi-mic fs-5"></i> <!-- Default icon -->
-                            <i id="voiceIconStop" class="bi bi-stop-circle-fill fs-5" style="display: none;"></i>
-                        </label>
-                        <div class="container-chatbox align-self-center align-middle">
-                            <textarea name="text" class="form-control border-0 message"
-                                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
-                        </div>
-
-                        <button class="btn send-button p-0 " type="button">
-                            <img src="~/images/icons/send.svg" alt="Logo" height="24" width="24" class="me-md-1" />
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="attached-files mt-4">
-                @if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
-                {
-                @foreach (var file in Model.UploadedFiles)
-                {
-                <span class="attached-file-badge d-flex align-items-center fs-14">
-                    <i class="bi bi-file-earmark-text-fill me-2"></i> @file.FileName
-                    <button type="button" class="btn-close ms-2" aria-label="Remove"></button>
-                </span>
-                }
-                }
-                else
-                {
-                <span id="no-files-attached"
-                    class="d-md-flex d-none text-muted fs-14 ff-microsoft-sans-serif txt-color-tertiary fw-400">No
-                    files attached.</span>
-                }
-            </div>
-
-        </div>
-    </div>
-    <div class="d-none flex-column" id="smsSection">
-        <div class="mb-md-4 d-flex align-items-center justify-content-between">
-            <div class="fs-24 fw-normal txt-color-secondary">COMPOSE</div>
-        </div>
-        <div class="rounded border hide-border px-md-4 py-md-4 message-compose-content">
-            <form action="" class="mx-md-4">
-                <div class="d-flex justify-content-between mt-md-0 my-4">
-                    <div class="mb-md-4 d-flex align-items-center justify-content-between">
-                        <div class="color-495057">
-                            <a href="/messages"
-                                class="d-md-none d-flex flex-row justify-content-start align-items-center text-decoration-none color-495057">
-                                <img src="~/images/icons/go-back.svg" height="24" width="24" alt="Logo"
-                                    class="align-middle align-self-center me-2 color-primary" />
-                                <span class="fs-16">COMPOSE</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-end text-brand">
-                        <a href="#" class="d-md-block d-none text-brand fs-14" data-bs-toggle="modal"
-                            data-bs-target="#useTemplateModal">Use
-                            Template</a>
-                        <a href="#" class="d-md-none d-block text-brand fs-14" onclick="showUseTemplateMobile()">Use
-                            Template</a>
-                    </div>
-                </div>
-                <div class="mb-2 mb-md-3">
-                    <label for="recipients" class="form-label mb-1">To</label>
-                    <div class="recipients-container d-none  d-md-flex gap-3 gap-md-4">
-                        <div class="tag-input scroll-x">
-                            <div class="d-flex flex-row align-items-center gap-2">
-                                <!-- Where tags will appear dynamically -->
-                                <span class="tag">Marketing <span class="remove-tag">&times;</span></span>
-                                <span class="tag">IT <span class="remove-tag">&times;</span></span>
-                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                                <span class="tag">Admin <span class="remove-tag">&times;</span></span>
-                                <input type="text" class="recipients-input border-0">
-                            </div>
-                        </div>
-                        <button class="btn btn-fill" type="button" data-bs-toggle="modal" data-bs-target="#groupsModal">
-                            Groups
-                        </button>
-                        <button
-                            class="btn btn-outline d-flex flex-row justify-content-center align-items-center align-middle"
-                            type="button" data-bs-toggle="modal" data-bs-target="#contactsModal">
-                            <img src="~/images/icons/contacts.svg" alt="Logo" height="18" width="18" class="me-2" />
-                            <span>Contacts</span>
-                        </button>
-                    </div>
-                    <div
-                        class="recipients-container input-group d-md-none border rounded d-flex justify-content-between">
-                        <div class="tag-input scroll-x pt-2">
-                            <div
-                                class="form-control recipients d-flex flex-row flex-wrap justify-content-between border-0 p-0">
-                                <div class="d-flex flex-row gap-2">
-                                    <span class="tag">Ethan Patel <span class="remove-tag">&times;</span></span>
-                                    <span class="tag">Liam Garcia <span class="remove-tag">&times;</span></span>
-                                    <span class="tag">Sophia Kim <span class="remove-tag">&times;</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-custom txt-color-primary p-0" type="button" data-bs-toggle="modal"
-                            data-bs-target="#recipientsModal">
-                            <img src="~/images/icons/add-contacts.svg" alt="Logo" height="26" width="26" class="me-1" />
-                        </button>
-                    </div>
-                </div>
-                <div class="mb-2 mb-md-3">
-                    <label for="subjectFormControl" class="form-label mb-1">Subject/Title</label>
-                    <input class="form-control" type="text" aria-label="Subject">
-                </div>
-                <div class="mb-2 mb-md-3">
-                    <label for="messageFormControl" class="form-label mb-1" aria-required="true">
-                        Message<span class="text-danger">*</span>
-                    </label>
-                    <textarea class="d-md-none d-block form-control message mobile rounded" rows="3"></textarea>
-                    <textarea class="d-none d-md-block form-control message rounded p-1 compose-message"
-                        rows="3"></textarea>
-                </div>
-                <!-- Compose send options -->
-                <div class="d-flex justify-content-between align-items-center">
-                    <!-- Attach Files and Voice-to-Text -->
-                    <div class="d-flex flex-column align-items-center align-self-start">
-                        <div class="d-flex align-items-center align-self-start">
-                            <label class="compose input-group-text bg-white border-0 cursor-pointer me-2 me-md-4">
-                                <input type="file" name="files" multiple hidden
-                                    accept=".pdf, .doc, .docx, .xls, .xlsx, .txt" onchange="displayUploadedFiles(this)">
-                                <i class="bi bi-paperclip txt-color-primary fs-5"></i>
-                                <span class="d-none d-md-block mx-0 mx-md-2 txt-color-primary">Attach Files</span>
-                            </label>
-
-                            <label class="compose input-group-text bg-white border-0 cursor-pointer ms-2">
-                                <input type="button" name="audioFiles" hidden accept="audio/*"
-                                    onclick="recordVoiceToText(this)">
-                                <i id="voiceIconAudio" class="bi bi-mic fs-20"></i>
-                                <i id="voiceIconStop" class="bi bi-stop-circle-fill fs-20" style="display: none;"></i>
-                                <span class="d-none d-md-block mx-0 mx-md-2 txt-color-primary">Voice-to-Text</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Schedule Sending and Send Button -->
-                    <div class="d-flex flex-row flex-md-row align-items-md-center align-items-end">
-                        <!-- Schedule Sending-->
-                        <div class="btn-group dropdown mt-0 align-self-center me-2">
-                            <div class="form-check d-flex align-items-center me-md-4 text-center">
-                                <input class="form-check-input me-2 mb-1" type="checkbox" id="scheduleSending"
-                                    onchange="toggleDateTimePicker()">
-                                <label class="form-check-label text-muted" for="scheduleSending">
-                                    Schedule Sending
-                                </label>
-                            </div>
-                        </div>
-                        <!-- Dropdown for date and time (appears when Schedule Sending is checked) -->
-                        <div class="dropdown d-none date-time-dropdown p-0 m-0" id="scheduleDropdown">
-                            <ul class="dropdown-menu show dropdown-menu-end p-0 m-0 border-0"
-                                aria-labelledby="scheduleSending">
-                                <li class="dropdown-item p-0 m-0">
-                                    <div class="form-group d-flex p-0">
-                                        <div class="input-group justify-content-start align-items-start border-0 gap-1">
-                                            <div class="input-group align-items-start justify-content-start"
-                                                id="scheduleSendDate">
-                                                <span class="input-group-text" id="dateIcon">
-                                                    <i class="bi bi-calendar fs-12 text-brand"></i>
-                                                </span>
-                                                <input type="date" id="dateInput"
-                                                    class="form-control custom-date-input" />
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <input type="number" min="1" max="12" class="form-control"
-                                                    placeholder="8" oninput="validateRange(this)">
-                                                <span class="input-group-text">:</span>
-                                                <input type="number" min="0" max="59" class="form-control"
-                                                    placeholder="00" oninput="validateRange(this)">
-                                            </div>
-                                            <select name="sources" id="sources" class="custom-select sources"
-                                                placeholder="am">
-                                                <option value="1">am</option>
-                                                <option value="2">pm</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Send Button with dropdown -->
-                        <div class="btn-group dropup send-options d-md-flex d-none">
-                            <button type="button" class="btn btn-fill rounded send me-2 fs-14">Send</button>
-                            <button type="button" class="btn btn-outline rounded px-1 send-via"
-                                onclick="toggleDesktopDropdown()">
-                                <i class="bi bi-chevron-up bold-chevron txt-color-primary align-self-end"
-                                    id="dropdownIcon"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end mb-2" id="dropdownMenu" style="display: none;">
-                                <!-- <li class="dropdown-item">
-                                    <input type="checkbox" id="smsCheckbox">
-                                    <label for="smsCheckbox">SMS (GSM)</label>
-                                </li> -->
-                                <li class="dropdown-item">
-                                    <input type="checkbox" id="messagingCheckbox">
-                                    <label for="messagingCheckbox">Messaging</label>
-                                </li>
-                                <li class="dropdown-item">
-                                    <input type="checkbox" id="emailCheckbox">
-                                    <label for="emailCheckbox">Email</label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="btn-group dropup send-options d-md-none d-fllex">
-                            <button type="button" class="btn btn-fill rounded send me-2 fs-14">Send</button>
-                            <button type="button" class="d-md-none d-block btn btn-outline rounded px-1 send-via"
-                                onclick="toggleDropdown()" data-bs-toggle="offcanvas"
-                                data-bs-target="#sendOptionsOffcanvasLabel" aria-controls="offcanvasDropdown"
-                                aria-expanded="false">
-                                <i class="bi bi-chevron-up bold-chevron txt-color-primary align-self-end"
-                                    id="dropdownIconMobile"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="attached-files">
-                    @if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
-                    {
-                    @foreach (var file in Model.UploadedFiles)
-                    {
-                    <span class="attached-file-badge d-flex align-items-center">
-                        <i class="bi bi-file-earmark-text-fill me-2"></i> @file.FileName
-                        <button type="button" class="btn-close ms-2" aria-label="Remove"></button>
+<div class="msg-page">
+    <div class="container px-4">
+        <div class="msg-layout">
+            <!-- ============================================================ SIDEBAR -->
+            <aside class="msg-sidebar">
+                <div class="company-select" id="companySelect">
+                    <span class="company-select__label">
+                        <i class="bi bi-people"></i>
+                        Choose Company
                     </span>
-                    }
-                    }
-                    else
-                    {
-                    <div id="no-files-attached" class="text-muted fs-14 text-muted mt-4">
-                        No files attached.</div>
-                    }
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- Use Template modal -->
-<div class="modal fade" id="useTemplateModal" tabindex="-1" aria-labelledby="useTemplateModalLabel" aria-hidden="true">
-    <div class="use-template modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
-        <div class="use-template modal-content">
-            <!-- Modal Header -->
-            <div class="d-none d-md-flex use-template modal-header">
-                <div class="modal-title fs-20 text-brand ms-2" id="useTemplateModalLabel">Use Template</div>
-                <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="d-flex d-md-none use-template modal-header justify-content-start mx-4 mt-4 pt-4 pb-0 ps-0">
-                @* <button type="button" class="custom-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-                *@
-                <img class="me-2" src="/images/icons/go-back.svg" alt="back" height="24" width="24"
-                    data-bs-dismiss="modal" aria-label="Close">
-                <div class="modal-title fs-16 text-brand ms-2 fs-20" id="useTemplateModalLabel">Use Template</div>
-            </div>
-
-            <!-- Modal Body (Form) -->
-            <div class="use-template modal-body py-0 mx-4 my-2">
-                <form>
-                    <!-- Dynamic Error Message Placeholder -->
-                    <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
-                        <div>
-                            @* @@{error_placeholder} *@
-                        </div>
+                    <i class="bi bi-chevron-down company-select__caret"></i>
+                    <div class="msg-menu" id="companyMenu" style="top: 53px; left: 0; width: 346px;">
+                        <button type="button" class="msg-menu__item">Zerix Corporation</button>
+                        <button type="button" class="msg-menu__item">OrderTayo Inc.</button>
+                        <button type="button" class="msg-menu__item">Stark Industries</button>
                     </div>
-                    <!-- First and Last Name (Two Columns) -->
-                    <div class="row">
-                        <div class="col-md-12 px-0 my-4">
-                            <label for="name" class="form-label fs-14 mb-4"> Please select an appropriate template based
-                                on
-                                your
-                                specific needs and preferences.</label>
-                            <form class="d-flex use-template-search ">
-                                <div class="input-group use-template-search">
-                                    <span class="input-group-text pe-0" id="search-addon">
-                                        <i class="bi bi-search color-878A99 fs-12"></i> <!-- Search icon -->
+                </div>
+
+                <div class="msg-card">
+                    <div class="msg-card__search">
+                        <label class="msg-search-input">
+                            <i class="bi bi-search"></i>
+                            <input type="search" placeholder="Search" aria-label="Search chats" id="chatListSearch">
+                        </label>
+                        <a href="/messages/compose" class="msg-new-chat" title="New message">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                    </div>
+
+                    <div class="msg-card__filters">
+                        <div class="msg-tabs" role="tablist">
+                            <button type="button" class="msg-tab is-active" data-filter="all">All</button>
+                            <button type="button" class="msg-tab" data-filter="unread">
+                                Unread
+                                <span class="msg-tab__badge">3</span>
+                            </button>
+                            <button type="button" class="msg-tab" data-filter="groups">Groups</button>
+                        </div>
+                        <a href="#" class="msg-select-link" id="selectChats">Select</a>
+                    </div>
+
+                    <div class="msg-list" id="chatList">
+                        <div class="msg-list__label">PINNED</div>
+
+                        <div class="chat-item is-active" data-type="group" data-unread="0">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#FFB199;">HT</span>
+                                <span class="avatar-pin"><i class="bi bi-pin-angle-fill"></i></span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">
+                                        <i class="bi bi-pin-angle"></i>
+                                        HR Team
                                     </span>
-                                    <input class="form-control fs-14" type="search" placeholder="Search"
-                                        aria-label="Search">
+                                    <span class="chat-item__time">1:42 AM</span>
                                 </div>
-                            </form>
+                                <span class="chat-item__preview">This is noted, Miss Ana!</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <!-- Table -->
-                        <div class="table-responsive rounded p-0">
-                            <div class="scroll">
-                                <table class="table">
-                                    <thead class="table-header thead-fixed">
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Message</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-body">
-                                        <tr>
-                                            <td>Birthday Greeting</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Greeting</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Greeting</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Greeting</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>OSI</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>OSI2</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>OSI3</td>
-                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-                                            <td class="align-middle text-left">
-                                                <button class="btn btn-fill">
-                                                    Use
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                        <div class="chat-item" data-type="group" data-unread="0">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#FFD59E;">CB</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">
+                                        <i class="bi bi-pin-angle"></i>
+                                        Clint Barton
+                                    </span>
+                                    <span class="chat-item__time">Thu</span>
+                                </div>
+                                <span class="chat-item__subject">OrderTayo Pages</span>
+                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="msg-list__label mt">ALL CHATS</div>
+
+                        <div class="chat-item" data-type="direct" data-unread="0">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#FFD59E;">CB</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Clint Barton</span>
+                                    <span class="chat-item__time">Thu</span>
+                                </div>
+                                <span class="chat-item__subject">OrderTayo Pages</span>
+                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="1">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#B8E0D2;">NR</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Natasha Romanoff</span>
+                                    <span class="chat-item__time">Sun</span>
+                                </div>
+                                <span class="chat-item__subject">OrderTayo Pages</span>
+                                <span class="chat-item__preview" style="color:#212529;">Hi, this is the OrderTayo Pages.
+                                    Please...</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">1</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="1">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#FFD59E;">CB</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Clint Barton</span>
+                                    <span class="chat-item__time">08/29/2026</span>
+                                </div>
+                                <span class="chat-item__subject">OrderTayo Pages</span>
+                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">1</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="group" data-unread="1">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#B7C9F2;">DT</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Design Team</span>
+                                    <span class="chat-item__time">08/13/2026</span>
+                                </div>
+                                <span class="chat-item__subject">OrderTayo Pages</span>
+                                <span class="chat-item__preview" style="color:#212529;">Hi, this is the OrderTayo Pages.
+                                    Please...</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">1</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Chatbox Mobile Section -->
-<div id="chatBoxMobileSection" class="d-none container mt-4 px-4 pb-0">
-    <div class="main-content">
-        <!-- Chat Header -->
-        <div class="chat-header p-3 d-flex justify-content-between align-items-center">
-            <div class="left d-flex flex-row justify-content-center align-items-start align-middle gap-1">
-                <img src="~/images/icons/go-back-white.svg" height="24" width="24" alt="Logo"
-                    class="align-middle align-self-center me-2 color-primary" id="BackToSideBar" />
-                <div class="d-flex flex-column align-items-start align-middle-gap-1">
-                    <span class="fs-14 text-truncate chat-name">Juan Cruz</span>
-                    <span class="fs-14 text-truncate chat-number">(+63 999 444 8888)</span>
                 </div>
-            </div>
-            <div class="right d-flex flex-row justify-content-center align-items-center gap-2 ms-2">
-                <a href="#" id="chatSearchIcon" onclick="toggleSearchBar()">
-                    <img src="~/images/icons/chat-search.svg" height="30" width="30" alt="Forward" class="mt-1" />
-                </a>
-                <div class="dropdown ms-2">
-                    <a class="d-inline-block align-top me-2 color-primary" href="#" role="button"
-                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasMessageSettings"
-                        aria-controls="offcanvasMessageSettings">
-                        <img src="~/images/icons/gear.svg" height="24" width="24" alt="Settings" />
-                    </a>
-                </div>
-            </div>
-        </div>
+            </aside>
 
-        <!-- Chat Content -->
-        <div class="chat-content mobile border">
-            <div class="scroll px-2 pt-2">
-                <form class="d-flex chat-search d-none" id="searchBar">
-                    <div class="input-group chat-search justify-content-start">
-                        <span class="input-group-text pe-0" id="search-addon">
-                            <i class="bi bi-search color-878A99 fs-12"></i>
-                        </span>
-                        <input class="form-control fs-14" type="search" placeholder="Search Conversation"
-                            aria-label="Search" id="mobileSearchInput">
-                        <div class="search-controls d-none" id="mobileSearchControls">
-                            <span class="search-count me-2 fs-12 color-878A99">0/0</span>
-                            <button type="button" class="btn btn-link p-0 me-1" id="prevResultMobile">
-                                <img src="~/images/icons/arrow-up-878a99.svg" height="12" width="12" alt="prev" />
-                            </button>
-                            <button type="button" class="btn btn-link p-0 me-2" id="nextResultMobile">
-                                <img src="~/images/icons/arrow-down-878a99.svg" height="12" width="12" alt="next" />
-                            </button>
+            <!-- ========================================================= CHAT PANEL -->
+            <section class="msg-chat">
+                <div class="chat-head">
+                    <div class="chat-head__title">
+                        <span class="avatar" style="background:#FFB199;">HT</span>
+                        <div class="d-flex flex-column" style="gap:5px;">
+                            <span class="chat-head__name">HR Team</span>
+                            <span class="chat-head__members">12 members</span>
+                        </div>
+                        <button type="button" class="icon-chip" title="Rename group">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div>
+                    <div class="chat-head__tools">
+                        <label class="chat-search">
+                            <i class="bi bi-search"></i>
+                            <input type="search" placeholder="Search Conversation" aria-label="Search conversation">
+                        </label>
+                        <div class="chat-head__actions">
+                            <button type="button" title="Files"><i class="bi bi-paperclip"></i></button>
+                            <button type="button" title="People"><i class="bi bi-people"></i></button>
+                            <button type="button" title="Settings"><i class="bi bi-gear"></i></button>
                         </div>
                     </div>
-                </form>
-                <div class="d-flex flex-row justify-content-start align-items-center">
-                    <div class="received-message d-flex flex-column align-items-start">
-                        <div class="message d-flex flex-row justify-content-start align-items-center">
-                            <div class="bg-color-fff p-4 mb-2 me-2">
-                                <div class="fs-14 message-text-content">We'll cover project updates, upcoming deadlines,
-                                    and
-                                    brainstorming ideas for the new campaign. Hope to see you all
-                                    there!<br><br>Cheers,
-                                    <br>Ana
-                                </div>
-                                <div class="sent-via text-muted">
-                                    Via SMS
-                                </div>
-                            </div>
-                            <a href="/messages/forward">
-                                <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                            </a>
-                        </div>
-                        <small class="text-muted fs-11">1:41 AM</small>
-                    </div>
                 </div>
-                <div class="d-flex justify-content-end my-4">
-                    <div class="sent-message d-flex flex-column align-items-end">
-                        <div class="message d-flex flex-row justify-content-start align-items-center">
-                            <a href="/messages/forward">
-                                <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                            </a>
-                            <div class="d-flex flex-column bg-color-FFF7EC color-495057 fs-14 py-4 px-2 mb-2 ms-2">
-                                <div class="fs-14 message-text-content">This is noted, Miss Ana!</div>
-                            </div>
-                        </div>
-                        <small class="text-muted fs-11">1:42 AM</small>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-end my-4">
-                    <div class="sent-message d-flex flex-column align-items-end">
-                        <div class="message d-flex flex-row justify-content-start align-items-center">
-                            <a href="/messages/forward">
-                                <img src="~/images/icons/forward.svg" height="24" width="24" alt="Forward" />
-                            </a>
-                            <div
-                                class="message-text-content d-flex flex-column bg-color-FFF7EC color-495057 fs-14 py-4 px-3 mb-2 ms-2">
-                                <div class="d-flex flex-column bg-color-FFF7EC color-495057 fs-14 py-4 px-3 mb-2 ms-2">
-                                    <div class="fs-14 message-text-content">Hi, please see attachments for your
-                                        reference.</div>
-                                    <div class="d-flex flex-column my-1">
-                                        <span>
-                                            <a href="#" class="text-brand me-2">Account_Reports.pdf</a>
-                                            <span class="color-878A99">148kb</span>
-                                        </span>
-                                        <span>
-                                            <a href="#" class="text-brand me-2">Agreement.pdf</a>
-                                            <span class="color-878A99">137kb</span>
-                                        </span>
-                                        <span class="fs-12 color-878A99 mt-1">Attachments will be removed in 7
-                                            days.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <small class="text-muted fs-11">1:59 AM</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-2 mb-1">
-            <a href="#" class="text-brand fs-14" onclick="showUseTemplateMobile()">Use
-                Template</a>
-        </div>
-        <!-- Chat Footer -->
-        <div class="chat-footer bg-color-white d-flex align-items-center">
-            <form method="post" enctype="multipart/form-data" class="w-100">
-                <div
-                    class="input-group rounded border px-2 py-1 px-md-3 py-md-2 d-flex justify-content-center align-items-center">
-                    <label class="input-group-text bg-white border-0 cursor-pointer p-1 py-md-4 px-md-2">
-                        <input type="file" name="files" multiple hidden accept=".pdf, .doc, .docx, .xls, .xlsx, .txt"
-                            onchange="displayUploadedFilesMobile(this)">
-                        <i class="bi bi-paperclip txt-color-primary fs-5"></i>
-                    </label>
 
-                    <label class="input-group-text bg-white border-0 cursor-pointer p-1 py-md-4 me-2">
-                        <input type="button" name="audioFiles" hidden accept="audio/*"
-                            onclick="recordVoiceToText(this)">
-                        <i id="voiceIconAudioMobile" class="bi bi-mic fs-5"></i> <!-- Default icon -->
-                        <i id="voiceIconStopMobile" class="bi bi-stop-circle-fill fs-5" style="display: none;"></i>
-                    </label>
-
-                    @* <label class="compose input-group-text bg-white border-0 cursor-pointer ms-2"> *@
-                        @* </label> *@
-
-                    @* <textarea class="form-control border-0 py-2" placeholder="Enter your message"
-                        aria-label="Enter your message"></textarea> *@
-                    <div class="container-chatbox align-self-center align-middle">
-                        <textarea name="text" class="form-control border-0 message"
-                            oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
-                    </div>
-
-                    <button class="btn send-button p-0 " type="button">
-                        <img src="~/images/icons/send.svg" alt="Logo" height="24" width="24" class="me-md-1" />
+                <div class="pinned-bar">
+                    <i class="bi bi-pin-angle"></i>
+                    <span class="pinned-bar__text">Pinned message · We'll cover project updates, upcoming deadlines, and
+                        brainstorming ideas for the new campaign.</span>
+                    <button type="button" class="pinned-bar__close" aria-label="Dismiss pinned message">
+                        <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
-            </form>
-        </div>
-        <div class="scroll-x mt-2">
 
-            <div class="attached-files-mobile d-flex flex-row mb-2">
-                @if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
-                {
-                @foreach (var file in Model.UploadedFiles)
-                {
-                <span class="attached-file-badge d-flex align-items-center fs-14 me-3">
-                    <i class="bi bi-file-earmark-text-fill me-2"></i> @file.FileName
-                    <button type="button" class="btn-close ms-2" aria-label="Remove"></button>
-                </span>
-                }
-                }
-                else
-                {
-                <span id="no-files-attached-mobile"
-                    class="text-muted fs-14 ff-microsoft-sans-serif txt-color-tertiary fw-400">No
-                    files attached.</span>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Use Template Section Section -->
-<div id="useTemplateSection" class="d-none container mt-4 px-4 pb-0">
-    <div class="main-content">
-        <div class="use-template py-0 mx-4 my-2">
-            <form>
-                <!-- Dynamic Error Message Placeholder -->
-                <div id="errorMessage" class="d-flex justify-content-center my-2 text-danger d-none">
-                    <div>
-                        @* @{error_placeholder} *@
+                <div class="chat-stream" id="chatStream">
+                    <div class="stream-note">John created the group.</div>
+                    <div class="stream-note">Maria Santos added Peter Cruz, Alexa De Leon, &amp; 9 others to the group.
                     </div>
-                </div>
-                <!-- First and Last Name (Two Columns) -->
-                <div class="row">
-                    <div class="col-md-12 px-0 mb-4">
-                        <label for="name" class="form-label fs-14 mb-4"> Please select an appropriate template based
-                            on
-                            your
-                            specific needs and preferences.</label>
-                        <form class="d-flex use-template-search ">
-                            <div class="input-group use-template-search">
-                                <span class="input-group-text pe-0" id="search-addon">
-                                    <i class="bi bi-search color-878A99 fs-12"></i> <!-- Search icon -->
-                                </span>
-                                <input class="form-control fs-14" type="search" placeholder="Search"
-                                    aria-label="Search">
+
+                    <!-- incoming with reaction -->
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble">
+                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this
+                                    Thursday at 10 AM.</span>
+                                <span class="bubble__meta">9:02 AM</span>
                             </div>
-                        </form>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 25
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <!-- Table -->
-                    <div class="table-responsive rounded p-0">
-                        <div class="scroll">
-                            <table class="table">
-                                <thead class="table-header thead-fixed">
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Message</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-body">
-                                    <tr>
-                                        <td>Birthday Greeting</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Greeting</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Greeting</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Greeting</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI2</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>OSI3</td>
-                                        <td>Lorem ipsum dolor sit am... </td>
-                                        <td class="align-middle text-left">
-                                            <button class="btn btn-fill">
-                                                Use
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                    <!-- outgoing with reaction -->
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:421px;">
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
+                                    too?</span>
+                                <span class="bubble__meta">9:05 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 25
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- incoming group of two -->
+                    <div class="msg-row">
+                        <div class="msg-block" style="gap:5px;">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble" style="width:503px;">
+                                <span class="bubble__text">Yes please! Just the milestones slide and the blockers list,
+                                    nothing fancy.</span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                            <div class="bubble">
+                                <span class="bubble__text">Please be ready.</span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="stream-note stream-day">Today</div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:421px;">
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
+                                    too?</span>
+                                <span class="bubble__meta">9:05 AM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Maria Reyes</span>
+                            <div class="bubble" style="width:550px;">
+                                <span class="bubble__text">This looks great, thank you! One small thing — can we add the
+                                    Q3 numbers on slide 4?</span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="stream-divider"><span>Last read</span></div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-emoji-smile"></i>
+                            </button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--soft" style="width:313px;">
+                                <span class="bubble__text">On it — will have it updated before end of day.</span>
+                                <span class="bubble__meta" style="font-size:12px;line-height:14px;">8:56 AM
+                                    <i class="bi bi-check2-all" style="color:#1D4ED8;"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
+
+                <div class="chat-composer">
+                    <div class="composer-tools">
+                        <button type="button" class="composer-tool" title="Attach file">
+                            <i class="bi bi-paperclip"></i>
+                        </button>
+                        <button type="button" class="composer-tool" title="Voice message">
+                            <i class="bi bi-mic"></i>
+                        </button>
+                        <span class="composer-divider"></span>
+                        <button type="button" class="composer-tool" title="Use Template">
+                            <i class="bi bi-layout-text-window"></i>
+                        </button>
+                    </div>
+                    <textarea class="composer-input" id="composerInput" rows="1"
+                        placeholder="Enter your message"></textarea>
+                    <button type="button" class="composer-send" id="composerSend" title="Send">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </section>
         </div>
     </div>
 </div>
 
-<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasMessageSettings"
-    aria-labelledby="offcanvasMessageSettingsLabel">
-    <div class="offcanvas-body">
-        <ul class="chat-settings list-unstyled">
-            <li><a class="dropdown-item fs-16 px-1" href="#">Mark as Unread</a></li>
-            <li><a class="dropdown-item fs-16 px-1" href="#">Block</a></li>
-            <li><a class="dropdown-item fs-16 px-1" href="#">Export File</a></li>
-        </ul>
+<!-- ================================================================== overlays -->
+<div class="msg-menu" id="chatItemMenu">
+    <button type="button" class="msg-menu__item"><i class="bi bi-pin-angle"></i> Pin chat</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-bell-slash"></i> Mute notifications</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-envelope"></i> Mark as unread</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-archive"></i> Archive</button>
+    <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete
+        chat</button>
+</div>
+
+<div class="msg-menu" id="theirMessageMenu">
+    <button type="button" class="msg-menu__item"><i class="bi bi-reply"></i> Reply</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-forward"></i> Forward</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-copy"></i> Copy text</button>
+    <span class="msg-menu__divider"></span>
+    <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete for
+        me</button>
+</div>
+
+<div class="msg-menu" id="myMessageMenu">
+    <button type="button" class="msg-menu__item"><i class="bi bi-reply"></i> Reply</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-forward"></i> Forward</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-copy"></i> Copy text</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-pencil"></i> Edit message</button>
+    <span class="msg-menu__divider"></span>
+    <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete for
+        everyone</button>
+</div>
+
+<div class="react-list" id="reactList">
+    <div class="react-list__head">
+        <i class="bi bi-emoji-smile"></i>
+        <span>10</span>
+        <span>reacted</span>
+    </div>
+    <div class="react-list__body">
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#FFD9BF;">Y</span> You</div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#FFB199;">MR</span> Maria Reyes
+        </div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#FFD59E;">CM</span> Cheska M.
+        </div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#B8E0D2;">BB</span> Bruce Banner
+        </div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#B7C9F2;">CB</span> Clint Barton
+        </div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#E3B7F2;">NR</span> Natasha
+            Romanoff</div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#F2B7D6;">A</span> Ana</div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#C9E4B7;">M</span> Minmin</div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#F2D3B7;">SR</span> Steve Rogers
+        </div>
+        <div class="react-list__row"><span class="avatar avatar--sm" style="background:#B7E3F2;">WM</span> Wanda
+            Maximoff</div>
     </div>
 </div>
 
-<script src="/js/form-select.js"></script>
-
-
-
+@section Scripts {
 <script>
-    function toggleSection(showId, hideId, activeLinkId, inactiveLinkId) {
-        const showSection = document.getElementById(showId);
-        const hideSection = document.getElementById(hideId);
-        const activeLink = document.getElementById(activeLinkId);
-        const inactiveLink = document.getElementById(inactiveLinkId);
-
-        // Show the desired section
-        showSection.classList.remove('d-none');
-        showSection.classList.add('d-flex');
-
-        // Hide the other section
-        hideSection.classList.add('d-none');
-        hideSection.classList.remove('d-flex');
-
-        // Add `text-brand` class to the active link
-        activeLink.classList.add('text-brand');
-        activeLink.classList.remove('text-muted');
-
-        // Remove `text-brand` class from the inactive link
-        inactiveLink.classList.remove('text-brand');
-        inactiveLink.classList.add('text-muted');
-    }
-
-    function toggleDateTimePicker() {
-        const scheduleDropdown = document.getElementById('scheduleDropdown');
-        const checkBox = document.getElementById('scheduleSending');
-
-        if (checkBox.checked) {
-            scheduleDropdown.classList.remove('d-none');
-        } else {
-            scheduleDropdown.classList.add('d-none');
-        }
-    }
-</script>
-<script>
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Function to detect if the user is on a mobile device
-        function isMobile() {
-            console.log("mobile")
-            return window.innerWidth <= 992; // You can adjust the breakpoint as needed
-        }
-
-        // Select all elements with the class 'conversation-item'
-        const conversationItems = document.querySelectorAll('.conversation-item');
-
-        if (isMobile()) {
-            conversationItems.forEach(item => {
-                item.setAttribute('onclick', 'showConversation(this)');
+    (function () {
+        const closeAllOverlays = (except) => {
+            document.querySelectorAll('.msg-menu.is-open, .react-list.is-open').forEach(el => {
+                if (el !== except) el.classList.remove('is-open');
             });
-        }
-    });
-    function showConversation() {
-        // Hide the user groups section (desktop)
-        document.getElementById('desktop').classList.add('d-none');
-        // Show the chat box section (mobile)
-        document.getElementById('chatBoxMobileSection').classList.remove('d-none');
-    }
+        };
 
-
-    function showUseTemplateMobile() {
-        document.getElementById('chatBoxMobileSection').classList.add('d-none');
-        document.getElementById('desktop-navbar').classList.add('d-none');
-        document.getElementById('useTemplateSection').classList.remove('d-none');
-        document.getElementById('backToChat').classList.remove('d-none');
-    }
-
-    window.onload = function () {
-        // When "Back to Groups" button is clicked
-        const backToSideBar = document.getElementById('BackToSideBar');
-        if (backToSideBar) {
-            backToSideBar.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.getElementById('chatBoxMobileSection').classList.add('d-none');
-                document.getElementById('desktop').classList.remove('d-none');
-            });
-        }
-        const backToChat = document.getElementById('backToChat');
-        if (backToChat) {
-            backToChat.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.getElementById('useTemplateSection').classList.add('d-none');
-                document.getElementById('backToChat').classList.add('d-none');
-                document.getElementById('desktop-navbar').classList.remove('d-none');
-                document.getElementById('chatBoxMobileSection').classList.remove('d-none');
-            });
-        }
-    };
-</script>
-
-<script>
-    OverlayScrollbars(document.querySelectorAll('.scroll'), {
-        scrollbars: {
-            visibility: 'visible',
-        },
-        overflowBehavior: {
-            y: "scroll",
-            x: "hide"
-        },
-    });
-    OverlayScrollbars(document.querySelectorAll('.scroll-x'), {
-        scrollbars: {
-            visibility: 'visible',
-        },
-        overflowBehavior: {
-            y: "hide",
-            x: "scroll"
-        },
-    });
-
-
-    function useTemplate() {
-        console.log("Use template clicked!");
-    }
-
-    function recordVoiceToText(input) {
-        // Select the audio and stop icons for both desktop and mobile
-        const iconAudio = document.getElementById('voiceIconAudio');
-        const iconStop = document.getElementById('voiceIconStop');
-        const iconAudioMobile = document.getElementById('voiceIconAudioMobile');
-        const iconStopMobile = document.getElementById('voiceIconStopMobile');
-
-        // Check if all icon elements are available
-        if (!iconAudio || !iconStop || !iconAudioMobile || !iconStopMobile) {
-            console.error("One or more icon elements not found!");
-            return;
-        }
-
-        // Toggle the visibility of the desktop icons
-        if (iconAudio.style.display === 'none') {
-            iconAudio.style.display = 'inline-block';
-            iconStop.style.display = 'none';
-            console.log("Switched to audio icon (desktop)");
-        } else {
-            iconAudio.style.display = 'none';
-            iconStop.style.display = 'inline-block';
-            console.log("Switched to stop icon (desktop)");
-        }
-
-        // Toggle the visibility of the mobile icons
-        if (iconAudioMobile.style.display === 'none') {
-            iconAudioMobile.style.display = 'inline-block';
-            iconStopMobile.style.display = 'none';
-            console.log("Switched to audio icon (mobile)");
-        } else {
-            iconAudioMobile.style.display = 'none';
-            iconStopMobile.style.display = 'inline-block';
-            console.log("Switched to stop icon (mobile)");
-        }
-    }
-
-
-    function displayUploadedFiles(input) {
-        const files = input.files;
-        const container = document.querySelector('.attached-files');
-        const noFilesMessage = document.getElementById('no-files-attached');
-
-        if (files.length > 0 && noFilesMessage) {
-            noFilesMessage.classList.remove('d-md-flex')
-            console.log(noFilesMessage.style);
-        }
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const fileName = file.name;
-            const fileExtension = fileName.split('.').pop().toLowerCase();
-
-            let fileIcon = getFileIcon(fileExtension);
-
-            const fileBadge = document.createElement('span');
-            fileBadge.classList.add('bg-brand-light', 'text-black', 'px-2', 'py-2', 'attached-file-badge', 'd-flex', 'justify-content-center', 'align-items-center', 'fs-14');
-
-            fileBadge.innerHTML = `
-                <i class="${fileIcon} me-1"></i> 
-                <span class="flex-grow-1">${fileName}</span>
-                <button type="button" class="btn-file-close" aria-label="Remove" onclick="removeFile(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </button>
-            `;
-            container.appendChild(fileBadge);
-        }
-    }
-    function displayUploadedFilesMobile(input) {
-        const files = input.files;
-        const container = document.querySelector('.attached-files-mobile');
-        const noFilesMessage = document.getElementById('no-files-attached-mobile');
-
-        if (files.length > 0 && noFilesMessage) {
-            noFilesMessage.classList.remove('d-md-flex')
-            console.log(noFilesMessage.style);
-        }
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const fileName = file.name;
-            const fileExtension = fileName.split('.').pop().toLowerCase();
-            const baseName = fileName.substring(0, fileName.lastIndexOf('.'));
-
-            let truncatedFileName;
-            if (fileName.length > 33) {
-                const maxLength = 33;
-                const reservedLength = fileExtension.length + 4;
-                const startLength = maxLength - reservedLength - 3;
-                const endLength = 3;
-
-                const startPart = baseName.substring(0, startLength);
-                const endPart = baseName.substring(baseName.length - endLength);
-                truncatedFileName = `${startPart}...${endPart}.${fileExtension}`;
-            } else {
-                truncatedFileName = fileName;
+        const placeOverlay = (overlay, anchor) => {
+            const rect = anchor.getBoundingClientRect();
+            overlay.classList.add('is-open');
+            const width = overlay.offsetWidth;
+            const height = overlay.offsetHeight;
+            let left = rect.right - width;
+            let top = rect.bottom + window.scrollY + 6;
+            if (left < 8) left = 8;
+            if (rect.bottom + height + 12 > window.innerHeight) {
+                top = rect.top + window.scrollY - height - 6;
             }
+            overlay.style.position = 'absolute';
+            overlay.style.left = left + window.scrollX + 'px';
+            overlay.style.top = top + 'px';
+        };
 
-
-            let fileIcon = getFileIcon(fileExtension);
-
-            const fileBadge = document.createElement('span');
-            fileBadge.classList.add('bg-brand-light', 'text-black', 'p-2', 'me-3', 'attached-file-badge', 'd-flex', 'justify-content-center', 'align-items-center', 'fs-14');
-
-            fileBadge.innerHTML = `
-                <i class="${fileIcon} me-1"></i> 
-                <span class="flex-grow-1">${truncatedFileName}</span>
-                <button type="button" class="btn-file-close" aria-label="Remove" onclick="removeFile(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </button>
-            `;
-            container.appendChild(fileBadge);
-        }
-    }
-
-
-    function getFileIcon(extension) {
-        switch (extension) {
-            case 'pdf':
-                return 'bi bi-file-earmark-pdf';
-            case 'doc':
-            case 'docx':
-                return 'bi bi-file-earmark-word';
-            case 'xls':
-            case 'xlsx':
-                return 'bi bi-file-earmark-spreadsheet';
-            case 'txt':
-                return 'bi bi-file-earmark-text';
-            case 'mp3':
-            case 'wav':
-            case 'ogg':
-                return 'bi bi-file-earmark-music';
-            default:
-                return 'bi bi-file-earmark';
-        }
-    }
-
-    function removeFile(button) {
-        const fileBadge = button.closest('span');
-        fileBadge.remove();
-    }
-
-    function removeFile(button) {
-        const fileBadge = button.closest('span.attached-file-badge');
-        fileBadge.remove();
-
-        const container = document.querySelector('.attached-files');
-        const noFilesMessage = document.getElementById('no-files-attached');
-
-        if (container.querySelectorAll('.attached-file-badge').length === 0 && noFilesMessage) {
-            noFilesMessage.classList.add('d-md-flex');
-        }
-    }
-
-</script>
-
-<script>
-    function toggleSearchBar() {
-        const searchBar = document.getElementById('searchBar');
-        if (searchBar.classList.contains('d-none')) {
-            searchBar.classList.remove('d-none');
-        } else {
-            searchBar.classList.add('d-none');
-        }
-    }
-
-</script>
-
-<script>
-    function toggleSelectAll(event) {
-        event.preventDefault();
-
-        const checkboxes = document.querySelectorAll('.conversation-list input[type="checkbox"]');
-        const selectAllLink = document.getElementById('selectAll');
-        const selectAllLinkMobile = document.getElementById('selectAllMobile');
-
-        if (selectAllLink.textContent === 'Select All' || selectAllLinkMobile.textContent === 'Select All') {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = true;
-            });
-            selectAllLink.textContent = 'Unselect All';
-            selectAllLinkMobile.textContent = 'Unselect All';
-        } else {
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = false;
-            });
-            selectAllLink.textContent = 'Select All';
-            selectAllLinkMobile.textContent = 'Select All';
-            handleCheckboxChange()
-        }
-    }
-
-    function handleCheckboxChange() {
-        const checkboxes = document.querySelectorAll('.conversation-list input[type="checkbox"]');
-        const selectAllContainer = document.getElementById('selectAllContainer');
-
-        const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-
-        if (isAnyChecked) {
-            selectAllContainer.classList.add('d-block');
-            selectAllContainer.classList.remove('d-none');
-        } else {
-            selectAllContainer.classList.add('d-none');
-            selectAllContainer.classList.remove('d-block');
-        }
-    }
-
-</script>
-
-
-<script>
-    function validateRange(input) {
-        const min = parseInt(input.min, 10);
-        const max = parseInt(input.max, 10);
-        const value = parseInt(input.value, 10);
-
-        if (value < min) {
-            input.value = min;
-        } else if (value > max) {
-            input.value = max;
-        }
-    }
-</script>
-
-<script>
-    document.getElementById("dateIcon").addEventListener("click", function () {
-        document.getElementById("dateInput").showPicker();
-    });
-    document.getElementById("dateInput").addEventListener("click", function () {
-        document.getElementById("dateInput").showPicker();
-    });
-    document.getElementById("dateIconMobile").addEventListener("click", function () {
-        document.getElementById("dateInputMobile").showPicker();
-    });
-</script>
-
-<script>
-    function initializeSearch(inputId, controlsId, prevBtnId, nextBtnId, containerClass) {
-        const searchInput = document.getElementById(inputId);
-        const searchControls = document.getElementById(controlsId);
-        const prevBtn = document.getElementById(prevBtnId);
-        const nextBtn = document.getElementById(nextBtnId);
-        const searchCount = searchControls.querySelector('.search-count');
-        const chatContainer = document.querySelector(containerClass);
-
-        let currentIndex = -1;
-        let searchResults = [];
-        let searchTimeout;
-
-        function performSearch() {
-            const query = searchInput.value.trim();
-            clearHighlights();
-            if (query === '') {
-                searchControls.classList.add('d-none');
+        // Context menus (chat list kebab + message kebabs)
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-menu]');
+            if (trigger) {
+                e.preventDefault();
+                e.stopPropagation();
+                const menu = document.getElementById(trigger.dataset.menu);
+                if (!menu) return;
+                const wasOpen = menu.classList.contains('is-open');
+                closeAllOverlays();
+                if (!wasOpen) placeOverlay(menu, trigger);
                 return;
             }
 
-
-            // Specifically target message bubbles - looking for the actual message content divs
-            // This targets the message content divs directly for better precision
-            const messages = chatContainer.querySelectorAll('.message .message-text-content');
-
-            console.log(`Found ${messages.length} message elements in ${containerClass}`);
-
-            searchResults = [];
-            currentIndex = -1;
-
-            // Track elements by their content to avoid duplicates
-            const uniqueContents = new Set();
-
-            messages.forEach((message, index) => {
-                const text = message.innerHTML;
-                const lowerText = message.textContent.toLowerCase().trim();
-                const lowerQuery = query.toLowerCase();
-
-                console.log(`Message ${index} content: "${lowerText.substring(0, 30)}..."`, lowerText.length);
-
-                // Skip empty messages or those with just whitespace
-                if (lowerText.length === 0) {
-                    console.log(`Skipping empty message ${index}`);
-                    return;
-                }
-
-                // Check if message contains the search query
-                if (lowerText.includes(lowerQuery)) {
-                    // Only add if we haven't seen this exact content before
-                    if (!uniqueContents.has(lowerText)) {
-                        uniqueContents.add(lowerText);
-                        searchResults.push({
-                            element: message,
-                            originalContent: text,
-                            text: lowerText,
-                            query: lowerQuery
-                        });
-                        console.log(`Added result ${searchResults.length}: "${lowerText.substring(0, 30)}..."`);
-                    } else {
-                        console.log(`Skipped duplicate: "${lowerText.substring(0, 30)}..."`);
-                    }
-                }
-            });
-
-            console.log(`Total unique results: ${searchResults.length}`);
-
-            // Always show search controls when a search is performed
-            searchControls.classList.remove('d-none');
-
-            if (searchResults.length > 0) {
-                searchCount.textContent = `1/${searchResults.length}`;
-                navigateToResult(0);
-            } else {
-                // Show "0/0" when no results are found
-                searchCount.textContent = `0/0`;
-            }
-        }
-
-        function clearHighlights() {
-            // Restore original content for all search results
-            searchResults.forEach(result => {
-                result.element.innerHTML = result.originalContent;
-            });
-        }
-
-        function highlightText(index) {
-            if (!searchResults[index]) return;
-
-            const result = searchResults[index];
-            const text = result.originalContent;
-            const query = result.query;
-
-            // Create a case-insensitive regular expression for the query
-            const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
-
-            // Replace matches with highlighted version
-            result.element.innerHTML = text.replace(regex, '<span class="highlight">$1</span>');
-        }
-
-        function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-
-        function navigateToResult(index) {
-            if (searchResults.length === 0) return;
-
-            // Clear all highlights
-            clearHighlights();
-
-            currentIndex = index;
-            if (currentIndex >= searchResults.length) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = searchResults.length - 1;
-
-            // Highlight the query text in the current result
-            highlightText(currentIndex);
-
-            searchCount.textContent = `${currentIndex + 1}/${searchResults.length}`;
-
-            // Scroll to the result
-            searchResults[currentIndex].element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }
-
-        // Event listeners
-        searchInput.addEventListener('input', () => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(performSearch, 300);
-
-            // Immediately hide controls if input is empty
-            if (searchInput.value.trim() === '') {
-                searchControls.classList.add('d-none');
-            }
-
-            // Immediately hide controls if input is empty
-            if (searchInput.value.trim() === '') {
-                searchControls.classList.add('d-none');
+            if (!e.target.closest('.msg-menu') && !e.target.closest('.react-list')) {
+                closeAllOverlays();
             }
         });
 
-        prevBtn.addEventListener('click', () => navigateToResult(currentIndex - 1));
-        nextBtn.addEventListener('click', () => navigateToResult(currentIndex + 1));
-    }
+        // Company selector
+        const companySelect = document.getElementById('companySelect');
+        const companyMenu = document.getElementById('companyMenu');
+        if (companySelect && companyMenu) {
+            companySelect.addEventListener('click', (e) => {
+                if (e.target.closest('.msg-menu__item')) {
+                    companySelect.querySelector('.company-select__label').lastChild.textContent =
+                        ' ' + e.target.textContent.trim();
+                    companyMenu.classList.remove('is-open');
+                    return;
+                }
+                const wasOpen = companyMenu.classList.contains('is-open');
+                closeAllOverlays();
+                companyMenu.style.position = 'absolute';
+                companyMenu.style.top = '53px';
+                companyMenu.style.left = '0';
+                companyMenu.classList.toggle('is-open', !wasOpen);
+            });
+        }
 
-    // Initialize search for both desktop and mobile
-    document.addEventListener('DOMContentLoaded', () => {
-        // Use existing CSS class from stylesheet instead of creating a new one
-        initializeSearch(
-            'desktopSearchInput',
-            'desktopSearchControls',
-            'prevResult',
-            'nextResult',
-            '.chat-content.desktop'
-        );
+        // Reaction list popover
+        const reactList = document.getElementById('reactList');
+        document.querySelectorAll('[data-react-list]').forEach(chip => {
+            chip.addEventListener('mouseenter', () => {
+                closeAllOverlays(reactList);
+                placeOverlay(reactList, chip);
+            });
+            chip.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeAllOverlays(reactList);
+                placeOverlay(reactList, chip);
+            });
+        });
+        if (reactList) {
+            reactList.addEventListener('mouseleave', () => reactList.classList.remove('is-open'));
+        }
 
-        initializeSearch(
-            'mobileSearchInput',
-            'mobileSearchControls',
-            'prevResultMobile',
-            'nextResultMobile',
-            '.chat-content.mobile'
-        );
-    });
+        // Filter tabs
+        const chatList = document.getElementById('chatList');
+        document.querySelectorAll('.msg-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.msg-tab').forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+                const filter = tab.dataset.filter;
+                chatList.querySelectorAll('.chat-item').forEach(item => {
+                    const show = filter === 'all'
+                        || (filter === 'unread' && item.dataset.unread !== '0')
+                        || (filter === 'groups' && item.dataset.type === 'group');
+                    item.style.display = show ? '' : 'none';
+                });
+                chatList.querySelectorAll('.msg-list__label').forEach(label => {
+                    label.style.display = filter === 'all' ? '' : 'none';
+                });
+            });
+        });
+
+        // Chat list search
+        const listSearch = document.getElementById('chatListSearch');
+        if (listSearch) {
+            listSearch.addEventListener('input', () => {
+                const term = listSearch.value.trim().toLowerCase();
+                chatList.querySelectorAll('.chat-item').forEach(item => {
+                    item.style.display = item.textContent.toLowerCase().includes(term) ? '' : 'none';
+                });
+            });
+        }
+
+        // Selecting a conversation
+        chatList && chatList.addEventListener('click', (e) => {
+            const item = e.target.closest('.chat-item');
+            if (!item || e.target.closest('[data-menu]')) return;
+            chatList.querySelectorAll('.chat-item').forEach(i => i.classList.remove('is-active'));
+            item.classList.add('is-active');
+        });
+
+        // Dismiss pinned banner
+        const pinnedClose = document.querySelector('.pinned-bar__close');
+        if (pinnedClose) {
+            pinnedClose.addEventListener('click', () => pinnedClose.closest('.pinned-bar').remove());
+        }
+
+        // Composer
+        const composer = document.getElementById('composerInput');
+        const sendBtn = document.getElementById('composerSend');
+        const stream = document.getElementById('chatStream');
+
+        const sendMessage = () => {
+            const text = composer.value.trim();
+            if (!text) return;
+            const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const row = document.createElement('div');
+            row.className = 'msg-row msg-row--out';
+            row.innerHTML =
+                '<div class="msg-tools">' +
+                '<button type="button" class="msg-tool" data-menu="myMessageMenu"><i class="bi bi-three-dots-vertical"></i></button>' +
+                '<button type="button" class="msg-react msg-react--plain">&#129309;</button>' +
+                '</div>' +
+                '<div class="msg-block"><div class="bubble bubble--out">' +
+                '<span class="bubble__text"></span>' +
+                '<span class="bubble__meta">' + time + ' <i class="bi bi-check2"></i></span>' +
+                '</div></div>';
+            row.querySelector('.bubble__text').textContent = text;
+            stream.appendChild(row);
+            composer.value = '';
+            composer.style.height = '24px';
+            stream.scrollTop = stream.scrollHeight;
+        };
+
+        sendBtn && sendBtn.addEventListener('click', sendMessage);
+        composer && composer.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        composer && composer.addEventListener('input', () => {
+            composer.style.height = '24px';
+            composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
+        });
+
+        if (stream) stream.scrollTop = stream.scrollHeight;
+    })();
 </script>
+}
