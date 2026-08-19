@@ -960,6 +960,1816 @@ ViewData["User"] = "Admin";
         color: #212529;
     }
 
+    /* ------------------------------------------------- quoted reply / forwarded */
+    .bubble__forwarded {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 20px;
+        color: #878A99;
+    }
+
+    .bubble__forwarded i {
+        font-size: 12px;
+    }
+
+    .quote {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 6px 10px 6px 13px;
+        gap: 1px;
+        width: 100%;
+        background: rgba(29, 78, 216, 0.08);
+        border-left: 3px solid #1D4ED8;
+        border-radius: 4px;
+    }
+
+    .quote--soft {
+        background: #EDF1FC;
+    }
+
+    .quote--onblue {
+        background: #FFFFFF;
+    }
+
+    .quote__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .quote__author {
+        font-size: 12px;
+        line-height: 15px;
+        color: #1D4ED8;
+        white-space: nowrap;
+    }
+
+    .quote__time {
+        font-size: 11px;
+        line-height: 14px;
+        text-align: right;
+        color: #878A99;
+        white-space: nowrap;
+    }
+
+    .quote__text {
+        padding-top: 1px;
+        font-size: 13px;
+        line-height: 20px;
+        color: #212529;
+        width: 100%;
+    }
+
+    /* quoted file chip inside a reply */
+    .quote-file {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        border-radius: 6px;
+    }
+
+    .quote-file__thumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        flex: none;
+        background: linear-gradient(180deg, #E0E0F7 0%, #F0F0FA 100%);
+        border-radius: 8px;
+        color: #1D4ED8;
+        font-size: 15px;
+    }
+
+    .quote-file__name {
+        font-size: 12px;
+        line-height: 15px;
+        color: #212529;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* ------------------------------------------------------- reply composer bar */
+    .reply-bar {
+        box-sizing: border-box;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 16px;
+        gap: 4px;
+        width: 100%;
+        background: #F8F6F4;
+        border: 1px solid #1D4ED8;
+        border-left-width: 3px;
+        border-radius: 4px;
+    }
+
+    .reply-bar.is-open {
+        display: flex;
+    }
+
+    .reply-bar__head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .reply-bar__label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        line-height: 15px;
+        color: #1D4ED8;
+    }
+
+    .reply-bar__close {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        color: #878A99;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .reply-bar__text {
+        font-size: 13px;
+        line-height: 16px;
+        color: #495057;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* composer becomes a column when the reply bar / tray is visible */
+    .chat-composer {
+        flex-wrap: wrap;
+    }
+
+    .composer-main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .chat-composer--stacked {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        height: auto;
+    }
+
+    /* --------------------------------------------------------- attachments (msg) */
+    .attach-image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 300px;
+        height: 170px;
+        background: linear-gradient(135deg, #E0E0F7 0%, #F0F0FA 100%);
+        border-radius: 6px;
+        color: #1D4ED8;
+        font-size: 34px;
+    }
+
+    .attach-dl {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 8px;
+        right: 8px;
+        width: 24px;
+        height: 24px;
+        border: 0;
+        background: rgba(1, 1, 1, 0.5);
+        border-radius: 14px;
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+
+    .attach-file {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 13px;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid #E9EBEC;
+        border-radius: 6px;
+    }
+
+    .attach-file--onblue {
+        background: #FFFFFF;
+    }
+
+    .attach-file__thumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        flex: none;
+        background: linear-gradient(135deg, #E0E0F7 0%, #F0F0FA 100%);
+        border-radius: 6px;
+        color: #1D4ED8;
+        font-size: 18px;
+    }
+
+    .attach-file__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .attach-file__name {
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #212529;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .attach-file__meta {
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    .attach-file__dl {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        flex: none;
+        color: #495057;
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    /* image grid (2x2 + overflow) */
+    .attach-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .attach-grid__cell {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        background: linear-gradient(121.33deg, #E0E0F7 0%, #F0F0FA 100%);
+        color: #1D4ED8;
+        font-size: 22px;
+    }
+
+    .attach-grid__more {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(33, 37, 41, 0.55);
+        font-size: 18px;
+        line-height: 20px;
+        color: #FFFFFF;
+    }
+
+    .attach-dl-all {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+        padding: 5px;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 23px;
+        border: 0;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        font-size: 11px;
+        line-height: 14px;
+        color: #FFFFFF;
+        z-index: 2;
+    }
+
+    .attach-note {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
+        font-size: 10.5px;
+        line-height: 13px;
+        color: #878A99;
+    }
+
+    /* ------------------------------------------------------ composer attach tray */
+    .attach-tray {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .attach-tray.is-open {
+        display: flex;
+    }
+
+    .attach-tray__row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 8px 24px;
+        gap: 8px;
+        width: 100%;
+        overflow-x: auto;
+        background: rgba(33, 37, 41, 0.1);
+    }
+
+    .attach-card {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 10px;
+        gap: 10px;
+        width: 250px;
+        max-width: 250px;
+        flex: none;
+        background: #FFFFFF;
+        border-radius: 4px;
+    }
+
+    .attach-card__name {
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .attach-card__size {
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    .attach-card__x {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        flex: none;
+        color: #878A99;
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .attach-progress {
+        width: 100%;
+        height: 4px;
+        background: #EEF0F4;
+        border-radius: 2px;
+    }
+
+    .attach-progress__bar {
+        width: 55%;
+        height: 100%;
+        background: #D3DAE6;
+        border-radius: 2px;
+    }
+
+    .attach-tray__note {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 14px;
+        width: 100%;
+        font-size: 10.5px;
+        line-height: 13px;
+        color: #878A99;
+    }
+
+    /* -------------------------------------------------------- members side panel */
+    .msg-chat {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .members-panel {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: absolute;
+        width: 300px;
+        top: 69px;
+        bottom: 0;
+        right: 0;
+        background: #FFFFFF;
+        box-shadow: -6px 0px 18px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform .18s ease-in-out;
+        z-index: 20;
+    }
+
+    .members-panel.is-open {
+        transform: translateX(0);
+    }
+
+    .members-panel__head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px 16px 10px;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .members-panel__head > button {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        flex: none;
+        line-height: 1;
+        color: #212529;
+        font-size: 16px;
+    }
+
+    .members-panel__title {
+        flex: 1 1 auto;
+        font-size: 15px;
+        line-height: 19px;
+        color: #212529;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .members-panel__count {
+        display: flex;
+        align-items: center;
+        padding: 1px 8px;
+        height: 17px;
+        flex: none;
+        background: #E9EBEC;
+        border-radius: 10px;
+        font-size: 12px;
+        line-height: 15px;
+        color: #878A99;
+    }
+
+    .members-panel__search {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 16px 0;
+        width: 100%;
+    }
+
+    .members-panel__search label {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 13px;
+        gap: 10px;
+        width: 100%;
+        height: 32px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+    }
+
+    .members-panel__search i {
+        font-size: 13px;
+        color: #878A99;
+    }
+
+    .members-panel__search input {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        width: 100%;
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+    }
+
+    .members-panel__search input::placeholder {
+        color: #878A99;
+    }
+
+    .members-row {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 10px;
+        gap: 10px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        border-radius: 6px;
+        font-size: 15px;
+        line-height: 19px;
+        color: #212529;
+        text-align: left;
+    }
+
+    .members-row:hover {
+        background: rgba(233, 235, 236, 0.6);
+    }
+
+    .members-row i {
+        font-size: 15px;
+        color: #495057;
+    }
+
+    .members-panel__addwrap {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 10px 0;
+        width: 100%;
+    }
+
+    .members-panel__label {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px 2px;
+        width: 100%;
+        font-size: 11px;
+        line-height: 12px;
+        letter-spacing: 0.33px;
+        text-transform: uppercase;
+        color: #878A99;
+    }
+
+    .members-panel__list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 10px;
+        width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .member-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 6px;
+        gap: 10px;
+        width: 100%;
+        flex: none;
+        border-radius: 6px;
+    }
+
+    .member-item:hover {
+        background: rgba(233, 235, 236, 0.6);
+    }
+
+    .avatar--md {
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        font-size: 10.5px;
+        line-height: 12px;
+    }
+
+    .member-item__name {
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #212529;
+    }
+
+    .member-item__role {
+        font-size: 12px;
+        line-height: 15px;
+        color: #878A99;
+    }
+
+    .member-item__kebab {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        flex: none;
+        width: 15px;
+        color: #878A99;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .members-panel__foot {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 6px 10px 10px;
+        width: 100%;
+        border-top: 1px solid #E9EBEC;
+    }
+
+    .members-row--danger {
+        color: #E0431F;
+    }
+
+    .members-row--danger i {
+        color: #E0431F;
+    }
+
+    /* ------------------------------------------------------- add people modal */
+    .people-modal {
+        box-sizing: border-box;
+        display: none;
+        flex-direction: column;
+        width: 340px;
+        position: fixed;
+        background: #FFFFFF;
+        box-shadow: 0px 12px 28px rgba(22, 27, 34, 0.16);
+        border-radius: 12px;
+        overflow: hidden;
+        z-index: 1070;
+    }
+
+    .people-modal.is-open {
+        display: flex;
+    }
+
+    .people-modal__tabs {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 40px;
+        background: #FAFBFC;
+    }
+
+    .people-tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        flex: 1 1 0;
+        height: 39px;
+        border: 0;
+        background: transparent;
+        font-size: 13px;
+        line-height: 16px;
+        color: #8A93A6;
+    }
+
+    .people-tab.is-active {
+        background: #FFFFFF;
+        color: #1D4ED8;
+    }
+
+    .people-tab__badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 17.84px;
+        height: 14px;
+        background: #E9EBEC;
+        border-radius: 8px;
+        font-size: 10.5px;
+        line-height: 13px;
+        color: #4A5468;
+    }
+
+    .people-tab.is-active .people-tab__badge {
+        background: #1D4ED8;
+        color: #FFFFFF;
+    }
+
+    .people-modal__search {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        width: 100%;
+        height: 38px;
+    }
+
+    .people-modal__search i {
+        font-size: 14px;
+        color: #8A93A6;
+    }
+
+    .people-modal__search input {
+        border: 0;
+        outline: 0;
+        background: transparent;
+        width: 100%;
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+    }
+
+    .people-modal__search input::placeholder {
+        color: #757575;
+    }
+
+    .people-modal__all {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        padding: 0 12px;
+        width: 100%;
+        height: 36px;
+        background: #FFFFFF;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #4A5468;
+    }
+
+    .people-check {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 17px;
+        height: 17px;
+        flex: none;
+        margin: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        background: #FFFFFF;
+        border: 1px solid #D3DAE6;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .people-check:checked {
+        background: #1D4ED8;
+        border-color: #1D4ED8;
+    }
+
+    .people-check:checked::after {
+        content: "\F26E";
+        font-family: "bootstrap-icons";
+        font-size: 11px;
+        color: #FFFFFF;
+        line-height: 1;
+    }
+
+    .people-modal__list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        max-height: 183px;
+        overflow-y: auto;
+    }
+
+    .people-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        padding: 0 12px;
+        width: 100%;
+        height: 46px;
+        flex: none;
+    }
+
+    .people-row:hover {
+        background: rgba(233, 235, 236, 0.5);
+    }
+
+    .avatar--26 {
+        width: 26px;
+        height: 26px;
+        border-radius: 13px;
+        font-size: 10px;
+        line-height: 11px;
+    }
+
+    .people-row__body {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .people-row__name {
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #161B22;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .people-row__sub {
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    .people-modal__foot {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 12px;
+        width: 100%;
+        height: 49px;
+        background: #FAFBFC;
+        border-top: 1px solid #F0F1F5;
+    }
+
+    .people-modal__count {
+        font-size: 12px;
+        line-height: 15px;
+        color: #8A93A6;
+    }
+
+    .people-modal__add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 12px;
+        height: 28px;
+        border: 0;
+        background: #1D4ED8;
+        border-radius: 8px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #FFFFFF;
+    }
+
+    /* ------------------------------------------------- files / settings panels */
+    .side-tabs {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px 16px 0;
+        gap: 14px;
+        width: 100%;
+        border-bottom: 1px solid #E9EBEC;
+    }
+
+    .side-tab {
+        border: 0;
+        background: transparent;
+        padding: 0 0 8px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #878A99;
+        border-bottom: 2px solid transparent;
+    }
+
+    .side-tab.is-active {
+        color: #1D4ED8;
+        border-bottom-color: #1D4ED8;
+    }
+
+    .file-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 10px;
+        width: 100%;
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+
+    .file-list__label {
+        width: 100%;
+        padding: 10px 6px 4px;
+        font-size: 10.5px;
+        line-height: 13px;
+        letter-spacing: 0.525px;
+        text-transform: uppercase;
+        color: #878A99;
+    }
+
+    .file-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 8px 6px;
+        gap: 10px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        border-radius: 6px;
+        text-align: left;
+    }
+
+    .file-row:hover {
+        background: #F5F6FA;
+    }
+
+    .file-row__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        background: #EAF3FF;
+        border-radius: 8px;
+        color: #1D4ED8;
+        font-size: 15px;
+    }
+
+    .file-row__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .file-row__name {
+        width: 100%;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #212529;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .file-row__meta {
+        font-size: 11px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    .file-row__dl {
+        flex: none;
+        color: #878A99;
+        font-size: 15px;
+    }
+
+    .settings-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 10px 8px;
+        width: 100%;
+        flex: 1 1 auto;
+        overflow-y: auto;
+    }
+
+    .settings-row {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 8px 10px;
+        gap: 10px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        border-radius: 6px;
+        text-align: left;
+    }
+
+    .settings-row:hover {
+        background: #F5F6FA;
+    }
+
+    .settings-row > i {
+        flex: none;
+        padding-top: 2px;
+        font-size: 15px;
+        color: #495057;
+    }
+
+    .settings-row__title {
+        font-size: 15px;
+        line-height: 19px;
+        color: #212529;
+    }
+
+    .settings-row__sub {
+        font-size: 11.5px;
+        line-height: 16px;
+        color: #878A99;
+    }
+
+    .settings-row--danger > i,
+    .settings-row--danger .settings-row__title {
+        color: #E0431F;
+    }
+
+    .settings-divider {
+        width: 275px;
+        height: 1px;
+        flex: none;
+        margin: 6px 0;
+        background: #E9EBEC;
+    }
+
+    /* ---------------------------------------------------------- modal shell */
+    .zx-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(24, 24, 40, .2);
+        z-index: 1050;
+    }
+
+    .zx-backdrop.is-open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .zx-modal {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        gap: 4px;
+        width: 460px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        background: #FFFFFF;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+        border-radius: 8px;
+    }
+
+    .zx-modal__title {
+        width: 100%;
+        padding-bottom: 1px;
+        font-size: 20px;
+        line-height: 25px;
+        color: #212529;
+    }
+
+    .zx-modal__sub {
+        width: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        color: #878A99;
+    }
+
+    .zx-modal__label {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 8px 0 4px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+    }
+
+    .zx-modal__label span {
+        color: #E0431F;
+    }
+
+    .zx-modal__foot {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 16px 0 0;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .zx-btn {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 9px 18px;
+        height: 38px;
+        background: #FFFFFF;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+    }
+
+    .zx-btn--primary {
+        background: #1D4ED8;
+        border-color: #1D4ED8;
+        color: #FFFFFF;
+    }
+
+    .zx-btn--danger {
+        background: #E0431F;
+        border-color: #E0431F;
+        color: #FFFFFF;
+    }
+
+    .zx-btn--primary:disabled,
+    .zx-btn--danger:disabled {
+        background: rgba(29, 78, 216, .15);
+        border-color: transparent;
+        color: #FFFFFF;
+    }
+
+    /* ------------------------------------------------- forward message modal */
+    .fwd-chips {
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 4px 12px;
+        gap: 8px;
+        width: 100%;
+        min-height: 38px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        color: #878A99;
+    }
+
+    .fwd-chip {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px 5px 6px;
+        gap: 6px;
+        height: 28px;
+        background: #ECECFB;
+        border-radius: 16px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #1D4ED8;
+    }
+
+    .fwd-chip__dot {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        background: rgba(29, 78, 216, .2);
+        border-radius: 9px;
+    }
+
+    .fwd-chip__x {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        line-height: 1;
+        color: #1D4ED8;
+        font-size: 12px;
+    }
+
+    .fwd-chips input {
+        border: 0;
+        outline: 0;
+        flex: 1 1 90px;
+        min-width: 90px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+        background: transparent;
+    }
+
+    .fwd-note {
+        box-sizing: border-box;
+        width: 100%;
+        height: 32px;
+        padding: 0 14px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #212529;
+        outline: 0;
+    }
+
+    .fwd-preview {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 11px 13px;
+        gap: 5px;
+        width: 100%;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+    }
+
+    .fwd-preview__head {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        font-size: 13px;
+        line-height: 16px;
+        color: #495057;
+    }
+
+    .fwd-preview__head time {
+        color: #878A99;
+    }
+
+    .fwd-preview__body {
+        width: 100%;
+        padding-bottom: 19.5px;
+        font-size: 13px;
+        line-height: 20px;
+        color: #212529;
+    }
+
+    /* -------------------------------------------------------- rename modal */
+    .rn-input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 36px;
+        padding: 0 12px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #212529;
+        outline: 0;
+    }
+
+    .rn-input.is-invalid {
+        border-color: #E0431F;
+    }
+
+    .rn-hintrow {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2px;
+        width: 100%;
+    }
+
+    .rn-error {
+        display: none;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        line-height: 15px;
+        color: #E0431F;
+    }
+
+    .rn-error.is-shown {
+        display: flex;
+    }
+
+    .rn-counter {
+        font-size: 11px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    /* --------------------------------------------------- delete group modal */
+    .del-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 44px;
+        height: 44px;
+        background: #FBE4DD;
+        border-radius: 22px;
+        color: #E0431F;
+        font-size: 22px;
+    }
+
+    .del-stats {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 10px 12px;
+        gap: 18px;
+        width: 100%;
+        background: #E9EBEC;
+        border-radius: 6px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #212529;
+    }
+
+    .del-confirm {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        padding: 11px 4px;
+        width: 100%;
+        font-size: 13px;
+        line-height: 16px;
+        color: #495057;
+    }
+
+    .del-confirm input {
+        flex: none;
+        margin-top: 2px;
+        width: 13px;
+        height: 13px;
+        accent-color: #E0431F;
+    }
+
+    /* --------------------------------------------------------- image viewer */
+    .img-view {
+        display: none;
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        background: #F5F6FD;
+        z-index: 1060;
+    }
+
+    .img-view.is-open {
+        display: flex;
+    }
+
+    .img-view__bar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 14px 40px;
+        height: 65px;
+        flex: none;
+        background: #F9F9F9;
+    }
+
+    .img-view__name {
+        font-size: 14px;
+        line-height: 18px;
+        color: #212529;
+    }
+
+    .img-view__sub {
+        font-size: 12px;
+        line-height: 15px;
+        color: #212529;
+    }
+
+    .img-view__tools {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .img-view__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        height: 32px;
+        border: 0;
+        background: #EAF3FF;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #1D4ED8;
+    }
+
+    .img-view__btn--plain {
+        background: transparent;
+    }
+
+    .img-view__stage {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+        padding: 40px 77px;
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+
+    .img-view__nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 43px;
+        height: 43px;
+        border: 0;
+        background: #E9EBEC;
+        border-radius: 22px;
+        color: #212529;
+        font-size: 16px;
+    }
+
+    .img-view__photo {
+        flex: 1 1 auto;
+        height: 100%;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #E0E0F7 0%, #CFE0FB 55%, #F0F0FA 100%);
+    }
+
+    .img-view__foot {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 22px;
+        flex: none;
+    }
+
+    .img-view__zoom {
+        display: flex;
+        gap: 14px;
+    }
+
+    .img-view__zoom button {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        color: #212529;
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    .img-view__index {
+        font-size: 12px;
+        line-height: 15px;
+        color: #212529;
+    }
+
+    /* --------------------------------------------------------- compose modal */
+    .cmp-modal {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 30px;
+        gap: 17px;
+        width: 860px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        background: #FFFFFF;
+        box-shadow: 0 1px 1.5px rgba(22, 27, 34, .05), 0 24px 48px rgba(22, 27, 34, .14);
+        border-radius: 20px;
+    }
+
+    .cmp-head {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 15px 16px;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .cmp-head__title {
+        font-size: 22px;
+        line-height: 28px;
+        color: #161B22;
+    }
+
+    .cmp-head__sub {
+        font-size: 13px;
+        line-height: 16px;
+        color: #8A93A6;
+    }
+
+    .cmp-head__x {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 34px;
+        height: 34px;
+        border: 0;
+        background: #F5F6FA;
+        border-radius: 17px;
+        color: #4A5468;
+        font-size: 14px;
+    }
+
+    .cmp-field {
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        width: 100%;
+        min-height: 54px;
+        border: 1px solid #D3DAE6;
+        border-radius: 12px;
+    }
+
+    .cmp-field--single {
+        min-height: 44px;
+        padding: 0 17px;
+        flex-wrap: nowrap;
+    }
+
+    .cmp-field > i {
+        flex: none;
+        color: #8A93A6;
+        font-size: 16px;
+    }
+
+    .cmp-field input {
+        border: 0;
+        outline: 0;
+        flex: 1 1 140px;
+        min-width: 140px;
+        background: transparent;
+        font-size: 14.5px;
+        line-height: 18px;
+        color: #212529;
+    }
+
+    .cmp-field input::placeholder {
+        color: #8A93A6;
+    }
+
+    .cmp-chip {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px 0 7px;
+        height: 30px;
+        background: #EAF3FF;
+        border: 1px solid #CFE0FB;
+        border-radius: 16px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #161B22;
+    }
+
+    .cmp-chip .avatar {
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
+
+    .cmp-chip__x {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        line-height: 1;
+        color: #878A99;
+        font-size: 13px;
+    }
+
+    .cmp-browse {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 32px;
+        height: 32px;
+        margin-left: auto;
+        background: #FFFFFF;
+        border: 1px solid #1D4ED8;
+        border-radius: 16px;
+        color: #1D4ED8;
+        font-size: 14px;
+    }
+
+    .cmp-hint {
+        width: 100%;
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #8A93A6;
+    }
+
+    .cmp-body {
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid #D3DAE6;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .cmp-body textarea {
+        display: block;
+        width: 100%;
+        height: 196px;
+        border: 0;
+        outline: 0;
+        resize: none;
+        padding: 16px;
+        font-family: inherit;
+        font-size: 14.5px;
+        line-height: 21px;
+        color: #212529;
+    }
+
+    .cmp-body textarea::placeholder {
+        color: #8A93A6;
+    }
+
+    .cmp-bodytools {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 16px;
+        height: 55px;
+        border-top: 1px solid #F0F1F5;
+    }
+
+    .cmp-pill {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 12px;
+        height: 32px;
+        border: 0;
+        background: #F5F6FA;
+        border-radius: 16px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #4A5468;
+    }
+
+    .cmp-pill.is-active {
+        background: #EAF3FF;
+        color: #1D4ED8;
+    }
+
+    .cmp-divider {
+        width: 1px;
+        height: 22px;
+        flex: none;
+        background: #E9EBEC;
+    }
+
+    .cmp-foot {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding: 10px 0;
+        width: 100%;
+        border-top: 1px solid #F0F1F5;
+    }
+
+    .cmp-foot__right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cmp-btn {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 0 18px;
+        height: 40px;
+        background: #FFFFFF;
+        border: 1px solid #D3DAE6;
+        border-radius: 10px;
+        font-size: 14px;
+        line-height: 18px;
+        color: #4A5468;
+    }
+
+    .cmp-btn--dashed {
+        border-style: dashed;
+    }
+
+    .cmp-send {
+        display: flex;
+    }
+
+    .cmp-send button {
+        border: 0;
+        background: #1D4ED8;
+        color: #FFFFFF;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .cmp-send__main {
+        padding: 0 20px;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .cmp-send__caret {
+        width: 39px;
+        border-left: 1px solid rgba(255, 255, 255, .25) !important;
+        border-radius: 0 10px 10px 0;
+    }
+
+    /* ---------------------------------------------------- use template popover */
+    .tpl-pop {
+        display: none;
+        position: absolute;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 10px;
+        width: 308px;
+        background: #FFFFFF;
+        box-shadow: 0 1px 1.5px rgba(22, 27, 34, .05), 0 14px 28px rgba(22, 27, 34, .16);
+        border-radius: 12px;
+        z-index: 1070;
+    }
+
+    .tpl-pop.is-open {
+        display: flex;
+    }
+
+    .tpl-pop__label {
+        width: 100%;
+        font-size: 12px;
+        line-height: 15px;
+        color: #878A99;
+    }
+
+    .tpl-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-align: left;
+    }
+
+    .tpl-row__body {
+        font-size: 13px;
+        line-height: 16px;
+        color: #161B22;
+    }
+
+    .tpl-row__body em {
+        display: block;
+        font-style: normal;
+        color: #878A99;
+    }
+
+    .tpl-row__use {
+        flex: none;
+        font-size: 13px;
+        line-height: 21px;
+        color: #1D4ED8;
+    }
+
     /* --------------------------------------------------------------- responsive */
     @@media (max-width: 991.98px) {
         .msg-layout {
@@ -978,6 +2788,15 @@ ViewData["User"] = "Admin";
         .msg-chat {
             width: 100%;
             height: 640px;
+        }
+
+        .members-panel {
+            width: 100%;
+        }
+
+        .people-modal {
+            width: calc(100vw - 32px);
+            max-width: 340px;
         }
     }
 </style>
@@ -1227,7 +3046,7 @@ ViewData["User"] = "Admin";
                             <i class="bi bi-search"></i>
                             <input type="search" placeholder="Search" aria-label="Search chats" id="chatListSearch">
                         </label>
-                        <a href="/messages/compose" class="msg-new-chat" title="New message">
+                        <a href="/messages/compose" class="msg-new-chat" title="New message" id="composeOpen">
                             <i class="bi bi-pencil"></i>
                         </a>
                     </div>
@@ -1386,7 +3205,7 @@ ViewData["User"] = "Admin";
                             <span class="chat-head__name">HR Team</span>
                             <span class="chat-head__members">12 members</span>
                         </div>
-                        <button type="button" class="icon-chip" title="Rename group">
+                        <button type="button" class="icon-chip" title="Rename group" id="renameOpen">
                             <i class="bi bi-pencil"></i>
                         </button>
                     </div>
@@ -1396,9 +3215,11 @@ ViewData["User"] = "Admin";
                             <input type="search" placeholder="Search Conversation" aria-label="Search conversation">
                         </label>
                         <div class="chat-head__actions">
-                            <button type="button" title="Files"><i class="bi bi-paperclip"></i></button>
-                            <button type="button" title="People"><i class="bi bi-people"></i></button>
-                            <button type="button" title="Settings"><i class="bi bi-gear"></i></button>
+                            <button type="button" title="Files" id="filesToggle"><i
+                                    class="bi bi-paperclip"></i></button>
+                            <button type="button" title="People" id="peopleToggle"><i class="bi bi-people"></i></button>
+                            <button type="button" title="Settings" id="settingsToggle"><i
+                                    class="bi bi-gear"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1532,27 +3353,531 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
                     </div>
+
+                    <!-- forwarded message with quote -->
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble" style="width:540px;">
+                                <span class="bubble__forwarded">
+                                    <i class="bi bi-arrow-return-right"></i> Forwarded
+                                </span>
+                                <div class="quote">
+                                    <div class="quote__head">
+                                        <span class="quote__author">Anthealyn Ranin</span>
+                                        <span class="quote__time">07/16/2026 1:45 PM</span>
+                                    </div>
+                                    <span class="quote__text">Please make sure to add the review meeting on
+                                        everyone's calendar — Bruce wants full attendance this time.</span>
+                                </div>
+                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this
+                                    Thursday at 10 AM.</span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 25
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <!-- reply quoting a file -->
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble" style="width:273px;">
+                                <div class="quote quote--soft">
+                                    <div class="quote__head">
+                                        <span class="quote__author">Anthealyn Ranin</span>
+                                        <span class="quote__time">07/16/2026 1:45 PM</span>
+                                    </div>
+                                    <div class="quote-file">
+                                        <span class="quote-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                                        <span class="quote-file__name">Invoice Template.pdf</span>
+                                    </div>
+                                </div>
+                                <span class="bubble__text">This is good.</span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <!-- outgoing reply with quote on blue -->
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:421px;">
+                                <div class="quote quote--onblue">
+                                    <div class="quote__head">
+                                        <span class="quote__author">Ana</span>
+                                        <span class="quote__time">07/16/2026 1:45 PM</span>
+                                    </div>
+                                    <span class="quote__text">Please make sure to add the review meeting on
+                                        everyone's calendar — Bruce wants full attendance this time.</span>
+                                </div>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
+                                    too?</span>
+                                <span class="bubble__meta">9:05 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- incoming image attachment -->
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble" style="width:312px;">
+                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me
+                                    know what you think!</span>
+                                <span class="attach-image">
+                                    <i class="bi bi-image"></i>
+                                    <button type="button" class="attach-dl" title="Download image">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <!-- incoming file attachment -->
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Ana</span>
+                            <div class="bubble" style="width:301px;">
+                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me
+                                    know what you think!</span>
+                                <span class="attach-file">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Campaign_Review.pdf</span>
+                                        <span class="attach-file__meta">2.4 MB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">9:02 AM</span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <!-- outgoing file attachment -->
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:300px;">
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
+                                    too?</span>
+                                <span class="attach-file attach-file--onblue">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Campaign_Review.pdf</span>
+                                        <span class="attach-file__meta">2.4 MB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">9:05 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- outgoing multi-image grid -->
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:421px;">
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
+                                    too?</span>
+                                <span class="attach-grid">
+                                    <button type="button" class="attach-dl-all">
+                                        <i class="bi bi-download"></i> Download all
+                                    </button>
+                                    <span class="attach-grid__cell"><i class="bi bi-image"></i></span>
+                                    <span class="attach-grid__cell"><i class="bi bi-image"></i></span>
+                                    <span class="attach-grid__cell"><i class="bi bi-image"></i></span>
+                                    <span class="attach-grid__cell">
+                                        <i class="bi bi-image"></i>
+                                        <span class="attach-grid__more">+3</span>
+                                    </span>
+                                </span>
+                                <span class="bubble__meta">9:05 AM <i class="bi bi-check2"></i></span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="chat-composer">
-                    <div class="composer-tools">
-                        <button type="button" class="composer-tool" title="Attach file">
-                            <i class="bi bi-paperclip"></i>
-                        </button>
-                        <button type="button" class="composer-tool" title="Voice message">
-                            <i class="bi bi-mic"></i>
-                        </button>
-                        <span class="composer-divider"></span>
-                        <button type="button" class="composer-tool" title="Use Template">
-                            <i class="bi bi-layout-text-window"></i>
+                <div class="attach-tray" id="attachTray">
+                    <div class="attach-tray__row">
+                        <div class="attach-card">
+                            <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                            <span class="attach-file__body">
+                                <span class="attach-card__name">Campaign_Review_De...</span>
+                                <span class="attach-card__size">2.4 MB</span>
+                            </span>
+                            <button type="button" class="attach-card__x" aria-label="Remove attachment">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                        <div class="attach-card">
+                            <span class="attach-file__thumb"><i class="bi bi-file-earmark-image"></i></span>
+                            <span class="attach-file__body">
+                                <span class="attach-card__name">Company Outing Phot...</span>
+                                <span class="attach-card__size">2.4 MB</span>
+                            </span>
+                            <button type="button" class="attach-card__x" aria-label="Remove attachment">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                        <div class="attach-card">
+                            <span class="attach-file__thumb"><i class="bi bi-play-btn"></i></span>
+                            <span class="attach-file__body">
+                                <span class="attach-card__name">Presentation Video.mov</span>
+                                <span class="attach-card__size">2.4 MB</span>
+                            </span>
+                            <button type="button" class="attach-card__x" aria-label="Remove attachment">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="attach-progress">
+                        <div class="attach-progress__bar"></div>
+                    </div>
+                    <div class="attach-tray__note">
+                        <i class="bi bi-clock"></i>
+                        <span id="attachCount">3 files attached</span> · Attachments will expire in 14 days
+                    </div>
+                </div>
+
+                <div class="chat-composer" id="chatComposer">
+                    <div class="reply-bar" id="replyBar">
+                        <div class="reply-bar__head">
+                            <span class="reply-bar__label">
+                                <i class="bi bi-reply"></i>
+                                Replying to <span id="replyName">Ana</span>
+                            </span>
+                            <button type="button" class="reply-bar__close" id="replyClose" aria-label="Cancel reply">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                        <span class="reply-bar__text" id="replyText">Hey team, quick heads up — we've got a project
+                            review this Thursday at 10 AM.</span>
+                    </div>
+
+                    <div class="composer-main">
+                        <div class="composer-tools">
+                            <button type="button" class="composer-tool" title="Attach file" id="attachToggle">
+                                <i class="bi bi-paperclip"></i>
+                            </button>
+                            <button type="button" class="composer-tool" title="Voice message">
+                                <i class="bi bi-mic"></i>
+                            </button>
+                            <span class="composer-divider"></span>
+                            <button type="button" class="composer-tool" title="Use Template">
+                                <i class="bi bi-layout-text-window"></i>
+                            </button>
+                        </div>
+                        <textarea class="composer-input" id="composerInput" rows="1"
+                            placeholder="Enter your message"></textarea>
+                        <button type="button" class="composer-send" id="composerSend" title="Send">
+                            <i class="bi bi-send-fill"></i>
                         </button>
                     </div>
-                    <textarea class="composer-input" id="composerInput" rows="1"
-                        placeholder="Enter your message"></textarea>
-                    <button type="button" class="composer-send" id="composerSend" title="Send">
-                        <i class="bi bi-send-fill"></i>
-                    </button>
                 </div>
+
+                <!-- ================================================== members panel -->
+                <aside class="members-panel" id="membersPanel">
+                    <div class="members-panel__head">
+                        <button type="button" id="membersBack" aria-label="Back">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <span class="members-panel__title">HR Team</span>
+                        <span class="members-panel__count">12</span>
+                        <button type="button" id="membersClose" aria-label="Close panel">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="members-panel__search">
+                        <label>
+                            <i class="bi bi-search"></i>
+                            <input type="search" placeholder="Search members" id="memberSearch">
+                        </label>
+                    </div>
+
+                    <div class="members-panel__addwrap">
+                        <button type="button" class="members-row" id="addPeopleBtn">
+                            <i class="bi bi-person-plus"></i>
+                            Add People
+                        </button>
+                    </div>
+
+                    <div class="members-panel__label">Members</div>
+
+                    <div class="members-panel__list" id="memberList">
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#FFB199;">BB</span>
+                            <span class="member-item__name">Bruce Banner
+                                <span class="member-item__role">(Admin)</span></span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#FFD59E;">CB</span>
+                            <span class="member-item__name">Clint Barton</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#B8E0D2;">NR</span>
+                            <span class="member-item__name">Natasha Romanoff</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#B7C9F2;">PP</span>
+                            <span class="member-item__name">Peter Parker</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#E3B7F2;">SR</span>
+                            <span class="member-item__name">Steve Rogers</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#F2B7D6;">WM</span>
+                            <span class="member-item__name">Wanda Maximoff</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#C9E4B7;">SW</span>
+                            <span class="member-item__name">Sam Wilson</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#B7E3F2;">CD</span>
+                            <span class="member-item__name">Carol Danvers</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#F2D3B7;">TU</span>
+                            <span class="member-item__name">T'Challa Udaku</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#D6B7F2;">SL</span>
+                            <span class="member-item__name">Scott Lang</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#F2C9B7;">SS</span>
+                            <span class="member-item__name">Stephen Strange</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                        <div class="member-item">
+                            <span class="avatar avatar--md" style="background:#FFB199;">MR</span>
+                            <span class="member-item__name">Maria Reyes</span>
+                            <button type="button" class="member-item__kebab"><i
+                                    class="bi bi-three-dots-vertical"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="members-panel__foot">
+                        <button type="button" class="members-row members-row--danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                            Leave Group
+                        </button>
+                        <button type="button" class="members-row members-row--danger" id="deleteGroupOpen">
+                            <i class="bi bi-trash"></i>
+                            Delete Group
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- ------------------------------------------------------ files panel -->
+                <aside class="members-panel" id="filesPanel">
+                    <div class="members-panel__head">
+                        <i class="bi bi-paperclip" style="font-size:16px;color:#212529;"></i>
+                        <span class="members-panel__title">Files</span>
+                        <button type="button" data-side-close aria-label="Close panel">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="members-panel__search">
+                        <label>
+                            <i class="bi bi-search"></i>
+                            <input type="search" placeholder="Search files" id="fileSearch">
+                        </label>
+                    </div>
+
+                    <div class="side-tabs">
+                        <button type="button" class="side-tab is-active" data-file-tab="all">All</button>
+                        <button type="button" class="side-tab" data-file-tab="docs">Docs</button>
+                        <button type="button" class="side-tab" data-file-tab="photos">Photos</button>
+                        <button type="button" class="side-tab" data-file-tab="links">Links</button>
+                    </div>
+
+                    <div class="file-list" id="fileList">
+                        <div class="file-list__label">Today</div>
+                        <button type="button" class="file-row" data-kind="docs">
+                            <span class="file-row__icon"><i class="bi bi-file-earmark-text"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">Invoice Template.pdf</span>
+                                <span class="file-row__meta">212.1 KB · Minmin · 2:26 PM</span>
+                            </span>
+                            <i class="bi bi-download file-row__dl"></i>
+                        </button>
+                        <button type="button" class="file-row" data-kind="photos" data-open-image="1">
+                            <span class="file-row__icon"><i class="bi bi-image"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">Team Outing Photo.jpg</span>
+                                <span class="file-row__meta">212.1 KB · Minmin · 2:26 PM</span>
+                            </span>
+                            <i class="bi bi-download file-row__dl"></i>
+                        </button>
+
+                        <div class="file-list__label">Yesterday</div>
+                        <button type="button" class="file-row" data-kind="docs">
+                            <span class="file-row__icon"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">Budget Breakdown.xlsx</span>
+                                <span class="file-row__meta">96.2 KB · You · 3:10 PM</span>
+                            </span>
+                            <i class="bi bi-download file-row__dl"></i>
+                        </button>
+                        <button type="button" class="file-row" data-kind="docs">
+                            <span class="file-row__icon"><i class="bi bi-file-earmark-slides"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">Marketing Deck.pptx</span>
+                                <span class="file-row__meta">96.2 KB · You · 3:10 PM</span>
+                            </span>
+                            <i class="bi bi-download file-row__dl"></i>
+                        </button>
+
+                        <div class="file-list__label">Wed, Jul 8</div>
+                        <button type="button" class="file-row" data-kind="photos">
+                            <span class="file-row__icon"><i class="bi bi-play-btn"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">Presentation Video.mov</span>
+                                <span class="file-row__meta">58.9 KB · Minmin · 7:42 PM</span>
+                            </span>
+                            <i class="bi bi-download file-row__dl"></i>
+                        </button>
+                        <button type="button" class="file-row" data-kind="links">
+                            <span class="file-row__icon"><i class="bi bi-link-45deg"></i></span>
+                            <span class="file-row__body">
+                                <span class="file-row__name">ordertayo.com/pages</span>
+                                <span class="file-row__meta">Link · Clint Barton · 11:04 AM</span>
+                            </span>
+                            <i class="bi bi-box-arrow-up-right file-row__dl"></i>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- --------------------------------------------------- settings panel -->
+                <aside class="members-panel" id="settingsPanel">
+                    <div class="members-panel__head">
+                        <i class="bi bi-gear" style="font-size:16px;color:#212529;"></i>
+                        <span class="members-panel__title">Settings</span>
+                        <button type="button" data-side-close aria-label="Close panel">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="settings-list">
+                        <button type="button" class="settings-row">
+                            <i class="bi bi-search"></i>
+                            <span class="members-panel__addwrap" style="padding:0;gap:2px;">
+                                <span class="settings-row__title">Search in Conversation</span>
+                                <span class="settings-row__sub">Find messages, files, and links</span>
+                            </span>
+                        </button>
+                        <button type="button" class="settings-row">
+                            <i class="bi bi-download"></i>
+                            <span class="members-panel__addwrap" style="padding:0;gap:2px;">
+                                <span class="settings-row__title">Export Chat</span>
+                                <span class="settings-row__sub">Save as a PDF or plain text file</span>
+                            </span>
+                        </button>
+
+                        <span class="settings-divider"></span>
+
+                        <button type="button" class="settings-row settings-row--danger">
+                            <i class="bi bi-trash"></i>
+                            <span class="members-panel__addwrap" style="padding:0;gap:2px;">
+                                <span class="settings-row__title">Clear Messages</span>
+                                <span class="settings-row__sub">Deletes all messages for you only</span>
+                            </span>
+                        </button>
+                        <button type="button" class="settings-row settings-row--danger">
+                            <i class="bi bi-slash-circle"></i>
+                            <span class="members-panel__addwrap" style="padding:0;gap:2px;">
+                                <span class="settings-row__title">Block this User</span>
+                            </span>
+                        </button>
+                    </div>
+                </aside>
             </section>
         </div>
     </div>
@@ -1587,6 +3912,85 @@ ViewData["User"] = "Admin";
         everyone</button>
 </div>
 
+<!-- Add People modal (Users / Groups) -->
+<div class="people-modal" id="peopleModal">
+    <div class="people-modal__tabs">
+        <button type="button" class="people-tab is-active" data-people-tab="users">
+            <i class="bi bi-person"></i> Users
+            <span class="people-tab__badge" id="usersBadge">1</span>
+        </button>
+        <button type="button" class="people-tab" data-people-tab="groups">
+            <i class="bi bi-people"></i> Groups
+            <span class="people-tab__badge" id="groupsBadge">0</span>
+        </button>
+    </div>
+
+    <label class="people-modal__search">
+        <i class="bi bi-search"></i>
+        <input type="search" placeholder="Search to add" id="peopleSearch">
+    </label>
+
+    <label class="people-modal__all">
+        <input type="checkbox" class="people-check" id="peopleAll">
+        <span id="peopleAllLabel">Select all users</span>
+    </label>
+
+    <div class="people-modal__list" id="peopleListUsers">
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#FFD59E;">MR</span>
+            <span class="people-row__body"><span class="people-row__name">Maria Reyes</span></span>
+        </label>
+        <label class="people-row">
+            <input type="checkbox" class="people-check" checked>
+            <span class="avatar avatar--26" style="background:#FFB199;">CB</span>
+            <span class="people-row__body"><span class="people-row__name">Clint Barton</span></span>
+        </label>
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#B8E0D2;">NR</span>
+            <span class="people-row__body"><span class="people-row__name">Natasha Romanoff</span></span>
+        </label>
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#B7C9F2;">DT</span>
+            <span class="people-row__body"><span class="people-row__name">Design Team Lead</span></span>
+        </label>
+    </div>
+
+    <div class="people-modal__list" id="peopleListGroups" style="display:none;">
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#B7C9F2;">HR</span>
+            <span class="people-row__body">
+                <span class="people-row__name">HR Team</span>
+                <span class="people-row__sub">12 members</span>
+            </span>
+        </label>
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#FFD59E;">DT</span>
+            <span class="people-row__body">
+                <span class="people-row__name">Design Team</span>
+                <span class="people-row__sub">8 members</span>
+            </span>
+        </label>
+        <label class="people-row">
+            <input type="checkbox" class="people-check">
+            <span class="avatar avatar--26" style="background:#A8DAB5;">MK</span>
+            <span class="people-row__body">
+                <span class="people-row__name">Marketing</span>
+                <span class="people-row__sub">15 members</span>
+            </span>
+        </label>
+    </div>
+
+    <div class="people-modal__foot">
+        <span class="people-modal__count" id="peopleCount">1 selected</span>
+        <button type="button" class="people-modal__add" id="peopleAdd">Add selected</button>
+    </div>
+</div>
+
 <div class="react-list" id="reactList">
     <div class="react-list__head">
         <i class="bi bi-emoji-smile"></i>
@@ -1612,6 +4016,223 @@ ViewData["User"] = "Admin";
         <div class="react-list__row"><span class="avatar avatar--sm" style="background:#B7E3F2;">WM</span> Wanda
             Maximoff</div>
     </div>
+</div>
+
+<!-- ===================================================== forward message modal -->
+<div class="zx-backdrop" id="forwardModal">
+    <div class="zx-modal" role="dialog" aria-label="Forward this message">
+        <div class="zx-modal__title">Forward this message</div>
+        <div class="zx-modal__sub">You can forward to any chat or channel.</div>
+
+        <div class="zx-modal__label">Add recipients <span>*</span></div>
+        <div class="fwd-chips" id="fwdChips">
+            <i class="bi bi-search"></i>
+            <span class="fwd-chip">
+                <span class="fwd-chip__dot"></span>
+                HR Team
+                <button type="button" class="fwd-chip__x" aria-label="Remove"><i class="bi bi-x-lg"></i></button>
+            </span>
+            <input type="search" placeholder="Search chats or channels">
+        </div>
+
+        <div class="zx-modal__label">Message preview</div>
+        <input type="text" class="fwd-note" placeholder="Add a message (optional)">
+
+        <div class="fwd-preview" style="margin-top:8px;">
+            <div class="fwd-preview__head">
+                <i class="bi bi-chat-square-text"></i>
+                <span>Maricris Ramos</span>
+                <time>07/16/2026 1:45 PM</time>
+            </div>
+            <div class="fwd-preview__body" id="fwdPreviewText">Hey Team, Quick heads up – we've got a team meeting next
+                week. It's happening on Wednesday, March 20th at 10:00 AM in the conference room. Everyone should be
+                there because we need to discuss things about our on going project. See you!</div>
+            <div class="quote-file" id="fwdPreviewFile" style="display:none;">
+                <span class="quote-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                <span class="quote-file__name">Invoice Template.pdf</span>
+            </div>
+        </div>
+
+        <div class="zx-modal__foot">
+            <button type="button" class="zx-btn" data-zx-close>Cancel</button>
+            <button type="button" class="zx-btn zx-btn--primary" id="fwdSubmit">Forward to 1 chat</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================= rename modal -->
+<div class="zx-backdrop" id="renameModal">
+    <div class="zx-modal" role="dialog" aria-label="Rename group" style="width:440px;">
+        <div class="zx-modal__title">Rename group</div>
+        <div class="zx-modal__sub" style="padding-bottom:14px;">Currently named "HR Team". Members will see this change
+            in the conversation.</div>
+
+        <input type="text" class="rn-input" id="renameInput" maxlength="50" value="HR Team">
+
+        <div class="rn-hintrow">
+            <span class="rn-error" id="renameError">
+                <i class="bi bi-exclamation-circle"></i>
+                Group name can't be empty.
+            </span>
+            <span class="rn-counter" id="renameCounter">7/50</span>
+        </div>
+
+        <div class="zx-modal__foot">
+            <button type="button" class="zx-btn" data-zx-close>Cancel</button>
+            <button type="button" class="zx-btn zx-btn--primary" id="renameSave">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================================= delete group modal -->
+<div class="zx-backdrop" id="deleteModal">
+    <div class="zx-modal" role="dialog" aria-label="Delete group" style="width:420px;">
+        <span class="del-icon"><i class="bi bi-exclamation-circle"></i></span>
+
+        <div class="zx-modal__title" style="padding-top:10px;">Delete "HR Team"?</div>
+        <div class="zx-modal__sub" style="padding-bottom:14px;">This removes the group for everyone and permanently
+            deletes all messages, files, and history. This can't be undone.</div>
+
+        <div class="del-stats">
+            <span>12 members</span>
+            <span>1,204 messages</span>
+            <span>47 files</span>
+        </div>
+
+        <label class="del-confirm">
+            <input type="checkbox" id="deleteConfirm">
+            I understand this will permanently delete the group for all 12 members.
+        </label>
+
+        <div class="zx-modal__foot">
+            <button type="button" class="zx-btn" data-zx-close>Cancel</button>
+            <button type="button" class="zx-btn zx-btn--danger" id="deleteSubmit" disabled>
+                <i class="bi bi-trash"></i> Delete Group
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================= image viewer -->
+<div class="img-view" id="imageViewer">
+    <div class="img-view__bar">
+        <div class="d-flex flex-column">
+            <span class="img-view__name">Team Outing Photo.jpg</span>
+            <span class="img-view__sub">Minmin · 212.1 KB · Today 2:26 PM</span>
+        </div>
+        <div class="img-view__tools">
+            <button type="button" class="img-view__btn"><i class="bi bi-download"></i> Download</button>
+            <button type="button" class="img-view__btn"><i class="bi bi-share"></i> Share</button>
+            <button type="button" class="img-view__btn"><i class="bi bi-trash"></i> Delete</button>
+            <button type="button" class="img-view__btn">Show</button>
+            <button type="button" class="img-view__btn img-view__btn--plain" id="imageClose">
+                <i class="bi bi-x-lg"></i> Close
+            </button>
+        </div>
+    </div>
+
+    <div class="img-view__stage">
+        <button type="button" class="img-view__nav" data-image-step="-1" aria-label="Previous">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <div class="img-view__photo" id="imageStage"></div>
+        <button type="button" class="img-view__nav" data-image-step="1" aria-label="Next">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+
+    <div class="img-view__foot">
+        <div class="img-view__zoom">
+            <button type="button" data-image-zoom="out" aria-label="Zoom out"><i
+                    class="bi bi-zoom-out"></i></button>
+            <button type="button" data-image-zoom="in" aria-label="Zoom in"><i class="bi bi-zoom-in"></i></button>
+        </div>
+        <span class="img-view__index" id="imageIndex">1 / 8</span>
+    </div>
+</div>
+
+<!-- =========================================================== compose modal -->
+<div class="zx-backdrop" id="composeModal">
+    <div class="cmp-modal" role="dialog" aria-label="New message">
+        <div class="cmp-head">
+            <div class="d-flex flex-column">
+                <span class="cmp-head__title">New message</span>
+                <span class="cmp-head__sub">Send to individual users, groups, or both</span>
+            </div>
+            <button type="button" class="cmp-head__x" data-zx-close aria-label="Close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="cmp-field" id="cmpRecipients">
+            <span class="cmp-chip">
+                <span class="avatar" style="background:#B7C9F2;">CB</span>
+                Clint Barton
+                <button type="button" class="cmp-chip__x" aria-label="Remove">&times;</button>
+            </span>
+            <input type="text" placeholder="Add people or groups…">
+            <button type="button" class="cmp-browse" aria-label="Browse users and groups">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+        </div>
+
+        <div class="cmp-hint">Type a name to see live suggestions, or tap + to browse Users / Groups with
+            multi-select.</div>
+
+        <div class="cmp-field cmp-field--single">
+            <i class="bi bi-card-heading"></i>
+            <input type="text" placeholder="Enter subject">
+        </div>
+
+        <div class="cmp-body">
+            <textarea id="cmpMessage" placeholder="Write a message (optional)"></textarea>
+            <div class="cmp-bodytools">
+                <button type="button" class="cmp-pill"><i class="bi bi-paperclip"></i> Attach</button>
+                <button type="button" class="cmp-pill"><i class="bi bi-mic"></i> Voice</button>
+                <span class="cmp-divider"></span>
+                <button type="button" class="cmp-pill" id="tplToggle"><i class="bi bi-file-earmark-text"></i> Use
+                    template</button>
+            </div>
+        </div>
+
+        <div class="cmp-foot">
+            <button type="button" class="cmp-btn" data-zx-close>Cancel</button>
+            <div class="cmp-foot__right">
+                <button type="button" class="cmp-btn cmp-btn--dashed"><i class="bi bi-clock"></i> Send later</button>
+                <div class="cmp-send">
+                    <button type="button" class="cmp-send__main"><i class="bi bi-send"></i> Send as Message</button>
+                    <button type="button" class="cmp-send__caret" aria-label="More send options">
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================================================= use template popover -->
+<div class="tpl-pop" id="tplPop">
+    <div class="tpl-pop__label">Your Templates</div>
+    <button type="button" class="tpl-row">
+        <span class="tpl-row__body">Meeting reminder<em>"Quick reminder about our meeting…"</em></span>
+        <span class="tpl-row__use">Use</span>
+    </button>
+    <button type="button" class="tpl-row">
+        <span class="tpl-row__body">Weekly stand-up<em>"Standup starts in 15 minutes…"</em></span>
+        <span class="tpl-row__use">Use</span>
+    </button>
+    <button type="button" class="tpl-row">
+        <span class="tpl-row__body">Project update<em>"Here's the latest status on…"</em></span>
+        <span class="tpl-row__use">Use</span>
+    </button>
+    <button type="button" class="tpl-row">
+        <span class="tpl-row__body">Onboarding note<em>"Welcome aboard! Here's what to expect…"</em></span>
+        <span class="tpl-row__use">Use</span>
+    </button>
+    <button type="button" class="tpl-row">
+        <span class="tpl-row__body">Deadline follow-up<em>"Following up on the deadline for…"</em></span>
+        <span class="tpl-row__use">Use</span>
+    </button>
 </div>
 
 @section Scripts {
@@ -1776,6 +4397,497 @@ ViewData["User"] = "Admin";
         composer && composer.addEventListener('input', () => {
             composer.style.height = '24px';
             composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
+        });
+
+        // ------------------------------------------------------- members panel
+        const membersPanel = document.getElementById('membersPanel');
+        const peopleToggle = document.getElementById('peopleToggle');
+        const closeMembers = () => membersPanel && membersPanel.classList.remove('is-open');
+
+        peopleToggle && peopleToggle.addEventListener('click', () => {
+            membersPanel.classList.toggle('is-open');
+        });
+        ['membersBack', 'membersClose'].forEach(id => {
+            const btn = document.getElementById(id);
+            btn && btn.addEventListener('click', closeMembers);
+        });
+
+        // Member search
+        const memberSearch = document.getElementById('memberSearch');
+        const memberList = document.getElementById('memberList');
+        memberSearch && memberSearch.addEventListener('input', () => {
+            const term = memberSearch.value.trim().toLowerCase();
+            memberList.querySelectorAll('.member-item').forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+            });
+        });
+
+        // ---------------------------------------------------- add people modal
+        const peopleModal = document.getElementById('peopleModal');
+        const addPeopleBtn = document.getElementById('addPeopleBtn');
+        const listUsers = document.getElementById('peopleListUsers');
+        const listGroups = document.getElementById('peopleListGroups');
+        const peopleAll = document.getElementById('peopleAll');
+        const peopleAllLabel = document.getElementById('peopleAllLabel');
+        const peopleCount = document.getElementById('peopleCount');
+        const peopleSearch = document.getElementById('peopleSearch');
+
+        const activeList = () => listGroups.style.display === 'none' ? listUsers : listGroups;
+
+        const refreshPeopleCount = () => {
+            const list = activeList();
+            const boxes = [...list.querySelectorAll('.people-check')];
+            const picked = boxes.filter(b => b.checked).length;
+            peopleCount.textContent = picked + ' selected';
+            peopleAll.checked = picked > 0 && picked === boxes.length;
+            document.getElementById('usersBadge').textContent =
+                listUsers.querySelectorAll('.people-check:checked').length;
+            document.getElementById('groupsBadge').textContent =
+                listGroups.querySelectorAll('.people-check:checked').length;
+        };
+
+        if (peopleModal && addPeopleBtn) {
+            addPeopleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const open = peopleModal.classList.toggle('is-open');
+                if (!open) return;
+                const rect = addPeopleBtn.getBoundingClientRect();
+                let top = rect.bottom + 6;
+                if (top + peopleModal.offsetHeight > window.innerHeight - 8) {
+                    top = Math.max(8, window.innerHeight - peopleModal.offsetHeight - 8);
+                }
+                peopleModal.style.top = top + 'px';
+                peopleModal.style.left =
+                    Math.max(8, rect.left - peopleModal.offsetWidth - 8) + 'px';
+                refreshPeopleCount();
+            });
+
+            document.querySelectorAll('[data-people-tab]').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.people-tab').forEach(t => t.classList.remove('is-active'));
+                    tab.classList.add('is-active');
+                    const users = tab.dataset.peopleTab === 'users';
+                    listUsers.style.display = users ? '' : 'none';
+                    listGroups.style.display = users ? 'none' : '';
+                    peopleAllLabel.textContent = users ? 'Select all users' : 'Select all groups';
+                    peopleSearch.value = '';
+                    activeList().querySelectorAll('.people-row').forEach(r => r.style.display = '');
+                    refreshPeopleCount();
+                });
+            });
+
+            peopleAll.addEventListener('change', () => {
+                activeList().querySelectorAll('.people-check')
+                    .forEach(b => b.checked = peopleAll.checked);
+                refreshPeopleCount();
+            });
+
+            peopleModal.addEventListener('change', (e) => {
+                if (e.target.classList.contains('people-check') && e.target !== peopleAll) {
+                    refreshPeopleCount();
+                }
+            });
+
+            peopleSearch.addEventListener('input', () => {
+                const term = peopleSearch.value.trim().toLowerCase();
+                activeList().querySelectorAll('.people-row').forEach(row => {
+                    row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+                });
+            });
+
+            document.getElementById('peopleAdd').addEventListener('click', () => {
+                peopleModal.classList.remove('is-open');
+            });
+
+            peopleModal.addEventListener('click', (e) => e.stopPropagation());
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#peopleModal') && !e.target.closest('#addPeopleBtn')) {
+                    peopleModal.classList.remove('is-open');
+                }
+            });
+            refreshPeopleCount();
+        }
+
+        // ----------------------------------------------------- reply composer bar
+        const replyBar = document.getElementById('replyBar');
+        const replyName = document.getElementById('replyName');
+        const replyText = document.getElementById('replyText');
+        const chatComposer = document.getElementById('chatComposer');
+
+        const syncComposerLayout = () => {
+            const stacked = replyBar.classList.contains('is-open');
+            chatComposer.classList.toggle('chat-composer--stacked', stacked);
+        };
+
+        const openReply = (row) => {
+            const author = row.querySelector('.msg-author');
+            const text = row.querySelector('.bubble__text');
+            replyName.textContent = author ? author.textContent.trim() : 'You';
+            replyText.textContent = text ? text.textContent.trim() : '';
+            replyBar.classList.add('is-open');
+            syncComposerLayout();
+            composer && composer.focus();
+        };
+
+        document.getElementById('replyClose').addEventListener('click', () => {
+            replyBar.classList.remove('is-open');
+            syncComposerLayout();
+        });
+
+        // "Reply" in either message menu quotes the message it was opened from
+        let menuSourceRow = null;
+        document.addEventListener('click', (e) => {
+            const trigger = e.target.closest('[data-menu]');
+            if (trigger) menuSourceRow = trigger.closest('.msg-row');
+        }, true);
+
+        ['theirMessageMenu', 'myMessageMenu'].forEach(id => {
+            const menu = document.getElementById(id);
+            menu && menu.addEventListener('click', (e) => {
+                const item = e.target.closest('.msg-menu__item');
+                if (!item) return;
+                if (item.textContent.trim().startsWith('Reply') && menuSourceRow) {
+                    openReply(menuSourceRow);
+                }
+                menu.classList.remove('is-open');
+            });
+        });
+
+        // ------------------------------------------------------- attachment tray
+        const attachTray = document.getElementById('attachTray');
+        const attachToggle = document.getElementById('attachToggle');
+        const attachCount = document.getElementById('attachCount');
+
+        const refreshAttachCount = () => {
+            const n = attachTray.querySelectorAll('.attach-card').length;
+            attachCount.textContent = n + (n === 1 ? ' file attached' : ' files attached');
+            if (!n) attachTray.classList.remove('is-open');
+        };
+
+        attachToggle && attachToggle.addEventListener('click', () => {
+            if (!attachTray.querySelectorAll('.attach-card').length) return;
+            attachTray.classList.toggle('is-open');
+        });
+
+        attachTray && attachTray.addEventListener('click', (e) => {
+            const x = e.target.closest('.attach-card__x');
+            if (!x) return;
+            x.closest('.attach-card').remove();
+            refreshAttachCount();
+        });
+
+        // Clear the reply bar after a message is sent
+        const clearReply = () => {
+            replyBar.classList.remove('is-open');
+            syncComposerLayout();
+        };
+        sendBtn && sendBtn.addEventListener('click', clearReply);
+        composer && composer.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) clearReply();
+        });
+
+        // ------------------------------------------- side panels (files/settings)
+        const sidePanels = ['membersPanel', 'filesPanel', 'settingsPanel']
+            .map(id => document.getElementById(id)).filter(Boolean);
+
+        const openSidePanel = (panel) => {
+            const wasOpen = panel.classList.contains('is-open');
+            sidePanels.forEach(p => p.classList.remove('is-open'));
+            panel.classList.toggle('is-open', !wasOpen);
+        };
+
+        // re-wire the People button so the three panels are mutually exclusive
+        if (peopleToggle && membersPanel) {
+            const fresh = peopleToggle.cloneNode(true);
+            peopleToggle.replaceWith(fresh);
+            fresh.addEventListener('click', () => openSidePanel(membersPanel));
+        }
+
+        [['filesToggle', 'filesPanel'], ['settingsToggle', 'settingsPanel']].forEach(([btnId, panelId]) => {
+            const btn = document.getElementById(btnId);
+            const panel = document.getElementById(panelId);
+            btn && panel && btn.addEventListener('click', () => openSidePanel(panel));
+        });
+
+        document.querySelectorAll('[data-side-close]').forEach(btn => {
+            btn.addEventListener('click', () => btn.closest('.members-panel').classList.remove('is-open'));
+        });
+
+        // Files panel: tabs + search
+        const fileList = document.getElementById('fileList');
+        const fileSearch = document.getElementById('fileSearch');
+
+        const filterFiles = () => {
+            const tab = document.querySelector('[data-file-tab].is-active');
+            const kind = tab ? tab.dataset.fileTab : 'all';
+            const term = fileSearch ? fileSearch.value.trim().toLowerCase() : '';
+            fileList.querySelectorAll('.file-row').forEach(row => {
+                const okKind = kind === 'all' || row.dataset.kind === kind;
+                const okTerm = !term || row.textContent.toLowerCase().includes(term);
+                row.style.display = okKind && okTerm ? '' : 'none';
+            });
+            fileList.querySelectorAll('.file-list__label').forEach(label => {
+                label.style.display = kind === 'all' && !term ? '' : 'none';
+            });
+        };
+
+        document.querySelectorAll('[data-file-tab]').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('[data-file-tab]').forEach(t => t.classList.remove('is-active'));
+                tab.classList.add('is-active');
+                filterFiles();
+            });
+        });
+        fileSearch && fileSearch.addEventListener('input', filterFiles);
+
+        // ------------------------------------------------------------ modal shell
+        const openModal = (id) => {
+            const modal = document.getElementById(id);
+            if (!modal) return null;
+            modal.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            return modal;
+        };
+        const closeModal = (modal) => {
+            modal.classList.remove('is-open');
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('.zx-backdrop').forEach(backdrop => {
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop || e.target.closest('[data-zx-close]')) closeModal(backdrop);
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            document.querySelectorAll('.zx-backdrop.is-open').forEach(closeModal);
+            const viewer = document.getElementById('imageViewer');
+            if (viewer && viewer.classList.contains('is-open')) {
+                viewer.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ----------------------------------------------- forward message modal
+        const fwdChips = document.getElementById('fwdChips');
+        const fwdSubmit = document.getElementById('fwdSubmit');
+        const fwdPreviewText = document.getElementById('fwdPreviewText');
+        const fwdPreviewFile = document.getElementById('fwdPreviewFile');
+
+        const refreshFwdCount = () => {
+            const n = fwdChips.querySelectorAll('.fwd-chip').length;
+            fwdSubmit.textContent = 'Forward to ' + n + (n === 1 ? ' chat' : ' chats');
+            fwdSubmit.disabled = n === 0;
+        };
+
+        fwdChips && fwdChips.addEventListener('click', (e) => {
+            const x = e.target.closest('.fwd-chip__x');
+            if (!x) return;
+            x.closest('.fwd-chip').remove();
+            refreshFwdCount();
+        });
+
+        const openForward = (row) => {
+            // mirror the source message (text and, if present, its attachment)
+            const text = row && row.querySelector('.bubble__text');
+            const author = row && row.querySelector('.msg-author');
+            const file = row && row.querySelector('.file-card__name, .quote-file__name');
+            if (text) fwdPreviewText.textContent = text.textContent.trim();
+            fwdPreviewText.style.display = text ? '' : 'none';
+            if (file) fwdPreviewFile.querySelector('.quote-file__name').textContent = file.textContent.trim();
+            fwdPreviewFile.style.display = file ? '' : 'none';
+            const head = document.querySelector('#forwardModal .fwd-preview__head span');
+            if (head && author) head.textContent = author.textContent.trim();
+            refreshFwdCount();
+            openModal('forwardModal');
+        };
+
+        fwdSubmit && fwdSubmit.addEventListener('click', () =>
+            closeModal(document.getElementById('forwardModal')));
+
+        // ------------------------------------------------------- rename modal
+        const renameInput = document.getElementById('renameInput');
+        const renameError = document.getElementById('renameError');
+        const renameCounter = document.getElementById('renameCounter');
+        const renameSave = document.getElementById('renameSave');
+
+        const validateRename = () => {
+            const value = renameInput.value.trim();
+            renameCounter.textContent = renameInput.value.length + '/50';
+            renameError.classList.toggle('is-shown', !value);
+            renameInput.classList.toggle('is-invalid', !value);
+            renameSave.disabled = !value;
+        };
+
+        renameInput && renameInput.addEventListener('input', validateRename);
+
+        document.getElementById('renameOpen').addEventListener('click', () => {
+            const current = document.querySelector('.chat-head__name').textContent.trim();
+            renameInput.value = current;
+            document.querySelector('#renameModal .zx-modal__sub').textContent =
+                'Currently named "' + current + '". Members will see this change in the conversation.';
+            validateRename();
+            openModal('renameModal');
+            renameInput.focus();
+            renameInput.select();
+        });
+
+        renameSave && renameSave.addEventListener('click', () => {
+            const value = renameInput.value.trim();
+            if (!value) return;
+            document.querySelector('.chat-head__name').textContent = value;
+            document.querySelector('.members-panel__title').textContent = value;
+            closeModal(document.getElementById('renameModal'));
+        });
+
+        // -------------------------------------------------- delete group modal
+        const deleteConfirm = document.getElementById('deleteConfirm');
+        const deleteSubmit = document.getElementById('deleteSubmit');
+
+        deleteConfirm && deleteConfirm.addEventListener('change', () => {
+            deleteSubmit.disabled = !deleteConfirm.checked;
+        });
+
+        const openDelete = () => {
+            const name = document.querySelector('.chat-head__name').textContent.trim();
+            document.querySelector('#deleteModal .zx-modal__title').textContent = 'Delete "' + name + '"?';
+            deleteConfirm.checked = false;
+            deleteSubmit.disabled = true;
+            openModal('deleteModal');
+        };
+
+        const deleteGroupOpen = document.getElementById('deleteGroupOpen');
+        deleteGroupOpen && deleteGroupOpen.addEventListener('click', openDelete);
+
+        deleteSubmit && deleteSubmit.addEventListener('click', () =>
+            closeModal(document.getElementById('deleteModal')));
+
+        // ------------------------------------------------------- image viewer
+        const viewer = document.getElementById('imageViewer');
+        const imageStage = document.getElementById('imageStage');
+        const imageIndex = document.getElementById('imageIndex');
+        const shots = [
+            'linear-gradient(135deg,#E0E0F7 0%,#CFE0FB 55%,#F0F0FA 100%)',
+            'linear-gradient(135deg,#FFD9BF 0%,#FFB199 100%)',
+            'linear-gradient(135deg,#B8E0D2 0%,#CFE0FB 100%)',
+            'linear-gradient(135deg,#F2B7D6 0%,#E3B7F2 100%)',
+            'linear-gradient(135deg,#FFD59E 0%,#FFB199 100%)',
+            'linear-gradient(135deg,#C9E4B7 0%,#B8E0D2 100%)',
+            'linear-gradient(135deg,#B7C9F2 0%,#EAF3FF 100%)',
+            'linear-gradient(135deg,#F2D3B7 0%,#FFD59E 100%)'
+        ];
+        let shotAt = 0;
+        let zoom = 1;
+
+        const paintShot = () => {
+            imageStage.style.background = shots[shotAt];
+            imageStage.style.transform = 'scale(' + zoom + ')';
+            imageIndex.textContent = (shotAt + 1) + ' / ' + shots.length;
+        };
+
+        const openViewer = (index) => {
+            shotAt = Math.max(0, Math.min(shots.length - 1, index || 0));
+            zoom = 1;
+            paintShot();
+            viewer.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        document.getElementById('imageClose').addEventListener('click', () => {
+            viewer.classList.remove('is-open');
+            document.body.style.overflow = '';
+        });
+
+        document.querySelectorAll('[data-image-step]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                shotAt = (shotAt + Number(btn.dataset.imageStep) + shots.length) % shots.length;
+                zoom = 1;
+                paintShot();
+            });
+        });
+
+        document.querySelectorAll('[data-image-zoom]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                zoom = btn.dataset.imageZoom === 'in'
+                    ? Math.min(2.5, zoom + 0.25)
+                    : Math.max(0.5, zoom - 0.25);
+                paintShot();
+            });
+        });
+
+        // any image bubble / photo row opens the viewer
+        document.addEventListener('click', (e) => {
+            const shot = e.target.closest('[data-open-image], .img-bubble, .img-grid__cell');
+            if (!shot || e.target.closest('.img-bubble__dl, .img-grid__all')) return;
+            const cells = [...document.querySelectorAll('.img-grid__cell')];
+            openViewer(cells.indexOf(shot) > -1 ? cells.indexOf(shot) : 0);
+        });
+
+        // ------------------------------------------------------- compose modal
+        const composeOpen = document.getElementById('composeOpen');
+        composeOpen && composeOpen.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal('composeModal');
+        });
+
+        const cmpRecipients = document.getElementById('cmpRecipients');
+        cmpRecipients && cmpRecipients.addEventListener('click', (e) => {
+            const x = e.target.closest('.cmp-chip__x');
+            if (x) x.closest('.cmp-chip').remove();
+        });
+
+        // --------------------------------------------------- use template popover
+        const tplPop = document.getElementById('tplPop');
+        const tplToggle = document.getElementById('tplToggle');
+        const cmpMessage = document.getElementById('cmpMessage');
+
+        tplToggle && tplToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = tplPop.classList.toggle('is-open');
+            tplToggle.classList.toggle('is-active', open);
+            if (!open) return;
+            const rect = tplToggle.getBoundingClientRect();
+            let top = rect.bottom + 8;
+            if (top + tplPop.offsetHeight > window.innerHeight - 8) {
+                top = Math.max(8, rect.top - tplPop.offsetHeight - 8);
+            }
+            tplPop.style.top = top + window.scrollY + 'px';
+            tplPop.style.left = Math.max(8, rect.left) + window.scrollX + 'px';
+        });
+
+        tplPop && tplPop.addEventListener('click', (e) => {
+            const row = e.target.closest('.tpl-row');
+            if (!row) return;
+            const quote = row.querySelector('em').textContent.replace(/^"|…"$/g, '');
+            cmpMessage.value = quote.replace(/^"|"$/g, '');
+            cmpMessage.focus();
+            tplPop.classList.remove('is-open');
+            tplToggle.classList.remove('is-active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (tplPop && !e.target.closest('#tplPop') && !e.target.closest('#tplToggle')) {
+                tplPop.classList.remove('is-open');
+                tplToggle && tplToggle.classList.remove('is-active');
+            }
+        });
+
+        // "Forward" in either message menu opens the forward modal
+        ['theirMessageMenu', 'myMessageMenu'].forEach(id => {
+            const menu = document.getElementById(id);
+            menu && menu.addEventListener('click', (e) => {
+                const item = e.target.closest('.msg-menu__item');
+                if (item && item.textContent.trim().startsWith('Forward')) openForward(menuSourceRow);
+            });
+        });
+
+        // "Delete chat" in the chat-list kebab asks for confirmation first
+        const chatItemMenu = document.getElementById('chatItemMenu');
+        chatItemMenu && chatItemMenu.addEventListener('click', (e) => {
+            const item = e.target.closest('.msg-menu__item--danger');
+            if (!item) return;
+            chatItemMenu.classList.remove('is-open');
+            openDelete();
         });
 
         if (stream) stream.scrollTop = stream.scrollHeight;

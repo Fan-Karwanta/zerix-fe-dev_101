@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
 /* Disable text selection for the entire document */
 * {
-  font-family: "Microsoft Sans Serif", sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-optical-sizing: auto;
+}
+
+/* Keep icon fonts intact so glyphs are not replaced by Plus Jakarta Sans */
+[class^="bi-"],
+[class*=" bi-"] {
+  font-family: "bootstrap-icons" !important;
 }
 
 html {

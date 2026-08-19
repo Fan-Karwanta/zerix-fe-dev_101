@@ -28,11 +28,11 @@ table th:first-child input[type="checkbox"]:checked {
 }
 
 input[type="search"]::placeholder {
-  font-family: "Microsoft Sans Serif", sans-serif !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
 input[type="text"]::placeholder {
-  font-family: "Microsoft Sans Serif", sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 table {
