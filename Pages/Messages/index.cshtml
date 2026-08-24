@@ -2491,6 +2491,7 @@ ViewData["User"] = "Admin";
 
     .cmp-field {
         box-sizing: border-box;
+        position: relative;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -2709,6 +2710,613 @@ ViewData["User"] = "Admin";
         width: 39px;
         border-left: 1px solid rgba(255, 255, 255, .25) !important;
         border-radius: 0 10px 10px 0;
+    }
+
+    /* ------------------------------------------- live recipient suggestions */
+    .cmp-sugg {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: calc(100% + 8px);
+        z-index: 1080;
+        width: 100%;
+        max-height: 185px;
+        overflow-y: auto;
+        padding: 9px 0;
+        background: #FFFFFF;
+        border: 1px solid #E7EAF0;
+        box-shadow: 0 10px 24px rgba(22, 27, 34, .14);
+        border-radius: 10px;
+    }
+
+    .cmp-sugg.is-open {
+        display: block;
+    }
+
+    .cmp-sugg__label {
+        display: block;
+        padding: 0 13px 6px;
+        font-size: 10.5px;
+        line-height: 13px;
+        letter-spacing: .4px;
+        text-transform: uppercase;
+        color: #8A93A6;
+    }
+
+    .cmp-sugg__row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 13px;
+        cursor: pointer;
+    }
+
+    .cmp-sugg__row:hover {
+        background: #F7F9FC;
+    }
+
+    .cmp-sugg__av {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 13px;
+        font-size: 10px;
+        line-height: 11px;
+        color: #212529;
+    }
+
+    .cmp-sugg__name {
+        flex: 1;
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #161B22;
+    }
+
+    .cmp-sugg__add {
+        border: 0;
+        background: none;
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #1D4ED8;
+    }
+
+    .cmp-sugg__empty {
+        margin: 0;
+        padding: 6px 13px;
+        font-size: 12.5px;
+        color: #8A93A6;
+    }
+
+    /* ------------------------------- send separately / create group chat tabs */
+    .cmp-modes {
+        display: none;
+        box-sizing: border-box;
+        gap: 0;
+        width: 100%;
+        padding: 3px;
+        background: #EDEEF3;
+        border-radius: 8px;
+    }
+
+    .cmp-modes.is-open {
+        display: flex;
+    }
+
+    .cmp-mode {
+        flex: 1;
+        height: 33px;
+        border: 0;
+        background: none;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #5B5D6B;
+    }
+
+    .cmp-mode.is-active {
+        background: #FFFFFF;
+        box-shadow: 0 1px 2px rgba(0, 1, 60, .12);
+        color: #0001A9;
+    }
+
+    /* ------------------------------------------------------- attachments row */
+    .cmp-files {
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        padding: 5px 0 2px;
+    }
+
+    .cmp-files.is-open {
+        display: flex;
+    }
+
+    .cmp-files__row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+        padding: 0 14px;
+    }
+
+    .cmp-file {
+        box-sizing: border-box;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 177px;
+        height: 55px;
+        padding: 0 13px;
+        background: #FFFFFF;
+        border: 1px solid #1D4ED8;
+        border-radius: 4px;
+    }
+
+    .cmp-file__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 38px;
+        height: 38px;
+        background: rgba(29, 78, 216, .08);
+        border-radius: 4px;
+        color: #1D4ED8;
+        font-size: 15px;
+    }
+
+    .cmp-file__meta {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .cmp-file__name {
+        max-width: 84px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        line-height: 15px;
+        color: #212529;
+    }
+
+    .cmp-file__size {
+        font-size: 10px;
+        line-height: 13px;
+        color: #878A99;
+    }
+
+    .cmp-file__x {
+        position: absolute;
+        top: 9px;
+        right: 8px;
+        border: 0;
+        background: none;
+        padding: 0;
+        font-size: 11px;
+        color: #878A99;
+    }
+
+    .cmp-files__bar {
+        height: 4px;
+        margin: 3px 14px;
+        background: #EEF0F4;
+        border-radius: 2px;
+    }
+
+    .cmp-files__bar span {
+        display: block;
+        width: 55%;
+        height: 100%;
+        background: #D3DAE6;
+        border-radius: 2px;
+    }
+
+    .cmp-files__meta {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 14px;
+        font-size: 10.5px;
+        line-height: 13px;
+        color: #878A99;
+    }
+
+    .cmp-files__meta i {
+        font-size: 10px;
+    }
+
+    /* -------------------------------------------------- voice-to-text banner */
+    .cmp-rec {
+        display: none;
+        align-items: center;
+        gap: 10px;
+        height: 38px;
+        margin: 0 10px 5px;
+        padding: 0 14px;
+        background: #FDECEC;
+        border-radius: 10px;
+    }
+
+    .cmp-rec.is-open {
+        display: flex;
+    }
+
+    .cmp-rec__dot {
+        flex: none;
+        width: 8px;
+        height: 8px;
+        background: #E02424;
+        border-radius: 4px;
+        animation: cmpPulse 1s ease-in-out infinite;
+    }
+
+    .cmp-rec__label {
+        font-size: 13px;
+        line-height: 15px;
+        color: #B3261E;
+    }
+
+    .cmp-rec__eq {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .cmp-rec__eq i {
+        display: block;
+        width: 2.5px;
+        background: #E02424;
+        border-radius: 2px;
+        animation: cmpEq .9s ease-in-out infinite;
+    }
+
+    .cmp-rec__eq i:nth-child(1) {
+        height: 6px;
+        animation-delay: 0s;
+    }
+
+    .cmp-rec__eq i:nth-child(2) {
+        height: 12px;
+        animation-delay: .1s;
+    }
+
+    .cmp-rec__eq i:nth-child(3) {
+        height: 18px;
+        animation-delay: .2s;
+    }
+
+    .cmp-rec__eq i:nth-child(4) {
+        height: 10px;
+        animation-delay: .3s;
+    }
+
+    .cmp-rec__eq i:nth-child(5) {
+        height: 14px;
+        animation-delay: .4s;
+    }
+
+    @@keyframes cmpPulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: .35;
+        }
+    }
+
+    @@keyframes cmpEq {
+
+        0%,
+        100% {
+            transform: scaleY(.55);
+        }
+
+        50% {
+            transform: scaleY(1);
+        }
+    }
+
+    .cmp-pill.is-rec {
+        background: #FDECEC;
+        color: #E02424;
+    }
+
+    .cmp-btn--dashed.is-active {
+        background: #EAF3FF;
+        border-style: solid;
+        border-color: #1D4ED8;
+        color: #1D4ED8;
+    }
+
+    /* --------------------------------------------------- compose popover shell */
+    .cmp-pop {
+        display: none;
+        position: absolute;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 12px;
+        z-index: 1080;
+    }
+
+    .cmp-pop.is-open {
+        display: flex;
+    }
+
+    /* ------------------------------------------- browse users/groups popover */
+    .cmp-browsepop {
+        flex-direction: column;
+        width: 340px;
+        box-shadow: 0 12px 28px rgba(22, 27, 34, .16);
+        overflow: hidden;
+    }
+
+    .cmp-browsepop__tabs {
+        display: flex;
+        height: 40px;
+        background: #FAFBFC;
+        border-bottom: 1px solid #F0F1F5;
+    }
+
+    .cmp-browsepop__tab {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        height: 39px;
+        border: 0;
+        background: none;
+        font-size: 13px;
+        line-height: 16px;
+        color: #8A93A6;
+    }
+
+    .cmp-browsepop__tab.is-active {
+        background: #FFFFFF;
+        color: #1D4ED8;
+    }
+
+    .cmp-browsepop__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 17.84px;
+        height: 14px;
+        padding: 0 5px;
+        background: #E9EBEC;
+        border-radius: 8px;
+        font-size: 10.5px;
+        line-height: 13px;
+        font-style: normal;
+        color: #4A5468;
+    }
+
+    .cmp-browsepop__tab.is-active .cmp-browsepop__badge {
+        background: #1D4ED8;
+        color: #FFFFFF;
+    }
+
+    .cmp-browsepop__search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 38px;
+        margin: 0;
+        padding: 0 12px;
+        border-bottom: 1px solid #F0F1F5;
+    }
+
+    .cmp-browsepop__search i {
+        font-size: 12px;
+        color: #8A93A6;
+    }
+
+    .cmp-browsepop__search input {
+        flex: 1;
+        border: 0;
+        outline: none;
+        font-size: 13px;
+        line-height: 16px;
+        color: #161B22;
+    }
+
+    .cmp-browsepop__search input::placeholder {
+        color: #757575;
+    }
+
+    .cmp-browsepop__all {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 36px;
+        margin: 0;
+        padding: 0 12px;
+        border-bottom: 1px solid #F0F1F5;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #4A5468;
+    }
+
+    .cmp-browsepop input[type="checkbox"] {
+        flex: none;
+        width: 17px;
+        height: 17px;
+        margin: 0;
+        border: 1px solid #D3DAE6;
+        border-radius: 4px;
+        accent-color: #1D4ED8;
+    }
+
+    .cmp-browsepop__list {
+        max-height: 183px;
+        overflow-y: auto;
+    }
+
+    .cmp-browsepop__row {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        height: 46px;
+        margin: 0;
+        padding: 0 12px;
+        border-bottom: 1px solid #F5F6FA;
+        cursor: pointer;
+    }
+
+    .cmp-browsepop__av {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 13px;
+        font-size: 10px;
+        line-height: 11px;
+        color: #212529;
+    }
+
+    .cmp-browsepop__name {
+        display: flex;
+        flex-direction: column;
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #161B22;
+    }
+
+    .cmp-browsepop__name small {
+        font-size: 11.5px;
+        color: #8A93A6;
+    }
+
+    .cmp-browsepop__foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 49px;
+        padding: 0 12px;
+        background: #FAFBFC;
+        border-top: 1px solid #F0F1F5;
+        font-size: 12px;
+        line-height: 15px;
+        color: #8A93A6;
+    }
+
+    .cmp-browsepop__add {
+        height: 28px;
+        padding: 0 13px;
+        border: 0;
+        background: #1D4ED8;
+        border-radius: 8px;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #FFFFFF;
+    }
+
+    .cmp-browsepop__add:disabled {
+        background: rgba(29, 78, 216, .35);
+    }
+
+    /* ------------------------------------------------------ send-as dropdown */
+    .cmp-sendpop {
+        flex-direction: column;
+        gap: 2px;
+        width: 230px;
+        padding: 6px;
+        box-shadow: 0 1px 1.5px rgba(22, 27, 34, .05), 0 14px 28px rgba(22, 27, 34, .16);
+    }
+
+    .cmp-sendpop__row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 36px;
+        margin: 0;
+        padding: 0 11px;
+        border-radius: 8px;
+        font-size: 13.5px;
+        line-height: 17px;
+        color: #161B22;
+        cursor: pointer;
+    }
+
+    .cmp-sendpop__row.is-on {
+        background: #EAF3FF;
+        color: #1D4ED8;
+    }
+
+    .cmp-sendpop__row span {
+        flex: 1;
+    }
+
+    .cmp-sendpop__row input {
+        width: 15.39px;
+        height: 15.39px;
+        margin: 0;
+        border-radius: 3.5px;
+        accent-color: #1D4ED8;
+    }
+
+    /* ------------------------------------------------------ send later popup */
+    .cmp-later {
+        flex-direction: column;
+        gap: 9px;
+        width: 250px;
+        padding: 13px 14px;
+        box-shadow: 0 1px 1.5px rgba(22, 27, 34, .05), 0 14px 28px rgba(22, 27, 34, .16);
+    }
+
+    .cmp-later__title {
+        font-size: 13px;
+        line-height: 16px;
+        color: #161B22;
+    }
+
+    .cmp-later__row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #8A93A6;
+    }
+
+    .cmp-later__row span {
+        width: 32px;
+    }
+
+    .cmp-later__row input {
+        box-sizing: border-box;
+        flex: 1;
+        height: 33px;
+        padding: 0 10px;
+        background: #FFFFFF;
+        border: 1px solid #D3DAE6;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #161B22;
+    }
+
+    .cmp-later__confirm {
+        width: 100%;
+        height: 33px;
+        margin-top: 3px;
+        border: 0;
+        background: #1D4ED8;
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #FFFFFF;
     }
 
     /* ---------------------------------------------------- use template popover */
@@ -4165,19 +4773,26 @@ ViewData["User"] = "Admin";
         </div>
 
         <div class="cmp-field" id="cmpRecipients">
-            <span class="cmp-chip">
+            <span class="cmp-chip" data-name="Clint Barton">
                 <span class="avatar" style="background:#B7C9F2;">CB</span>
                 Clint Barton
                 <button type="button" class="cmp-chip__x" aria-label="Remove">&times;</button>
             </span>
-            <input type="text" placeholder="Add people or groups…">
-            <button type="button" class="cmp-browse" aria-label="Browse users and groups">
+            <input type="text" id="cmpToInput" placeholder="Add people or groups…" autocomplete="off"
+                aria-label="Add people or groups">
+            <button type="button" class="cmp-browse" id="cmpBrowse" aria-label="Browse users and groups">
                 <i class="bi bi-plus-lg"></i>
             </button>
+            <div class="cmp-sugg" id="cmpSugg" role="listbox"></div>
         </div>
 
         <div class="cmp-hint">Type a name to see live suggestions, or tap + to browse Users / Groups with
             multi-select.</div>
+
+        <div class="cmp-modes" id="cmpModes">
+            <button type="button" class="cmp-mode is-active" data-mode="separate">Send Separately</button>
+            <button type="button" class="cmp-mode" data-mode="group">Create Group Chat</button>
+        </div>
 
         <div class="cmp-field cmp-field--single">
             <i class="bi bi-card-heading"></i>
@@ -4186,28 +4801,105 @@ ViewData["User"] = "Admin";
 
         <div class="cmp-body">
             <textarea id="cmpMessage" placeholder="Write a message (optional)"></textarea>
+
+            <!-- attachments -->
+            <div class="cmp-files" id="cmpFiles">
+                <div class="cmp-files__row" id="cmpFileRow"></div>
+                <div class="cmp-files__bar"><span></span></div>
+                <div class="cmp-files__meta">
+                    <i class="bi bi-paperclip"></i>
+                    <span id="cmpFileMeta">0 files attached · Attachments will expire in 14 days</span>
+                </div>
+            </div>
+
+            <!-- voice to text -->
+            <div class="cmp-rec" id="cmpRec">
+                <span class="cmp-rec__dot"></span>
+                <span class="cmp-rec__label">Listening… speak your message</span>
+                <span class="cmp-rec__eq"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+
             <div class="cmp-bodytools">
-                <button type="button" class="cmp-pill"><i class="bi bi-paperclip"></i> Attach</button>
-                <button type="button" class="cmp-pill"><i class="bi bi-mic"></i> Voice</button>
+                <button type="button" class="cmp-pill" id="cmpAttach"><i class="bi bi-paperclip"></i> Attach</button>
+                <button type="button" class="cmp-pill" id="cmpVoice"><i class="bi bi-mic"></i> Voice</button>
                 <span class="cmp-divider"></span>
                 <button type="button" class="cmp-pill" id="tplToggle"><i class="bi bi-file-earmark-text"></i> Use
                     template</button>
+                <input type="file" id="cmpFileInput" multiple hidden
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.png,.jpg,.jpeg">
             </div>
         </div>
 
         <div class="cmp-foot">
             <button type="button" class="cmp-btn" data-zx-close>Cancel</button>
             <div class="cmp-foot__right">
-                <button type="button" class="cmp-btn cmp-btn--dashed"><i class="bi bi-clock"></i> Send later</button>
+                <button type="button" class="cmp-btn cmp-btn--dashed" id="cmpLater"><i class="bi bi-clock"></i> Send
+                    later</button>
                 <div class="cmp-send">
-                    <button type="button" class="cmp-send__main"><i class="bi bi-send"></i> Send as Message</button>
-                    <button type="button" class="cmp-send__caret" aria-label="More send options">
+                    <button type="button" class="cmp-send__main"><i class="bi bi-send"></i> <span
+                            id="cmpSendLabel">Send as Message</span></button>
+                    <button type="button" class="cmp-send__caret" id="cmpSendCaret" aria-label="More send options">
                         <i class="bi bi-chevron-down"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- ============================================ browse users / groups popover -->
+<div class="cmp-pop cmp-browsepop" id="browsePop">
+    <div class="cmp-browsepop__tabs">
+        <button type="button" class="cmp-browsepop__tab is-active" data-browse-tab="users">
+            <i class="bi bi-person"></i><span>Users</span>
+            <em class="cmp-browsepop__badge" id="usersBadge">0</em>
+        </button>
+        <button type="button" class="cmp-browsepop__tab" data-browse-tab="groups">
+            <i class="bi bi-people"></i><span>Groups</span>
+            <em class="cmp-browsepop__badge" id="groupsBadge">0</em>
+        </button>
+    </div>
+    <label class="cmp-browsepop__search">
+        <i class="bi bi-search"></i>
+        <input type="search" id="browseSearch" placeholder="Search to add" aria-label="Search to add">
+    </label>
+    <label class="cmp-browsepop__all">
+        <input type="checkbox" id="browseAll">
+        <span id="browseAllLabel">Select all users</span>
+    </label>
+    <div class="cmp-browsepop__list" id="browseList"></div>
+    <div class="cmp-browsepop__foot">
+        <span id="browseCount">0 selected</span>
+        <button type="button" class="cmp-browsepop__add" id="browseAdd">Add selected</button>
+    </div>
+</div>
+
+<!-- ================================================== send-as dropdown -->
+<div class="cmp-pop cmp-sendpop" id="sendPop">
+    <label class="cmp-sendpop__row is-on">
+        <i class="bi bi-chat-dots"></i>
+        <span>Send as Message</span>
+        <input type="checkbox" id="sendAsMessage" checked>
+    </label>
+    <label class="cmp-sendpop__row">
+        <i class="bi bi-envelope"></i>
+        <span>Send as Email</span>
+        <input type="checkbox" id="sendAsEmail">
+    </label>
+</div>
+
+<!-- ================================================== send later popup -->
+<div class="cmp-pop cmp-later" id="laterPop">
+    <span class="cmp-later__title">Schedule this message</span>
+    <label class="cmp-later__row">
+        <span>Date</span>
+        <input type="date" id="laterDate">
+    </label>
+    <label class="cmp-later__row">
+        <span>Time</span>
+        <input type="time" id="laterTime">
+    </label>
+    <button type="button" class="cmp-later__confirm" id="laterConfirm">Confirm schedule</button>
 </div>
 
 <!-- ======================================================= use template popover -->
@@ -4831,10 +5523,323 @@ ViewData["User"] = "Admin";
         });
 
         const cmpRecipients = document.getElementById('cmpRecipients');
-        cmpRecipients && cmpRecipients.addEventListener('click', (e) => {
-            const x = e.target.closest('.cmp-chip__x');
-            if (x) x.closest('.cmp-chip').remove();
-        });
+
+        if (cmpRecipients) {
+            const CMP_USERS = [
+                { id: 'u1', name: 'Maria Reyes', initials: 'MR', tint: '#FFD59E' },
+                { id: 'u2', name: 'Clint Barton', initials: 'CB', tint: '#FFB199' },
+                { id: 'u3', name: 'Natasha Romanoff', initials: 'NR', tint: '#B8E0D2' },
+                { id: 'u4', name: 'Bruce Banner', initials: 'BB', tint: '#B7C9F2' },
+                { id: 'u5', name: 'Steve Rogers', initials: 'SR', tint: '#F2B7D6' }
+            ];
+            const CMP_GROUPS = [
+                { id: 'g1', name: 'HR Team', initials: 'HR', tint: '#B7C9F2', members: '12 members' },
+                { id: 'g2', name: 'Design Team', initials: 'DT', tint: '#FFD59E', members: '8 members' },
+                { id: 'g3', name: 'Marketing', initials: 'MK', tint: '#A8DAB5', members: '15 members' }
+            ];
+
+            const byId = (id) => document.getElementById(id);
+            const toInput = byId('cmpToInput');
+            const sugg = byId('cmpSugg');
+            const modes = byId('cmpModes');
+            const browsePop = byId('browsePop');
+            const browseList = byId('browseList');
+            const browseAllBox = byId('browseAll');
+            const sendPop = byId('sendPop');
+            const laterPop = byId('laterPop');
+            const laterBtn = byId('cmpLater');
+
+            const initialsOf = (name) =>
+                name.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+
+            const chipNames = () =>
+                [...cmpRecipients.querySelectorAll('.cmp-chip')].map(c => c.dataset.name);
+
+            // two or more recipients reveals Send Separately / Create Group Chat
+            const syncModes = () => modes.classList.toggle('is-open', chipNames().length >= 2);
+
+            const addRecipient = (entry) => {
+                if (chipNames().includes(entry.name)) return;
+                const chip = document.createElement('span');
+                chip.className = 'cmp-chip';
+                chip.dataset.name = entry.name;
+                chip.innerHTML =
+                    '<span class="avatar"></span>' +
+                    '<span class="cmp-chip__label"></span>' +
+                    '<button type="button" class="cmp-chip__x" aria-label="Remove">&times;</button>';
+                const av = chip.querySelector('.avatar');
+                av.textContent = entry.initials || initialsOf(entry.name);
+                av.style.background = entry.tint || '#B7C9F2';
+                chip.querySelector('.cmp-chip__label').textContent = entry.name;
+                cmpRecipients.insertBefore(chip, toInput);
+                syncModes();
+            };
+
+            cmpRecipients.addEventListener('click', (e) => {
+                const x = e.target.closest('.cmp-chip__x');
+                if (!x) return;
+                x.closest('.cmp-chip').remove();
+                syncModes();
+            });
+
+            modes.addEventListener('click', (e) => {
+                const btn = e.target.closest('.cmp-mode');
+                if (!btn) return;
+                modes.querySelectorAll('.cmp-mode').forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+            });
+
+            // ------------------------------------------------- live suggestions
+            const renderSugg = (term) => {
+                const q = term.trim().toLowerCase();
+                if (!q) return sugg.classList.remove('is-open');
+
+                const taken = chipNames();
+                const people = CMP_USERS.filter(u => u.name.toLowerCase().includes(q) && !taken.includes(u.name));
+                const groups = CMP_GROUPS.filter(g => g.name.toLowerCase().includes(q) && !taken.includes(g.name));
+
+                if (!people.length && !groups.length) {
+                    sugg.innerHTML = '<p class="cmp-sugg__empty">No matches found.</p>';
+                    sugg.classList.add('is-open');
+                    return;
+                }
+
+                const rowHtml = (item) =>
+                    '<div class="cmp-sugg__row" data-name="' + item.name + '" data-initials="' + item.initials +
+                    '" data-tint="' + item.tint + '">' +
+                    '<span class="cmp-sugg__av" style="background:' + item.tint + '">' + item.initials + '</span>' +
+                    '<span class="cmp-sugg__name">' + item.name + '</span>' +
+                    '<button type="button" class="cmp-sugg__add">+ Add</button></div>';
+
+                let html = '';
+                if (people.length) html += '<span class="cmp-sugg__label">People</span>' + people.map(rowHtml).join('');
+                if (groups.length) html += '<span class="cmp-sugg__label">Groups</span>' + groups.map(rowHtml).join('');
+                sugg.innerHTML = html;
+                sugg.classList.add('is-open');
+            };
+
+            toInput.addEventListener('input', () => renderSugg(toInput.value));
+
+            toInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !toInput.value) {
+                    const all = cmpRecipients.querySelectorAll('.cmp-chip');
+                    if (all.length) { all[all.length - 1].remove(); syncModes(); }
+                }
+                if (e.key === 'Escape') sugg.classList.remove('is-open');
+            });
+
+            sugg.addEventListener('click', (e) => {
+                const row = e.target.closest('.cmp-sugg__row');
+                if (!row) return;
+                addRecipient({ name: row.dataset.name, initials: row.dataset.initials, tint: row.dataset.tint });
+                toInput.value = '';
+                sugg.classList.remove('is-open');
+                toInput.focus();
+            });
+
+            // ------------------------------------------ browse users / groups
+            let browseTab = 'users';
+            const picked = { users: new Set(), groups: new Set() };
+            const sourceFor = (tab) => (tab === 'users' ? CMP_USERS : CMP_GROUPS);
+
+            const renderBrowse = () => {
+                const q = (byId('browseSearch').value || '').trim().toLowerCase();
+                const rows = sourceFor(browseTab).filter(i => i.name.toLowerCase().includes(q));
+
+                browseList.innerHTML = rows.map(item =>
+                    '<label class="cmp-browsepop__row">' +
+                    '<input type="checkbox" data-pick="' + item.id + '"' +
+                    (picked[browseTab].has(item.id) ? ' checked' : '') + '>' +
+                    '<span class="cmp-browsepop__av" style="background:' + item.tint + '">' + item.initials + '</span>' +
+                    '<span class="cmp-browsepop__name">' + item.name +
+                    (item.members ? '<small>' + item.members + '</small>' : '') +
+                    '</span></label>'
+                ).join('');
+
+                byId('usersBadge').textContent = picked.users.size;
+                byId('groupsBadge').textContent = picked.groups.size;
+
+                const total = picked.users.size + picked.groups.size;
+                byId('browseCount').textContent = total + ' selected';
+                byId('browseAdd').disabled = total === 0;
+
+                byId('browseAllLabel').textContent = 'Select all ' + browseTab;
+                browseAllBox.checked = rows.length > 0 && rows.every(i => picked[browseTab].has(i.id));
+            };
+
+            document.querySelectorAll('[data-browse-tab]').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('[data-browse-tab]').forEach(t => t.classList.remove('is-active'));
+                    tab.classList.add('is-active');
+                    browseTab = tab.dataset.browseTab;
+                    renderBrowse();
+                });
+            });
+
+            browseList.addEventListener('change', (e) => {
+                const box = e.target.closest('[data-pick]');
+                if (!box) return;
+                box.checked ? picked[browseTab].add(box.dataset.pick) : picked[browseTab].delete(box.dataset.pick);
+                renderBrowse();
+            });
+
+            browseAllBox.addEventListener('change', () => {
+                const q = (byId('browseSearch').value || '').trim().toLowerCase();
+                sourceFor(browseTab).filter(i => i.name.toLowerCase().includes(q)).forEach(i => {
+                    browseAllBox.checked ? picked[browseTab].add(i.id) : picked[browseTab].delete(i.id);
+                });
+                renderBrowse();
+            });
+
+            byId('browseSearch').addEventListener('input', renderBrowse);
+
+            byId('browseAdd').addEventListener('click', () => {
+                CMP_USERS.filter(u => picked.users.has(u.id)).forEach(addRecipient);
+                CMP_GROUPS.filter(g => picked.groups.has(g.id)).forEach(addRecipient);
+                picked.users.clear();
+                picked.groups.clear();
+                closeCmpPops();
+                renderBrowse();
+            });
+
+            // ------------------------------------------------ popover plumbing
+            function closeCmpPops() {
+                [browsePop, sendPop, laterPop].forEach(p => p.classList.remove('is-open'));
+            }
+
+            const openCmpPop = (pop, anchor, align) => {
+                const wasOpen = pop.classList.contains('is-open');
+                closeCmpPops();
+                if (wasOpen) return;
+
+                pop.classList.add('is-open');
+                const a = anchor.getBoundingClientRect();
+                const w = pop.offsetWidth;
+                const h = pop.offsetHeight;
+
+                let left = align === 'right' ? a.right - w : a.left;
+                left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+
+                let top = a.bottom + 8;
+                if (top + h > window.innerHeight - 8) top = Math.max(8, a.top - h - 8);
+
+                pop.style.left = (left + window.scrollX) + 'px';
+                pop.style.top = (top + window.scrollY) + 'px';
+            };
+
+            byId('cmpBrowse').addEventListener('click', (e) => {
+                e.stopPropagation();
+                sugg.classList.remove('is-open');
+                renderBrowse();
+                openCmpPop(browsePop, byId('cmpBrowse'), 'right');
+            });
+
+            // ------------------------------------- send as Message / as Email
+            const syncSendLabel = () => {
+                const msg = byId('sendAsMessage').checked;
+                const mail = byId('sendAsEmail').checked;
+                byId('cmpSendLabel').textContent =
+                    msg && mail ? 'Send as Both' : mail ? 'Send as Email' : 'Send as Message';
+                sendPop.querySelectorAll('.cmp-sendpop__row').forEach(row => {
+                    row.classList.toggle('is-on', row.querySelector('input').checked);
+                });
+            };
+
+            byId('cmpSendCaret').addEventListener('click', (e) => {
+                e.stopPropagation();
+                openCmpPop(sendPop, byId('cmpSendCaret'), 'right');
+            });
+
+            sendPop.addEventListener('change', syncSendLabel);
+            sendPop.addEventListener('click', (e) => e.stopPropagation());
+
+            // ------------------------------------------------------ send later
+            laterBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!byId('laterDate').value) {
+                    byId('laterDate').value = new Date().toISOString().slice(0, 10);
+                    byId('laterTime').value = '09:00';
+                }
+                openCmpPop(laterPop, laterBtn, 'left');
+                laterBtn.classList.toggle('is-active', laterPop.classList.contains('is-open'));
+            });
+
+            laterPop.addEventListener('click', (e) => e.stopPropagation());
+
+            byId('laterConfirm').addEventListener('click', () => {
+                closeCmpPops();
+                laterBtn.classList.add('is-active');
+            });
+
+            // ----------------------------------------------------- attachments
+            const fileInput = byId('cmpFileInput');
+            const filesWrap = byId('cmpFiles');
+            const fileRow = byId('cmpFileRow');
+            let attached = [];
+
+            const prettySize = (bytes) => bytes >= 1048576
+                ? (bytes / 1048576).toFixed(1) + ' MB'
+                : Math.max(0.1, bytes / 1024).toFixed(1) + ' KB';
+
+            const renderFiles = () => {
+                filesWrap.classList.toggle('is-open', attached.length > 0);
+                fileRow.innerHTML = attached.map((f, i) =>
+                    '<div class="cmp-file">' +
+                    '<span class="cmp-file__icon"><i class="bi bi-file-earmark-text"></i></span>' +
+                    '<span class="cmp-file__meta">' +
+                    '<span class="cmp-file__name" title="' + f.name + '">' + f.name + '</span>' +
+                    '<span class="cmp-file__size">' + f.size + '</span></span>' +
+                    '<button type="button" class="cmp-file__x" data-drop="' + i + '" aria-label="Remove">' +
+                    '<i class="bi bi-x-lg"></i></button></div>'
+                ).join('');
+                byId('cmpFileMeta').textContent =
+                    attached.length + (attached.length === 1 ? ' file' : ' files') +
+                    ' attached · Attachments will expire in 14 days';
+            };
+
+            byId('cmpAttach').addEventListener('click', () => fileInput.click());
+
+            fileInput.addEventListener('change', () => {
+                [...fileInput.files].forEach(f => attached.push({ name: f.name, size: prettySize(f.size) }));
+                fileInput.value = '';
+                renderFiles();
+            });
+
+            fileRow.addEventListener('click', (e) => {
+                const drop = e.target.closest('[data-drop]');
+                if (!drop) return;
+                attached.splice(Number(drop.dataset.drop), 1);
+                renderFiles();
+            });
+
+            // ---------------------------------------------------- voice to text
+            const recBar = byId('cmpRec');
+            const voiceBtn = byId('cmpVoice');
+
+            voiceBtn.addEventListener('click', () => {
+                const on = recBar.classList.toggle('is-open');
+                voiceBtn.classList.toggle('is-rec', on);
+            });
+
+            // ------------------------------------------------------- dismissal
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.cmp-pop') && !e.target.closest('#cmpBrowse') &&
+                    !e.target.closest('#cmpSendCaret') && !e.target.closest('#cmpLater')) {
+                    closeCmpPops();
+                }
+                if (!e.target.closest('#cmpRecipients')) sugg.classList.remove('is-open');
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key !== 'Escape') return;
+                closeCmpPops();
+                sugg.classList.remove('is-open');
+            });
+
+            syncModes();
+            renderBrowse();
+            syncSendLabel();
+        }
 
         // --------------------------------------------------- use template popover
         const tplPop = document.getElementById('tplPop');
