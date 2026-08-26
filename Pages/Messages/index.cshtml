@@ -1720,14 +1720,17 @@ ViewData["User"] = "Admin";
         bottom: 0;
         right: 0;
         background: #FFFFFF;
-        box-shadow: -6px 0px 18px rgba(0, 0, 0, 0.1);
+        /* shadow only once the panel slides in — otherwise it bleeds into the
+           visible chat stream even while the panel is parked off-screen */
+        box-shadow: none;
         transform: translateX(100%);
-        transition: transform .18s ease-in-out;
+        transition: transform .18s ease-in-out, box-shadow .18s ease-in-out;
         z-index: 20;
     }
 
     .members-panel.is-open {
         transform: translateX(0);
+        box-shadow: -6px 0px 18px rgba(0, 0, 0, 0.1);
     }
 
     .members-panel__head {
@@ -4475,8 +4478,7 @@ ViewData["User"] = "Admin";
                         <div class="msg-block">
                             <span class="msg-author">Maria Reyes</span>
                             <div class="bubble" style="width:550px;">
-                                <span class="bubble__text">This looks great, thank you! One small thing — can we add the
-                                    Q3 numbers on slide 4?</span>
+                                <span class="bubble__text">This looks great, thank you! One small thing — can we add the Q3 numbers on slide 4?</span>
                                 <span class="bubble__meta">9:02 AM</span>
                             </div>
                         </div>
@@ -4523,8 +4525,7 @@ ViewData["User"] = "Admin";
                                     <span class="quote__text">Please make sure to add the review meeting on
                                         everyone's calendar — Bruce wants full attendance this time.</span>
                                 </div>
-                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this
-                                    Thursday at 10 AM.</span>
+                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this Thursday at 10 AM.</span>
                                 <span class="bubble__meta">9:02 AM</span>
                             </div>
                             <button type="button" class="reaction-chip" data-react-list="reactList">
@@ -4595,8 +4596,7 @@ ViewData["User"] = "Admin";
                         <div class="msg-block">
                             <span class="msg-author">Ana</span>
                             <div class="bubble" style="width:312px;">
-                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me
-                                    know what you think!</span>
+                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me know what you think!</span>
                                 <span class="attach-image">
                                     <i class="bi bi-image"></i>
                                     <button type="button" class="attach-dl" title="Download image">
@@ -4622,8 +4622,7 @@ ViewData["User"] = "Admin";
                         <div class="msg-block">
                             <span class="msg-author">Ana</span>
                             <div class="bubble" style="width:301px;">
-                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me
-                                    know what you think!</span>
+                                <span class="bubble__text">Here's the layout mock for the campaign banner — let me know what you think!</span>
                                 <span class="attach-file">
                                     <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
                                     <span class="attach-file__body">
