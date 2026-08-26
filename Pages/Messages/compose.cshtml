@@ -511,11 +511,20 @@ ViewData["User"] = "Admin";
         justify-content: center;
         width: 34px;
         height: 34px;
+        padding: 0;
         border: 0;
         border-radius: 17px;
         background: #F5F6FA;
         color: #4A5468;
         font-size: 13px;
+        line-height: 1;
+    }
+
+    /* bootstrap-icons carry their own line-height, which pushes the glyph off-centre */
+    .cmp-head__close i,
+    .cmp-to__browse i {
+        display: block;
+        line-height: 1;
     }
 
     /* -------------------------------------------------------------- To */
@@ -609,11 +618,13 @@ ViewData["User"] = "Admin";
         flex: none;
         width: 32px;
         height: 32px;
+        padding: 0;
         background: #FFFFFF;
         border: 1px solid #1D4ED8;
         border-radius: 16px;
         color: #1D4ED8;
         font-size: 12px;
+        line-height: 1;
     }
 
     .cmp-hint {
@@ -823,12 +834,36 @@ ViewData["User"] = "Admin";
         display: flex;
     }
 
+    /* single row, horizontally scrollable — never wraps to a second line */
     .cmp-files__row {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 4px;
-        padding: 0 14px;
+        gap: 6px;
+        padding: 2px 14px 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #C4CAD6 transparent;
+        overscroll-behavior-x: contain;
+    }
+
+    .cmp-files__row::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-track {
+        background: #EEF0F4;
+        border-radius: 3px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        border-radius: 3px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-thumb:hover {
+        background: #A9B1C1;
     }
 
     .cmp-file {
@@ -836,6 +871,7 @@ ViewData["User"] = "Admin";
         display: flex;
         align-items: center;
         gap: 10px;
+        flex: none;
         width: 177px;
         height: 55px;
         padding: 0 13px;
@@ -890,19 +926,9 @@ ViewData["User"] = "Admin";
         color: #878A99;
     }
 
+    /* the row now owns a real horizontal scrollbar, so the faux track is redundant */
     .cmp-files__bar {
-        height: 4px;
-        margin: 3px 0;
-        background: #EEF0F4;
-        border-radius: 2px;
-    }
-
-    .cmp-files__bar span {
-        display: block;
-        width: 55%;
-        height: 100%;
-        background: #D3DAE6;
-        border-radius: 2px;
+        display: none;
     }
 
     .cmp-files__meta {
@@ -1556,10 +1582,30 @@ ViewData["User"] = "Admin";
 
         const chipNames = () => [...chips.querySelectorAll('.cmp-chip')].map(c => c.dataset.name);
 
+        // the subject line doubles as the group name when creating a group chat
+        const syncSubjectLabel = () => {
+            const subject = $('cmpSubject');
+            if (!subject) return;
+            const active = modes.querySelector('.cmp-mode.is-active');
+            const isGroup = modes.classList.contains('is-open')
+                && active && active.dataset.mode === 'group';
+            subject.placeholder = isGroup ? 'Enter Group name' : 'Enter subject';
+            subject.setAttribute('aria-label', isGroup ? 'Group name' : 'Subject');
+        };
+
         // 02 — two or more recipients reveals the Send Separately / Create Group tabs
         const syncModes = () => {
             modes.classList.toggle('is-open', chipNames().length >= 2);
+            syncSubjectLabel();
         };
+
+        modes.addEventListener('click', (e) => {
+            const btn = e.target.closest('.cmp-mode');
+            if (!btn) return;
+            modes.querySelectorAll('.cmp-mode').forEach(b => b.classList.remove('is-active'));
+            btn.classList.add('is-active');
+            syncSubjectLabel();
+        });
 
         const addRecipient = (entry) => {
             if (chipNames().includes(entry.name)) return;

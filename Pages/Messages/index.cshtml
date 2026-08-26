@@ -417,7 +417,7 @@ ViewData["User"] = "Admin";
         flex: 1 1 auto;
         min-width: 0;
         background: #FFFFFF;
-        box-shadow: 0px 1px 3px rgba(22, 27, 34, 0.05), 0px 8px 20px rgba(22, 27, 34, 0.06);
+        border: 1px solid #E7EAF0;
         border-radius: 16px;
     }
 
@@ -441,6 +441,7 @@ ViewData["User"] = "Admin";
     .chat-head__name {
         font-size: 20px;
         line-height: 25px;
+        font-weight: 600;
         color: #212529;
     }
 
@@ -502,6 +503,102 @@ ViewData["User"] = "Admin";
 
     .chat-search input::placeholder {
         color: #8A93A6;
+    }
+
+    .chat-search.is-active {
+        background: #FFFFFF;
+        box-shadow: inset 0 0 0 1px #1D4ED8;
+    }
+
+    /* ------------------------------------------------- search in conversation */
+    .chat-search__count {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        flex: none;
+        height: 18px;
+        font-size: 11px;
+        line-height: 1;
+        color: #8A93A6;
+        white-space: nowrap;
+    }
+
+    .chat-search__nav {
+        display: none;
+        align-items: center;
+        align-self: center;
+        gap: 2px;
+        flex: none;
+    }
+
+    .chat-search.is-active .chat-search__nav {
+        display: flex;
+    }
+
+    .chat-search__nav button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        border-radius: 4px;
+        color: #4A5468;
+        font-size: 10px;
+    }
+
+    /* bootstrap-icons carry their own line-height, which pushes glyphs off-centre */
+    .chat-search__nav button i {
+        display: block;
+        line-height: 1;
+    }
+
+    .chat-search__nav button:hover:not(:disabled) {
+        background: #E9EBEC;
+    }
+
+    .chat-search__nav button:disabled {
+        opacity: .35;
+    }
+
+    /* rows filtered out by the conversation search */
+    .msg-row.is-filtered,
+    .stream-note.is-filtered,
+    .stream-divider.is-filtered {
+        display: none;
+    }
+
+    .chat-stream mark.msg-hit {
+        padding: 0 1px;
+        background: #FFE9A8;
+        border-radius: 2px;
+        color: inherit;
+    }
+
+    .chat-stream mark.msg-hit.is-current {
+        background: #FFC53D;
+        box-shadow: 0 0 0 1.5px rgba(29, 78, 216, .55);
+    }
+
+    .bubble--out mark.msg-hit {
+        background: #FFD966;
+        color: #161B22;
+    }
+
+    .stream-empty {
+        display: none;
+        width: 100%;
+        padding: 28px 0;
+        text-align: center;
+        font-size: 13px;
+        line-height: 18px;
+        color: #8A93A6;
+    }
+
+    .stream-empty.is-shown {
+        display: block;
     }
 
     .chat-head__actions {
@@ -568,6 +665,42 @@ ViewData["User"] = "Admin";
         min-height: 0;
         overflow-y: auto;
         background: #F5F6FA;
+        /* auto-hiding scrollbar: reserve the gutter so nothing shifts on hover */
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        transition: scrollbar-color .18s ease-in-out;
+    }
+
+    .chat-stream:hover,
+    .chat-stream:focus-within {
+        scrollbar-color: #C4CAD6 transparent;
+    }
+
+    .chat-stream::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .chat-stream::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .chat-stream::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: 3px solid transparent;
+        background-clip: content-box;
+        border-radius: 5px;
+    }
+
+    .chat-stream:hover::-webkit-scrollbar-thumb,
+    .chat-stream:focus-within::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        background-clip: content-box;
+    }
+
+    .chat-stream:hover::-webkit-scrollbar-thumb:hover {
+        background: #A9B1C1;
+        background-clip: content-box;
     }
 
     .stream-note {
@@ -610,7 +743,7 @@ ViewData["User"] = "Admin";
     .msg-row {
         display: flex;
         flex-direction: row;
-        align-items: flex-end;
+        align-items: center;
         gap: 14px;
         max-width: 604px;
     }
@@ -655,6 +788,10 @@ ViewData["User"] = "Admin";
         font-size: 14px;
         line-height: 21px;
         color: #4A5468;
+        /* keep the message exactly as the user typed it: newlines + runs of spaces */
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        max-width: 100%;
     }
 
     .bubble__meta {
@@ -854,6 +991,173 @@ ViewData["User"] = "Admin";
         font-size: 16px;
     }
 
+    .composer-tool.is-active {
+        color: #1D4ED8;
+    }
+
+    /* ----------------------------------------------- voice recording (composer) */
+    .voice-rec {
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .voice-rec.is-open {
+        display: flex;
+    }
+
+    /* while recording, hide the normal input row */
+    .chat-composer.is-recording .composer-main {
+        display: none;
+    }
+
+    .voice-rec__cancel,
+    .voice-rec__send {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border: 0;
+        border-radius: 17px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .voice-rec__cancel {
+        background: #FBE4DD;
+        color: #E0431F;
+    }
+
+    .voice-rec__send {
+        background: #1D4ED8;
+        color: #FFFFFF;
+    }
+
+    .voice-rec__dot {
+        flex: none;
+        width: 9px;
+        height: 9px;
+        background: #E0431F;
+        border-radius: 50%;
+        animation: voicePulse 1s ease-in-out infinite;
+    }
+
+    @@keyframes voicePulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .25; }
+    }
+
+    .voice-rec__time {
+        flex: none;
+        min-width: 34px;
+        font-size: 13px;
+        line-height: 16px;
+        font-variant-numeric: tabular-nums;
+        color: #212529;
+    }
+
+    .voice-rec__wave {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        flex: 1 1 auto;
+        height: 22px;
+        overflow: hidden;
+    }
+
+    .voice-rec__wave i {
+        flex: 1 1 auto;
+        min-width: 2px;
+        max-width: 4px;
+        height: 30%;
+        background: #9EB4E8;
+        border-radius: 2px;
+        animation: voiceBar .9s ease-in-out infinite;
+    }
+
+    .voice-rec__wave i:nth-child(3n) { animation-delay: .15s; }
+    .voice-rec__wave i:nth-child(3n+1) { animation-delay: .3s; }
+    .voice-rec__wave i:nth-child(4n) { animation-delay: .45s; }
+
+    @@keyframes voiceBar {
+        0%, 100% { height: 22%; }
+        50% { height: 100%; }
+    }
+
+    .voice-rec__hint {
+        flex: none;
+        font-size: 11.5px;
+        line-height: 14px;
+        color: #8A93A6;
+    }
+
+    /* ------------------------------------------- voice note bubble in the stream */
+    .voice-note {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        width: 232px;
+        max-width: 100%;
+    }
+
+    .voice-note__play {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: 0;
+        background: rgba(29, 78, 216, .1);
+        border-radius: 14px;
+        color: #1D4ED8;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    .bubble--out .voice-note__play {
+        background: rgba(255, 255, 255, .22);
+        color: #FFFFFF;
+    }
+
+    .voice-note__wave {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        flex: 1 1 auto;
+        height: 22px;
+    }
+
+    .voice-note__wave i {
+        flex: 1 1 auto;
+        min-width: 2px;
+        background: #9EB4E8;
+        border-radius: 1px;
+    }
+
+    .bubble--out .voice-note__wave i {
+        background: rgba(255, 255, 255, .6);
+    }
+
+    .voice-note__len {
+        flex: none;
+        font-size: 11px;
+        line-height: 14px;
+        font-variant-numeric: tabular-nums;
+        color: #4A5468;
+    }
+
+    .bubble--out .voice-note__len {
+        color: #FFFFFF;
+    }
+
     /* ------------------------------------------------------- menus / popovers */
     .msg-menu {
         box-sizing: border-box;
@@ -898,6 +1202,11 @@ ViewData["User"] = "Admin";
         font-size: 13px;
     }
 
+    /* Reply / Forward use the same curved arrow, mirrored — matches the UI design */
+    .msg-menu__item i.icon-flip {
+        transform: scaleX(-1);
+    }
+
     .msg-menu__item--danger {
         color: #E0431F;
     }
@@ -940,6 +1249,11 @@ ViewData["User"] = "Admin";
         letter-spacing: 0.33px;
         text-transform: uppercase;
         color: #878A99;
+    }
+
+    .react-list__emoji {
+        font-size: 14px;
+        line-height: 16px;
     }
 
     .react-list__body {
@@ -1027,6 +1341,8 @@ ViewData["User"] = "Admin";
         line-height: 20px;
         color: #212529;
         width: 100%;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
     }
 
     /* quoted file chip inside a reply */
@@ -1275,10 +1591,9 @@ ViewData["User"] = "Admin";
         justify-content: center;
         align-items: center;
         gap: 3px;
-        padding: 5px;
+        padding: 5px 7px;
         top: 5px;
-        left: 50%;
-        transform: translateX(-50%);
+        right: 5px;
         height: 23px;
         border: 0;
         background: rgba(0, 0, 0, 0.5);
@@ -1983,7 +2298,17 @@ ViewData["User"] = "Admin";
         flex: none;
         padding-top: 2px;
         font-size: 15px;
+        line-height: 19px;
         color: #495057;
+    }
+
+    /* rows with a title but no sub-label centre the icon against the single line */
+    .settings-row--single {
+        align-items: center;
+    }
+
+    .settings-row--single > i {
+        padding-top: 0;
     }
 
     .settings-row__title {
@@ -2146,11 +2471,19 @@ ViewData["User"] = "Admin";
     }
 
     .fwd-chip__dot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 18px;
         height: 18px;
         flex: none;
         background: rgba(29, 78, 216, .2);
         border-radius: 9px;
+        font-size: 8px;
+        line-height: 1;
+        font-weight: 600;
+        font-style: normal;
+        color: #212529;
     }
 
     .fwd-chip__x {
@@ -2173,16 +2506,27 @@ ViewData["User"] = "Admin";
         background: transparent;
     }
 
+    /* expandable "add a message" field — grows with the typed text */
     .fwd-note {
         box-sizing: border-box;
+        display: block;
         width: 100%;
-        height: 32px;
-        padding: 0 14px;
+        min-height: 32px;
+        max-height: 120px;
+        padding: 7px 14px;
         border: 1px solid #CED4DA;
         border-radius: 4px;
+        font-family: inherit;
         font-size: 14px;
+        line-height: 18px;
         color: #212529;
         outline: 0;
+        resize: none;
+        overflow-y: auto;
+    }
+
+    .fwd-note:focus {
+        border-color: #1D4ED8;
     }
 
     .fwd-preview {
@@ -2195,6 +2539,14 @@ ViewData["User"] = "Admin";
         width: 100%;
         border: 1px solid #CED4DA;
         border-radius: 4px;
+    }
+
+    /* fixed height + scrollable so a long forwarded message can't blow up the modal */
+    .fwd-preview__scroll {
+        width: 100%;
+        height: 108px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
     }
 
     .fwd-preview__head {
@@ -2218,6 +2570,139 @@ ViewData["User"] = "Admin";
         font-size: 13px;
         line-height: 20px;
         color: #212529;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    /* attachment shown inside the forward preview */
+    .fwd-preview__attach {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+    }
+
+    .fwd-attach {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        width: 100%;
+        padding: 7px 9px;
+        background: #F5F6FA;
+        border: 1px solid #E7EAF0;
+        border-radius: 6px;
+    }
+
+    .fwd-attach__thumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        background: #EAF3FF;
+        border-radius: 6px;
+        color: #1D4ED8;
+        font-size: 15px;
+    }
+
+    .fwd-attach__body {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .fwd-attach__name {
+        font-size: 12.5px;
+        line-height: 16px;
+        color: #212529;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .fwd-attach__meta {
+        font-size: 11px;
+        line-height: 14px;
+        color: #878A99;
+    }
+
+    .fwd-attach__img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: none;
+        width: 100%;
+        height: 84px;
+        background: linear-gradient(121.33deg, #E0E0F7 0%, #F0F0FA 100%);
+        border-radius: 6px;
+        color: #1D4ED8;
+        font-size: 22px;
+    }
+
+    /* recipient suggestion dropdown for the forward search bar */
+    .fwd-sugg {
+        display: none;
+        box-sizing: border-box;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        max-height: 190px;
+        overflow-y: auto;
+        padding: 5px;
+        background: #FFFFFF;
+        border: 1px solid #D3DAE6;
+        box-shadow: 0 10px 26px rgba(22, 27, 34, .14);
+        border-radius: 8px;
+        z-index: 20;
+    }
+
+    .fwd-sugg.is-open {
+        display: block;
+    }
+
+    .fwd-sugg__label {
+        padding: 5px 8px 3px;
+        font-size: 10.5px;
+        line-height: 13px;
+        letter-spacing: .3px;
+        text-transform: uppercase;
+        color: #8A93A6;
+    }
+
+    .fwd-sugg__row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding: 6px 8px;
+        border: 0;
+        background: transparent;
+        border-radius: 6px;
+        font-size: 13px;
+        line-height: 16px;
+        color: #212529;
+        text-align: left;
+    }
+
+    .fwd-sugg__row:hover,
+    .fwd-sugg__row.is-cursor {
+        background: #F0F4FF;
+    }
+
+    .fwd-sugg__sub {
+        margin-left: auto;
+        font-size: 11px;
+        color: #8A93A6;
+    }
+
+    .fwd-sugg__empty {
+        padding: 8px;
+        font-size: 12.5px;
+        color: #8A93A6;
     }
 
     /* -------------------------------------------------------- rename modal */
@@ -2270,6 +2755,7 @@ ViewData["User"] = "Admin";
         display: flex;
         justify-content: center;
         align-items: center;
+        align-self: center;
         flex: none;
         width: 44px;
         height: 44px;
@@ -2277,6 +2763,12 @@ ViewData["User"] = "Admin";
         border-radius: 22px;
         color: #E0431F;
         font-size: 22px;
+        line-height: 1;
+    }
+
+    .del-icon i {
+        display: block;
+        line-height: 0;
     }
 
     .del-stats {
@@ -2482,11 +2974,20 @@ ViewData["User"] = "Admin";
         flex: none;
         width: 34px;
         height: 34px;
+        padding: 0;
         border: 0;
         background: #F5F6FA;
         border-radius: 17px;
         color: #4A5468;
         font-size: 14px;
+        line-height: 1;
+    }
+
+    /* bootstrap-icons carry their own line-height, which pushes the glyph off-centre */
+    .cmp-head__x i,
+    .cmp-browse i {
+        display: block;
+        line-height: 0;
     }
 
     .cmp-field {
@@ -2568,12 +3069,14 @@ ViewData["User"] = "Admin";
         flex: none;
         width: 32px;
         height: 32px;
+        padding: 0;
         margin-left: auto;
         background: #FFFFFF;
         border: 1px solid #1D4ED8;
         border-radius: 16px;
         color: #1D4ED8;
         font-size: 14px;
+        line-height: 1;
     }
 
     .cmp-hint {
@@ -2834,12 +3337,36 @@ ViewData["User"] = "Admin";
         display: flex;
     }
 
+    /* single row, horizontally scrollable — never wraps to a second line */
     .cmp-files__row {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
-        gap: 4px;
-        padding: 0 14px;
+        gap: 6px;
+        padding: 2px 14px 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #C4CAD6 transparent;
+        overscroll-behavior-x: contain;
+    }
+
+    .cmp-files__row::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-track {
+        background: #EEF0F4;
+        border-radius: 3px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        border-radius: 3px;
+    }
+
+    .cmp-files__row::-webkit-scrollbar-thumb:hover {
+        background: #A9B1C1;
     }
 
     .cmp-file {
@@ -2848,6 +3375,7 @@ ViewData["User"] = "Admin";
         display: flex;
         align-items: center;
         gap: 10px;
+        flex: none;
         width: 177px;
         height: 55px;
         padding: 0 13px;
@@ -2902,11 +3430,9 @@ ViewData["User"] = "Admin";
         color: #878A99;
     }
 
+    /* the row now owns a real horizontal scrollbar, so the faux track is redundant */
     .cmp-files__bar {
-        height: 4px;
-        margin: 3px 14px;
-        background: #EEF0F4;
-        border-radius: 2px;
+        display: none;
     }
 
     .cmp-files__bar span {
@@ -3410,7 +3936,7 @@ ViewData["User"] = "Admin";
 </style>
 
 <nav
-    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow mb-2 py-3 py-md-3">
+    class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow py-3 py-md-3">
     <div class="container px-4" id="desktop-navbar">
         <!-- Messages dropdown button -->
         <ul class="navbar-nav me-3">
@@ -3818,9 +4344,19 @@ ViewData["User"] = "Admin";
                         </button>
                     </div>
                     <div class="chat-head__tools">
-                        <label class="chat-search">
+                        <label class="chat-search" id="chatSearchWrap">
                             <i class="bi bi-search"></i>
-                            <input type="search" placeholder="Search Conversation" aria-label="Search conversation">
+                            <input type="search" id="chatSearchInput" placeholder="Search Conversation"
+                                autocomplete="off" aria-label="Search conversation">
+                            <span class="chat-search__count" id="chatSearchCount"></span>
+                            <span class="chat-search__nav">
+                                <button type="button" id="chatSearchPrev" title="Previous match"
+                                    aria-label="Previous match"><i class="bi bi-chevron-up"></i></button>
+                                <button type="button" id="chatSearchNext" title="Next match"
+                                    aria-label="Next match"><i class="bi bi-chevron-down"></i></button>
+                                <button type="button" id="chatSearchClear" title="Clear search"
+                                    aria-label="Clear search"><i class="bi bi-x-lg"></i></button>
+                            </span>
                         </label>
                         <div class="chat-head__actions">
                             <button type="button" title="Files" id="filesToggle"><i
@@ -3842,6 +4378,7 @@ ViewData["User"] = "Admin";
                 </div>
 
                 <div class="chat-stream" id="chatStream">
+                    <div class="stream-empty" id="streamEmpty">No messages match your search.</div>
                     <div class="stream-note">John created the group.</div>
                     <div class="stream-note">Maria Santos added Peter Cruz, Alexa De Leon, &amp; 9 others to the group.
                     </div>
@@ -3851,8 +4388,7 @@ ViewData["User"] = "Admin";
                         <div class="msg-block">
                             <span class="msg-author">Ana</span>
                             <div class="bubble">
-                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this
-                                    Thursday at 10 AM.</span>
+                                <span class="bubble__text">Hey team, quick heads up — we've got a project review this Thursday at 10 AM.</span>
                                 <span class="bubble__meta">9:02 AM</span>
                             </div>
                             <button type="button" class="reaction-chip" data-react-list="reactList">
@@ -3877,8 +4413,7 @@ ViewData["User"] = "Admin";
                         </div>
                         <div class="msg-block">
                             <div class="bubble bubble--out" style="width:421px;">
-                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
-                                    too?</span>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck too?</span>
                                 <span class="bubble__meta">9:05 AM <i class="bi bi-check2-all"></i></span>
                             </div>
                             <button type="button" class="reaction-chip" data-react-list="reactList">
@@ -3887,15 +4422,25 @@ ViewData["User"] = "Admin";
                         </div>
                     </div>
 
-                    <!-- incoming group of two -->
+                    <!-- incoming group of two — each message keeps its own menu + react -->
                     <div class="msg-row">
                         <div class="msg-block" style="gap:5px;">
                             <span class="msg-author">Ana</span>
                             <div class="bubble" style="width:503px;">
-                                <span class="bubble__text">Yes please! Just the milestones slide and the blockers list,
-                                    nothing fancy.</span>
+                                <span class="bubble__text">Yes please! Just the milestones slide and the blockers list, nothing fancy.</span>
                                 <span class="bubble__meta">9:02 AM</span>
                             </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block" style="gap:5px;">
                             <div class="bubble">
                                 <span class="bubble__text">Please be ready.</span>
                                 <span class="bubble__meta">9:02 AM</span>
@@ -3920,8 +4465,7 @@ ViewData["User"] = "Admin";
                         </div>
                         <div class="msg-block">
                             <div class="bubble bubble--out" style="width:421px;">
-                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
-                                    too?</span>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck too?</span>
                                 <span class="bubble__meta">9:05 AM <i class="bi bi-check2"></i></span>
                             </div>
                         </div>
@@ -3949,14 +4493,15 @@ ViewData["User"] = "Admin";
                     <div class="msg-row msg-row--out">
                         <div class="msg-tools">
                             <button type="button" class="msg-tool" data-menu="myMessageMenu">
-                                <i class="bi bi-emoji-smile"></i>
+                                <i class="bi bi-three-dots-vertical"></i>
                             </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
                         </div>
                         <div class="msg-block">
-                            <div class="bubble bubble--soft" style="width:313px;">
+                            <div class="bubble bubble--out" style="width:313px;">
                                 <span class="bubble__text">On it — will have it updated before end of day.</span>
                                 <span class="bubble__meta" style="font-size:12px;line-height:14px;">8:56 AM
-                                    <i class="bi bi-check2-all" style="color:#1D4ED8;"></i>
+                                    <i class="bi bi-check2-all"></i>
                                 </span>
                             </div>
                         </div>
@@ -4027,7 +4572,7 @@ ViewData["User"] = "Admin";
                             <button type="button" class="msg-tool" data-menu="myMessageMenu">
                                 <i class="bi bi-three-dots-vertical"></i>
                             </button>
-                            <button type="button" class="msg-react">&#129309;</button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
                         </div>
                         <div class="msg-block">
                             <div class="bubble bubble--out" style="width:421px;">
@@ -4039,8 +4584,7 @@ ViewData["User"] = "Admin";
                                     <span class="quote__text">Please make sure to add the review meeting on
                                         everyone's calendar — Bruce wants full attendance this time.</span>
                                 </div>
-                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
-                                    too?</span>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck too?</span>
                                 <span class="bubble__meta">9:05 AM <i class="bi bi-check2-all"></i></span>
                             </div>
                         </div>
@@ -4114,8 +4658,7 @@ ViewData["User"] = "Admin";
                         </div>
                         <div class="msg-block">
                             <div class="bubble bubble--out" style="width:300px;">
-                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
-                                    too?</span>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck too?</span>
                                 <span class="attach-file attach-file--onblue">
                                     <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
                                     <span class="attach-file__body">
@@ -4144,8 +4687,7 @@ ViewData["User"] = "Admin";
                         </div>
                         <div class="msg-block">
                             <div class="bubble bubble--out" style="width:421px;">
-                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck
-                                    too?</span>
+                                <span class="bubble__text">Got it, I'll block off my calendar. Should I prep the deck too?</span>
                                 <span class="attach-grid">
                                     <button type="button" class="attach-dl-all">
                                         <i class="bi bi-download"></i> Download all
@@ -4229,17 +4771,36 @@ ViewData["User"] = "Admin";
                             <button type="button" class="composer-tool" title="Attach file" id="attachToggle">
                                 <i class="bi bi-paperclip"></i>
                             </button>
-                            <button type="button" class="composer-tool" title="Voice message">
+                            <button type="button" class="composer-tool" title="Record voice message" id="voiceToggle">
                                 <i class="bi bi-mic"></i>
                             </button>
                             <span class="composer-divider"></span>
-                            <button type="button" class="composer-tool" title="Use Template">
+                            <button type="button" class="composer-tool" title="Use Template" id="composerTplToggle">
                                 <i class="bi bi-layout-text-window"></i>
                             </button>
                         </div>
                         <textarea class="composer-input" id="composerInput" rows="1"
                             placeholder="Enter your message"></textarea>
                         <button type="button" class="composer-send" id="composerSend" title="Send">
+                            <i class="bi bi-send-fill"></i>
+                        </button>
+                    </div>
+
+                    <!-- voice recording state — replaces the input row while recording -->
+                    <div class="voice-rec" id="voiceRec">
+                        <button type="button" class="voice-rec__cancel" id="voiceCancel" title="Discard recording"
+                            aria-label="Discard recording">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <span class="voice-rec__dot"></span>
+                        <span class="voice-rec__time" id="voiceTime">0:00</span>
+                        <span class="voice-rec__wave" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                        </span>
+                        <span class="voice-rec__hint">Recording… release to send</span>
+                        <button type="button" class="voice-rec__send" id="voiceSend" title="Send voice message"
+                            aria-label="Send voice message">
                             <i class="bi bi-send-fill"></i>
                         </button>
                     </div>
@@ -4279,73 +4840,73 @@ ViewData["User"] = "Admin";
                             <span class="avatar avatar--md" style="background:#FFB199;">BB</span>
                             <span class="member-item__name">Bruce Banner
                                 <span class="member-item__role">(Admin)</span></span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#FFD59E;">CB</span>
                             <span class="member-item__name">Clint Barton</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#B8E0D2;">NR</span>
                             <span class="member-item__name">Natasha Romanoff</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#B7C9F2;">PP</span>
                             <span class="member-item__name">Peter Parker</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#E3B7F2;">SR</span>
                             <span class="member-item__name">Steve Rogers</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#F2B7D6;">WM</span>
                             <span class="member-item__name">Wanda Maximoff</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#C9E4B7;">SW</span>
                             <span class="member-item__name">Sam Wilson</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#B7E3F2;">CD</span>
                             <span class="member-item__name">Carol Danvers</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#F2D3B7;">TU</span>
                             <span class="member-item__name">T'Challa Udaku</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#D6B7F2;">SL</span>
                             <span class="member-item__name">Scott Lang</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#F2C9B7;">SS</span>
                             <span class="member-item__name">Stephen Strange</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                         <div class="member-item">
                             <span class="avatar avatar--md" style="background:#FFB199;">MR</span>
                             <span class="member-item__name">Maria Reyes</span>
-                            <button type="button" class="member-item__kebab"><i
+                            <button type="button" class="member-item__kebab" data-menu="memberItemMenu"><i
                                     class="bi bi-three-dots-vertical"></i></button>
                         </div>
                     </div>
@@ -4454,7 +5015,7 @@ ViewData["User"] = "Admin";
                     </div>
 
                     <div class="settings-list">
-                        <button type="button" class="settings-row">
+                        <button type="button" class="settings-row" id="settingsSearchRow">
                             <i class="bi bi-search"></i>
                             <span class="members-panel__addwrap" style="padding:0;gap:2px;">
                                 <span class="settings-row__title">Search in Conversation</span>
@@ -4478,7 +5039,7 @@ ViewData["User"] = "Admin";
                                 <span class="settings-row__sub">Deletes all messages for you only</span>
                             </span>
                         </button>
-                        <button type="button" class="settings-row settings-row--danger">
+                        <button type="button" class="settings-row settings-row--danger settings-row--single">
                             <i class="bi bi-slash-circle"></i>
                             <span class="members-panel__addwrap" style="padding:0;gap:2px;">
                                 <span class="settings-row__title">Block this User</span>
@@ -4502,8 +5063,8 @@ ViewData["User"] = "Admin";
 </div>
 
 <div class="msg-menu" id="theirMessageMenu">
-    <button type="button" class="msg-menu__item"><i class="bi bi-reply"></i> Reply</button>
-    <button type="button" class="msg-menu__item"><i class="bi bi-forward"></i> Forward</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-arrow-return-left"></i> Reply</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-arrow-return-left icon-flip"></i> Forward</button>
     <button type="button" class="msg-menu__item"><i class="bi bi-copy"></i> Copy text</button>
     <span class="msg-menu__divider"></span>
     <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete for
@@ -4511,13 +5072,22 @@ ViewData["User"] = "Admin";
 </div>
 
 <div class="msg-menu" id="myMessageMenu">
-    <button type="button" class="msg-menu__item"><i class="bi bi-reply"></i> Reply</button>
-    <button type="button" class="msg-menu__item"><i class="bi bi-forward"></i> Forward</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-arrow-return-left"></i> Reply</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-arrow-return-left icon-flip"></i> Forward</button>
     <button type="button" class="msg-menu__item"><i class="bi bi-copy"></i> Copy text</button>
     <button type="button" class="msg-menu__item"><i class="bi bi-pencil"></i> Edit message</button>
     <span class="msg-menu__divider"></span>
     <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete for
         everyone</button>
+</div>
+
+<div class="msg-menu" id="memberItemMenu">
+    <button type="button" class="msg-menu__item"><i class="bi bi-person"></i> View profile</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-chat-left-text"></i> Send message</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-shield-check"></i> Make admin</button>
+    <span class="msg-menu__divider"></span>
+    <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-person-dash"></i> Remove from
+        group</button>
 </div>
 
 <!-- Add People modal (Users / Groups) -->
@@ -4601,7 +5171,7 @@ ViewData["User"] = "Admin";
 
 <div class="react-list" id="reactList">
     <div class="react-list__head">
-        <i class="bi bi-emoji-smile"></i>
+        <span class="react-list__emoji">&#129309;</span>
         <span>10</span>
         <span>reacted</span>
     </div>
@@ -4633,18 +5203,20 @@ ViewData["User"] = "Admin";
         <div class="zx-modal__sub">You can forward to any chat or channel.</div>
 
         <div class="zx-modal__label">Add recipients <span>*</span></div>
-        <div class="fwd-chips" id="fwdChips">
+        <div class="fwd-chips" id="fwdChips" style="position:relative;">
             <i class="bi bi-search"></i>
-            <span class="fwd-chip">
-                <span class="fwd-chip__dot"></span>
+            <span class="fwd-chip" data-name="HR Team">
+                <span class="fwd-chip__dot" style="background:#B7C9F2;">HT</span>
                 HR Team
                 <button type="button" class="fwd-chip__x" aria-label="Remove"><i class="bi bi-x-lg"></i></button>
             </span>
-            <input type="search" placeholder="Search chats or channels">
+            <input type="search" id="fwdSearch" placeholder="Search chats or channels" autocomplete="off"
+                aria-label="Search chats or channels">
+            <div class="fwd-sugg" id="fwdSugg" role="listbox"></div>
         </div>
 
         <div class="zx-modal__label">Message preview</div>
-        <input type="text" class="fwd-note" placeholder="Add a message (optional)">
+        <textarea class="fwd-note" id="fwdNote" rows="1" placeholder="Add a message (optional)"></textarea>
 
         <div class="fwd-preview" style="margin-top:8px;">
             <div class="fwd-preview__head">
@@ -4652,9 +5224,24 @@ ViewData["User"] = "Admin";
                 <span>Maricris Ramos</span>
                 <time>07/16/2026 1:45 PM</time>
             </div>
-            <div class="fwd-preview__body" id="fwdPreviewText">Hey Team, Quick heads up – we've got a team meeting next
-                week. It's happening on Wednesday, March 20th at 10:00 AM in the conference room. Everyone should be
-                there because we need to discuss things about our on going project. See you!</div>
+            <div class="fwd-preview__scroll">
+                <div class="fwd-preview__body" id="fwdPreviewText">Hey Team, Quick heads up – we've got a team meeting
+                    next week. It's happening on Wednesday, March 20th at 10:00 AM in the conference room. Everyone
+                    should be there because we need to discuss things about our on going project. See you!</div>
+
+                <div class="fwd-preview__attach" id="fwdPreviewAttach" style="display:none;">
+                    <div class="fwd-attach" id="fwdAttachFile">
+                        <span class="fwd-attach__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                        <span class="fwd-attach__body">
+                            <span class="fwd-attach__name" id="fwdAttachName">Campaign_Review.pdf</span>
+                            <span class="fwd-attach__meta" id="fwdAttachMeta">2.4 MB · PDF document</span>
+                        </span>
+                    </div>
+                    <span class="fwd-attach__img" id="fwdAttachImage" style="display:none;">
+                        <i class="bi bi-image"></i>
+                    </span>
+                </div>
+            </div>
             <div class="quote-file" id="fwdPreviewFile" style="display:none;">
                 <span class="quote-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
                 <span class="quote-file__name">Invoice Template.pdf</span>
@@ -4796,7 +5383,7 @@ ViewData["User"] = "Admin";
 
         <div class="cmp-field cmp-field--single">
             <i class="bi bi-card-heading"></i>
-            <input type="text" placeholder="Enter subject">
+            <input type="text" id="cmpSubject" placeholder="Enter subject" aria-label="Subject">
         </div>
 
         <div class="cmp-body">
@@ -5091,6 +5678,92 @@ ViewData["User"] = "Admin";
             composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
         });
 
+        // ------------------------------------------------ voice message recording
+        const chatComposerEl = document.getElementById('chatComposer');
+        const voiceToggle = document.getElementById('voiceToggle');
+        const voiceRec = document.getElementById('voiceRec');
+        const voiceTime = document.getElementById('voiceTime');
+        const voiceCancel = document.getElementById('voiceCancel');
+        const voiceSendBtn = document.getElementById('voiceSend');
+
+        let voiceTimer = null;
+        let voiceSeconds = 0;
+
+        const fmtDuration = (total) =>
+            Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
+
+        const stopVoiceUI = () => {
+            clearInterval(voiceTimer);
+            voiceTimer = null;
+            voiceRec.classList.remove('is-open');
+            chatComposerEl.classList.remove('is-recording');
+            voiceToggle.classList.remove('is-active');
+        };
+
+        const startVoice = () => {
+            voiceSeconds = 0;
+            voiceTime.textContent = '0:00';
+            voiceRec.classList.add('is-open');
+            chatComposerEl.classList.add('is-recording');
+            voiceToggle.classList.add('is-active');
+            voiceTimer = setInterval(() => {
+                voiceSeconds++;
+                voiceTime.textContent = fmtDuration(voiceSeconds);
+                if (voiceSeconds >= 300) sendVoiceNote(); // 5 min cap
+            }, 1000);
+        };
+
+        // pseudo-random but stable-looking waveform for the sent note
+        const waveMarkup = (bars) => {
+            let out = '';
+            for (let i = 0; i < bars; i++) {
+                const h = 25 + Math.round(Math.abs(Math.sin(i * 1.7)) * 70);
+                out += '<i style="height:' + h + '%"></i>';
+            }
+            return out;
+        };
+
+        const sendVoiceNote = () => {
+            const length = Math.max(1, voiceSeconds);
+            stopVoiceUI();
+            const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            const row = document.createElement('div');
+            row.className = 'msg-row msg-row--out';
+            row.innerHTML =
+                '<div class="msg-tools">' +
+                '<button type="button" class="msg-tool" data-menu="myMessageMenu"><i class="bi bi-three-dots-vertical"></i></button>' +
+                '<button type="button" class="msg-react msg-react--plain">&#129309;</button>' +
+                '</div>' +
+                '<div class="msg-block"><div class="bubble bubble--out">' +
+                '<span class="voice-note">' +
+                '<button type="button" class="voice-note__play" aria-label="Play voice message"><i class="bi bi-play-fill"></i></button>' +
+                '<span class="voice-note__wave">' + waveMarkup(28) + '</span>' +
+                '<span class="voice-note__len">' + fmtDuration(length) + '</span>' +
+                '</span>' +
+                '<span class="bubble__meta">' + time + ' <i class="bi bi-check2"></i></span>' +
+                '</div></div>';
+            stream.appendChild(row);
+            stream.scrollTop = stream.scrollHeight;
+        };
+
+        if (voiceToggle && voiceRec) {
+            voiceToggle.addEventListener('click', () => {
+                if (voiceTimer) { stopVoiceUI(); return; }
+                startVoice();
+            });
+            voiceCancel.addEventListener('click', stopVoiceUI);
+            voiceSendBtn.addEventListener('click', sendVoiceNote);
+        }
+
+        // play/pause toggle on any voice note in the stream
+        stream && stream.addEventListener('click', (e) => {
+            const play = e.target.closest('.voice-note__play');
+            if (!play) return;
+            const icon = play.querySelector('i');
+            const playing = icon.classList.contains('bi-pause-fill');
+            icon.className = playing ? 'bi bi-play-fill' : 'bi bi-pause-fill';
+        });
+
         // ------------------------------------------------------- members panel
         const membersPanel = document.getElementById('membersPanel');
         const peopleToggle = document.getElementById('peopleToggle');
@@ -5305,6 +5978,148 @@ ViewData["User"] = "Admin";
             btn.addEventListener('click', () => btn.closest('.members-panel').classList.remove('is-open'));
         });
 
+        // -------------------------------------------------- search in conversation
+        const searchWrap = document.getElementById('chatSearchWrap');
+        const searchInput = document.getElementById('chatSearchInput');
+        const searchCount = document.getElementById('chatSearchCount');
+        const searchPrev = document.getElementById('chatSearchPrev');
+        const searchNext = document.getElementById('chatSearchNext');
+        const searchClear = document.getElementById('chatSearchClear');
+        const streamEmpty = document.getElementById('streamEmpty');
+
+        let hits = [];
+        let hitIndex = -1;
+
+        // text nodes we are allowed to highlight (message bodies and quoted text)
+        const SEARCHABLE = '.bubble__text, .quote__text, .attach-file__name, .quote-file__name';
+
+        const unmark = (root) => {
+            root.querySelectorAll('mark.msg-hit').forEach(m => {
+                const parent = m.parentNode;
+                parent.replaceChild(document.createTextNode(m.textContent), m);
+                parent.normalize();
+            });
+        };
+
+        const markIn = (el, term) => {
+            let found = 0;
+            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+                acceptNode: (node) => node.nodeValue.toLowerCase().includes(term)
+                    ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+            });
+            const targets = [];
+            while (walker.nextNode()) targets.push(walker.currentNode);
+
+            targets.forEach(node => {
+                const text = node.nodeValue;
+                const lower = text.toLowerCase();
+                const frag = document.createDocumentFragment();
+                let at = 0;
+                let i = lower.indexOf(term);
+                while (i !== -1) {
+                    if (i > at) frag.appendChild(document.createTextNode(text.slice(at, i)));
+                    const mark = document.createElement('mark');
+                    mark.className = 'msg-hit';
+                    mark.textContent = text.slice(i, i + term.length);
+                    frag.appendChild(mark);
+                    found++;
+                    at = i + term.length;
+                    i = lower.indexOf(term, at);
+                }
+                if (at < text.length) frag.appendChild(document.createTextNode(text.slice(at)));
+                node.parentNode.replaceChild(frag, node);
+            });
+            return found;
+        };
+
+        const setCurrentHit = (index) => {
+            if (!hits.length) return;
+            hitIndex = (index + hits.length) % hits.length;
+            hits.forEach(h => h.classList.remove('is-current'));
+            const current = hits[hitIndex];
+            current.classList.add('is-current');
+            current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            searchCount.textContent = (hitIndex + 1) + '/' + hits.length;
+        };
+
+        const runConversationSearch = () => {
+            if (!stream || !searchInput) return;
+            const term = searchInput.value.trim().toLowerCase();
+
+            unmark(stream);
+            hits = [];
+            hitIndex = -1;
+
+            const rows = [...stream.querySelectorAll('.msg-row')];
+            const chrome = [...stream.querySelectorAll('.stream-note, .stream-divider')];
+
+            if (!term) {
+                searchWrap.classList.remove('is-active');
+                searchCount.textContent = '';
+                rows.forEach(r => r.classList.remove('is-filtered'));
+                chrome.forEach(c => c.classList.remove('is-filtered'));
+                streamEmpty.classList.remove('is-shown');
+                searchPrev.disabled = searchNext.disabled = true;
+                return;
+            }
+
+            searchWrap.classList.add('is-active');
+            // date separators / system notes are noise while searching
+            chrome.forEach(c => c.classList.add('is-filtered'));
+
+            let matchedRows = 0;
+            rows.forEach(row => {
+                let rowHits = 0;
+                row.querySelectorAll(SEARCHABLE).forEach(el => { rowHits += markIn(el, term); });
+                const matched = rowHits > 0;
+                row.classList.toggle('is-filtered', !matched);
+                if (matched) matchedRows++;
+            });
+
+            hits = [...stream.querySelectorAll('mark.msg-hit')];
+            streamEmpty.classList.toggle('is-shown', matchedRows === 0);
+            searchPrev.disabled = searchNext.disabled = hits.length === 0;
+
+            if (!hits.length) {
+                searchCount.textContent = '0 results';
+                return;
+            }
+            setCurrentHit(0);
+        };
+
+        const resetConversationSearch = () => {
+            if (!searchInput) return;
+            searchInput.value = '';
+            runConversationSearch();
+        };
+
+        if (searchInput) {
+            let debounce;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounce);
+                debounce = setTimeout(runConversationSearch, 140);
+            });
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { resetConversationSearch(); searchInput.blur(); return; }
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (hits.length) setCurrentHit(hitIndex + (e.shiftKey ? -1 : 1));
+                }
+            });
+            searchNext.addEventListener('click', (e) => { e.preventDefault(); setCurrentHit(hitIndex + 1); });
+            searchPrev.addEventListener('click', (e) => { e.preventDefault(); setCurrentHit(hitIndex - 1); });
+            searchClear.addEventListener('click', (e) => { e.preventDefault(); resetConversationSearch(); searchInput.focus(); });
+            searchPrev.disabled = searchNext.disabled = true;
+        }
+
+        // "Search in Conversation" in the Settings panel focuses the header search
+        const settingsSearchRow = document.getElementById('settingsSearchRow');
+        settingsSearchRow && settingsSearchRow.addEventListener('click', () => {
+            const panel = document.getElementById('settingsPanel');
+            panel && panel.classList.remove('is-open');
+            searchInput && searchInput.focus();
+        });
+
         // Files panel: tabs + search
         const fileList = document.getElementById('fileList');
         const fileSearch = document.getElementById('fileSearch');
@@ -5365,6 +6180,39 @@ ViewData["User"] = "Admin";
         const fwdSubmit = document.getElementById('fwdSubmit');
         const fwdPreviewText = document.getElementById('fwdPreviewText');
         const fwdPreviewFile = document.getElementById('fwdPreviewFile');
+        const fwdPreviewAttach = document.getElementById('fwdPreviewAttach');
+        const fwdAttachFile = document.getElementById('fwdAttachFile');
+        const fwdAttachImage = document.getElementById('fwdAttachImage');
+        const fwdAttachName = document.getElementById('fwdAttachName');
+        const fwdAttachMeta = document.getElementById('fwdAttachMeta');
+        const fwdSearch = document.getElementById('fwdSearch');
+        const fwdSugg = document.getElementById('fwdSugg');
+        const fwdNote = document.getElementById('fwdNote');
+
+        // chats / channels available as forward targets
+        const FWD_TARGETS = [
+            { name: 'HR Team', sub: '12 members', tint: '#B7C9F2' },
+            { name: 'Design Team', sub: '8 members', tint: '#FFD59E' },
+            { name: 'Marketing', sub: '15 members', tint: '#A8DAB5' },
+            { name: 'Project Alpha', sub: '6 members', tint: '#F2B7D6' },
+            { name: 'Maria Reyes', sub: 'Direct message', tint: '#FFD59E' },
+            { name: 'Clint Barton', sub: 'Direct message', tint: '#FFB199' },
+            { name: 'Natasha Romanoff', sub: 'Direct message', tint: '#B8E0D2' },
+            { name: 'Bruce Banner', sub: 'Direct message', tint: '#B7C9F2' },
+            { name: 'Ana Cruz', sub: 'Direct message', tint: '#D9CBF2' },
+            { name: 'Steve Rogers', sub: 'Direct message', tint: '#F2B7D6' }
+        ];
+
+        const fwdInitials = (name) =>
+            name.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+
+        const fwdTint = (name) => {
+            const t = FWD_TARGETS.find(x => x.name === name);
+            return (t && t.tint) || '#B7C9F2';
+        };
+
+        const fwdChosen = () =>
+            [...fwdChips.querySelectorAll('.fwd-chip')].map(c => c.dataset.name);
 
         const refreshFwdCount = () => {
             const n = fwdChips.querySelectorAll('.fwd-chip').length;
@@ -5372,24 +6220,130 @@ ViewData["User"] = "Admin";
             fwdSubmit.disabled = n === 0;
         };
 
+        const addFwdChip = (name) => {
+            if (fwdChosen().includes(name)) return;
+            const chip = document.createElement('span');
+            chip.className = 'fwd-chip';
+            chip.dataset.name = name;
+            chip.innerHTML = '<span class="fwd-chip__dot"></span>' +
+                '<span class="fwd-chip__label"></span>' +
+                '<button type="button" class="fwd-chip__x" aria-label="Remove"><i class="bi bi-x-lg"></i></button>';
+            const dot = chip.querySelector('.fwd-chip__dot');
+            dot.textContent = fwdInitials(name);
+            dot.style.background = fwdTint(name);
+            chip.querySelector('.fwd-chip__label').textContent = name;
+            fwdChips.insertBefore(chip, fwdSearch);
+            refreshFwdCount();
+        };
+
+        const closeFwdSugg = () => {
+            fwdSugg.classList.remove('is-open');
+            fwdSugg.innerHTML = '';
+        };
+
+        const renderFwdSugg = () => {
+            const q = fwdSearch.value.trim().toLowerCase();
+            const taken = fwdChosen();
+            const hits = FWD_TARGETS
+                .filter(t => !taken.includes(t.name))
+                .filter(t => !q || t.name.toLowerCase().includes(q));
+
+            if (!hits.length) {
+                fwdSugg.innerHTML = '<div class="fwd-sugg__empty">No chats or channels found.</div>';
+                fwdSugg.classList.add('is-open');
+                return;
+            }
+
+            fwdSugg.innerHTML = '<div class="fwd-sugg__label">Chats &amp; channels</div>';
+            hits.forEach(t => {
+                const row = document.createElement('button');
+                row.type = 'button';
+                row.className = 'fwd-sugg__row';
+                row.innerHTML = '<span class="fwd-chip__dot"></span><span class="fwd-sugg__name"></span>' +
+                    '<span class="fwd-sugg__sub"></span>';
+                const dot = row.querySelector('.fwd-chip__dot');
+                dot.textContent = fwdInitials(t.name);
+                dot.style.background = t.tint || '#B7C9F2';
+                row.querySelector('.fwd-sugg__name').textContent = t.name;
+                row.querySelector('.fwd-sugg__sub').textContent = t.sub;
+                row.addEventListener('click', () => {
+                    addFwdChip(t.name);
+                    fwdSearch.value = '';
+                    renderFwdSugg();
+                    fwdSearch.focus();
+                });
+                fwdSugg.appendChild(row);
+            });
+            fwdSugg.classList.add('is-open');
+        };
+
+        if (fwdSearch) {
+            fwdSearch.addEventListener('input', renderFwdSugg);
+            fwdSearch.addEventListener('focus', renderFwdSugg);
+            fwdSearch.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { closeFwdSugg(); return; }
+                if (e.key === 'Backspace' && !fwdSearch.value) {
+                    const chips = fwdChips.querySelectorAll('.fwd-chip');
+                    if (chips.length) { chips[chips.length - 1].remove(); refreshFwdCount(); renderFwdSugg(); }
+                    return;
+                }
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const first = fwdSugg.querySelector('.fwd-sugg__row');
+                    if (first) first.click();
+                }
+            });
+            // close the dropdown when clicking outside the recipients field
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#fwdChips')) closeFwdSugg();
+            });
+        }
+
+        // expandable "add a message" field
+        const growFwdNote = () => {
+            if (!fwdNote) return;
+            fwdNote.style.height = 'auto';
+            fwdNote.style.height = Math.min(fwdNote.scrollHeight, 120) + 'px';
+        };
+        fwdNote && fwdNote.addEventListener('input', growFwdNote);
+
         fwdChips && fwdChips.addEventListener('click', (e) => {
             const x = e.target.closest('.fwd-chip__x');
             if (!x) return;
             x.closest('.fwd-chip').remove();
             refreshFwdCount();
+            if (fwdSearch && document.activeElement === fwdSearch) renderFwdSugg();
         });
 
         const openForward = (row) => {
-            // mirror the source message (text and, if present, its attachment)
+            // mirror the source message: text, and any attachment it carries
             const text = row && row.querySelector('.bubble__text');
             const author = row && row.querySelector('.msg-author');
-            const file = row && row.querySelector('.file-card__name, .quote-file__name');
+            const file = row && row.querySelector('.quote-file__name');
+            const attachFile = row && row.querySelector('.attach-file__name');
+            const attachMeta = row && row.querySelector('.attach-file__meta');
+            const attachImg = row && row.querySelector('.attach-image, .attach-grid');
+
             if (text) fwdPreviewText.textContent = text.textContent.trim();
             fwdPreviewText.style.display = text ? '' : 'none';
+
             if (file) fwdPreviewFile.querySelector('.quote-file__name').textContent = file.textContent.trim();
             fwdPreviewFile.style.display = file ? '' : 'none';
+
+            // attachment display (file card and/or image placeholder)
+            if (attachFile) {
+                fwdAttachName.textContent = attachFile.textContent.trim();
+                fwdAttachMeta.textContent = attachMeta ? attachMeta.textContent.trim() : 'Attachment';
+            }
+            fwdAttachFile.style.display = attachFile ? '' : 'none';
+            fwdAttachImage.style.display = attachImg ? '' : 'none';
+            fwdPreviewAttach.style.display = (attachFile || attachImg) ? '' : 'none';
+
             const head = document.querySelector('#forwardModal .fwd-preview__head span');
-            if (head && author) head.textContent = author.textContent.trim();
+            if (head) head.textContent = author ? author.textContent.trim() : 'You';
+
+            if (fwdNote) { fwdNote.value = ''; growFwdNote(); }
+            closeFwdSugg();
             refreshFwdCount();
             openModal('forwardModal');
         };
@@ -5555,8 +6509,22 @@ ViewData["User"] = "Admin";
             const chipNames = () =>
                 [...cmpRecipients.querySelectorAll('.cmp-chip')].map(c => c.dataset.name);
 
+            // the subject line doubles as the group name when creating a group chat
+            const cmpSubject = byId('cmpSubject');
+            const syncSubjectLabel = () => {
+                if (!cmpSubject) return;
+                const active = modes.querySelector('.cmp-mode.is-active');
+                const isGroup = modes.classList.contains('is-open')
+                    && active && active.dataset.mode === 'group';
+                cmpSubject.placeholder = isGroup ? 'Enter Group name' : 'Enter subject';
+                cmpSubject.setAttribute('aria-label', isGroup ? 'Group name' : 'Subject');
+            };
+
             // two or more recipients reveals Send Separately / Create Group Chat
-            const syncModes = () => modes.classList.toggle('is-open', chipNames().length >= 2);
+            const syncModes = () => {
+                modes.classList.toggle('is-open', chipNames().length >= 2);
+                syncSubjectLabel();
+            };
 
             const addRecipient = (entry) => {
                 if (chipNames().includes(entry.name)) return;
@@ -5587,7 +6555,9 @@ ViewData["User"] = "Admin";
                 if (!btn) return;
                 modes.querySelectorAll('.cmp-mode').forEach(b => b.classList.remove('is-active'));
                 btn.classList.add('is-active');
+                syncSubjectLabel();
             });
+            syncSubjectLabel();
 
             // ------------------------------------------------- live suggestions
             const renderSugg = (term) => {
@@ -5842,38 +6812,69 @@ ViewData["User"] = "Admin";
         }
 
         // --------------------------------------------------- use template popover
+        // Shared by the compose modal and the chat composer; tplTarget decides where
+        // the chosen template text lands.
         const tplPop = document.getElementById('tplPop');
         const tplToggle = document.getElementById('tplToggle');
+        const composerTplToggle = document.getElementById('composerTplToggle');
         const cmpMessage = document.getElementById('cmpMessage');
 
-        tplToggle && tplToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const open = tplPop.classList.toggle('is-open');
-            tplToggle.classList.toggle('is-active', open);
+        let tplTarget = cmpMessage;
+        let tplAnchor = tplToggle;
+
+        const closeTplPop = () => {
+            if (!tplPop) return;
+            tplPop.classList.remove('is-open');
+            tplToggle && tplToggle.classList.remove('is-active');
+            composerTplToggle && composerTplToggle.classList.remove('is-active');
+        };
+
+        const openTplPop = (anchor, target) => {
+            tplAnchor = anchor;
+            tplTarget = target;
+            const open = !tplPop.classList.contains('is-open');
+            closeTplPop();
             if (!open) return;
-            const rect = tplToggle.getBoundingClientRect();
+            tplPop.classList.add('is-open');
+            anchor.classList.add('is-active');
+            const rect = anchor.getBoundingClientRect();
             let top = rect.bottom + 8;
             if (top + tplPop.offsetHeight > window.innerHeight - 8) {
                 top = Math.max(8, rect.top - tplPop.offsetHeight - 8);
             }
+            let left = Math.max(8, rect.left);
+            if (left + tplPop.offsetWidth > window.innerWidth - 8) {
+                left = Math.max(8, window.innerWidth - tplPop.offsetWidth - 8);
+            }
             tplPop.style.top = top + window.scrollY + 'px';
-            tplPop.style.left = Math.max(8, rect.left) + window.scrollX + 'px';
+            tplPop.style.left = left + window.scrollX + 'px';
+        };
+
+        tplToggle && tplToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openTplPop(tplToggle, cmpMessage);
+        });
+
+        composerTplToggle && composerTplToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openTplPop(composerTplToggle, composer);
         });
 
         tplPop && tplPop.addEventListener('click', (e) => {
             const row = e.target.closest('.tpl-row');
-            if (!row) return;
+            if (!row || !tplTarget) return;
             const quote = row.querySelector('em').textContent.replace(/^"|…"$/g, '');
-            cmpMessage.value = quote.replace(/^"|"$/g, '');
-            cmpMessage.focus();
-            tplPop.classList.remove('is-open');
-            tplToggle.classList.remove('is-active');
+            tplTarget.value = quote.replace(/^"|"$/g, '');
+            tplTarget.focus();
+            // let the chat composer's auto-grow pick up the new text
+            tplTarget.dispatchEvent(new Event('input', { bubbles: true }));
+            closeTplPop();
         });
 
         document.addEventListener('click', (e) => {
-            if (tplPop && !e.target.closest('#tplPop') && !e.target.closest('#tplToggle')) {
-                tplPop.classList.remove('is-open');
-                tplToggle && tplToggle.classList.remove('is-active');
+            if (tplPop && !e.target.closest('#tplPop') && !e.target.closest('#tplToggle')
+                && !e.target.closest('#composerTplToggle')) {
+                closeTplPop();
             }
         });
 
