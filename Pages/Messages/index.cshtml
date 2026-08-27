@@ -456,6 +456,13 @@ ViewData["User"] = "Admin";
         border-radius: 16px;
     }
 
+    /* only one conversation stream is mounted at a time; [hidden] needs to beat
+       the display:flex on .chat-stream */
+    .chat-stream[hidden],
+    .is-group-only[hidden] {
+        display: none !important;
+    }
+
     .chat-head {
         display: flex;
         flex-direction: row;
@@ -4238,7 +4245,7 @@ ViewData["User"] = "Admin";
                     <div class="msg-list" id="chatList">
                         <div class="msg-list__label">PINNED</div>
 
-                        <div class="chat-item is-active" data-type="group" data-unread="0">
+                        <div class="chat-item is-active" data-type="group" data-unread="0" data-conv="hr-team">
                             <div class="avatar-wrap">
                                 <span class="avatar" style="background:#FFB199;">HT</span>
                                 <span class="avatar-pin"><i class="bi bi-pin-angle-fill"></i></span>
@@ -4260,9 +4267,10 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
 
-                        <div class="chat-item" data-type="group" data-unread="0">
+                        <div class="chat-item" data-type="direct" data-unread="0" data-conv="clint">
                             <div class="avatar-wrap">
                                 <span class="avatar" style="background:#FFD59E;">CB</span>
+                                <span class="avatar-pin"><i class="bi bi-pin-angle-fill"></i></span>
                             </div>
                             <div class="chat-item__body">
                                 <div class="chat-item__top">
@@ -4273,7 +4281,7 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__time">Thu</span>
                                 </div>
                                 <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
+                                <span class="chat-item__preview">Got it — I'll send my notes over before end...</span>
                             </div>
                             <div class="chat-item__meta">
                                 <button type="button" class="kebab" data-menu="chatItemMenu">
@@ -4284,26 +4292,7 @@ ViewData["User"] = "Admin";
 
                         <div class="msg-list__label mt">ALL CHATS</div>
 
-                        <div class="chat-item" data-type="direct" data-unread="0">
-                            <div class="avatar-wrap">
-                                <span class="avatar" style="background:#FFD59E;">CB</span>
-                            </div>
-                            <div class="chat-item__body">
-                                <div class="chat-item__top">
-                                    <span class="chat-item__name">Clint Barton</span>
-                                    <span class="chat-item__time">Thu</span>
-                                </div>
-                                <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
-                            </div>
-                            <div class="chat-item__meta">
-                                <button type="button" class="kebab" data-menu="chatItemMenu">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="chat-item" data-type="direct" data-unread="1">
+                        <div class="chat-item" data-type="direct" data-unread="1" data-conv="natasha">
                             <div class="avatar-wrap">
                                 <span class="avatar" style="background:#B8E0D2;">NR</span>
                             </div>
@@ -4313,8 +4302,8 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__time">Sun</span>
                                 </div>
                                 <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview" style="color:#212529;">Hi, this is the OrderTayo Pages.
-                                    Please...</span>
+                                <span class="chat-item__preview" style="color:#212529;">This looks amazing! I'll forward
+                                    it to the...</span>
                             </div>
                             <div class="chat-item__meta">
                                 <span class="unread-dot">1</span>
@@ -4324,17 +4313,18 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
 
-                        <div class="chat-item" data-type="direct" data-unread="1">
+                        <div class="chat-item" data-type="direct" data-unread="1" data-conv="maria">
                             <div class="avatar-wrap">
-                                <span class="avatar" style="background:#FFD59E;">CB</span>
+                                <span class="avatar" style="background:#FFB199;">MR</span>
                             </div>
                             <div class="chat-item__body">
                                 <div class="chat-item__top">
-                                    <span class="chat-item__name">Clint Barton</span>
+                                    <span class="chat-item__name">Maria Reyes</span>
                                     <span class="chat-item__time">08/29/2026</span>
                                 </div>
-                                <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview">Hi, this is the OrderTayo Pages. Please...</span>
+                                <span class="chat-item__subject">Q3 Budget</span>
+                                <span class="chat-item__preview" style="color:#212529;">Perfect, thanks for following up
+                                    on that.</span>
                             </div>
                             <div class="chat-item__meta">
                                 <span class="unread-dot">1</span>
@@ -4344,7 +4334,7 @@ ViewData["User"] = "Admin";
                             </div>
                         </div>
 
-                        <div class="chat-item" data-type="group" data-unread="1">
+                        <div class="chat-item" data-type="group" data-unread="1" data-conv="design-team">
                             <div class="avatar-wrap">
                                 <span class="avatar" style="background:#B7C9F2;">DT</span>
                             </div>
@@ -4353,9 +4343,9 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__name">Design Team</span>
                                     <span class="chat-item__time">08/13/2026</span>
                                 </div>
-                                <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview" style="color:#212529;">Hi, this is the OrderTayo Pages.
-                                    Please...</span>
+                                <span class="chat-item__subject">Component Library</span>
+                                <span class="chat-item__preview" style="color:#212529;">Here's the export if anyone needs
+                                    it offline.</span>
                             </div>
                             <div class="chat-item__meta">
                                 <span class="unread-dot">1</span>
@@ -4372,12 +4362,12 @@ ViewData["User"] = "Admin";
             <section class="msg-chat">
                 <div class="chat-head">
                     <div class="chat-head__title">
-                        <span class="avatar" style="background:#FFB199;">HT</span>
+                        <span class="avatar" id="chatHeadAvatar" style="background:#FFB199;">HT</span>
                         <div class="d-flex flex-column" style="gap:5px;">
-                            <span class="chat-head__name">HR Team</span>
-                            <span class="chat-head__members">12 members</span>
+                            <span class="chat-head__name" id="chatHeadName">HR Team</span>
+                            <span class="chat-head__members" id="chatHeadSub">12 members</span>
                         </div>
-                        <button type="button" class="icon-chip" title="Rename group" id="renameOpen">
+                        <button type="button" class="icon-chip is-group-only" title="Rename group" id="renameOpen">
                             <i class="bi bi-pencil"></i>
                         </button>
                     </div>
@@ -4399,24 +4389,25 @@ ViewData["User"] = "Admin";
                         <div class="chat-head__actions">
                             <button type="button" title="Files" id="filesToggle"><i
                                     class="bi bi-paperclip"></i></button>
-                            <button type="button" title="People" id="peopleToggle"><i class="bi bi-people"></i></button>
+                            <button type="button" class="is-group-only" title="People" id="peopleToggle"><i class="bi bi-people"></i></button>
                             <button type="button" title="Settings" id="settingsToggle"><i
                                     class="bi bi-gear"></i></button>
                         </div>
                     </div>
                 </div>
 
-                <div class="pinned-bar">
+                <div class="pinned-bar" id="pinnedBar">
                     <i class="bi bi-pin-angle"></i>
-                    <span class="pinned-bar__text">Pinned message · We'll cover project updates, upcoming deadlines, and
-                        brainstorming ideas for the new campaign.</span>
+                    <span class="pinned-bar__text" id="pinnedBarText">Pinned message · We'll cover project updates,
+                        upcoming deadlines, and brainstorming ideas for the new campaign.</span>
                     <button type="button" class="pinned-bar__close" aria-label="Dismiss pinned message">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
 
-                <div class="chat-stream" id="chatStream">
-                    <div class="stream-empty" id="streamEmpty">No messages match your search.</div>
+                <!-- HR Team — group conversation -->
+                <div class="chat-stream" id="chatStream" data-conv-stream="hr-team">
+                    <div class="stream-empty">No messages match your search.</div>
                     <div class="stream-note">John created the group.</div>
                     <div class="stream-note">Maria Santos added Peter Cruz, Alexa De Leon, &amp; 9 others to the group.
                     </div>
@@ -4743,6 +4734,335 @@ ViewData["User"] = "Admin";
                     </div>
                 </div>
 
+                <!-- Natasha Romanoff — 1-to-1 conversation -->
+                <div class="chat-stream" data-conv-stream="natasha" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">Today</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Natasha Romanoff</span>
+                            <div class="bubble" style="width:420px;">
+                                <span class="bubble__text">Hey! Do you have a minute? I need your help with the OrderTayo pages.</span>
+                                <span class="bubble__meta">9:15 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:380px;">
+                                <span class="bubble__text">Sure! What do you need? Is it about the landing page redesign?</span>
+                                <span class="bubble__meta">9:18 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Natasha Romanoff</span>
+                            <div class="bubble" style="width:440px;">
+                                <span class="bubble__text">Yes, exactly! The client wants some changes to the hero section. Can you send me the latest mockup when you get a chance?</span>
+                                <span class="bubble__meta">9:20 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:340px;">
+                                <span class="bubble__text">Here you go — this is the latest version. Let me know if you need any tweaks.</span>
+                                <span class="attach-file attach-file--onblue">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Hero_Mockup_v3.pdf</span>
+                                        <span class="attach-file__meta">1.8 MB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">9:25 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Natasha Romanoff</span>
+                            <div class="bubble" style="width:300px;">
+                                <span class="bubble__text">This looks amazing! I'll forward it to the client right away. Thanks a lot!</span>
+                                <span class="bubble__meta">9:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:180px;">
+                                <span class="bubble__text">No problem, happy to help!</span>
+                                <span class="bubble__meta">9:32 AM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clint Barton — 1-to-1 conversation -->
+                <div class="chat-stream" data-conv-stream="clint" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">Thu</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Clint Barton</span>
+                            <div class="bubble" style="width:430px;">
+                                <span class="bubble__text">Hi, this is the OrderTayo Pages. Please review the copy on the checkout screen when you have time.</span>
+                                <span class="bubble__meta">10:12 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:320px;">
+                                <span class="bubble__text">Will do. Is the staging link still the same one you sent last week?</span>
+                                <span class="bubble__meta">10:20 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Clint Barton</span>
+                            <div class="bubble" style="width:300px;">
+                                <span class="bubble__text">Yes, same link. Here it is again just in case.</span>
+                                <span class="attach-file">
+                                    <span class="attach-file__thumb"><i class="bi bi-link-45deg"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">ordertayo.com/pages</span>
+                                        <span class="attach-file__meta">Link · Tap to open</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Open link">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">10:24 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:340px;">
+                                <span class="bubble__text">Got it — I'll send my notes over before end of day.</span>
+                                <span class="bubble__meta">10:26 AM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maria Reyes — 1-to-1 conversation -->
+                <div class="chat-stream" data-conv-stream="maria" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">Sun</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Maria Reyes</span>
+                            <div class="bubble" style="width:410px;">
+                                <span class="bubble__text">Good morning! Did the finance team approve the Q3 budget breakdown yet?</span>
+                                <span class="bubble__meta">8:40 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:360px;">
+                                <span class="bubble__text">Not yet — they said they'd confirm by Tuesday. I'll ping you as soon as I hear back.</span>
+                                <span class="bubble__meta">8:52 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Maria Reyes</span>
+                            <div class="bubble" style="width:280px;">
+                                <span class="bubble__text">Perfect, thanks for following up on that.</span>
+                                <span class="bubble__meta">8:55 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Team — group conversation -->
+                <div class="chat-stream" data-conv-stream="design-team" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note">Maria Santos created the group.</div>
+                    <div class="stream-note stream-day">08/13/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Peter Parker</span>
+                            <div class="bubble" style="width:450px;">
+                                <span class="bubble__text">Morning all — I've pushed the updated component library to Figma. Colours now match the new brand palette.</span>
+                                <span class="bubble__meta">9:05 AM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 6
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Wanda Maximoff</span>
+                            <div class="bubble" style="width:390px;">
+                                <span class="bubble__text">Nice! Does that include the updated button states as well?</span>
+                                <span class="bubble__meta">9:11 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:400px;">
+                                <span class="bubble__text">It does — hover, focus and disabled are all in there now. I'll review the spacing tokens next.</span>
+                                <span class="bubble__meta">9:18 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Peter Parker</span>
+                            <div class="bubble" style="width:301px;">
+                                <span class="bubble__text">Here's the export if anyone needs it offline.</span>
+                                <span class="attach-file">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-slides"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Component_Library.pptx</span>
+                                        <span class="attach-file__meta">4.1 MB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">9:24 AM</span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="attach-tray" id="attachTray">
                     <div class="attach-tray__row">
                         <div class="attach-card">
@@ -4846,8 +5166,8 @@ ViewData["User"] = "Admin";
                         <button type="button" id="membersBack" aria-label="Back">
                             <i class="bi bi-chevron-left"></i>
                         </button>
-                        <span class="members-panel__title">HR Team</span>
-                        <span class="members-panel__count">12</span>
+                        <span class="members-panel__title" id="membersPanelTitle">HR Team</span>
+                        <span class="members-panel__count" id="membersPanelCount">12</span>
                         <button type="button" id="membersClose" aria-label="Close panel">
                             <i class="bi bi-x-lg"></i>
                         </button>
@@ -5659,24 +5979,128 @@ ViewData["User"] = "Admin";
             });
         }
 
-        // Selecting a conversation
+        // ------------------------------------------------ conversation switching
+        // One shared chat header / pinned bar / composer drives every conversation;
+        // only the message stream is swapped. Keys match data-conv on the chat list
+        // items and data-conv-stream on the streams.
+        const CONVERSATIONS = {
+            'hr-team': {
+                initials: 'HT', colour: '#FFB199', name: 'HR Team', sub: '12 members', isGroup: true,
+                pinned: "Pinned message · We'll cover project updates, upcoming deadlines, and brainstorming ideas for the new campaign."
+            },
+            'clint': {
+                initials: 'CB', colour: '#FFD59E', name: 'Clint Barton', sub: 'Active now', isGroup: false,
+                pinned: null
+            },
+            'natasha': {
+                initials: 'NR', colour: '#B8E0D2', name: 'Natasha Romanoff', sub: 'Active 5m ago', isGroup: false,
+                pinned: null
+            },
+            'maria': {
+                initials: 'MR', colour: '#FFB199', name: 'Maria Reyes', sub: 'Active 2h ago', isGroup: false,
+                pinned: null
+            },
+            'design-team': {
+                initials: 'DT', colour: '#B7C9F2', name: 'Design Team', sub: '8 members', isGroup: true,
+                pinned: 'Pinned message · Component library lives in Figma — always branch before editing.'
+            }
+        };
+
+        let activeConv = 'hr-team';
+        const convStreams = document.querySelectorAll('.chat-stream[data-conv-stream]');
+        const headAvatar = document.getElementById('chatHeadAvatar');
+        const headName = document.getElementById('chatHeadName');
+        const headSub = document.getElementById('chatHeadSub');
+        const pinnedBar = document.getElementById('pinnedBar');
+        const pinnedBarText = document.getElementById('pinnedBarText');
+        const dismissedPins = new Set();
+
+        const applyPinnedBar = (convKey) => {
+            const meta = CONVERSATIONS[convKey];
+            if (!pinnedBar) return;
+            const show = !!(meta && meta.pinned) && !dismissedPins.has(convKey);
+            pinnedBar.hidden = !show;
+            if (show) pinnedBarText.textContent = meta.pinned;
+        };
+
+        // the unread pill in the filter tabs should track the list, not a fixed number
+        const refreshUnreadBadge = () => {
+            const badge = document.querySelector('.msg-tab__badge');
+            if (!badge || !chatList) return;
+            const count = chatList.querySelectorAll('.chat-item[data-unread]:not([data-unread="0"])').length;
+            badge.textContent = count;
+            badge.hidden = count === 0;
+        };
+
+        const switchConversation = (convKey) => {
+            const meta = CONVERSATIONS[convKey];
+            if (!meta || convKey === activeConv) return;
+            activeConv = convKey;
+
+            // header
+            headAvatar.textContent = meta.initials;
+            headAvatar.style.background = meta.colour;
+            headName.textContent = meta.name;
+            headSub.textContent = meta.sub;
+
+            // group-only affordances (rename, members panel)
+            document.querySelectorAll('.is-group-only').forEach(el => { el.hidden = !meta.isGroup; });
+            if (meta.isGroup) {
+                const title = document.getElementById('membersPanelTitle');
+                const count = document.getElementById('membersPanelCount');
+                if (title) title.textContent = meta.name;
+                if (count) count.textContent = parseInt(meta.sub, 10) || '';
+            }
+
+            applyPinnedBar(convKey);
+
+            // swap the stream and re-point the composer + search at it
+            convStreams.forEach(s => { s.hidden = s.dataset.convStream !== convKey; });
+            stream = document.querySelector('.chat-stream[data-conv-stream="' + convKey + '"]');
+            streamEmpty = stream ? stream.querySelector('.stream-empty') : null;
+
+            // a search from the previous conversation must not leak into this one
+            resetConversationSearch();
+
+            // side panels belong to the conversation we just left
+            document.querySelectorAll('.members-panel.is-open').forEach(p => p.classList.remove('is-open'));
+
+            if (stream) stream.scrollTop = stream.scrollHeight;
+        };
+
         chatList && chatList.addEventListener('click', (e) => {
             const item = e.target.closest('.chat-item');
             if (!item || e.target.closest('[data-menu]')) return;
+
             chatList.querySelectorAll('.chat-item').forEach(i => i.classList.remove('is-active'));
             item.classList.add('is-active');
+
+            // opening a conversation marks it read
+            if (item.dataset.unread !== '0') {
+                item.dataset.unread = '0';
+                const dot = item.querySelector('.unread-dot');
+                if (dot) dot.remove();
+                const preview = item.querySelector('.chat-item__preview');
+                if (preview) preview.style.removeProperty('color');
+                refreshUnreadBadge();
+            }
+
+            if (item.dataset.conv) switchConversation(item.dataset.conv);
         });
 
-        // Dismiss pinned banner
+        // Dismiss pinned banner — hide rather than remove so other conversations keep theirs
         const pinnedClose = document.querySelector('.pinned-bar__close');
         if (pinnedClose) {
-            pinnedClose.addEventListener('click', () => pinnedClose.closest('.pinned-bar').remove());
+            pinnedClose.addEventListener('click', () => {
+                dismissedPins.add(activeConv);
+                applyPinnedBar(activeConv);
+            });
         }
 
         // Composer
         const composer = document.getElementById('composerInput');
         const sendBtn = document.getElementById('composerSend');
-        const stream = document.getElementById('chatStream');
+        let stream = document.getElementById('chatStream');
 
         const sendMessage = () => {
             const text = composer.value.trim();
@@ -6019,7 +6443,7 @@ ViewData["User"] = "Admin";
         const searchPrev = document.getElementById('chatSearchPrev');
         const searchNext = document.getElementById('chatSearchNext');
         const searchClear = document.getElementById('chatSearchClear');
-        const streamEmpty = document.getElementById('streamEmpty');
+        let streamEmpty = stream ? stream.querySelector('.stream-empty') : null;
 
         let hits = [];
         let hitIndex = -1;
@@ -6092,7 +6516,7 @@ ViewData["User"] = "Admin";
                 searchCount.textContent = '';
                 rows.forEach(r => r.classList.remove('is-filtered'));
                 chrome.forEach(c => c.classList.remove('is-filtered'));
-                streamEmpty.classList.remove('is-shown');
+                streamEmpty && streamEmpty.classList.remove('is-shown');
                 searchPrev.disabled = searchNext.disabled = true;
                 return;
             }
@@ -6111,7 +6535,7 @@ ViewData["User"] = "Admin";
             });
 
             hits = [...stream.querySelectorAll('mark.msg-hit')];
-            streamEmpty.classList.toggle('is-shown', matchedRows === 0);
+            streamEmpty && streamEmpty.classList.toggle('is-shown', matchedRows === 0);
             searchPrev.disabled = searchNext.disabled = hits.length === 0;
 
             if (!hits.length) {
@@ -6930,6 +7354,7 @@ ViewData["User"] = "Admin";
             openDelete();
         });
 
+        refreshUnreadBadge();
         if (stream) stream.scrollTop = stream.scrollHeight;
     })();
 </script>
