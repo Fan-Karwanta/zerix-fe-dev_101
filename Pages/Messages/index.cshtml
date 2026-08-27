@@ -213,6 +213,41 @@ ViewData["User"] = "Admin";
         flex: 1 1 auto;
         min-height: 0;
         overflow-y: auto;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        transition: scrollbar-color .18s ease-in-out;
+    }
+
+    .msg-list:hover,
+    .msg-list:focus-within {
+        scrollbar-color: #C4CAD6 transparent;
+    }
+
+    .msg-list::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .msg-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .msg-list::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: 3px solid transparent;
+        background-clip: content-box;
+        border-radius: 5px;
+    }
+
+    .msg-list:hover::-webkit-scrollbar-thumb,
+    .msg-list:focus-within::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        background-clip: content-box;
+    }
+
+    .msg-list:hover::-webkit-scrollbar-thumb:hover {
+        background: #A9B1C1;
+        background-clip: content-box;
     }
 
     .msg-list__label {
@@ -331,7 +366,7 @@ ViewData["User"] = "Admin";
         gap: 4px;
         font-size: 16px;
         line-height: 21px;
-        color: #212529;
+        color: #000000;
         min-width: 0;
     }
 
@@ -442,7 +477,7 @@ ViewData["User"] = "Admin";
         font-size: 20px;
         line-height: 25px;
         font-weight: 600;
-        color: #212529;
+        color: #000000;
     }
 
     .chat-head__members {
@@ -769,7 +804,7 @@ ViewData["User"] = "Admin";
     .msg-author {
         font-size: 13.5px;
         line-height: 17px;
-        color: #161B22;
+        color: #000000;
     }
 
     .bubble {
@@ -787,7 +822,7 @@ ViewData["User"] = "Admin";
     .bubble__text {
         font-size: 14px;
         line-height: 21px;
-        color: #4A5468;
+        color: #000000;
         /* keep the message exactly as the user typed it: newlines + runs of spaces */
         white-space: pre-wrap;
         overflow-wrap: anywhere;
