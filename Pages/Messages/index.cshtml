@@ -412,17 +412,49 @@ ViewData["User"] = "Admin";
         flex: none;
     }
 
+    /* ------------------------------------------------- unread state (inbox list) */
+    /* an unread thread has to read as unread at a glance: tinted row, bold name,
+       dark preview text and a blue count badge */
+    .chat-item[data-unread]:not([data-unread="0"]) {
+        background: #EFF6FF;
+    }
+
+    .chat-item[data-unread]:not([data-unread="0"]):hover {
+        background: #E1EDFE;
+    }
+
+    .chat-item[data-unread]:not([data-unread="0"]).is-active {
+        background: rgba(29, 78, 216, 0.08);
+    }
+
+    .chat-item[data-unread]:not([data-unread="0"]) .chat-item__name,
+    .chat-item[data-unread]:not([data-unread="0"]) .chat-item__subject {
+        font-weight: 700;
+        color: #161B22;
+    }
+
+    .chat-item[data-unread]:not([data-unread="0"]) .chat-item__preview {
+        font-weight: 600;
+        color: #212529;
+    }
+
+    .chat-item[data-unread]:not([data-unread="0"]) .chat-item__time {
+        font-weight: 600;
+        color: #1D4ED8;
+    }
+
     .unread-dot {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-width: 16px;
-        height: 16px;
+        min-width: 18px;
+        height: 18px;
         padding: 0 5px;
         background: #1D4ED8;
         border-radius: 24px;
-        font-size: 8px;
-        line-height: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 18px;
         color: #FFFFFF;
     }
 
@@ -454,6 +486,12 @@ ViewData["User"] = "Admin";
         background: #FFFFFF;
         border: 1px solid #E7EAF0;
         border-radius: 16px;
+    }
+
+    /* a 1-to-1 thread has only one other participant, so the sender label above
+       each incoming bubble is redundant */
+    .chat-stream--direct .msg-author {
+        display: none;
     }
 
     /* only one conversation stream is mounted at a time; [hidden] needs to beat
@@ -505,6 +543,12 @@ ViewData["User"] = "Admin";
         border-radius: 12px;
         color: #212529;
         font-size: 12px;
+        line-height: 1;
+    }
+
+    .icon-chip i {
+        display: block;
+        line-height: 1;
     }
 
     .chat-head__tools {
@@ -1037,22 +1081,22 @@ ViewData["User"] = "Admin";
         color: #1D4ED8;
     }
 
-    /* ----------------------------------------------- voice recording (composer) */
+    /* ------------------------------------------- voice to text (composer banner) */
+    /* this is voice-to-text, so the bar sits ABOVE the input row and the input
+       stays visible — the user has to see the text the speech converts to */
     .voice-rec {
         display: none;
         flex-direction: row;
         align-items: center;
         gap: 12px;
         width: 100%;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #E7EAF0;
     }
 
     .voice-rec.is-open {
         display: flex;
-    }
-
-    /* while recording, hide the normal input row */
-    .chat-composer.is-recording .composer-main {
-        display: none;
     }
 
     .voice-rec__cancel,
@@ -2340,8 +2384,12 @@ ViewData["User"] = "Admin";
     }
 
     .settings-row > i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex: none;
-        padding-top: 2px;
+        width: 16px;
+        height: 19px;
         font-size: 15px;
         line-height: 19px;
         color: #495057;
@@ -2352,8 +2400,12 @@ ViewData["User"] = "Admin";
         align-items: center;
     }
 
-    .settings-row--single > i {
-        padding-top: 0;
+    /* bootstrap-icons nudge their glyph down with vertical-align; undo it so the
+       icon sits dead-centre against the row text */
+    .settings-row > i::before,
+    .icon-chip i::before {
+        vertical-align: 0;
+        line-height: 1;
     }
 
     .settings-row__title {
@@ -2586,10 +2638,11 @@ ViewData["User"] = "Admin";
         border-radius: 4px;
     }
 
-    /* fixed height + scrollable so a long forwarded message can't blow up the modal */
+    /* grows with the content, but caps + scrolls so a long forwarded message
+       can't blow up the modal */
     .fwd-preview__scroll {
         width: 100%;
-        height: 108px;
+        max-height: 108px;
         overflow-y: auto;
         overscroll-behavior: contain;
     }
@@ -2800,7 +2853,7 @@ ViewData["User"] = "Admin";
         display: flex;
         justify-content: center;
         align-items: center;
-        align-self: center;
+        align-self: flex-start;
         flex: none;
         width: 44px;
         height: 44px;
@@ -3056,9 +3109,21 @@ ViewData["User"] = "Admin";
     }
 
     .cmp-field > i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex: none;
+        width: 18px;
         color: #8A93A6;
         font-size: 16px;
+        line-height: 1;
+    }
+
+    /* bootstrap-icons offset their glyph with vertical-align, which pushes it off
+       the vertical centre of the field */
+    .cmp-field > i::before {
+        vertical-align: 0;
+        line-height: 1;
     }
 
     .cmp-field input {
@@ -4302,7 +4367,7 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__time">Sun</span>
                                 </div>
                                 <span class="chat-item__subject">OrderTayo Pages</span>
-                                <span class="chat-item__preview" style="color:#212529;">This looks amazing! I'll forward
+                                <span class="chat-item__preview">This looks amazing! I'll forward
                                     it to the...</span>
                             </div>
                             <div class="chat-item__meta">
@@ -4323,7 +4388,7 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__time">08/29/2026</span>
                                 </div>
                                 <span class="chat-item__subject">Q3 Budget</span>
-                                <span class="chat-item__preview" style="color:#212529;">Perfect, thanks for following up
+                                <span class="chat-item__preview">Perfect, thanks for following up
                                     on that.</span>
                             </div>
                             <div class="chat-item__meta">
@@ -4344,7 +4409,7 @@ ViewData["User"] = "Admin";
                                     <span class="chat-item__time">08/13/2026</span>
                                 </div>
                                 <span class="chat-item__subject">Component Library</span>
-                                <span class="chat-item__preview" style="color:#212529;">Here's the export if anyone needs
+                                <span class="chat-item__preview">Here's the export if anyone needs
                                     it offline.</span>
                             </div>
                             <div class="chat-item__meta">
@@ -4735,7 +4800,7 @@ ViewData["User"] = "Admin";
                 </div>
 
                 <!-- Natasha Romanoff — 1-to-1 conversation -->
-                <div class="chat-stream" data-conv-stream="natasha" hidden>
+                <div class="chat-stream chat-stream--direct" data-conv-stream="natasha" hidden>
                     <div class="stream-empty">No messages match your search.</div>
                     <div class="stream-note stream-day">Today</div>
 
@@ -4847,7 +4912,7 @@ ViewData["User"] = "Admin";
                 </div>
 
                 <!-- Clint Barton — 1-to-1 conversation -->
-                <div class="chat-stream" data-conv-stream="clint" hidden>
+                <div class="chat-stream chat-stream--direct" data-conv-stream="clint" hidden>
                     <div class="stream-empty">No messages match your search.</div>
                     <div class="stream-note stream-day">Thu</div>
 
@@ -4925,7 +4990,7 @@ ViewData["User"] = "Admin";
                 </div>
 
                 <!-- Maria Reyes — 1-to-1 conversation -->
-                <div class="chat-stream" data-conv-stream="maria" hidden>
+                <div class="chat-stream chat-stream--direct" data-conv-stream="maria" hidden>
                     <div class="stream-empty">No messages match your search.</div>
                     <div class="stream-note stream-day">Sun</div>
 
@@ -5120,12 +5185,32 @@ ViewData["User"] = "Admin";
                             review this Thursday at 10 AM.</span>
                     </div>
 
+                    <!-- voice-to-text state — sits above the input row so the converted
+                         text stays visible while dictating -->
+                    <div class="voice-rec" id="voiceRec">
+                        <button type="button" class="voice-rec__cancel" id="voiceCancel" title="Discard dictation"
+                            aria-label="Discard dictation">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <span class="voice-rec__dot"></span>
+                        <span class="voice-rec__time" id="voiceTime">0:00</span>
+                        <span class="voice-rec__wave" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                        </span>
+                        <span class="voice-rec__hint">Listening… speak and we'll convert it to text</span>
+                        <button type="button" class="voice-rec__send" id="voiceSend" title="Stop and send"
+                            aria-label="Stop and send">
+                            <i class="bi bi-send-fill"></i>
+                        </button>
+                    </div>
+
                     <div class="composer-main">
                         <div class="composer-tools">
                             <button type="button" class="composer-tool" title="Attach file" id="attachToggle">
                                 <i class="bi bi-paperclip"></i>
                             </button>
-                            <button type="button" class="composer-tool" title="Record voice message" id="voiceToggle">
+                            <button type="button" class="composer-tool" title="Voice to text" id="voiceToggle">
                                 <i class="bi bi-mic"></i>
                             </button>
                             <span class="composer-divider"></span>
@@ -5136,25 +5221,6 @@ ViewData["User"] = "Admin";
                         <textarea class="composer-input" id="composerInput" rows="1"
                             placeholder="Enter your message"></textarea>
                         <button type="button" class="composer-send" id="composerSend" title="Send">
-                            <i class="bi bi-send-fill"></i>
-                        </button>
-                    </div>
-
-                    <!-- voice recording state — replaces the input row while recording -->
-                    <div class="voice-rec" id="voiceRec">
-                        <button type="button" class="voice-rec__cancel" id="voiceCancel" title="Discard recording"
-                            aria-label="Discard recording">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <span class="voice-rec__dot"></span>
-                        <span class="voice-rec__time" id="voiceTime">0:00</span>
-                        <span class="voice-rec__wave" aria-hidden="true">
-                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                        </span>
-                        <span class="voice-rec__hint">Recording… release to send</span>
-                        <button type="button" class="voice-rec__send" id="voiceSend" title="Send voice message"
-                            aria-label="Send voice message">
                             <i class="bi bi-send-fill"></i>
                         </button>
                     </div>
@@ -5436,7 +5502,6 @@ ViewData["User"] = "Admin";
 </div>
 
 <div class="msg-menu" id="memberItemMenu">
-    <button type="button" class="msg-menu__item"><i class="bi bi-person"></i> View profile</button>
     <button type="button" class="msg-menu__item"><i class="bi bi-chat-left-text"></i> Send message</button>
     <button type="button" class="msg-menu__item"><i class="bi bi-shield-check"></i> Make admin</button>
     <span class="msg-menu__divider"></span>
@@ -5736,7 +5801,7 @@ ViewData["User"] = "Admin";
         </div>
 
         <div class="cmp-field cmp-field--single">
-            <i class="bi bi-card-heading"></i>
+            <i class="bi bi-card-heading" id="cmpSubjectIcon"></i>
             <input type="text" id="cmpSubject" placeholder="Enter subject" aria-label="Subject">
         </div>
 
@@ -6136,8 +6201,7 @@ ViewData["User"] = "Admin";
             composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
         });
 
-        // ------------------------------------------------ voice message recording
-        const chatComposerEl = document.getElementById('chatComposer');
+        // ----------------------------------------------------------- voice to text
         const voiceToggle = document.getElementById('voiceToggle');
         const voiceRec = document.getElementById('voiceRec');
         const voiceTime = document.getElementById('voiceTime');
@@ -6146,6 +6210,13 @@ ViewData["User"] = "Admin";
 
         let voiceTimer = null;
         let voiceSeconds = 0;
+        let voiceBaseline = '';   // composer text before dictation started
+        let voiceWordIndex = 0;
+
+        // stand-in for the speech engine: words land in the composer one by one so
+        // the user can read the transcription before sending it
+        const DICTATION_WORDS = ('Noted, I will review the deck and send my comments before ' +
+            'the end of the day. Thanks!').split(' ');
 
         const fmtDuration = (total) =>
             Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
@@ -6154,54 +6225,51 @@ ViewData["User"] = "Admin";
             clearInterval(voiceTimer);
             voiceTimer = null;
             voiceRec.classList.remove('is-open');
-            chatComposerEl.classList.remove('is-recording');
             voiceToggle.classList.remove('is-active');
+        };
+
+        const resizeComposer = () => {
+            if (!composer) return;
+            composer.style.height = '24px';
+            composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
         };
 
         const startVoice = () => {
             voiceSeconds = 0;
+            voiceWordIndex = 0;
+            voiceBaseline = composer ? composer.value : '';
             voiceTime.textContent = '0:00';
             voiceRec.classList.add('is-open');
-            chatComposerEl.classList.add('is-recording');
             voiceToggle.classList.add('is-active');
+            composer && composer.focus();
+
             voiceTimer = setInterval(() => {
                 voiceSeconds++;
                 voiceTime.textContent = fmtDuration(voiceSeconds);
-                if (voiceSeconds >= 300) sendVoiceNote(); // 5 min cap
+
+                if (composer && voiceWordIndex < DICTATION_WORDS.length) {
+                    const prefix = composer.value && !/\s$/.test(composer.value) ? ' ' : '';
+                    composer.value += prefix + DICTATION_WORDS[voiceWordIndex++];
+                    resizeComposer();
+                }
+
+                if (voiceSeconds >= 300) finishVoice(); // 5 min cap
             }, 1000);
         };
 
-        // pseudo-random but stable-looking waveform for the sent note
-        const waveMarkup = (bars) => {
-            let out = '';
-            for (let i = 0; i < bars; i++) {
-                const h = 25 + Math.round(Math.abs(Math.sin(i * 1.7)) * 70);
-                out += '<i style="height:' + h + '%"></i>';
-            }
-            return out;
+        // stop listening and send whatever was transcribed
+        const finishVoice = () => {
+            stopVoiceUI();
+            sendMessage();
         };
 
-        const sendVoiceNote = () => {
-            const length = Math.max(1, voiceSeconds);
+        // stop listening and throw the transcription away
+        const discardVoice = () => {
             stopVoiceUI();
-            const time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-            const row = document.createElement('div');
-            row.className = 'msg-row msg-row--out';
-            row.innerHTML =
-                '<div class="msg-tools">' +
-                '<button type="button" class="msg-tool" data-menu="myMessageMenu"><i class="bi bi-three-dots-vertical"></i></button>' +
-                '<button type="button" class="msg-react msg-react--plain">&#129309;</button>' +
-                '</div>' +
-                '<div class="msg-block"><div class="bubble bubble--out">' +
-                '<span class="voice-note">' +
-                '<button type="button" class="voice-note__play" aria-label="Play voice message"><i class="bi bi-play-fill"></i></button>' +
-                '<span class="voice-note__wave">' + waveMarkup(28) + '</span>' +
-                '<span class="voice-note__len">' + fmtDuration(length) + '</span>' +
-                '</span>' +
-                '<span class="bubble__meta">' + time + ' <i class="bi bi-check2"></i></span>' +
-                '</div></div>';
-            stream.appendChild(row);
-            stream.scrollTop = stream.scrollHeight;
+            if (composer) {
+                composer.value = voiceBaseline;
+                resizeComposer();
+            }
         };
 
         if (voiceToggle && voiceRec) {
@@ -6209,8 +6277,8 @@ ViewData["User"] = "Admin";
                 if (voiceTimer) { stopVoiceUI(); return; }
                 startVoice();
             });
-            voiceCancel.addEventListener('click', stopVoiceUI);
-            voiceSendBtn.addEventListener('click', sendVoiceNote);
+            voiceCancel.addEventListener('click', discardVoice);
+            voiceSendBtn.addEventListener('click', finishVoice);
         }
 
         // play/pause toggle on any voice note in the stream
@@ -6976,6 +7044,10 @@ ViewData["User"] = "Admin";
                     && active && active.dataset.mode === 'group';
                 cmpSubject.placeholder = isGroup ? 'Enter Group name' : 'Enter subject';
                 cmpSubject.setAttribute('aria-label', isGroup ? 'Group name' : 'Subject');
+
+                // the icon has to follow the field's meaning: a group name, not a subject
+                const subjectIcon = byId('cmpSubjectIcon');
+                if (subjectIcon) subjectIcon.className = 'bi ' + (isGroup ? 'bi-people' : 'bi-card-heading');
             };
 
             // two or more recipients reveals Send Separately / Create Group Chat

@@ -296,7 +296,7 @@ ViewData["User"] = "Admin";
 
             <!-- subject -->
             <div class="cmp-field" id="cmpSubjectWrap">
-                <i class="bi bi-text-left cmp-field__icon"></i>
+                <i class="bi bi-text-left cmp-field__icon" id="cmpSubjectIcon"></i>
                 <input type="text" class="cmp-field__input" id="cmpSubject" placeholder="Enter subject"
                     aria-label="Subject">
             </div>
@@ -764,10 +764,22 @@ ViewData["User"] = "Admin";
     }
 
     .cmp-field__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex: none;
+        width: 16px;
         margin-right: 10px;
         font-size: 14px;
+        line-height: 1;
         color: #8A93A6;
+    }
+
+    /* bootstrap-icons offset their glyph with vertical-align, which pushes it off
+       the vertical centre of the field */
+    .cmp-field__icon::before {
+        vertical-align: 0;
+        line-height: 1;
     }
 
     .cmp-field__input {
@@ -1591,6 +1603,10 @@ ViewData["User"] = "Admin";
                 && active && active.dataset.mode === 'group';
             subject.placeholder = isGroup ? 'Enter Group name' : 'Enter subject';
             subject.setAttribute('aria-label', isGroup ? 'Group name' : 'Subject');
+
+            // the icon has to follow the field's meaning: a group name, not a subject
+            const icon = $('cmpSubjectIcon');
+            if (icon) icon.className = 'bi cmp-field__icon ' + (isGroup ? 'bi-people' : 'bi-text-left');
         };
 
         // 02 — two or more recipients reveals the Send Separately / Create Group tabs
