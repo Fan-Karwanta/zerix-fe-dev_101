@@ -20,6 +20,15 @@ html {
 body {
   height: 100%;
   overflow-y: auto;
+  /* App-wide default weight is medium (500) instead of regular (400) so text
+     doesn't look thin. Explicit font-weight declarations (e.g. semibold 600,
+     or the .fw-400 utility) still override this. Placeholders stay regular. */
+  font-weight: 500;
+}
+
+/* Keep field placeholders (e.g. search bar) at regular weight per design */
+::placeholder {
+  font-weight: 400;
 }
 
 .logo-responsive {

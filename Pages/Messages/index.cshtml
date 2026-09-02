@@ -4014,6 +4014,31 @@ ViewData["User"] = "Admin";
         color: #1D4ED8;
     }
 
+    /* ------------------------------------------- chat header title (shared) */
+    .chat-head__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 0;
+    }
+
+    .chat-head__namerow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    /* ------------------------------------------------- mobile-only controls */
+    /* these three exist only for the 390px layout; the desktop frame keeps the
+       full tool row, so they stay out of the flow until the media query below */
+    .chat-head__back,
+    .chat-head__more,
+    .composer-plus {
+        display: none;
+    }
+
     /* --------------------------------------------------------------- responsive */
     @@media (max-width: 991.98px) {
         .msg-layout {
@@ -4041,6 +4066,528 @@ ViewData["User"] = "Admin";
         .people-modal {
             width: calc(100vw - 32px);
             max-width: 340px;
+        }
+    }
+
+    /* ==========================================================================
+       390px MOBILE — Figma "Messaging Inbox" + "Group Chat Conversation" frames
+       --------------------------------------------------------------------------
+       On a phone the inbox and the thread are two separate full-screen frames,
+       not a sidebar next to a panel. `.msg-layout[data-pane]` swaps between them
+       and `--msg-top` (measured in JS) is the height of the two nav bars above,
+       so each pane can fill exactly the rest of the viewport.
+       ========================================================================== */
+    @@media (max-width: 575.98px) {
+
+        /* ------------------------------------------------------- page shell */
+        .msg-page {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 0;
+            background: #FFFFFF;
+            min-height: calc(100dvh - var(--msg-top, 150px));
+        }
+
+        .msg-page > .container {
+            display: flex;
+            flex: 1 1 auto;
+            min-height: 0;
+            max-width: none;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .msg-layout {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            min-height: 0;
+            gap: 0;
+            height: auto;
+            padding-top: 0;
+        }
+
+        .msg-layout[data-pane="list"] .msg-chat,
+        .msg-layout[data-pane="thread"] .msg-sidebar {
+            display: none;
+        }
+
+        .msg-sidebar,
+        .msg-chat {
+            width: 100%;
+            height: auto;
+            flex: 1 1 auto;
+            min-height: 0;
+            gap: 0;
+        }
+
+        /* ------------------------------------------ 1. Messaging Inbox frame */
+        .company-select {
+            height: 43px;
+            padding: 12px 16px;
+            border-width: 0 0 1px;
+            border-radius: 0;
+        }
+
+        .company-select__label {
+            font-size: 13.5px;
+            line-height: 17px;
+        }
+
+        .msg-card {
+            flex: 1 1 auto;
+            min-height: 0;
+            height: auto;
+            padding-bottom: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .msg-card__search {
+            padding: 14px 14px 0;
+            gap: 10px;
+        }
+
+        .msg-search-input {
+            height: 37px;
+            padding: 9px 14px;
+        }
+
+        .msg-search-input input {
+            font-size: 13.5px;
+            line-height: 17px;
+        }
+
+        .msg-card__filters {
+            padding: 12px 14px 0;
+        }
+
+        .msg-list {
+            padding: 6px 10px 12px;
+            gap: 0;
+        }
+
+        .msg-list__label,
+        .msg-list__label.mt {
+            padding: 12px 6px 6px;
+            font-size: 10.5px;
+            line-height: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .chat-item {
+            padding: 10px 8px 10px 9px;
+            gap: 10px;
+        }
+
+        /* tapping a row navigates to the thread, so there is no persistent
+           "selected" row on mobile — the accent rail would be misleading */
+        .chat-item.is-active,
+        .chat-item[data-unread]:not([data-unread="0"]).is-active {
+            padding-left: 9px;
+            background: transparent;
+        }
+
+        .chat-item.is-active::before {
+            display: none;
+        }
+
+        .avatar-pin {
+            background: #495057;
+        }
+
+        .chat-item__body {
+            padding: 0;
+            gap: 2px;
+        }
+
+        .chat-item__name {
+            gap: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 19px;
+            color: #212529;
+        }
+
+        .chat-item__name i {
+            font-size: 11px;
+        }
+
+        .chat-item__time {
+            font-size: 11px;
+            line-height: 14px;
+        }
+
+        .chat-item__subject {
+            font-size: 12.5px;
+            font-weight: 600;
+            line-height: 16px;
+        }
+
+        .chat-item__preview {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 15px;
+        }
+
+        .chat-item__meta {
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+            width: auto;
+            padding-top: 2px;
+        }
+
+        .kebab {
+            width: 22px;
+            height: 22px;
+            font-size: 16px;
+        }
+
+        /* --------------------------------- 2. Group Chat Conversation frame */
+        .msg-chat {
+            border: 0;
+            border-radius: 0;
+            box-shadow: 0 0 0 1px #E9EBEC;
+        }
+
+        .chat-head {
+            position: relative;
+            height: 71px;
+            padding: 14px 16px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid #E9EBEC;
+        }
+
+        .chat-head__back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 22px;
+            height: 22px;
+            flex: none;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #212529;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .chat-head__title {
+            flex: 1 1 auto;
+            min-width: 0;
+            gap: 12px;
+        }
+
+        .chat-head__namerow {
+            gap: 8px;
+        }
+
+        .chat-head__name {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #212529;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-head__members {
+            font-size: 11.5px;
+            line-height: 14px;
+            color: #495057;
+        }
+
+        .icon-chip {
+            width: 22px;
+            height: 22px;
+            border-radius: 11px;
+            background: rgba(29, 78, 216, 0.1);
+            font-size: 12px;
+        }
+
+        .chat-head__tools {
+            flex: none;
+            gap: 14px;
+        }
+
+        /* search collapses to its icon and expands over the header on focus —
+           the label wraps the input, so tapping it is what triggers focus */
+        .chat-search {
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            gap: 0;
+            justify-content: center;
+            overflow: hidden;
+            background: transparent;
+            border-radius: 17px;
+        }
+
+        .chat-search i {
+            font-size: 19px;
+            color: #212529;
+        }
+
+        .chat-search__count {
+            display: none;
+        }
+
+        .chat-search:focus-within,
+        .chat-search.is-active {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 5;
+            width: auto;
+            height: 71px;
+            padding: 14px 16px;
+            gap: 9px;
+            justify-content: flex-start;
+            overflow: visible;
+            background: #FFFFFF;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .chat-search:focus-within i,
+        .chat-search.is-active i {
+            font-size: 16px;
+            color: #8A93A6;
+        }
+
+        .chat-search:focus-within .chat-search__count,
+        .chat-search.is-active .chat-search__count {
+            display: flex;
+        }
+
+        /* the three desktop header actions live in the "more" sheet on mobile */
+        .chat-head__actions > button:not(.chat-head__more) {
+            display: none;
+        }
+
+        .chat-head__more {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #212529;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .pinned-bar {
+            padding: 9px 16px 11px;
+            gap: 10px;
+        }
+
+        .pinned-bar__text {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 15px;
+            color: #4A5468;
+        }
+
+        /* ------------------------------------------------------ the stream */
+        .chat-stream {
+            padding: 15px 16px 0;
+            gap: 15px;
+            background: #F5F5F6;
+        }
+
+        .stream-note {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 16px;
+            color: #878A99;
+        }
+
+        .msg-row {
+            gap: 15px;
+            max-width: 100%;
+        }
+
+        .msg-block {
+            gap: 5px;
+        }
+
+        .msg-author {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 15px;
+        }
+
+        /* the desktop frame pins some bubbles to a pixel width inline; at 390px
+           the bubble has to shrink to the mobile 270px ceiling instead */
+        .bubble {
+            width: auto !important;
+            max-width: 270px;
+            padding: 10px 12px;
+            gap: 5px;
+            border-radius: 4px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.04);
+        }
+
+        .bubble--out {
+            border-radius: 4px;
+        }
+
+        .bubble__text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+        }
+
+        .bubble__meta {
+            font-size: 9px;
+            line-height: 11px;
+        }
+
+        /* no hover on touch, so the per-message tools are always visible */
+        .msg-tools {
+            gap: 8px;
+            opacity: 1;
+        }
+
+        /* ----------------------------------------------------- the composer */
+        .chat-composer {
+            height: 65px;
+            padding: 10px 14px 20px;
+            gap: 5px;
+            align-items: flex-end;
+            border-top: 1px solid #E9EBEC;
+            border-radius: 0;
+        }
+
+        .chat-composer--stacked {
+            height: auto;
+            gap: 10px;
+        }
+
+        .composer-main {
+            gap: 5px;
+            align-items: flex-end;
+        }
+
+        .composer-tools {
+            display: none;
+        }
+
+        .composer-plus {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 32px;
+            flex: none;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            border-radius: 16px;
+            color: #1D4ED8;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .composer-input {
+            box-sizing: border-box;
+            height: 33px;
+            max-height: 160px;
+            padding: 8px 14px;
+            background: #FFFFFF;
+            border: 1px solid #CED4DA;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 16px;
+        }
+
+        .composer-input::placeholder {
+            color: #757575;
+        }
+
+        .voice-rec__hint {
+            display: none;
+        }
+
+        /* --------------------------- panels become full-screen mobile frames */
+        .members-panel {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            top: 0;
+            z-index: 1080;
+        }
+
+        .members-panel.is-open {
+            box-shadow: none;
+        }
+
+        /* ------------------------- popovers become bottom sheets on mobile */
+        /* placeOverlay() writes inline coordinates for the desktop anchoring,
+           so these have to win with !important */
+        .msg-menu,
+        .react-list,
+        .people-modal,
+        .tpl-pop,
+        .cmp-pop {
+            position: fixed !important;
+            left: 0 !important;
+            right: 0 !important;
+            top: auto !important;
+            bottom: 0 !important;
+            width: auto !important;
+            max-width: none !important;
+            max-height: 70dvh;
+            overflow-y: auto;
+            border: 0;
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0 -8px 24px rgba(22, 27, 34, 0.18);
+            z-index: 1090;
+        }
+
+        .msg-menu {
+            padding: 8px 8px 20px;
+        }
+
+        .msg-menu__item {
+            padding: 13px 12px;
+            font-size: 15px;
+        }
+
+        .msg-menu__item i {
+            font-size: 17px;
+        }
+
+        /* ----------------------------------------- modals fill the viewport */
+        .zx-modal {
+            width: calc(100vw - 24px);
+            padding: 20px 16px;
+        }
+
+        .cmp-modal {
+            width: 100vw;
+            max-width: 100vw;
+            max-height: 100dvh;
+            height: 100dvh;
+            padding: 12px 12px 20px;
+            border-radius: 0;
+        }
+
+        .img-view__bar {
+            padding: 12px 16px;
         }
     }
 </style>
@@ -4426,15 +4973,21 @@ ViewData["User"] = "Admin";
             <!-- ========================================================= CHAT PANEL -->
             <section class="msg-chat">
                 <div class="chat-head">
+                    <button type="button" class="chat-head__back" id="chatBack" aria-label="Back to chats">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
                     <div class="chat-head__title">
                         <span class="avatar" id="chatHeadAvatar" style="background:#FFB199;">HT</span>
-                        <div class="d-flex flex-column" style="gap:5px;">
-                            <span class="chat-head__name" id="chatHeadName">HR Team</span>
+                        <div class="chat-head__meta">
+                            <div class="chat-head__namerow">
+                                <span class="chat-head__name" id="chatHeadName">HR Team</span>
+                                <button type="button" class="icon-chip is-group-only" title="Rename group"
+                                    id="renameOpen">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </div>
                             <span class="chat-head__members" id="chatHeadSub">12 members</span>
                         </div>
-                        <button type="button" class="icon-chip is-group-only" title="Rename group" id="renameOpen">
-                            <i class="bi bi-pencil"></i>
-                        </button>
                     </div>
                     <div class="chat-head__tools">
                         <label class="chat-search" id="chatSearchWrap">
@@ -4457,6 +5010,10 @@ ViewData["User"] = "Admin";
                             <button type="button" class="is-group-only" title="People" id="peopleToggle"><i class="bi bi-people"></i></button>
                             <button type="button" title="Settings" id="settingsToggle"><i
                                     class="bi bi-gear"></i></button>
+                            <!-- mobile only: collapses files / people / settings into one sheet -->
+                            <button type="button" class="chat-head__more" id="mobileMoreToggle" title="More"
+                                aria-label="More options" data-menu="mobileChatMenu"><i
+                                    class="bi bi-grid-3x3-gap"></i></button>
                         </div>
                     </div>
                 </div>
@@ -5206,6 +5763,11 @@ ViewData["User"] = "Admin";
                     </div>
 
                     <div class="composer-main">
+                        <!-- mobile only: single "+" control in place of the tool row -->
+                        <button type="button" class="composer-plus" id="composerPlus" title="Add"
+                            aria-label="Add attachment" data-menu="composerPlusMenu">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
                         <div class="composer-tools">
                             <button type="button" class="composer-tool" title="Attach file" id="attachToggle">
                                 <i class="bi bi-paperclip"></i>
@@ -5480,6 +6042,37 @@ ViewData["User"] = "Admin";
     <button type="button" class="msg-menu__item"><i class="bi bi-archive"></i> Archive</button>
     <button type="button" class="msg-menu__item msg-menu__item--danger"><i class="bi bi-trash"></i> Delete
         chat</button>
+</div>
+
+<!-- mobile only: the conversation header collapses paperclip / people / gear into this sheet -->
+<div class="msg-menu msg-menu--mobile" id="mobileChatMenu">
+    <button type="button" class="msg-menu__item"><i class="bi bi-pin-angle"></i> Pin chat</button>
+    <button type="button" class="msg-menu__item"><i class="bi bi-download"></i> Export Chat</button>
+    <span class="msg-menu__divider"></span>
+    <button type="button" class="msg-menu__item" data-mobile-open="filesToggle"><i class="bi bi-paperclip"></i>
+        Files</button>
+    <button type="button" class="msg-menu__item is-group-only" data-mobile-open="peopleToggle"><i
+            class="bi bi-people"></i> Members</button>
+    <button type="button" class="msg-menu__item" data-mobile-open="settingsToggle"><i class="bi bi-gear"></i>
+        Settings</button>
+    <span class="msg-menu__divider"></span>
+    <button type="button" class="msg-menu__item msg-menu__item--danger is-group-only"><i
+            class="bi bi-box-arrow-right"></i> Leave Group</button>
+    <button type="button" class="msg-menu__item msg-menu__item--danger is-direct-only"><i class="bi bi-trash"></i>
+        Delete Conversation</button>
+    <button type="button" class="msg-menu__item msg-menu__item--danger is-direct-only"><i
+            class="bi bi-slash-circle"></i> Block this User</button>
+</div>
+
+<!-- mobile only: the composer "+" consolidates attach / voice / template -->
+<div class="msg-menu msg-menu--mobile" id="composerPlusMenu">
+    <button type="button" class="msg-menu__item" data-mobile-open="attachToggle"><i class="bi bi-image"></i>
+        Photos</button>
+    <button type="button" class="msg-menu__item" data-mobile-open="voiceToggle"><i class="bi bi-mic"></i> Voice</button>
+    <button type="button" class="msg-menu__item" data-mobile-open="composerTplToggle"><i
+            class="bi bi-layout-text-window"></i> Template</button>
+    <button type="button" class="msg-menu__item" data-mobile-open="attachToggle"><i
+            class="bi bi-file-earmark-arrow-up"></i> File</button>
 </div>
 
 <div class="msg-menu" id="theirMessageMenu">
@@ -7424,6 +8017,75 @@ ViewData["User"] = "Admin";
             if (!item) return;
             chatItemMenu.classList.remove('is-open');
             openDelete();
+        });
+
+        /* ==================================================================
+           390px MOBILE behaviour
+           ------------------------------------------------------------------
+           The phone frames show the inbox and the thread as two separate
+           full-screen views, so the single desktop layout is driven as a pair
+           of panes here. Everything below is inert above the breakpoint.
+           ================================================================== */
+        const MOBILE_QUERY = window.matchMedia('(max-width: 575.98px)');
+        const msgPage = document.querySelector('.msg-page');
+        const msgLayout = document.querySelector('.msg-layout');
+
+        // the two nav bars above the page are static, so their combined height
+        // is what each pane has to subtract to fill the rest of the viewport
+        const measureTop = () => {
+            if (!msgPage) return;
+            const top = msgPage.getBoundingClientRect().top + window.scrollY;
+            document.documentElement.style.setProperty('--msg-top', Math.max(0, Math.round(top)) + 'px');
+        };
+
+        const showPane = (pane) => {
+            if (!msgLayout) return;
+            msgLayout.dataset.pane = pane;
+            if (pane === 'thread' && stream) stream.scrollTop = stream.scrollHeight;
+            window.scrollTo({ top: 0 });
+        };
+
+        const syncMobile = () => {
+            if (!msgLayout) return;
+            if (MOBILE_QUERY.matches) {
+                measureTop();
+                if (!msgLayout.dataset.pane) msgLayout.dataset.pane = 'list';
+            } else {
+                delete msgLayout.dataset.pane;
+            }
+        };
+
+        syncMobile();
+        MOBILE_QUERY.addEventListener('change', syncMobile);
+        window.addEventListener('resize', () => { if (MOBILE_QUERY.matches) measureTop(); });
+
+        // tapping a row opens the thread frame; the back chevron returns
+        chatList && chatList.addEventListener('click', (e) => {
+            const item = e.target.closest('.chat-item');
+            if (!item || e.target.closest('[data-menu]')) return;
+            if (MOBILE_QUERY.matches) showPane('thread');
+        });
+
+        const chatBack = document.getElementById('chatBack');
+        chatBack && chatBack.addEventListener('click', () => showPane('list'));
+
+        // the header sheet needs the direct-chat counterpart of `.is-group-only`
+        const applyDirectOnly = () => {
+            const isGroup = !document.querySelector('.chat-head .is-group-only[hidden]');
+            document.querySelectorAll('.is-direct-only').forEach(el => { el.hidden = isGroup; });
+        };
+        applyDirectOnly();
+        chatList && chatList.addEventListener('click', applyDirectOnly);
+
+        // sheet rows are proxies for the real (now hidden) desktop controls
+        document.querySelectorAll('.msg-menu--mobile').forEach(sheet => {
+            sheet.addEventListener('click', (e) => {
+                const row = e.target.closest('[data-mobile-open]');
+                sheet.classList.remove('is-open');
+                if (!row) return;
+                const target = document.getElementById(row.dataset.mobileOpen);
+                if (target) target.click();
+            });
         });
 
         refreshUnreadBadge();
