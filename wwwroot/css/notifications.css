@@ -232,7 +232,7 @@ input[type="date"]:valid {
 .sent-notifications .table-header th {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .sent-notifications .table-body td {
@@ -323,7 +323,7 @@ input[type="date"]:valid {
 #UsersModal table thead th {
   height: 60px;
   text-align: left !important;
-  font-weight: 400;
+  font-weight: 500;
   vertical-align: middle;
   border: 1px solid white !important;
 }

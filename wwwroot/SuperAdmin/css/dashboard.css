@@ -681,7 +681,7 @@ table .dropdown-item {
   height: 36px;
   width: 80px;
   border-radius: 10px !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .item button:disabled {

@@ -366,7 +366,7 @@ a:hover {
 }
 
 table th {
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .use-template table td {
@@ -720,6 +720,7 @@ textarea.compose-message {
 
 .date-time-dropdown input[type="number"] {
   -moz-appearance: textfield; /* For Firefox */
+  appearance: textfield;
 }
 
 .date-time-dropdown .custom-select-trigger {
@@ -1014,7 +1015,7 @@ form.search-templates {
   padding: 16px 8px !important;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center !important;
   vertical-align: middle !important;
 }
@@ -2636,6 +2637,7 @@ input[type="search"]#mobileSearchInput::-webkit-search-cancel-button {
 #scheduleDropdownDesktop input[type="number"],
 #scheduleDropdownMobile input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* Mobile specific adjustments for SMS compose */

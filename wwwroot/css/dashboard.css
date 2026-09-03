@@ -307,7 +307,7 @@
 .ticket-table table thead {
   background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .ticket-table tbody tr {
@@ -330,7 +330,7 @@
 }
 
 .ticket-table table th {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .ticket-table table th,

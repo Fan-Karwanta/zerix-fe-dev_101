@@ -216,7 +216,7 @@ table td button:hover {
 }
 
 .contacts table th {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
 .contacts table td,
@@ -286,7 +286,7 @@ table td button:hover {
 }
 
 .contacts-group table th {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
 .contacts-group table td {
@@ -412,7 +412,7 @@ table td button:hover {
 }
 
 #addContactGroupModal table th {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
 #addContactGroupModal table td,
@@ -485,7 +485,7 @@ table td button:hover {
 #detailsModal table thead th {
   height: 60px;
   text-align: left !important;
-  font-weight: 400;
+  font-weight: 500;
   vertical-align: middle;
   border-bottom: 1px solid white !important;
   padding: 0 !important;
@@ -580,7 +580,7 @@ table td button:hover {
 }
 
 .contact-list table thead th {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .contact-list .scroll {
@@ -649,7 +649,7 @@ table td button:hover {
   color: white;
 }
 .blocklisted-list table thead th {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .blocklisted-list table th:first-child,
@@ -766,7 +766,7 @@ table td button:hover {
 }
 
 #customFieldSection table thead th {
-  font-weight: 400;
+  font-weight: 500;
   background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
 }
@@ -1240,7 +1240,7 @@ table td button:hover {
   }
 
   #blocklistSectionMobile table th {
-    font-weight: 400;
+    font-weight: 500;
     vertical-align: middle !important;
     padding-top: 10px !important;
   }
@@ -1678,7 +1678,7 @@ table td button:hover {
   }
 
   #blocklistSectionMobile table th {
-    font-weight: 400;
+    font-weight: 500;
     vertical-align: middle !important;
     padding-top: 6px !important;
   }
