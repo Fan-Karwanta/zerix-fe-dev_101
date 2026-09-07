@@ -4590,9 +4590,25 @@ ViewData["User"] = "Admin";
             padding: 12px 16px;
         }
     }
+
+    /* ----------------------------------------------------------------
+       At 390px and below, hide the global top header and the page-level
+       Messages nav while the user is inside a conversation so the chat
+       thread can fill the whole viewport.
+       ---------------------------------------------------------------- */
+    @@media (max-width: 390.98px) {
+        body.msg-thread-open > header,
+        body.msg-thread-open #messagesSubNav {
+            display: none;
+        }
+
+        body.msg-thread-open .msg-page {
+            min-height: 100dvh;
+        }
+    }
 </style>
 
-<nav
+<nav id="messagesSubNav"
     class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow py-3 py-md-3">
     <div class="container px-4" id="desktop-navbar">
         <!-- Messages dropdown button -->
@@ -8041,17 +8057,23 @@ ViewData["User"] = "Admin";
         const showPane = (pane) => {
             if (!msgLayout) return;
             msgLayout.dataset.pane = pane;
+            document.body.classList.toggle('msg-thread-open', pane === 'thread');
             if (pane === 'thread' && stream) stream.scrollTop = stream.scrollHeight;
             window.scrollTo({ top: 0 });
+            measureTop();
         };
 
         const syncMobile = () => {
             if (!msgLayout) return;
             if (MOBILE_QUERY.matches) {
                 measureTop();
-                if (!msgLayout.dataset.pane) msgLayout.dataset.pane = 'list';
+                if (!msgLayout.dataset.pane) {
+                    msgLayout.dataset.pane = 'list';
+                    document.body.classList.remove('msg-thread-open');
+                }
             } else {
                 delete msgLayout.dataset.pane;
+                document.body.classList.remove('msg-thread-open');
             }
         };
 
