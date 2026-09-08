@@ -871,7 +871,7 @@ ViewData["User"] = "Admin";
     }
 
     .bubble__text {
-        font-size: 14px;
+        font-size: 15px;
         line-height: 21px;
         color: #000000;
         /* keep the message exactly as the user typed it: newlines + runs of spaces */
@@ -1346,6 +1346,41 @@ ViewData["User"] = "Admin";
         width: 100%;
         max-height: 220px;
         overflow-y: auto;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        transition: scrollbar-color .18s ease-in-out;
+    }
+
+    .react-list__body:hover,
+    .react-list__body:focus-within {
+        scrollbar-color: #C4CAD6 transparent;
+    }
+
+    .react-list__body::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .react-list__body::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .react-list__body::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: 3px solid transparent;
+        background-clip: content-box;
+        border-radius: 5px;
+    }
+
+    .react-list__body:hover::-webkit-scrollbar-thumb,
+    .react-list__body:focus-within::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        background-clip: content-box;
+    }
+
+    .react-list__body:hover::-webkit-scrollbar-thumb:hover {
+        background: #A9B1C1;
+        background-clip: content-box;
     }
 
     .react-list__row {
@@ -1840,7 +1875,7 @@ ViewData["User"] = "Admin";
 
     .members-panel__title {
         flex: 1 1 auto;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 19px;
         color: #212529;
         overflow: hidden;
@@ -1912,7 +1947,7 @@ ViewData["User"] = "Admin";
         border: 0;
         background: transparent;
         border-radius: 6px;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 19px;
         color: #212529;
         text-align: left;
@@ -1939,7 +1974,7 @@ ViewData["User"] = "Admin";
         align-items: center;
         padding: 6px 10px 2px;
         width: 100%;
-        font-size: 11px;
+        font-size: 14px;
         line-height: 12px;
         letter-spacing: 0.33px;
         text-transform: uppercase;
@@ -1986,13 +2021,13 @@ ViewData["User"] = "Admin";
         gap: 4px;
         flex: 1 1 auto;
         min-width: 0;
-        font-size: 13.5px;
+        font-size: 14px;
         line-height: 17px;
         color: #212529;
     }
 
     .member-item__role {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 15px;
         color: #878A99;
     }
@@ -2202,7 +2237,7 @@ ViewData["User"] = "Admin";
     }
 
     .people-row__name {
-        font-size: 13.5px;
+        font-size: 14px;
         line-height: 17px;
         color: #161B22;
         overflow: hidden;
@@ -2211,7 +2246,7 @@ ViewData["User"] = "Admin";
     }
 
     .people-row__sub {
-        font-size: 11.5px;
+        font-size: 14px;
         line-height: 14px;
         color: #878A99;
     }
@@ -2264,7 +2299,7 @@ ViewData["User"] = "Admin";
         border: 0;
         background: transparent;
         padding: 0 0 8px;
-        font-size: 12.5px;
+        font-size: 14px;
         line-height: 16px;
         color: #878A99;
         border-bottom: 2px solid transparent;
@@ -2288,7 +2323,7 @@ ViewData["User"] = "Admin";
     .file-list__label {
         width: 100%;
         padding: 10px 6px 4px;
-        font-size: 10.5px;
+        font-size: 14px;
         line-height: 13px;
         letter-spacing: 0.525px;
         text-transform: uppercase;
@@ -2336,7 +2371,7 @@ ViewData["User"] = "Admin";
 
     .file-row__name {
         width: 100%;
-        font-size: 12.5px;
+        font-size: 14px;
         line-height: 16px;
         color: #212529;
         overflow: hidden;
@@ -2345,7 +2380,7 @@ ViewData["User"] = "Admin";
     }
 
     .file-row__meta {
-        font-size: 11px;
+        font-size: 14px;
         line-height: 14px;
         color: #878A99;
     }
@@ -2409,13 +2444,13 @@ ViewData["User"] = "Admin";
     }
 
     .settings-row__title {
-        font-size: 15px;
+        font-size: 14px;
         line-height: 19px;
         color: #212529;
     }
 
     .settings-row__sub {
-        font-size: 11.5px;
+        font-size: 14px;
         line-height: 16px;
         color: #878A99;
     }
@@ -4455,6 +4490,16 @@ ViewData["User"] = "Admin";
             line-height: 11px;
         }
 
+        /* mobile max-widths for chat attachments and image grids */
+        .attach-image,
+        .attach-file {
+            max-width: 230px;
+        }
+
+        .attach-grid {
+            max-width: 400px;
+        }
+
         /* no hover on touch, so the per-message tools are always visible */
         .msg-tools {
             gap: 8px;
@@ -4618,20 +4663,20 @@ ViewData["User"] = "Admin";
                     href="#" id="navbarDropDownMessages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="~/images/icons/messages.svg" height="30" width="30" alt="Logo"
                         class="d-inline-block align-top me-2 color-primary" />
-                    <span class="txt-color-primary fs-20 fw-400 me-3 text-brand">Messages</span>
+                    <span class="txt-color-primary fs-20 fw-600 me-3 text-brand">Messages</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg ud-shadow bg-body-tertiary rounded border-0"
                     aria-labelledby="navbarDropDownMessages">
                     <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                        <a class="dropdown-item fs-16 ff-default font-darkgray fw-600 d-flex align-items-center"
                             href="/messages/templates">
                             Templates
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item fs-16 ff-default font-darkgray d-flex align-items-center"
+                        <a class="dropdown-item fs-16 ff-default font-darkgray fw-600 d-flex align-items-center"
                             href="/messages/archive">
                             Archive
                         </a>
@@ -4644,7 +4689,7 @@ ViewData["User"] = "Admin";
                     data-bs-target="#messagesoffcanvasDropdown" aria-controls="offcanvasDropdown" aria-expanded="false">
                     <img src="~/images/icons/messages.svg" height="21" width="21" alt="Logo"
                         class="d-inline-block align-top ms-1 me-2 color-primary" />
-                    <span class="txt-color-primary me-3 fs-16 fw-400">Messages</span>
+                    <span class="txt-color-primary me-3 fs-16 fw-600">Messages</span>
                     <img src="~/images/icons/arrow-down.svg" height="12" width="12" alt="arrow-down"
                         class="d-inline-block me-2" />
                 </a>
@@ -4816,12 +4861,12 @@ ViewData["User"] = "Admin";
             <ul class="navbar-nav me-3">
                 <li class="nav-item mb-2">
                     <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages/templates">
-                        <span class="fs-16 fw-light">Templates</span>
+                        <span class="fs-16 fw-600">Templates</span>
                     </a>
                 </li>
                 <li class="nav-item mb-2">
                     <a class="fs-5 nav-link text-dark d-flex align-items-center" href="/messages/archive">
-                        <span class="fs-16 fw-light">Archive</span>
+                        <span class="fs-16 fw-600">Archive</span>
                     </a>
                 </li>
             </ul>
