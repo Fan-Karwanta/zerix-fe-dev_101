@@ -4066,11 +4066,12 @@ ViewData["User"] = "Admin";
     }
 
     /* ------------------------------------------------- mobile-only controls */
-    /* these three exist only for the 390px layout; the desktop frame keeps the
+    /* these four exist only for the mobile layout; the desktop frame keeps the
        full tool row, so they stay out of the flow until the media query below */
     .chat-head__back,
     .chat-head__more,
-    .composer-plus {
+    .composer-plus,
+    .msg-mobile-nav {
         display: none;
     }
 
@@ -4120,6 +4121,8 @@ ViewData["User"] = "Admin";
             flex-direction: column;
             padding-bottom: 0;
             background: #FFFFFF;
+            /* the bottom nav lives inside .msg-page, so the page only has to
+               subtract the bars above it — subtracting the nav too left a gap */
             min-height: calc(100dvh - var(--msg-top, 150px));
         }
 
@@ -4156,17 +4159,90 @@ ViewData["User"] = "Admin";
             gap: 0;
         }
 
+        /* the phone frame shows just the logo in the top bar */
+        header .version-text {
+            display: none;
+        }
+
+        /* ---------------------------------------------------- bottom nav bar */
+        .msg-mobile-nav {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            padding: 4px 8px;
+            width: 100%;
+            background: #FFFFFF;
+            border-top: 1px solid #E9EBEC;
+            flex: none;
+        }
+
+        .msg-mobile-nav__item {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            gap: 4px;
+            width: 60px;
+            height: 54px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #212529;
+        }
+
+        .msg-mobile-nav__item i {
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .msg-mobile-nav__item span {
+            font-size: 11px;
+            line-height: 14px;
+            font-weight: 500;
+            color: inherit;
+        }
+
+        /* the active tab is a soft blue tint with blue icon + label, not a
+           solid blue block */
+        .msg-mobile-nav__item.is-active {
+            background: #EAF3FF;
+            color: #1D4ED8;
+        }
+
         /* ------------------------------------------ 1. Messaging Inbox frame */
         .company-select {
-            height: 43px;
-            padding: 12px 16px;
-            border-width: 0 0 1px;
-            border-radius: 0;
+            /* rounded bordered box as per Figma, but a tighter row than desktop */
+            height: 40px;
+            padding: 10px 14px;
+            border-radius: 8px;
         }
 
         .company-select__label {
+            gap: 8px;
             font-size: 13.5px;
             line-height: 17px;
+        }
+
+        .company-select__label i {
+            font-size: 15px;
+        }
+
+        .company-select__caret {
+            font-size: 11px;
+        }
+
+        /* the mobile container is edge-to-edge, so the box needs its own inset */
+        .company-select {
+            width: calc(100% - 28px);
+            margin: 10px 14px 4px;
+        }
+
+        #companyMenu {
+            top: 44px !important;
+            width: 100% !important;
         }
 
         .msg-card {
@@ -4227,6 +4303,25 @@ ViewData["User"] = "Admin";
             display: none;
         }
 
+        /* the phone frame keeps every row on white — unread is signalled by the
+           blue count badge and blue timestamp only, not a tinted row */
+        .chat-item[data-unread]:not([data-unread="0"]),
+        .chat-item[data-unread]:not([data-unread="0"]):hover,
+        .chat-item[data-unread]:not([data-unread="0"]).is-active {
+            background: transparent;
+        }
+
+        .chat-item[data-unread]:not([data-unread="0"]) .chat-item__name,
+        .chat-item[data-unread]:not([data-unread="0"]) .chat-item__subject {
+            font-weight: 500;
+            color: #212529;
+        }
+
+        .chat-item[data-unread]:not([data-unread="0"]) .chat-item__preview {
+            font-weight: 500;
+            color: #878A99;
+        }
+
         .avatar-pin {
             background: #495057;
         }
@@ -4255,8 +4350,9 @@ ViewData["User"] = "Admin";
 
         .chat-item__subject {
             font-size: 12.5px;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 16px;
+            color: #212529;
         }
 
         .chat-item__preview {
@@ -4265,18 +4361,27 @@ ViewData["User"] = "Admin";
             line-height: 15px;
         }
 
+        /* badge sits on the timestamp line, kebab tucks underneath it */
         .chat-item__meta {
-            flex-direction: row;
-            align-items: center;
-            gap: 6px;
-            width: auto;
-            padding-top: 2px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            gap: 4px;
+            width: 22px;
+            padding-top: 1px;
         }
 
         .kebab {
             width: 22px;
             height: 22px;
             font-size: 16px;
+        }
+
+        .unread-dot {
+            min-width: 17px;
+            height: 17px;
+            font-size: 10px;
+            line-height: 17px;
         }
 
         /* --------------------------------- 2. Group Chat Conversation frame */
@@ -4649,6 +4754,10 @@ ViewData["User"] = "Admin";
 
         body.msg-thread-open .msg-page {
             min-height: 100dvh;
+        }
+
+        body.msg-thread-open .msg-mobile-nav {
+            display: none;
         }
     }
 </style>
@@ -6093,6 +6202,24 @@ ViewData["User"] = "Admin";
             </section>
         </div>
     </div>
+    <nav class="msg-mobile-nav" aria-label="Mobile navigation">
+        <a class="msg-mobile-nav__item is-active" href="/messages">
+            <i class="bi bi-envelope"></i>
+            <span>Chats</span>
+        </a>
+        <a class="msg-mobile-nav__item" href="/notifications">
+            <i class="bi bi-bell"></i>
+            <span>Alerts</span>
+        </a>
+        <a class="msg-mobile-nav__item" href="/forms">
+            <i class="bi bi-list-check"></i>
+            <span>Surveys</span>
+        </a>
+        <a class="msg-mobile-nav__item" href="/scheduler">
+            <i class="bi bi-calendar-week"></i>
+            <span>Bookings</span>
+        </a>
+    </nav>
 </div>
 
 <!-- ================================================================== overlays -->
