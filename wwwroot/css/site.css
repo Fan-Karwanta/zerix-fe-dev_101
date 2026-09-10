@@ -114,6 +114,15 @@ body {
   background-image: none !important;
 }
 
+/* On very narrow phones the header runs out of room, so the "Welcome," prefix
+   is dropped and only the user name is kept. The dashboard header keeps it
+   (its spans intentionally do not carry .welcome-label). */
+@media (max-width: 422px) {
+  .welcome-label {
+    display: none !important;
+  }
+}
+
 /* Responsive Adjustments */
 @media (max-width: 992px) {
   .dashboard-grid {

@@ -10,11 +10,21 @@ ViewData["User"] = "Admin";
     /* ==========================================================================
        Messaging (Group Chat) — Figma
        ========================================================================== */
+    /* The page is a fixed-height shell, not a tall document: it fills exactly the
+       viewport left under the nav bars (--msg-top, measured in JS) and clips its
+       own overflow. That is what keeps the document from scrolling as a whole, so
+       the only scrollers on the page are .msg-list (inbox) and .chat-stream
+       (thread) — the chat header, pinned bar and composer never move. */
     .msg-page {
         background: #F5F6FD;
         font-family: 'Plus Jakarta Sans', sans-serif;
         padding-bottom: 40px;
-        min-height: calc(100vh - 188px);
+        height: calc(100dvh - var(--msg-top, 188px));
+        overflow: hidden;
+    }
+
+    .msg-page > .container {
+        height: 100%;
     }
 
     .msg-layout {
@@ -23,7 +33,8 @@ ViewData["User"] = "Admin";
         align-items: stretch;
         gap: 32px;
         padding-top: 24px;
-        height: 787px;
+        height: 100%;
+        min-height: 0;
     }
 
     /* ---------------------------------------------------------------- sidebar */
@@ -92,6 +103,8 @@ ViewData["User"] = "Admin";
         padding: 16px 16px 0;
         gap: 10px;
         width: 100%;
+        /* only .msg-list scrolls; the search row and the filter row stay put */
+        flex: none;
     }
 
     .msg-search-input {
@@ -148,6 +161,7 @@ ViewData["User"] = "Admin";
         align-items: center;
         padding: 14px 14px 0 16px;
         width: 100%;
+        flex: none;
     }
 
     .msg-tabs {
@@ -483,6 +497,11 @@ ViewData["User"] = "Admin";
         align-items: flex-start;
         flex: 1 1 auto;
         min-width: 0;
+        /* the panel is exactly as tall as the shell: without this the composer
+           growing taller than its box would push the head out of the frame
+           instead of eating into the stream */
+        min-height: 0;
+        height: 100%;
         background: #FFFFFF;
         border: 1px solid #E7EAF0;
         border-radius: 16px;
@@ -501,6 +520,9 @@ ViewData["User"] = "Admin";
         display: none !important;
     }
 
+    /* the thread is a fixed head + pinned bar, a scrolling stream, and a fixed
+       composer — only .chat-stream may ever scroll, so every other child of
+       .msg-chat is pinned with flex: none */
     .chat-head {
         display: flex;
         flex-direction: row;
@@ -509,6 +531,7 @@ ViewData["User"] = "Admin";
         gap: 16px;
         width: 100%;
         height: 69px;
+        flex: none;
     }
 
     .chat-head__title {
@@ -607,6 +630,16 @@ ViewData["User"] = "Admin";
         line-height: 1;
         color: #8A93A6;
         white-space: nowrap;
+    }
+
+    /* messages.css carries a legacy `.chat-search span { border: 1px solid #ced4da }`
+       for the old input-group markup, which painted a grey box around the match
+       counter and the prev/next/clear controls here. Reset it for this component. */
+    .chat-search span.chat-search__count,
+    .chat-search span.chat-search__nav {
+        height: auto;
+        border: 0;
+        background: transparent;
     }
 
     .chat-search__nav {
@@ -714,6 +747,7 @@ ViewData["User"] = "Admin";
         gap: 10px;
         width: 100%;
         background: #EAF3FF;
+        flex: none;
     }
 
     .pinned-bar i {
@@ -858,6 +892,8 @@ ViewData["User"] = "Admin";
         color: #000000;
     }
 
+    /* desktop ceilings: chat box 550px, attachment / single image 300px,
+       multi-image grid 400px (mobile equivalents live in the media query) */
     .bubble {
         display: flex;
         flex-direction: column;
@@ -886,8 +922,8 @@ ViewData["User"] = "Admin";
         align-items: center;
         gap: 3px;
         width: 100%;
-        font-size: 9px;
-        line-height: 11px;
+        font-size: 8px;
+        line-height: 10px;
         color: #4A5468;
     }
 
@@ -1012,7 +1048,11 @@ ViewData["User"] = "Admin";
         padding: 18px 24px 16px;
         gap: 24px;
         width: 100%;
-        height: 69px;
+        /* grows downward-anchored with the textarea; a hard height made the
+           field overflow the box and drag the rest of the thread with it */
+        height: auto;
+        min-height: 69px;
+        flex: none;
         background: #FFFFFF;
         border-top: 1px solid #E7EAF0;
         border-radius: 0 0 16px 16px;
@@ -1049,14 +1089,47 @@ ViewData["User"] = "Admin";
 
     .composer-input {
         flex: 1 1 auto;
+        min-width: 0;
         border: 0;
         outline: 0;
         resize: none;
         height: 24px;
+        max-height: 96px;
         font-size: 14px;
         line-height: 18px;
         color: #212529;
         font-family: inherit;
+        /* the message field only scrolls once it has grown to its max height, and
+           the scrollbar is painted only while the user is actually scrolling
+           (`.is-scrolling` is added on scroll and dropped again after a pause) */
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        transition: scrollbar-color .2s ease-in-out;
+    }
+
+    .composer-input.is-scrolling {
+        scrollbar-color: #C4CAD6 transparent;
+    }
+
+    .composer-input::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .composer-input::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .composer-input::-webkit-scrollbar-thumb {
+        background: transparent;
+        border: 2px solid transparent;
+        background-clip: content-box;
+        border-radius: 4px;
+    }
+
+    .composer-input.is-scrolling::-webkit-scrollbar-thumb {
+        background: #C4CAD6;
+        background-clip: content-box;
     }
 
     .composer-input::placeholder {
@@ -1506,6 +1579,10 @@ ViewData["User"] = "Admin";
         padding: 8px 16px;
         gap: 4px;
         width: 100%;
+        /* a quoted message can be one unbroken string; without min-width:0 the
+           flex min-content floor lets it push the bar past the viewport */
+        min-width: 0;
+        max-width: 100%;
         background: #F8F6F4;
         border: 1px solid #1D4ED8;
         border-left-width: 3px;
@@ -1523,6 +1600,7 @@ ViewData["User"] = "Admin";
         align-items: center;
         gap: 12px;
         width: 100%;
+        min-width: 0;
     }
 
     .reply-bar__label {
@@ -1549,6 +1627,8 @@ ViewData["User"] = "Admin";
         line-height: 16px;
         color: #495057;
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -1741,6 +1821,9 @@ ViewData["User"] = "Admin";
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        flex: none;
     }
 
     .attach-tray.is-open {
@@ -1754,7 +1837,10 @@ ViewData["User"] = "Admin";
         padding: 8px 24px;
         gap: 8px;
         width: 100%;
+        min-width: 0;
+        max-width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         background: rgba(33, 37, 41, 0.1);
     }
 
@@ -4077,24 +4163,6 @@ ViewData["User"] = "Admin";
 
     /* --------------------------------------------------------------- responsive */
     @@media (max-width: 991.98px) {
-        .msg-layout {
-            flex-direction: column;
-            height: auto;
-        }
-
-        .msg-sidebar {
-            width: 100%;
-        }
-
-        .msg-card {
-            height: 520px;
-        }
-
-        .msg-chat {
-            width: 100%;
-            height: 640px;
-        }
-
         .members-panel {
             width: 100%;
         }
@@ -4106,14 +4174,18 @@ ViewData["User"] = "Admin";
     }
 
     /* ==========================================================================
-       390px MOBILE — Figma "Messaging Inbox" + "Group Chat Conversation" frames
+       MOBILE — Figma "Messaging Inbox" + "Group Chat Conversation" frames
        --------------------------------------------------------------------------
        On a phone the inbox and the thread are two separate full-screen frames,
        not a sidebar next to a panel. `.msg-layout[data-pane]` swaps between them
        and `--msg-top` (measured in JS) is the height of the two nav bars above,
        so each pane can fill exactly the rest of the viewport.
+
+       The cut-off is 991.98px: that is where Bootstrap swaps the page nav for the
+       hamburger, so it is also where the bottom tab bar has to take over as the
+       primary navigation.
        ========================================================================== */
-    @@media (max-width: 575.98px) {
+    @@media (max-width: 991.98px) {
 
         /* ------------------------------------------------------- page shell */
         .msg-page {
@@ -4123,23 +4195,33 @@ ViewData["User"] = "Admin";
             background: #FFFFFF;
             /* the bottom nav lives inside .msg-page, so the page only has to
                subtract the bars above it — subtracting the nav too left a gap */
-            min-height: calc(100dvh - var(--msg-top, 150px));
+            height: calc(100dvh - var(--msg-top, 150px));
+            /* nothing inside the panes may create a horizontal scroll region:
+               once the document is wider than the viewport, the sticky top nav
+               and the bottom tab bar stay at x=0 and read as "shifted left"
+               against the scrolled-right content (visible below ~369px) */
+            max-width: 100%;
+            overflow-x: clip;
         }
 
         .msg-page > .container {
             display: flex;
             flex: 1 1 auto;
             min-height: 0;
-            max-width: none;
+            width: 100%;
+            max-width: 100%;
             padding-left: 0 !important;
             padding-right: 0 !important;
+            overflow-x: clip;
         }
 
         .msg-layout {
             display: flex;
             flex-direction: column;
             flex: 1 1 auto;
+            min-width: 0;
             min-height: 0;
+            max-width: 100%;
             gap: 0;
             height: auto;
             padding-top: 0;
@@ -4153,8 +4235,10 @@ ViewData["User"] = "Admin";
         .msg-sidebar,
         .msg-chat {
             width: 100%;
+            max-width: 100%;
             height: auto;
             flex: 1 1 auto;
+            min-width: 0;
             min-height: 0;
             gap: 0;
         }
@@ -4162,6 +4246,20 @@ ViewData["User"] = "Admin";
         /* the phone frame shows just the logo in the top bar */
         header .version-text {
             display: none;
+        }
+
+        /* neither top bar may outgrow the viewport, otherwise they detach from
+           the page content horizontally */
+        header > .navbar > .container,
+        #messagesSubNav > .container {
+            max-width: 100%;
+            min-width: 0;
+            flex-wrap: nowrap;
+        }
+
+        header .navbar-brand,
+        header #navbarNavDropdown {
+            min-width: 0;
         }
 
         /* ---------------------------------------------------- bottom nav bar */
@@ -4569,8 +4667,8 @@ ViewData["User"] = "Admin";
             line-height: 15px;
         }
 
-        /* the desktop frame pins some bubbles to a pixel width inline; at 390px
-           the bubble has to shrink to the mobile 270px ceiling instead */
+        /* the desktop frame pins some bubbles to a pixel width inline; on mobile
+           the bubble has to shrink to the 270px ceiling instead */
         .bubble {
             width: auto !important;
             max-width: 270px;
@@ -4591,8 +4689,8 @@ ViewData["User"] = "Admin";
         }
 
         .bubble__meta {
-            font-size: 9px;
-            line-height: 11px;
+            font-size: 8px;
+            line-height: 10px;
         }
 
         /* mobile max-widths for chat attachments and image grids */
@@ -4613,10 +4711,11 @@ ViewData["User"] = "Admin";
 
         /* ----------------------------------------------------- the composer */
         .chat-composer {
-            height: 65px;
-            padding: 10px 14px 20px;
+            height: auto;
+            min-height: 74px;
+            padding: 14px 14px 18px;
             gap: 5px;
-            align-items: flex-end;
+            align-items: center;
             border-top: 1px solid #E9EBEC;
             border-radius: 0;
         }
@@ -4626,50 +4725,131 @@ ViewData["User"] = "Admin";
             gap: 10px;
         }
 
+        /* Figma order for the phone composer: "+", mic, the pill-shaped field,
+           then the round send button. Both icon buttons are brand blue and sit
+           together on the left; the "+" still opens the attach / template sheet. */
         .composer-main {
-            gap: 5px;
-            align-items: flex-end;
+            gap: 10px;
+            align-items: center;
         }
 
         .composer-tools {
+            order: 2;
+            gap: 0;
+            height: auto;
+            flex: none;
+        }
+
+        .composer-tools > *:not(#voiceToggle) {
             display: none;
         }
 
+        .composer-tools #voiceToggle {
+            width: 26px;
+            height: 26px;
+            font-size: 21px;
+            color: #1D4ED8;
+        }
+
         .composer-plus {
+            order: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 24px;
-            height: 32px;
+            width: 26px;
+            height: 26px;
             flex: none;
             padding: 0;
             border: 0;
             background: transparent;
-            border-radius: 16px;
             color: #1D4ED8;
-            font-size: 20px;
+            font-size: 22px;
             line-height: 1;
         }
 
         .composer-input {
+            order: 3;
             box-sizing: border-box;
-            height: 33px;
-            max-height: 160px;
-            padding: 8px 14px;
+            height: 42px;
+            min-height: 42px;
+            max-height: 120px;
+            padding: 11px 20px;
             background: #FFFFFF;
-            border: 1px solid #CED4DA;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            line-height: 16px;
+            border: 1px solid #D0D5DD;
+            /* pill while it is a single line… */
+            border-radius: 21px;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 18px;
+        }
+
+        /* …and a rounded rectangle once it has grown, so a long message never
+           renders as a giant oblong (class is toggled by autoGrowComposer) */
+        .composer-input.is-multiline {
+            border-radius: 10px;
         }
 
         .composer-input::placeholder {
-            color: #757575;
+            color: #6B7280;
+        }
+
+        .composer-send {
+            order: 4;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 17px;
+            align-self: flex-end;
+        }
+
+        .composer-plus,
+        .composer-tools {
+            align-self: flex-end;
+            margin-bottom: 8px;
         }
 
         .voice-rec__hint {
             display: none;
+        }
+
+        /* -------------------------------- reply preview + attachment tray */
+        /* both sit full-bleed above the input row and must never widen the
+           thread: long quoted text truncates, attachments scroll sideways */
+        .reply-bar {
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .reply-bar__text {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .attach-tray__row {
+            padding: 8px 14px;
+            gap: 8px;
+        }
+
+        .attach-card {
+            width: 200px;
+            max-width: 66vw;
+            padding: 8px;
+            gap: 8px;
+        }
+
+        .attach-card .attach-file__thumb {
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        .attach-card__name {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .attach-tray__note {
+            padding: 4px 14px 6px;
         }
 
         /* --------------------------- panels become full-screen mobile frames */
@@ -4742,22 +4922,47 @@ ViewData["User"] = "Admin";
     }
 
     /* ----------------------------------------------------------------
-       At 390px and below, hide the global top header and the page-level
-       Messages nav while the user is inside a conversation so the chat
-       thread can fill the whole viewport.
+       Inside a conversation, hide the global top header, the page-level
+       Messages nav and the bottom tab bar so the thread fills the whole
+       viewport. This has to cover the entire mobile range, not just the
+       narrowest phones.
        ---------------------------------------------------------------- */
-    @@media (max-width: 390.98px) {
+    @@media (max-width: 991.98px) {
         body.msg-thread-open > header,
         body.msg-thread-open #messagesSubNav {
             display: none;
         }
 
+        /* with both bars gone the thread owns the whole viewport; locking the
+           document itself stops the address-bar rubber-band from scrolling the
+           header and composer out of view */
+        body.msg-thread-open {
+            overflow: hidden;
+        }
+
         body.msg-thread-open .msg-page {
-            min-height: 100dvh;
+            height: 100dvh;
         }
 
         body.msg-thread-open .msg-mobile-nav {
             display: none;
+        }
+    }
+
+    /* ----------------------------------------------------------------
+       Very narrow phones: tighten the shared gutter on BOTH top bars at
+       once so the logo row and the Messages dropdown / hamburger row stay
+       on the same margin instead of one of them forcing an overflow.
+       ---------------------------------------------------------------- */
+    @@media (max-width: 369.98px) {
+        header > .navbar > .container,
+        #messagesSubNav > .container {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+
+        .username-truncate {
+            max-width: 5ch;
         }
     }
 </style>
@@ -5017,7 +5222,7 @@ ViewData["User"] = "Admin";
                             <button type="button" class="msg-tab is-active" data-filter="all">All</button>
                             <button type="button" class="msg-tab" data-filter="unread">
                                 Unread
-                                <span class="msg-tab__badge">3</span>
+                                <span class="msg-tab__badge">6</span>
                             </button>
                             <button type="button" class="msg-tab" data-filter="groups">Groups</button>
                         </div>
@@ -5131,6 +5336,148 @@ ViewData["User"] = "Admin";
                             </div>
                             <div class="chat-item__meta">
                                 <span class="unread-dot">1</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="0" data-conv="steve">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#E3B7F2;">SR</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Steve Rogers</span>
+                                    <span class="chat-item__time">08/11/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Onboarding Docs</span>
+                                <span class="chat-item__preview">Sounds good — I'll review the draft tomorrow morning.</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="2" data-conv="wanda">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#F2B7D6;">WM</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Wanda Maximoff</span>
+                                    <span class="chat-item__time">08/09/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Brand Colors</span>
+                                <span class="chat-item__preview">Could you double-check the hex values
+                                    against the style guide?</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">2</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="group" data-unread="3" data-conv="engineering">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#C9E4B7;">EN</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Engineering</span>
+                                    <span class="chat-item__time">08/07/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Sprint 24 Planning</span>
+                                <span class="chat-item__preview">Deploy is blocked on the DB migration — need sign-off.</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">3</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="group" data-unread="0" data-conv="marketing">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#F2D3B7;">MK</span>
+                                <span class="avatar-pin"><i class="bi bi-pin-angle-fill"></i></span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">
+                                        <i class="bi bi-pin-angle"></i>
+                                        Marketing
+                                    </span>
+                                    <span class="chat-item__time">08/05/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Q4 Campaign</span>
+                                <span class="chat-item__preview">The final copy is approved — ready to ship to the client.</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="0" data-conv="tchalla">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#F2D3B7;">TU</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">T'Challa Udaku</span>
+                                    <span class="chat-item__time">08/01/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Vendor Contract</span>
+                                <span class="chat-item__preview">Noted — I'll have legal send the revised terms by Friday.</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="2" data-conv="sam">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#C9E4B7;">SW</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Sam Wilson</span>
+                                    <span class="chat-item__time">07/28/2026</span>
+                                </div>
+                                <span class="chat-item__subject">Flight Booking</span>
+                                <span class="chat-item__preview">Any update on the travel approval?
+                                    I need to confirm the seats.</span>
+                            </div>
+                            <div class="chat-item__meta">
+                                <span class="unread-dot">2</span>
+                                <button type="button" class="kebab" data-menu="chatItemMenu">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="chat-item" data-type="direct" data-unread="0" data-conv="carol">
+                            <div class="avatar-wrap">
+                                <span class="avatar" style="background:#B7E3F2;">CD</span>
+                            </div>
+                            <div class="chat-item__body">
+                                <div class="chat-item__top">
+                                    <span class="chat-item__name">Carol Danvers</span>
+                                    <span class="chat-item__time">07/22/2026</span>
+                                </div>
+                                <span class="chat-item__subject">API Integration</span>
+                                <span class="chat-item__preview">The webhook is live — monitoring for the first 24 hours.</span>
+                            </div>
+                            <div class="chat-item__meta">
                                 <button type="button" class="kebab" data-menu="chatItemMenu">
                                     <i class="bi bi-three-dots"></i>
                                 </button>
@@ -5851,6 +6198,559 @@ ViewData["User"] = "Admin";
                                 <i class="bi bi-three-dots-vertical"></i>
                             </button>
                             <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steve Rogers — 1-to-1 conversation -->
+                <div class="chat-stream chat-stream--direct" data-conv-stream="steve" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">08/11/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Steve Rogers</span>
+                            <div class="bubble" style="width:430px;">
+                                <span class="bubble__text">Morning! I finished the first pass of the onboarding docs — mind taking a look when you have a moment?</span>
+                                <span class="bubble__meta">8:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:360px;">
+                                <span class="bubble__text">Sure — send it over and I'll add it to the shared drive.</span>
+                                <span class="bubble__meta">8:42 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Steve Rogers</span>
+                            <div class="bubble" style="width:300px;">
+                                <span class="bubble__text">Here you go — it's the full draft with the screenshots.</span>
+                                <span class="attach-file">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-text"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Onboarding_Draft_v1.pdf</span>
+                                        <span class="attach-file__meta">3.2 MB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">8:45 AM</span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:380px;">
+                                <span class="bubble__text">Sounds good — I'll review the draft tomorrow morning.</span>
+                                <span class="bubble__meta">8:50 AM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wanda Maximoff — 1-to-1 conversation -->
+                <div class="chat-stream chat-stream--direct" data-conv-stream="wanda" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">08/09/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Wanda Maximoff</span>
+                            <div class="bubble" style="width:420px;">
+                                <span class="bubble__text">Hey! I updated the brand color palette in the shared Figma file. Can you take a quick look?</span>
+                                <span class="bubble__meta">2:10 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:340px;">
+                                <span class="bubble__text">On it — give me 10 minutes to pull it up.</span>
+                                <span class="bubble__meta">2:15 PM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Wanda Maximoff</span>
+                            <div class="bubble" style="width:460px;">
+                                <span class="bubble__text">No rush. Could you double-check the hex values against the style guide? The primary blue looks a shade off on dark mode.</span>
+                                <span class="bubble__meta">2:18 PM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#128075;</span> 4
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Wanda Maximoff</span>
+                            <div class="bubble" style="width:280px;">
+                                <span class="bubble__text">Also — the secondary palette needs a contrast pass for AA.</span>
+                                <span class="bubble__meta">2:20 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engineering — group conversation -->
+                <div class="chat-stream" data-conv-stream="engineering" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note">Scott Lang created the group.</div>
+                    <div class="stream-note stream-day">08/07/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Scott Lang</span>
+                            <div class="bubble" style="width:450px;">
+                                <span class="bubble__text">Team — the deploy for Sprint 24 is blocked on the DB migration. We need sign-off from infra before we can proceed.</span>
+                                <span class="bubble__meta">10:05 AM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 8
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Carol Danvers</span>
+                            <div class="bubble" style="width:390px;">
+                                <span class="bubble__text">I can review the migration script this afternoon. Is it the same one from staging or a fresh cut?</span>
+                                <span class="bubble__meta">10:12 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:400px;">
+                                <span class="bubble__text">Fresh cut — I rebased it off main this morning. The rollback script is in the same PR.</span>
+                                <span class="bubble__meta">10:18 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">T'Challa Udaku</span>
+                            <div class="bubble" style="width:430px;">
+                                <span class="bubble__text">I'll sign off once the integration tests pass. Can someone attach the latest run report?</span>
+                                <span class="bubble__meta">10:25 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:300px;">
+                                <span class="bubble__text">Here's the report from the last run.</span>
+                                <span class="attach-file attach-file--onblue">
+                                    <span class="attach-file__thumb"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+                                    <span class="attach-file__body">
+                                        <span class="attach-file__name">Integration_Report.xlsx</span>
+                                        <span class="attach-file__meta">512 KB · Tap to download</span>
+                                    </span>
+                                    <button type="button" class="attach-file__dl" title="Download">
+                                        <i class="bi bi-download"></i>
+                                    </button>
+                                </span>
+                                <span class="bubble__meta">10:30 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                            <span class="attach-note">
+                                <i class="bi bi-clock"></i> Attachments will expire in 14 days
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Scott Lang</span>
+                            <div class="bubble" style="width:350px;">
+                                <span class="bubble__text">Tests are green — approving the migration now. Go for deploy.</span>
+                                <span class="bubble__meta">10:38 AM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#127881;</span> 12
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing — group conversation -->
+                <div class="chat-stream" data-conv-stream="marketing" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note">Maria Santos created the group.</div>
+                    <div class="stream-note stream-day">08/05/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Maria Reyes</span>
+                            <div class="bubble" style="width:450px;">
+                                <span class="bubble__text">Quick update — the client signed off on the Q4 campaign concept. Final copy is locked.</span>
+                                <span class="bubble__meta">1:15 PM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#129309;</span> 15
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:380px;">
+                                <span class="bubble__text">Great news! I'll queue the assets for the social rollout. Do we have the final dimensions?</span>
+                                <span class="bubble__meta">1:22 PM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Wanda Maximoff</span>
+                            <div class="bubble" style="width:420px;">
+                                <span class="bubble__text">Yes — I'll drop the export-ready files in the shared folder by EOD. Story sizes and feed posts are both included.</span>
+                                <span class="bubble__meta">1:28 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:320px;">
+                                <span class="bubble__text">The final copy is approved — ready to ship to the client.</span>
+                                <span class="bubble__meta">1:35 PM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T'Challa Udaku — 1-to-1 conversation -->
+                <div class="chat-stream chat-stream--direct" data-conv-stream="tchalla" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">08/01/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">T'Challa Udaku</span>
+                            <div class="bubble" style="width:440px;">
+                                <span class="bubble__text">Good afternoon. I reviewed the vendor contract — the SLA clause needs to be tightened before we sign.</span>
+                                <span class="bubble__meta">3:05 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:380px;">
+                                <span class="bubble__text">Agreed — the uptime guarantee is too loose. I'll draft a revision and loop in legal.</span>
+                                <span class="bubble__meta">3:12 PM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">T'Challa Udaku</span>
+                            <div class="bubble" style="width:300px;">
+                                <span class="bubble__text">Perfect. Please make sure the penalty terms are explicit this time.</span>
+                                <span class="bubble__meta">3:18 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:400px;">
+                                <span class="bubble__text">Noted — I'll have legal send the revised terms by Friday. I'll cc you on the thread.</span>
+                                <span class="bubble__meta">3:22 PM <i class="bi bi-check2"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sam Wilson — 1-to-1 conversation -->
+                <div class="chat-stream chat-stream--direct" data-conv-stream="sam" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">07/28/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Sam Wilson</span>
+                            <div class="bubble" style="width:420px;">
+                                <span class="bubble__text">Hey! Did the travel approval for the offsite come through yet? I need to confirm the seats before prices go up.</span>
+                                <span class="bubble__meta">11:05 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:360px;">
+                                <span class="bubble__text">Not yet — I escalated it to finance this morning. I'll ping you the moment it clears.</span>
+                                <span class="bubble__meta">11:15 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Sam Wilson</span>
+                            <div class="bubble" style="width:380px;">
+                                <span class="bubble__text">Thanks! The airline is holding the group rate until Friday, so hopefully we make it in time.</span>
+                                <span class="bubble__meta">11:20 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Sam Wilson</span>
+                            <div class="bubble" style="width:340px;">
+                                <span class="bubble__text">Any update on the travel approval? I need to confirm the seats.</span>
+                                <span class="bubble__meta">2:40 PM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carol Danvers — 1-to-1 conversation -->
+                <div class="chat-stream chat-stream--direct" data-conv-stream="carol" hidden>
+                    <div class="stream-empty">No messages match your search.</div>
+                    <div class="stream-note stream-day">07/22/2026</div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Carol Danvers</span>
+                            <div class="bubble" style="width:440px;">
+                                <span class="bubble__text">The API integration is wired up on staging. I'm running a smoke test against the sandbox endpoint now.</span>
+                                <span class="bubble__meta">9:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:360px;">
+                                <span class="bubble__text">Nice! Let me know if the auth token refresh is working — that was the flaky bit last time.</span>
+                                <span class="bubble__meta">9:38 AM <i class="bi bi-check2-all"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="msg-row">
+                        <div class="msg-block">
+                            <span class="msg-author">Carol Danvers</span>
+                            <div class="bubble" style="width:400px;">
+                                <span class="bubble__text">All good — refresh is solid. I added retry logic with exponential backoff just in case.</span>
+                                <span class="bubble__meta">9:45 AM</span>
+                            </div>
+                            <button type="button" class="reaction-chip" data-react-list="reactList">
+                                <span class="emoji">&#128077;</span> 3
+                            </button>
+                        </div>
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="theirMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                    </div>
+
+                    <div class="msg-row msg-row--out">
+                        <div class="msg-tools">
+                            <button type="button" class="msg-tool" data-menu="myMessageMenu">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <button type="button" class="msg-react msg-react--plain">&#129309;</button>
+                        </div>
+                        <div class="msg-block">
+                            <div class="bubble bubble--out" style="width:320px;">
+                                <span class="bubble__text">The webhook is live — monitoring for the first 24 hours.</span>
+                                <span class="bubble__meta">10:02 AM <i class="bi bi-check2"></i></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -6834,21 +7734,51 @@ ViewData["User"] = "Admin";
                 initials: 'HT', colour: '#FFB199', name: 'HR Team', sub: '12 members', isGroup: true,
                 pinned: "Pinned message · We'll cover project updates, upcoming deadlines, and brainstorming ideas for the new campaign."
             },
+            // 1-to-1 threads carry no presence line — the header shows the name only,
+            // vertically centred next to the avatar
             'clint': {
-                initials: 'CB', colour: '#FFD59E', name: 'Clint Barton', sub: 'Active now', isGroup: false,
+                initials: 'CB', colour: '#FFD59E', name: 'Clint Barton', sub: '', isGroup: false,
                 pinned: null
             },
             'natasha': {
-                initials: 'NR', colour: '#B8E0D2', name: 'Natasha Romanoff', sub: 'Active 5m ago', isGroup: false,
+                initials: 'NR', colour: '#B8E0D2', name: 'Natasha Romanoff', sub: '', isGroup: false,
                 pinned: null
             },
             'maria': {
-                initials: 'MR', colour: '#FFB199', name: 'Maria Reyes', sub: 'Active 2h ago', isGroup: false,
+                initials: 'MR', colour: '#FFB199', name: 'Maria Reyes', sub: '', isGroup: false,
                 pinned: null
             },
             'design-team': {
                 initials: 'DT', colour: '#B7C9F2', name: 'Design Team', sub: '8 members', isGroup: true,
                 pinned: 'Pinned message · Component library lives in Figma — always branch before editing.'
+            },
+            'steve': {
+                initials: 'SR', colour: '#E3B7F2', name: 'Steve Rogers', sub: '', isGroup: false,
+                pinned: null
+            },
+            'wanda': {
+                initials: 'WM', colour: '#F2B7D6', name: 'Wanda Maximoff', sub: '', isGroup: false,
+                pinned: null
+            },
+            'engineering': {
+                initials: 'EN', colour: '#C9E4B7', name: 'Engineering', sub: '15 members', isGroup: true,
+                pinned: 'Pinned message · Deploys require infra sign-off — no exceptions.'
+            },
+            'marketing': {
+                initials: 'MK', colour: '#F2D3B7', name: 'Marketing', sub: '6 members', isGroup: true,
+                pinned: 'Pinned message · All campaign assets must pass brand review before publishing.'
+            },
+            'tchalla': {
+                initials: 'TU', colour: '#F2D3B7', name: 'T\'Challa Udaku', sub: '', isGroup: false,
+                pinned: null
+            },
+            'sam': {
+                initials: 'SW', colour: '#C9E4B7', name: 'Sam Wilson', sub: '', isGroup: false,
+                pinned: null
+            },
+            'carol': {
+                initials: 'CD', colour: '#B7E3F2', name: 'Carol Danvers', sub: '', isGroup: false,
+                pinned: null
             }
         };
 
@@ -6888,6 +7818,7 @@ ViewData["User"] = "Admin";
             headAvatar.style.background = meta.colour;
             headName.textContent = meta.name;
             headSub.textContent = meta.sub;
+            headSub.hidden = !meta.sub;
 
             // group-only affordances (rename, members panel)
             document.querySelectorAll('.is-group-only').forEach(el => { el.hidden = !meta.isGroup; });
@@ -6948,6 +7879,47 @@ ViewData["User"] = "Admin";
         const sendBtn = document.getElementById('composerSend');
         let stream = document.getElementById('chatStream');
 
+        /* The field grows with its content up to the max-height set per breakpoint,
+           then starts scrolling. The old version reset to a hard-coded 24px, which
+           is the desktop height — on mobile that collapsed the pill below its CSS
+           height and left the scrollbar permanently visible. Measuring the
+           stylesheet height instead keeps every breakpoint honest. */
+        const autoGrowComposer = () => {
+            if (!composer) return;
+            const cs = getComputedStyle(composer);
+            const borders = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+            const max = parseFloat(cs.maxHeight) || Infinity;
+
+            /* the stream is the only flexible row, so it has to give back the
+               pixels the composer takes — re-pin it to the bottom afterwards so
+               the newest message stays visible instead of the view appearing
+               to slide up */
+            const pinned = stream
+                ? stream.scrollHeight - stream.scrollTop - stream.clientHeight < 4
+                : false;
+
+            composer.style.height = '';
+            const base = composer.getBoundingClientRect().height;
+
+            composer.style.height = '0px';
+            const needed = composer.scrollHeight + borders;
+
+            const height = Math.max(base, Math.min(needed, max));
+            composer.style.height = height + 'px';
+            // a grown field is a rounded rectangle, never a pill
+            composer.classList.toggle('is-multiline', height > base + 1);
+
+            if (pinned && stream) stream.scrollTop = stream.scrollHeight;
+        };
+
+        /* the scrollbar is only painted while the field is being scrolled */
+        let composerScrollTimer;
+        composer && composer.addEventListener('scroll', () => {
+            composer.classList.add('is-scrolling');
+            clearTimeout(composerScrollTimer);
+            composerScrollTimer = setTimeout(() => composer.classList.remove('is-scrolling'), 700);
+        });
+
         const sendMessage = () => {
             const text = composer.value.trim();
             if (!text) return;
@@ -6966,7 +7938,7 @@ ViewData["User"] = "Admin";
             row.querySelector('.bubble__text').textContent = text;
             stream.appendChild(row);
             composer.value = '';
-            composer.style.height = '24px';
+            autoGrowComposer();
             stream.scrollTop = stream.scrollHeight;
         };
 
@@ -6977,10 +7949,9 @@ ViewData["User"] = "Admin";
                 sendMessage();
             }
         });
-        composer && composer.addEventListener('input', () => {
-            composer.style.height = '24px';
-            composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
-        });
+        composer && composer.addEventListener('input', autoGrowComposer);
+        // the base height differs per breakpoint, so re-fit when the query flips
+        window.addEventListener('resize', autoGrowComposer);
 
         // ----------------------------------------------------------- voice to text
         const voiceToggle = document.getElementById('voiceToggle');
@@ -7009,11 +7980,9 @@ ViewData["User"] = "Admin";
             voiceToggle.classList.remove('is-active');
         };
 
-        const resizeComposer = () => {
-            if (!composer) return;
-            composer.style.height = '24px';
-            composer.style.height = Math.min(composer.scrollHeight, 96) + 'px';
-        };
+        // dictation reuses the same growth rules as typing (the hard-coded
+        // desktop numbers here used to collapse the mobile pill)
+        const resizeComposer = () => autoGrowComposer();
 
         const startVoice = () => {
             voiceSeconds = 0;
@@ -8208,13 +9177,13 @@ ViewData["User"] = "Admin";
         });
 
         /* ==================================================================
-           390px MOBILE behaviour
+           MOBILE behaviour (<= 991.98px, matching the CSS breakpoint)
            ------------------------------------------------------------------
            The phone frames show the inbox and the thread as two separate
            full-screen views, so the single desktop layout is driven as a pair
            of panes here. Everything below is inert above the breakpoint.
            ================================================================== */
-        const MOBILE_QUERY = window.matchMedia('(max-width: 575.98px)');
+        const MOBILE_QUERY = window.matchMedia('(max-width: 991.98px)');
         const msgPage = document.querySelector('.msg-page');
         const msgLayout = document.querySelector('.msg-layout');
 
@@ -8237,8 +9206,10 @@ ViewData["User"] = "Admin";
 
         const syncMobile = () => {
             if (!msgLayout) return;
+            // the shell is height-bound at every width now, so --msg-top has to be
+            // kept current on desktop too, not just inside the mobile frames
+            measureTop();
             if (MOBILE_QUERY.matches) {
-                measureTop();
                 if (!msgLayout.dataset.pane) {
                     msgLayout.dataset.pane = 'list';
                     document.body.classList.remove('msg-thread-open');
@@ -8251,7 +9222,7 @@ ViewData["User"] = "Admin";
 
         syncMobile();
         MOBILE_QUERY.addEventListener('change', syncMobile);
-        window.addEventListener('resize', () => { if (MOBILE_QUERY.matches) measureTop(); });
+        window.addEventListener('resize', measureTop);
 
         // tapping a row opens the thread frame; the back chevron returns
         chatList && chatList.addEventListener('click', (e) => {
