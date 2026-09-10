@@ -34,3 +34,8 @@
 
 @await Html.PartialAsync("_Scripts")
 
+
+@* shared mobile bottom tab bar (Chats / Alerts / Surveys / Bookings) *@
+@await Html.PartialAsync("_MobileFooterNav", new ViewDataDictionary(ViewData) {
+    { "MobileNavActive", "bookings" }
+})

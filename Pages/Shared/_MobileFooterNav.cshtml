@@ -1,0 +1,48 @@
+@*
+    Shared mobile footer navigation — Chats / Alerts / Surveys / Bookings.
+
+    Appears on the FIRST page of every module (Messages Inbox, Contacts,
+    Notification Wall, Email, Forms, Appointment, Settings) and is hidden from
+    992px up, where the dashboard nav in the header takes over.
+
+    Usage:
+        @await Html.PartialAsync("_MobileFooterNav", new ViewDataDictionary(ViewData) {
+            { "MobileNavActive", "chats" }      // chats | alerts | surveys | bookings | (none)
+        })
+
+    Pass "MobileNavStatic" = true when the host page already reserves a row for
+    the bar in its own flex column (Messages does); otherwise the bar is fixed
+    to the bottom of the viewport and a spacer keeps content clear of it.
+
+    Icons are the dashboard SVGs, painted via CSS mask so they take the tab's
+    colour. See wwwroot/css/mobile-footer-nav.css.
+*@
+@{
+    var mnavActive = ViewData["MobileNavActive"] as string ?? "";
+    var mnavStatic = ViewData["MobileNavStatic"] is bool b && b;
+
+    Func<string, string> mnavCls = key =>
+        "zx-mnav__item" + (string.Equals(key, mnavActive, StringComparison.OrdinalIgnoreCase) ? " is-active" : "");
+}
+@if (!mnavStatic)
+{
+    <div class="zx-mnav-spacer" aria-hidden="true"></div>
+}
+<nav class="zx-mnav@(mnavStatic ? " zx-mnav--static" : "")" aria-label="Mobile navigation">
+    <a class="@mnavCls("chats")" href="/messages">
+        <span class="zx-mnav__icon" style="--zx-mnav-icon:url('/images/icons/messages.svg')" aria-hidden="true"></span>
+        <span>Chats</span>
+    </a>
+    <a class="@mnavCls("alerts")" href="/notifications">
+        <span class="zx-mnav__icon" style="--zx-mnav-icon:url('/images/icons/notification.svg')" aria-hidden="true"></span>
+        <span>Alerts</span>
+    </a>
+    <a class="@mnavCls("surveys")" href="/forms">
+        <span class="zx-mnav__icon" style="--zx-mnav-icon:url('/images/icons/poll.svg')" aria-hidden="true"></span>
+        <span>Surveys</span>
+    </a>
+    <a class="@mnavCls("bookings")" href="/scheduler">
+        <span class="zx-mnav__icon" style="--zx-mnav-icon:url('/images/icons/scheduler.svg')" aria-hidden="true"></span>
+        <span>Bookings</span>
+    </a>
+</nav>

@@ -249,3 +249,7 @@ ViewData["User"] = "Admin";
         </form>
     </div>
 </div>
+@* shared mobile bottom tab bar (Chats / Alerts / Surveys / Bookings) *@
+@await Html.PartialAsync("_MobileFooterNav", new ViewDataDictionary(ViewData) {
+    { "MobileNavActive", "" }
+})

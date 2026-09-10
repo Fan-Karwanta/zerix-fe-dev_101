@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Mobile footer navigation (Chats / Alerts / Surveys / Bookings)
+   --------------------------------------------------------------------------
+   Shared bottom tab bar for the FIRST page of every module: Messages Inbox,
+   Contacts, Notification Wall, Email, Forms, Appointment (Scheduler) and
+   Settings. Rendered by Pages/Shared/_MobileFooterNav.cshtml.
+
+   The glyphs are the same SVGs the dashboard nav uses
+   (wwwroot/images/icons/*.svg). They are painted through a CSS mask instead of
+   an <img> so the icon can inherit the tab's colour — grey/near-black when
+   idle, brand blue when active — while staying pixel-identical to the
+   dashboard artwork.
+   ========================================================================== */
+
+.zx-mnav,
+.zx-mnav-spacer {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+
+    .zx-mnav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1050;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 4px 8px;
+        width: 100%;
+        background: #FFFFFF;
+        border-top: 1px solid #E9EBEC;
+    }
+
+    /* Messages keeps the bar as the last flex child of .msg-page, so there it
+       must stay in the document flow rather than float over the thread. */
+    .zx-mnav--static {
+        position: static;
+        flex: none;
+    }
+
+    /* keeps the last row of page content clear of the fixed bar */
+    .zx-mnav-spacer {
+        display: block;
+        height: 62px;
+        flex: none;
+    }
+
+    .zx-mnav__item {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        gap: 4px;
+        min-width: 64px;
+        height: 54px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #212529;
+    }
+
+    .zx-mnav__icon {
+        display: block;
+        flex: none;
+        width: 24px;
+        height: 24px;
+        background-color: currentColor;
+        -webkit-mask: var(--zx-mnav-icon) no-repeat center / contain;
+        mask: var(--zx-mnav-icon) no-repeat center / contain;
+    }
+
+    /* Titles: Semi-Bold, 12px (per UI review) */
+    .zx-mnav__item span {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 15px;
+        color: inherit;
+        white-space: nowrap;
+    }
+
+    /* the active tab is a soft blue tint with a blue icon + label, not a solid
+       blue block */
+    .zx-mnav__item.is-active {
+        background: #EAF3FF;
+        color: #1D4ED8;
+    }
+}

@@ -2465,10 +2465,16 @@ ViewData["User"] = "Admin";
         white-space: nowrap;
     }
 
+    /* 12px per UI review — at 14px the "size · sender · time" line was clipped
+       by the row height */
     .file-row__meta {
-        font-size: 14px;
-        line-height: 14px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 15px;
         color: #878A99;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .file-row__dl {
@@ -3164,6 +3170,12 @@ ViewData["User"] = "Admin";
         border-radius: 20px;
     }
 
+    /* transparent on desktop: the modal's own flex column keeps owning every
+       field. The phone frame turns this into the single scrolling region. */
+    .cmp-scroll {
+        display: contents;
+    }
+
     .cmp-head {
         display: flex;
         flex-direction: row;
@@ -3172,6 +3184,11 @@ ViewData["User"] = "Admin";
         padding: 15px 16px;
         gap: 24px;
         width: 100%;
+    }
+
+    /* mobile-only header affordance */
+    .cmp-head__back {
+        display: none;
     }
 
     .cmp-head__title {
@@ -4263,51 +4280,12 @@ ViewData["User"] = "Admin";
         }
 
         /* ---------------------------------------------------- bottom nav bar */
+        /* thin wrapper only — the bar itself is the shared _MobileFooterNav
+           partial (wwwroot/css/mobile-footer-nav.css) */
         .msg-mobile-nav {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            padding: 4px 8px;
+            display: block;
             width: 100%;
-            background: #FFFFFF;
-            border-top: 1px solid #E9EBEC;
             flex: none;
-        }
-
-        .msg-mobile-nav__item {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-            gap: 4px;
-            width: 60px;
-            height: 54px;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #212529;
-        }
-
-        .msg-mobile-nav__item i {
-            font-size: 22px;
-            line-height: 1;
-        }
-
-        .msg-mobile-nav__item span {
-            font-size: 11px;
-            line-height: 14px;
-            font-weight: 500;
-            color: inherit;
-        }
-
-        /* the active tab is a soft blue tint with blue icon + label, not a
-           solid blue block */
-        .msg-mobile-nav__item.is-active {
-            background: #EAF3FF;
-            color: #1D4ED8;
         }
 
         /* ------------------------------------------ 1. Messaging Inbox frame */
@@ -4639,8 +4617,10 @@ ViewData["User"] = "Admin";
         }
 
         /* ------------------------------------------------------ the stream */
+        /* the bottom padding is what separates the last bubble from the input
+           row — without it the message box sat flush against the composer */
         .chat-stream {
-            padding: 15px 16px 0;
+            padding: 15px 16px 16px;
             gap: 15px;
             background: #F5F5F6;
         }
@@ -4712,8 +4692,8 @@ ViewData["User"] = "Admin";
         /* ----------------------------------------------------- the composer */
         .chat-composer {
             height: auto;
-            min-height: 74px;
-            padding: 14px 14px 18px;
+            min-height: 88px;
+            padding: 16px 14px 20px;
             gap: 5px;
             align-items: center;
             border-top: 1px solid #E9EBEC;
@@ -4770,14 +4750,16 @@ ViewData["User"] = "Admin";
         .composer-input {
             order: 3;
             box-sizing: border-box;
-            height: 42px;
-            min-height: 42px;
-            max-height: 120px;
-            padding: 11px 20px;
+            /* the UI design gives the field a full 48px tap target — 42px read
+               as a cramped, half-height pill next to the send button */
+            height: 48px;
+            min-height: 48px;
+            max-height: 132px;
+            padding: 14px 20px;
             background: #FFFFFF;
             border: 1px solid #D0D5DD;
             /* pill while it is a single line… */
-            border-radius: 21px;
+            border-radius: 24px;
             font-size: 15px;
             font-weight: 400;
             line-height: 18px;
@@ -4795,17 +4777,17 @@ ViewData["User"] = "Admin";
 
         .composer-send {
             order: 4;
-            width: 42px;
-            height: 42px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            font-size: 17px;
+            font-size: 18px;
             align-self: flex-end;
         }
 
         .composer-plus,
         .composer-tools {
             align-self: flex-end;
-            margin-bottom: 8px;
+            margin-bottom: 11px;
         }
 
         .voice-rec__hint {
@@ -4907,13 +4889,230 @@ ViewData["User"] = "Admin";
             padding: 20px 16px;
         }
 
+        /* ------------------------------------------------------------------
+           Compose modal — Figma "New message" phone frames
+           ------------------------------------------------------------------
+           On a phone this is a full-screen page, not a card: a pinned header
+           (back chevron + title), one scrolling column of fields, and a pinned
+           two-row action bar (full-width "Send as Message", then "Send later"
+           and "Cancel"). The body tools drop to icon-only.
+           ------------------------------------------------------------------ */
         .cmp-modal {
             width: 100vw;
             max-width: 100vw;
             max-height: 100dvh;
             height: 100dvh;
-            padding: 12px 12px 20px;
+            padding: 0;
+            gap: 0;
+            align-items: stretch;
             border-radius: 0;
+            overflow: hidden;
+        }
+
+        .cmp-scroll {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            padding: 12px 14px 14px;
+        }
+
+        /* -------------------------------------------------------- header */
+        .cmp-head {
+            flex: none;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 10px 12px;
+            border-bottom: 1px solid #F0F1F5;
+        }
+
+        .cmp-head__back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: none;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #161B22;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .cmp-head__back i {
+            display: block;
+            line-height: 0;
+        }
+
+        /* the chevron replaces it, so the round X would be a duplicate */
+        .cmp-head__x {
+            display: none;
+        }
+
+        .cmp-head__title {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 19px;
+        }
+
+        .cmp-head__sub {
+            font-size: 11px;
+            line-height: 14px;
+        }
+
+        /* -------------------------------------------------------- fields */
+        .cmp-field {
+            min-height: 46px;
+            padding: 7px 10px;
+            gap: 6px;
+            border-radius: 10px;
+        }
+
+        .cmp-field--single {
+            min-height: 42px;
+            padding: 0 12px;
+        }
+
+        .cmp-field input {
+            flex: 1 1 90px;
+            min-width: 90px;
+            font-size: 13px;
+        }
+
+        .cmp-chip {
+            height: 26px;
+            padding: 0 6px 0 5px;
+            font-size: 11.5px;
+        }
+
+        .cmp-chip .avatar {
+            width: 18px;
+            height: 18px;
+            font-size: 8px;
+        }
+
+        /* outlined circle with a blue "+", same as the Figma frames — just
+           smaller than desktop so it fits on the chip row */
+        .cmp-browse {
+            width: 26px;
+            height: 26px;
+            border-radius: 13px;
+            font-size: 12px;
+        }
+
+        .cmp-hint {
+            font-size: 10.5px;
+            line-height: 13px;
+        }
+
+        .cmp-mode {
+            height: 30px;
+            font-size: 12px;
+        }
+
+        /* desktop-only wording (see .cmp-hint / .cmp-mode markup) */
+        .cmp-longcopy {
+            display: none;
+        }
+
+        /* --------------------------------------------- message body area */
+        /* the textarea takes whatever height is left, so the attachment row
+           and the tool row stay glued to the bottom of the box */
+        .cmp-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+            min-height: 190px;
+        }
+
+        .cmp-body textarea {
+            flex: 1 1 auto;
+            height: auto;
+            min-height: 120px;
+            padding: 12px;
+            font-size: 13.5px;
+            line-height: 20px;
+        }
+
+        .cmp-bodytools {
+            height: auto;
+            gap: 14px;
+            padding: 8px 12px;
+        }
+
+        /* icon-only, borderless — the labels do not fit a phone width */
+        .cmp-pill {
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            gap: 0;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .cmp-pill span {
+            display: none;
+        }
+
+        .cmp-divider {
+            display: none;
+        }
+
+        /* ---------------------------------------------------- action bar */
+        .cmp-foot {
+            flex: none;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 14px 14px;
+        }
+
+        /* dissolved so "Send later" / "Cancel" / the send split-button are all
+           direct flex items and can be ordered into the Figma's two rows */
+        .cmp-foot__right {
+            display: contents;
+        }
+
+        .cmp-send {
+            order: 1;
+            flex: 1 1 100%;
+        }
+
+        .cmp-send__main {
+            flex: 1 1 auto;
+        }
+
+        /* row 2 splits the width evenly: "Send later" is an outlined button and
+           "Cancel" is plain text — both with centred content, per Figma */
+        .cmp-foot .cmp-btn {
+            flex: 1 1 0;
+            height: 40px;
+            padding: 0 10px;
+            justify-content: center;
+            font-size: 13.5px;
+        }
+
+        .cmp-foot .cmp-btn--dashed {
+            order: 2;
+            border: 1px solid #D3DAE6;
+            border-style: solid;
+            border-radius: 10px;
+            background: #FFFFFF;
+        }
+
+        /* Cancel — the only .cmp-btn that is a direct child of the foot */
+        .cmp-foot > .cmp-btn {
+            order: 3;
+            border: 0;
+            background: transparent;
         }
 
         .img-view__bar {
@@ -7102,24 +7301,14 @@ ViewData["User"] = "Admin";
             </section>
         </div>
     </div>
-    <nav class="msg-mobile-nav" aria-label="Mobile navigation">
-        <a class="msg-mobile-nav__item is-active" href="/messages">
-            <i class="bi bi-envelope"></i>
-            <span>Chats</span>
-        </a>
-        <a class="msg-mobile-nav__item" href="/notifications">
-            <i class="bi bi-bell"></i>
-            <span>Alerts</span>
-        </a>
-        <a class="msg-mobile-nav__item" href="/forms">
-            <i class="bi bi-list-check"></i>
-            <span>Surveys</span>
-        </a>
-        <a class="msg-mobile-nav__item" href="/scheduler">
-            <i class="bi bi-calendar-week"></i>
-            <span>Bookings</span>
-        </a>
-    </nav>
+    @* shared bottom tab bar — keeps .msg-mobile-nav so the thread-open /
+       flex-child rules below still apply, and adds the shared look + icons *@
+    <div class="msg-mobile-nav">
+        @await Html.PartialAsync("_MobileFooterNav", new ViewDataDictionary(ViewData) {
+            { "MobileNavActive", "chats" },
+            { "MobileNavStatic", true }
+        })
+    </div>
 </div>
 
 <!-- ================================================================== overlays -->
@@ -7450,6 +7639,10 @@ ViewData["User"] = "Admin";
 <div class="zx-backdrop" id="composeModal">
     <div class="cmp-modal" role="dialog" aria-label="New message">
         <div class="cmp-head">
+            @* mobile frame leads with a back chevron instead of the round X *@
+            <button type="button" class="cmp-head__back" data-zx-close aria-label="Back">
+                <i class="bi bi-chevron-left"></i>
+            </button>
             <div class="d-flex flex-column">
                 <span class="cmp-head__title">New message</span>
                 <span class="cmp-head__sub">Send to individual users, groups, or both</span>
@@ -7458,6 +7651,11 @@ ViewData["User"] = "Admin";
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
+
+        @* On a phone the head and the foot are pinned and only this middle
+           column scrolls. On desktop it is `display: contents`, so the modal
+           layout is byte-for-byte what it was before. *@
+        <div class="cmp-scroll">
 
         <div class="cmp-field" id="cmpRecipients">
             <span class="cmp-chip" data-name="Clint Barton">
@@ -7473,12 +7671,16 @@ ViewData["User"] = "Admin";
             <div class="cmp-sugg" id="cmpSugg" role="listbox"></div>
         </div>
 
-        <div class="cmp-hint">Type a name to see live suggestions, or tap + to browse Users / Groups with
-            multi-select.</div>
+        @* the phone frames use the shortened one-line copy — the extra wording
+           is wrapped so CSS can drop it below 992px instead of letting the
+           hint wrap onto a second line *@
+        <div class="cmp-hint">Type a name<span class="cmp-longcopy"> to see live suggestions,</span> or tap + to browse
+            Users / Groups<span class="cmp-longcopy"> with multi-select</span>.</div>
 
         <div class="cmp-modes" id="cmpModes">
             <button type="button" class="cmp-mode is-active" data-mode="separate">Send Separately</button>
-            <button type="button" class="cmp-mode" data-mode="group">Create Group Chat</button>
+            <button type="button" class="cmp-mode" data-mode="group">Create Group<span class="cmp-longcopy">
+                    Chat</span></button>
         </div>
 
         <div class="cmp-field cmp-field--single">
@@ -7506,16 +7708,21 @@ ViewData["User"] = "Admin";
                 <span class="cmp-rec__eq"><i></i><i></i><i></i><i></i><i></i></span>
             </div>
 
+            @* labels live in spans so the phone frame can drop to icon-only *@
             <div class="cmp-bodytools">
-                <button type="button" class="cmp-pill" id="cmpAttach"><i class="bi bi-paperclip"></i> Attach</button>
-                <button type="button" class="cmp-pill" id="cmpVoice"><i class="bi bi-mic"></i> Voice</button>
+                <button type="button" class="cmp-pill" id="cmpAttach"><i class="bi bi-paperclip"></i>
+                    <span>Attach</span></button>
+                <button type="button" class="cmp-pill" id="cmpVoice"><i class="bi bi-mic"></i>
+                    <span>Voice</span></button>
                 <span class="cmp-divider"></span>
-                <button type="button" class="cmp-pill" id="tplToggle"><i class="bi bi-file-earmark-text"></i> Use
-                    template</button>
+                <button type="button" class="cmp-pill" id="tplToggle"><i class="bi bi-file-earmark-text"></i>
+                    <span>Use template</span></button>
                 <input type="file" id="cmpFileInput" multiple hidden
                     accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.png,.jpg,.jpeg">
             </div>
         </div>
+
+        </div><!-- /.cmp-scroll -->
 
         <div class="cmp-foot">
             <button type="button" class="cmp-btn" data-zx-close>Cancel</button>

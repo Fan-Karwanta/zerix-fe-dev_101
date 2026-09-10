@@ -971,3 +971,7 @@ ViewData["User"] = "Admin";
     toggleUserGroupsContainer("user-groups-container", "user-groups-label", "user-groups-scroll-area");
     toggleUserGroupsContainer("user-groups-container-mobile", "user-groups-label-mobile", "user-groups-scroll-area-mobile", true);
 </script>
+@* shared mobile bottom tab bar (Chats / Alerts / Surveys / Bookings) *@
+@await Html.PartialAsync("_MobileFooterNav", new ViewDataDictionary(ViewData) {
+    { "MobileNavActive", "" }
+})

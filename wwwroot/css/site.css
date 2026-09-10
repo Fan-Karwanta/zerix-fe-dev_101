@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
+/* Shared mobile bottom tab bar (_MobileFooterNav.cshtml). Imported here so
+   every layout that loads site.css picks it up without a per-page <link>. */
+@import url("mobile-footer-nav.css");
+
 /* Disable text selection for the entire document */
 * {
   font-family: 'Plus Jakarta Sans', sans-serif;
