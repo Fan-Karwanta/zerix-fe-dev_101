@@ -24,7 +24,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 1050;
+        /* below open dropdowns (which sit at 1040-1050, some inline/!important)
+           so header menus like "User Groups" or "Create Notification" render in
+           front of the tab bar instead of behind it */
+        z-index: 1020;
         box-sizing: border-box;
         display: flex;
         flex-direction: row;
@@ -89,5 +92,12 @@
     .zx-mnav__item.is-active {
         background: #EAF3FF;
         color: #1D4ED8;
+    }
+
+    /* Bootstrap's default dropdown z-index (1000) is under the tab bar, so open
+       menus are lifted above it. Menus that already set 1050 inline stay put. */
+    .dropdown-menu.show,
+    .mobile-dropdown {
+        z-index: 1040;
     }
 }
